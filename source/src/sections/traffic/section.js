@@ -45,10 +45,10 @@ PTS.section('traffic', function (root) {
   // ---- the estimate, with its low and high cases
   const T = B.traffic, mil = function (v) { return F.n(v, 1) + ' million'; };
   const row = function (label, key, color) {
-    const lo = T.low[key], hi = T.high[key], v = T.central[key], ranged = Math.abs(hi - lo) > 1e-9, pick = Math.abs(T.pick[key] - v) > 1e-9 ? T.pick[key] : null;
+    const lo = T.low[key], hi = T.high[key], v = T.central[key], ranged = Math.abs(hi - lo) > 1e-9, pick = Math.abs(T.ride[key] - v) > 1e-9 ? T.ride[key] : null;
     return { label: label, value: v, color: color, lo: ranged ? lo : null, hi: ranged ? hi : null, mark: pick,
       tip: '<b>' + label + '</b><br>Central: <b>' + mil(v) + '</b> more journeys a year' + (ranged ? '<br><small>Low ' + mil(lo) + ', high ' + mil(hi) + '</small>' : '<br><small>From the time model; no low or high case</small>')
-        + (pick != null ? '<br><small>The tick: ' + mil(pick) + ' if passengers pick the train that calls at their best station</small>' : '') };
+        + (pick != null ? '<br><small>The tick: ' + mil(pick) + ' if the ride across Paris is counted against the passenger</small>' : '') };
   };
   C.bars($('#tr-est-chart'), { fmt: mil, max: Math.ceil(T.high.new_transilien / 5) * 5, rows: [
     { group: 'High-speed trains' }, row('Starting or ending in the Paris region', 'paris_new', 'var(--s1)'), row('Crossing Paris', 'cross_new', 'var(--s1)'),

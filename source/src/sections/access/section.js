@@ -5,7 +5,7 @@ PTS.section('access', function (root) {
   const KEYS = ['Nord', 'Est', 'Lyon', 'Montparnasse'], W = P.w, ROWS = P.rows, N = ROWS.length;
   const col = function (name) { const i = P.cols.indexOf(name); if (i < 0) console.error('access: column ' + name + ' is missing from points.json'); return i; };
   const idx = function (prefix) { return { Nord: col(prefix + '_N'), Est: col(prefix + '_E'), Lyon: col(prefix + '_L'), Montparnasse: col(prefix + '_M') }; };
-  const TI = idx('today'), PI = { station: idx('station'), ride: idx('ride'), pick: idx('pick') }, ARR = col('arr'), LAT = col('lat'), LON = col('lon'), ID = col('id');
+  const TI = idx('today'), PI = { station: idx('station'), ride: idx('ride') }, ARR = col('arr'), LAT = col('lat'), LON = col('lon'), ID = col('id');
   const STATION = { Nord: 'Gare du Nord', Est: 'Gare de l’Est', Lyon: 'Gare de Lyon', Montparnasse: 'Montparnasse' };
   const DIR = {
     all: { name: 'All directions', toward: 'all directions, weighted by traffic' },
@@ -14,8 +14,8 @@ PTS.section('access', function (root) {
     Lyon: { name: 'South-east', toward: 'the south-east', ex: 'Lyon, Marseille' },
     Montparnasse: { name: 'Atlantic', toward: 'the Atlantic', ex: 'Bordeaux, Rennes, Nantes' }
   };
-  const MEASURE = { station: 'to the station entrance', ride: 'counting the ride across Paris', pick: 'counting the ride, picking the train' };
-  const MEASURES = ['station', 'ride', 'pick'];
+  const MEASURE = { station: 'to the station entrance', ride: 'counting the ride across Paris' };
+  const MEASURES = ['station', 'ride'];
   const NONE = 0.05;                                   // under 3 seconds counts as no change, as in the model's share of quicker points
   const MIN = [[15, 'Under 15 min'], [20, '15 to 20'], [25, '20 to 25'], [30, '25 to 30'], [35, '30 to 35'], [Infinity, '35 min or more']];
   const SAV = [[NONE, 'No change'], [1, 'Up to 1 min saved'], [2, '1 to 2'], [5, '2 to 5'], [10, '5 to 10'], [Infinity, 'More than 10 min saved']];
@@ -45,14 +45,14 @@ PTS.section('access', function (root) {
     ROWS.forEach(function (p) { const a = today(p, d), b = proj(p, d, m); st += a; sp += b; if (a - b >= NONE) quick++; max = Math.max(max, a - b); });
     const out = { today: st / N, project: sp / N, quicker: quick / N, max: max };
     if (d === 'all') { out.today = P.avg.today; out.project = P.avg[m]; out.quicker = P.share_quicker[m]; out.max = P.max_gain[m]; }
-    else if (M.by_dir && M.by_dir[d]) { out.today = M.by_dir[d].today; if (m === 'ride') out.project = M.by_dir[d].nordest; else if (m === 'pick') out.project = M.by_dir[d].pick; }
+    else if (M.by_dir && M.by_dir[d]) { out.today = M.by_dir[d].today; out.project = M.by_dir[d][m]; }
     return (cache[key] = out);
   }
 
   // ---------------------------------------------------------------- where to board: the two halves of the trains for one direction
   /* Every train stops at two stations. For a direction, half of the trains come through one other station and half through the
      other; each half can be boarded at the direction's own station or at the train's first stop, with the ride between the two
-     counted on the ride and pick measures. The pick measure takes the better half; the other two average the halves. */
+     counted on the ride measure. The ride measure takes the better half, the passenger picking the train; the station measure averages the halves. */
   function plan(p, d, m) {
     const t = { Nord: p[TI.Nord], Est: p[TI.Est], Lyon: p[TI.Lyon], Montparnasse: p[TI.Montparnasse] }, L = P.th.L, A = P.th.M, LM = P.th.LM;
     const hall = d === 'Est' ? (t.Est <= t.Nord ? 'Est' : 'Nord') : (t.Nord <= t.Est ? 'Nord' : 'Est');
@@ -125,7 +125,7 @@ PTS.section('access', function (root) {
     $('#access-n-today').innerHTML = f1(a.today) + '<small>min</small>';
     $('#access-n-project').innerHTML = f1(a.project) + '<small>min</small>';
     $('#access-n-saved').innerHTML = f1(a.today - a.project) + '<small>min</small>';
-    $('#access-d-project').textContent = m === 'station' ? 'Average time to the entrance of the nearest station where your train stops' : m === 'ride' ? 'The same, plus the train’s ride between its Paris stops when you board at the first one' : 'The same, if the passenger picks a train that calls at their best station';
+    $('#access-d-project').textContent = m === 'station' ? 'Average time to the entrance of the nearest station where your train stops' : 'The same, plus the train’s ride between its Paris stops, picking a train that calls at your best station';
     const forDir = d === 'all' ? 'Trains for all directions, weighted by traffic' : 'Trains for ' + DIR[d].toward + ' (' + DIR[d].ex + ')';
     $('#access-title').textContent = state.view === 'today' ? 'Today: minutes to the terminal that serves your direction'
       : state.view === 'project' ? 'With the project: minutes to a station where your train stops, ' + MEASURE[m]
@@ -139,7 +139,7 @@ PTS.section('access', function (root) {
     B.forEach(function (b, i) {
       lg.appendChild(h('li', null, h('i', sav && i === 0 ? { class: 'none' } : { style: { '--c': sav ? 'var(--acc-g' + i + ')' : 'var(--seq-' + i + ')' } }), h('span', { text: b[1] }), h('b', { text: F.n(counts[i], 0) })));
     });
-    lg.appendChild(h('li', { class: 'acc-legend-note' }, h('span', { text: sav ? 'Number of points in each class, on the same scale for the three measures. There is no class for “slower”: no point is.' : 'Number of points in each class. The same scale is used for today and for the project.' })));
+    lg.appendChild(h('li', { class: 'acc-legend-note' }, h('span', { text: sav ? 'Number of points in each class, on the same scale for the two measures. There is no class for “slower”: no point is.' : 'Number of points in each class. The same scale is used for today and for the project.' })));
     // statistics
     $('#access-stats-for').textContent = forDir + '; with the project, ' + MEASURE[m] + '.';
     const st = PTS.clear($('#access-stats'));
@@ -161,10 +161,10 @@ PTS.section('access', function (root) {
     const pl = plan(p, d, m), box = h('div', { class: 'acc-dir' + (state.dir === d ? ' cur' : '') });
     box.appendChild(h('div', { class: 'acc-dir-h' }, h('b', { text: DIR[d].name }), pl.saved >= NONE ? h('span', { class: 'gain', text: f1(pl.saved) + ' min saved' }) : h('span', { text: 'no change' })));
     box.appendChild(h('p', null, 'Today: ', h('b', { text: f1(pl.today.t) + ' min' }), ' to ' + pl.today.name + '.'));
-    if (m === 'pick' && !pl.same) {
+    if (m === 'ride' && !pl.same) {
       const c = pl.picked.best;
       box.appendChild(h('p', null, 'With the project, picking a train ', h('b', { text: pl.picked.who }), ': ', h('b', { text: f1(pl.value) + ' min' }), ' (' + legText(c, m) + ').'));
-      box.appendChild(h('p', { class: 'acc-hint', text: 'The next train, whichever half: ' + f1(p[PI.ride[d]]) + ' min on average.' }));
+      box.appendChild(h('p', { class: 'acc-hint', text: 'The next train, whichever half: ' + f1((pl.halves[0].total + pl.halves[1].total) / 2) + ' min on average.' }));
     } else if (pl.same) {
       const c = pl.halves[0].best; let why = '';
       if (c.k === d) why = ', as today';
@@ -241,7 +241,7 @@ PTS.section('access', function (root) {
 
   // ---------------------------------------------------------------- controls
   Object.keys(tiles).forEach(function (k) { tiles[k].addEventListener('click', function () { state.view = k; render(); }); });
-  PTS.seg($('#access-measure'), [['station', 'To the station entrance'], ['ride', 'Counting the ride across Paris'], ['pick', 'Picking the train']], state.measure, function (v) { state.measure = v; render(); }, 'With the project, measured');
+  PTS.seg($('#access-measure'), [['station', 'To the station entrance'], ['ride', 'Counting the ride across Paris']], state.measure, function (v) { state.measure = v; render(); }, 'With the project, measured');
   $('#access-dir').value = state.dir;
   $('#access-dir').addEventListener('change', function (e) { state.dir = e.target.value; render(); });
   render();
@@ -249,35 +249,32 @@ PTS.section('access', function (root) {
   // ---------------------------------------------------------------- findings: by direction
   const dirRows = [{ k: 'all', label: 'All directions', sub: 'weighted by traffic', hl: true }].concat(KEYS.map(function (k) { return { k: k, label: DIR[k].name, sub: F.pct(W[k]) + ' of traffic' }; }));
   C.ranges($('#access-dir-chart'), {
-    label: 'Average minutes to a station where the train stops, by direction, today and with the project on the three measures',
+    label: 'Average minutes to a station where the train stops, by direction, today and with the project on the two measures',
     domain: [20, 30], fmt: function (v) { return F.n(v, 0); }, axisLabel: 'minutes (the axis starts at 20)', rowH: 34,
     kinds: { today: { label: 'Today', color: 'var(--today)', shape: 'dot' },
-             station: { label: 'With the project, to the station entrance', color: 'var(--s1)', shape: 'dot' },
-             ride: { label: 'With the project, counting the ride across Paris (used for benefits)', color: 'var(--s1)', shape: 'ring' },
-             pick: { label: 'With the project, picking a train that calls at the best station', color: 'var(--s2)', shape: 'diamond' } },
+             station: { label: 'With the project, to the station entrance (used for TGV benefits)', color: 'var(--s1)', shape: 'dot' },
+             ride: { label: 'With the project, counting the ride across Paris and picking the train', color: 'var(--s1)', shape: 'ring' } },
     rows: dirRows.map(function (r) {
-      const a = summary(r.k, 'station'), b = summary(r.k, 'ride'), c = summary(r.k, 'pick'), name = '<b>' + r.label + '</b><br>';
+      const a = summary(r.k, 'station'), b = summary(r.k, 'ride'), name = '<b>' + r.label + '</b><br>';
       return { label: r.label, sub: r.sub, hl: r.hl, lo: a.project, hi: a.today, marks: [
         { value: a.today, kind: 'today', tip: name + 'Today: <b>' + F.min(a.today) + '</b>' },
         { value: b.project, kind: 'ride', tip: name + 'With the project, counting the ride across Paris: <b>' + F.min(b.project) + '</b><br><small>' + f1(b.today - b.project) + ' min saved</small>' },
-        { value: c.project, kind: 'pick', tip: name + 'With the project, picking the train: <b>' + F.min(c.project) + '</b><br><small>' + f1(c.today - c.project) + ' min saved</small>' },
         { value: a.project, kind: 'station', tip: name + 'With the project, to the station entrance: <b>' + F.min(a.project) + '</b><br><small>' + f1(a.today - a.project) + ' min saved</small>' }] };
     })
   });
 
   // ---------------------------------------------------------------- findings: by arrondissement
   const by = {};
-  ROWS.forEach(function (p) { const g = by[p[ARR]] = by[p[ARR]] || { arr: p[ARR], n: 0, today: 0, station: 0, ride: 0, pick: 0 }; g.n++; g.today += today(p, 'all'); g.station += proj(p, 'all', 'station'); g.ride += proj(p, 'all', 'ride'); g.pick += proj(p, 'all', 'pick'); });
-  const arrs = Object.keys(by).map(function (k) { const g = by[k]; g.today /= g.n; g.station /= g.n; g.ride /= g.n; g.pick /= g.n; g.savedS = g.today - g.station; g.savedR = g.today - g.ride; g.savedP = g.today - g.pick; g.name = ord(g.arr); return g; });
+  ROWS.forEach(function (p) { const g = by[p[ARR]] = by[p[ARR]] || { arr: p[ARR], n: 0, today: 0, station: 0, ride: 0 }; g.n++; g.today += today(p, 'all'); g.station += proj(p, 'all', 'station'); g.ride += proj(p, 'all', 'ride'); });
+  const arrs = Object.keys(by).map(function (k) { const g = by[k]; g.today /= g.n; g.station /= g.n; g.ride /= g.n; g.savedS = g.today - g.station; g.savedR = g.today - g.ride; g.name = ord(g.arr); return g; });
   arrs.sort(function (a, b) { return b.savedS - a.savedS; });
   C.bars($('#access-arr-chart'), { fmt: function (v) { return f1(v) + ' min'; }, rows: arrs.map(function (g) {
     return { label: g.name, value: g.savedS, mark: g.savedR, color: 'var(--good)',
-      tip: '<b>' + g.name + ' arrondissement</b>, ' + g.n + ' points<br>Today: ' + F.min(g.today) + '<br>To the station entrance: ' + F.min(g.station) + ', <b>' + f1(g.savedS) + ' saved</b><br>Counting the ride: ' + F.min(g.ride) + ', <b>' + f1(g.savedR) + ' saved</b><br>Picking the train: ' + F.min(g.pick) + ', <b>' + f1(g.savedP) + ' saved</b>' };
+      tip: '<b>' + g.name + ' arrondissement</b>, ' + g.n + ' points<br>Today: ' + F.min(g.today) + '<br>To the station entrance: ' + F.min(g.station) + ', <b>' + f1(g.savedS) + ' saved</b><br>Counting the ride and picking the train: ' + F.min(g.ride) + ', <b>' + f1(g.savedR) + ' saved</b>' };
   }) });
   PTS.table($('#access-arr-table'), [
     { key: 'name', label: 'Arrondissement' }, { key: 'n', label: 'Points', num: true },
     { key: 'today', label: 'Today', num: true, fmt: f1 }, { key: 'station', label: 'To the station entrance', num: true, fmt: f1 }, { key: 'savedS', label: 'Saved at the entrance', num: true, fmt: f1 },
-    { key: 'ride', label: 'Counting the ride', num: true, fmt: f1 }, { key: 'savedR', label: 'Saved with the ride', num: true, fmt: f1 },
-    { key: 'pick', label: 'Picking the train', num: true, fmt: f1 }, { key: 'savedP', label: 'Saved picking the train', num: true, fmt: f1 }],
+    { key: 'ride', label: 'Counting the ride', num: true, fmt: f1 }, { key: 'savedR', label: 'Saved with the ride', num: true, fmt: f1 }],
     arrs.slice().sort(function (a, b) { return a.arr - b.arr; }));
 });

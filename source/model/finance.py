@@ -74,7 +74,7 @@ def traffic(**kw):
             'direct_share': Y['tgv_direct_share'], 'new_transilien': reg['new_transilien'], 'new_ter': reg['new_ter'],
             'reg_pax': (Y['reg_base'] + Y['reg_journeys']) * Y['reg_users'] / Y['reg_base'],
             'rex_second': reg['second_station_ter'], 'rex_through': reg['through_ter'], 'sub_second': reg['second_station_sub'],
-            'clock_access': -N.access('clock')['all'], 'clock_cross': clock_cross, 'eq_access': -Y['tgv_access_min'], 'eq_cross': Y['tgv_conn_saving'],
+            'clock_access': -N.access('clock', measure=kw.get('measure', 'station'))['all'], 'clock_cross': clock_cross, 'eq_access': -Y['tgv_access_min'], 'eq_cross': Y['tgv_conn_saving'],
             'ben_access': Y['tgv_access_benefit'], 'ben_cross': Y['tgv_conn_benefit'], 'ben_regional': Y['reg_benefit'], 'ben_comfort': Y['comfort'],
             'wider_urban': w * g['urban'] / ws, 'wider_agglo': w * g['agglomeration'] / ws, 'wider_employment': w * g['employment'] / ws}
 
@@ -92,7 +92,7 @@ def make_base():
     tr = {'central': traffic(),
           'high': traffic(evidence=N.UPLIFT_DIRECT_HIGH, uplift=N.REG_UPLIFT_HIGH),
           'low': traffic(evidence=0, uplift=N.REG_UPLIFT_LOW),
-          'pick': traffic(pick='best')}
+          'ride': traffic(measure='ride')}
     cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'route_km': N.ROUTE_KM, 'link_km': N.LINK_KM, 'radials': N.RADIALS, 'len': N.LEN, 'layout': N.LAYOUT}
     return {'cost_def': cost_def, 'r': N.r_, 'n': N.n_, 'build_years': N.BUILD_YEARS, 'renew_year': N.RENEW_YEAR, 'fare': FARE, 'track_share': N.TRACK_SHARE, 'fare_response': N.FARE_RESPONSE,
             'layout': lay, 'om': {'tunnel': N.OM_TUNNEL, 'station': N.OM_STATION, 'trains': N.REG_TRAINKM * N.REG_TRAINKM_COST / 1000},
@@ -249,7 +249,7 @@ CASES = {'central': {}, 'no_charge': dict(charge_end=0, charge_through=0, rex_se
          'low_running': dict(om_scale='low'), 'high_running': dict(om_scale='high'),
          'shops_full': dict(shop_net=1.0), 'no_fleet': dict(fleet_capture=0.0), 'package_low_running': dict(shop_net=1.0, om_scale='low'),
          'growth': dict(growth=GROWTH), 'low_cost': dict(cost='low'), 'high_cost': dict(cost='high'), 'high_traffic': dict(traffic='high'), 'low_traffic': dict(traffic='low'),
-         'pick': dict(traffic='pick'), 'best': dict(cost='low', traffic='high', growth=GROWTH), 'navigo_all': dict(navigo_new=1.0), 'navigo_low': dict(navigo_new=0.09),
+         'ride': dict(traffic='ride'), 'best': dict(cost='low', traffic='high', growth=GROWTH), 'navigo_all': dict(navigo_new=1.0), 'navigo_low': dict(navigo_new=0.09),
          'tax_high': dict(tax_wider='high'), 'tax_low': dict(tax_wider='low'), 'rate45': dict(rate=0.045, growth=GROWTH), 'rate45_flat': dict(rate=0.045),
          'resp05': dict(fare_response=FARE_RESPONSE_LOW), 'charge_double': dict(charge_end=2 * CHARGE_END, charge_through=2 * CHARGE_THROUGH),
          'all_levers': dict(cost='low', traffic='high', growth=GROWTH, om_scale='low', shop_net=1.0)}

@@ -48,7 +48,7 @@ PTS.section('economy', function (root) {
     step('Central case', 'central', 'sourced', 'var(--neutral-mark)'),
     step('Benefits grow ' + F.pct(P.growth, 1) + ' a year', 'growth', 'assumed'),
     step('Low construction prices and 10% risk', 'low_cost', 'sourced'),
-    step('Passengers pick a train that calls at their best station', 'pick', 'assumed'),
+    step('TGV passengers’ ride across Paris counted against them', 'ride', 'assumed'),
     step('Higher traffic: the top of the evidence on direct trains and joined lines', 'high_traffic', 'sourced'),
     step('Running costs at the low end of the records', 'low_running', 'sourced'),
     { group: 'Levers combined' },

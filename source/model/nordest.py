@@ -10,6 +10,9 @@ Version 3 (13 October 2026). Changes from version 2:
 - regional express platforms of 350 m (trains of 270 to 330 m); no sealed pair: one switchable platform and a control hall for London;
 - risk 15% central (the unit prices are final costs or contracts), 10% low, 30% high;
 - access with the triangle, plus a second measure where the passenger picks a train that calls at their best station;
+Version 3.2 (13 October 2026): TGV passengers' access benefit is counted at the station entrance (the ride across Paris is not held
+against them); the measure that counts the ride now always assumes the passenger picks the train; regional express passengers
+bound for Nord-Est trains pick the one that runs on to the station best for them;
 - the Atlantic to south-east pair is direct by the link; the hub layout and the comparison layouts are removed;
 - land released is not sold: it becomes parks (not valued yet).
 Version 2 (after the independent check of 12 October 2026). Changes from version 1:
@@ -49,30 +52,35 @@ OLD_CLOCK[frozenset(('Nord', 'Est'))] = 30.0      # the two halls are 500 m apar
 
 
 # ------------------------------------------------------------------ 1. reaching the TGV
-def tgv_times(t, deep, choice=True, pick='any', hall='both'):
+def tgv_times(t, deep, choice=True, measure='station', hall='both'):
     """Minutes to the train by direction in the triangle. choice=False: only the station that serves the direction today (merged Nord-Est).
-    Half of each line's trains call at each of the two other stations. pick='any': the passenger's train is one of the two halves at random;
-    pick='best': the passenger chooses a train that calls at the station best for them (ASSUMPTION: enough trains an hour to choose).
+    Half of each line's trains call at each of the two other stations.
+    measure='station': minutes to the entrance of the nearest station where the passenger's train stops, the train being one of the two
+    halves at random; the train's ride between its Paris stops is not counted. Used for the benefits of TGV passengers: on a long trip the
+    minutes spent seated on the right train across Paris hardly matter to them.
+    measure='ride': the train's ride between its Paris stops is counted when the passenger boards at the first one, and the passenger picks
+    a train that calls at the station best for them (ASSUMPTION: enough trains an hour to choose without a longer wait).
     hall='both': Nord-Est is entered from either historic hall; 'nord': from the Gare du Nord hall only."""
     ne = min(t['Nord'], t['Est']) if hall == 'both' else t['Nord']
     if not choice:
         return {'Nord': ne + deep, 'Est': ne + deep, 'Lyon': t['Lyon'] + deep, 'Montparnasse': t['Montparnasse'] + deep}
-    viaL, viaM = min(ne, t['Lyon'] + TH['L']), min(ne, t['Montparnasse'] + TH['M'])          # north and east trains come half from each southern line
-    lyonNE, lyonM = min(t['Lyon'], ne + TH['L']), min(t['Lyon'], t['Montparnasse'] + TH['LM'])   # south-east trains: half go on to Nord-Est, half to Montparnasse by the link
-    montNE, montL = min(t['Montparnasse'], ne + TH['M']), min(t['Montparnasse'], t['Lyon'] + TH['LM'])
-    if pick == 'best':
+    th = TH if measure == 'ride' else {'L': 0.0, 'M': 0.0, 'LM': 0.0}
+    viaL, viaM = min(ne, t['Lyon'] + th['L']), min(ne, t['Montparnasse'] + th['M'])          # north and east trains come half from each southern line
+    lyonNE, lyonM = min(t['Lyon'], ne + th['L']), min(t['Lyon'], t['Montparnasse'] + th['LM'])   # south-east trains: half go on to Nord-Est, half to Montparnasse by the link
+    montNE, montL = min(t['Montparnasse'], ne + th['M']), min(t['Montparnasse'], t['Lyon'] + th['LM'])
+    if measure == 'ride':
         north = east = min(viaL, viaM); lyon = min(lyonNE, lyonM); mont = min(montNE, montL)
     else:
         north = east = 0.5 * viaL + 0.5 * viaM; lyon = 0.5 * lyonNE + 0.5 * lyonM; mont = 0.5 * montNE + 0.5 * montL
     return {'Nord': north + deep, 'Est': east + deep, 'Lyon': lyon + deep, 'Montparnasse': mont + deep}
 
 
-def access(tag='eq', deep=0.0, choice=True, pick='any', shares=SH, hall='both'):
+def access(tag='eq', deep=0.0, choice=True, measure='station', shares=SH, hall='both'):
     pts, reg = DATA[tag]; dd = deep * WALKW[tag]
-    par = [sum(W[k] * (tgv_times(t, dd, choice, pick, hall)[k] - t[k]) for k in W) for t in pts]
+    par = [sum(W[k] * (tgv_times(t, dd, choice, measure, hall)[k] - t[k]) for k in W) for t in pts]
     agg = collections.defaultdict(lambda: [0.0, 0.0])
     for r in reg:
-        t = {k: r['t_' + k] for k in KEYS}; a = tgv_times(t, dd, choice, pick, hall)
+        t = {k: r['t_' + k] for k in KEYS}; a = tgv_times(t, dd, choice, measure, hall)
         g = agg[ring(r['dep'])]; g[0] += r['pop']; g[1] += r['pop'] * sum(W[k] * (a[k] - t[k]) for k in W)
     rings = {'Paris': S.mean(par), 'Petite couronne': agg['Petite couronne'][1] / agg['Petite couronne'][0], 'Grande couronne': agg['Grande couronne'][1] / agg['Grande couronne'][0]}
     return {'rings': rings, 'all': sum(shares[k] * rings[k] for k in shares), 'paris_share_quicker': sum(x < 0 for x in par) / len(par)}
@@ -87,9 +95,9 @@ def trip_eq(tag):
     return (212.0 - ACC_EGR) + ACC_EGR * ratio, ACC_EGR * ratio
 
 
-def access_effect(tag='eq', deep=0.0, choice=True, pick='any', c=None, shares=SH, hall='both'):
+def access_effect(tag='eq', deep=0.0, choice=True, measure='station', c=None, shares=SH, hall='both'):
     c = CONN if c is None else c
-    d = access(tag, deep, choice, pick, shares, hall)['all']
+    d = access(tag, deep, choice, measure, shares, hall)['all']
     teq, _ = trip_eq(tag)
     idf = HS_TERMINALS - 2 * c
     dj = idf * ((1 + d / teq) ** ELAST - 1)
@@ -157,7 +165,7 @@ def regional_saving(tag='eq', hall='both'):
     sv = {'H': avg(lambda t: t['Nord'] - min(ne(t), TR['L'] + t['Lyon'])), 'P': avg(lambda t: t['Est'] - min(ne(t), TR['M'] + t['Montparnasse'])),
           'N': avg(lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t))), 'R': avg(lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t)))}
     sv['K'] = sv['H']
-    half = lambda t: 0.5 * min(ne(t), TR['L'] + t['Lyon']) + 0.5 * min(ne(t), TR['M'] + t['Montparnasse'])
+    half = lambda t: min(ne(t), TR['L'] + t['Lyon'], TR['M'] + t['Montparnasse'])        # the passenger picks the train that runs on to the best station
     sv['TER Nord'] = avg(lambda t: t['Nord'] - half(t)); sv['TER Est'] = avg(lambda t: t['Est'] - half(t))
     sv['TER Lyon'] = sv['R']; sv['TER Montparnasse'] = sv['N']
     merge = {'H': avg(lambda t: t['Nord'] - ne(t)), 'P': avg(lambda t: t['Est'] - ne(t))}      # part of the saving that comes from entering by either hall
@@ -196,7 +204,7 @@ def second_station(hall='both', thr=SECOND_MIN):
     alt = {'H': lambda t: t['Nord'] - min(ne(t), TR['L'] + t['Lyon']), 'P': lambda t: t['Est'] - min(ne(t), TR['M'] + t['Montparnasse']),
            'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'R': lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t))}
     alt['K'] = alt['H']
-    half = lambda t: 0.5 * min(ne(t), TR['L'] + t['Lyon']) + 0.5 * min(ne(t), TR['M'] + t['Montparnasse'])
+    half = lambda t: min(ne(t), TR['L'] + t['Lyon'], TR['M'] + t['Montparnasse'])
     alt_ter = {'Nord': lambda t: t['Nord'] - half(t), 'Est': lambda t: t['Est'] - half(t), 'Lyon': alt['R'], 'Montparnasse': alt['N']}
     share = lambda fn: sum(1 for t in pts if fn(t) > thr) / len(pts)
     sub = {l: q * TERM_SHARE[l] * share(alt[l]) for l, q in LINES.items()}
@@ -332,10 +340,10 @@ def wider(reg_benefit):
     return comfort, (reg_benefit + comfort) * R_WIDER
 
 
-def yearly(R=RATE, deep=0.0, pick='any', evidence=UPLIFT_DIRECT, uplift=REG_UPLIFT, tag='eq', c=None, shares=SH, capacity=False,
+def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=REG_UPLIFT, tag='eq', c=None, shares=SH, capacity=False,
            hall='both', weights='official', realise=1.0, years=BUILD_YEARS, scale_wider=False, om_tunnel=None):
     out = yearly_cost(R, years, om_tunnel)
-    a = access_effect(tag, deep, True, pick, c, shares, hall); k = connecting(c, evidence, tag, weights=weights); g = regional(uplift, tag, deep, realise, hall)
+    a = access_effect(tag, deep, True, measure, c, shares, hall); k = connecting(c, evidence, tag, weights=weights); g = regional(uplift, tag, deep, realise, hall)
     aj, kj = a['journeys'] * (realise if a['journeys'] > 0 else 1.0), k['new'] * realise
     ab = a['benefit'] - (a['journeys'] - aj) * abs(a['minutes']) / 120 * VOT_LD / 1000
     kb = k['ben'] - (k['new'] - kj) * k['saving'] / 120 * VOT_LD / 1000
@@ -364,11 +372,11 @@ if __name__ == '__main__':
     out = {'TH': TH, 'TR': TR, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
     # access
     acc = {}
-    for name, kw in {'central': dict(), 'pick': dict(pick='best'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items():
+    for name, kw in {'central': dict(), 'ride': dict(measure='ride'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items():
         acc[name] = {tag: access(tag, **kw) for tag in ('clock', 'eq', 'comfort')}
     out['access'] = acc
     out['today'] = {tag: today_mean(tag) for tag in DATA}
-    out['paris'] = {'today': today_mean('clock'), 'nordest': today_mean('clock') + acc['central']['clock']['rings']['Paris'], 'pick': today_mean('clock') + acc['pick']['clock']['rings']['Paris'],
+    out['paris'] = {'today': today_mean('clock'), 'station': today_mean('clock') + acc['central']['clock']['rings']['Paris'], 'ride': today_mean('clock') + acc['ride']['clock']['rings']['Paris'],
                     'no_choice': today_mean('clock') + acc['no_choice']['clock']['rings']['Paris'], 'nord_hall': today_mean('clock') + acc['nord_hall']['clock']['rings']['Paris']}
     pts = DATA['clock'][0]; ne_ = lambda t: min(t['Nord'], t['Est'])
     out['far_stop_share'] = {'southeast': sum(min(ne_(t) + TH['L'], t['Montparnasse'] + TH['LM']) < t['Lyon'] for t in pts) / len(pts),
@@ -378,16 +386,16 @@ if __name__ == '__main__':
                                      'atlantic': sum(min(ne_(t) + TH['M'], t['Lyon'] + TH['LM']) < t['Montparnasse'] for t in DATA['comfort'][0]) / len(pts)}
     arr = [int(float(r['arr'])) for r in csv.DictReader(open(f'{M}/points.csv'))]
     by = collections.defaultdict(list)
-    for a, t in zip(arr, pts): by[a].append(sum(W[k] * (tgv_times(t, 0.0)[k] - t[k]) for k in W))
+    for a, t in zip(arr, pts): by[a].append(sum(W[k] * (tgv_times(t, 0.0, True, 'ride')[k] - t[k]) for k in W))     # with the ride counted
     out['by_arr'] = {a: S.mean(v) for a, v in sorted(by.items())}
     rows = list(csv.DictReader(open(f'{M}/points.csv')))
     out['points'] = [{'lat': float(r['lat']), 'lon': float(r['lon']), 'd': round(sum(W[k] * (tgv_times(t, 0.0)[k] - t[k]) for k in W), 2)} for r, t in zip(rows, pts)]
-    out['by_dir'] = {k: {'today': S.mean(t[k] for t in pts), 'nordest': S.mean(tgv_times(t, 0.0)[k] for t in pts), 'pick': S.mean(tgv_times(t, 0.0, True, 'best')[k] for t in pts),
+    out['by_dir'] = {k: {'today': S.mean(t[k] for t in pts), 'station': S.mean(tgv_times(t, 0.0)[k] for t in pts), 'ride': S.mean(tgv_times(t, 0.0, True, 'ride')[k] for t in pts),
                          'no_choice': S.mean(tgv_times(t, 0.0, False)[k] for t in pts)} for k in KEYS}
     out['share_within1'] = sum(abs(p['d']) <= 1 for p in out['points']) / len(pts); out['share_quicker'] = sum(p['d'] < -0.05 for p in out['points']) / len(pts); out['share_slower'] = sum(p['d'] > 0.05 for p in out['points']) / len(pts)
     out['max_gain'] = min(p['d'] for p in out['points'])
     out['value_of_choice'] = {tag: access_effect(tag, 0.0, True)['benefit'] - access_effect(tag, 0.0, False)['benefit'] for tag in ('eq', 'comfort')}
-    out['access_effect'] = {n: access_effect('eq', **kw) for n, kw in {'central': dict(), 'pick': dict(pick='best'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items()}
+    out['access_effect'] = {n: access_effect('eq', **kw) for n, kw in {'central': dict(), 'ride': dict(measure='ride'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items()}
     out['access_effect']['comfort'] = access_effect('comfort')
     out['connecting'] = {'central': connecting(), 'high': connecting(evidence=UPLIFT_DIRECT_HIGH), 'model_only': connecting(evidence=0),
                          'all_direct': connecting(direct_share=1.0), 'none_direct': connecting(direct_share=0.0), 'metro_weights': connecting(weights='metro')}
@@ -401,11 +409,11 @@ if __name__ == '__main__':
                      'build_years': BUILD_YEARS, 'om_tunnel': OM_TUNNEL, 'om_tunnel_low': OM_TUNNEL_LOW, 'om_tunnel_high': OM_TUNNEL_HIGH, 'om_station': OM_STATION, 'reg_trainkm': REG_TRAINKM, 'reg_trainkm_cost': REG_TRAINKM_COST, 'ter_trip': TER_TRIP, 'old_ne': 30.0,
                      'stop_min': STOP_MIN, 'clear_min': CLEAR_MIN, 'util': UTIL, 'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'second_min': SECOND_MIN, 'ter_through_share': TER_THROUGH_SHARE, 'park_ha': PARK_HA, 'direct_share': DIRECT_SHARE}
     Y = yearly(); out['yearly'] = Y
-    out['yearly_pick'] = yearly(pick='best')
+    out['yearly_ride'] = yearly(measure='ride')
     tests = {'Low unit prices and 10% risk': dict(R=RATE_LOW), 'High unit prices and 30% risk': dict(R=RATE_HIGH),
              'Works take 15 years, not 12': dict(years=15),
              'Every passenger takes 2 minutes longer to board than today': dict(deep=2.0),
-             'Passengers pick a train that calls at their best station': dict(pick='best'),
+             'TGV passengers’ ride across Paris counted against them': dict(measure='ride'),
              'Nord-Est entered from the Gare du Nord hall only': dict(hall='nord'),
              'Crowded metro time counted 25% heavier': dict(tag='comfort'),
              'Direct trains gain 57%, as on the Paris bypass line': dict(evidence=UPLIFT_DIRECT_HIGH),
