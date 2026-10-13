@@ -1,5 +1,0 @@
-#summary .sum-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px }
-#summary .sum-list a.card { text-decoration: none; color: var(--text); gap: 6px }
-#summary .sum-list a.card:hover { border-color: var(--accent) }
-#summary .sum-list h4 { color: var(--accent) }
-#summary svg.draw { width: 100%; max-width: 560px; height: auto; margin: 0 auto }
