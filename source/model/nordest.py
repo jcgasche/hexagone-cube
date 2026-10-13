@@ -15,6 +15,10 @@ against them); the measure that counts the ride now always assumes the passenger
 bound for Nord-Est trains pick the one that runs on to the station best for them;
 - the Atlantic to south-east pair is direct by the link; the hub layout and the comparison layouts are removed;
 - land released is not sold: it becomes parks (not valued yet).
+Version 3.4 (14 October 2026): passengers who cross Paris grow as the changes of vehicle are removed (each change today keeps 63% of
+potential passengers, British ticket data; a change between two trains inside one Paris station counts as half a change and keeps 79%, as for suburban trips) and as the trip gets
+shorter, averaged over the main destinations of the four lines; the charge on Paris-region passengers falls only on those who choose a
+station their line did not serve (access_curve); a passenger who crosses Paris pays two fares.
 Version 2 (after the independent check of 12 October 2026). Changes from version 1:
 - yearly cost: interest during a 12-year build, one renewal of rail systems, tunnel upkeep at the measured RER E rate,
   extra running of regional trains;
@@ -109,39 +113,148 @@ def access_effect(tag='eq', deep=0.0, choice=True, measure='station', c=None, sh
 
 
 # ------------------------------------------------------------------ 2. passengers who cross Paris
-UPLIFT_DIRECT = 0.37                    # traffic gained when a change of train is removed (British ticket data, Wheat and Wardman)
+UPLIFT_DIRECT = 0.37                    # an added change of train loses 37% of passengers in the long run (British ticket data, Wheat and Wardman)
 UPLIFT_DIRECT_HIGH = 0.57               # Paris bypass line against the no-project case; includes new stations and time savings (derived)
 DIRECT_SHARE = 0.5                      # share of passengers on a pair served by direct trains who find one for their own trip (ASSUMPTION)
 CHANGE_METRO = (20 + 20 * 2 + 17.5 * 1.5, 5 * 2 + 7.5 * 1.5)       # change weighted like a metro trip: today, and inside one station
+CHANGE_KEEP = 1 - UPLIFT_DIRECT         # share of potential passengers a change of vehicle keeps (British ticket data)
+STATION_KEEP = CHANGE_KEEP ** 0.5       # a change between two TGVs inside one Paris station counts as half a change, as for suburban trips (EASY_CHANGE; ASSUMPTION).
+                                        # No pulse: each direction's trains are spaced evenly over the hour, which shortens the wait when a change is needed
+SWISS_KEEP = 1 / 1.12                   # test only: a timed Swiss change, SBB planning 12% more passengers when a direct train replaces one
+# changes of vehicle today between two Paris stations, by the route with the fewest: TGV to metro or RER, metro to metro, metro or RER to TGV
+# (ASSUMPTION, read from the network map; Gare du Nord to Gare de l'Est is a walk, so one change). Each costs the share CHANGE_KEEP.
+TRANSFERS = {frozenset(('Lyon', 'Nord')): 2,           # RER D
+             frozenset(('Lyon', 'Est')): 2,            # RER D to Gare du Nord, then 500 m on foot
+             frozenset(('Montparnasse', 'Nord')): 2,   # metro 4
+             frozenset(('Montparnasse', 'Est')): 2,    # metro 4
+             frozenset(('Montparnasse', 'Lyon')): 3,   # no direct line: metro 4 then 1, or 6 then 14
+             frozenset(('Nord', 'Est')): 1}            # on foot
+# main destinations of each line and the minutes of the fastest regular train from Paris (published timetables, unverified; to check)
+DEST = {'Nord': {'Lille': 62, 'Brussels': 82, 'London': 136}, 'Est': {'Strasbourg': 106, 'Metz': 82, 'Reims': 45},
+        'Lyon': {'Lyon': 116, 'Marseille': 185, 'Montpellier': 200}, 'Montparnasse': {'Bordeaux': 124, 'Nantes': 119, 'Rennes': 85}}
 
 
-def connecting(c=None, evidence=UPLIFT_DIRECT, tag='eq', direct_share=DIRECT_SHARE, weights='official'):
+def pair_ride(ps):
+    """Minutes a direct train takes between its two Paris stops for a pair of lines; None for north to east, which has no direct train."""
+    if ps == {'Nord', 'Est'}: return None
+    if ps == {'Lyon', 'Montparnasse'}: return TH['LM']
+    return sum(TH['L'] if x == 'Lyon' else TH['M'] for x in ps if x in ('Lyon', 'Montparnasse'))
+
+
+def city_pair(ta, tb, p, keep=STATION_KEEP):
+    """One pair of cities on two lines: clock minutes from city to city today, with a direct train and with a change inside one station,
+    and the growth of traffic each brings: the changes removed (each change today keeps CHANGE_KEEP of the passengers, a change inside one
+    station keeps `keep`) times the time model on the door-to-door trip (ACC_EGR minutes at the two ends)."""
+    ride = pair_ride(set(p)); n = TRANSFERS[frozenset(p)]
+    old = ta + tb + OLD_CLOCK[frozenset(p)]
+    tf = lambda new: ((new + ACC_EGR) / (old + ACC_EGR)) ** ELAST
+    change = ta + tb + (ride or 0.0) + T_NEW
+    out = {'today': old, 'change': change, 'transfers': n, 'mult_change': keep / CHANGE_KEEP ** n * tf(change)}
+    if ride is not None:
+        out['direct'] = ta + tb + ride; out['mult_direct'] = 1 / CHANGE_KEEP ** n * tf(out['direct'])
+    return out
+
+
+def destinations(keep=STATION_KEEP):
+    """Every pair of main destinations on two different lines, and the average growth of each pair of lines."""
+    rows, axis = [], {}
+    for p in PSH:
+        cell = []
+        for ca, ta in DEST[p[0]].items():
+            for cb, tb in DEST[p[1]].items():
+                r = city_pair(ta, tb, p, keep); r.update({'from': ca, 'to': cb, 'pair': '-'.join(p)}); rows.append(r); cell.append(r)
+        axis['-'.join(p)] = {k: S.mean(r[k] for r in cell) for k in ('today', 'change', 'mult_change', 'direct', 'mult_direct') if k in cell[0]}
+        axis['-'.join(p)]['transfers'] = TRANSFERS[frozenset(p)]
+    return rows, axis
+
+
+def connecting(c=None, evidence=UPLIFT_DIRECT, tag='eq', direct_share=DIRECT_SHARE, weights='official', method='changes', keep=STATION_KEEP):
     """Pairs of directions in the triangle: every pair except north to east has direct trains, none of them reversing.
-    The Atlantic to south-east pair runs by the direct link."""
+    The Atlantic to south-east pair runs by the direct link.
+    method='changes' (central): traffic on each pair grows as the changes of vehicle are removed and the trip gets shorter, averaged
+    over the main destinations of the two lines (see destinations()). method='single': the earlier estimate, `evidence` on direct
+    trains (0: time model alone) and the time model for the others. Time saved is valued the official way in both."""
     c = CONN if c is None else c
     _, ae = trip_eq(tag)
     chg = 2 * T_NEW if weights == 'official' else CHANGE_METRO[1]
-    out = {'new': 0.0, 'ben': 0.0, 'saving': 0.0, 'direct_share': 0.0, 'pairs': {}}
+    _, axis = destinations(keep)
+    out = {'new': 0.0, 'ben': 0.0, 'saving': 0.0, 'direct_share': 0.0, 'pairs': {}, 'parts': []}
     for p, s in PSH.items():
         ps = set(p)
         old_eq = 2 * OLD_CLOCK[frozenset(p)] if weights == 'official' else CHANGE_METRO[0] * OLD_CLOCK[frozenset(p)] / T_OLD
         old = CONN_TRAIN + old_eq + ae
-        if ps == {'Nord', 'Est'}:
-            served, t_direct, t_change = False, None, chg
-        elif ps == {'Lyon', 'Montparnasse'}:
-            served, t_direct, t_change = True, TH['LM'], TH['LM'] + chg
-        else:
-            ride = sum(TH['L'] if x == 'Lyon' else TH['M'] for x in ps if x in ('Lyon', 'Montparnasse'))    # riding between the Paris stops
-            served, t_direct, t_change = True, ride, ride + chg
+        ride = pair_ride(ps); served = ride is not None
+        t_direct, t_change = ride, (ride or 0.0) + chg
         parts = [(direct_share, t_direct, True), (1 - direct_share, t_change, False)] if served else [(1.0, t_change, False)]
+        ax = axis['-'.join(p)]
         for sh, repl, is_direct in parts:
             q = c * s * sh; new = CONN_TRAIN + repl + ae
-            up = evidence if (evidence and is_direct) else (new / old) ** ELAST - 1
+            if method == 'changes': up = (ax['mult_direct'] if is_direct else ax['mult_change']) - 1
+            else: up = evidence if (evidence and is_direct) else (new / old) ** ELAST - 1
             out['new'] += q * up; out['saving'] += s * sh * (old - new); out['ben'] += gain(q, q * up, old - new, VOT_LD)
+            out['parts'].append({'q': q, 'mult': 1 + up, 'through': is_direct, 'saving': old - new})
             if is_direct: out['direct_share'] += s * sh
-        out['pairs']['-'.join(p)] = {'share': s, 'served': served, 'direct': t_direct, 'change': t_change, 'change_clock': t_change - chg + T_NEW, 'old_clock': OLD_CLOCK[frozenset(p)]}
+        out['pairs']['-'.join(p)] = {'share': s, 'served': served, 'direct': t_direct, 'change': t_change, 'change_clock': t_change - chg + T_NEW, 'old_clock': OLD_CLOCK[frozenset(p)],
+                                     'transfers': TRANSFERS[frozenset(p)], 'growth': sum(sh * ((ax['mult_direct'] if d else ax['mult_change']) - 1) for sh, _, d in parts)}
     out['uplift'] = out['new'] / c; out['base'] = c
     return out
+
+
+# ------------------------------------------------------------------ 2b. the charge on Paris-region passengers who use a station their line did not serve
+def tgv_choice(t, dd, measure='station', cm=0.0, hall='both'):
+    """Like tgv_times, with a charge worth `cm` minutes on boarding or leaving at a station the passenger's line did not serve before
+    (Gare de Lyon for the south-east, Montparnasse for the Atlantic, Nord-Est for the north and the east, by either hall).
+    The historic station keeps today's price, so the passenger pays only by choosing the other one.
+    Returns, by direction, (minutes, minutes plus the charge, share who pay, minutes saved against today by those who pay)."""
+    ne = min(t['Nord'], t['Est']) if hall == 'both' else t['Nord']
+    th = TH if measure == 'ride' else {'L': 0.0, 'M': 0.0, 'LM': 0.0}
+    home = {'Nord': ne, 'Est': ne, 'Lyon': t['Lyon'], 'Montparnasse': t['Montparnasse']}
+    other = {'Nord': [t['Lyon'] + th['L'], t['Montparnasse'] + th['M']], 'Lyon': [ne + th['L'], t['Montparnasse'] + th['LM']],
+             'Montparnasse': [ne + th['M'], t['Lyon'] + th['LM']]}
+    other['Est'] = other['Nord']
+    out = {}
+    for k in KEYS:
+        sets = [[(home[k], False)] + [(x, True) for x in other[k]]] if measure == 'ride' else [[(home[k], False), (x, True)] for x in other[k]]
+        w = 1.0 / len(sets); tm = gm = pay = pg = 0.0
+        for opts in sets:
+            tt, paid = min(opts, key=lambda o: (o[0] + (cm if o[1] else 0.0), o[1]))
+            tm += w * (tt + dd); gm += w * (tt + dd + (cm if paid else 0.0))
+            if paid: pay += w; pg += w * (t[k] - tt - dd)
+        out[k] = (tm, gm, pay, pg)
+    return out
+
+
+def access_charged(tag='eq', deep=0.0, measure='station', charge=0.0, shares=SH, hall='both'):
+    """Paris-region TGV passengers with the charge: average change in minutes (time only, and with the charge), share who pay, and the
+    minutes saved by those who pay. The charge is turned into minutes at the long-distance value of time."""
+    pts, reg = DATA[tag]; dd = deep * WALKW[tag]; cm = charge / VOT_LD * 60
+    def one(t):
+        a = tgv_choice(t, dd, measure, cm, hall)
+        return [sum(W[k] * (a[k][0] - t[k]) for k in W), sum(W[k] * (a[k][1] - t[k]) for k in W), sum(W[k] * a[k][2] for k in W), sum(W[k] * a[k][3] for k in W)]
+    par = [one(t) for t in pts]
+    rings = {'Paris': [S.mean(x[i] for x in par) for i in range(4)]}
+    agg = collections.defaultdict(lambda: [0.0, [0.0] * 4])
+    for r in reg:
+        t = {k: r['t_' + k] for k in KEYS}; v = one(t); g = agg[ring(r['dep'])]; g[0] += r['pop']
+        for i in range(4): g[1][i] += r['pop'] * v[i]
+    for n in ('Petite couronne', 'Grande couronne'): rings[n] = [x / agg[n][0] for x in agg[n][1]]
+    allv = [sum(shares[n] * rings[n][i] for n in shares) for i in range(4)]
+    return {'minutes': allv[0], 'gen': allv[1], 'pay': allv[2], 'pay_gain': allv[3] / allv[2] if allv[2] > 0 else 0.0}
+
+
+CURVE_STEP, CURVE_MAX = 0.1, 40.0       # euros: the charge levels at which the Paris-region response is tabulated for the accounts
+
+
+def access_curve(tag='eq', measure='station', c=None):
+    """Paris-region TGV passengers by level of charge: new journeys, value of time saved, share who pay, and minutes they save."""
+    c = CONN if c is None else c
+    teq, _ = trip_eq(tag); idf = HS_TERMINALS - 2 * c
+    rows = []
+    for i in range(int(round(CURVE_MAX / CURVE_STEP)) + 1):
+        a = access_charged(tag, 0.0, measure, i * CURVE_STEP)
+        dj = idf * ((1 + a['gen'] / teq) ** ELAST - 1)
+        rows.append([dj, gain(idf, dj, -a['minutes'], VOT_LD), a['pay'], a['pay_gain'], a['minutes']])
+    return {'step': CURVE_STEP, 'cols': ['journeys', 'benefit', 'pay', 'pay_gain', 'minutes'], 'rows': rows}
 
 
 # ------------------------------------------------------------------ 3. regional trains
@@ -397,9 +510,10 @@ def wider(reg_benefit):
 
 
 def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=REG_UPLIFT, tag='eq', c=None, shares=SH, capacity=False,
-           hall='both', weights='official', realise=1.0, years=BUILD_YEARS, scale_wider=False, om_tunnel=None, cross=CROSS_SHARE):
+           hall='both', weights='official', realise=1.0, years=BUILD_YEARS, scale_wider=False, om_tunnel=None, cross=CROSS_SHARE,
+           method='changes', direct_share=DIRECT_SHARE, keep=STATION_KEEP):
     out = yearly_cost(R, years, om_tunnel)
-    a = access_effect(tag, deep, True, measure, c, shares, hall); k = connecting(c, evidence, tag, weights=weights); g = regional(uplift, tag, deep, realise, hall, cross)
+    a = access_effect(tag, deep, True, measure, c, shares, hall); k = connecting(c, evidence, tag, direct_share, weights, method, keep); g = regional(uplift, tag, deep, realise, hall, cross)
     aj, kj = a['journeys'] * (realise if a['journeys'] > 0 else 1.0), k['new'] * realise
     ab = a['benefit'] - (a['journeys'] - aj) * abs(a['minutes']) / 120 * VOT_LD / 1000
     kb = k['ben'] - (k['new'] - kj) * k['saving'] / 120 * VOT_LD / 1000
@@ -411,7 +525,7 @@ def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=R
                 'reg_cross_journeys': g['cross']['new'], 'reg_cross_benefit': g['cross_benefit'], 'reg_cross_today': g['cross']['today']})
     cap = 0.10 * HS_TERMINALS if capacity else 0.0                     # scenario: 10% more trains filled once the platforms no longer cap the lines
     out['tgv_capacity_journeys'] = cap
-    tgv_rev = (out['tgv_journeys'] + cap) * FARE / 1000
+    tgv_rev = (aj + 2 * kj + cap) * FARE / 1000                         # a passenger who crosses Paris pays two fares
     out['tgv_revenue'] = tgv_rev; out['tgv_charges'] = tgv_rev * TRACK_SHARE   # ASSUMPTION: trains are added in step with passengers and the charges reach the project
     out['direct'] = {'Track charges on new TGV journeys': out['tgv_charges'], 'Fares from new regional passengers': out['reg_fares']}
     out['direct_total'] = sum(out['direct'].values()); out['direct_cover'] = out['direct_total'] / out['cost']
@@ -454,8 +568,12 @@ if __name__ == '__main__':
     out['value_of_choice'] = {tag: access_effect(tag, 0.0, True)['benefit'] - access_effect(tag, 0.0, False)['benefit'] for tag in ('eq', 'comfort')}
     out['access_effect'] = {n: access_effect('eq', **kw) for n, kw in {'central': dict(), 'ride': dict(measure='ride'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items()}
     out['access_effect']['comfort'] = access_effect('comfort')
-    out['connecting'] = {'central': connecting(), 'high': connecting(evidence=UPLIFT_DIRECT_HIGH), 'model_only': connecting(evidence=0),
-                         'all_direct': connecting(direct_share=1.0), 'none_direct': connecting(direct_share=0.0), 'metro_weights': connecting(weights='metro')}
+    out['connecting'] = {'central': connecting(), 'high': connecting(direct_share=1.0), 'single': connecting(method='single'), 'single_high': connecting(method='single', evidence=UPLIFT_DIRECT_HIGH),
+                         'model_only': connecting(method='single', evidence=0), 'all_direct': connecting(direct_share=1.0), 'none_direct': connecting(direct_share=0.0),
+                         'metro_weights': connecting(weights='metro'), 'british_change': connecting(keep=CHANGE_KEEP)}
+    for v in out['connecting'].values(): v.pop('parts')
+    out['destinations'], out['dest_axis'] = destinations()
+    out['dest'] = DEST
     out['regional'] = regional(); out['regional_high'] = regional(REG_UPLIFT_HIGH); out['regional_low'] = regional(REG_UPLIFT_LOW); out['regional_deep2'] = regional(deep=2.0)
     out['service'] = service(); out['service_full'] = service(HOUR_FULL)
     out['cost'] = cost(); out['cost_low'] = cost(RATE_LOW)['total']; out['cost_high'] = cost(RATE_HIGH)['total']
@@ -466,7 +584,8 @@ if __name__ == '__main__':
                      'build_years': BUILD_YEARS, 'om_tunnel': OM_TUNNEL, 'om_tunnel_low': OM_TUNNEL_LOW, 'om_tunnel_high': OM_TUNNEL_HIGH, 'om_station': OM_STATION, 'reg_trainkm': REG_TRAINKM, 'reg_trainkm_cost': REG_TRAINKM_COST, 'ter_trip': TER_TRIP, 'old_ne': 30.0,
                      'stop_min': STOP_MIN, 'clear_min': CLEAR_MIN, 'util': UTIL, 'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'second_min': SECOND_MIN, 'ter_through_share': TER_THROUGH_SHARE, 'park_ha': PARK_HA, 'direct_share': DIRECT_SHARE,
                      'transit_share': TRANSIT_SHARE, 'cross_share': CROSS_SHARE, 'change_loss': CHANGE_LOSS, 'easy_change': EASY_CHANGE, 'cross_today': CROSS_TODAY, 'cross_out': CROSS_OUT, 'cross_change_eq': CROSS_CHANGE_EQ, 'cross_decay': CROSS_DECAY,
-                     'corridor': CORRIDOR, 'sub_pair': SUB_PAIR, 'ter_run': TER_RUN}
+                     'corridor': CORRIDOR, 'sub_pair': SUB_PAIR, 'ter_run': TER_RUN,
+                     'change_keep': CHANGE_KEEP, 'station_keep': STATION_KEEP, 'acc_egr': ACC_EGR, 'elast': ELAST}
     Y = yearly(); out['yearly'] = Y
     out['yearly_ride'] = yearly(measure='ride')
     tests = {'Low unit prices and 10% risk': dict(R=RATE_LOW), 'High unit prices and 30% risk': dict(R=RATE_HIGH),
@@ -475,8 +594,12 @@ if __name__ == '__main__':
              'TGV passengers’ ride across Paris counted against them': dict(measure='ride'),
              'Nord-Est entered from the Gare du Nord hall only': dict(hall='nord'),
              'Crowded metro time counted 25% heavier': dict(tag='comfort'),
-             'Direct trains gain 57%, as on the Paris bypass line': dict(evidence=UPLIFT_DIRECT_HIGH),
-             'Cross-Paris gain from the time model only': dict(evidence=0),
+             'Every passenger on a served pair finds a direct train': dict(direct_share=1.0),
+             'A change inside one station costs as much as a change today': dict(keep=CHANGE_KEEP),
+             'A change inside one station costs 11%, as in a Swiss timed timetable': dict(keep=SWISS_KEEP),
+             'Cross-Paris gain as on the Paris bypass line, 57% on direct trains': dict(method='single', evidence=UPLIFT_DIRECT_HIGH),
+             'Cross-Paris gain as first estimated: 37% on direct trains': dict(method='single'),
+             'Cross-Paris gain from the time model only': dict(method='single', evidence=0),
              'Today’s change of station weighted like a metro trip': dict(weights='metro'),
              'Suburban traffic grows 25%': dict(uplift=REG_UPLIFT_HIGH), 'Suburban traffic grows 5%': dict(uplift=REG_UPLIFT_LOW),
              'Tunnel upkeep as on the first RER E section': dict(om_tunnel=OM_TUNNEL_HIGH), 'Tunnel upkeep at the average of the RER network': dict(om_tunnel=OM_TUNNEL_LOW),

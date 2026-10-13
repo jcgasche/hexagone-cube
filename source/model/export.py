@@ -18,7 +18,7 @@ def main():
     # ---- model.json: the parts of the traffic and cost model that pages show
     keep = ['TH', 'TR', 'conn', 'paris', 'far_stop_share', 'by_arr', 'by_dir', 'share_quicker', 'share_slower', 'share_within1', 'max_gain', 'value_of_choice', 'access_effect',
             'connecting', 'regional', 'regional_high', 'regional_low', 'service', 'service_full', 'cost', 'cost_low', 'cost_high', 'layout', 'len', 'link_km', 'rates', 'rates_low', 'rates_high',
-            'backtest', 'AF', 'idc', 'ratios', 'params', 'yearly', 'yearly_ride', 'sens', 'deep2_scaled', 'rate_tests', 'gross_up', 'stages', 'extras', 'station_total', 'today']
+            'backtest', 'AF', 'idc', 'ratios', 'params', 'yearly', 'yearly_ride', 'sens', 'deep2_scaled', 'rate_tests', 'gross_up', 'stages', 'extras', 'station_total', 'today', 'destinations', 'dest_axis', 'dest']
     m = {k: d[k] for k in keep}
     m['access'] = {k: d['access'][k] for k in ('central', 'ride', 'no_choice', 'nord_hall', 'deep2')}
     m['tripend_shares'] = N.SH; m['vot'] = {'long_distance': N.VOT_LD, 'regional_express': N.VOT_TER, 'paris_region': N.VOT_IDF}; m['elasticity'] = N.ELAST

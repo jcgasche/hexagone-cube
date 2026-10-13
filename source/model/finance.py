@@ -1,8 +1,10 @@
 """Financial accounts of the triangle (three through stations, two tunnel pairs and the direct link).
 
 Builds on nordest.py (access, traffic, cost) and adds:
-- a charge on high-speed passengers at Paris (2.55 euros per departure or arrival, 5.10 for a passenger who crosses Paris), with the
-  response of traffic to the higher fare;
+- a charge on high-speed passengers who use what the project adds: 2.55 euros for boarding or leaving at a Paris station their line
+  did not serve before, 5.10 for crossing Paris. The historic station of each line keeps today's price, so a Paris-region passenger pays
+  only by choosing the other station, when the time it saves is worth more than the charge; passengers who cross Paris weigh the
+  charge against the changes and time saved (response of traffic to fares);
 - a charge on regional express passengers who use the second station (2.55) or cross Paris (5.10); none on suburban trains, which the
   Navigo pass and the regional ticket already cover;
 - new Navigo pass holders on the joined suburban lines;
@@ -14,6 +16,9 @@ Builds on nordest.py (access, traffic, cost) and adds:
 accounts(base, opts) is pure arithmetic on the `base` dictionary, so that src/js/model.js can repeat it exactly
 (tools/check_model.js compares the two). Every assumption that is not sourced is marked ASSUMPTION.
 
+Version 3.4 (14 October 2026): the charge falls only on new uses (another station than the line's own, crossing Paris), so no
+journey is lost against today; crossing traffic grows as the changes of vehicle in Paris are removed, averaged over the main
+destinations of the four lines (nordest.destinations); a passenger crossing Paris counts two fares in the track charges.
 Version 3 (13 October 2026): one layout, the triangle; land is not sold (it becomes parks, not valued here); the regional express
 charge replaces the flat supplement; the trainset saving is in the central case at half; a ratio on cost net of income is added for
 comparison with British appraisals. Earlier: tunnel upkeep set between the two French benchmarks, with a low and a high case; no VAT
@@ -66,8 +71,8 @@ def traffic(**kw):
     Y = N.yearly(**kw)
     w = Y['wider']; g = N.GPE; ws = g['urban'] + g['agglomeration'] + g['employment']
     reg = N.regional(kw.get('uplift', N.REG_UPLIFT), realise=kw.get('realise', 1.0))
-    k = N.connecting(kw.get('c'), kw.get('evidence', N.UPLIFT_DIRECT))
-    ds = N.DIRECT_SHARE
+    k = N.connecting(kw.get('c'), kw.get('evidence', N.UPLIFT_DIRECT), direct_share=kw.get('direct_share', N.DIRECT_SHARE), method=kw.get('method', 'changes'))
+    ds = kw.get('direct_share', N.DIRECT_SHARE)
     clock_cross = sum(p['share'] * ((ds * (p['old_clock'] - p['direct']) + (1 - ds) * (p['old_clock'] - p['change_clock'])) if p['served'] else (p['old_clock'] - p['change_clock']))
                       for p in k['pairs'].values())
     return {'paris_base': HS_TERMINALS - 2 * Y['conn_base'], 'paris_new': Y['tgv_access_journeys'], 'cross_base': Y['conn_base'], 'cross_new': Y['tgv_conn_journeys'],
@@ -76,7 +81,8 @@ def traffic(**kw):
             'rex_second': reg['second_station_ter'], 'rex_through': reg['through_ter'], 'sub_second': reg['second_station_sub'],
             'clock_access': -N.access('clock', measure=kw.get('measure', 'station'))['all'], 'clock_cross': clock_cross, 'eq_access': -Y['tgv_access_min'], 'eq_cross': Y['tgv_conn_saving'],
             'ben_access': Y['tgv_access_benefit'], 'ben_cross': Y['tgv_conn_benefit'], 'ben_regional': Y['reg_benefit'], 'ben_comfort': Y['comfort'],
-            'wider_urban': w * g['urban'] / ws, 'wider_agglo': w * g['agglomeration'] / ws, 'wider_employment': w * g['employment'] / ws}
+            'wider_urban': w * g['urban'] / ws, 'wider_agglo': w * g['agglomeration'] / ws, 'wider_employment': w * g['employment'] / ws,
+            'measure': kw.get('measure', 'station'), 'cross_parts': [[x['q'], x['mult'], 1 if x['through'] else 0] for x in k['parts']]}
 
 
 def make_base():
@@ -90,13 +96,14 @@ def make_base():
                     'items': cc['items'], 'hard': cc['hard'], 'soft': cc['soft'], 'land': cc['land'], 'risk': cc['risk'],
                     'stations': cc['detail'], 'station_m': cc['platform_m'], 'tracks': cc['tracks']}
     tr = {'central': traffic(),
-          'high': traffic(evidence=N.UPLIFT_DIRECT_HIGH, uplift=N.REG_UPLIFT_HIGH),
-          'low': traffic(evidence=0, uplift=N.REG_UPLIFT_LOW),
+          'high': traffic(direct_share=1.0, uplift=N.REG_UPLIFT_HIGH),
+          'low': traffic(method='single', uplift=N.REG_UPLIFT_LOW),
           'ride': traffic(measure='ride')}
+    curves = {m: N.access_curve(measure=m) for m in ('station', 'ride')}
     cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'route_km': N.ROUTE_KM, 'link_km': N.LINK_KM, 'radials': N.RADIALS, 'len': N.LEN, 'layout': N.LAYOUT}
     return {'cost_def': cost_def, 'r': N.r_, 'n': N.n_, 'build_years': N.BUILD_YEARS, 'renew_year': N.RENEW_YEAR, 'fare': FARE, 'track_share': N.TRACK_SHARE, 'fare_response': N.FARE_RESPONSE,
             'layout': lay, 'om': {'tunnel': N.OM_TUNNEL, 'station': N.OM_STATION, 'trains': N.REG_TRAINKM * N.REG_TRAINKM_COST / 1000},
-            'traffic': tr, 'park_ha': PARK_HA, 'rex_second': REX_SECOND, 'rex_through': REX_THROUGH,
+            'traffic': tr, 'access_curve': curves, 'park_ha': PARK_HA, 'rex_second': REX_SECOND, 'rex_through': REX_THROUGH,
             'navigo_pass': NAVIGO_PASS, 'pass_trips': PASS_TRIPS, 'ter_yield': TER_YIELD, 'shop_fee': SHOP_FEE, 'shop_net': SHOP_NET, 'auth_fee': AUTH_FEE,
             'set_year': SET_YEAR, 'sets': SETS, 'tax': TAX, 'vot_ld': VOT_LD, 'levy': LEVY, 'payroll_01': PAYROLL_01, 'eu_grant': EU_GRANT, 'growth': GROWTH,
             'traffic_growth_share': TRAFFIC_GROWTH_SHARE,
@@ -115,6 +122,13 @@ def grow_factor(g, r, n):
     return (1 - q ** n) / (1 - q) / (1 + r) * af(r, n)
 
 
+def at_charge(curve, charge):
+    """Paris-region response at one level of charge, by straight lines between the tabulated levels (nordest.access_curve)."""
+    rows, step = curve['rows'], curve['step']
+    x = max(0.0, charge) / step; i = min(int(x), len(rows) - 2); w = x - i
+    return {k: rows[i][j] + (rows[i + 1][j] - rows[i][j]) * w for j, k in enumerate(curve['cols'])}
+
+
 def accounts(base, o=None):
     """The two accounts, the economic return and the public return, for one set of choices. bn euros a year unless stated."""
     d = dict(base['defaults']); d.update(o or {})
@@ -129,30 +143,38 @@ def accounts(base, o=None):
     renewal = L['systems'][d['cost']] / (1 + r) ** base['renew_year'] * A
     out['ops_cost'] = {'Running and maintaining tunnels and stations': om_infra, 'Extra running of regional trains': base['om']['trains'], 'Renewal of rail systems, set aside each year': renewal}
     out['ops_cost_total'] = sum(out['ops_cost'].values())
-    # ---- high-speed passengers and the charge
+    # ---- high-speed passengers and the charge. Only new uses pay: a Paris-region passenger who boards or leaves at a station their
+    #      line did not serve (the historic station keeps today's price), and a passenger who crosses Paris. No journey is lost against today.
     fare, resp = base['fare'], d['fare_response']
-    paris = (T['paris_base'] + T['paris_new']) * GT; cross = (T['cross_base'] + T['cross_new']) * GT
-    through, change = cross * T['direct_share'], cross * (1 - T['direct_share'])
-    keep = lambda charge: (1 + charge / fare) ** resp
-    lost_p = paris * (1 - keep(d['charge_end'])); lost_t = through * (1 - keep(d['charge_through'])); lost_c = change * (1 - keep(2 * d['charge_end']))
-    gross = ((paris - lost_p) * d['charge_end'] + (through - lost_t) * d['charge_through'] + (change - lost_c) * 2 * d['charge_end']) / 1000
-    lost = lost_p + lost_t + lost_c
-    new_tgv = (T['paris_new'] + T['cross_new']) * GT
-    net_tgv = new_tgv - lost
-    track = net_tgv * fare * base['track_share'] / 1000              # track charges follow the net change in journeys (ASSUMPTION)
-    out['tgv'] = {'paris': paris, 'cross': cross, 'through': through, 'change': change, 'lost_paris': lost_p, 'lost_cross': lost_t + lost_c, 'lost': lost, 'new_before_charge': new_tgv,
-                  'net_new': net_tgv, 'paying': paris + cross - lost, 'charge_gross': gross, 'charge_net': gross - lost * fare * base['track_share'] / 1000,
-                  'gain_paris_euro': T['ben_access'] * 1000 / (T['paris_base'] + T['paris_new'] / 2), 'gain_cross_euro': T['ben_cross'] * 1000 / (T['cross_base'] + T['cross_new'] / 2)}
+    P0, P = at_charge(base['access_curve'][T['measure']], 0.0), at_charge(base['access_curve'][T['measure']], d['charge_end'])
+    paris = (T['paris_base'] + P['journeys']) * GT; paying_paris = paris * P['pay']
+    ff = lambda charge: (1 + charge / (2 * fare)) ** resp                # a crossing trip is two TGV fares
+    through = change = 0.0                                               # a plain loop, not sum(), so that src/js/model.js adds in the same way
+    for q, m, t in T['cross_parts']:
+        if t: through += q * m * ff(d['charge_through'])
+        else: change += q * m * ff(2 * d['charge_end'])
+    through *= GT; change *= GT
+    cross = through + change; cross_new = cross / GT - T['cross_base']
+    gross = (paying_paris * d['charge_end'] + through * d['charge_through'] + change * 2 * d['charge_end']) / 1000
+    new_tgv = (P['journeys'] + cross_new) * GT
+    new_before = (P0['journeys'] + T['cross_new']) * GT
+    held_cross = (T['cross_new'] - cross_new) * GT
+    track = (P['journeys'] + 2 * cross_new) * GT * fare * base['track_share'] / 1000          # track charges on the new journeys; a crossing trip pays two fares
+    out['tgv'] = {'paris': paris, 'cross': cross, 'through': through, 'change': change, 'paying_paris': paying_paris, 'pay_share': P['pay'], 'new_before_charge': new_before,
+                  'held': new_before - new_tgv, 'held_paris': (P0['journeys'] - P['journeys']) * GT, 'held_cross': held_cross, 'net_new': new_tgv, 'new_paris': P['journeys'] * GT, 'new_cross': cross_new * GT,
+                  'paying': paying_paris + cross, 'charge_gross': gross, 'charge_paris': paying_paris * d['charge_end'] / 1000, 'charge_cross': gross - paying_paris * d['charge_end'] / 1000,
+                  'gain_paris_euro': P['pay_gain'] * base['vot_ld'] / 60, 'gain_paris_all_euro': -P['minutes'] * base['vot_ld'] / 60,
+                  'gain_cross_euro': T['ben_cross'] * 1000 / (T['cross_base'] + T['cross_new'] / 2)}
     # ---- regional passengers
     pass_holders = T['new_transilien'] * GT * d['navigo_new'] / base['pass_trips']                # million new pass holders
     navigo = pass_holders * base['navigo_pass'] / 1000
     ter = T['new_ter'] * GT * base['ter_yield'] / 1000
     reg_pax = T['reg_pax'] * GT
-    shops = (paris + cross - lost + reg_pax) * base['shop_fee'] * d['shop_net'] / 1000
+    shops = (paris + cross + reg_pax) * base['shop_fee'] * d['shop_net'] / 1000
     fee = L['fee_km'] * base['auth_fee']
     fleet = sum(base['sets']) / 2 * base['set_year'] * d['fleet_capture']
     rex = (T['rex_second'] * d['rex_second'] + T['rex_through'] * d['rex_through']) * GT / 1000     # no response of traffic modelled (ASSUMPTION)
-    rev = {'Charge on high-speed passengers': gross, 'Track charges on the net change in TGV journeys': track, 'New Navigo pass holders': navigo,
+    rev = {'Charge on high-speed passengers': gross, 'Track charges on new TGV journeys': track, 'New Navigo pass holders': navigo,
            'Fares from new regional express passengers': ter, 'Fee paid by the regional transport authority': fee, 'Shops in the new station halls': shops}
     if fleet: rev['Share of the operators’ saving on trainsets'] = fleet
     if rex: rev['Charge on regional express passengers'] = rex
@@ -175,13 +197,12 @@ def accounts(base, o=None):
     out['public_bn'] = max(0.0, out['grant_bn']) + out['levy_bn'] + d['eu_grant']; out['public_share'] = out['public_bn'] / capex
     out['yearly_cost'] = out['annuity'] + out['ops_cost_total']
     # ---- economic return (benefits to society, a year)
-    dead = 0.5 * (lost_p * d['charge_end'] + lost_t * d['charge_through'] + lost_c * 2 * d['charge_end']) / 1000       # journeys given up because of the charge
-    ben = {'Time saved by TGV passengers from the Paris region': T['ben_access'] * G, 'Time saved by TGV passengers crossing Paris': T['ben_cross'] * G,
+    held_ben = held_cross * T['eq_cross'] / 120 * base['vot_ld'] / 1000                # new crossing journeys the charge holds back lose the half-gain of the rule of a half
+    ben = {'Time saved by TGV passengers from the Paris region': P['benefit'] * G, 'Time saved by TGV passengers crossing Paris': T['ben_cross'] * G - held_ben * G / GT,
            'Time saved by regional passengers': T['ben_regional'] * G, 'Comfort on relieved metro and RER lines': T['ben_comfort'] * G,
-           'Wider effects: urban form': T['wider_urban'] * G, 'Wider effects: productivity of denser job markets': T['wider_agglo'] * G, 'Wider effects: employment': T['wider_employment'] * G,
-           'Journeys given up because of the charge': -dead}
+           'Wider effects: urban form': T['wider_urban'] * G, 'Wider effects: productivity of denser job markets': T['wider_agglo'] * G, 'Wider effects: employment': T['wider_employment'] * G}
     out['benefits'] = ben; out['benefit_total'] = sum(ben.values())
-    out['benefit_time'] = (T['ben_access'] + T['ben_cross'] + T['ben_regional']) * G - dead
+    out['benefit_time'] = ben['Time saved by TGV passengers from the Paris region'] + ben['Time saved by TGV passengers crossing Paris'] + ben['Time saved by regional passengers']
     out['benefit_transport'] = out['benefit_time'] + T['ben_comfort'] * G
     out['econ_cover_capital'] = out['benefit_total'] / out['annuity']
     out['econ_cover_all'] = out['benefit_total'] / out['yearly_cost']
@@ -192,13 +213,13 @@ def accounts(base, o=None):
     #      'low' none of it; 'central' as the appraisal that the ratios come from counts it; 'high' every job counted is new and pays the average rate of tax.
     X = base['tax']; mode = d['tax_wider']
     vot_biz = X['vot_business'] * base['vot_ld'] / X['vot_all']                                 # business value of time in today's money (derived)
-    hours = (T['clock_access'] * (T['paris_base'] + T['paris_new'] / 2) + T['clock_cross'] * (T['cross_base'] + T['cross_new'] / 2)) / 60     # million hours on the clock
+    hours = (T['clock_access'] * (T['paris_base'] + P['journeys'] / 2) + T['clock_cross'] * (T['cross_base'] + cross_new / 2)) / 60     # million hours on the clock
     work_output = X['business_pax'] * hours * vot_biz / 1000 * G                                # output from working time saved, bn
     jobs = T['wider_employment'] / X['job_value']                                               # jobs implied by the employment line
-    ticket = (net_tgv * fare + navigo * 1000 + ter * 1000) / 1000 * X['vat']                   # VAT inside the net change in ticket money (none on the charges)
-    fuel = -max(0.0, net_tgv) * X['from_car'] * X['trip_km'] * X['litres_km'] / X['car_occupancy'] * X['fuel_duty'] / 1000
+    ticket = ((P['journeys'] + 2 * cross_new) * GT * fare + navigo * 1000 + ter * 1000) / 1000 * X['vat']      # VAT inside the new ticket money (none on the charges)
+    fuel = -new_tgv * X['from_car'] * X['trip_km'] * X['litres_km'] / X['car_occupancy'] * X['fuel_duty'] / 1000
     on = 0.0 if mode == 'low' else 1.0
-    tx = {'VAT inside the net change in ticket money': ticket, 'Fuel duty lost on car trips moved to rail': fuel,
+    tx = {'VAT inside the new ticket money': ticket, 'Fuel duty lost on car trips moved to rail': fuel,
           'Tax on output from working time saved': work_output * X['gdp_share'] * on,
           'Tax on the productivity of denser job markets': T['wider_agglo'] * G * X['gdp_share'] * on,
           'Public money saved or raised by extra employment': (jobs * X['gdp_per_job'] * X['gdp_share'] * G if mode == 'high' else T['wider_employment'] * G * on)}
@@ -214,14 +235,6 @@ def breakeven_charge(base, **o):
     for i in range(0, 4001):
         ch = i * 0.01
         if accounts(base, dict(o, charge_end=ch, charge_through=2 * ch))['ops_balance'] >= 0: return ch
-    return None
-
-
-def neutral_charge(base, **o):
-    """Charge per Paris trip end (through passengers pay double) at which the journeys lost equal the journeys the project adds."""
-    for i in range(0, 4001):
-        ch = i * 0.01
-        if accounts(base, dict(o, charge_end=ch, charge_through=2 * ch))['tgv']['net_new'] <= 0: return ch
     return None
 
 
@@ -271,14 +284,13 @@ if __name__ == '__main__':
     out['cases']['breakeven_charge_low_running'] = breakeven_charge(base, **resolve(base, dict(om_scale='low')))
     out['cases']['breakeven_charge_high_running'] = breakeven_charge(base, **resolve(base, dict(om_scale='high')))
     out['cases']['breakeven_charge_tgv_only'] = breakeven_charge(base, rex_second=0, rex_through=0, fleet_capture=0.0)
-    out['cases']['neutral_charge'] = neutral_charge(base)
-    out['cases']['neutral_charge_resp05'] = neutral_charge(base, fare_response=FARE_RESPONSE_LOW)
     for name, o in {'central': {}, 'growth': dict(growth=GROWTH), 'low_cost': dict(cost='low'), 'best': dict(cost='low', traffic='high', growth=GROWTH)}.items():
         out['irr'][name] = irr(base, **o)
     out['charge_curve'] = []
     for i in range(0, 41):
-        ch = i * 0.25; a = accounts(base, dict(charge_end=ch, charge_through=2 * ch)); b = accounts(base, dict(charge_end=ch, charge_through=2 * ch, fare_response=FARE_RESPONSE_LOW))
-        out['charge_curve'].append({'charge': ch, 'gross': a['tgv']['charge_gross'], 'net': a['tgv']['charge_net'], 'net_new': a['tgv']['net_new'], 'net_new_low': b['tgv']['net_new'], 'ops_cover': a['ops_cover']})
+        ch = i * 0.25; a = accounts(base, dict(charge_end=ch, charge_through=2 * ch))
+        out['charge_curve'].append({'charge': ch, 'gross': a['tgv']['charge_gross'], 'paris': a['tgv']['charge_paris'], 'net_new': a['tgv']['net_new'], 'new_paris': a['tgv']['new_paris'],
+                                    'new_cross': a['tgv']['new_cross'], 'pay_share': a['tgv']['pay_share'], 'ops_cover': a['ops_cover']})
     out['params'] = {'charge_end': CHARGE_END, 'charge_through': CHARGE_THROUGH, 'rex_second': REX_SECOND, 'rex_through': REX_THROUGH, 'fare_response_low': FARE_RESPONSE_LOW, 'navigo_new': NAVIGO_NEW,
                      'om_low': base['layout']['om_low'], 'om_high': base['layout']['om_high'], 'station_low': STATION_LOW, 'shop_net': SHOP_NET,
                      'growth': GROWTH, 'fleet_capture': FLEET_CAPTURE, 'park_ha': PARK_HA}
@@ -295,7 +307,7 @@ if __name__ == '__main__':
         print(' tax', {x[:30]: P(v) for x, v in a['tax'].items()}, P(a['tax_total']), P(a['tax_share_of_annuity']), 'pv', P(a['tax_pv']), 'jobs', round(a['jobs']), 'work', P(a['work_output']))
     print()
     for k, a in out['cases'].items():
-        if isinstance(a, dict): print(k.ljust(28), 'ops', P(a['ops_cover']), 'bal', P(a['ops_balance']), '| econ', P(a['econ_cover_transport']), P(a['econ_cover_all']), '| tax', P(a['tax_total']), P(a['tax_share_of_annuity']), '| grant', P(a['grant_bn']), P(a['grant_share']), 'pub', P(a['public_share']), '| netTGV', P(a['tgv']['net_new']))
+        if isinstance(a, dict): print(k.ljust(28), 'ops', P(a['ops_cover']), 'bal', P(a['ops_balance']), '| econ', P(a['econ_cover_transport']), P(a['econ_cover_all']), '| tax', P(a['tax_total']), P(a['tax_share_of_annuity']), '| grant', P(a['grant_bn']), P(a['grant_share']), 'pub', P(a['public_share']), '| newTGV', P(a['tgv']['net_new']))
         else: print(k.ljust(28), a)
     print(out['irr']); print(out['params'])
     print('clock', {k: P(v) for k, v in base['traffic']['central'].items() if 'clock' in k or 'eq_' in k})

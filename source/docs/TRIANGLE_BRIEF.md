@@ -50,12 +50,38 @@ they read, the numbers, the assumptions and the text.
   an estimate from maps; assumption). The land is not sold and the parks are not valued yet (study point). Open: CDG Express at Gare de l'Est.
 - Cost basis: unit prices from final costs and signed contracts (they already hold past overruns); 27% for design, client costs and
   land bought; 15% risk central (10% low, 30% high). One 400 m platform track costs about 0.58 bn all-in; one km of twin tunnel about 0.26 bn.
-- Charges: TGV 2.55 euros per Paris departure or arrival, 5.10 for crossing on a direct train (unchanged). Regional express: 2.55 for
+- Charges (version 3.3, 14 October 2026): TGV charges fall only on new uses. 2.55 euros for boarding or leaving at a Paris station the
+  passenger's line did not serve before (Gare de Lyon for the south-east, Montparnasse for the Atlantic, Nord-Est by either hall for the
+  north and east keep today's price); 5.10 for crossing Paris, on a direct train or with a change in one station. A Paris-region
+  passenger chooses the other station only when the time saved is worth more than the charge; no journey made today is lost.
+  Regional express: 2.55 for
   getting off at the second station, 5.10 for crossing Paris without stopping. Nothing on suburban trains (Navigo pass and the
   Île-de-France ticket already cover the metro ride). Half of the operators' saving on trainsets is in the central case; shop rents
   at full yield are an option.
 
 ## 2. Central figures (2026 euros)
+
+Version 3.3 (14 October 2026), what changed with the charge on new uses and the crossing traffic counted from the changes removed
+(the older figures below are kept for the parts that did not change; where they differ, these win):
+- Crossing Paris: each change of vehicle today keeps 63% of the potential traffic (British 37% loss per change, applied to each one,
+  assumption); changes today by fewest-change route: Lyon-Nord 2, Lyon-Est 2, Montparnasse-Nord 2, Montparnasse-Est 2,
+  Montparnasse-Lyon 3, Nord-Est 1. A change inside one station counts as half a change and keeps 79%, as for suburban trips (no pulse: each direction evenly spaced over the hour; the Swiss 89% is a test). Time model
+  (elasticity -1.1) on the door-to-door trip, 55 minutes at the two ends; averaged over three main destinations per line (Lille,
+  Brussels, London; Strasbourg, Metz, Reims; Lyon, Marseille, Montpellier; Bordeaux, Nantes, Rennes; fastest train times, unverified).
+  Traffic with the project, times today: Atlantic-SE 4.13, Atlantic-N 2.64, Atlantic-E 2.66, SE-N 2.59, SE-E 2.60, N-E 1.36; all 3.07.
+  New crossing journeys 10.7 M before the charge (low case, the earlier method: 1.56 M; high, all on direct trains: 12.9 M;
+  Swiss timed change 11.6 M; a change in one station costing a full change 9.3 M).
+- TGV traffic with the charge: 12.1 M new journeys (1.9 M Paris region, 10.2 M crossing), 1.5 M held back by the charge, none lost.
+  38% of Paris-region passengers choose another station and pay; they gain 8.0 euros each; a crossing passenger gains 54 euros.
+- Operations: income 747 m against 393 m (190%; surplus 353 m, which goes to the capital account): TGV charge 180, track charges on
+  new journeys 378 (two fares for a crossing), Navigo 15, regional express fares 16, authority fee 35, shops 24, trainset share 26,
+  regional express charge 72. 135% with no charge at all, 165% with the TGV charge alone, 99% in the low traffic case. Break-even 0.
+- Benefits 1,505 m a year (TGV 559, regional 177, comfort 49, wider 381): 70% of the yearly cost, 52% time and comfort only, 107% on
+  cost net of income; 99% with 1.5% growth. Rate of return 1.45% (2.95% with growth). Grant 10.6 bn (26%); public money in all
+  32.3 bn (80%). Tax return 442 m. Before this version (with the regional pairing of 13 October): operations 123%, benefits 1,271 m
+  and 59%, grant 16.7 bn (41%), rate of return 0.7%.
+- Link ride 9 minutes instead of 6 (open question from the timetable study): under 1% fewer crossing journeys; operations and
+  benefits move by under one point.
 
 - Construction cost 40.5 bn (27.2 with low prices and 10% risk, 60.1 with high prices and 30% risk). Works 27.7 bn: tunnels 6.32 civil
   and 2.19 systems, stations 13.9, halls 1.8, junctions 1.5 (6 at 0.25), portals 1.2 (8 at 0.15), sidings 0.6, London control hall 0.2.
@@ -122,7 +148,10 @@ Old keys with A or B no longer exist. `{{ ... }}` expressions see `m` (src/data/
   `m.access_effect{central, pick, no_choice, deep2, nord_hall, comfort}`, `m.by_dir[dir]{today, nordest, pick, no_choice}`, `m.by_arr`,
   `m.far_stop_share`, `m.value_of_choice`, `m.share_quicker`, `m.max_gain`. `pts.avg{today, station, ride, pick}`, `pts.share_quicker{...}`,
   `pts.max_gain{...}`, rows have 20 columns: id, lat, lon, arr, today N E L M, station N E L M, ride N E L M, pick N E L M.
-- Crossing: `m.connecting{central, high, model_only, all_direct, none_direct, metro_weights}` (no `corridor`); pairs
+- Crossing: `m.connecting{central, high, single, single_high, model_only, all_direct, none_direct, metro_weights, british_change}`
+  (central and high use the changes removed; single is the earlier estimate); pairs carry `transfers` and `growth`;
+  `m.destinations` (54 city pairs: from, to, pair, today, direct, change, transfers, mult_direct, mult_change), `m.dest_axis` by pair of
+  lines, `m.dest`; `m.params.change_keep`, `station_keep`, `acc_egr`, `elast`; pairs
   `Montparnasse-Lyon` is served, direct 6 minutes.
 - Regional: `m.regional` adds `second_station_sub, second_station_ter, second_station_share{...}, through_ter`.
 - `m.params` adds `stop_min, clear_min, util, per_track, tracks_per_direction, second_min, ter_through_share, park_ha, direct_share`.
@@ -133,10 +162,14 @@ Old keys with A or B no longer exist. `{{ ... }}` expressions see `m` (src/data/
 - Finance cases `f.<name>`: central, no_charge, tgv_charge_only, low_running, high_running, shops_full, no_fleet, package_low_running,
   growth, low_cost, high_cost, high_traffic, low_traffic, pick, best, navigo_all, navigo_low, tax_high, tax_low, rate45, rate45_flat,
   resp05, charge_double, all_levers; numbers `f.breakeven_charge`, `f.breakeven_charge_low_running`, `f.breakeven_charge_high_running`,
-  `f.breakeven_charge_tgv_only`, `f.neutral_charge`, `f.neutral_charge_resp05`. Each case has the same fields as before plus
-  `econ_cover_net`, `econ_cover_transport_net`. `ops_rev` keys: 'Charge on high-speed passengers', 'Track charges on the net change
-  in TGV journeys', 'New Navigo pass holders', 'Fares from new regional express passengers', 'Fee paid by the regional transport
+  `f.breakeven_charge_tgv_only` (neutral charges are gone: no journey is lost). Each case has the same fields as before plus
+  `econ_cover_net`, `econ_cover_transport_net`. `ops_rev` keys: 'Charge on high-speed passengers', 'Track charges on
+  new TGV journeys', 'New Navigo pass holders', 'Fares from new regional express passengers', 'Fee paid by the regional transport
   authority', 'Shops in the new station halls', 'Share of the operators’ saving on trainsets', 'Charge on regional express passengers'.
+  `tgv`: paris, cross, through, change, paying_paris, pay_share, new_before_charge, held, held_paris, held_cross, net_new, new_paris,
+  new_cross, paying, charge_gross, charge_paris, charge_cross, gain_paris_euro, gain_paris_all_euro, gain_cross_euro (lost and
+  charge_net are gone). `benefits` has no line for journeys given up. `b.access_curve{station, ride}` holds the Paris-region response
+  by level of charge; `b.traffic.<case>.cross_parts` the crossing flows.
   `cap_sources` keys: 'Surplus of the operations account', 'Regional business tax package', 'Payroll transport levy', 'European grant'.
 - `b.layout` (capex{low,central,high}, systems, tunnel_km, platform_m, fee_km, om_low, om_high, items, hard, soft, land, risk, stations,
   station_m, tracks), `b.cost_def{rates, route_km, link_km, radials, len, layout}`, `b.traffic{central, high, low, pick}` with

@@ -6,10 +6,10 @@ PTS.section('financing', function (root) {
 
   // colours by line, fixed so that a line keeps its colour in every chart of the section
   const COST = { 'Running and maintaining tunnels and stations': 'var(--s8)', 'Renewal of rail systems, set aside each year': 'var(--s7)', 'Extra running of regional trains': 'var(--neutral-mark)' };
-  const REV = { 'Charge on high-speed passengers': 'var(--s1)', 'Track charges on the net change in TGV journeys': 'var(--s2)', 'New Navigo pass holders': 'var(--s3)', 'Fares from new regional express passengers': 'var(--s6)',
+  const REV = { 'Charge on high-speed passengers': 'var(--s1)', 'Track charges on new TGV journeys': 'var(--s2)', 'New Navigo pass holders': 'var(--s3)', 'Fares from new regional express passengers': 'var(--s6)',
                 'Fee paid by the regional transport authority': 'var(--s4)', 'Shops in the new station halls': 'var(--s5)', 'Share of the operators’ saving on trainsets': 'var(--s7)', 'Charge on regional express passengers': 'var(--s8)' };
   const CAP = { 'Surplus of the operations account': 'var(--s1)', 'Regional business tax package': 'var(--s2)', 'Payroll transport levy': 'var(--s5)', 'European grant': 'var(--s3)' };
-  const SHORT = { 'Renewal of rail systems, set aside each year': 'Renewal of rail systems', 'Regional business tax package': 'Tax on businesses in the region', 'Track charges on the net change in TGV journeys': 'Track charges on new TGV journeys',
+  const SHORT = { 'Renewal of rail systems, set aside each year': 'Renewal of rail systems', 'Regional business tax package': 'Tax on businesses in the region',
                   'Share of the operators’ saving on trainsets': 'Operators’ saving on trainsets, share', 'Charge on regional express passengers': 'Charge on regional express passengers' };
   const lab = function (k) { return SHORT[k] || k; };
   const parts = function (obj, colors) { return Object.keys(obj).map(function (k) { return { label: lab(k), value: obj[k], color: colors[k] || 'var(--neutral-mark)' }; }); };
@@ -45,7 +45,7 @@ PTS.section('financing', function (root) {
 
   // ---- gain against charge, two groups on their own scales
   const t = M.accounts({}).tgv, gain = PTS.clear($('#fin-gain-chart'));
-  [['Passenger from the Paris region', t.gain_paris_euro, P.charge_end], ['Passenger crossing Paris', t.gain_cross_euro, P.charge_through]].forEach(function (g) {
+  [['Paris-region passenger who chooses another station', t.gain_paris_euro, P.charge_end], ['Passenger crossing Paris', t.gain_cross_euro, P.charge_through]].forEach(function (g) {
     const box = h('div', { style: { 'margin-bottom': '10px' } }); gain.appendChild(box);
     C.bars(box, { fmt: function (v) { return F.eur(v, 2); }, rows: [{ group: g[0] }, { label: 'Average gain in time', value: g[1], color: 'var(--s3)' }, { label: 'Charge', value: g[2], color: 'var(--s1)' }] });
   });
@@ -54,17 +54,17 @@ PTS.section('financing', function (root) {
   const curve = FIN.charge_curve;
   const euro = function (v) { return '€' + F.n(v, 2); };
   C.line($('#fin-curve-money'), { label: 'Money from the charge by level of charge', height: 250,
-    x: { label: 'Charge per departure or arrival, euros', fmt: function (v) { return F.n(v, 0); }, tipLabel: function (v) { return 'Charge of ' + euro(v); }, min: 0, max: 10 },
+    x: { label: 'Charge for a station the line did not serve, euros', fmt: function (v) { return F.n(v, 0); }, tipLabel: function (v) { return 'Charge of ' + euro(v); }, min: 0, max: 10 },
     y: { fmt: function (v) { return F.n(v, 0); }, min: 0 },
     vlines: [{ x: P.charge_end, label: euro(P.charge_end) }],
     series: [{ name: 'Collected', points: curve.map(function (c) { return [c.charge, c.gross * 1000]; }) },
-             { name: 'After lost track charges', points: curve.map(function (c) { return [c.charge, c.net * 1000]; }), dash: true }] });
-  C.line($('#fin-curve-traffic'), { label: 'Change in high-speed journeys by level of charge', height: 250,
-    x: { label: 'Charge per departure or arrival, euros', fmt: function (v) { return F.n(v, 0); }, tipLabel: function (v) { return 'Charge of ' + euro(v); }, min: 0, max: 10 },
-    y: { fmt: function (v) { return F.signed(v, 0); } },
+             { name: 'Of which from the Paris region', points: curve.map(function (c) { return [c.charge, c.paris * 1000]; }), dash: true }] });
+  C.line($('#fin-curve-traffic'), { label: 'High-speed journeys added by the project by level of charge', height: 250,
+    x: { label: 'Charge for a station the line did not serve, euros', fmt: function (v) { return F.n(v, 0); }, tipLabel: function (v) { return 'Charge of ' + euro(v); }, min: 0, max: 10 },
+    y: { fmt: function (v) { return F.n(v, 0); }, min: 0 },
     vlines: [{ x: P.charge_end, label: euro(P.charge_end) }], hlines: [{ y: 0, label: 'Today’s traffic' }],
-    series: [{ name: 'Traffic falls 0.7% for 1% on fares', points: curve.map(function (c) { return [c.charge, c.net_new]; }) },
-             { name: 'Traffic falls 0.5%', points: curve.map(function (c) { return [c.charge, c.net_new_low]; }), dash: true }] });
+    series: [{ name: 'All added journeys', points: curve.map(function (c) { return [c.charge, c.net_new]; }) },
+             { name: 'Across Paris', points: curve.map(function (c) { return [c.charge, c.new_cross]; }), dash: true }] });
 
   // ---- Navigo
   C.bars($('#fin-navigo-chart'), { fmt: function (v) { return '€' + F.n(v * 1000, 0) + 'm'; }, rows: [[0.09, '9%, as measured in London'], [0.27, '27%, as in Sydney'], [P.navigo_new, F.pct(P.navigo_new) + ', used here'], [0.5, '50%'], [1, '100%, upper bound']].map(function (r) {
@@ -91,9 +91,9 @@ PTS.section('financing', function (root) {
       [{ label: a.cap_gap >= 0 ? 'Grants from the State, the Region and the City' : 'More than needed', value: Math.abs(a.cap_gap), color: 'var(--neutral-mark)', hl: true }]) });
     const r = a.ops_rev, pos = function (v) { return Math.max(0, v || 0); };
     const who = [
-      { label: 'High-speed passengers, net of track charges lost', value: pos(r['Charge on high-speed passengers'] + Math.min(0, r['Track charges on the net change in TGV journeys'])), color: 'var(--s1)' },
+      { label: 'High-speed passengers, through the charge', value: pos(r['Charge on high-speed passengers']), color: 'var(--s1)' },
       { label: 'Regional passengers and their transport authority', value: pos(r['Charge on regional express passengers']) + pos(r['New Navigo pass holders']) + pos(r['Fares from new regional express passengers']) + pos(r['Fee paid by the regional transport authority']), color: 'var(--s3)' },
-      { label: 'Train operators', value: pos(r['Track charges on the net change in TGV journeys']) + pos(r['Share of the operators’ saving on trainsets']), color: 'var(--s7)' },
+      { label: 'Train operators', value: pos(r['Track charges on new TGV journeys']) + pos(r['Share of the operators’ saving on trainsets']), color: 'var(--s7)' },
       { label: 'Shops', value: pos(r['Shops in the new station halls']), color: 'var(--s4)' },
       { label: 'Businesses of the region, through taxes', value: a.cap_sources['Regional business tax package'] + a.cap_sources['Payroll transport levy'], color: 'var(--s2)' },
       { label: 'Europe', value: a.cap_sources['European grant'], color: 'var(--s6)' },
@@ -102,7 +102,7 @@ PTS.section('financing', function (root) {
     C.stack($('#fin-o-who'), { fmt: bn2, rows: [{ label: 'Yearly cost of both accounts', parts: who, text: bn2(total) }] });
     $('#fin-o-who-note').textContent = 'Users, operators and shops carry ' + F.pct((who[0].value + who[1].value + who[2].value + who[3].value) / total) + ', taxes on businesses ' + F.pct(who[4].value / total) + ', grants ' + F.pct((who[5].value + who[6].value) / total) + '.';
     const d = PTS.clear($('#fin-o-tgv'));
-    [['Journeys added by the project', F.signed(a.tgv.new_before_charge, 1) + ' million'], ['Journeys given up because of the charge', F.signed(-a.tgv.lost, 1) + ' million'], ['Change against today', F.signed(a.tgv.net_new, 1) + ' million'],
+    [['Journeys the project would add with no charge', F.signed(a.tgv.new_before_charge, 1) + ' million'], ['Held back by the charge', F.signed(-a.tgv.held, 1) + ' million'], ['Change against today', F.signed(a.tgv.net_new, 1) + ' million'],
      ['Money collected by the TGV charge', mEur(a.tgv.charge_gross)], ['Money collected by the regional express charge', mEur(a.ops_rev['Charge on regional express passengers'] || 0)], ['New Navigo passes', F.n(a.pass_holders, 0)]].forEach(function (x, i) { d.appendChild(h('dt', { class: i === 2 ? 'sum' : null, text: x[0] })); d.appendChild(h('dd', { class: i === 2 ? 'sum' : null, text: x[1] })); });
   };
   const set = function (k) { return function (v) { st[k] = v; render(); }; };
@@ -110,9 +110,9 @@ PTS.section('financing', function (root) {
   ctl.traffic = PTS.seg($('#fin-c-project'), [['low', 'Low'], ['central', 'Central'], ['high', 'High']], st.traffic, set('traffic'), 'New traffic');
   const sl = function (host, key, cfg) { ctl[key] = PTS.slider($(host), Object.assign({ value: st[key] }, cfg), set(key)); };
   sl('#fin-c-growth', 'growth', { label: 'Growth of traffic and benefits each year', min: 0, max: 0.02, step: 0.0025, format: function (v) { return F.pct(v, 2); }, note: 'Zero in the central case; 1.5% is the high test' });
-  sl('#fin-c-charge', 'charge_end', { label: 'Charge per departure or arrival in Paris', min: 0, max: 10, step: 0.05, format: euro, note: 'A metro ticket costs €2.55; the air solidarity tax is €7.40' });
-  sl('#fin-c-charge', 'charge_through', { label: 'Charge for crossing Paris on a direct train', min: 0, max: 30, step: 0.1, format: euro, note: 'The time gained is counted at about €' + F.n(t.gain_cross_euro, 0) + '; only ' + F.n(t.through, 1) + ' million passengers pay it' });
-  sl('#fin-c-charge', 'fare_response', { label: 'Fall in traffic when fares rise 1%', min: -1.2, max: -0.2, step: 0.05, format: function (v) { return F.n(-v, 2) + '%'; }, note: 'French experts use 0.7; perhaps 0.5 where prices vary with demand or the charge is billed to operators' });
+  sl('#fin-c-charge', 'charge_end', { label: 'Charge for boarding or leaving at a station the line did not serve', min: 0, max: 10, step: 0.05, format: euro, note: 'Nothing at the line’s own station. A metro ticket costs €2.55; passengers who change inside one station pay it twice' });
+  sl('#fin-c-charge', 'charge_through', { label: 'Charge for crossing Paris on a direct train', min: 0, max: 30, step: 0.1, format: euro, note: 'The time gained is counted at about €' + F.n(t.gain_cross_euro, 0) + '; ' + F.n(t.through, 1) + ' million passengers a year pay it' });
+  sl('#fin-c-charge', 'fare_response', { label: 'Fall in crossing traffic when fares rise 1%', min: -1.2, max: -0.2, step: 0.05, format: function (v) { return F.n(-v, 2) + '%'; }, note: 'French experts use 0.7; perhaps 0.5 where prices vary with demand or the charge is billed to operators' });
   sl('#fin-c-rex', 'rex_second', { label: 'Charge for getting off at the second station', min: 0, max: 10, step: 0.05, format: euro, note: F.n(B.traffic.central.rex_second, 1) + ' million passengers a year; no loss of traffic modelled' });
   sl('#fin-c-rex', 'rex_through', { label: 'Charge for crossing Paris on a regional express train', min: 0, max: 20, step: 0.1, format: euro, note: F.n(B.traffic.central.rex_through, 1) + ' million passengers a year, an assumption' });
   sl('#fin-c-other', 'om_scale', { label: 'Running cost of tunnels and stations', min: 0.5, max: 1.3, step: 0.01, format: function (v) { return F.pct(v) + ' of the central rate'; }, note: 'About ' + F.pct(P.om_low) + ': tunnels as on the RER network; about ' + F.pct(P.om_high) + ': everything as on the first RER E section' });
@@ -128,9 +128,9 @@ PTS.section('financing', function (root) {
     central: function () { return {}; },
     none: function () { return { charge_end: 0, charge_through: 0, rex_second: 0, rex_through: 0 }; },
     tgv: function () { return { rex_second: 0, rex_through: 0, fleet_capture: 0 }; },
-    even: function () { const ch = M.breakevenCharge({}); return { charge_end: Math.min(10, ch), charge_through: Math.min(30, 2 * ch) }; },
+    double: function () { return { charge_end: 2 * P.charge_end, charge_through: 2 * P.charge_through }; },
     best: function () { return { cost: 'low', traffic: 'high', growth: P.growth, om_scale: Math.round(P.om_low * 100) / 100, shop_net: 1 }; }
   };
-  PTS.steps($('#fin-presets'), [['central', 'Central case'], ['none', 'No charge on any passenger'], ['tgv', 'TGV charge alone'], ['even', 'TGV charge that balances operations'], ['best', 'Everything favourable']], 'central', function (k) { apply(presets[k]()); });
+  PTS.steps($('#fin-presets'), [['central', 'Central case'], ['none', 'No charge on any passenger'], ['tgv', 'TGV charge alone'], ['double', 'TGV charges doubled'], ['best', 'Everything favourable']], 'central', function (k) { apply(presets[k]()); });
   render();
 });

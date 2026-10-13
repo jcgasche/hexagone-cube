@@ -30,17 +30,41 @@ PTS.section('traffic', function (root) {
     const what = r.what.replace('{loss}', pc(P.uplift_direct * 100)).replace('{gain}', F.n(inverse, 0) + '%');
     return { label: r.short, marks: [{ value: gain, kind: r.kind, over: '+' + shown, tip: '<b>' + r.name + '</b><br><b>+' + shown + '</b>, ' + r.after + '<br><small>' + what + '</small>' }] };
   });
+  const served = Object.keys(K.central.pairs).filter(function (k) { return K.central.pairs[k].served; });
+  const shareServed = served.reduce(function (t, k) { return t + K.central.pairs[k].share; }, 0);
+  const directUp = served.reduce(function (t, k) { return t + K.central.pairs[k].share * (D.dest_axis[k].mult_direct - 1); }, 0) / shareServed * 100;
+  const longMax = Math.ceil(Math.max(K.high.uplift * 100, directUp, 200) / 50) * 50;
   C.ranges($('#tr-long-chart'), {
-    label: 'Growth in long-distance passengers in the few cases where a change of train or of station was removed', domain: [0, 200], fmt: function (v) { return F.n(v, 0) + '%'; }, axisLabel: 'Growth in passengers, %', rowH: 32,
+    label: 'Growth in long-distance passengers in the few cases where a change of train or of station was removed', domain: [0, longMax], fmt: function (v) { return F.n(v, 0) + '%'; }, axisLabel: 'Growth in passengers, %', rowH: 32,
     kinds: { obs: { label: 'Measured', color: 'var(--s1)', shape: 'dot' }, mix: { label: 'Measured, with a new line or new stations in the figure', color: 'var(--s1)', shape: 'ring' },
       der: { label: 'Derived from a measured loss', color: 'var(--s3)', shape: 'dot' }, here: { label: 'This study', color: 'var(--s2)', shape: 'diamond' } },
     rangeLabel: 'Low and high cases of this study',
     rows: longRows.concat([
-      { label: 'Taken here, direct train: ' + pc(P.uplift_direct * 100) + ' (high ' + pc(P.uplift_direct_high * 100) + ')', hl: true, lo: P.uplift_direct * 100, hi: P.uplift_direct_high * 100,
-        marks: [{ value: P.uplift_direct * 100, kind: 'here', tip: '<b>Taken in this study</b><br>Passengers who get a direct train across Paris: <b>+' + pc(P.uplift_direct * 100) + '</b><br><small>High case +' + pc(P.uplift_direct_high * 100) + ', as on the Paris bypass line. The low case uses the time model alone</small>' }] },
-      { label: 'Result, all who cross: +' + up(K.central) + ' (' + up(K.model_only) + ' to ' + up(K.high) + ')', hl: true, lo: K.model_only.uplift * 100, hi: K.high.uplift * 100,
-        marks: [{ value: K.central.uplift * 100, kind: 'here', tip: '<b>This study</b><br>All passengers who cross Paris: <b>+' + up(K.central) + '</b><br><small>Low case +' + up(K.model_only) + ', high case +' + up(K.high) + '. Those who still change train, inside one station, gain less</small>' }] }])
+      { label: 'This study, direct train: +' + pc(directUp) + ', two or three changes removed', hl: true,
+        marks: [{ value: directUp, kind: 'here', tip: '<b>Taken in this study</b><br>Passengers who get a direct train across Paris: <b>+' + pc(directUp) + '</b><br><small>Each change of vehicle today keeps ' + F.pct(P.change_keep) + ' of the potential traffic; the shorter trip adds the time model. Average of the five pairs of lines with direct trains</small>' }] },
+      { label: 'Result, all who cross: +' + up(K.central) + ' (' + up(K.single) + ' to ' + up(K.high) + ')', hl: true, lo: K.single.uplift * 100, hi: K.high.uplift * 100,
+        marks: [{ value: K.central.uplift * 100, kind: 'here', tip: '<b>This study</b><br>All passengers who cross Paris: <b>+' + up(K.central) + '</b><br><small>Those who still change do so across one platform, counted as half a change, which keeps ' + F.pct(P.station_keep) + ' of them. Low case +' + up(K.single) + ', the first estimate of this study; high case +' + up(K.high) + ', every passenger of a served pair on a direct train</small>' }] }])
   });
+
+  // ---- destination by destination
+  const NAMES = { 'Montparnasse-Lyon': 'Atlantic and south-east', 'Montparnasse-Nord': 'Atlantic and north', 'Lyon-Nord': 'South-east and north', 'Montparnasse-Est': 'Atlantic and east', 'Lyon-Est': 'South-east and east', 'Nord-Est': 'North and east' };
+  const hm = function (v) { const r = Math.round(v); return Math.floor(r / 60) + 'h' + String(r % 60).padStart(2, '0'); };
+  const times = function (v) { return F.n(v, 1) + ' times'; };
+  C.bars($('#tr-dest-chart'), { fmt: times, min: 0, rows: Object.keys(NAMES).map(function (k) {
+    const a = D.dest_axis[k], pr = K.central.pairs[k], v = 1 + pr.growth;
+    return { label: NAMES[k], value: v, color: 'var(--s1)', lo: a.mult_direct != null ? a.mult_change : null, hi: a.mult_direct != null ? a.mult_direct : null,
+      tip: '<b>' + NAMES[k] + '</b><br>Traffic <b>' + times(v) + '</b> today’s<br><small>' + a.transfers + (a.transfers > 1 ? ' changes' : ' change') + ' of vehicle in Paris today; ' + hm(a.today) + ' from city to city on average, '
+        + (a.direct != null ? hm(a.direct) + ' on a direct train (' + times(a.mult_direct) + '), ' : 'no direct train, ') + hm(a.change) + ' with a change in one station (' + times(a.mult_change) + ')</small>' };
+  }) });
+  PTS.table($('#tr-dest-table'), [
+    { key: 'from', label: 'From' }, { key: 'to', label: 'To' }, { key: 'transfers', label: 'Changes today', num: true },
+    { key: 'today', label: 'Today', num: true, fmt: hm }, { key: 'direct', label: 'Direct train', num: true, fmt: hm }, { key: 'change', label: 'Change in one station', num: true, fmt: hm },
+    { key: 'saved', label: 'Minutes saved', num: true, fmt: function (v) { return F.n(v, 0); } },
+    { key: 'mult', label: 'Traffic, times today', num: true, fmt: function (v) { return F.n(v, 1); } }],
+    D.destinations.map(function (r) {
+      const best = r.direct != null ? r.direct : r.change, ds = r.direct != null ? P.direct_share : 0;
+      return { from: r.from, to: r.to, transfers: r.transfers, today: r.today, direct: r.direct, change: r.change, saved: r.today - best, mult: ds * (r.mult_direct || 0) + (1 - ds) * r.mult_change };
+    }));
 
   // ---- the estimate, with its low and high cases
   const T = B.traffic, mil = function (v) { return F.n(v, 1) + ' million'; };
@@ -54,16 +78,15 @@ PTS.section('traffic', function (root) {
     { group: 'High-speed trains' }, row('Starting or ending in the Paris region', 'paris_new', 'var(--s1)'), row('Crossing Paris', 'cross_new', 'var(--s1)'),
     { group: 'Suburban and regional trains' }, row('Suburban lines H, K, P, N, R', 'new_transilien', 'var(--s2)'), row('Regional express', 'new_ter', 'var(--s2)')] });
 
-  // ---- net of the passenger charge, for the two responses of traffic to fares
-  const tg = FC.central.tgv, tl = FC.resp05.tgv, FP = PTS.data.finance.params, sg = function (v) { return F.signed(v, 1) + ' million'; };
-  const resp = function (v) { return 'response ' + F.n(-v, 1); };
-  const lostRow = function (t, v) {
-    return { label: 'Journeys lost, ' + resp(v), value: -t.lost, color: 'var(--s2)', tip: '<b>Journeys lost to the passenger charge</b><br>' + sg(-t.lost) + ' if traffic falls ' + F.n(-v, 1) + '% for 1% on the fare<br><small>' + F.n(t.lost_paris, 1) + ' million starting or ending in Paris, ' + F.n(t.lost_cross, 1) + ' million crossing</small>' };
-  };
-  C.bars($('#tr-net-chart'), { fmt: sg, rows: [
-    { label: 'Journeys the project adds', value: tg.new_before_charge, color: 'var(--s1)' },
-    lostRow(tl, FP.fare_response_low), lostRow(tg, B.fare_response),
+  // ---- new journeys before and with the charge on new uses
+  const tg = FC.central.tgv, FP = PTS.data.finance.params, mi = function (v) { return F.n(v, 1) + ' million'; };
+  C.bars($('#tr-net-chart'), { fmt: mi, rows: [
+    { group: 'Before any charge' },
+    { label: 'Starting or ending in the Paris region', value: T.central.paris_new, color: 'var(--s1)' },
+    { label: 'Crossing Paris', value: T.central.cross_new, color: 'var(--s1)' },
+    { group: 'With the charge on new uses' },
+    { label: 'Starting or ending in the Paris region', value: tg.new_paris, color: 'var(--s2)', tip: '<b>Paris region, with the charge</b><br>' + mi(tg.new_paris) + ' more journeys a year<br><small>' + F.pct(tg.pay_share) + ' of these passengers choose a station their line did not serve and pay €' + F.n(FP.charge_end, 2) + '; the others pay nothing more</small>' },
+    { label: 'Crossing Paris', value: tg.new_cross, color: 'var(--s2)', tip: '<b>Crossing Paris, with the charge</b><br>' + mi(tg.new_cross) + ' more journeys a year<br><small>€' + F.n(FP.charge_through, 2) + ' on a direct train or with a change in one station</small>' },
     { sep: true },
-    { label: 'Net change, ' + resp(FP.fare_response_low), value: tl.net_new, color: 'var(--today)', hl: true },
-    { label: 'Net change, ' + resp(B.fare_response), value: tg.net_new, color: 'var(--today)', hl: true }] });
+    { label: 'Added with the charge', value: tg.net_new, color: 'var(--today)', hl: true, tip: '<b>Added with the charge</b><br>' + mi(tg.net_new) + ' a year<br><small>' + mi(tg.held) + ' held back by the charge; none lost against today</small>' }] });
 });
