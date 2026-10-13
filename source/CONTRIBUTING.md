@@ -127,7 +127,7 @@ stations   stations.nordest stations.lyon stations.montparnasse stations.depth s
 works      works.methods works.surface works.stages works.timeline
 service    service.hour service.pairing service.link service.platforms
 access     access.map access.measure access.findings
-crossing   crossing.tgv crossing.regional
+crossing   crossing.tgv crossing.regional crossing.suburbs
 cost       cost.total cost.units cost.explorer cost.backtest cost.yearly cost.evidence
 traffic    traffic.tgv traffic.regional traffic.evidence
 financing  financing.accounts financing.operations financing.charge financing.navigo financing.sources financing.capital financing.calculator financing.precedents

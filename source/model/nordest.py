@@ -26,6 +26,9 @@ Version 2 (after the independent check of 12 October 2026). Changes from version
   at central values in the tests on weights;
 - the Pleyel layout recomputed with the same functions (free pairing, same gain, same cost rules);
 - back-test extended to the first RER E section and to two French study-stage estimates.
+Version 3.3 (13 October 2026): suburban lines paired north (H, K) with the Atlantic (N) and east (P) with the south-east (R);
+eastern regional express trains run on to Gare de Lyon; suburb-to-suburb trips across Paris counted (cross_paris); line N traffic
+corrected (30.4 M, not 27.3).
 Every assumption that is not sourced is marked ASSUMPTION.
 """
 import csv, json, statistics as S, collections, math
@@ -142,7 +145,7 @@ def connecting(c=None, evidence=UPLIFT_DIRECT, tag='eq', direct_share=DIRECT_SHA
 
 
 # ------------------------------------------------------------------ 3. regional trains
-LINES = {'H': 54.6, 'K': 4.1, 'P': 27.3, 'N': 27.3, 'R': 19.1}                     # million journeys a year (derived from daily counts, unverified)
+LINES = {'H': 54.6, 'K': 4.1, 'P': 27.3, 'N': 30.4, 'R': 19.1}                     # million journeys a year (derived from daily counts, unverified; N was 27.3, a copy of P: 117,000 a day x 260)
 TERM_SHARE = {'H': 119900 / 215000, 'K': 119900 / 215000, 'N': 66800 / 117000, 'P': 63900 / 105000, 'R': 33000 / 70000}
 TER_DAY = {'Nord': 69200, 'Montparnasse': 23800, 'Lyon': 14900, 'Est': 8100}        # TER and Intercites, weekday, 2012-13
 TER = {k: v * 350 / 1e6 for k, v in TER_DAY.items()}
@@ -155,24 +158,79 @@ REG_TRAINKM = 2.0                       # million extra train-km a year for regi
 REG_TRAINKM_COST = 27.5                 # euros per extra train-km: half the average cost per train-km paid by the region (ASSUMPTION)
 SECOND_MIN = 1.0                        # a passenger uses the second station when it saves more than this, on the clock (ASSUMPTION)
 TER_THROUGH_SHARE = 0.05                # share of regional express passengers who cross Paris today (ASSUMPTION; study point I15)
+# version 3.3: which line runs on to which station. Suburban: north (H, K) with the Atlantic (N), east (P) with the south-east (R);
+# this puts the busiest line on the side of Paris worth most to its passengers, joins Val-d'Oise to the job centres of Versailles and
+# Saint-Quentin-en-Yvelines, and shares the trains without a partner between the two southern legs. Regional express: northern trains
+# alternate between the two southern stations (the passenger picks), eastern trains run on to Gare de Lyon (same Regiolis fleets).
+SUB_PAIR = {'H': 'Montparnasse', 'K': 'Montparnasse', 'P': 'Lyon'}
+TER_RUN = {'Nord': 'both', 'Est': 'Lyon'}
+SOUTH_LINE = {'N': 'Montparnasse', 'R': 'Lyon'}
+LEG = {'Lyon': 'L', 'Montparnasse': 'M'}
+
+# suburb to suburb across Paris (version 3.3): trips between a northern or eastern suburban line and a southern one
+TRANSIT_SHARE = 0.14                    # trips through the Paris stations between two suburban departements, only passing through Paris (OMNIL and Gares & Connexions survey, 2012-13: 145,000 a weekday, 14%)
+CROSS_SHARE = 0.20                      # share of those, on lines H, K, P, N and R, bound for a suburban line on the other side of the triangle (ASSUMPTION; 10% to 30% tested)
+CHANGE_LOSS = 0.37                      # traffic lost for each change of train added; today's trip has two (train to metro, metro to train)
+EASY_CHANGE = 0.5                       # a change between two suburban trains on the platforms of Nord-Est counts as half a change (ASSUMPTION)
+CORRIDOR = {'H': (600, 200, 20), 'K': (70, 20, 30), 'P': (450, 120, 30), 'N': (650, 300, 25), 'R': (300, 110, 35)}   # thousands of residents and jobs near the stations, minutes to Paris (ASSUMPTION, orders of magnitude)
+CROSS_DECAY = 40.0                      # minutes: trips between two corridors fall by e for every 40 minutes of travel (ASSUMPTION; 25 to infinite give the same ranking)
+CROSS_TODAY = {'Montparnasse': 35.0, 'Lyon': 28.0}     # clock minutes today from a suburban train at Gare du Nord or de l'Est to one leaving the southern terminal (metro 4, RER D; ASSUMPTION)
+CROSS_OUT = 0.5                         # share of that time spent walking, waiting and changing, counted twice at official weights (ASSUMPTION)
+CROSS_CHANGE_EQ = 16.0                  # weighted minutes of a change at Nord-Est: 4 to cross the platform and 4 of waiting, counted twice (ASSUMPTION)
+
+
+def cross_paris(pair=SUB_PAIR, share=CROSS_SHARE, realise=1.0):
+    """Suburb-to-suburb trips across Paris between lines H, K, P and lines N, R. Today they change twice (train to metro, metro to
+    train); with the project they stay on a direct train, or change once on the platforms of Nord-Est. Each change costs CHANGE_LOSS
+    of the traffic. Today's trips are split between the six pairs of lines in proportion to residents times jobs, discounted with time."""
+    users = sum(LINES[l] * TERM_SHARE[l] for l in LINES)
+    base = users * TRANSIT_SHARE * share / 2                # each trip uses two lines
+    idx = {}
+    for a in ('H', 'K', 'P'):
+        for b, st in SOUTH_LINE.items():
+            pa, ja, ta = CORRIDOR[a]; pb, jb, tb = CORRIDOR[b]
+            idx[(a, b)] = (pa * jb + pb * ja) * math.exp(-(ta + TR[LEG[st]] + tb) / CROSS_DECAY)
+    tot = sum(idx.values())
+    out = {'today': 0.0, 'project': 0.0, 'new': 0.0, 'benefit': 0.0, 'direct_today': 0.0, 'pairs': {}}
+    for (a, b), w in idx.items():
+        st = SOUTH_LINE[b]; direct = pair[a] == st
+        d0 = base * w / tot
+        changes = 0.0 if direct else EASY_CHANGE
+        d1 = d0 / (1 - CHANGE_LOSS) ** (2 - changes)
+        n = (d1 - d0) * realise
+        s = CROSS_TODAY[st] * (1 + CROSS_OUT) - TR[LEG[st]] - (0.0 if direct else CROSS_CHANGE_EQ)
+        out['benefit'] += gain(d0, n, s, VOT_IDF); out['today'] += d0; out['project'] += d0 + n; out['new'] += n
+        if direct: out['direct_today'] += d0
+        out['pairs'][a + '-' + b] = {'direct': direct, 'today': d0, 'project': d0 + n, 'saving_eq': s,
+                                     'saving_clock': CROSS_TODAY[st] - TR[LEG[st]] - (0.0 if direct else 8.0)}
+    out['uplift'] = out['new'] / out['today']; out['daily_today'] = out['today'] * 1e6 / 260; out['daily_project'] = out['project'] * 1e6 / 260
+    return out
+
+
+def _reach(hall):
+    """Saving functions of a Paris point t for each service, on the pairing above (minutes from the train to the point)."""
+    ne = (lambda t: min(t['Nord'], t['Est'])) if hall == 'both' else (lambda t: t['Nord'])
+    on = {'Lyon': lambda t: TR['L'] + t['Lyon'], 'Montparnasse': lambda t: TR['M'] + t['Montparnasse']}
+    def best(dest):                     # the passenger picks the train that runs on to the best station
+        return (lambda t: min(ne(t), on['Lyon'](t), on['Montparnasse'](t))) if dest == 'both' else (lambda t: min(ne(t), on[dest](t)))
+    alt = {'H': lambda t: t['Nord'] - best(SUB_PAIR['H'])(t), 'K': lambda t: t['Nord'] - best(SUB_PAIR['K'])(t), 'P': lambda t: t['Est'] - best(SUB_PAIR['P'])(t),
+           'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'R': lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t))}
+    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'])(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'])(t), 'Lyon': alt['R'], 'Montparnasse': alt['N']}
+    return ne, alt, alt_ter
 
 
 def regional_saving(tag='eq', hall='both'):
     """Average minutes saved between the train and a Paris destination, by service, when the train runs on to a second station."""
     pts = DATA[tag][0]
     def avg(fn): return S.mean(fn(t) for t in pts)
-    ne = (lambda t: min(t['Nord'], t['Est'])) if hall == 'both' else (lambda t: t['Nord'])
-    sv = {'H': avg(lambda t: t['Nord'] - min(ne(t), TR['L'] + t['Lyon'])), 'P': avg(lambda t: t['Est'] - min(ne(t), TR['M'] + t['Montparnasse'])),
-          'N': avg(lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t))), 'R': avg(lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t)))}
-    sv['K'] = sv['H']
-    half = lambda t: min(ne(t), TR['L'] + t['Lyon'], TR['M'] + t['Montparnasse'])        # the passenger picks the train that runs on to the best station
-    sv['TER Nord'] = avg(lambda t: t['Nord'] - half(t)); sv['TER Est'] = avg(lambda t: t['Est'] - half(t))
-    sv['TER Lyon'] = sv['R']; sv['TER Montparnasse'] = sv['N']
+    ne, alt, alt_ter = _reach(hall)
+    sv = {l: avg(f) for l, f in alt.items()}
+    sv.update({'TER ' + k: avg(f) for k, f in alt_ter.items()})
     merge = {'H': avg(lambda t: t['Nord'] - ne(t)), 'P': avg(lambda t: t['Est'] - ne(t))}      # part of the saving that comes from entering by either hall
     return sv, merge
 
 
-def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both'):
+def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both', cross=CROSS_SHARE):
     sv, merge = regional_saving(tag, hall); svc, _ = regional_saving('clock', hall)
     dd = deep * WALKW[tag]
     out = {'saving_eq': sv, 'saving_clock': svc, 'merge_part': merge, 'rows': []}
@@ -189,6 +247,9 @@ def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both'):
         n = q * ((1 - max(0.0, s) / TER_TRIP) ** ELAST - 1) * realise                 # time model: no observed case for regional express
         ben += value(q, n, s, VOT_TER); new_r += n; base_r += q; users += q; minutes += q * svc['TER ' + k]
         out['rows'].append(['TER ' + k, q, q, svc['TER ' + k], sv['TER ' + k]])
+    x = cross_paris(share=cross, realise=realise)                 # suburb to suburb across Paris, on top of the Paris-side growth above
+    out['cross'] = x; out['cross_benefit'] = x['benefit']; out['paris_benefit'] = ben
+    ben += x['benefit']; new_t += x['new']
     out.update({'benefit': ben, 'new_transilien': new_t, 'new_ter': new_r, 'new': new_t + new_r, 'base': base_t + base_r, 'base_transilien': base_t, 'base_ter': base_r, 'users': users,
                 'avg_clock_saving': minutes / users, 'ter_uplift': new_r / base_r,
                 'fares': (new_t * NEW_MONEY * YIELD['transilien'] + new_r * YIELD['ter']) / 1000})
@@ -200,12 +261,7 @@ def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both'):
 def second_station(hall='both', thr=SECOND_MIN):
     """Passengers who would get off at the second station: those for whom it saves more than `thr` clock minutes, by line and for regional express."""
     pts = DATA['clock'][0]
-    ne = (lambda t: min(t['Nord'], t['Est'])) if hall == 'both' else (lambda t: t['Nord'])
-    alt = {'H': lambda t: t['Nord'] - min(ne(t), TR['L'] + t['Lyon']), 'P': lambda t: t['Est'] - min(ne(t), TR['M'] + t['Montparnasse']),
-           'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'R': lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t))}
-    alt['K'] = alt['H']
-    half = lambda t: min(ne(t), TR['L'] + t['Lyon'], TR['M'] + t['Montparnasse'])
-    alt_ter = {'Nord': lambda t: t['Nord'] - half(t), 'Est': lambda t: t['Est'] - half(t), 'Lyon': alt['R'], 'Montparnasse': alt['N']}
+    ne, alt, alt_ter = _reach(hall)
     share = lambda fn: sum(1 for t in pts if fn(t) > thr) / len(pts)
     sub = {l: q * TERM_SHARE[l] * share(alt[l]) for l, q in LINES.items()}
     ter = {k: q * share(alt_ter[k]) for k, q in TER.items()}
@@ -341,9 +397,9 @@ def wider(reg_benefit):
 
 
 def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=REG_UPLIFT, tag='eq', c=None, shares=SH, capacity=False,
-           hall='both', weights='official', realise=1.0, years=BUILD_YEARS, scale_wider=False, om_tunnel=None):
+           hall='both', weights='official', realise=1.0, years=BUILD_YEARS, scale_wider=False, om_tunnel=None, cross=CROSS_SHARE):
     out = yearly_cost(R, years, om_tunnel)
-    a = access_effect(tag, deep, True, measure, c, shares, hall); k = connecting(c, evidence, tag, weights=weights); g = regional(uplift, tag, deep, realise, hall)
+    a = access_effect(tag, deep, True, measure, c, shares, hall); k = connecting(c, evidence, tag, weights=weights); g = regional(uplift, tag, deep, realise, hall, cross)
     aj, kj = a['journeys'] * (realise if a['journeys'] > 0 else 1.0), k['new'] * realise
     ab = a['benefit'] - (a['journeys'] - aj) * abs(a['minutes']) / 120 * VOT_LD / 1000
     kb = k['ben'] - (k['new'] - kj) * k['saving'] / 120 * VOT_LD / 1000
@@ -351,7 +407,8 @@ def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=R
                 'tgv_conn_journeys': kj, 'tgv_conn_benefit': kb, 'tgv_conn_uplift': kj / k['base'], 'tgv_conn_saving': k['saving'], 'tgv_direct_share': k['direct_share'], 'conn_base': k['base'],
                 'tgv_journeys': aj + kj, 'tgv_benefit': ab + kb,
                 'reg_journeys': g['new'], 'reg_benefit': g['benefit'], 'reg_fares': g['fares'], 'reg_saving_clock': g['avg_clock_saving'], 'reg_users': g['users'], 'reg_base': g['base'],
-                'second_station_sub': g['second_station_sub'], 'second_station_ter': g['second_station_ter'], 'through_ter': g['through_ter']})
+                'second_station_sub': g['second_station_sub'], 'second_station_ter': g['second_station_ter'], 'through_ter': g['through_ter'],
+                'reg_cross_journeys': g['cross']['new'], 'reg_cross_benefit': g['cross_benefit'], 'reg_cross_today': g['cross']['today']})
     cap = 0.10 * HS_TERMINALS if capacity else 0.0                     # scenario: 10% more trains filled once the platforms no longer cap the lines
     out['tgv_capacity_journeys'] = cap
     tgv_rev = (out['tgv_journeys'] + cap) * FARE / 1000
@@ -361,7 +418,7 @@ def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=R
     out['direct_net_of_running'] = out['direct_total'] - out['om']
     time_ben = out['tgv_benefit'] + out['reg_benefit']
     # comfort and wider effects follow the regional time saving at official weights and central boarding time, unless scale_wider
-    base_reg = out['reg_benefit'] if scale_wider else regional(uplift, 'eq', 0.0, realise, hall)['benefit']
+    base_reg = out['reg_benefit'] if scale_wider else regional(uplift, 'eq', 0.0, realise, hall, cross)['benefit']
     comfort, wid = wider(max(0.0, base_reg))
     out.update({'time_benefit': time_ben, 'comfort': comfort, 'wider': wid, 'benefit_total': time_ben + comfort + wid,
                 'cover_time': time_ben / out['cost'], 'cover_comfort': (time_ben + comfort) / out['cost'], 'cover_all': (time_ben + comfort + wid) / out['cost']})
@@ -407,7 +464,9 @@ if __name__ == '__main__':
     out['AF'] = AF; out['idc'] = idc(); out['ratios'] = {'comfort': R_COMFORT, 'wider': R_WIDER}
     out['params'] = {'uplift_direct': UPLIFT_DIRECT, 'uplift_direct_high': UPLIFT_DIRECT_HIGH, 'reg_uplift': REG_UPLIFT, 'reg_uplift_high': REG_UPLIFT_HIGH, 'reg_uplift_low': REG_UPLIFT_LOW, 'new_money': NEW_MONEY,
                      'build_years': BUILD_YEARS, 'om_tunnel': OM_TUNNEL, 'om_tunnel_low': OM_TUNNEL_LOW, 'om_tunnel_high': OM_TUNNEL_HIGH, 'om_station': OM_STATION, 'reg_trainkm': REG_TRAINKM, 'reg_trainkm_cost': REG_TRAINKM_COST, 'ter_trip': TER_TRIP, 'old_ne': 30.0,
-                     'stop_min': STOP_MIN, 'clear_min': CLEAR_MIN, 'util': UTIL, 'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'second_min': SECOND_MIN, 'ter_through_share': TER_THROUGH_SHARE, 'park_ha': PARK_HA, 'direct_share': DIRECT_SHARE}
+                     'stop_min': STOP_MIN, 'clear_min': CLEAR_MIN, 'util': UTIL, 'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'second_min': SECOND_MIN, 'ter_through_share': TER_THROUGH_SHARE, 'park_ha': PARK_HA, 'direct_share': DIRECT_SHARE,
+                     'transit_share': TRANSIT_SHARE, 'cross_share': CROSS_SHARE, 'change_loss': CHANGE_LOSS, 'easy_change': EASY_CHANGE, 'cross_today': CROSS_TODAY, 'cross_out': CROSS_OUT, 'cross_change_eq': CROSS_CHANGE_EQ, 'cross_decay': CROSS_DECAY,
+                     'corridor': CORRIDOR, 'sub_pair': SUB_PAIR, 'ter_run': TER_RUN}
     Y = yearly(); out['yearly'] = Y
     out['yearly_ride'] = yearly(measure='ride')
     tests = {'Low unit prices and 10% risk': dict(R=RATE_LOW), 'High unit prices and 30% risk': dict(R=RATE_HIGH),
@@ -422,6 +481,7 @@ if __name__ == '__main__':
              'Suburban traffic grows 25%': dict(uplift=REG_UPLIFT_HIGH), 'Suburban traffic grows 5%': dict(uplift=REG_UPLIFT_LOW),
              'Tunnel upkeep as on the first RER E section': dict(om_tunnel=OM_TUNNEL_HIGH), 'Tunnel upkeep at the average of the RER network': dict(om_tunnel=OM_TUNNEL_LOW),
              'Passengers crossing Paris at the top of the survey range': dict(c=CONN_HIGH), 'Half as many passengers cross Paris': dict(c=CONN / 2),
+             'Half as many suburb-to-suburb trips across Paris': dict(cross=CROSS_SHARE / 2), 'Half as many more suburb-to-suburb trips across Paris': dict(cross=CROSS_SHARE * 1.5),
              'New traffic reaches 60% of the estimate': dict(realise=0.6),
              'Platforms no longer cap the lines: 10% more TGV traffic': dict(capacity=True)}
     keep = ('capex', 'cost', 'tgv_journeys', 'tgv_benefit', 'reg_journeys', 'reg_benefit', 'reg_fares', 'direct_total', 'direct_cover', 'time_benefit', 'cover_time', 'cover_all', 'benefit_total')

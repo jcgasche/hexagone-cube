@@ -16,7 +16,9 @@ they read, the numbers, the assumptions and the text.
   reaches the surface in 1.0 to 1.2 km, so it need not stay underground further. Corridors (route km, read from maps, assumption):
   north 2.4, east 2.7, Nord-Est to Lyon 5.0, Nord-Est to Montparnasse 6.0, south-east 2.9, Atlantic 2.8 (`CORRIDOR_KM` in nordest.py;
   export.py checks that the project map uses the same lengths). Earlier: Saint-Denis 5.0, Pantin 4.5, Maisons-Alfort 7.0, Clamart 6.0.
-- Pair 1 carries TGVs and regional express trains. Pair 2 carries suburban trains (lines H and K with R, P with N). The link is for TGVs.
+- Pair 1 carries TGVs and regional express trains. Pair 2 carries suburban trains (lines H and K with N, P with R; changed on 13 October 2026, evening, from H and K with R, P with N:
+  busiest line to the left bank, Val-d'Oise to the jobs of Versailles and Saint-Quentin, trains without a partner shared by both southern
+  legs). Regional express: northern trains alternate between the two southern stations, eastern trains run on to Gare de Lyon. The link is for TGVs.
 - No train reverses in Paris. Every TGV stops at two of the three stations. Every station has direct trains to all four directions,
   on half of the trains of each line.
 - Service, lines at full capacity, trains an hour each way: Atlantic 15, south-east 16, north 8, east 4. Pairings: Atlantic to north 4,
@@ -84,10 +86,12 @@ they read, the numbers, the assumptions and the text.
 - Crossing Paris: Montparnasse to Gare de Lyon 6 minutes direct by the link (was 29 via Nord-Est with a reversal); other pairs 10 or
   11 minutes direct; a change inside Nord-Est 12.5 clock minutes; today 57.5 minutes (30 between Gare du Nord and Gare de l'Est).
   Direct share 47%; uplift 30% in all (37% on direct trains, time model for the rest).
-- Regional: 114.5 M users a year reach a Paris terminal (73.9 M suburban, 40.6 M regional express); 21.3 M new journeys (19.9 suburban,
-  1.5 regional express); average saving 2.3 clock minutes. Second station used by 37.0 M suburban and 22.9 M regional express passengers
-  (shares: H and K 67%, P 51%, N 32%, R 19%; TER Nord 72%, Est 63%, Montparnasse 32%, Lyon 19%). Regional express crossing Paris
-  2.78 M (5% of today's users, assumption, plus 37%).
+- Regional: 116.3 M users a year reach a Paris terminal (75.7 M suburban, 40.6 M regional express; line N corrected to 30.4 M); 23.7 M new journeys (21.7 suburban, of which 1.4 suburb to suburb across Paris; 2.0 regional express); average saving 2.7 clock minutes. Second station used by 38.0 M suburban and 22.6 M regional express passengers
+  (shares: H and K 72%, P 44%, N 32%, R 19%; TER Nord 73%, Est 44%, Montparnasse 32%, Lyon 19%). Regional express crossing Paris
+  2.78 M (5% of today's users, assumption, plus 37%). Regional time benefit 177 m a year: Paris trips 161 m,
+  suburb to suburb across Paris 16 m (`cross_paris`: 1.06 M trips today, 2.44 M with the project; 14% of station trips only pass
+  through between two suburbs (survey), 20% of those on these lines bound across the triangle, each change costs 37% of the traffic,
+  a change across one platform half a change; keys `m.regional.cross`, `m.params.cross_share` and others).
 - Stages (cost only, all-in): first stage Nord-Est and Gare de Lyon with the north, east, Nord-Est to Lyon and south-east corridors
   (26 km of twin tunnel) 26.3 bn; second stage Montparnasse with its two corridors and the link (22.6 km) 14.2 bn.
 - Sensitivity (benefits over yearly cost): low prices 58%, high prices 30%, 15 years of works 41%, 2 minutes longer to board 24%,
