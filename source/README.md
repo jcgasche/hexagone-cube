@@ -38,12 +38,13 @@ Numbers are never typed into the text. They come from the model:
 python3 model/nordest.py         # access, traffic, cost                 -> model/outputs/nordest.json
 python3 model/finance.py         # the two accounts, return, taxes       -> model/outputs/finance.json
 python3 model/export.py          # data the site reads                   -> src/data/model.json, finance.json, points.json
+python3 model/timetable.py       # the hour of trains (about 20 minutes)  -> src/sections/timetable/data.json
 node tools/check_model.js        # the browser model must give the same numbers as the Python one
 python3 build.py
 ```
 
 Change an assumption in `model/nordest.py` or `model/finance.py` (every assumption is a named constant with a comment), run the
-five commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
+six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
 
 ## What is where
 
@@ -77,7 +78,8 @@ five commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md`
 | `economy` | Economic return | Benefits, taxes, comparison with other projects |
 | `risks` | Risks and next steps | One assumption at a time; study points with filters |
 | `zurich`, `elizabeth`, `pulse` | Annexes A to C | Zürich main station, the Elizabeth line, the Swiss timetable |
-| `method`, `sources` | Annexes D and E | Method and assumptions; numbered sources |
+| `timetable` | Annex D | An evenly spaced hour at the three stations: a clock for each station, trains on an animated map, against a pulse timed for changes |
+| `method`, `sources` | Annexes E and F | Method and assumptions; numbered sources |
 
 ### The model
 
@@ -88,6 +90,7 @@ five commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md`
 | `model/nordest.py` | The triangle: access with a choice of boarding station, passengers crossing Paris, regional trains, service plan (pairings, the direct link, platform rule), bottom-up cost with 15% risk, yearly cost, sensitivity tests, stages |
 | `model/finance.py` | Operations and capital accounts, the passenger charge and its effect on traffic, Navigo, taxes, rate of return |
 | `model/export.py` | Writes the JSON files of `src/data/` and the two measures of the access map |
+| `model/timetable.py` | The hour of high-speed trains: searches the minutes of every train at full capacity, under stated rules, for an evenly spaced hour (the one shown) and for one timed for changes (the comparison) |
 | `model/inputs/` | Access times by point and by commune, three weightings |
 | `src/js/model.js` | The accounts and the cost build-up again, in the browser, for the calculators |
 

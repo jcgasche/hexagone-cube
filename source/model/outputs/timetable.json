@@ -1,0 +1,2997 @@
+{
+ "inputs": {
+  "stop": 4.0,
+  "clear": 3.0,
+  "tracks": 3,
+  "headway": 3,
+  "change_same": 4,
+  "change_other": 6,
+  "extra_max": 3,
+  "run": {
+   "L": 6.0,
+   "M": 7.0,
+   "LM": 5
+  },
+  "model_run": {
+   "L": 6.0,
+   "M": 7.0,
+   "LM": 2.0
+  },
+  "technical": {
+   "M": 4.966583333333333,
+   "L": 4.324583333333334,
+   "LM": 4.324583333333334
+  },
+  "km": {
+   "M": 6.0,
+   "L": 5.0,
+   "LM": 5.0
+  },
+  "speed_kmh": 100.0,
+  "acc": 0.4,
+  "brake": 0.5,
+  "margin": 1.07,
+  "hour": {
+   "AN": 6.0,
+   "SN": 6.0,
+   "AS": 9.0,
+   "NA": 6.0,
+   "NS": 6.0,
+   "SA": 9.0
+  },
+  "east": {
+   "AN": 2.0,
+   "SN": 2.0,
+   "NA": 2.0,
+   "NS": 2.0
+  },
+  "pair_share": {
+   "AS": 0.3464956688041399,
+   "AN": 0.2128473394082574,
+   "AE": 0.11879851501856227,
+   "NS": 0.16931038362020476,
+   "ES": 0.09449881876476543,
+   "EN": 0.0580492743840702
+  },
+  "ride_share": {
+   "AN": 0.517,
+   "NA": 0.483,
+   "SN": 0.62,
+   "NS": 0.378,
+   "AS": 0.538,
+   "SA": 0.462
+  },
+  "direct_share": 0.5,
+  "paris_trips": 104.96601531182168,
+  "cross_trips": 15.925333337851498,
+  "ratio": 6.591134583182467,
+  "reverse": 8.0
+ },
+ "cases": {
+  "even20": {
+   "cross": 24.04880356367774,
+   "line": 17.02076255296808,
+   "held_cost": 0.0,
+   "score": 24.04880356367774,
+   "change_avg": 33.00899837906039,
+   "wait_avg": 17.122348106566196,
+   "change_wave": 0.3747552822756997,
+   "within20": 0.5772154612614756,
+   "within30": 0.7462826877071672,
+   "held_minutes": 0.0,
+   "held_trains": 0,
+   "trains": 42,
+   "pairs": {
+    "AS": {
+     "share": 0.3464956688041399,
+     "avg": 21.718434343434343,
+     "change": 30.436868686868685,
+     "wait": 14.891414141414142,
+     "direct": 13.0,
+     "direct_share": 0.5
+    },
+    "AN": {
+     "share": 0.2128473394082574,
+     "avg": 24.52232142857143,
+     "change": 34.04464285714286,
+     "wait": 15.830357142857142,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "AE": {
+     "share": 0.11879851501856227,
+     "avg": 27.728448275862068,
+     "change": 40.456896551724135,
+     "wait": 22.353448275862068,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "NS": {
+     "share": 0.16931038362020476,
+     "avg": 23.575892857142854,
+     "change": 33.151785714285715,
+     "wait": 15.294642857142858,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "ES": {
+     "share": 0.09449881876476543,
+     "avg": 26.780172413793103,
+     "change": 39.560344827586206,
+     "wait": 21.836206896551722,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "EN": {
+     "share": 0.0580492743840702,
+     "avg": 25.625,
+     "change": 25.625,
+     "wait": 19.625,
+     "direct": null,
+     "direct_share": 0.0
+    }
+   },
+   "penalty": 0.0,
+   "even": {
+    "line": {
+     "A": {
+      "out": 2.15,
+      "in": 2.15,
+      "trains": 15
+     },
+     "S": {
+      "out": 2.3,
+      "in": 2.2,
+      "trains": 15
+     },
+     "N": {
+      "out": 4.416666666666667,
+      "in": 4.866666666666666,
+      "trains": 8
+     },
+     "E": {
+      "out": 7.583333333333333,
+      "in": 7.783333333333333,
+      "trains": 4
+     }
+    },
+    "pair": {
+     "AS": 3.35,
+     "AN": 8.483333333333333,
+     "AE": 15.15,
+     "SA": 3.85,
+     "SN": 8.35,
+     "SE": 15.016666666666667,
+     "NA": 8.483333333333333,
+     "NS": 8.6,
+     "EA": 15.15,
+     "ES": 15.266666666666667
+    },
+    "ne_change": 9.083333333333334,
+    "paris_wait": 3.165503875968992,
+    "direct_wait": 8.194284207173853,
+    "score": 13.176454749809512
+   },
+   "paris_wait": 3.165503875968992,
+   "direct_wait": 8.194284207173853,
+   "ne_change": 9.083333333333334
+  },
+  "even10": {
+   "cross": 19.841949863884274,
+   "line": 17.227528405894915,
+   "held_cost": 0.0,
+   "score": 19.841949863884274,
+   "change_avg": 25.05690427220996,
+   "wait_avg": 8.64239877062312,
+   "change_wave": 0.7119301288626116,
+   "within20": 0.6990513423506448,
+   "within30": 0.8685323630424316,
+   "held_minutes": 0.0,
+   "held_trains": 0,
+   "trains": 36,
+   "pairs": {
+    "AS": {
+     "share": 0.3464956688041399,
+     "avg": 19.85185185185185,
+     "change": 26.703703703703702,
+     "wait": 9.037037037037036,
+     "direct": 13.0,
+     "direct_share": 0.5
+    },
+    "AN": {
+     "share": 0.2128473394082574,
+     "avg": 20.325,
+     "change": 25.65,
+     "wait": 7.65,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "AE": {
+     "share": 0.11879851501856227,
+     "avg": 21.545454545454547,
+     "change": 28.090909090909093,
+     "wait": 10.363636363636363,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "NS": {
+     "share": 0.16931038362020476,
+     "avg": 19.925,
+     "change": 25.85,
+     "wait": 8.25,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "ES": {
+     "share": 0.09449881876476543,
+     "avg": 21.090909090909093,
+     "change": 28.181818181818183,
+     "wait": 10.90909090909091,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "EN": {
+     "share": 0.0580492743840702,
+     "avg": 12.25,
+     "change": 12.25,
+     "wait": 6.25,
+     "direct": null,
+     "direct_share": 0.0
+    }
+   },
+   "penalty": 0.0,
+   "even": {
+    "line": {
+     "A": {
+      "out": 2.6,
+      "in": 2.6,
+      "trains": 12
+     },
+     "S": {
+      "out": 2.6,
+      "in": 2.6,
+      "trains": 12
+     },
+     "N": {
+      "out": 4.2,
+      "in": 4.2,
+      "trains": 8
+     },
+     "E": {
+      "out": 7.533333333333333,
+      "in": 7.533333333333333,
+      "trains": 4
+     }
+    },
+    "pair": {
+     "AS": 5.0,
+     "AN": 8.333333333333334,
+     "AE": 15.0,
+     "SA": 5.0,
+     "SN": 8.333333333333334,
+     "SE": 15.0,
+     "NA": 8.333333333333334,
+     "NS": 8.333333333333334,
+     "EA": 15.0,
+     "ES": 15.0
+    },
+    "ne_change": 7.666666666666667,
+    "paris_wait": 3.3565891472868215,
+    "direct_wait": 8.616784107647598,
+    "score": 13.506706588267752
+   },
+   "paris_wait": 3.3565891472868215,
+   "direct_wait": 8.616784107647598,
+   "ne_change": 7.666666666666667
+  },
+  "pulse20": {
+   "cross": 21.7347126748578,
+   "line": 17.304329320883486,
+   "held_cost": 0.0,
+   "score": 21.7347126748578,
+   "change_avg": 28.634739174228805,
+   "wait_avg": 12.700785833576903,
+   "change_wave": 0.47760798921086,
+   "within20": 0.5938871502742579,
+   "within30": 0.8228310681019084,
+   "held_minutes": 0.0,
+   "held_trains": 0,
+   "trains": 42,
+   "pairs": {
+    "AS": {
+     "share": 0.3464956688041399,
+     "avg": 20.512626262626263,
+     "change": 28.025252525252526,
+     "wait": 12.47979797979798,
+     "direct": 13.0,
+     "direct_share": 0.5
+    },
+    "AN": {
+     "share": 0.2128473394082574,
+     "avg": 22.80909090909091,
+     "change": 30.618181818181817,
+     "wait": 12.345454545454546,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "AE": {
+     "share": 0.11879851501856227,
+     "avg": 23.026785714285715,
+     "change": 31.05357142857143,
+     "wait": 12.839285714285715,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "NS": {
+     "share": 0.16931038362020476,
+     "avg": 22.68181818181818,
+     "change": 31.363636363636367,
+     "wait": 13.436363636363637,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "ES": {
+     "share": 0.09449881876476543,
+     "avg": 22.88392857142857,
+     "change": 31.767857142857142,
+     "wait": 13.910714285714285,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "EN": {
+     "share": 0.0580492743840702,
+     "avg": 17.8125,
+     "change": 17.8125,
+     "wait": 11.8125,
+     "direct": null,
+     "direct_share": 0.0
+    }
+   },
+   "penalty": 0.0,
+   "even": {
+    "line": {
+     "A": {
+      "out": 2.15,
+      "in": 2.5,
+      "trains": 15
+     },
+     "S": {
+      "out": 2.15,
+      "in": 2.15,
+      "trains": 15
+     },
+     "N": {
+      "out": 5.1,
+      "in": 6.083333333333333,
+      "trains": 8
+     },
+     "E": {
+      "out": 9.2,
+      "in": 13.966666666666667,
+      "trains": 4
+     }
+    },
+    "pair": {
+     "AS": 3.85,
+     "AN": 9.15,
+     "AE": 16.666666666666668,
+     "SA": 3.8,
+     "SN": 8.35,
+     "SE": 16.666666666666668,
+     "NA": 8.933333333333334,
+     "NS": 8.333333333333334,
+     "EA": 16.666666666666668,
+     "ES": 16.666666666666668
+    },
+    "ne_change": 10.25,
+    "paris_wait": 3.728875968992248,
+    "direct_wait": 8.723521039850313,
+    "score": 14.502397008842562
+   },
+   "paris_wait": 3.728875968992248,
+   "direct_wait": 8.723521039850313,
+   "ne_change": 10.25
+  },
+  "random20": {
+   "cross": 23.299167032416893,
+   "line": 18.036628370270364,
+   "held_cost": 0.0,
+   "score": 23.299167032416893,
+   "change_avg": 31.591982084243227,
+   "wait_avg": 15.685491239141356,
+   "change_wave": 0.4220089065077172,
+   "within20": 0.5799523795277458,
+   "within30": 0.7767599778315919,
+   "paris_wait": 3.5191445182724252,
+   "direct_wait": 9.410315825243272,
+   "ne_change": 13.708333333333332,
+   "n": 28
+  },
+  "pulse10": {
+   "cross": 19.269960735339293,
+   "line": 17.570077249034366,
+   "held_cost": 0.0,
+   "score": 19.269960735339293,
+   "change_avg": 23.97568973448825,
+   "wait_avg": 7.561184232901405,
+   "change_wave": 0.7338759023873326,
+   "within20": 0.6716680340738165,
+   "within30": 0.9037887783978458,
+   "held_minutes": 0.0,
+   "held_trains": 0,
+   "trains": 36,
+   "pairs": {
+    "AS": {
+     "share": 0.3464956688041399,
+     "avg": 18.85185185185185,
+     "change": 24.703703703703702,
+     "wait": 7.037037037037037,
+     "direct": 13.0,
+     "direct_share": 0.5
+    },
+    "AN": {
+     "share": 0.2128473394082574,
+     "avg": 19.75,
+     "change": 24.5,
+     "wait": 6.5,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "AE": {
+     "share": 0.11879851501856227,
+     "avg": 21.363636363636363,
+     "change": 27.727272727272727,
+     "wait": 10.0,
+     "direct": 15.0,
+     "direct_share": 0.5
+    },
+    "NS": {
+     "share": 0.16931038362020476,
+     "avg": 19.65,
+     "change": 25.3,
+     "wait": 7.699999999999999,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "ES": {
+     "share": 0.09449881876476543,
+     "avg": 21.18181818181818,
+     "change": 28.363636363636363,
+     "wait": 11.09090909090909,
+     "direct": 14.0,
+     "direct_share": 0.5
+    },
+    "EN": {
+     "share": 0.0580492743840702,
+     "avg": 11.5,
+     "change": 11.5,
+     "wait": 5.5,
+     "direct": null,
+     "direct_share": 0.0
+    }
+   },
+   "penalty": 0.0,
+   "even": {
+    "line": {
+     "A": {
+      "out": 2.9,
+      "in": 2.9,
+      "trains": 12
+     },
+     "S": {
+      "out": 2.6,
+      "in": 2.6,
+      "trains": 12
+     },
+     "N": {
+      "out": 5.933333333333334,
+      "in": 5.933333333333334,
+      "trains": 8
+     },
+     "E": {
+      "out": 12.3,
+      "in": 12.3,
+      "trains": 4
+     }
+    },
+    "pair": {
+     "AS": 5.0,
+     "AN": 8.333333333333334,
+     "AE": 15.0,
+     "SA": 5.0,
+     "SN": 8.333333333333334,
+     "SE": 15.0,
+     "NA": 8.333333333333334,
+     "NS": 8.333333333333334,
+     "EA": 15.0,
+     "ES": 15.0
+    },
+    "ne_change": 10.833333333333334,
+    "paris_wait": 4.227131782945737,
+    "direct_wait": 8.616784107647598,
+    "score": 15.010582557260001
+   },
+   "paris_wait": 4.227131782945737,
+   "direct_wait": 8.616784107647598,
+   "ne_change": 10.833333333333334
+  },
+  "random10": {
+   "cross": 20.795126429290846,
+   "line": 17.736900163747944,
+   "held_cost": 0.0,
+   "score": 20.795126429290846,
+   "change_avg": 26.858666417855677,
+   "wait_avg": 10.444160916268837,
+   "change_wave": 0.6857168736809885,
+   "within20": 0.6775928023437585,
+   "within30": 0.8283835374879783,
+   "paris_wait": 3.9007751937984496,
+   "direct_wait": 9.621899757155939,
+   "ne_change": 13.766666666666667,
+   "n": 30
+  }
+ },
+ "frontier": {
+  "4": {
+   "cross": 21.731184967330766,
+   "line": 18.175258278021527,
+   "held_cost": 0.0,
+   "score": 21.731184967330766,
+   "change_avg": 28.62807085052699,
+   "wait_avg": 12.694117509875086,
+   "change_wave": 0.5135600057689371,
+   "within20": 0.595962990803524,
+   "within30": 0.8365175853321314,
+   "paris_wait": 3.732170542635659,
+   "direct_wait": 9.016705481906127,
+   "ne_change": 10.25
+  },
+  "5": {
+   "cross": 23.56722801922768,
+   "line": 19.819490850114374,
+   "held_cost": 3.293684110281753,
+   "score": 26.860912129509433,
+   "change_avg": 30.318147764575198,
+   "wait_avg": 13.251374219141365,
+   "change_wave": 0.46394637113137915,
+   "within20": 0.5708755852402494,
+   "within30": 0.7803742388285081,
+   "paris_wait": 3.9339147286821703,
+   "direct_wait": 8.590653489390501,
+   "ne_change": 12.083333333333334
+  },
+  "6": {
+   "cross": 25.43653420241338,
+   "line": 21.49887220159749,
+   "held_cost": 6.587368220563506,
+   "score": 32.02390242297689,
+   "change_avg": 32.07110101547103,
+   "wait_avg": 13.871507265255273,
+   "change_wave": 0.4169041098307446,
+   "within20": 0.5279144948188147,
+   "within30": 0.7250533475474413,
+   "paris_wait": 3.3499999999999996,
+   "direct_wait": 8.88881922051037,
+   "ne_change": 10.083333333333334
+  },
+  "7": {
+   "cross": 26.288023055555957,
+   "line": 20.261844695691302,
+   "held_cost": 9.88105233084526,
+   "score": 36.16907538640122,
+   "change_avg": 31.900103549353947,
+   "wait_avg": 12.567689594356262,
+   "change_wave": 0.46561012264361545,
+   "within20": 0.3907984875838402,
+   "within30": 0.7333861979322661,
+   "paris_wait": 3.8294573643410854,
+   "direct_wait": 8.66636808790159,
+   "ne_change": 12.666666666666666
+  },
+  "8": {
+   "cross": 27.854461656891626,
+   "line": 21.607835527055926,
+   "held_cost": 13.174736441127012,
+   "score": 41.02919809801864,
+   "change_avg": 33.080554953346024,
+   "wait_avg": 12.615320793566408,
+   "change_wave": 0.4647580613609322,
+   "within20": 0.10329874326246245,
+   "within30": 0.7081443158096887,
+   "paris_wait": 3.648643410852713,
+   "direct_wait": 8.687129264700028,
+   "ne_change": 9.666666666666666
+  },
+  "9": null
+ },
+ "sens": {
+  "headway 2.5": {
+   "cross": 21.760257051169976,
+   "line": 18.109440975737797,
+   "held_cost": 0.0,
+   "score": 21.760257051169976,
+   "change_avg": 28.68302497136628,
+   "wait_avg": 12.749071630714374,
+   "change_wave": 0.5019132005096917,
+   "within20": 0.599958444107111,
+   "within30": 0.8315006959328592,
+   "paris_wait": 3.6281007751937984,
+   "direct_wait": 9.086911302201521,
+   "ne_change": 12.166666666666666,
+   "random": 23.548402709088514
+  },
+  "headway 4": null,
+  "changes 3 and 5": {
+   "cross": 21.607878253794556,
+   "line": 18.17576124048448,
+   "held_cost": 0.0,
+   "score": 21.607878253794556,
+   "change_avg": 28.394987729501285,
+   "wait_avg": 13.46103438884938,
+   "change_wave": 0.4692627114158215,
+   "within20": 0.5961866872767986,
+   "within30": 0.8325034086424569,
+   "paris_wait": 3.7085271317829456,
+   "direct_wait": 8.938848083124329,
+   "ne_change": 10.416666666666666,
+   "random": 22.90698024109765
+  },
+  "changes 5 and 8": {
+   "cross": 22.02077658282518,
+   "line": 18.590294183822703,
+   "held_cost": 0.0,
+   "score": 22.02077658282518,
+   "change_avg": 29.17547752147433,
+   "wait_avg": 11.889246240793291,
+   "change_wave": 0.5550041847808993,
+   "within20": 0.5831576740031009,
+   "within30": 0.8220164983327318,
+   "paris_wait": 3.593798449612403,
+   "direct_wait": 9.039636331064136,
+   "ne_change": 15.75,
+   "random": 23.45586287986174
+  },
+  "link at the model time": {
+   "cross": 20.509115920953583,
+   "line": 16.132005849926866,
+   "held_cost": 0.0,
+   "score": 20.509115920953583,
+   "change_avg": 27.300485150740332,
+   "wait_avg": 12.719378389346492,
+   "change_wave": 0.47499084027792166,
+   "within20": 0.6305765354069437,
+   "within30": 0.83730209054205,
+   "paris_wait": 3.2302325581395346,
+   "direct_wait": 8.694447430232096,
+   "ne_change": 9.583333333333334,
+   "random": 22.26665280877076
+  }
+ },
+ "chosen": {
+  "name": "even 20",
+  "period": 20,
+  "trains": [
+   {
+    "route": "NA",
+    "from": "E",
+    "to": "A",
+    "slot": 2,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 1,
+      "dep": 5.0,
+      "arr_abs": 1,
+      "dep_abs": 5.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 12.0,
+      "dep": 16.0,
+      "arr_abs": 12.0,
+      "dep_abs": 16.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 10,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 2,
+      "dep": 6.0,
+      "arr_abs": 2,
+      "dep_abs": 6.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 11.0,
+      "dep": 15.0,
+      "arr_abs": 11.0,
+      "dep_abs": 15.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 4,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 4,
+      "dep": 8.0,
+      "arr_abs": 4,
+      "dep_abs": 8.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 14.0,
+      "dep": 18.0,
+      "arr_abs": 14.0,
+      "dep_abs": 18.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 7,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 5,
+      "dep": 9.0,
+      "arr_abs": 5,
+      "dep_abs": 9.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 15.0,
+      "dep": 19.0,
+      "arr_abs": 15.0,
+      "dep_abs": 19.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 1,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 6,
+      "dep": 10.0,
+      "arr_abs": 6,
+      "dep_abs": 10.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 17.0,
+      "dep": 21.0,
+      "arr_abs": 17.0,
+      "dep_abs": 21.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 12,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 7,
+      "dep": 11.0,
+      "arr_abs": 7,
+      "dep_abs": 11.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 16.0,
+      "dep": 20.0,
+      "arr_abs": 16.0,
+      "dep_abs": 20.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 3,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 8,
+      "dep": 12.0,
+      "arr_abs": 8,
+      "dep_abs": 12.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 19.0,
+      "dep": 23.0,
+      "arr_abs": 19.0,
+      "dep_abs": 23.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 8,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 9,
+      "dep": 13.0,
+      "arr_abs": 9,
+      "dep_abs": 13.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 18.0,
+      "dep": 22.0,
+      "arr_abs": 18.0,
+      "dep_abs": 22.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "E",
+    "to": "S",
+    "slot": 6,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 11,
+      "dep": 15.0,
+      "arr_abs": 11,
+      "dep_abs": 15.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 21.0,
+      "dep": 25.0,
+      "arr_abs": 21.0,
+      "dep_abs": 25.0,
+      "track": 3,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "E",
+    "slot": 5,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 13,
+      "dep": 17.0,
+      "arr_abs": 13,
+      "dep_abs": 17.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 23.0,
+      "dep": 27.0,
+      "arr_abs": 23.0,
+      "dep_abs": 27.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 9,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 15,
+      "dep": 19.0,
+      "arr_abs": 15,
+      "dep_abs": 19.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 24.0,
+      "dep": 28.0,
+      "arr_abs": 24.0,
+      "dep_abs": 28.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 13,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 16,
+      "dep": 20.0,
+      "arr_abs": 16,
+      "dep_abs": 20.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 25.0,
+      "dep": 29.0,
+      "arr_abs": 25.0,
+      "dep_abs": 29.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 0,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 19,
+      "dep": 23.0,
+      "arr_abs": 19,
+      "dep_abs": 23.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 30.0,
+      "dep": 34.0,
+      "arr_abs": 30.0,
+      "dep_abs": 34.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 11,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 19,
+      "dep": 23.0,
+      "arr_abs": 19,
+      "dep_abs": 23.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 28.0,
+      "dep": 32.0,
+      "arr_abs": 28.0,
+      "dep_abs": 32.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 2,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 21,
+      "dep": 25.0,
+      "arr_abs": 21,
+      "dep_abs": 25.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 32.0,
+      "dep": 36.0,
+      "arr_abs": 32.0,
+      "dep_abs": 36.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 10,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 22,
+      "dep": 26.0,
+      "arr_abs": 22,
+      "dep_abs": 26.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 31.0,
+      "dep": 35.0,
+      "arr_abs": 31.0,
+      "dep_abs": 35.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 4,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 24,
+      "dep": 28.0,
+      "arr_abs": 24,
+      "dep_abs": 28.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 34.0,
+      "dep": 38.0,
+      "arr_abs": 34.0,
+      "dep_abs": 38.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 7,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 25,
+      "dep": 29.0,
+      "arr_abs": 25,
+      "dep_abs": 29.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 35.0,
+      "dep": 39.0,
+      "arr_abs": 35.0,
+      "dep_abs": 39.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "E",
+    "slot": 1,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 26,
+      "dep": 30.0,
+      "arr_abs": 26,
+      "dep_abs": 30.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 37.0,
+      "dep": 41.0,
+      "arr_abs": 37.0,
+      "dep_abs": 41.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 12,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 27,
+      "dep": 31.0,
+      "arr_abs": 27,
+      "dep_abs": 31.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 36.0,
+      "dep": 40.0,
+      "arr_abs": 36.0,
+      "dep_abs": 40.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "E",
+    "to": "A",
+    "slot": 3,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 28,
+      "dep": 32.0,
+      "arr_abs": 28,
+      "dep_abs": 32.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 39.0,
+      "dep": 43.0,
+      "arr_abs": 39.0,
+      "dep_abs": 43.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 8,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 29,
+      "dep": 33.0,
+      "arr_abs": 29,
+      "dep_abs": 33.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 38.0,
+      "dep": 42.0,
+      "arr_abs": 38.0,
+      "dep_abs": 42.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 6,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 31,
+      "dep": 35.0,
+      "arr_abs": 31,
+      "dep_abs": 35.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 41.0,
+      "dep": 45.0,
+      "arr_abs": 41.0,
+      "dep_abs": 45.0,
+      "track": 3,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 5,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 33,
+      "dep": 37.0,
+      "arr_abs": 33,
+      "dep_abs": 37.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 43.0,
+      "dep": 47.0,
+      "arr_abs": 43.0,
+      "dep_abs": 47.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 9,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 35,
+      "dep": 39.0,
+      "arr_abs": 35,
+      "dep_abs": 39.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 44.0,
+      "dep": 48.0,
+      "arr_abs": 44.0,
+      "dep_abs": 48.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 13,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 36,
+      "dep": 40.0,
+      "arr_abs": 36,
+      "dep_abs": 40.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 45.0,
+      "dep": 49.0,
+      "arr_abs": 45.0,
+      "dep_abs": 49.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 0,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 39,
+      "dep": 43.0,
+      "arr_abs": 39,
+      "dep_abs": 43.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 50.0,
+      "dep": 54.0,
+      "arr_abs": 50.0,
+      "dep_abs": 54.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 11,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 39,
+      "dep": 43.0,
+      "arr_abs": 39,
+      "dep_abs": 43.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 48.0,
+      "dep": 52.0,
+      "arr_abs": 48.0,
+      "dep_abs": 52.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 2,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 41,
+      "dep": 45.0,
+      "arr_abs": 41,
+      "dep_abs": 45.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 52.0,
+      "dep": 56.0,
+      "arr_abs": 52.0,
+      "dep_abs": 56.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 10,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 42,
+      "dep": 46.0,
+      "arr_abs": 42,
+      "dep_abs": 46.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 51.0,
+      "dep": 55.0,
+      "arr_abs": 51.0,
+      "dep_abs": 55.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "E",
+    "slot": 4,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 44,
+      "dep": 48.0,
+      "arr_abs": 44,
+      "dep_abs": 48.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 54.0,
+      "dep": 58.0,
+      "arr_abs": 54.0,
+      "dep_abs": 58.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "E",
+    "to": "S",
+    "slot": 7,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 45,
+      "dep": 49.0,
+      "arr_abs": 45,
+      "dep_abs": 49.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 55.0,
+      "dep": 59.0,
+      "arr_abs": 55.0,
+      "dep_abs": 59.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 1,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 46,
+      "dep": 50.0,
+      "arr_abs": 46,
+      "dep_abs": 50.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 57.0,
+      "dep": 1.0,
+      "arr_abs": 57.0,
+      "dep_abs": 61.0,
+      "track": 3,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 12,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 47,
+      "dep": 51.0,
+      "arr_abs": 47,
+      "dep_abs": 51.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 56.0,
+      "dep": 0.0,
+      "arr_abs": 56.0,
+      "dep_abs": 60.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 3,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 48,
+      "dep": 52.0,
+      "arr_abs": 48,
+      "dep_abs": 52.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 59.0,
+      "dep": 3.0,
+      "arr_abs": 59.0,
+      "dep_abs": 63.0,
+      "track": 3,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 8,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 49,
+      "dep": 53.0,
+      "arr_abs": 49,
+      "dep_abs": 53.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 58.0,
+      "dep": 2.0,
+      "arr_abs": 58.0,
+      "dep_abs": 62.0,
+      "track": 3,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 6,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 51,
+      "dep": 55.0,
+      "arr_abs": 51,
+      "dep_abs": 55.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 1.0,
+      "dep": 5.0,
+      "arr_abs": 61.0,
+      "dep_abs": 65.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 5,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 53,
+      "dep": 57.0,
+      "arr_abs": 53,
+      "dep_abs": 57.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 3.0,
+      "dep": 7.0,
+      "arr_abs": 63.0,
+      "dep_abs": 67.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 9,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 55,
+      "dep": 59.0,
+      "arr_abs": 55,
+      "dep_abs": 59.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 4.0,
+      "dep": 8.0,
+      "arr_abs": 64.0,
+      "dep_abs": 68.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 13,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 56,
+      "dep": 0.0,
+      "arr_abs": 56,
+      "dep_abs": 60.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 5.0,
+      "dep": 9.0,
+      "arr_abs": 65.0,
+      "dep_abs": 69.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "E",
+    "slot": 0,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 59,
+      "dep": 3.0,
+      "arr_abs": 59,
+      "dep_abs": 63.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 10.0,
+      "dep": 14.0,
+      "arr_abs": 70.0,
+      "dep_abs": 74.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 11,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 59,
+      "dep": 3.0,
+      "arr_abs": 59,
+      "dep_abs": 63.0,
+      "track": 3,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 8.0,
+      "dep": 12.0,
+      "arr_abs": 68.0,
+      "dep_abs": 72.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   }
+  ]
+ },
+ "standard": {
+  "name": "even 10",
+  "period": 10,
+  "trains": [
+   {
+    "route": "NA",
+    "from": "E",
+    "to": "A",
+    "slot": 1,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 1,
+      "dep": 5.0,
+      "arr_abs": 1,
+      "dep_abs": 5.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 12.0,
+      "dep": 16.0,
+      "arr_abs": 12.0,
+      "dep_abs": 16.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "E",
+    "slot": 2,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 3,
+      "dep": 7.0,
+      "arr_abs": 3,
+      "dep_abs": 7.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 13.0,
+      "dep": 17.0,
+      "arr_abs": 13.0,
+      "dep_abs": 17.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 4,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 4,
+      "dep": 8.0,
+      "arr_abs": 4,
+      "dep_abs": 8.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 13.0,
+      "dep": 17.0,
+      "arr_abs": 13.0,
+      "dep_abs": 17.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 3,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 7,
+      "dep": 11.0,
+      "arr_abs": 7,
+      "dep_abs": 11.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 17.0,
+      "dep": 21.0,
+      "arr_abs": 17.0,
+      "dep_abs": 21.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 0,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 8,
+      "dep": 12.0,
+      "arr_abs": 8,
+      "dep_abs": 12.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 19.0,
+      "dep": 23.0,
+      "arr_abs": 19.0,
+      "dep_abs": 23.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 5,
+    "rep": 0,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 9,
+      "dep": 13.0,
+      "arr_abs": 9,
+      "dep_abs": 13.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 18.0,
+      "dep": 22.0,
+      "arr_abs": 18.0,
+      "dep_abs": 22.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 1,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 11,
+      "dep": 15.0,
+      "arr_abs": 11,
+      "dep_abs": 15.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 22.0,
+      "dep": 26.0,
+      "arr_abs": 22.0,
+      "dep_abs": 26.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 2,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 13,
+      "dep": 17.0,
+      "arr_abs": 13,
+      "dep_abs": 17.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 23.0,
+      "dep": 27.0,
+      "arr_abs": 23.0,
+      "dep_abs": 27.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 4,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 14,
+      "dep": 18.0,
+      "arr_abs": 14,
+      "dep_abs": 18.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 23.0,
+      "dep": 27.0,
+      "arr_abs": 23.0,
+      "dep_abs": 27.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "E",
+    "to": "S",
+    "slot": 3,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 17,
+      "dep": 21.0,
+      "arr_abs": 17,
+      "dep_abs": 21.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 27.0,
+      "dep": 31.0,
+      "arr_abs": 27.0,
+      "dep_abs": 31.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "E",
+    "slot": 0,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 18,
+      "dep": 22.0,
+      "arr_abs": 18,
+      "dep_abs": 22.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 29.0,
+      "dep": 33.0,
+      "arr_abs": 29.0,
+      "dep_abs": 33.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 5,
+    "rep": 1,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 19,
+      "dep": 23.0,
+      "arr_abs": 19,
+      "dep_abs": 23.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 28.0,
+      "dep": 32.0,
+      "arr_abs": 28.0,
+      "dep_abs": 32.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 1,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 21,
+      "dep": 25.0,
+      "arr_abs": 21,
+      "dep_abs": 25.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 32.0,
+      "dep": 36.0,
+      "arr_abs": 32.0,
+      "dep_abs": 36.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 2,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 23,
+      "dep": 27.0,
+      "arr_abs": 23,
+      "dep_abs": 27.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 33.0,
+      "dep": 37.0,
+      "arr_abs": 33.0,
+      "dep_abs": 37.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 4,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 24,
+      "dep": 28.0,
+      "arr_abs": 24,
+      "dep_abs": 28.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 33.0,
+      "dep": 37.0,
+      "arr_abs": 33.0,
+      "dep_abs": 37.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 3,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 27,
+      "dep": 31.0,
+      "arr_abs": 27,
+      "dep_abs": 31.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 37.0,
+      "dep": 41.0,
+      "arr_abs": 37.0,
+      "dep_abs": 41.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 0,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 28,
+      "dep": 32.0,
+      "arr_abs": 28,
+      "dep_abs": 32.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 39.0,
+      "dep": 43.0,
+      "arr_abs": 39.0,
+      "dep_abs": 43.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 5,
+    "rep": 2,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 29,
+      "dep": 33.0,
+      "arr_abs": 29,
+      "dep_abs": 33.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 38.0,
+      "dep": 42.0,
+      "arr_abs": 38.0,
+      "dep_abs": 42.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "E",
+    "to": "A",
+    "slot": 1,
+    "rep": 3,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 31,
+      "dep": 35.0,
+      "arr_abs": 31,
+      "dep_abs": 35.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 42.0,
+      "dep": 46.0,
+      "arr_abs": 42.0,
+      "dep_abs": 46.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "E",
+    "slot": 2,
+    "rep": 3,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 33,
+      "dep": 37.0,
+      "arr_abs": 33,
+      "dep_abs": 37.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 43.0,
+      "dep": 47.0,
+      "arr_abs": 43.0,
+      "dep_abs": 47.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 4,
+    "rep": 3,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 34,
+      "dep": 38.0,
+      "arr_abs": 34,
+      "dep_abs": 38.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 43.0,
+      "dep": 47.0,
+      "arr_abs": 43.0,
+      "dep_abs": 47.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 3,
+    "rep": 3,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 37,
+      "dep": 41.0,
+      "arr_abs": 37,
+      "dep_abs": 41.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 47.0,
+      "dep": 51.0,
+      "arr_abs": 47.0,
+      "dep_abs": 51.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 0,
+    "rep": 3,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 38,
+      "dep": 42.0,
+      "arr_abs": 38,
+      "dep_abs": 42.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 49.0,
+      "dep": 53.0,
+      "arr_abs": 49.0,
+      "dep_abs": 53.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 5,
+    "rep": 3,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 39,
+      "dep": 43.0,
+      "arr_abs": 39,
+      "dep_abs": 43.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 48.0,
+      "dep": 52.0,
+      "arr_abs": 48.0,
+      "dep_abs": 52.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 1,
+    "rep": 4,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 41,
+      "dep": 45.0,
+      "arr_abs": 41,
+      "dep_abs": 45.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 52.0,
+      "dep": 56.0,
+      "arr_abs": 52.0,
+      "dep_abs": 56.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 2,
+    "rep": 4,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 43,
+      "dep": 47.0,
+      "arr_abs": 43,
+      "dep_abs": 47.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 53.0,
+      "dep": 57.0,
+      "arr_abs": 53.0,
+      "dep_abs": 57.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 4,
+    "rep": 4,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 44,
+      "dep": 48.0,
+      "arr_abs": 44,
+      "dep_abs": 48.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 53.0,
+      "dep": 57.0,
+      "arr_abs": 53.0,
+      "dep_abs": 57.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "E",
+    "to": "S",
+    "slot": 3,
+    "rep": 4,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 47,
+      "dep": 51.0,
+      "arr_abs": 47,
+      "dep_abs": 51.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 57.0,
+      "dep": 1.0,
+      "arr_abs": 57.0,
+      "dep_abs": 61.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "E",
+    "slot": 0,
+    "rep": 4,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 48,
+      "dep": 52.0,
+      "arr_abs": 48,
+      "dep_abs": 52.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 59.0,
+      "dep": 3.0,
+      "arr_abs": 59.0,
+      "dep_abs": 63.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 5,
+    "rep": 4,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 49,
+      "dep": 53.0,
+      "arr_abs": 49,
+      "dep_abs": 53.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 58.0,
+      "dep": 2.0,
+      "arr_abs": 58.0,
+      "dep_abs": 62.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NA",
+    "from": "N",
+    "to": "A",
+    "slot": 1,
+    "rep": 5,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 51,
+      "dep": 55.0,
+      "arr_abs": 51,
+      "dep_abs": 55.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 2.0,
+      "dep": 6.0,
+      "arr_abs": 62.0,
+      "dep_abs": 66.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SN",
+    "from": "S",
+    "to": "N",
+    "slot": 2,
+    "rep": 5,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 53,
+      "dep": 57.0,
+      "arr_abs": 53,
+      "dep_abs": 57.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 3.0,
+      "dep": 7.0,
+      "arr_abs": 63.0,
+      "dep_abs": 67.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AS",
+    "from": "A",
+    "to": "S",
+    "slot": 4,
+    "rep": 5,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 54,
+      "dep": 58.0,
+      "arr_abs": 54,
+      "dep_abs": 58.0,
+      "track": 1,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 3.0,
+      "dep": 7.0,
+      "arr_abs": 63.0,
+      "dep_abs": 67.0,
+      "track": 1,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "NS",
+    "from": "N",
+    "to": "S",
+    "slot": 3,
+    "rep": 5,
+    "stops": [
+     {
+      "st": "NE",
+      "side": "in",
+      "arr": 57,
+      "dep": 1.0,
+      "arr_abs": 57,
+      "dep_abs": 61.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "LY",
+      "side": "out",
+      "arr": 7.0,
+      "dep": 11.0,
+      "arr_abs": 67.0,
+      "dep_abs": 71.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "AN",
+    "from": "A",
+    "to": "N",
+    "slot": 0,
+    "rep": 5,
+    "stops": [
+     {
+      "st": "MP",
+      "side": "in",
+      "arr": 58,
+      "dep": 2.0,
+      "arr_abs": 58,
+      "dep_abs": 62.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "NE",
+      "side": "out",
+      "arr": 9.0,
+      "dep": 13.0,
+      "arr_abs": 69.0,
+      "dep_abs": 73.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   },
+   {
+    "route": "SA",
+    "from": "S",
+    "to": "A",
+    "slot": 5,
+    "rep": 5,
+    "stops": [
+     {
+      "st": "LY",
+      "side": "in",
+      "arr": 59,
+      "dep": 3.0,
+      "arr_abs": 59,
+      "dep_abs": 63.0,
+      "track": 2,
+      "held": 0.0
+     },
+     {
+      "st": "MP",
+      "side": "out",
+      "arr": 8.0,
+      "dep": 12.0,
+      "arr_abs": 68.0,
+      "dep_abs": 72.0,
+      "track": 2,
+      "held": 0.0
+     }
+    ]
+   }
+  ]
+ },
+ "turn_minutes": [],
+ "spare": {
+  "NE in": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "NE out": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "LY in": {
+   "tgv": 15,
+   "spare": 3
+  },
+  "LY out": {
+   "tgv": 15,
+   "spare": 3
+  },
+  "MP in": {
+   "tgv": 15,
+   "spare": 3
+  },
+  "MP out": {
+   "tgv": 15,
+   "spare": 3
+  }
+ },
+ "spare_standard": {
+  "NE in": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "NE out": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "LY in": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "LY out": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "MP in": {
+   "tgv": 12,
+   "spare": 6
+  },
+  "MP out": {
+   "tgv": 12,
+   "spare": 6
+  }
+ }
+}

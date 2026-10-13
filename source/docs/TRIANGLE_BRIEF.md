@@ -183,6 +183,11 @@ Old keys with A or B no longer exist. `{{ ... }}` expressions see `m` (src/data/
   'high' or a number), rate, growth, fleet_capture, shop_net, levy, payroll_pts, eu_grant, tax_wider, capex, systems),
   `PTS.model.breakevenCharge(options)`.
 
+- Timetable of the hour (Annex D, evenly spaced, 4-minute stops; a pulse timed for changes as comparison; `model/timetable.py`, read as `d.timetable`): `inputs` (stop, clear, tracks, headway 3, change_same 4, change_other 6,
+  run {L 6, M 7, LM 5}, model_run, technical, ratio of Paris to crossing passengers), `cases{even20, even10, pulse20, random20, pulse10, random10}` (cross,
+  change_avg, wait_avg, change_wave, line, pairs), `frontier{stop minutes}`, `sens`, `chosen` and `standard` (every train with its minutes and
+  tracks), `spare`, `turn_minutes`. The link runs 5 minutes in the timetable, not the model's 2 (start-to-stop check over 5 km).
+
 ## 4. Writing rules
 
 - Follow CONTRIBUTING.md. No long dashes anywhere (use a comma, a semicolon, "to" or a new sentence). British spelling. Plain words.

@@ -1,0 +1,62 @@
+/* A pulse timetable for Paris: three station clocks, the pattern boards, the animated map. */
+#timetable .tt-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center }
+#timetable .tt-bar > div { flex: 1 1 200px; min-width: 0 }
+#timetable .tt-bar > div.tt-speed { flex: 0 1 auto }
+#timetable .tt-bar .btn { min-width: 108px }
+
+/* clocks */
+#timetable .tt-clocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 18px }
+#timetable .tt-clockbox { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0 }
+#timetable .tt-clockbox h4 { color: var(--ink) }
+#timetable .tt-cap { font-size: 13px; color: var(--muted) }
+#timetable .tt-clock { width: 100%; max-width: 330px; height: auto }
+#timetable .tt-face { fill: var(--surface-2); stroke: var(--struct-edge); stroke-width: 1.4 }
+#timetable .tt-tick { stroke: var(--muted); stroke-width: 1 }
+#timetable .tt-tick.five { stroke: var(--ink); stroke-width: 1.6 }
+#timetable .tt-clock .tt-num { font-size: 13px; fill: var(--muted); font-variant-numeric: tabular-nums }
+#timetable .tt-clock .tt-inside { font-size: 12.5px; fill: var(--muted) }
+#timetable .tt-handline { stroke: var(--ink); stroke-width: 3; stroke-linecap: round }
+#timetable .tt-hub { fill: var(--ink) }
+#timetable .tt-ev { stroke: var(--c); stroke-width: 2; fill: var(--surface); opacity: .55 }
+#timetable .tt-ev.done { fill: var(--c); opacity: 1 }
+#timetable .tt-ev:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+#timetable .legend i.tt-arr { background: var(--muted); border-radius: 50% }
+#timetable .legend i.tt-dep { background: var(--muted); border-radius: 2px }
+#timetable .legend i.tt-pair { display: inline-flex; width: auto; height: auto; background: none; gap: 2px; border: 0 }
+#timetable .legend i.tt-pair b { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--c) }
+@media (max-width: 760px) {
+  #timetable .tt-clocks { grid-template-columns: minmax(0, 1fr) }
+  #timetable .tt-clock { max-width: 300px }
+}
+
+/* boards */
+#timetable .tt-boards { display: flex; flex-direction: column; gap: 8px }
+#timetable .tt-board table { font-size: 13.5px }
+#timetable .tt-board td:nth-child(4) { white-space: nowrap }
+#timetable .tt-sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: -1px }
+#timetable .tt-board .note { margin-top: 6px }
+
+/* map */
+#timetable .tt-mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 14px; align-items: start }
+#timetable #tt-map svg { margin: 0 auto }
+#timetable .tt-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1 }
+#timetable .tt-seine { fill: none; stroke: var(--div-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .8 }
+#timetable .tt-ln { fill: none; stroke: var(--struct-edge); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55 }
+#timetable .tt-ln.link { stroke-dasharray: 6 3 }
+#timetable .tt-box { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.2 }
+#timetable .tt-track { stroke: var(--rule); stroke-width: 1.4 }
+#timetable .tt-sname { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round }
+#timetable .tt-edge { font-size: 11.5px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round }
+#timetable .tt-dot { fill: var(--c); stroke: var(--surface); stroke-width: 1 }
+#timetable .tt-dot.stopped { stroke: var(--ink); stroke-width: .9 }
+#timetable .tt-dot:focus-visible { outline: none; stroke: var(--accent); stroke-width: 2.5 }
+#timetable .tt-now { display: flex; flex-direction: column; gap: 6px }
+#timetable #tt-now { font-family: var(--display); font-size: 42px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1 }
+#timetable #tt-now-read { font-size: 13.5px; min-height: 2.8em }
+#timetable .tt-now .legend { flex-direction: column; align-items: flex-start }
+@media (max-width: 760px) {
+  #timetable .tt-mapwrap { grid-template-columns: minmax(0, 1fr) }
+}
+
+/* comparison */
+#timetable .tt-vs { color: var(--muted); font-weight: 400 }

@@ -1,0 +1,96 @@
+<p class="lede">With trains to every part of France calling at two of the three stations, almost no one crossing Paris needs to change: only between the north and the east. So the timetable proposed here does not hold trains for connections. Every train stops {{ d.timetable.inputs.stop | 0 }} minutes at each station, and the trains of each direction are spread as evenly through the hour as the tracks allow, on a pattern that repeats every 20 minutes. A train to or from any line is then {{ d.timetable.cases.even20.paris_wait | 0 }} minutes away on average, a passenger on a direct train spends {{ d.timetable.cases.even20.pairs.AS.direct | 0 }} to {{ d.timetable.cases.even20.pairs.AN.direct | 0 }} minutes in Paris, and the change between the north and the east takes {{ d.timetable.cases.even20.ne_change | 0 }} minutes from train to train.</p>
+
+<div class="callout warn"><b>A sketch of a timetable, not a timetable</b><p>The minutes below come from a search over timetables that keep a few stated rules: platform tracks, the time a track needs between two trains, the spacing of trains in a tunnel, and the time to change. No signalling, junction or driver has been studied. No benefit of this pattern is counted in the rest of the report. The model is in <code>model/timetable.py</code>.</p></div>
+
+<div class="block" id="timetable.cycle">
+  <h2>Why every 20 minutes</h2>
+  <p>A regular timetable repeats. The question is how often, and the number of trains decides it. With the southern lines full, the service plan of this report runs {{ d.timetable.inputs.hour.AN | 0 }} trains an hour each way between the Atlantic line and the north or east, {{ d.timetable.inputs.hour.SN | 0 }} between the south-east line and the north or east, and {{ d.timetable.inputs.hour.AS | 0 }} between the Atlantic and the south-east by the direct link: see <a class="xref" href="#service.pairing">which trains pair</a>. Every 20 minutes that is 2, 2 and 3 trains, whole numbers. A pattern of 10 minutes holds the standard busy hour ({{ m.hour_today.Atlantic | 0 }} trains an hour on each southern line) but not the full one; 15 and 30 minutes do not divide the {{ d.timetable.inputs.hour.AS | 0 }} link trains. So the full hour is the same 20 minutes three times, and the standard hour the same 10 minutes six times. The pattern is a template at full capacity: any path in it can be left empty when fewer trains are needed.</p>
+  <div class="tiles">
+    <div class="tile"><span class="n">5</span><span class="k">trains each way every 20 minutes at Montparnasse and at Gare de Lyon</span><span class="d">2 to or from Nord-Est, 3 by the link</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">4</span><span class="k">trains each way every 20 minutes at Paris Nord-Est</span><span class="d">From the north and east: {{ m.hour_full.North | 0 }} and {{ m.hour_full.East | 0 }} an hour share the four paths</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">{{ d.timetable.inputs.headway | 0 }}<small>min</small></span><span class="k">between two trains entering, or leaving, one side of a station</span><span class="d">Each side is reached by one tunnel track <span class="tag assume">assumption</span></span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">{{ d.timetable.inputs.stop | 0 }}<small>min</small></span><span class="k">at every platform, for every train</span><span class="d">Then {{ d.timetable.inputs.clear | 0 }} minutes before the next train can use the track</span></div>
+  </div>
+  <p><strong>The run between stations.</strong> From Nord-Est it takes {{ d.timetable.inputs.run.L + d.timetable.inputs.stop | 0 }} minutes to Gare de Lyon and {{ d.timetable.inputs.run.M + d.timetable.inputs.stop | 0 }} to Montparnasse, stop included, as in the rest of the report. The direct link is the exception. The model takes {{ m.TH.LM | 0 }} minutes for it with the stop, so {{ d.timetable.inputs.model_run.LM | 0 }} minutes for {{ m.link_km | 0 }} km of running. A train that starts, runs at 100 km/h and stops needs about {{ d.timetable.inputs.technical.LM | 1 }} minutes for that distance, with a 7% margin <span class="tag assume">assumption</span>, so the timetable uses {{ d.timetable.inputs.run.LM | 0 }}. The same check gives {{ d.timetable.inputs.technical.L | 1 }} and {{ d.timetable.inputs.technical.M | 1 }} minutes for the two other legs, within the model's {{ d.timetable.inputs.run.L | 0 }} and {{ d.timetable.inputs.run.M | 0 }}. The {{ m.TH.LM | 0 }} minutes of the rest of the report are therefore optimistic by about {{ d.timetable.inputs.run.LM - d.timetable.inputs.model_run.LM | 0 }} minutes for trains on the link.</p>
+  <p><strong>What "as evenly as the tracks allow" means.</strong> The search spreads, for each of the four lines, the trains leaving Paris to it and arriving from it; and, for each pair of lines, the direct trains between them. It also keeps the change between the north and the east short, and leaves gaps for regional express trains, which share the same tunnels: without that, trains every 4 minutes on a track that takes one every {{ d.timetable.inputs.headway | 0 }} would leave no room for them. Weights of these aims are a compromise found by trial <span class="tag assume">assumption</span>.</p>
+</div>
+
+<div class="block" id="timetable.clocks">
+  <h2>The hour at each station</h2>
+  <p>Each clock shows when trains arrive (circles) and leave (squares) at one station, in the colour of the two lines the train joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way. Play the hour, or drag the minute; the map below follows the same minute.</p>
+  <div class="controls" id="tt-scen-1"></div>
+  <div class="tt-bar" id="tt-bar-1"></div>
+  <figure class="fig">
+    <div class="fig-head"><strong>Trains of every direction come round the clock at regular intervals, about one every two minutes at each station</strong><span>Arrivals and departures of high-speed trains in one hour at the three stations. Hover or focus a mark for the train</span></div>
+    <div class="tt-clocks" id="tt-clocks"></div>
+    <ul class="legend" id="tt-legend"><li><i class="tt-arr"></i>Arrival</li><li><i class="tt-dep"></i>Departure</li></ul>
+    <figcaption>Minutes from the model (<code>model/timetable.py</code>), at the rules stated above. A mark fills when its minute has passed in the last 20 minutes. Regional express trains, which use the same tunnels and their own platforms, are not shown.</figcaption>
+  </figure>
+  <div class="tt-boards" id="tt-boards"></div>
+  <p>The tracks are those the timetable needs, never more than {{ d.timetable.inputs.tracks | 0 }} on each side of a station. Montparnasse and Gare de Lyon each see 5 trains every 20 minutes on each side; at {{ d.timetable.inputs.stop | 0 }} minutes stopped and {{ d.timetable.inputs.clear | 0 }} to clear, that is 35 of the 60 minutes the three tracks offer, the same load as the platform rule of the <a class="xref" href="#service.platforms">service chapter</a>. The pattern carries {{ d.timetable.inputs.hour.SN + d.timetable.inputs.hour.AS | 0 }} south-east trains an hour, not {{ m.hour_full.Southeast | 0 }}: the sixteenth, which has no partner and would turn back at Nord-Est, holding a track there for {{ d.timetable.inputs.reverse + 1 | 0 }} minutes, fits at none of the 60 minutes of the hour without breaking a rule (model). It would have to turn back south of Paris, or the pattern would lose a link train.</p>
+</div>
+
+<div class="block" id="timetable.map">
+  <h2>The trains on the map</h2>
+  <div class="controls" id="tt-scen-2"></div>
+  <div class="tt-bar" id="tt-bar-2"></div>
+  <figure class="fig">
+    <div class="fig-head"><strong>Every dot is a high-speed train; at the platforms the dots stand side by side, three tracks each way</strong><span>One hour of the pattern, played at one minute a second. The lines are schematic; times are those of the timetable <span class="tag sketch">illustrative sketch</span></span></div>
+    <div class="tt-mapwrap">
+      <div id="tt-map"></div>
+      <div class="card tt-now">
+        <span id="tt-now">:00</span>
+        <p id="tt-now-read" aria-live="off"></p>
+        <h4>Trains between</h4>
+        <ul class="legend" id="tt-legend-map"></ul>
+      </div>
+    </div>
+    <figcaption>Each station is drawn with its six high-speed platform tracks: on one side the trains coming from the station's own line (the north and east at Nord-Est), on the other the trains going out to it. Trains appear five minutes before their first Paris stop and leave the map five minutes after their last. The dashed line is the direct link. Hover or focus a dot for its minutes.</figcaption>
+  </figure>
+</div>
+
+<div class="block" id="timetable.connections">
+  <h2>Waits, direct trains and the one change</h2>
+  <div class="tiles">
+    <div class="tile"><span class="n">{{ d.timetable.cases.even20.even.line.A.out | 1 }}<small>min</small></span><span class="k">average wait for a train to the Atlantic line</span><span class="d">{{ d.timetable.cases.even20.even.line.S.out | 1 }} to the south-east, {{ d.timetable.cases.even20.even.line.N.out | 1 }} to the north, {{ d.timetable.cases.even20.even.line.E.out | 1 }} to the east, from a random minute</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">{{ d.timetable.cases.even20.pairs.AS.direct | 0 }} to {{ d.timetable.cases.even20.pairs.AN.direct | 0 }}<small>min</small></span><span class="k">in Paris on a direct train</span><span class="d">From the first Paris arrival to the last Paris departure: two stops and one run</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">{{ d.timetable.cases.even20.ne_change | 0 }}<small>min</small></span><span class="k">from a train from the north to one to the east, or back</span><span class="d">Change at Nord-Est included, on average</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">0</span><span class="k">trains held for a connection</span><span class="d">Every stop is {{ d.timetable.inputs.stop | 0 }} minutes</span></div>
+  </div>
+  <p>A passenger crossing Paris who picks a direct train waits, on average, for the next one between their two lines: about {{ d.timetable.cases.even20.direct_wait | 0 }} minutes from a random moment, weighted by the traffic of each pair of lines. The wait is spent at home or at the origin station, not in Paris, and it depends mostly on how many direct trains each pair has. About {{ d.timetable.inputs.direct_share | pct }} of passengers between lines with direct trains are taken to find one for their trip, as in the rest of the report; the others change once.</p>
+  <div class="cols wide-left">
+    <figure class="fig">
+      <div class="fig-head"><strong>Direct trains between each pair of lines come round almost as regularly as their number allows</strong><span>Average wait, from a random minute, for the next direct train between two lines, both directions together; the tick is the wait if those trains were exactly evenly spaced</span></div>
+      <div id="tt-pairs"></div>
+      <figcaption>Pairs with 2 direct trains an hour each way cannot be exactly evenly spaced in a pattern that repeats every 20 minutes. Between the north and the east there is no direct train.</figcaption>
+    </figure>
+    <div class="card">
+      <h4>This timetable, against two others with the same trains</h4>
+      <div id="tt-compare"></div>
+      <p class="note">Timed for changes: trains placed to shorten changes between services, as a Swiss pulse would. Untimed: the average of {{ d.timetable.cases.random20.n | 0 }} timetables drawn at random within the same rules.</p>
+    </div>
+  </div>
+  <p><strong>Against a pulse timed for changes.</strong> A timetable can instead be built for changes, placing each train so that it meets as many others as possible. With every path a service to one destination, a passenger who changes then spends {{ d.timetable.cases.pulse20.change_avg | 0 }} minutes in Paris on average, against {{ d.timetable.cases.even20.change_avg | 0 }} with the even timetable. The price is a less regular hour: trains to the east, for instance, would come {{ d.timetable.cases.pulse20.even.line.E.out | 0 }} minutes apart on average from a random minute instead of {{ d.timetable.cases.even20.even.line.E.out | 0 }}. Since few passengers change, the even hour is preferred. The gain of timing is in any case limited by the tracks: with one tunnel track on each side of a station and trains at least {{ d.timetable.inputs.headway | 0 }} minutes apart, the five trains that a side of Montparnasse or Gare de Lyon takes every 20 minutes can never all stand together.</p>
+  <p>With the standard busy hour the pattern repeats every 10 minutes, one train on each of the six routes, and can be exactly regular: a train to the Atlantic or the south-east every 5 minutes, and the change between the north and the east takes {{ d.timetable.cases.even10.ne_change | 0 }} minutes.</p>
+</div>
+
+<div class="block" id="timetable.stops">
+  <h2>Why trains are not held longer</h2>
+  <p>A Swiss node makes connections both ways by holding every train for 6 to 9 minutes (see <a class="xref" href="#zurich.why">Zürich</a>). In Paris a held train holds more people than it helps. For every passenger crossing Paris there are about {{ d.timetable.inputs.ratio | 0 }} who start or end their trip in Paris,[[art24]] and about half of them stay on board through one of the two stops, because their station is the train's second (derived from the 1,000 points of the <a class="xref" href="#access.map">access map</a>). When the search for a timetable timed for changes was allowed to hold any train up to {{ d.timetable.inputs.extra_max | 0 }} more minutes at a stop, counting those passengers' time, it held {{ d.timetable.cases.pulse20.held_trains | 0 }} of the {{ d.timetable.cases.pulse20.trains | 0 }} trains of the hour.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Longer stops for every train cost far more time than they save</strong><span>Passenger-hours a year added, compared with {{ d.timetable.inputs.stop | 0 }}-minute stops, for each length of stop, with the best timetable timed for changes found for each</span></div>
+    <div id="tt-stops"></div>
+    <figcaption>Passengers crossing Paris: {{ d.timetable.inputs.cross_trips | 1 }} million a year; Paris passengers: {{ d.timetable.inputs.paris_trips | 0 }} million, of whom those whose station is the train's second stop sit through the first (values of the model). Longer stops do not even shorten the time of passengers crossing Paris: the trains still cannot all stand together, and every minute stopped is a minute in Paris for those who stay on board.</figcaption>
+  </figure>
+</div>
+
+<div class="block" id="timetable.limits">
+  <h2>What the timetable rests on</h2>
+  <ul>
+    <li><strong>Spacing in the tunnels.</strong> {{ d.timetable.inputs.headway | 0 }} minutes between two trains on one track is about what the south-east line needs to carry the {{ m.hour_full.Southeast | 0 }} trains an hour planned for it,[[lgvse]] and more than the 2.5 minutes of the Elizabeth line's central tunnel at 24 trains an hour.[[el_may23]] With 4 minutes, no timetable of the full hour keeps every rule: the five trains of a side every 20 minutes would need the whole 20.</li>
+    <li><strong>Regional express trains</strong> share the first pair of tunnels. In the gaps the timetable leaves, {{ d.timetable.spare['MP in'].spare | 0 }} more trains an hour fit on the Atlantic side of Montparnasse, {{ d.timetable.spare['LY in'].spare | 0 }} at Gare de Lyon and {{ d.timetable.spare['NE in'].spare | 0 }} at Nord-Est from the north and east, at the same spacing (model). With the pairing of this report, eastern regional express trains and half of the northern ones run on to Gare de Lyon. How many an hour they need is not yet modelled: study point I3 in <a class="xref" href="#risks.verify">what to verify</a>. If they need more, the southern lines cannot all be full at the same time.</li>
+    <li><strong>Trains on time.</strong> A late train delays the train behind it on a full line, and the change between the north and the east. Regular timetables rest on punctual trains: in Switzerland more than nine in ten arrive within three minutes;[[ch_sbbfacts]] see <a class="xref" href="#pulse.paris">the Swiss timetable applied to Paris</a>.</li>
+    <li><strong>Destinations.</strong> The timetable fixes paths, not destinations: whether a path runs to Bordeaux or to Nantes, and how often each city is served, is a choice of service. The waits above are for the next train to a line, or between two lines.</li>
+    <li><strong>Junctions.</strong> Trains crossing each other at the junctions north and south of Nord-Est and at the ends of the link are taken to do so on separate levels; the cost counts {{ m.cost.junctions | 0 }} junctions (see <a class="xref" href="#cost.units">the prices used</a>).</li>
+  </ul>
+</div>
