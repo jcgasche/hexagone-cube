@@ -1,0 +1,77 @@
+{
+ "st_rerd": {
+  "publisher": "Réseau ferré de France, ex-post review of RER D between Châtelet and Gare de Lyon",
+  "about": "RER D tunnel between Châtelet and Gare de Lyon: 2.5 km long and 20 m deep",
+  "url": "https://www.igedd.developpement-durable.gouv.fr/IMG/pdf/RER_D_ChateletGareLyon_cle776cb1-1.pdf"
+ },
+ "st_wiki_rera": {
+  "publisher": "Wikipedia (French), Ligne A du RER d’Île-de-France",
+  "about": "Central section about 25 m deep; RER station of Gare de Lyon 315 m long and 41 m wide on five levels, RER D above RER A (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Ligne_A_du_RER_d%27%C3%8Ele-de-France"
+ },
+ "st_wiki_nord": {
+  "publisher": "Wikipedia (English), Gare du Nord",
+  "about": "RER B and D on level -3 of the station; metro lines 4 and 5; London trains on tracks reached from the upper level (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Gare_du_Nord"
+ },
+ "st_wiki_est": {
+  "publisher": "Wikipedia (French), Gare de Paris-Est",
+  "about": "30 platform tracks; metro lines 4, 5 and 7 (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Gare_de_Paris-Est"
+ },
+ "st_wiki_lyon": {
+  "publisher": "Wikipedia (French), Gare de Paris-Gare-de-Lyon",
+  "about": "22 surface tracks in two halls; four RER D tracks above the RER A level (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Gare_de_Paris-Gare-de-Lyon"
+ },
+ "st_wiki_lyonmetro": {
+  "publisher": "Wikipedia (English), Gare de Lyon (Paris Métro)",
+  "about": "Metro line 1 under boulevard Diderot, line 14 beside the RER station (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Gare_de_Lyon_(Paris_M%C3%A9tro)"
+ },
+ "st_wiki_m14": {
+  "publisher": "Wikipedia (English), Paris Métro Line 14",
+  "about": "Line 14 was bored 25 m below the water table and passes under the Seine (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Paris_M%C3%A9tro_Line_14"
+ },
+ "st_etf": {
+  "publisher": "ETF (contractor), 23 February 2022",
+  "about": "Gare de Lyon: the seven platforms of Hall 1 are 400 m long",
+  "url": "https://www.etf.fr/en/agence-genie-civil-ferroviaire-en/renovation-des-quais-au-coeur-de-paris-gare-de-lyon"
+ },
+ "st_gc_montp": {
+  "publisher": "SNCF Gares & Connexions, Paris Montparnasse, practical information",
+  "about": "Montparnasse: Hall 1 is on level 2, with the platforms; Hall 2 on level 3",
+  "url": "https://garesetconnexions.sncf/en/stations-services/paris-montparnasse/pratical-info"
+ },
+ "st_jardin": {
+  "publisher": "Wikipedia (French), Jardin Atlantique",
+  "about": "Garden of 3.5 hectares built in 1994 on a slab over the platforms of Montparnasse (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Jardin_Atlantique"
+ },
+ "st_wiki_montp": {
+  "publisher": "Wikipedia (English), Montparnasse-Bienvenüe station",
+  "about": "Metro lines 4, 6, 12 and 13 around Montparnasse station (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Montparnasse%E2%80%93Bienven%C3%BCe_station"
+ },
+ "st_wiki_rerb": {
+  "publisher": "Wikipedia (French), Ligne B du RER d’Île-de-France",
+  "about": "RER B passes under the Seine between Saint-Michel and Châtelet on a ramp of 4% (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Ligne_B_du_RER_d%27%C3%8Ele-de-France"
+ },
+ "st_wiki_tracks": {
+  "publisher": "Wikipedia (French), Gare de Paris-Nord and Gare de Paris-Est",
+  "about": "Platform tracks today: 32 at Gare du Nord, 30 at Gare de l’Est (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Gare_de_Paris-Nord"
+ },
+ "regio2n": {
+  "publisher": "Wikipedia (English), Regio 2N",
+  "about": "Regio 2N trainsets of the Paris region: 81 to 135 m long, run up to three coupled (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Regio_2N"
+ },
+ "st_wiki_berlin": {
+  "publisher": "Wikipedia (English), Berlin Hauptbahnhof",
+  "about": "Berlin main station: 8 through tracks on the lower level, about 15 m below street level (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Berlin_Hauptbahnhof"
+ }
+}

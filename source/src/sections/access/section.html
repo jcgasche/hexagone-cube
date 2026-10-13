@@ -1,0 +1,119 @@
+<p class="lede">From the average point in Paris, a station where your TGV, the French high-speed train, stops is {{ pts.avg.today | 1 }} minutes away today by public transport. With the three through stations it is {{ pts.avg.station | 1 }} minutes to the entrance of the nearest station where the train stops, or {{ pts.avg.ride | 1 }} minutes if the train’s ride between its Paris stops is counted, the measure used for benefits; {{ pts.avg.pick | 1 }} minutes if the passenger picks a train that calls at their best station. The stations stay where they are and the project only adds places to board, so no point in Paris is further from its train than today, for any direction.</p>
+
+<div class="block" id="access.map">
+  <h2>The map: 1,000 points in Paris</h2>
+  <p>Each dot is a point in Paris. Its colour shows the time by public transport from the street to a station where a TGV for the chosen direction stops. Choose a view, a way of counting and a direction, then tap a dot to read its times.</p>
+
+  <div class="tiles" role="group" aria-label="What the map shows">
+    <button class="tile" type="button" id="access-t-today" style="--tc: var(--today)" aria-pressed="false"><span class="n" id="access-n-today"></span><span class="k">Today</span><span class="d">Average time to the one terminal that serves your direction</span></button>
+    <button class="tile" type="button" id="access-t-project" style="--tc: var(--accent)" aria-pressed="false"><span class="n" id="access-n-project"></span><span class="k">With the project</span><span class="d" id="access-d-project">Average time to the nearest station where your train stops</span></button>
+    <button class="tile" type="button" id="access-t-saved" style="--tc: var(--good)" aria-pressed="true"><span class="n" id="access-n-saved"></span><span class="k">Minutes saved</span><span class="d">Today minus the project. No point is slower than today</span></button>
+  </div>
+
+  <div class="controls">
+    <div id="access-measure"></div>
+    <label class="field"><span>Direction of travel</span>
+      <select id="access-dir">
+        <option value="all">All directions, weighted by traffic</option>
+        <option value="Nord">North (Lille, London, Brussels)</option>
+        <option value="Est">East (Reims, Strasbourg)</option>
+        <option value="Lyon">South-east (Lyon, Marseille)</option>
+        <option value="Montparnasse">Atlantic (Bordeaux, Rennes, Nantes)</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="acc-stage">
+    <figure class="fig acc-mapfig">
+      <div class="fig-head"><strong id="access-title">Minutes saved against today</strong><span id="access-sub"></span></div>
+      <div class="acc-map" id="access-keys" tabindex="0" role="application" aria-label="Map of the 1,000 points. Use the arrow keys to move from point to point. The times of the chosen point are given in the read-out after the map." aria-describedby="access-pick">
+        <svg id="access-svg" viewBox="0 118 1000 552" role="img" aria-labelledby="access-title"></svg>
+      </div>
+      <p class="acc-pick" id="access-pick" aria-live="polite">Tap or hover a dot to read its times. With a keyboard, move to the map and use the arrow keys.</p>
+      <figcaption>1,000 points on an even grid, 315 m apart. Squares are station halls. Paris Nord-Est is one station with two halls, at Gare du Nord and at Gare de l’Est. Times are clock minutes on foot, by metro, by RER (the express suburban lines that cross Paris underground) and by tram; they stop at the station entrance.[[metropolist]]</figcaption>
+    </figure>
+    <div class="acc-side">
+      <div class="card acc-legend-card"><h4 id="access-legend-title">Legend</h4><ul class="acc-legend" id="access-legend"></ul></div>
+      <div class="card acc-stats-card"><h4>All 1,000 points</h4><p class="acc-hint" id="access-stats-for"></p><dl class="read" id="access-stats"></dl></div>
+    </div>
+    <div class="card acc-read-card"><h4 id="access-read-title">One point</h4><p class="acc-hint" id="access-read-hint">Tap or hover a dot to see, for each direction, where you board today and where you would board with the project.</p><div class="acc-read" id="access-read" hidden></div></div>
+  </div>
+</div>
+
+<div class="block" id="access.measure">
+  <h2>What “with the project” counts</h2>
+  <p>Today each direction has one terminal: Gare du Nord for the north, Gare de l’Est for the east, Gare de Lyon for the south-east, Montparnasse for the Atlantic. With the project every high-speed train stops at two of the three stations in Paris, no train changes direction, and a passenger boards at whichever stop suits best. Today’s station is always one of them. That is why the time can only get shorter.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Trains for</th><th>Every train stops at</th><th>Half of the trains also stop at</th></tr></thead>
+    <tbody>
+      <tr><th>The north and the east</th><td>Paris Nord-Est, entered from the Gare du Nord hall or from the Gare de l’Est hall</td><td>Gare de Lyon, for the half that come up from the south-east; Montparnasse, for the half that come up from the Atlantic</td></tr>
+      <tr><th>The south-east</th><td>Gare de Lyon</td><td>Paris Nord-Est, for the half that come down from the north or the east; Montparnasse, for the half that come from the Atlantic by the direct link between the two southern stations, a ride of {{ m.TH.LM | 0 }} minutes</td></tr>
+      <tr><th>The Atlantic</th><td>Montparnasse</td><td>Paris Nord-Est, for the half that come down from the north or the east; Gare de Lyon, for the half that come from the south-east by the direct link, a ride of {{ m.TH.LM | 0 }} minutes</td></tr>
+    </tbody></table></div>
+  <p class="note">Which trains run where is set out in <a class="xref" href="#service.pairing">how the lines are paired</a> and <a class="xref" href="#service.link">the direct link</a>. The even split between the two other stations is an <span class="tag assume">assumption</span>, and so is free entry to <a class="xref" href="#stations.nordest">Paris Nord-Est</a> from both halls. The second one matters: with entry from the Gare du Nord side only, the Paris average on the ride measure below would be {{ m.paris.nord_hall | 1 }} minutes and not {{ pts.avg.ride | 1 }}, and people who live nearer to Gare de l’Est would be further from a train for the east than today.</p>
+  <p>There are three honest ways to count the result. The map offers all three.</p>
+  <div class="acc-measures">
+    <div class="card">
+      <h4>To the station entrance</h4>
+      <p><strong>{{ pts.avg.station | 1 }} minutes on average, {{ pts.avg.today - pts.avg.station | 1 }} fewer than today.</strong></p>
+      <p>The minutes by public transport from a point in Paris to the entrance of the nearest station where the train stops. Where only half of the trains stop at the nearest station, the map takes the average of the two halves.</p>
+      <p>This answers the plain question: how far am I from a station where my train stops? On this count {{ pts.share_quicker.station | pct }} of the points are quicker than today, by up to {{ pts.max_gain.station | 1 }} minutes.</p>
+    </div>
+    <div class="card">
+      <h4>Counting the ride across Paris</h4>
+      <p><strong>{{ pts.avg.ride | 1 }} minutes on average, {{ pts.avg.today - pts.avg.ride | 1 }} fewer than today.</strong></p>
+      <p>The same, plus the train’s ride between its Paris stops when you board at the first one: {{ m.TH.L | 0 }} minutes between Nord-Est and Gare de Lyon, {{ m.TH.M | 0 }} between Nord-Est and Montparnasse, {{ m.TH.LM | 0 }} between Montparnasse and Gare de Lyon by the link. You board at the first stop only when that still puts you ahead.</p>
+      <p>This answers a stricter question: how much sooner am I on my way? It is the measure used for benefits. On this count {{ pts.share_quicker.ride | pct }} of the points are quicker, by up to {{ pts.max_gain.ride | 1 }} minutes, and the rest are unchanged.</p>
+    </div>
+    <div class="card">
+      <h4>Picking the train</h4>
+      <p><strong>{{ pts.avg.pick | 1 }} minutes on average, {{ pts.avg.today - pts.avg.pick | 1 }} fewer than today.</strong></p>
+      <p>The ride is counted as above, but the passenger chooses, among the trains for their direction, one that calls at the station that suits them best, instead of taking the next train whichever half it belongs to. It assumes enough trains an hour to choose from without a longer wait <span class="tag assume">assumption</span>, which holds on the busy lines and less so on the east.</p>
+      <p>This is an upper measure. It is shown because it is what a frequent traveller would do; the benefits are counted on the ride measure, not on this one. On this count {{ pts.share_quicker.pick | pct }} of the points are quicker, by up to {{ pts.max_gain.pick | 1 }} minutes.</p>
+    </div>
+  </div>
+  <p><strong>An example.</strong> Point {{ [r for r in pts.rows if r[0] == 275][0][0] | 0 }} on the map is in the 15th arrondissement, a few hundred metres from Montparnasse. Someone who lives there and travels to Lyon crosses Paris by metro to Gare de Lyon today: {{ [r for r in pts.rows if r[0] == 275][0][6] | 1 }} minutes. With the project half of the Lyon trains come from the Atlantic, stop at Montparnasse, {{ [r for r in pts.rows if r[0] == 275][0][7] | 1 }} minutes away, and run through the link to Gare de Lyon in {{ m.TH.LM | 0 }} minutes. The other half come down from Nord-Est, and for those Gare de Lyon stays the place to board. The first measure averages the two halves at the door: {{ [r for r in pts.rows if r[0] == 275][0][10] | 1 }} minutes. The second adds the {{ m.TH.LM | 0 }} minutes on the link, because until Gare de Lyon this passenger is no nearer to Lyon than someone who boards there: {{ [r for r in pts.rows if r[0] == 275][0][14] | 1 }} minutes. The third assumes the passenger always waits for a link train: {{ [r for r in pts.rows if r[0] == 275][0][18] | 1 }} minutes. The minutes on the link are spent in a seat on the right train and not in the metro, which is worth something, but they are still minutes.</p>
+  <div class="callout"><b>The model uses the ride measure</b><p>Every benefit and every extra passenger counted in this study comes from the second measure, the one that counts the train’s ride between its Paris stops with the next train taken whichever half it belongs to. The first measure is shown because it is the one a passenger feels at the door; the third because it is the most a passenger can get. Neither is used to count benefits.</p></div>
+  <p>The map does not include the time inside the station, from the entrance to the coach, which is a separate matter treated in <a class="xref" href="#stations.boarding">boarding in a deep station</a>; the model also tests what happens if every passenger needs two more minutes than today, in <a class="xref" href="#risks.sensitivity">the sensitivity tests</a>.</p>
+  <p class="note"><strong>How the 1,000 times were computed.</strong> A grid of 1,000 points, 315 m apart, covers Paris without its two woods. From each point the model finds the shortest time to the hall of each station on foot, by metro, RER and tram, with the average wait for each line, on the network of Île-de-France Mobilités as of 5 October 2026.[[metropolist]] Buses, taxis and crowding are not counted. The four directions are weighted by their share of high-speed traffic: Atlantic {{ pts.w.Montparnasse | pct }}, south-east {{ pts.w.Lyon | pct }}, north {{ pts.w.Nord | pct }}, east {{ pts.w.Est | pct }} (derived).[[art24]] The full method is in <a class="xref" href="#method.access">how access times are computed</a>.</p>
+</div>
+
+<div class="block" id="access.findings">
+  <h2>Who gains, and what it is worth</h2>
+  <p><strong>Every direction gains.</strong> At the station entrance the Atlantic and the south-east gain most, because all their trains would also stop at another station, Nord-Est on the other side of the city or the other southern station through the link. Once the ride is counted the four directions end within a few tenths of a minute of each other, between {{ m.by_dir.Montparnasse.nordest | 1 }} and {{ m.by_dir.Lyon.nordest | 1 }} minutes: a train for Lille boarded at Gare de Lyon or Montparnasse runs under Paris in {{ m.TH.L | 0 }} or {{ m.TH.M | 0 }} minutes, quicker than the metro, and a train for Lyon boarded at Montparnasse reaches Gare de Lyon in {{ m.TH.LM | 0 }}. When the passenger picks the train, the two southern directions come out best, {{ m.by_dir.Lyon.pick | 1 }} minutes for the south-east and {{ m.by_dir.Montparnasse.pick | 1 }} for the Atlantic, because the link gives each of them a second place to board only {{ m.TH.LM | 0 }} minutes away.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Every direction is closer than today on all three measures</strong><span>Average minutes from a Paris address to a station where the train stops, by direction of travel</span></div>
+    <div id="access-dir-chart"></div>
+    <figcaption>Averages of the 1,000 points. The grey line joins today with the result at the station entrance. The axis starts at 20 minutes, so the gaps look larger than they are in proportion.</figcaption>
+  </figure>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Minutes, Paris average</th><th class="num">Traffic</th><th class="num">Today</th><th class="num">At the entrance</th><th class="num">With the ride</th><th class="num">Saved</th><th class="num">Picking the train</th><th class="num">Saved</th></tr></thead>
+    <tbody>
+      <tr><th>North (Lille, London, Brussels)</th><td class="num">{{ pts.w.Nord | pct }}</td><td class="num">{{ m.by_dir.Nord.today | 1 }}</td><td class="num">{{ sum(r[8] for r in pts.rows) / len(pts.rows) | 1 }}</td><td class="num">{{ m.by_dir.Nord.nordest | 1 }}</td><td class="num">{{ m.by_dir.Nord.today - m.by_dir.Nord.nordest | 1 }}</td><td class="num">{{ m.by_dir.Nord.pick | 1 }}</td><td class="num">{{ m.by_dir.Nord.today - m.by_dir.Nord.pick | 1 }}</td></tr>
+      <tr><th>East (Reims, Strasbourg)</th><td class="num">{{ pts.w.Est | pct }}</td><td class="num">{{ m.by_dir.Est.today | 1 }}</td><td class="num">{{ sum(r[9] for r in pts.rows) / len(pts.rows) | 1 }}</td><td class="num">{{ m.by_dir.Est.nordest | 1 }}</td><td class="num">{{ m.by_dir.Est.today - m.by_dir.Est.nordest | 1 }}</td><td class="num">{{ m.by_dir.Est.pick | 1 }}</td><td class="num">{{ m.by_dir.Est.today - m.by_dir.Est.pick | 1 }}</td></tr>
+      <tr><th>South-east (Lyon, Marseille)</th><td class="num">{{ pts.w.Lyon | pct }}</td><td class="num">{{ m.by_dir.Lyon.today | 1 }}</td><td class="num">{{ sum(r[10] for r in pts.rows) / len(pts.rows) | 1 }}</td><td class="num">{{ m.by_dir.Lyon.nordest | 1 }}</td><td class="num">{{ m.by_dir.Lyon.today - m.by_dir.Lyon.nordest | 1 }}</td><td class="num">{{ m.by_dir.Lyon.pick | 1 }}</td><td class="num">{{ m.by_dir.Lyon.today - m.by_dir.Lyon.pick | 1 }}</td></tr>
+      <tr><th>Atlantic (Bordeaux, Rennes, Nantes)</th><td class="num">{{ pts.w.Montparnasse | pct }}</td><td class="num">{{ m.by_dir.Montparnasse.today | 1 }}</td><td class="num">{{ sum(r[11] for r in pts.rows) / len(pts.rows) | 1 }}</td><td class="num">{{ m.by_dir.Montparnasse.nordest | 1 }}</td><td class="num">{{ m.by_dir.Montparnasse.today - m.by_dir.Montparnasse.nordest | 1 }}</td><td class="num">{{ m.by_dir.Montparnasse.pick | 1 }}</td><td class="num">{{ m.by_dir.Montparnasse.today - m.by_dir.Montparnasse.pick | 1 }}</td></tr>
+      <tr class="total"><th>All directions, weighted by traffic</th><td class="num">100%</td><td class="num">{{ pts.avg.today | 1 }}</td><td class="num">{{ pts.avg.station | 1 }}</td><td class="num">{{ pts.avg.ride | 1 }}</td><td class="num">{{ pts.avg.today - pts.avg.ride | 1 }}</td><td class="num">{{ pts.avg.pick | 1 }}</td><td class="num">{{ pts.avg.today - pts.avg.pick | 1 }}</td></tr>
+    </tbody></table></div>
+  <p>Even with the ride counted, the first stop is the better choice for a good part of Paris: for {{ m.far_stop_share.southeast | pct }} of the points a train for the south-east is better boarded where it stops first, at Nord-Est or at Montparnasse, than at Gare de Lyon, and for {{ m.far_stop_share.atlantic | pct }} a train for the Atlantic is better boarded at Nord-Est or at Gare de Lyon than at Montparnasse. For trains to the north, {{ m.far_stop_share.north_via_lyon | pct }} of the points do better at Gare de Lyon and {{ m.far_stop_share.north_via_montparnasse | pct }} at Montparnasse, on the trains that stop there.</p>
+
+  <p><strong>The north-east of Paris gains most at the door.</strong> The 19th and 10th arrondissements (the districts of Paris) lie around and beyond Nord-Est, where every train for the north and the east, and half of the others, would stop. Today their residents cross the city for a train to Lyon or Bordeaux. Their station entrance comes {{ sum(w[0] * (r[4] - r[8]) + w[1] * (r[5] - r[9]) + w[2] * (r[6] - r[10]) + w[3] * (r[7] - r[11]) for w, rows in [([pts.w.Nord, pts.w.Est, pts.w.Lyon, pts.w.Montparnasse], pts.rows)] for r in rows if r[3] == 19) / sum(1 for r in pts.rows if r[3] == 19) | 1 }} and {{ sum(w[0] * (r[4] - r[8]) + w[1] * (r[5] - r[9]) + w[2] * (r[6] - r[10]) + w[3] * (r[7] - r[11]) for w, rows in [([pts.w.Nord, pts.w.Est, pts.w.Lyon, pts.w.Montparnasse], pts.rows)] for r in rows if r[3] == 10) / sum(1 for r in pts.rows if r[3] == 10) | 1 }} minutes closer on average, or {{ -m.by_arr['19'] | 1 }} and {{ -m.by_arr['10'] | 1 }} minutes with the ride counted. <strong>Once the ride is counted, the south-west joins them.</strong> The 15th and 14th, around Montparnasse, save {{ -m.by_arr['15'] | 1 }} and {{ -m.by_arr['14'] | 1 }} minutes, as much as the north-east: the link puts a train for the south-east {{ m.TH.LM | 0 }} minutes from Montparnasse, where today it is a metro ride across the city. The smallest gains are in the west and the centre: in the 8th, the 17th and the 5th the entrance comes {{ sum(w[0] * (r[4] - r[8]) + w[1] * (r[5] - r[9]) + w[2] * (r[6] - r[10]) + w[3] * (r[7] - r[11]) for w, rows in [([pts.w.Nord, pts.w.Est, pts.w.Lyon, pts.w.Montparnasse], pts.rows)] for r in rows if r[3] == 8) / sum(1 for r in pts.rows if r[3] == 8) | 1 }}, {{ sum(w[0] * (r[4] - r[8]) + w[1] * (r[5] - r[9]) + w[2] * (r[6] - r[10]) + w[3] * (r[7] - r[11]) for w, rows in [([pts.w.Nord, pts.w.Est, pts.w.Lyon, pts.w.Montparnasse], pts.rows)] for r in rows if r[3] == 17) / sum(1 for r in pts.rows if r[3] == 17) | 1 }} and {{ sum(w[0] * (r[4] - r[8]) + w[1] * (r[5] - r[9]) + w[2] * (r[6] - r[10]) + w[3] * (r[7] - r[11]) for w, rows in [([pts.w.Nord, pts.w.Est, pts.w.Lyon, pts.w.Montparnasse], pts.rows)] for r in rows if r[3] == 5) / sum(1 for r in pts.rows if r[3] == 5) | 1 }} minutes closer, and little changes once the ride is counted ({{ -m.by_arr['8'] | 1 }}, {{ -m.by_arr['17'] | 1 }} and {{ -m.by_arr['5'] | 1 }} minutes). These districts are about as far from one station as from another, so a second place to board helps them little.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>The 19th, 10th and 11th arrondissements gain most at the door; the 8th, 17th and 5th gain least</strong><span>Minutes saved by arrondissement, all directions weighted by traffic, average of the points in each</span></div>
+    <div id="access-arr-chart"></div>
+    <ul class="legend"><li><i style="--c: var(--good)"></i>Saved to the station entrance</li><li><i class="acc-tick"></i>Saved counting the ride across Paris</li></ul>
+    <figcaption>The bar is the first measure, the thin tick the second. Hover a bar for the times behind it, including the third measure.</figcaption>
+  </figure>
+  <details>
+    <summary><strong>The numbers by arrondissement</strong></summary>
+    <div id="access-arr-table" style="margin-top:10px"></div>
+  </details>
+
+  <p><strong>The suburbs gain a little more than Paris</strong>, because their trains and RER lines arrive on one side of the city. On the ride measure the model finds {{ -m.access.central.clock.rings['Paris'] | 1 }} minutes saved for a trip that starts in Paris, {{ -m.access.central.clock.rings['Petite couronne'] | 1 }} in the inner suburbs and {{ -m.access.central.clock.rings['Grande couronne'] | 1 }} in the outer suburbs. The map shows Paris only.</p>
+  <div class="callout"><b>What quicker access is worth in the model</b>
+    <p>The model counts the whole Paris region, on the ride measure, in “equivalent minutes”: the official French method counts a minute of walking or changing as two and a minute of waiting as one and a half, because passengers dislike them more than sitting in a train.[[dgitm]] On that scale the average trip to the train is {{ -m.access_effect.central.minutes | 1 }} minutes shorter.</p>
+    <p>That is worth <strong>€{{ m.access_effect.central.benefit | m }} million a year</strong> in time saved and brings about <strong>{{ m.access_effect.central.journeys | 2 }} million more high-speed journeys a year</strong>: British ticket data give about 11% more traffic for 10% less journey time.[[ww]] If every passenger picked a train that calls at their best station, the trip would be {{ -m.access_effect.pick.minutes | 1 }} equivalent minutes shorter, worth €{{ m.access_effect.pick.benefit | m }} million a year and {{ m.access_effect.pick.journeys | 2 }} million journeys; the model keeps that as a test, not as the central case.</p>
+    <p>Almost all of it comes from the choice of station. With the same three stations but each train boarded only at its own, the gain would be €{{ m.access_effect.no_choice.benefit | m }} million a year. <strong>The choice between two places to board is worth €{{ m.value_of_choice.eq | m }} million a year.</strong></p>
+  </div>
+  <p>These journeys are part of <a class="xref" href="#traffic.tgv">the high-speed traffic forecast</a>, and the time saved is one line of <a class="xref" href="#economy.benefits">the benefits</a>.</p>
+</div>

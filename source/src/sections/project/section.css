@@ -1,0 +1,40 @@
+/* The project: schematic map of Paris and its side panel. */
+#project .project-mapcols { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 16px 20px }
+#project .project-left { display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+@media (max-width: 980px) { #project .project-mapcols { grid-template-columns: minmax(0, 1fr) } }
+#project .project-map { min-width: 0; width: 100%; max-width: 640px; margin: 0 auto }
+#project .project-map svg { width: 100%; height: auto; background: var(--surface-2); border-radius: 6px }
+#project .pm-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1.2; stroke-linejoin: round }
+#project .pm-park { fill: var(--park) }
+#project .pm-arr { fill: none; stroke: var(--arr-edge); stroke-width: 1 }
+#project .pm-seine { fill: none; stroke: var(--seq-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .5 }
+#project .pm-kept { fill: none; stroke: var(--old); stroke-width: 1.8 }
+#project .pm-freed { fill: none; stroke: var(--today); stroke-width: 2.2; stroke-dasharray: 5 3 }
+#project .pm-net { fill: none; stroke-width: 2.5; stroke-linejoin: round }
+#project .pm-halo { fill: none; stroke: var(--accent); stroke-opacity: 0; stroke-width: 20; stroke-linecap: round; stroke-linejoin: round }
+#project .pm-hit { fill: none; stroke: var(--ink); stroke-opacity: 0; stroke-width: 22; pointer-events: stroke }
+#project .pm-station { fill: var(--new-soft); stroke: var(--new); stroke-width: 2 }
+#project .pm-node { fill: var(--surface); stroke: var(--ink); stroke-width: 1.6; stroke-linejoin: round }
+#project .pm-other { fill: var(--land); stroke: var(--today); stroke-width: 1.8 }
+#project .pm-lbl { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--land); stroke-width: 3.5px; stroke-linejoin: round }
+#project .pm-sub { font-size: 12px; fill: var(--muted); paint-order: stroke; stroke: var(--land); stroke-width: 3px; stroke-linejoin: round }
+#project .pm-sub.out { stroke: var(--surface-2); fill: var(--text) }
+#project .project-map .hot { cursor: pointer; outline: none }
+#project .project-map .hot:hover .pm-halo, #project .project-map .hot:focus-visible .pm-halo { stroke-opacity: .16 }
+#project .project-map .hot.sel .pm-halo { stroke-opacity: .3 }
+#project .project-map .hot:hover .pm-station, #project .project-map .hot:focus-visible .pm-station, #project .project-map .hot.sel .pm-station { fill: var(--new); stroke: var(--ink) }
+#project .project-map .hot:hover .pm-node, #project .project-map .hot:focus-visible .pm-node, #project .project-map .hot.sel .pm-node { fill: var(--accent); stroke: var(--ink) }
+#project .project-map .hot:hover, #project .project-map .hot.sel { filter: none }
+#project .pm-other:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+#project .project-panel { gap: 8px; align-self: start; width: 100% }
+#project .project-panel h3 { margin: 0 }
+#project .project-panel p { font-size: 14px }
+#project .project-strip { width: 100%; max-width: 260px; height: auto }
+#project .project-carries { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; font-size: 14px }
+#project .project-carries li { display: flex; gap: 8px; align-items: baseline }
+#project .project-carries i { width: 12px; height: 4px; border-radius: 2px; background: var(--c); flex: none; transform: translateY(-3px) }
+#project #project-legend li svg { flex: none }
+#project .project-xs { width: 100%; max-width: 330px; height: auto; align-self: center }
+#project .project-xs text { font-size: 13px }
+#project h3 { margin-top: 4px }
+#project .project-nowrap tbody th { white-space: nowrap }

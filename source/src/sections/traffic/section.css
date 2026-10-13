@@ -1,0 +1,4 @@
+#traffic .tr-tbl thead th { white-space: normal }
+#traffic .tr-tbl td.num, #traffic .tr-tbl th.num { white-space: nowrap }
+#traffic .tr-est tbody th small { display: block; font-weight: 400; font-size: 12.5px; color: var(--muted); margin-top: 2px }
+#traffic .cols > .card > p { max-width: 62ch }

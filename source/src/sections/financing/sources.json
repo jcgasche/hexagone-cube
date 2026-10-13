@@ -1,0 +1,97 @@
+{
+ "fin_sncf25": {
+  "publisher": "SNCF Group, annual financial report 2025",
+  "about": "Shop and concession fees in stations: 341 million euros in 2025, about 16% of the revenue of Gares & Connexions",
+  "url": "https://www.groupe-sncf.com/medias-publics/2026-02/rapport-financier-annuel-2025-groupe-sncf.pdf"
+ },
+ "fin_altarea": {
+  "publisher": "MoneyVox with AFP, 24 September 2021",
+  "about": "Montparnasse station rebuilt with a private partner: 30-year concession, at least 340 million euros of fees to the station owner (unverified, press quote)",
+  "url": "https://www.moneyvox.fr/actu/85760/la-sncf-inaugure-sa-gare-montparnasse-renovee-par-le-prive"
+ },
+ "fin_art069": {
+  "publisher": "Autorité de régulation des transports, opinion 2025-069",
+  "about": "Regulated station charges paid by train operators: 1,260 million euros for all French stations in 2026, with a return on capital of 5.6% before tax",
+  "url": "https://www.autorite-transports.fr/wp-content/uploads/2025/09/avis-n2025-069-vnc.pdf"
+ },
+ "fin_dir2012": {
+  "publisher": "European Union, Directive 2012/34/EU",
+  "about": "Track charges may be set higher for specific investment projects on the basis of their long-term costs (article 32(3)); a station charge may not exceed cost plus a reasonable profit (article 31(7))",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32012L0034"
+ },
+ "fin_getlink": {
+  "publisher": "Getlink, newsletter of January 2026",
+  "about": "Channel Tunnel: 411 million euros of charges from train operators in 2025 for 11.8 million high-speed passengers",
+  "url": "https://www.getlinkgroup.com/content/uploads/2026/01/newsletter-january-2026-uk-vf.pdf"
+ },
+ "fin_airtax": {
+  "publisher": "Air France-KLM, tariff fact sheet 2025.05",
+  "about": "Solidarity tax on air tickets from Paris: 7.40 euros to European destinations, 40 euros to distant ones (company document)",
+  "url": "https://www.airfranceklm.com/sites/default/files/2025-10/afklm_fiche-tarifs_2025.05.pdf"
+ },
+ "fin_cdgxlevy": {
+  "publisher": "Assemblée nationale, amendment II-1309 to the 2020 budget",
+  "about": "Levy on air passengers at Paris-Charles de Gaulle to repay the airport express line",
+  "url": "https://www.assemblee-nationale.fr/dyn/15/amendements/2272C/AN/1309.pdf"
+ },
+ "fin_gpso": {
+  "publisher": "Tarn-et-Garonne departmental council, deliberation of 22 June 2023",
+  "about": "Bordeaux to Toulouse line: three local taxes worth 62 million euros a year from 2024 given to the project company",
+  "url": "https://www.tarnetgaronne.fr/sites/default/files/2023-07/99_DE-082-228200010-20230622-1958-DE-31-002.pdf"
+ },
+ "fin_payroll": {
+  "publisher": "Assemblée nationale, amendment I-2351 to the 2024 budget",
+  "about": "Payroll transport levy raised from 2.95% to 3.20% in Paris and the inner ring in 2024, worth about 400 million euros a year",
+  "url": "https://www.assemblee-nationale.fr/dyn/16/amendements/1680A/AN/2351.pdf"
+ },
+ "fin_alstom18": {
+  "publisher": "Alstom, press release of 26 July 2018",
+  "about": "Order of 100 new-generation TGV sets for 2.7 billion euros, 25 million per set before options",
+  "url": "https://www.alstom.com/fr/press-releases-news/2018/7/alstom-recoit-une-commande-sncf-de-100-trains-tres-grande-vitesse-de"
+ },
+ "fin_notaires": {
+  "publisher": "Chambre des Notaires de Paris, 23 November 2021",
+  "about": "No visible effect on property prices within 800 m of 69 Grand Paris Express stations up to 2021",
+  "url": "https://paris.notaires.fr/fr/presse/focus-immobilier/grand-paris-express-le-developpement-du-grand-paris-se-fait-pour-le-moment-sans-impact-sur-les-prix"
+ },
+ "fin_idfmbud26": {
+  "publisher": "Île-de-France Mobilités, 2026 budget report",
+  "about": "Fare revenue of 4,198 million euros in 2024, of which about half from passes sold centrally; tourist-tax add-on: 58 million received in 2024, 325 million budgeted for 2026; no revenue attributed to new lines",
+  "url": "https://echanges.dila.gouv.fr/OPENDATA/AMF/523/2026/01/FC523610843_20260119.pdf"
+ },
+ "fin_ipr23": {
+  "publisher": "Institut Paris Region, financing the operation of public transport, 17 March 2023",
+  "about": "Employers fund about half of the running of the regional network through the payroll levy and the refund of passes",
+  "url": "https://citoyens.com/wp-content/blogs.dir/2/files/2023/03/Rapport_financement_idfm_def_230317.pdf"
+ },
+ "fin_ng11": {
+  "publisher": "A. Ng, thesis at the Massachusetts Institute of Technology, 2011",
+  "about": "East London line after it became a through line: 28% to 32% of weekday journeys are new to public transport",
+  "url": "https://dspace.mit.edu/handle/1721.1/64575"
+ },
+ "fin_cph05": {
+  "publisher": "Danish Ministry of Transport, agreement on the Copenhagen City Ring, 2005",
+  "about": "Copenhagen City Ring: of a cost of 15 billion kroner, 5.4 billion expected from net operating revenue, with a surcharge of about 1 krone per passenger",
+  "url": "https://www.trm.dk/media/21hf1gll/aftale_om_metro_cityringpdf.pdf"
+ },
+ "fin_slnpca": {
+  "publisher": "Société de la ligne nouvelle Provence Côte d’Azur, report on 2023",
+  "about": "Marseille to Nice line: two local taxes expected to bring 40 million euros a year to the project company",
+  "url": "https://deliberations.ampmetropole.fr/documents/metropole/deliberations/2024/12/05/ANNEXE/109013_SLNPCA%20-%20Rapport%20sur%20la%20situation%202023.pdf"
+ },
+ "fin_art24rer": {
+  "publisher": "Autorité de régulation des transports, rail market 2024, full report",
+  "about": "Maintenance of the RER network run by RATP costs more than 500,000 euros per km of track a year",
+  "url": "https://www.autorite-transports.fr/wp-content/uploads/2026/02/bilan-ferroviaire-complet-2024.pdf"
+ },
+ "fin_zvv24": {
+  "publisher": "Zürcher Verkehrsverbund, annual report 2024, press release of 20 June 2025",
+  "about": "Fares covered 63.5% of the cost of the Zürich regional network in 2024",
+  "url": "https://www.zvv.ch/de/ueber-uns/zuercher-verkehrsverbund/medien/medienmitteilungen/2025/2025-06-20_zvv-geschaeftsbericht-2024.html"
+ },
+ "interco_sud": {
+  "publisher": "Réseau ferré de France, Interconnexion Sud public debate, dossier of the project owner, 2010",
+  "about": "Trains between regions round Paris: 10.2 million passengers in 1999, 21.9 million in 2009, of which 17.6 million on trains through the Île-de-France stations and 4.3 million on trains that avoid the region",
+  "url": "https://cpdp.debatpublic.fr/cpdp-interconnexionsudlgv/docs/dossier-mo/DS_Interco_C2.pdf"
+ }
+}
