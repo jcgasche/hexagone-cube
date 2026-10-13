@@ -1,0 +1,30 @@
+/* flow diagram of one hour */
+#service .svc-flow { fill: none; stroke: var(--c); opacity: .92; transition: opacity .12s; outline: none }
+#service .svc-case { fill: none; stroke: var(--surface) }
+#service svg.hovering .svc-flow:not(.on) { opacity: .2 }
+#service .svc-chip { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.3 }
+#service .svc-hub { fill: var(--surface-2); stroke: var(--struct-edge); stroke-width: 1.3 }
+#service .svc-end { font-size: 12.5px }
+#service .svc-end .nm { font-weight: 600; font-size: 13.5px }
+#service #svc-flows svg { margin: 0 auto }
+#service .svc-sliders { display: flex; flex-direction: column; gap: 12px }
+
+/* platform tracks: needed against provided */
+#service .svc-tracks { display: flex; flex-direction: column; gap: 14px }
+#service .svc-st { display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); gap: 6px 18px; align-items: center }
+#service .svc-st .lab { display: flex; flex-direction: column; min-width: 0 }
+#service .svc-st .lab span { font-size: 13px; color: var(--muted) }
+#service .svc-pips { display: flex; flex-wrap: wrap; gap: 6px 3px; align-items: center }
+#service .svc-pip { display: block; width: 12px; height: 30px; border-radius: 3px; border: 1.5px solid var(--struct-edge); background: transparent; flex: none }
+#service .svc-pips .svc-pip:nth-child(2n) { margin-right: 6px }
+#service .svc-pip.full { background: var(--s1); border-color: var(--s1) }
+#service .svc-pip.part { border-color: var(--s1); background: linear-gradient(to top, var(--s1) var(--f), transparent var(--f)) }
+#service .svc-pip.sealed { border-style: dashed; border-color: var(--muted); background: repeating-linear-gradient(135deg, transparent 0 3px, color-mix(in srgb, var(--muted) 45%, transparent) 3px 5px) }
+#service .svc-pip.short { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 35%, transparent) }
+#service .svc-legend .svc-pip { width: 10px; height: 16px; border-radius: 2px }
+#service .svc-st .lab span.ok { color: var(--good); font-weight: 600 }
+#service .svc-st .lab span.ko { color: var(--bad); font-weight: 600 }
+#service .svc-tbl thead th { white-space: normal }
+@media (max-width: 640px) {
+  #service .svc-st { grid-template-columns: minmax(0, 1fr) }
+}

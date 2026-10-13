@@ -1,0 +1,232 @@
+<p class="lede">The money is kept in two accounts. Running the tunnels and stations would cost about €{{ f.central.ops_cost_total | m }} million a year; a charge of €{{ fp.charge_end | 2 }} on each high-speed passenger, a like charge on regional express passengers who use a second station, and the other income found here cover {{ f.central.ops_cover | pct1 }} of it, and between {{ f.high_running.ops_cover | pct }} and {{ f.low_running.ops_cover | pct }} across what running costs could turn out to be. Repaying construction costs €{{ f.central.annuity | 2 }} billion a year and nothing the project earns reaches that: it has to come from taxes and grants, as for most comparable tunnels.</p>
+
+<div class="block" id="financing.accounts">
+  <h2>Two accounts</h2>
+  <p>Two words first: TGV is the French high-speed train, and RER the express suburban lines that cross Paris underground. An <strong>operations account</strong> holds what it costs each year to keep the tunnels and stations open, and what the project earns each year. A <strong>capital account</strong> holds the repayment of construction, spread over 60 years like a loan, and the taxes and grants assigned to it. Keeping them apart answers two different questions: can the project pay its own way once built, and who pays to build it.</p>
+  <div class="tiles">
+    <div class="tile"><span class="n">{{ f.central.ops_cover | pct1 }}</span><span class="k">of running costs covered</span><span class="d">With the €{{ fp.charge_end | 2 }} charges and the income package. From {{ f.high_running.ops_cover | pct }} to {{ f.low_running.ops_cover | pct }} across the range of running costs</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">€{{ f.central.tgv.charge_gross * 1000 | 0 }}<small>m</small></span><span class="k">a year from the TGV charge</span><span class="d">€{{ f.central.tgv.charge_net * 1000 | 0 }} million after the track charges lost on journeys given up; €{{ f.central.ops_rev['Charge on regional express passengers'] | m }} million more from regional express passengers</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">€{{ f.breakeven_charge | 2 }}</span><span class="k">charge that would cover running costs</span><span class="d">Per departure or arrival, with the rest of the package; €{{ f.breakeven_charge_tgv_only | 2 }} with the TGV charge alone. Passengers who cross Paris pay double</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">€{{ f.central.grant_bn | 0 }}<small>bn</small></span><span class="k">of grants, on top of a new tax</span><span class="d">{{ f.central.grant_share | pct }} of the construction cost, after a tax on businesses of €{{ b.levy | 1 }} billion a year</span></div>
+  </div>
+  <div class="cols">
+    <figure class="fig">
+      <div class="fig-head"><strong id="fin-ops-title">Operations: income against running costs</strong><span>€ million a year, central case</span></div>
+      <div id="fin-ops-chart"></div>
+      <figcaption>Hover a segment for its value. The lines are explained under <a class="xref" href="#financing.operations">the operations account</a>.</figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="fig-head"><strong id="fin-cap-title">Capital: taxes and grants repay construction</strong><span>€ billion a year over 60 years, central case</span></div>
+      <div id="fin-cap-chart"></div>
+      <figcaption>The grant is what remains to be found once the other sources are counted. See <a class="xref" href="#financing.capital">the capital account</a>.</figcaption>
+    </figure>
+  </div>
+  <div class="callout warn"><b>What the two accounts show</b>
+    <p>The hope behind this split was that operations would pay for themselves and that the added economic activity would repay construction. The first is within reach, and only with the whole income package: with the €{{ fp.charge_end | 2 }} charge on high-speed passengers alone, income covers {{ f.tgv_charge_only.ops_cover | pct }} of running costs; with the charge on regional express passengers, half of the operators' saving on trainsets, the authority's fee and the shops, {{ f.central.ops_cover | pct1 }}, a shortfall of €{{ 0 - f.central.ops_balance | m }} million a year that is well inside the error of the running cost. The second does not hold on the figures of this study: the benefits counted for the country are worth {{ f.central.econ_cover_capital | pct }} of the yearly repayment of construction (see <a class="xref" href="#economy.benefits">the economic return</a>). <a class="xref" href="#financing.calculator">The calculator</a> shows what would have to change.</p>
+  </div>
+  <p class="note">The money chapters (financing, economic return) were checked once by an independent reviewer on 12 October 2026 and corrected. The figures were then rebuilt for the triangle on 13 October 2026 and have not been checked again.</p>
+</div>
+
+<div class="block" id="financing.operations">
+  <h2>The operations account</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>€ million a year, central case</th><th class="num">The triangle</th><th>How it is worked out</th></tr></thead>
+    <tbody>
+      <tr><th>Running and maintaining tunnels and stations</th><td class="num">{{ f.central.ops_cost['Running and maintaining tunnels and stations'] | m }}</td><td>Stations at the rate recorded on the first RER E section; tunnels midway between that record and the average of the RER network. Range €{{ f.low_running.ops_cost['Running and maintaining tunnels and stations'] | m }} million to €{{ f.high_running.ops_cost['Running and maintaining tunnels and stations'] | m }} million; see below</td></tr>
+      <tr><th>Renewal of track, power and signalling</th><td class="num">{{ f.central.ops_cost['Renewal of rail systems, set aside each year'] | m }}</td><td>One renewal of the tunnels' rail systems after 30 years, set aside evenly <span class="tag assume">assumption</span>. Station equipment is not included</td></tr>
+      <tr><th>Extra running of regional trains</th><td class="num">{{ f.central.ops_cost['Extra running of regional trains'] | m }}</td><td>Each train runs 5 to 6 km further: {{ m.params.reg_trainkm | 0 }} million train-km a year at half the region's average cost <span class="tag assume">assumption</span></td></tr>
+      <tr class="total"><th>Running costs</th><td class="num">{{ f.central.ops_cost_total | m }}</td><td>€{{ f.low_running.ops_cost_total | m }} million to €{{ f.high_running.ops_cost_total | m }} million across the two French records</td></tr>
+      <tr><th>Charge on high-speed passengers</th><td class="num">{{ f.central.ops_rev['Charge on high-speed passengers'] | m }}</td><td>€{{ fp.charge_end | 2 }} per departure or arrival in Paris, €{{ fp.charge_through | 2 }} for a passenger who crosses Paris; see <a class="xref" href="#financing.charge">the charge</a></td></tr>
+      <tr><th>Track charges on the net change in TGV journeys</th><td class="num">{{ f.central.ops_rev['Track charges on the net change in TGV journeys'] | m }}</td><td>About 35% of ticket money goes to the track owner, SNCF Réseau (derived).[[art24]] Negative because, with the central response to fares, the charge loses more journeys than the project adds</td></tr>
+      <tr><th>Charge on regional express passengers</th><td class="num">{{ f.central.ops_rev['Charge on regional express passengers'] | m }}</td><td>€{{ fp.rex_second | 2 }} for getting off at the second station, €{{ fp.rex_through | 2 }} for crossing Paris; see <a class="xref" href="#financing.rex">the regional express charge</a></td></tr>
+      <tr><th>New Navigo pass holders</th><td class="num">{{ f.central.ops_rev['New Navigo pass holders'] | m }}</td><td>About {{ round(f.central.pass_holders, -2) | int }} new yearly passes; see <a class="xref" href="#financing.navigo">Navigo</a></td></tr>
+      <tr><th>Fares from new regional express passengers</th><td class="num">{{ f.central.ops_rev['Fares from new regional express passengers'] | m }}</td><td>{{ m.regional.new_ter | 1 }} million journeys at €{{ b.ter_yield | 0 }} <span class="tag assume">assumption</span></td></tr>
+      <tr><th>Fee paid by the regional transport authority</th><td class="num">{{ f.central.ops_rev['Fee paid by the regional transport authority'] | m }}</td><td>€0.8 million per km of line a year, the rule of the Grand Paris Express,[[senat25]] on the {{ b.layout.fee_km | 0 }} km of tunnel used by regional and suburban trains</td></tr>
+      <tr><th>Shops in the new station halls</th><td class="num">{{ f.central.ops_rev['Shops in the new station halls'] | m }}</td><td>€{{ b.shop_fee | 2 }} of rent per traveller, the guaranteed minimum at the rebuilt Montparnasse station (derived, unverified),[[fin_altarea]] half of it counted as new <span class="tag assume">assumption</span>; €{{ f.shops_full.ops_rev['Shops in the new station halls'] | m }} million at full yield</td></tr>
+      <tr><th>Share of the operators' saving on trainsets</th><td class="num">{{ f.central.ops_rev['Share of the operators’ saving on trainsets'] | m }}</td><td>Half of the €{{ (b.sets[0] + b.sets[1]) / 2 * b.set_year | m }} million that trains which no longer turn round in Paris save their operators, recovered through a higher track charge <span class="tag assume">assumption</span>; see <a class="xref" href="#financing.sources">other sources</a></td></tr>
+      <tr class="total"><th>Income</th><td class="num">{{ f.central.ops_rev_total | m }}</td><td></td></tr>
+      <tr class="hl"><th>Balance</th><td class="num">{{ f.central.ops_balance | m }}</td><td>Income covers {{ f.central.ops_cover | pct1 }} of running costs. The TGV charge alone covers {{ f.central.charge_cover | pct }}</td></tr>
+    </tbody></table></div>
+  <h3>The running cost is the least certain figure</h3>
+  <p>Two French records exist, and they are far apart.</p>
+  <ul>
+    <li><strong>The first RER E section</strong> (two deep stations and 4 km of tunnel, opened in 1999) cost €21.3 million a year in 2003 to maintain and operate, several times its forecast: 8.7 for maintenance of the infrastructure, 9.2 for operating the stations, 3.4 for guarding and utilities.[[cgpc]] Brought to today with the public-works index, that is €13,200 a year per metre of platform track and about €3.5 million per km of tunnel. The index is a choice: no official index exists for running costs, and consumer prices have risen less.</li>
+    <li><strong>The RER network run by RATP</strong> costs more than €0.5 million per km of track a year to maintain, so about €1.0 million per km of two-track tunnel.[[fin_art24rer]]</li>
+    <li><strong>Used here:</strong> stations at the RER E rate; tunnels at €{{ m.params.om_tunnel * 1000 | 2 }} million per km, midway between the two <span class="tag assume">assumption</span>. The low case takes tunnels at the RER network rate and stations at {{ fp.station_low | pct }} of the RER E rate; the high case takes both from the RER E record.</li>
+    <li><strong>Gross, not net.</strong> The new stations replace terminals whose staff, cleaning and energy are paid for today. That saving is not deducted, because it has not been measured (study point I11). It would lower the cost again.</li>
+  </ul>
+  <figure class="fig">
+    <div class="fig-head"><strong>With the income package, income comes within 1% of the running cost; with the TGV charge alone it covers three quarters</strong><span>Share of running costs covered by income, by case</span></div>
+    <div id="fin-ops-cases"></div>
+    <figcaption>The package is the charge on regional express passengers, half of the operators' saving on trainsets, the authority's fee, the shops at half yield and the new passes. The tick marks 100%.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>The level of the charge.</strong> With the package, operations balance at €{{ f.breakeven_charge | 2 }} per departure or arrival on high-speed trains; at the low end of running costs, at €{{ f.breakeven_charge_low_running | 2 }}; at the high end, at €{{ f.breakeven_charge_high_running | 2 }}. With the TGV charge alone, at €{{ f.breakeven_charge_tgv_only | 2 }}. A higher charge loses more passengers.</li>
+    <li><strong>What the package is worth.</strong> The regional express charge, the half share of the trainset saving and the shops together bring €{{ f.central.ops_rev['Charge on regional express passengers'] + f.central.ops_rev['Share of the operators’ saving on trainsets'] + f.central.ops_rev['Shops in the new station halls'] | m }} million a year; shops at full yield would add €{{ f.shops_full.ops_rev_total - f.central.ops_rev_total | m }} million more and take cover to {{ f.shops_full.ops_cover | pct }}.</li>
+    <li><strong>What to ask first.</strong> The track owner and the station operator hold the real running costs of RER E, of the stations opened in 2024 and of today's terminals. They decide whether this account balances.</li>
+  </ul>
+  <p class="note">For comparison: fares cover 37% of the running of public transport in the Paris region (derived)[[fin_idfmbud26]] and 64% in the Zürich network.[[fin_zvv24]] The Elizabeth line earned £731 million in fares against £554 million of running costs in 2025 to 2026, trains included;[[gla]] it keeps its fares. Here the fares of high-speed trains belong to their operators and suburban fares to the region, which is why the project needs charges of its own.</p>
+</div>
+
+<div class="block" id="financing.charge">
+  <h2>A charge on high-speed passengers</h2>
+  <p>The proposal tested: every TGV ticket to or from Paris carries €{{ fp.charge_end | 2 }}, the price of a metro ticket in 2026.[[fares26]] A passenger who arrives in Paris and leaves on another train pays it twice. A passenger who crosses Paris on a direct train pays €{{ fp.charge_through | 2 }}. The reasoning is that passengers from the Paris region gain a choice of stations, and passengers who cross Paris gain a great deal of time.</p>
+  <div class="cols">
+    <div class="prose">
+      <p><strong>What it brings.</strong> About {{ b.traffic.central.paris_base + b.traffic.central.cross_base | 0 }} million high-speed journeys a year touch Paris: {{ b.traffic.central.paris_base | 0 }} million start or end there and {{ b.traffic.central.cross_base | 1 }} million cross it. After the loss of traffic described below, the charge collects <strong>€{{ f.central.tgv.charge_gross * 1000 | 0 }} million a year</strong>. The track owner loses the charges it collects on the journeys given up, which leaves €{{ f.central.tgv.charge_net * 1000 | 0 }} million. The level of the through charge matters little for the money: only {{ f.central.tgv.through | 1 }} million passengers a year cross Paris on a direct train and pay it.</p>
+      <p><strong>What it costs in traffic.</strong> €{{ fp.charge_end | 2 }} is {{ fp.charge_end / b.fare | pct }} on an average fare of €{{ b.fare | 1 }} before VAT. French experts take traffic to fall 0.7% when fares rise 1%, perhaps 0.5% where prices already vary with demand, as they do on TGVs.[[cgedd_fares]] On that basis the charge loses {{ f.resp05.tgv.lost | 1 }} million to {{ f.central.tgv.lost | 1 }} million journeys a year. The project adds {{ f.central.tgv.new_before_charge | 1 }} million. <strong>With this charge, high-speed traffic through Paris ends {{ 0 - f.resp05.tgv.net_new | 1 }} million to {{ 0 - f.central.tgv.net_new | 1 }} million journeys lower than today.</strong></p>
+      <p><strong>Why.</strong> The gain is uneven. A passenger who crosses Paris saves about {{ b.traffic.central.clock_cross | 0 }} minutes on the clock. The official method counts a change at twice its length, which makes {{ b.traffic.central.eq_cross | 0 }} minutes, worth about €{{ f.central.tgv.gain_cross_euro | 0 }}: far more than €{{ fp.charge_through | 2 }}. A passenger from the Paris region gains {{ b.traffic.central.clock_access | 1 }} minutes on the clock on average, counted as {{ b.traffic.central.eq_access | 1 }} with the official weights on walking and waiting, worth about €{{ f.central.tgv.gain_paris_euro | 2 }}: less than the charge. And there are fifteen times more of the second kind.</p>
+    </div>
+    <figure class="fig">
+      <div class="fig-head"><strong>The charge is below the gain for one group and above it for the other</strong><span>Euros per journey: average gain in time, at official values, against the charge</span></div>
+      <div id="fin-gain-chart"></div>
+      <figcaption>The gain of Paris-region passengers is an average: it is larger for those who live near a station their train did not serve before (see <a class="xref" href="#access.findings">who gains</a>).</figcaption>
+    </figure>
+  </div>
+  <figure class="fig">
+    <div class="fig-head"><strong>Above about €{{ f.neutral_charge | 2 }} to €{{ f.neutral_charge_resp05 | 2 }}, the charge removes more journeys than the project adds</strong><span>Central case. The charge on the horizontal axis is per departure or arrival; passengers crossing Paris pay double</span></div>
+    <div class="cols">
+      <div><h4>Money from the charge, € million a year</h4><div id="fin-curve-money"></div></div>
+      <div><h4>Change in high-speed journeys against today, million a year</h4><div id="fin-curve-traffic"></div></div>
+    </div>
+    <figcaption>Move over the curves to read a value. "After lost track charges" deducts the charges no longer paid on the journeys given up. The two traffic curves use the two responses to fares, 0.7 and 0.5.</figcaption>
+  </figure>
+  <p><strong>Collecting it through the operators.</strong> If the charge is billed to the train operators as a station charge per train, rather than printed on each ticket, operators spread it across their fares as they see fit. Passengers then see a smaller rise on the fares that are most sensitive, which is the case of a response of 0.5 rather than 0.7: {{ f.central.tgv.lost - f.resp05.tgv.lost | 1 }} million fewer journeys are lost, and the project keeps about €{{ f.resp05.ops_rev_total - f.central.ops_rev_total | m }} million a year more, mostly in track charges that are no longer lost. Both can be tried in <a class="xref" href="#financing.calculator">the calculator</a>.</p>
+  <p><strong>Is it possible in law?</strong> Two routes exist. Station charges are regulated at cost plus a return: €1,260 million a year for all French stations in 2026.[[fin_art069]] The cost of the new stations would enter that base and be billed to train operators, who pass it on. European law also lets a track owner charge more for a specific project, on the basis of its long-term cost.[[fin_dir2012]] The other route is a levy written into a budget law, as for the airport express, repaid in part by a levy on air passengers.[[fin_cdgxlevy, cdgx2]] Precedents for the level: the solidarity tax on a flight from Paris within Europe is €7.40;[[fin_airtax]] operators pay the Channel Tunnel about €35 per passenger (derived, upper bound).[[fin_getlink]] The figures here take the charge as free of VAT; if it carried the 10% VAT of tickets, the project would keep €{{ fp.charge_end / 1.1 | 2 }} of each €{{ fp.charge_end | 2 }}.</p>
+</div>
+
+<div class="block" id="financing.rex">
+  <h2>A charge on regional express passengers</h2>
+  <p>Regional express trains (the TER of the north, the east, the south-east and the Atlantic lines) would run through Paris on the same pair of tracks as the TGVs and call at a second station before leaving the city. The proposal tested: €{{ fp.rex_second | 2 }} for a passenger who gets off at the second station, the price of the metro ticket that passenger no longer buys;[[fares26]] €{{ fp.rex_through | 2 }} for a passenger who crosses Paris without getting off. Nothing for a passenger who gets off at the first station, as today.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Who pays</th><th class="num">Passengers a year, million</th><th class="num">Charge</th><th class="num">€ million a year</th><th>Where the number comes from</th></tr></thead>
+    <tbody>
+      <tr><th>Gets off at the second station</th><td class="num">{{ b.traffic.central.rex_second | 1 }}</td><td class="num">€{{ fp.rex_second | 2 }}</td><td class="num">{{ b.traffic.central.rex_second * fp.rex_second / 1000 | m }}</td><td>{{ b.traffic.central.rex_second / m.regional.base_ter | pct }} of today's {{ m.regional.base_ter | 1 }} million regional express users, by line, from where in Paris they are going (see <a class="xref" href="#traffic.regional">regional traffic</a>)</td></tr>
+      <tr><th>Crosses Paris without getting off</th><td class="num">{{ b.traffic.central.rex_through | 2 }}</td><td class="num">€{{ fp.rex_through | 2 }}</td><td class="num">{{ b.traffic.central.rex_through * fp.rex_through / 1000 | m }}</td><td>{{ m.params.ter_through_share | pct }} of today's users, plus the uplift on through journeys <span class="tag assume">assumption</span>. No count of these passengers exists (study point I15)</td></tr>
+      <tr class="total"><th>Charge on regional express passengers</th><td class="num"></td><td class="num"></td><td class="num">{{ f.central.ops_rev['Charge on regional express passengers'] | m }}</td><td>{{ f.central.ops_rev['Charge on regional express passengers'] / f.central.ops_cost_total | pct }} of the running cost</td></tr>
+    </tbody></table></div>
+  <ul>
+    <li><strong>Why suburban trains carry nothing.</strong> About {{ b.traffic.central.sub_second | 0 }} million suburban passengers a year would also ride to the second station. Their Navigo pass or Île-de-France ticket already covers the metro ride they no longer make,[[fares26]] so there is no saved fare to collect, and their gain is a few minutes, 3 to 8 depending on the line <span class="tag assume">assumption</span>. Regional express passengers from outside the region pay a separate metro fare today, and the charge replaces it.</li>
+    <li><strong>No loss of traffic is modelled.</strong> The charge replaces a metro ticket at the same price, so the passenger's total fare does not rise <span class="tag assume">assumption</span>. It would be collected by the regional transport authority or the operator through the ticket, and paid to the project under an agreement.</li>
+    <li><strong>Its weight.</strong> This is the second line of income after the TGV charge. Without it, cover falls from {{ f.central.ops_cover | pct1 }} to {{ (f.central.ops_rev_total - f.central.ops_rev['Charge on regional express passengers']) / f.central.ops_cost_total | pct }}.</li>
+  </ul>
+</div>
+
+<div class="block" id="financing.navigo">
+  <h2>More Navigo pass holders</h2>
+  <p>Navigo is the travel pass of the Paris region. Joining the suburban lines through Paris should bring new regular users: the model expects {{ m.regional.new_transilien | 1 }} million more suburban journeys a year (see <a class="xref" href="#traffic.regional">regional traffic</a>). A pass costs €998.80 a year whatever the number of trips,[[fares26]] so a pass holder who travels more brings nothing. What counts is how many people buy a pass because of the project.</p>
+  <div class="cols">
+    <div class="prose">
+      <p><strong>The estimate.</strong> A regular commuter makes about {{ b.pass_trips | 0 }} rail journeys a year <span class="tag assume">assumption</span>. If {{ fp.navigo_new | pct }} of the new journeys are made by new pass holders <span class="tag assume">assumption</span>, that is about {{ round(f.central.pass_holders, -2) | int }} passes and <strong>€{{ f.central.ops_rev['New Navigo pass holders'] | m }} million a year</strong>. The share is the unknown. Where it has been measured on new through lines, the share of journeys that are new to public transport was 9% to 10% in London,[[tfleval]] 27% in Sydney (derived)[[sydney]] and 28% to 32% on the East London line;[[fin_ng11]] the figure used here is at the top of that range.</p>
+      <p><strong>How to measure it.</strong> Count passes and validations on lines H, K, P, N and R before and after opening, and compare with lines that did not change. Passes are registered to a home address, so new holders along the joined lines can be counted directly. The regional authority's budget attributes no revenue to new lines today;[[fin_idfmbud26]] an agreement would have to say that the measured gain is paid to the project.</p>
+      <p><strong>Its weight.</strong> Small either way. Fares bring the region €4.2 billion a year,[[fin_idfmbud26]] and the project adds a few tens of millions at most. The extra running of the trains, €{{ b.om.trains * 1000 | 0 }} million a year, is charged to the project in the same account.</p>
+    </div>
+    <figure class="fig">
+      <div class="fig-head"><strong>From €{{ f.navigo_low.ops_rev['New Navigo pass holders'] | m }} million to €{{ f.navigo_all.ops_rev['New Navigo pass holders'] | m }} million a year</strong><span>Revenue from new passes by share of new journeys made by new pass holders, € million a year</span></div>
+      <div id="fin-navigo-chart"></div>
+      <figcaption>The last line assumes every new journey is made by someone who did not hold a pass: an upper bound. Even then, cover of running costs rises only from {{ f.central.ops_cover | pct1 }} to {{ f.navigo_all.ops_cover | pct }}; at the London share it is {{ f.navigo_low.ops_cover | pct }}.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="block" id="financing.sources">
+  <h2>Other sources of money</h2>
+  <p>What was found for each source, what it could bring here, and whether it is in the central case. Amounts are orders of magnitude worked out for this study from the unit figures given.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Source</th><th>What is known</th><th>Here, a year</th><th>Account</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><th>Shops and services in stations</th><td>French stations earned €341 million of shop fees in 2025.[[fin_sncf25]] At Montparnasse a private partner paid two thirds of the works and guarantees at least €340 million of fees over 30 years (unverified).[[fin_altarea]]</td><td>€{{ f.central.ops_rev['Shops in the new station halls'] | m }}m at half yield, a floor; €{{ f.shops_full.ops_rev['Shops in the new station halls'] | m }}m at full yield, which would take cover to {{ f.shops_full.ops_cover | pct }}</td><td>Operations</td><td><span class="tag sourced">counted at half</span></td></tr>
+      <tr><th>Private partner for the halls</th><td>Montparnasse: about €100 million of works paid by the partner.[[fin_altarea]] Saint-Lazare: €160 million against 40 years of rents; the Gare du Nord contract of €600 million failed (press, unverified).</td><td>Reduces the €{{ m.cost.items['Historic halls'] | 1 }}bn of hall works</td><td>Capital</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Regulated station charges</th><td>Operators pay the cost of stations plus a 5.6% return on capital.[[fin_art069]] This is the legal channel for the passenger charge above, not extra money.</td><td>Same money as the charge</td><td>Both</td><td><span class="tag sourced">counted</span></td></tr>
+      <tr><th>Charge on regional express passengers</th><td>{{ b.traffic.central.rex_second | 1 }} million regional express passengers a year would get off at a second station and {{ b.traffic.central.rex_through | 1 }} million cross Paris; see <a class="xref" href="#financing.rex">the regional express charge</a>. Suburban passengers pay nothing.</td><td>€{{ f.central.ops_rev['Charge on regional express passengers'] | m }}m at €{{ fp.rex_second | 2 }} and €{{ fp.rex_through | 2 }}</td><td>Operations</td><td><span class="tag sourced">counted</span></td></tr>
+      <tr><th>Operators' saving on trainsets</th><td>Trains that do not turn round in Paris work longer days: {{ m.extras.fleet_sets_low | 0 }} to {{ m.extras.fleet_sets_high | 0 }} fewer trainsets (derived).[[ouigo]] A new set cost €25 million in the 2018 order;[[fin_alstom18]] recent press figures are close to €40 million (unverified).</td><td>€{{ (b.sets[0] + b.sets[1]) / 2 * b.set_year | m }}m saved (derived); half recovered by a higher track charge: €{{ f.central.ops_rev['Share of the operators’ saving on trainsets'] | m }}m <span class="tag assume">assumption</span></td><td>Operations</td><td><span class="tag sourced">counted at half</span></td></tr>
+      <tr><th>More trains once the platforms no longer cap the lines</th><td>The southern lines are planned to carry {{ m.extras.south_growth | pct }} more trains an hour than the standard hour of this study. The gain does not come from keeping the terminals: a through platform holds a train for 4 minutes instead of the 30 to 40 of a terminal, so the same tracks pass more trains. What limits train numbers today is a study point (I1).</td><td>€{{ m.sens['Platforms no longer cap the lines: 10% more TGV traffic'].direct_total - m.yearly.direct_total | m }}m of track charges for each 10% more traffic</td><td>Operations</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Bypass trains rerouted through Paris</th><td>Province-to-province TGVs run round Paris on the bypass line today, 21.9 million passengers in 2009, about 60% of them travelling between two regions (derived)[[interco_sud]] (study point I13). Through Paris they would be faster and would pay the through charge.</td><td>Roughly €45m to €75m at €15 a passenger if 3 to 5 million moved <span class="tag assume">assumption</span></td><td>Operations</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Through paths sold to other operators</th><td>The pair of TGV tracks would be the only way through Paris by rail; new operators may pay for paths on it, as they do on the Channel Tunnel.[[fin_getlink]]</td><td>Unknown</td><td>Operations</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Tunnel heat, fibre and parcels</th><td>Waste heat from the London Underground is used for district heating, and fibre along the route and night parcels trains are sold on other networks (unverified).</td><td>Small <span class="tag assume">assumption</span></td><td>Operations</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Land released at the surface</th><td>About {{ m.params.park_ha | 0 }} hectares of tracks and platforms could be released once the surface terminals close (estimate from maps, never measured) <span class="tag assume">assumption</span>. The land is not sold: it becomes four parks (see <a class="xref" href="#project.parks">the parks</a>), which are not valued yet (study point I19).</td><td>None</td><td>Capital</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Tax on businesses in the region</th><td>The Grand Paris Express is repaid by taxes on offices and businesses: €904 million in 2024.[[dbrs]] A rise of the office tax was costed at €900 million a year.[[amend]]</td><td>€{{ b.levy * 1000 | 0 }}m, from opening</td><td>Capital</td><td><span class="tag sourced">counted</span></td></tr>
+      <tr><th>Payroll transport levy</th><td>The 2024 rise of 0.25 point in Paris and the inner ring was worth about €400 million a year.[[fin_payroll]]</td><td>€{{ b.payroll_01 * 1000 | 0 }}m per 0.1 point (derived)</td><td>Capital</td><td><span class="tag assume">optional</span></td></tr>
+      <tr><th>Local taxes given to a project company</th><td>Bordeaux to Toulouse: three local taxes worth €62 million a year, about 12% of the cost.[[fin_gpso]] Marseille to Nice: €40 million a year.[[fin_slnpca]]</td><td>Same idea as the business tax above</td><td>Capital</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>Tourist tax add-on</th><td>The add-on for regional transport brought €58 million in 2024 and is budgeted at €325 million for 2026.[[fin_idfmbud26]] Already committed to the running of the network.</td><td>Not available without a new rise</td><td>Capital</td><td><span class="tag">not counted</span></td></tr>
+      <tr><th>European grant</th><td>Up to 30% of works on the core network; largest recent single award €1.2 billion.[[cef, baltica]]</td><td>€{{ b.eu_grant | 0 }}bn once; €{{ f.central.cap_sources['European grant'] | m }}m a year</td><td>Capital</td><td><span class="tag sourced">counted</span></td></tr>
+      <tr><th>Tax on rising property values</th><td>No effect on prices was measured within 800 m of 69 Grand Paris Express stations up to 2021.[[fin_notaires]] Here the stations already exist.</td><td>None assumed</td><td>Capital</td><td><span class="tag">not counted</span></td></tr>
+    </tbody></table></div>
+</div>
+
+<div class="block" id="financing.capital">
+  <h2>The capital account</h2>
+  <p>Construction is paid once and repaid over 60 years. At 3% above inflation, with interest during {{ m.params.build_years | 0 }} years of works, the €{{ f.central.capex | 1 }} billion of construction costs €{{ f.central.annuity | 3 }} billion a year. As long as operations do not balance, their shortfall is added: €{{ 0 - f.central.ops_balance | m }} million a year in the central case.</p>
+  <div class="tbl-wrap"><table class="tbl no-stack">
+    <thead><tr><th>€ billion a year, central case</th><th class="num">The triangle</th></tr></thead>
+    <tbody>
+      <tr><th>Repayment of construction</th><td class="num">{{ f.central.annuity | 2 }}</td></tr>
+      <tr><th>Shortfall of the operations account</th><td class="num">{{ 0 - f.central.ops_balance | 2 }}</td></tr>
+      <tr class="total"><th>To find each year</th><td class="num">{{ f.central.cap_need | 2 }}</td></tr>
+      <tr><th>Tax on businesses in the region, from opening</th><td class="num">{{ f.central.cap_sources['Regional business tax package'] | 2 }}</td></tr>
+      <tr><th>European grant of €{{ b.eu_grant | 0 }} billion</th><td class="num">{{ f.central.cap_sources['European grant'] | 2 }}</td></tr>
+      <tr class="total"><th>Left to find</th><td class="num">{{ f.central.cap_gap | 2 }}</td></tr>
+      <tr class="hl"><th>The same as a grant paid during the works, € billion</th><td class="num">{{ f.central.grant_bn | 1 }}</td></tr>
+      <tr><th>of which, to cover the shortfall of operations for 60 years</th><td class="num">{{ f.central.shortfall_bn | 1 }}</td></tr>
+      <tr><th>Grant as a share of the construction cost</th><td class="num">{{ f.central.grant_share | pct }}</td></tr>
+      <tr><th>The business tax, as money during the works, € billion</th><td class="num">{{ f.central.levy_bn | 1 }}</td></tr>
+      <tr class="hl"><th>Public money in all: grants, the business tax, Europe, € billion</th><td class="num">{{ f.central.public_bn | 1 }}</td></tr>
+      <tr><th>as a share of the construction cost</th><td class="num">{{ f.central.public_share | pct }}</td></tr>
+    </tbody></table></div>
+  <ul>
+    <li><strong>Public money pays for all of construction.</strong> Grants of €{{ f.central.grant_bn | 1 }} billion, the new tax worth €{{ f.central.levy_bn | 1 }} billion over the works and the European grant add up to €{{ f.central.public_bn | 1 }} billion, {{ f.central.public_share | pct }} of the construction cost. The project earns enough to run itself, and no more; nothing it earns repays what it cost to build. The grant alone understates this: it comes on top of a tax of €{{ b.levy | 1 }} billion a year.</li>
+    <li><strong>The business tax is a political choice, not a forecast.</strong> The existing one is committed to the Grand Paris Express until about 2071.[[senat24]] It is counted here from the opening of the stations; collected during the works as well, as for the Grand Paris Express, it would bring more.</li>
+    <li><strong>The grant is the State's, the Region's and the City's.</strong> €{{ f.central.grant_bn | 0 }} billion in the central case, €{{ f.low_cost.grant_bn | 0 }} billion to €{{ f.high_cost.grant_bn | 0 }} billion across the range of construction costs.</li>
+    <li><strong>Borrowing costs more than it did.</strong> The first €26 billion of the Grand Paris Express was borrowed at 1.1% on average;[[senat24]] the State borrows long-term at 5.4% in October 2026, inflation included.[[aft]]</li>
+    <li><strong>No land is sold.</strong> The surface released when the terminals close becomes parks, which the capital account neither pays for nor earns from (see <a class="xref" href="#project.parks">the parks</a>).</li>
+  </ul>
+</div>
+
+<div class="block" id="financing.calculator">
+  <h2>Try it: what would have to change</h2>
+  <p>Every figure of the two accounts can be moved. The results below use the same arithmetic as the model behind this document.</p>
+  <div class="steps" id="fin-presets"></div>
+  <div class="cols wide-left">
+    <div class="card" id="fin-controls">
+      <h4>The project</h4>
+      <div class="controls" id="fin-c-project"></div>
+      <div id="fin-c-growth"></div>
+      <h4>Charge on high-speed passengers</h4>
+      <div id="fin-c-charge" class="fin-sl"></div>
+      <h4>Charge on regional express passengers</h4>
+      <div id="fin-c-rex" class="fin-sl"></div>
+      <h4>Other income and running costs</h4>
+      <div id="fin-c-other" class="fin-sl"></div>
+      <h4>Taxes, grants and borrowing</h4>
+      <div id="fin-c-capital" class="fin-sl"></div>
+    </div>
+    <div class="fin-out">
+      <div class="tiles" id="fin-o-tiles"></div>
+      <div class="card"><h4>Operations account, € million a year</h4><div id="fin-o-ops"></div></div>
+      <div class="card"><h4>Capital account, € billion a year</h4><div id="fin-o-cap"></div></div>
+      <div class="card"><h4>Who pays the yearly cost</h4><div id="fin-o-who"></div><p class="note" id="fin-o-who-note"></p></div>
+      <div class="card"><h4>High-speed traffic</h4><dl class="read" id="fin-o-tgv"></dl></div>
+    </div>
+  </div>
+  <p class="note">The cost cases are those of <a class="xref" href="#cost.total">the cost chapter</a> (low prices with {{ m.rates_low.risk | pct }} risk, high prices with {{ m.rates_high.risk | pct }}), the traffic cases those of <a class="xref" href="#traffic.tgv">the traffic chapter</a>. Growth is shown as the level yearly amount with the same value over 60 years: benefits grow at the rate chosen, passenger numbers at {{ b.traffic_growth_share | pct }} of it (the rest is the value of time rising with incomes), and running costs stay flat <span class="tag assume">assumption</span>. "Share of benefits" compares the yearly benefits of <a class="xref" href="#economy.benefits">the economic return</a> with the yearly cost of both accounts.</p>
+</div>
+
+<div class="block" id="financing.precedents">
+  <h2>How comparable projects were paid for</h2>
+  <p>Almost none of these tunnels was paid from its own fares. They were paid by taxes on those who gain, by passengers through a supplement, and by grants. Copenhagen is the exception worth studying.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Project</th><th>How it is paid for</th><th>Use for Paris</th></tr></thead>
+    <tbody>
+      <tr><th>Grand Paris Express</th><td>Taxes on offices and businesses in the region, set aside by law: €904 million in 2024. Debt of €30.6 billion, repaid to about 2071; the first €26 billion was borrowed at 1.1% on average.[[dbrs, senat24]] The regional transport authority pays €0.8 million per km a year to use it.[[senat25]]</td><td>The model for a tax on businesses and for a usage fee. New debt would cost far more today</td></tr>
+      <tr><th>London, Elizabeth line</th><td>A supplement on business property tax paid about 28% of the first budget; with a levy on developers, London's contribution reached 37% of the final bill.[[crossrail]] The line now earns £731 million a year against £554 million of running costs.[[gla]] See <a class="xref" href="#elizabeth.money">the annex</a>.</td><td>A tax on businesses, and proof that fares can cover running costs</td></tr>
+      <tr><th>Copenhagen, City Ring</th><td>Of a cost of 15 billion kroner, 5.4 billion was expected from the net operating revenue of the metro, helped by a surcharge of about 1 krone per passenger; the rest came from land and from the city and the State.[[fin_cph05]]</td><td>A new line can carry part of its construction where it keeps its fares; and a precedent for a small surcharge per passenger</td></tr>
+      <tr><th>Paris, airport express</th><td>A State loan repaid by track charges and by a levy on air passengers.[[cdgx2]]</td><td>Precedent for a charge on each long-distance passenger</td></tr>
+      <tr><th>Britain, High Speed 1</th><td>Fares on the new line are about 20% above the old route.[[hs1]]</td><td>Precedent for a supplement on trips that use the new tunnels</td></tr>
+      <tr><th>Japan, Kyushu line</th><td>The operator pays the public builder a lease for 30 years, set at the extra profit the line brings it.[[kyushu]]</td><td>A way to recover the gains of operators: longer train days, direct trains</td></tr>
+      <tr><th>Tokyo, through running</th><td>One third of a six-month revenue rise was put down to through running.[[toyo13]]</td><td>Through running does bring revenue where fares are paid per trip</td></tr>
+      <tr><th>France, new high-speed lines in the regions</th><td>The project companies for Bordeaux to Toulouse and for Marseille to Nice receive local taxes worth €62 million and €40 million a year, sized to cover part of the local authorities' share.[[fin_gpso, fin_slnpca]]</td><td>A recent French legal form for a project company with its own taxes</td></tr>
+      <tr><th>European Union</th><td>Grants of up to 30% of works on the core network.[[cef]] Largest recent single award: €1.2 billion.[[baltica]]</td><td>€1 billion assumed</td></tr>
+      <tr><th>Paris Rive Gauche</th><td>Building rights over the Austerlitz tracks pay for covering them.[[prg]]</td><td>Building rights can pay for a slab over tracks, little more; here the released surface becomes parks and is not built on</td></tr>
+      <tr><th>Paris region fares</th><td>€4.2 billion a year, about €1.22 a trip.[[idfm26]] Employers fund about half of the running of the network through the payroll levy and the refund of passes.[[fin_ipr23]]</td><td>Why more trips by pass holders bring nothing</td></tr>
+    </tbody></table></div>
+</div>

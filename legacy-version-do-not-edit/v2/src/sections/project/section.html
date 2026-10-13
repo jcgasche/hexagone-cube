@@ -1,0 +1,125 @@
+<p class="lede">Three deep stations under the existing ones, joined by {{ b.cost_def.route_km | 1 }} km of tunnel routes, with nothing left on the surface but the station halls. Every train stops at Paris Nord-Est. Trains from the southeast also stop at Gare de Lyon, and trains from the Atlantic at Montparnasse. Nothing here has been designed: the map and the quantities are planning assumptions.</p>
+
+<div class="block" id="project.network">
+  <h2>Three stations and six tunnel corridors</h2>
+  <div class="tiles">
+    <div class="tile"><span class="n">3</span><span class="k">deep through stations</span><span class="d">Paris Nord-Est, Gare de Lyon and Montparnasse: {{ sum(m.cost.A.tracks.values()) | 0 }} platform tracks in layout A, {{ sum(m.cost.B.tracks.values()) | 0 }} in layout B</span></div>
+    <div class="tile" style="--tc: var(--s1)"><span class="n">{{ b.cost_def.route_km | 1 }}<small>km</small></span><span class="k">of route in six corridors</span><span class="d">{{ m.cost.A.tunnel_km | 1 }} km of two-track tunnel in layout A, {{ m.cost.B.tunnel_km | 1 }} km in layout B</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">{{ m.cost.A.platform_total / 1000 | 1 }}<small>km</small></span><span class="k">of platform track</span><span class="d">400 m long for high-speed and regional express trains, 225 m for suburban trains</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">4</span><span class="k">station halls kept</span><span class="d">The listed halls of Gare du Nord, Gare de l’Est and Gare de Lyon, and the recent hall of Montparnasse, become the entrances to the stations below</span></div>
+  </div>
+  <p>A <strong>through station</strong> is a station where trains arrive at one end and leave by the other, without turning back. A <strong>corridor</strong> is a route followed by two or three tunnels side by side, each with two tracks. A <strong>portal</strong> is the place where a tunnel comes up to join an existing line. An <strong>underground junction</strong> is a cavern where two tunnels become one. The <strong>TGV</strong> is the French high-speed train. The <strong>RER</strong> is the set of express suburban lines that cross Paris underground.</p>
+  <p>The corridors run from each station to a point beyond the ring road, so that no surface track is needed inside Paris. Choose a layout, switch layers on and off, and select a station or a corridor to read its facts.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Every train stops at Paris Nord-Est; most trains stop twice in Paris <span class="tag sketch">illustrative sketch</span></strong><span>Schematic map. Tunnel routes are drawn from point to point: no alignment has been studied</span></div>
+    <div class="controls" id="project-controls"></div>
+    <div class="cols project-mapcols">
+      <div class="project-left">
+        <div id="project-map" class="project-map"></div>
+        <ul class="legend" id="project-legend"></ul>
+      </div>
+      <div class="card project-panel" id="project-panel" aria-live="polite"></div>
+    </div>
+    <figcaption>Each coloured line is one pair of tracks in its own tunnel. Stations, portals and junctions are symbols, not drawn to scale. The outline of Paris and the places of the four terminals are real. The Seine, the existing lines and the three stations left as they are are sketched for orientation. Corridor lengths are planning estimates read from maps <span class="tag assume">assumption</span>.</figcaption>
+  </figure>
+</div>
+
+<div class="block" id="project.layouts">
+  <h2>Two layouts: three pairs of tracks, or two</h2>
+  <p>The same stations and corridors can be built in two ways. The report prices both.</p>
+  <div class="cols">
+    <div class="card">
+      <h4>Layout A: three separate networks</h4>
+      <svg class="draw project-xs" viewBox="0 0 330 150" role="img" aria-label="Layout A: a corridor seen in cross-section, with three tunnels of two tracks each: suburban, regional express and high-speed">
+        <rect class="ground" x="0" y="26" width="330" height="124" stroke="none"/>
+        <line x1="0" y1="26" x2="330" y2="26" stroke="var(--ground-edge)"/>
+        <text x="6" y="18" class="lbl-muted">Street</text>
+        <g><circle class="struct" cx="60" cy="84" r="34"/><rect x="38" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><rect x="64" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><text x="60" y="140" text-anchor="middle">Suburban</text></g>
+        <g><circle class="struct" cx="165" cy="84" r="34"/><rect x="143" y="80" width="18" height="20" rx="2" fill="var(--s2)"/><rect x="169" y="80" width="18" height="20" rx="2" fill="var(--s2)"/><text x="165" y="140" text-anchor="middle">Regional express</text></g>
+        <g><circle class="struct" cx="270" cy="84" r="34"/><rect x="248" y="80" width="18" height="20" rx="2" fill="var(--s1)"/><rect x="274" y="80" width="18" height="20" rx="2" fill="var(--s1)"/><text x="270" y="140" text-anchor="middle">High-speed</text></g>
+      </svg>
+      <p>Each corridor has three pairs of tracks: one for suburban trains, one for regional express trains, one for high-speed trains. Nothing is shared. That is {{ m.cost.A.tunnel_km | 1 }} km of two-track tunnel.</p>
+    </div>
+    <div class="card">
+      <h4>Layout B: two networks</h4>
+      <svg class="draw project-xs" viewBox="0 0 330 150" role="img" aria-label="Layout B: a corridor seen in cross-section, with two tunnels of two tracks each: suburban, and main-line shared by high-speed and regional express trains">
+        <rect class="ground" x="0" y="26" width="330" height="124" stroke="none"/>
+        <line x1="0" y1="26" x2="330" y2="26" stroke="var(--ground-edge)"/>
+        <text x="6" y="18" class="lbl-muted">Street</text>
+        <g><circle class="struct" cx="95" cy="84" r="34"/><rect x="73" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><rect x="99" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><text x="95" y="140" text-anchor="middle">Suburban</text></g>
+        <g><circle class="struct" cx="235" cy="84" r="34"/><rect x="213" y="80" width="18" height="20" rx="2" fill="var(--s1)"/><rect x="239" y="80" width="18" height="20" rx="2" fill="var(--s2)"/><text x="235" y="140" text-anchor="middle">Main-line, shared</text></g>
+      </svg>
+      <p>Each corridor has two pairs: one for suburban trains, one for all main-line trains (high-speed and regional express together), as on the surface today. That is {{ m.cost.B.tunnel_km | 1 }} km of tunnel. Main-line trains share platforms, which is assumed to save two tracks at each station <span class="tag assume">assumption</span>.</p>
+    </div>
+  </div>
+  <p class="note">Cross-sections of one corridor, not to scale <span class="tag sketch">illustrative sketch</span>. On the RER E extension opened in 2024, one tunnel 9.6 m wide inside carries two tracks.[[eolekit]]</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>What changes</th><th class="num">Layout A</th><th class="num">Layout B</th></tr></thead>
+    <tbody>
+      <tr><th>Pairs of tracks in each corridor</th><td class="num">{{ b.cost_def.layouts.A.pairs | 0 }}</td><td class="num">{{ b.cost_def.layouts.B.pairs | 0 }}</td></tr>
+      <tr><th>Two-track tunnel, km</th><td class="num">{{ m.cost.A.tunnel_km | 1 }}</td><td class="num">{{ m.cost.B.tunnel_km | 1 }}</td></tr>
+      <tr><th>Platform tracks in the three stations</th><td class="num">{{ sum(m.cost.A.tracks.values()) | 0 }}</td><td class="num">{{ sum(m.cost.B.tracks.values()) | 0 }}</td></tr>
+      <tr><th>Platform track, metres</th><td class="num">{{ m.cost.A.platform_total | int }}</td><td class="num">{{ m.cost.B.platform_total | int }}</td></tr>
+      <tr><th>Portals, one for each pair of tracks on each of the four approaches</th><td class="num">{{ m.cost.A.portals | 0 }}</td><td class="num">{{ m.cost.B.portals | 0 }}</td></tr>
+      <tr><th>Underground junctions, two for each pair of tracks</th><td class="num">{{ m.cost.A.junctions | 0 }}</td><td class="num">{{ m.cost.B.junctions | 0 }}</td></tr>
+      <tr class="total"><th>Construction cost, € billion</th><td class="num">{{ m.cost.A.total | 1 }}</td><td class="num">{{ m.cost.B.total | 1 }}</td></tr>
+      <tr><th>With low and with high prices</th><td class="num">{{ m.cost_low.A | 0 }} to {{ m.cost_high.A | 0 }}</td><td class="num">{{ m.cost_low.B | 0 }} to {{ m.cost_high.B | 0 }}</td></tr>
+    </tbody></table></div>
+  <p>For passengers the two layouts are taken as the same. Layout A keeps a late regional train from delaying a high-speed train. Layout B is how Zürich, Vienna and Stuttgart work,[[zvv, vienna, bt19]] and it costs {{ 1 - m.cost.B.total / m.cost.A.total | pct }} less. The cost is built up in <a class="xref" href="#cost.total">the cost chapter</a>; which trains use which tracks is in <a class="xref" href="#service.hour">trains and timetable</a>.</p>
+</div>
+
+<div class="block" id="project.numbers">
+  <h2>The project in numbers</h2>
+  <h3>Three stations</h3>
+  <div class="tbl-wrap"><table class="tbl project-nowrap stack-sm">
+    <thead><tr><th>Station</th><th>Where</th><th>Platform tracks, layout A</th><th>Platform tracks, layout B</th><th>On the surface</th></tr></thead>
+    <tbody>
+      <tr><th>Paris Nord-Est</th><td data-l="Where">Under and between Gare du Nord and Gare de l’Est, which are 500 m apart[[nordest]]</td>
+        <td data-l="Layout A"><strong>{{ m.cost.A.tracks['Paris Nord-Est'] | 0 }}</strong>: {{ m.cost.A.detail['Paris Nord-Est'].hs | 0 }} high-speed ({{ d.project.stations[0].sealed | 0 }} of them sealed for London trains), {{ m.cost.A.detail['Paris Nord-Est'].ter | 0 }} regional express, {{ m.cost.A.detail['Paris Nord-Est'].sub | 0 }} suburban</td>
+        <td data-l="Layout B"><strong>{{ m.cost.B.tracks['Paris Nord-Est'] | 0 }}</strong>: {{ m.cost.B.detail['Paris Nord-Est'].hs | 0 }} main-line, {{ m.cost.B.detail['Paris Nord-Est'].sub | 0 }} suburban</td>
+        <td data-l="On the surface">Both halls become entrances. The surface platforms and the approach tracks of both stations are no longer needed</td></tr>
+      <tr><th>Gare de Lyon</th><td data-l="Where">Under the present station</td>
+        <td data-l="Layout A"><strong>{{ m.cost.A.tracks['Gare de Lyon'] | 0 }}</strong>: {{ m.cost.A.detail['Gare de Lyon'].hs | 0 }} high-speed, {{ m.cost.A.detail['Gare de Lyon'].ter | 0 }} regional express, {{ m.cost.A.detail['Gare de Lyon'].sub | 0 }} suburban</td>
+        <td data-l="Layout B"><strong>{{ m.cost.B.tracks['Gare de Lyon'] | 0 }}</strong>: {{ m.cost.B.detail['Gare de Lyon'].hs | 0 }} main-line, {{ m.cost.B.detail['Gare de Lyon'].sub | 0 }} suburban</td>
+        <td data-l="On the surface">The hall is kept as the entrance. The tracks towards Bercy are no longer needed</td></tr>
+      <tr><th>Montparnasse</th><td data-l="Where">Under the present station</td>
+        <td data-l="Layout A"><strong>{{ m.cost.A.tracks['Montparnasse'] | 0 }}</strong>: {{ m.cost.A.detail['Montparnasse'].hs | 0 }} high-speed, {{ m.cost.A.detail['Montparnasse'].ter | 0 }} regional express, {{ m.cost.A.detail['Montparnasse'].sub | 0 }} suburban</td>
+        <td data-l="Layout B"><strong>{{ m.cost.B.tracks['Montparnasse'] | 0 }}</strong>: {{ m.cost.B.detail['Montparnasse'].hs | 0 }} main-line, {{ m.cost.B.detail['Montparnasse'].sub | 0 }} suburban</td>
+        <td data-l="On the surface">The hall is kept as the entrance. The tracks towards the ring road are no longer needed</td></tr>
+      <tr class="total"><th>Total</th><td data-l="Where"></td><td data-l="Layout A">{{ sum(m.cost.A.tracks.values()) | 0 }} tracks, {{ m.cost.A.platform_total | int }} m of platform track</td><td data-l="Layout B">{{ sum(m.cost.B.tracks.values()) | 0 }} tracks, {{ m.cost.B.platform_total | int }} m</td><td data-l="On the surface"></td></tr>
+    </tbody></table></div>
+  <p>High-speed and regional express platforms are 400 m long, the length of a full high-speed train.[[tsi]] Suburban platforms are 225 m, as on RER line E.[[magenta]] The four terminals have 118 platform tracks today, counted in <a class="xref" href="#why.terminals">the problem</a>. The number of tracks in each new station comes from the timetable in <a class="xref" href="#service.platforms">how many platforms</a>; their arrangement is sketched in <a class="xref" href="#stations">the three stations</a>.</p>
+  <h3>Six tunnel corridors</h3>
+  <div class="tbl-wrap"><table class="tbl stack-sm">
+    <thead><tr><th>Corridor</th><th>From and to</th><th class="num">Route km</th><th>Carries</th></tr></thead>
+    <tbody>
+      <tr><th>North</th><td data-l="From and to">Saint-Denis to Paris Nord-Est</td><td data-l="Route km" class="num">{{ d.project.corridors[0].km | 1 }}</td><td data-l="Carries">High-speed trains to Lille, London and Brussels; suburban lines H and K; regional express</td></tr>
+      <tr><th>East</th><td data-l="From and to">Pantin to Paris Nord-Est</td><td data-l="Route km" class="num">{{ d.project.corridors[1].km | 1 }}</td><td data-l="Carries">High-speed trains to Reims and Strasbourg; suburban line P; regional express</td></tr>
+      <tr><th>Nord-Est to Lyon</th><td data-l="From and to">Paris Nord-Est to Gare de Lyon</td><td data-l="Route km" class="num">{{ d.project.corridors[2].km | 1 }}</td><td data-l="Carries">All trains between Paris Nord-Est and the southeast</td></tr>
+      <tr><th>Nord-Est to Montparnasse</th><td data-l="From and to">Paris Nord-Est to Montparnasse, under the Seine</td><td data-l="Route km" class="num">{{ d.project.corridors[3].km | 1 }}</td><td data-l="Carries">All trains between Paris Nord-Est and the Atlantic</td></tr>
+      <tr><th>Southeast</th><td data-l="From and to">Gare de Lyon to Maisons-Alfort</td><td data-l="Route km" class="num">{{ d.project.corridors[4].km | 1 }}</td><td data-l="Carries">High-speed trains to Lyon and Marseille; suburban line R; regional express</td></tr>
+      <tr><th>Atlantic</th><td data-l="From and to">Montparnasse to Clamart</td><td data-l="Route km" class="num">{{ d.project.corridors[5].km | 1 }}</td><td data-l="Carries">High-speed trains to Bordeaux, Rennes and Nantes; suburban line N; regional express</td></tr>
+      <tr class="total"><th>Total</th><td data-l="From and to"></td><td data-l="Route km" class="num">{{ b.cost_def.route_km | 1 }}</td><td data-l="Carries"></td></tr>
+    </tbody></table></div>
+  <p class="note">The corridor lengths are planning estimates read from maps <span class="tag assume">assumption</span>. Each kilometre of route is three kilometres of two-track tunnel in layout A and two in layout B.</p>
+  <div class="cols">
+    <div class="card">
+      <h4>Left as it is</h4>
+      <ul>
+        <li>The five RER lines, A to E, which already cross Paris underground.</li>
+        <li>The metro.</li>
+        <li>Saint-Lazare, Austerlitz and Bercy stations.</li>
+        <li>The train depots, which stay beside the approach lines; see <a class="xref" href="#works.surface">changes at today's stations</a>.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Not included in the cost</h4>
+      <ul>
+        <li>New trains.</li>
+        <li>Buildings, streets or parks on the land that the surface tracks leave free.</li>
+        <li>Clearing the surface tracks once they are closed.</li>
+      </ul>
+    </div>
+  </div>
+  <p>How the stations sit under the present ones is in <a class="xref" href="#stations">the three stations</a>. How all this could be built while trains keep running is in <a class="xref" href="#works">works and stages</a>.</p>
+</div>

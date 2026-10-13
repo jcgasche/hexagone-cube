@@ -1,0 +1,158 @@
+<p class="lede">Most of what the project returns never passes through a ticket gate: time saved by passengers of the TGV (the French high-speed train) and of regional trains, more comfortable journeys, a larger job market. Counted with the official French values, these benefits are worth €{{ f.A_central.benefit_total | 2 }} billion a year, {{ f.A_central.econ_cover_all | pct }} to {{ f.B_central.econ_cover_all | pct }} of the yearly cost. Comparable tunnels were approved with benefits between half and twice their cost. As counted here, this project is below that range, and this chapter shows what is missing.</p>
+
+<div class="block" id="economy.benefits">
+  <h2>The benefits counted</h2>
+  <div class="cols wide-left">
+    <figure class="fig">
+      <div class="fig-head"><strong>Time saved is two thirds of the benefits; the rest is less certain</strong><span>€ million a year, central case, at official values of time</span></div>
+      <div id="eco-benefits-chart"></div>
+      <ul class="legend"><li><i style="--c: var(--s1)"></i>Time saved, from the models of this study</li><li><i style="--c: var(--s3)"></i>Comfort and wider effects, from ratios of another appraisal</li><li><i style="--c: var(--s8)"></i>Loss</li></ul>
+    </figure>
+    <div class="prose">
+      <div class="tiles" style="grid-template-columns: minmax(0, 1fr)">
+        <div class="tile"><span class="n">€{{ f.A_central.benefit_total | 2 }}<small>bn a year</small></span><span class="k">Benefits counted</span><span class="d">Of which time saved €{{ f.A_central.benefit_time | 2 }}bn. Held flat over time in the central case</span></div>
+        <div class="tile" style="--tc: var(--s2)"><span class="n">{{ f.A_central.econ_cover_all | pct }} to {{ f.B_central.econ_cover_all | pct }}</span><span class="k">of the yearly cost</span><span class="d">Layout A and layout B, running costs included; {{ f.A_central.econ_cover_capital | pct }} and {{ f.B_central.econ_cover_capital | pct }} of the repayment of construction alone</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Benefit</th><th class="num">€ million a year</th><th>How it is worked out</th><th>Confidence</th></tr></thead>
+    <tbody>
+      <tr><th>Time saved by TGV passengers from the Paris region</th><td class="num">{{ f.A_central.benefits['Time saved by TGV passengers from the Paris region'] | m }}</td><td>{{ b.traffic.central.clock_access | 1 }} minutes on the clock, counted as {{ b.traffic.central.eq_access | 1 }} with the official weights on walking and waiting, on {{ b.traffic.central.paris_base | 0 }} million journeys, from <a class="xref" href="#access.findings">the access map</a>. Time valued at €{{ b.vot_ld | 0 }} an hour.[[dgitm]]</td><td>Medium</td></tr>
+      <tr><th>Time saved by TGV passengers crossing Paris</th><td class="num">{{ f.A_central.benefits['Time saved by TGV passengers crossing Paris'] | m }}</td><td>{{ m.conn.central | 1 }} million journeys a year save {{ b.traffic.central.clock_cross | 0 }} minutes on the clock, counted as {{ b.traffic.central.eq_cross | 0 }} because the official method counts a change at twice its length; see <a class="xref" href="#crossing.tgv">crossing Paris</a>.</td><td>Medium</td></tr>
+      <tr><th>Time saved by regional passengers</th><td class="num">{{ f.A_central.benefits['Time saved by regional passengers'] | m }}</td><td>{{ m.regional.users | 0 }} million journeys a year save {{ m.regional.avg_clock_saving | 1 }} minutes on the clock on average, more with the official weights; see <a class="xref" href="#crossing.regional">regional trains</a>. €15 an hour for suburban trips, €31 for regional express.[[dgitm]]</td><td>Medium</td></tr>
+      <tr><th>Comfort on relieved metro and RER lines</th><td class="num">{{ f.A_central.benefits['Comfort on relieved metro and RER lines'] | m }}</td><td>{{ m.ratios.comfort | 2 }} times the regional time saving, the ratio found in the appraisal of the Grand Paris Express.[[sgpi]] That appraisal also counted punctuality; it is left out here, because lines that are joined share their delays.</td><td>Low</td></tr>
+      <tr><th>Wider effects: urban form, denser job markets, employment</th><td class="num">{{ (f.A_central.benefits['Wider effects: urban form'] + f.A_central.benefits['Wider effects: productivity of denser job markets'] + f.A_central.benefits['Wider effects: employment']) | m }}</td><td>{{ m.ratios.wider | 1 }} times the regional time and comfort benefits, same source: a new metro line around Paris. The State's reviewers called the method a black box and did not rule out double counting.[[sgpi]]</td><td>Low</td></tr>
+      <tr><th>Journeys given up because of the charge</th><td class="num">{{ f.A_central.benefits['Journeys given up because of the charge'] | m }}</td><td>The charge itself moves money from passengers to the project and cancels out. What is lost is the value of the journeys no longer made (see <a class="xref" href="#financing.charge">the charge</a>).</td><td>Medium</td></tr>
+      <tr class="total"><th>Total</th><td class="num">{{ f.A_central.benefit_total | m }}</td><td></td><td></td></tr>
+    </tbody></table></div>
+  <p class="note">Not in this count: the ticket money of train operators. New journeys would bring them about €{{ m.yearly.tgv_revenue | m }} million a year without the charge; with it, they lose about €{{ 0 - f.A_central.tgv.net_new * b.fare | 0 }} million. Counting it would move the ratio by one to three points.</p>
+  <h3 id="economy.notcounted">What is not counted</h3>
+  <div class="tbl-wrap"><table class="tbl no-stack">
+    <thead><tr><th>Benefit</th><th>Why it matters</th><th>Size</th></tr></thead>
+    <tbody>
+      <tr><th>Room to grow</th><td>Gare du Nord was turned down as the terminal of the airport express for lack of capacity.[[cdgx]] The line to Lyon goes from 13 to 16 trains an hour by 2030.[[lgvse]] A through platform is planned for four to six trains an hour, against one at Montparnasse today (see <a class="xref" href="#why.capacity">the problem</a>). This is the reason most cities gave for building through stations.</td><td>{{ m.extras.capacity_journeys | 0 }} million journeys and €{{ m.extras.capacity_revenue * 1000 | 0 }} million of tickets a year for each 10% of extra traffic. Not valued</td></tr>
+      <tr><th>The margin before departure</th><td>Fixed platforms and calm boarding let passengers arrive later (see <a class="xref" href="#stations.boarding">inside the station</a>).</td><td>€{{ m.extras.margin_5min | 2 }} billion a year for each 5 minutes. Not counted</td></tr>
+      <tr><th>Suburb to suburb trips</th><td>A commuter from the northern suburbs to the south of the region no longer changes in Paris.</td><td>Needs the regional demand model</td></tr>
+      <tr><th>A timetable that is easy to read and to repair</th><td>The same pattern every hour is simple for passengers, and after an incident each train has a known place to return to (see <a class="xref" href="#pulse.paris">the Swiss timetable</a>).</td><td>Not valued</td></tr>
+      <tr><th>Relief of metro and RER lines</th><td>Five million long-distance passengers and many commuters stop crossing Paris by metro.</td><td>Not estimated beyond the comfort line above</td></tr>
+      <tr><th>Land for the city</th><td>About 160 hectares of tracks could become streets, housing and parks.</td><td>Only the sale of half is counted, in <a class="xref" href="#financing.capital">the capital account</a></td></tr>
+      <tr><th>Carbon</th><td>If a quarter of the new high-speed journeys come from car or plane.</td><td>About {{ m.extras.co2_kt | 0 }},000 tonnes of CO2 a year <span class="tag assume">assumption</span>. Small, and none if the charge cancels the gain in traffic</td></tr>
+      <tr><th>Delays that spread</th><td>This one runs the other way. Lines that are joined share their delays: an incident on one branch reaches the others. Paris knows this from RER lines B and D. A timetable with planned margins limits it and does not remove it.</td><td>A cost, not valued</td></tr>
+    </tbody></table></div>
+</div>
+
+<div class="block" id="economy.tax">
+  <h2>What public budgets get back</h2>
+  <p>Added activity pays taxes, and part of the public money spent returns to public budgets. This can be estimated, in three layers that must be kept apart because they do not have the same standing. The answer depends above all on one question that this study cannot settle: how much of the activity added around the stations is new for the country, and how much is moved from elsewhere.</p>
+  <div class="tbl-wrap"><table class="tbl no-stack">
+    <thead><tr><th>€ million a year, once open</th><th class="num">Nothing is new</th><th class="num">As the appraisal counts it</th><th class="num">Every job is new</th></tr></thead>
+    <tbody>
+      <tr><th>1. VAT inside the net change in ticket money</th><td class="num">{{ f.A_tax_low.tax['VAT inside the net change in ticket money'] | m }}</td><td class="num">{{ f.A_central.tax['VAT inside the net change in ticket money'] | m }}</td><td class="num">{{ f.A_tax_high.tax['VAT inside the net change in ticket money'] | m }}</td></tr>
+      <tr><th>2. Tax on output from working time saved</th><td class="num">{{ f.A_tax_low.tax['Tax on output from working time saved'] | m }}</td><td class="num">{{ f.A_central.tax['Tax on output from working time saved'] | m }}</td><td class="num">{{ f.A_tax_high.tax['Tax on output from working time saved'] | m }}</td></tr>
+      <tr><th>2. Tax on the productivity of denser job markets</th><td class="num">{{ f.A_tax_low.tax['Tax on the productivity of denser job markets'] | m }}</td><td class="num">{{ f.A_central.tax['Tax on the productivity of denser job markets'] | m }}</td><td class="num">{{ f.A_tax_high.tax['Tax on the productivity of denser job markets'] | m }}</td></tr>
+      <tr><th>2. Public money saved or raised by extra employment</th><td class="num">{{ f.A_tax_low.tax['Public money saved or raised by extra employment'] | m }}</td><td class="num">{{ f.A_central.tax['Public money saved or raised by extra employment'] | m }}</td><td class="num">{{ f.A_tax_high.tax['Public money saved or raised by extra employment'] | m }}</td></tr>
+      <tr class="total"><th>Each year</th><td class="num">{{ f.A_tax_low.tax_total | m }}</td><td class="num">{{ f.A_central.tax_total | m }}</td><td class="num">{{ f.A_tax_high.tax_total | m }}</td></tr>
+      <tr><th>As a share of the yearly repayment, layout A</th><td class="num">{{ f.A_tax_low.tax_share_of_annuity | pct }}</td><td class="num">{{ f.A_central.tax_share_of_annuity | pct }}</td><td class="num">{{ f.A_tax_high.tax_share_of_annuity | pct }}</td></tr>
+      <tr><th>As a share of the yearly repayment, layout B</th><td class="num">{{ f.B_tax_low.tax_share_of_annuity | pct }}</td><td class="num">{{ f.B_central.tax_share_of_annuity | pct }}</td><td class="num">{{ f.B_tax_high.tax_share_of_annuity | pct }}</td></tr>
+      <tr><th>The same as money during the works, € billion</th><td class="num">{{ f.A_tax_low.tax_pv | 1 }}</td><td class="num">{{ f.A_central.tax_pv | 1 }}</td><td class="num">{{ f.A_tax_high.tax_pv | 1 }}</td></tr>
+      <tr class="hl"><th>3. Returned during the works, once, € billion</th><td class="num" colspan="3">{{ f.A_central.works_return[0] | 0 }} to {{ f.A_central.works_return[1] | 0 }} of the {{ f.A_central.capex | 0 }} spent on layout A; real, but any spending of this size returns the same</td></tr>
+    </tbody></table></div>
+  <figure class="fig">
+    <div class="fig-head"><strong>On no reading do public budgets get back more than about a third of the repayment</strong><span>What public budgets get back each year, by reading, against the yearly repayment of construction of layout A, € million</span></div>
+    <div id="eco-tax-chart"></div>
+    <figcaption>The three readings are those of the table. The last bar is the yearly repayment of construction.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Layer 1: money that reaches the Treasury because of the project.</strong> Tickets carry 10% VAT, which businesses cannot recover.[[eco_vat]] It applies to the net change in ticket money. With the charge, high-speed traffic does not rise, so this layer is about zero; the charge itself is taken as free of VAT. VAT lost on what passengers stop buying elsewhere is not deducted. Experience elsewhere is that this layer can be negative: the evaluation of High Speed 1 found a loss of tax of over £0.8 billion, because rail travel is taxed less than what it replaces.[[hs1]]</li>
+    <li><strong>Layer 2: tax on added activity.</strong> France takes 43.6% of its output in taxes and social contributions.[[eco_insee]] The rate is not in doubt; what is in doubt is how much of a local gain is new for the country. British guidance starts from the assumption that none is, unless the project is shown to bring more people into work.[[eco_tag21, eco_tag23]] That is the first column. The middle column takes the wider effects as the appraisal of the Grand Paris Express counts them: each extra job is valued there at €10,000 a year of unemployment benefits saved,[[sgpi]] which is itself a public saving; output from denser job markets and from working time saved (for the {{ b.tax.business_pax | pct }} of TGV passengers who travel for work, unverified[[eco_biz]]) is taxed at 43.6%. The last column supposes that the {{ round(f.A_central.jobs, -2) | int }} jobs implied are all new and each pays tax on the average output of a job in the region, €123,220.[[eco_gdp]]</li>
+    <li><strong>Layer 3: tax returned by the works.</strong> A simulation by the French economic observatory finds that 40% to 60% of debt-financed public investment returns to public budgets within five years, through wages, profits and lower benefits.[[eco_ofce]] This is real cash for the Treasury while the works last. It is not a gain from this project: any spending of the same size would return the same.</li>
+  </ul>
+  <div class="callout"><b>How official appraisal treats taxes</b>
+    <p>The French method does not count taxes as a benefit. It counts each euro of public money at €1.20, because raising taxes has a cost of its own, and it leaves out jobs created by the works and multiplier effects to avoid counting twice.[[eco_guide]] The builder of the Grand Paris Express claimed up to €4 billion of tax a year for output of €10 billion to €20 billion; the State's reviewers did not endorse a tax line.[[eco_senat44, sgpi]] For Crossrail, consultants put tax at 27% to 29% of added output.[[eco_volterra]] The table above is therefore a view for public finances, beside the appraisal and not inside it.</p>
+  </div>
+  <p><strong>The reading.</strong> Between nothing and about €{{ round(f.A_tax_high.tax_total * 1000, -1) | int }} million a year comes back, €{{ round(f.A_central.tax_total * 1000, -1) | int }} million on the middle reading: {{ f.A_central.tax_share_of_annuity | pct }} of the repayment of layout A and {{ f.B_central.tax_share_of_annuity | pct }} of layout B. On the most generous reading it is {{ f.A_tax_high.tax_share_of_annuity | pct }} and {{ f.B_tax_high.tax_share_of_annuity | pct }}. Tax receipts lower the net cost for public budgets; on no reading do they repay construction.</p>
+</div>
+
+<div class="block" id="economy.compare">
+  <h2>Against comparable projects</h2>
+  <p>The measure used everywhere is the ratio of benefits to costs over the life of the project, both brought to today's value. Above 1, the country gets back more than it spends. The ratios below are not strictly comparable, and the differences cut both ways:</p>
+  <ul>
+    <li><strong>This project</strong> is worked out over 60 years at a discount rate of 3%, with benefits growing {{ fp.growth | pct1 }} a year <span class="tag assume">assumption</span>, no value left at the end, running costs added to the cost, and no extra weight on public money.</li>
+    <li><strong>French appraisals</strong> (Grand Paris Express, Marseille) use 4.5%, count effects to 2140 and weigh public money at 1.2. At 4.5% over 60 years this project's ratio falls to {{ f.A_rate45.econ_cover_all | 2 }} for layout A and {{ f.B_rate45.econ_cover_all | 2 }} for layout B.</li>
+    <li><strong>British appraisals</strong> deduct ticket revenue from the cost, which raises the ratio: the Elizabeth line's 1.97 would be about 0.9 if its running costs were added to the cost as they are here (derived from its published present values).[[eco_cr11]]</li>
+    <li><strong>Australian appraisals</strong> use a 7% rate, which lowers theirs.[[eco_ia17]]</li>
+  </ul>
+  <figure class="fig">
+    <div class="fig-head"><strong>Comparable tunnels: 0.5 to 2 on transport benefits at approval. This project: {{ f.A_growth.econ_cover_transport | 1 }} to {{ f.B_growth.econ_cover_transport | 1 }} on the same benefits</strong><span>Benefits divided by costs. Cost in € billion of 2026 after each name (conversions made for this study, approximate)</span></div>
+    <div id="eco-compare-chart"></div>
+    <figcaption>A filled dot counts transport benefits only (time, comfort, running costs saved). A ring adds wider economic effects where the appraisal gives them. A diamond is a measurement made after opening. Grey bands are published ranges; two dots on a band are two separate forecasts. "Derived" means the ratio was computed for this study from published totals. Sources are in the table below.</figcaption>
+  </figure>
+  <details>
+    <summary><strong>The figures as a table</strong>, with sources</summary>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl">
+      <thead><tr><th>Project</th><th>Cost, € bn of 2026</th><th>At approval, transport benefits</th><th>With wider effects</th><th>Measured after opening</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><th>London, Elizabeth line, 2022</th><td>32</td><td>1.97 in 2011; 1.37 in 2020 after the cost rise</td><td>3.09; 1.88</td><td>Not published</td><td>Wider effects are 27% to 36% of benefits. Fares cover running costs.[[eco_cr11, nao21]]</td></tr>
+        <tr><th>London, Thameslink, 2018</th><td>9</td><td>Up to 2.1 at approval; 1.4 in 2013</td><td>None stated</td><td>Not published</td><td>[[eco_nao13, eco_nao14]]</td></tr>
+        <tr><th>Marseille, underground station and new line, phases 1 and 2, about 2035</th><td>4.2</td><td>Net benefit of 0.36 to 0.66 per euro invested, so 1.4 to 1.7 (derived)</td><td>None</td><td>Not open</td><td>Judged "positive but weak" by the State's reviewers; counts extra rail revenue and relief of roads.[[eco_lnpca]]</td></tr>
+        <tr><th>Sydney Metro City and Southwest, 2024</th><td>14</td><td>1.3</td><td>1.7</td><td>None yet</td><td>At a 7% discount rate. Wider effects 21% of benefits.[[eco_ia17]]</td></tr>
+        <tr><th>Frankfurt, long-distance tunnel, 2040s</th><td>4.6</td><td>1.2 for the node project</td><td>Not published</td><td>Not open</td><td>Unverified.[[eco_ffm]]</td></tr>
+        <tr><th>Melbourne Metro Tunnel, 2025</th><td>9</td><td>1.1</td><td>1.5</td><td>None yet</td><td>Wider effects 28% of benefits.[[eco_ia16]]</td></tr>
+        <tr><th>Munich, second trunk line, about 2036</th><td>10 to 11</td><td>1.05 in 2016, at a cost of €3.8bn</td><td>Not in the method</td><td>Not open</td><td>The cost has since more than doubled; no new ratio found.[[eco_bt17]]</td></tr>
+        <tr><th>Grand Paris Express, from 2024</th><td>45 to 50</td><td>About 0.7 (derived)</td><td>About 1.8 (derived)</td><td>None yet</td><td>Wider effects are 57% to 62% of benefits and "carry the return of the project".[[eco_sgpi_op, sgpi, cdc24]]</td></tr>
+        <tr><th>London, High Speed 1, 2007</th><td>14</td><td>1.5 in 1998</td><td></td><td>0.53 in 2015; 0.64 in 2023, 0.70 with wider effects</td><td>[[eco_nao12, hs1, eco_hs1_23]]</td></tr>
+        <tr><th>Stockholm Citybanan, 2017</th><td>2.7</td><td>0.86 (derived)</td><td>None</td><td>0.51 (derived)</td><td>Built for capacity; finished on budget.[[citybanan]]</td></tr>
+        <tr><th>Malmö Citytunneln, 2010</th><td>1.5</td><td>0.54 and 0.94, two forecasts (derived)</td><td>None</td><td>0.6 and 1.1 (derived)</td><td>[[eco_malmo]]</td></tr>
+        <tr><th>Gothenburg, West Link, 2030</th><td>4.4</td><td>0.53 for the tunnel alone, 0.88 with its junction (derived)</td><td>Listed, not valued</td><td>Not open</td><td>[[eco_vastlanken]]</td></tr>
+        <tr><th>Lucerne, through station, after 2040</th><td>7.4</td><td>0.6 to 0.7</td><td>None stated</td><td>Not open</td><td>[[eco_bav26]]</td></tr>
+        <tr class="hl"><th>This project, layout A</th><td>{{ m.cost.A.total | 0 }}</td><td>{{ f.A_growth.econ_cover_transport | 2 }}</td><td>{{ f.A_growth.econ_cover_all | 2 }}</td><td></td><td>{{ f.A_central.econ_cover_all | 2 }} with wider effects if benefits do not grow; {{ f.A_rate45.econ_cover_all | 2 }} at a 4.5% rate</td></tr>
+        <tr class="hl"><th>This project, layout B</th><td>{{ m.cost.B.total | 0 }}</td><td>{{ f.B_growth.econ_cover_transport | 2 }}</td><td>{{ f.B_growth.econ_cover_all | 2 }}</td><td></td><td>{{ f.B_central.econ_cover_all | 2 }} if benefits do not grow; {{ f.B_rate45.econ_cover_all | 2 }} at 4.5%; {{ f.B_best.econ_cover_all | 2 }} at low prices and high traffic</td></tr>
+      </tbody></table></div>
+  </details>
+  <div class="cols">
+    <div class="prose">
+      <h3>The same in rates of return</h3>
+      <p>Some French and Danish projects publish a yearly rate of return for society and no ratio. The threshold for approval was 8% in France when the first RER sections were reviewed,[[cgpc]] 6% in Denmark.[[eco_cph]]</p>
+      <div class="tbl-wrap"><table class="tbl no-stack">
+        <thead><tr><th>Project</th><th class="num">Forecast</th><th class="num">Measured</th></tr></thead>
+        <tbody>
+          <tr><th>Paris, RER D Châtelet to Gare de Lyon, 1995[[eco_rerd]]</th><td class="num">24.5%</td><td class="num">16.5% to 26.1%</td></tr>
+          <tr><th>Paris, RER E first section, 1999[[cgpc]]</th><td class="num">21.3%</td><td class="num">8.1% to 11.4%</td></tr>
+          <tr><th>Grand Paris Express, line 15 West[[eco_sgpi_op]]</th><td class="num">8.3%</td><td class="num"></td></tr>
+          <tr><th>Grand Paris Express, line 15 East[[eco_sgpi_op]]</th><td class="num">6.7%</td><td class="num"></td></tr>
+          <tr><th>Copenhagen City Ring, 2019[[eco_cph]]</th><td class="num">about 3%</td><td class="num"></td></tr>
+          <tr class="hl"><th>This project, layout A, benefits growing {{ fp.growth | pct1 }} a year</th><td class="num">{{ d.finance.irr.A_growth * 100 | 1 }}%</td><td class="num"></td></tr>
+          <tr class="hl"><th>This project, layout B, benefits growing {{ fp.growth | pct1 }} a year</th><td class="num">{{ d.finance.irr.B_growth * 100 | 1 }}%</td><td class="num"></td></tr>
+          <tr class="hl"><th>Layout B, low prices and high traffic as well</th><td class="num">{{ d.finance.irr.B_best * 100 | 1 }}%</td><td class="num"></td></tr>
+        </tbody></table></div>
+      <p class="note">A negative rate means that the benefits counted, less the running costs, never add up to the construction cost. With flat benefits the rates are {{ d.finance.irr.A_central * 100 | 1 }}% and {{ d.finance.irr.B_central * 100 | 1 }}%.</p>
+    </div>
+    <div class="prose">
+      <h3>What the comparison says</h3>
+      <ul>
+        <li><strong>On transport benefits alone, cross-city tunnels rarely return much more than their cost.</strong> Published ratios at approval run from about 0.5 to 2. Five of the thirteen stand below 1 on those benefits; they were built or are promoted for capacity, or rest on wider effects: Stockholm, Malmö, Gothenburg, Lucerne, the Grand Paris Express.</li>
+        <li><strong>Wider effects decide the largest projects.</strong> They are a fifth to a third of the benefits in London, Sydney and Melbourne, and about 60% for the Grand Paris Express.</li>
+        <li><strong>Measured returns are usually lower than forecast.</strong> High Speed 1 went from 1.5 to 0.64, Stockholm from 0.86 to 0.51, RER E from 21% to about 10%.</li>
+        <li><strong>This project is below all of them as counted here,</strong> on any of the bases above. It costs more than any of them and its counted benefits are those of a mid-sized scheme. Either the count misses its main purpose, capacity for more trains, or the project is too large for what it delivers. Telling the two apart is the first job of a study.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="block" id="economy.mustbetrue">
+  <h2>What would have to be true</h2>
+  <p>Could the benefits reach the cost? Not in any case tested. Each step below adds one favourable assumption to the one before.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>The most favourable case tested reaches about two thirds of the cost</strong><span>Yearly benefits as a share of yearly cost; the tick marks 100%</span></div>
+    <div id="eco-ladder-chart"></div>
+    <figcaption>Growth of {{ fp.growth | pct1 }} a year is not in the central case <span class="tag assume">assumption</span>. Low prices are those of <a class="xref" href="#cost.units">the cost chapter</a>. Higher traffic is the high case of <a class="xref" href="#traffic.tgv">the traffic chapter</a>. Lower running costs are the low case of <a class="xref" href="#financing.operations">the operations account</a>.</figcaption>
+  </figure>
+  <p>Closing the rest would take benefits that are not counted here. Three could be large enough, and each can be checked:</p>
+  <ol>
+    <li><strong>Capacity.</strong> If the terminals are what stops more trains from running, the project should be credited with the traffic it unlocks. For scale: each 10% of extra high-speed traffic is {{ m.extras.capacity_journeys | 0 }} million journeys and €{{ m.extras.capacity_revenue * 1000 | 0 }} million of tickets a year, {{ m.extras.capacity_revenue / f.A_central.yearly_cost | pct }} to {{ m.extras.capacity_revenue / f.B_central.yearly_cost | pct }} of the yearly cost. Even counted in full, the gap of the central case would take about {{ (f.B_central.yearly_cost - f.B_central.benefit_total) / m.extras.capacity_revenue * 10 | 0 }}% more traffic for layout B, against {{ m.extras.south_growth | pct }} more trains planned on the southern lines. This needs the view of the track owner, SNCF Réseau, of when each terminal and each line is full, with and without the project.</li>
+    <li><strong>The regional network.</strong> The count for suburban passengers rests on an average saving of {{ m.regional.avg_clock_saving | 1 }} minutes and on ratios borrowed from another project. The region's travel model would show suburb to suburb trips, relief of the RER, and a real figure for wider effects.</li>
+    <li><strong>Cost.</strong> Stations at the Zürich price would cut the cost of layout A by {{ m.cost.A.items.Stations * (1 - 0.55) * m.gross_up / m.cost.A.total | pct }}. Whether Paris ground and 400 m trains allow it is an engineering question.</li>
+  </ol>
+  <p>The tests that move the result most are in <a class="xref" href="#risks.sensitivity">risks and next steps</a>; the same levers can be moved by hand in <a class="xref" href="#financing.calculator">the financing calculator</a>.</p>
+</div>

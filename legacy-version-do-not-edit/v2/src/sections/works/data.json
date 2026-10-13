@@ -1,0 +1,73 @@
+{
+  "_note": "An illustrative schedule for the timeline. The model assumes only twelve years of works with even spending (params.build_years); the split of those years between tasks and stages is an assumption made for this page, not a programme.",
+  "stage_km": {"first": 21.5, "second": 12.0},
+  "open": {"first": 10, "second": 13},
+  "elements": [
+    {"id": "nordest", "kind": "station", "name": "Paris Nord-Est", "stage": 1, "start": 1, "open": 10},
+    {"id": "lyon", "kind": "station", "name": "Gare de Lyon", "stage": 1, "start": 1, "open": 10},
+    {"id": "montparnasse", "kind": "station", "name": "Montparnasse", "stage": 2, "start": 3, "open": 13},
+    {"id": "north", "kind": "corridor", "name": "North", "stage": 1, "start": 3, "open": 10},
+    {"id": "east", "kind": "corridor", "name": "East", "stage": 1, "start": 3, "open": 10},
+    {"id": "nelyon", "kind": "corridor", "name": "Nord-Est to Lyon", "stage": 1, "start": 3, "open": 10},
+    {"id": "southeast", "kind": "corridor", "name": "Southeast", "stage": 1, "start": 3, "open": 10},
+    {"id": "nemont", "kind": "corridor", "name": "Nord-Est to Montparnasse", "stage": 2, "start": 5, "open": 13},
+    {"id": "atlantic", "kind": "corridor", "name": "Atlantic", "stage": 2, "start": 5, "open": 13}
+  ],
+  "tasks": [
+    {"group": "First stage: north to southeast"},
+    {"label": "Shafts, work sites, moving pipes and cables", "kind": "civil", "from": 1, "to": 2},
+    {"label": "Stations: Paris Nord-Est and Gare de Lyon", "kind": "civil", "from": 2, "to": 7},
+    {"label": "Tunnels: north, east, Nord-Est to Lyon, southeast", "kind": "civil", "from": 3, "to": 7},
+    {"label": "Track, power, signalling, escalators", "kind": "fit", "from": 7, "to": 9},
+    {"label": "Tests with empty trains", "kind": "test", "from": 9, "to": 9, "opens": "First stage opens"},
+    {"group": "Second stage: Atlantic"},
+    {"label": "Shafts, work sites, moving pipes and cables", "kind": "civil", "from": 3, "to": 4},
+    {"label": "Station: Montparnasse", "kind": "civil", "from": 4, "to": 9},
+    {"label": "Tunnels: Nord-Est to Montparnasse, Atlantic", "kind": "civil", "from": 5, "to": 9},
+    {"label": "Track, power, signalling, escalators", "kind": "fit", "from": 10, "to": 11},
+    {"label": "Tests with empty trains", "kind": "test", "from": 12, "to": 12, "opens": "Second stage opens"},
+    {"group": "On the surface"},
+    {"label": "Halls refitted: Gare du Nord, Gare de l’Est, Gare de Lyon", "kind": "surface", "from": 8, "to": 11},
+    {"label": "Hall refitted: Montparnasse", "kind": "surface", "from": 11, "to": 12},
+    {"label": "Surface tracks closed, north, east and southeast", "kind": "surface", "from": 10, "to": 12}
+  ],
+  "network": [
+    {"to": 9, "text": "Every train ends in Paris. Changing from one line to another means crossing the city by metro or RER."},
+    {"to": 12, "text": "Trains from the north, the east and the southeast stop at Paris Nord-Est; those of the southeast also stop at Gare de Lyon. Some run straight through Paris. Atlantic trains still end at Montparnasse."},
+    {"to": 13, "text": "The four lines are joined. Every train stops at Paris Nord-Est, and most trains stop twice in Paris."}
+  ],
+  "seen": [
+    {"name": "Gare du Nord and Gare de l’Est", "stage": 1, "phases": [
+      {"to": 0, "state": "As today", "text": "Two terminals, 500 m apart."},
+      {"to": 2, "state": "Works begin", "text": "Trains run as today. Work sites appear on railway land beside the approach tracks. Some entrances and passages are moved."},
+      {"to": 8, "state": "Works under the tracks", "text": "Trains run, with fewer platforms at a time. A few platforms are shortened or closed in turn above the works, and some trains leave from other platforms."},
+      {"to": 9, "state": "Tests", "text": "The station below is complete; empty trains run through it. New ways down appear in the two halls, still closed."},
+      {"to": 11, "state": "Open below", "text": "Trains leave from the deep platforms. The two halls are the entrances. London trains use the sealed platforms. The surface platforms close and the halls are refitted."},
+      {"to": 13, "state": "Finished", "text": "One station with two halls. The surface tracks are closed; their land can be handed over."}
+    ]},
+    {"name": "Gare de Lyon", "stage": 1, "phases": [
+      {"to": 0, "state": "As today", "text": "A terminal on two levels: main-line trains above, RER below."},
+      {"to": 2, "state": "Works begin", "text": "Trains run as today. Work sites appear beside the tracks towards Bercy."},
+      {"to": 8, "state": "Works under the tracks", "text": "Trains run, with fewer platforms at a time. A few platforms are closed in turn above the works."},
+      {"to": 9, "state": "Tests", "text": "Empty trains run through the station below. New ways down appear in the hall, still closed."},
+      {"to": 11, "state": "Open below", "text": "Trains leave from the deep platforms and continue to Paris Nord-Est. The surface platforms close and the hall is refitted."},
+      {"to": 13, "state": "Finished", "text": "The hall is the entrance. The tracks towards Bercy are closed; their land can be handed over."}
+    ]},
+    {"name": "Montparnasse", "stage": 2, "phases": [
+      {"to": 0, "state": "As today", "text": "A terminal with platforms one level above the street."},
+      {"to": 2, "state": "As today", "text": "Nothing changes yet."},
+      {"to": 4, "state": "Works begin", "text": "Trains run as today. Work sites appear beside the approach tracks."},
+      {"to": 9, "state": "Works under the tracks", "text": "Trains run, with fewer platforms at a time. A few platforms are closed in turn above the works."},
+      {"to": 11, "state": "Still a terminal", "text": "All Atlantic trains still end here on the surface, while the other three lines are already joined. Below, the station is being fitted out."},
+      {"to": 12, "state": "Tests", "text": "Empty trains run through the station below. New ways down appear in the hall, still closed."},
+      {"to": 13, "state": "Open below", "text": "Trains leave from the deep platforms and continue to Paris Nord-Est. The surface platforms and the tracks to the ring road close."}
+    ]}
+  ],
+  "durations": [
+    {"name": "Zürich cross-city line", "what": "4-track station under a working terminal and 4.8 km of tunnel", "years": 6.75, "kind": "built", "span": "September 2007 to June 2014"},
+    {"name": "Paris, RER E extension", "what": "8 km of tunnel and two deep stations of 2 tracks", "years": 8.1, "kind": "built", "span": "April 2016 to May 2024"},
+    {"name": "This study, all three stations", "what": "The model's assumption", "years": 12, "kind": "here", "span": "12 years, assumed"},
+    {"name": "London, Elizabeth line", "what": "21 km of twin tunnel and its stations", "years": 13.0, "kind": "built", "span": "May 2009 to May 2022"},
+    {"name": "Stuttgart 21, not finished", "what": "8-track through station and about 30 km of tunnel route", "years": 21.8, "kind": "plan", "span": "February 2010 to December 2031, as now planned"}
+  ]
+}

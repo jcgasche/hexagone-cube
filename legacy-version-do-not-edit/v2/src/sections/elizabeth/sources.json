@@ -1,0 +1,302 @@
+{
+ "el_evalfull": {
+  "publisher": "Transport for London and Department for Transport, Elizabeth line post-opening evaluation, full report, May 2025",
+  "about": "Elizabeth line: daily trips by stage, minutes saved (Table 3-1), where passengers came from, measured door-to-door times, crowding",
+  "url": "https://content.tfl.gov.uk/elizabeth-line-post-opening-evaluation-full-report.pdf"
+ },
+ "el_tflvalue": {
+  "publisher": "Transport for London, Evidencing the value of the Elizabeth line, December 2024",
+  "about": "Elizabeth line: measured minutes saved on three routes, growth on the Reading branch, benefit to cost ratio restated at 1.9",
+  "url": "https://content.tfl.gov.uk/evidencing-the-value-of-the-elizabeth-line.pdf"
+ },
+ "el_journey": {
+  "publisher": "Transport for London, Your journey by Elizabeth line (read October 2026)",
+  "about": "Elizabeth line: trains an hour on each section, step-free access, where to change",
+  "url": "https://tfl.gov.uk/modes/elizabeth-line/your-journey-by-elizabeth-line"
+ },
+ "el_open22": {
+  "publisher": "Transport for London, press release, May 2022",
+  "about": "Elizabeth line: opening on 24 May 2022 with 12 trains an hour; Paddington to Canary Wharf in 17 minutes",
+  "url": "https://tfl.gov.uk/info-for/media/press-releases/2022/may/elizabeth-line-to-open-on-24-may-2022"
+ },
+ "el_nov22": {
+  "publisher": "Transport for London, press release, August 2022",
+  "about": "Elizabeth line: through running from 6 November 2022, up to 22 trains an hour; Heathrow timings",
+  "url": "https://tfl.gov.uk/info-for/media/press-releases/2022/august/elizabeth-line-with-services-into-central-london-from-reading-heathrow-and-shenfield-from-6-november"
+ },
+ "el_may23": {
+  "publisher": "Transport for London, press release, April 2023",
+  "about": "Elizabeth line: full timetable from 21 May 2023, up to 24 trains an hour",
+  "url": "https://tfl.gov.uk/info-for/media/press-releases/2023/april/more-frequent-trains-and-new-journey-options-mark-one-year-of-elizabeth-line-operation"
+ },
+ "el_ianvisits": {
+  "publisher": "ianVisits, Crossrail’s predicted Elizabeth line journey times, 18 April 2022",
+  "about": "Elizabeth line: official predicted times between stations, with the author’s times before",
+  "url": "https://www.ianvisits.co.uk/articles/crossrails-predicted-elizabeth-line-journey-times-53736/"
+ },
+ "el_railfuture": {
+  "publisher": "Crossrail operations director, conference slides, November 2018 (Railfuture)",
+  "about": "Elizabeth line: journey times before and after, as planned in 2018",
+  "url": "https://railfuture.org.uk/DL1898"
+ },
+ "el_bc2011": {
+  "publisher": "Crossrail, Business Case Update, summary report, July 2011",
+  "about": "Elizabeth line: benefit to cost ratios at approval, forecast journey times",
+  "url": "https://learninglegacy.crossrail.co.uk/wp-content/uploads/2023/04/Crossrail-Business-Case-Update-Summary-Report-July-2011.pdf"
+ },
+ "el_citymatters": {
+  "publisher": "City Matters, May 2022",
+  "about": "Elizabeth line: journey times before and after quoted from TfL",
+  "url": "https://citymatters.london/elizabeth-line-will-transform-journey-times"
+ },
+ "el_bloomberg": {
+  "publisher": "Bloomberg, May 2022",
+  "about": "Elizabeth line: journey-planner times before and after on eight routes",
+  "url": "https://www.bloomberg.com/graphics/2022-uk-elizabeth-tube-line-opening/"
+ },
+ "el_leaflet22": {
+  "publisher": "Transport for London, Elizabeth line leaflet, 2022 (freedom-of-information release)",
+  "about": "Elizabeth line: Paddington to Reading 60 minutes, to Heathrow 34, Liverpool Street to Shenfield 43",
+  "url": "https://foi.tfl.gov.uk/FOI-1937-2223/FB-4383%20Elizabeth%20Line%20DL.pdf"
+ },
+ "el_map22": {
+  "publisher": "Transport for London, map leaflet, May 2022 (freedom-of-information release)",
+  "about": "Elizabeth line: terminal platforms used at Paddington and Liverpool Street before through running",
+  "url": "https://foi.tfl.gov.uk/FOI-1013-2223/Elizabeth%20line%20CLD%20610x280%20May%202022.v5.pdf"
+ },
+ "el_til23": {
+  "publisher": "Transport for London, Travel in London 2023, Elizabeth line focus report",
+  "about": "Elizabeth line, first year: response of demand to time saved, traffic taken from other lines, no saving where the Central line ran directly",
+  "url": "https://content.tfl.gov.uk/travel-in-london-2023-elizabeth-line-travel-trends-in-the-first-year-of-operation-acc.pdf"
+ },
+ "el_ianv23": {
+  "publisher": "ianVisits, 18 July 2023 (press, relaying TfL committee papers)",
+  "about": "Elizabeth line: first TfL estimate of 140,000 extra journeys a weekday, about 30% new (unverified)",
+  "url": "https://www.ianvisits.co.uk/articles/elizabeth-line-passenger-numbers-beating-forecasts-2-64311/"
+ },
+ "el_ops": {
+  "publisher": "Crossrail Learning Legacy, H. Smith and P. Stuckey, Crossrail project to Elizabeth line operations: operational approach and lessons learned, 2023",
+  "about": "Elizabeth line: staged opening, 14 months of commissioning against 4 assumed, service before the tunnel",
+  "url": "https://learninglegacy.crossrail.co.uk/wp-content/uploads/2023/03/Crossrail-project-to-Elizabeth-line-operations-Operational-approach-and-lessons-learned.pdf"
+ },
+ "el_nao19s": {
+  "publisher": "UK National Audit Office, Completing Crossrail, summary, May 2019",
+  "about": "Elizabeth line: the fixed opening date, contract changes of 2.5 billion pounds, 600 million pounds of lost revenue from the delay",
+  "url": "https://www.nao.org.uk/wp-content/uploads/2019/05/Completing-Crossrail-Summary.pdf"
+ },
+ "el_pac21": {
+  "publisher": "UK House of Commons, Public Accounts Committee, Crossrail: a progress update, October 2021",
+  "about": "Elizabeth line: government loans of 2,875 million pounds to cover the overrun; causes of the cost rise",
+  "url": "https://publications.parliament.uk/pa/cm5802/cmselect/cmpubacc/184/report.html"
+ },
+ "el_nao14": {
+  "publisher": "UK National Audit Office, Crossrail, January 2014",
+  "about": "Elizabeth line: the 2010 funding package of 14.8 billion pounds, by source",
+  "url": "https://www.nao.org.uk/wp-content/uploads/2014/01/Crossrail.pdf"
+ },
+ "el_md3465": {
+  "publisher": "Mayor of London, decision MD3465, Crossrail business rate supplement, policies for 2026 to 27",
+  "about": "Elizabeth line: Greater London Authority contribution of 6.942 billion pounds, debt of 3.6 billion in March 2026, end date of the supplement",
+  "url": "https://www.london.gov.uk/md3465-crossrail-business-rates-supplement-approval-policies-2026-27"
+ },
+ "el_md3236": {
+  "publisher": "Mayor of London, decision MD3236, Crossrail business rate supplement, policies for 2024 to 25",
+  "about": "Elizabeth line: supplement yield, interest and repayment in 2024 to 25",
+  "url": "https://www.london.gov.uk/who-we-are/governance-and-spending/promoting-good-governance/decision-making/mayoral-decisions/md3236-crossrail-business-rates-supplement-approval-policies-2024-25"
+ },
+ "el_md3333": {
+  "publisher": "Mayor of London, decision MD3333, Crossrail business rate supplement, policies for 2025 to 26",
+  "about": "Elizabeth line: supplement yield, interest and repayment in 2025 to 26",
+  "url": "https://www.london.gov.uk/who-we-are/governance-and-spending/promoting-good-governance/decision-making/mayoral-decisions/md3333-crossrail-business-rates-supplement-approval-policies-2025-26"
+ },
+ "el_gla2627": {
+  "publisher": "Greater London Authority, notice of the Crossrail business rate supplement for 2026 to 27, Appendix A",
+  "about": "Elizabeth line: supplement expected to yield 289.6 million pounds net in 2026 to 27",
+  "url": "https://www.london.gov.uk/media/111674/download"
+ },
+ "el_tflq4": {
+  "publisher": "Transport for London, quarterly performance report, Q4 2024/25",
+  "about": "Elizabeth line: journeys, passenger income and operating cost, 2023/24 and 2024/25",
+  "url": "https://content.tfl.gov.uk/tfl-quarterly-performance-report-q4-2024-25.pdf"
+ },
+ "el_dft19": {
+  "publisher": "UK Department for Transport and Infrastructure and Projects Authority, Lessons from transport for the sponsorship of major projects, April 2019",
+  "about": "Official lessons after Crossrail: one body accountable for systems integration, a date range, a protected test phase",
+  "url": "https://assets.publishing.service.gov.uk/media/5cb726dd40f0b649e47f2968/dft-review-of-lessons.pdf"
+ },
+ "el_asce": {
+  "publisher": "American Society of Civil Engineers, Civil Engineering magazine, September 2024",
+  "about": "Elizabeth line: 21 km of twin tunnel, 6.2 m inside diameter; Bond Street 30 cm from an existing tunnel",
+  "url": "https://www.asce.org/publications-and-news/civil-engineering-source/civil-engineering-magazine/issues/magazine-issue/article/2024/09/the-elizabeth-line-moves-heavy-rail-beneath-london"
+ },
+ "el_framework": {
+  "publisher": "Transport for London, Elizabeth line benefits framework",
+  "about": "Elizabeth line: more than 100 km, 41 stations, 10 major new stations",
+  "url": "https://tfl.gov.uk/corporate/publications-and-reports/elizabeth-line-benefits-framework"
+ },
+ "el_wiki": {
+  "publisher": "Wikipedia, Elizabeth line (unverified)",
+  "about": "Elizabeth line: branches, predecessor services, service pattern of December 2024",
+  "url": "https://en.wikipedia.org/wiki/Elizabeth_line"
+ },
+ "el_building": {
+  "publisher": "Building magazine, The Elizabeth line: a welcome civic legacy",
+  "about": "Elizabeth line: five tunnel stations, three box stations, two surface stations; platforms of 240 m",
+  "url": "https://building.co.uk/focus/the-elizabeth-line-a-welcome-civic-legacy-designed-to-last-120-years/5117633.article"
+ },
+ "el_scl": {
+  "publisher": "Crossrail Learning Legacy, Crossrail sprayed concrete linings",
+  "about": "Elizabeth line: mined platform tunnels, typically 240 m long",
+  "url": "https://learninglegacy.crossrail.co.uk/documents/crossrail-sprayed-concrete-linings/"
+ },
+ "el_psd": {
+  "publisher": "Rail Engineer, The Elizabeth line’s platform screen doors",
+  "about": "Elizabeth line: full-height platform screen doors at the eight underground stations, 27 doors per platform",
+  "url": "https://www.railengineer.co.uk/the-elizabeth-lines-platform-screen-doors/"
+ },
+ "el_padfar": {
+  "publisher": "Crossrail Learning Legacy, Development of two different station designs: Paddington and Farringdon compared",
+  "about": "Paddington Elizabeth line station: box 264 m by 25 m, rail about 21 m below the road, island platform",
+  "url": "https://learninglegacy.crossrail.co.uk/documents/development-two-different-station-designs-comparison-paddington-farringdon-stations/"
+ },
+ "el_ianvpad": {
+  "publisher": "ianVisits, August 2021",
+  "about": "Paddington Elizabeth line station: one entrance area on Eastbourne Terrace, four levels below the street",
+  "url": "https://www.ianvisits.co.uk/articles/crossrail-formally-hands-paddington-station-over-to-tfl-46344/"
+ },
+ "el_bondjca": {
+  "publisher": "JCA, The Elizabeth line: Bond Street station",
+  "about": "Bond Street Elizabeth line station: platforms 255 m long, 28 m down, two entrances",
+  "url": "https://www.jca.ac.uk/post/the-elizabeth-line-bond-street-station-joins-the-dots-in-londons-west-end"
+ },
+ "el_tcr18": {
+  "publisher": "Transport for London, press release, July 2018",
+  "about": "Tottenham Court Road Elizabeth line station: platforms 234 m, nearly a kilometre from end to end, 200,000 users a day expected",
+  "url": "https://tfl.gov.uk/info-for/media/press-releases/2018/july/tottenham-court-road-elizabeth-line-station-nearing-completion-ahead-of-launch"
+ },
+ "el_tcrcm": {
+  "publisher": "Construction Management, Crossrail special: Tottenham Court Road",
+  "about": "Tottenham Court Road Elizabeth line station: concourse 24 m below Oxford Street",
+  "url": "https://constructionmanagement.co.uk/crossrail-special-g2rand-cent7ral-tottenham-co8urt/"
+ },
+ "el_tcrll": {
+  "publisher": "Crossrail Learning Legacy, A deep mined station on the Elizabeth line, London",
+  "about": "Tottenham Court Road: two platform tunnels of about 240 m, 10.6 m in diameter, with a box at each end",
+  "url": "https://learninglegacy.crossrail.co.uk/wp-content/uploads/2017/04/A-deep-mined-station-on-the-Elizabeth-line-London.pdf"
+ },
+ "el_ianvtcr": {
+  "publisher": "ianVisits, Crossrail reaches final commissioning phase at Tottenham Court Road",
+  "about": "Tottenham Court Road: links to the Central and Northern lines",
+  "url": "https://www.ianvisits.co.uk/articles/crossrail-reaches-final-commissioning-phase-at-tottenham-court-road-station-41494/"
+ },
+ "el_farr": {
+  "publisher": "Crossrail Learning Legacy, Design of Crossrail Farringdon station: an engineer’s perspective",
+  "about": "Farringdon Elizabeth line station: two platform tunnels of 245 m, rail 27 to 32 m below the road, ticket halls over 300 m apart",
+  "url": "https://learninglegacy.crossrail.co.uk/documents/design-crossrail-farringdon-station-engineers-perspective-2/"
+ },
+ "el_mott": {
+  "publisher": "Mott MacDonald, Designing the deepest point on London’s Elizabeth line",
+  "about": "Liverpool Street Elizabeth line station: platforms 34 m down, two tunnels of 238 m between two ticket halls",
+  "url": "https://www.mottmac.com/en/projects/designing-the-deepest-point-on-londons-elizabeth-line/"
+ },
+ "el_laing": {
+  "publisher": "Laing O’Rourke, July 2021",
+  "about": "Liverpool Street Elizabeth line station: 15 escalators and 7 lifts",
+  "url": "https://www.laingorourke.com/company/news/2021/liverpool-street-elizabeth-line-station-handed-over-to-transport-for-london/"
+ },
+ "el_orr": {
+  "publisher": "UK Office of Rail and Road, station usage 2023 to 24",
+  "about": "Liverpool Street: 94.5 million entries and exits, the busiest station in Great Britain",
+  "url": "https://dataportal.orr.gov.uk/media/lvscie3h/station-usage-2023-24-statistical-release.pdf"
+ },
+ "el_survey": {
+  "publisher": "Survey of London, Crossrail works at Whitechapel",
+  "about": "Whitechapel: Elizabeth line tunnels about 30 m below ground",
+  "url": "https://surveyoflondon.org/map/feature/669/detail/"
+ },
+ "el_white21": {
+  "publisher": "Transport for London, press release, August 2021",
+  "about": "Whitechapel: platforms more than 200 m long, one ticket hall on a bridge over the existing lines, two entrances",
+  "url": "https://tfl-newsroom.prgloo.com/news/tfl-press-release-historic-whitechapel-station-entrance-reopens-to-customers-with-step-free-access-as-the-elizabeth-line-station-transfers-to-tfl"
+ },
+ "el_tunneltalk12": {
+  "publisher": "TunnelTalk, September 2012",
+  "about": "Elizabeth line: the Stepney Green junction caverns where the line divides",
+  "url": "https://tunneltalk.com/Crossrail-Sept12-SCL-caverns-from-Stepney-Green-shaft.php"
+ },
+ "el_cw22": {
+  "publisher": "Transport for London, press release, January 2022",
+  "about": "Canary Wharf Elizabeth line station: box 256 m long built in a drained dock, 21 escalators and 8 lifts",
+  "url": "https://tfl.gov.uk/info-for/media/press-releases/2022/january/canary-wharf-the-penultimate-elizabeth-line-station-transferred-to-tfl"
+ },
+ "el_cwg": {
+  "publisher": "Canary Wharf Group, press release, 24 May 2022",
+  "about": "Canary Wharf Elizabeth line station: platform box 241 m, base 28 m below the water of the dock; 6 minutes to Liverpool Street",
+  "url": "https://cwg.com/press-release/canary-wharfs-game-changing-station-on-the-elizabeth-line-opens-today-240522/"
+ },
+ "el_ltm": {
+  "publisher": "London Transport Museum, Elizabeth line: ten bold new stations",
+  "about": "Elizabeth line stations: Canary Wharf platform level 28 m down; Abbey Wood interchange",
+  "url": "https://www.ltmuseum.co.uk/collections/stories/design/elizabeth-line-ten-bold-new-stations"
+ },
+ "el_wikicw": {
+  "publisher": "Wikipedia, Canary Wharf railway station (unverified)",
+  "about": "Canary Wharf Elizabeth line station: island platform, links by a walk outside the station",
+  "url": "https://en.wikipedia.org/wiki/Canary_Wharf_railway_station"
+ },
+ "el_lr": {
+  "publisher": "London Reconnections, Crossrail: the overlooked surface sections",
+  "about": "Elizabeth line: Custom House surface station, the reused Connaught tunnel, track layout at Abbey Wood",
+  "url": "https://archive.londonreconnections.com/?p=10829"
+ },
+ "el_am": {
+  "publisher": "Allies and Morrison, Custom House Elizabeth line station",
+  "about": "Custom House: raised concourse, links by footbridge, first new station finished",
+  "url": "https://www.alliesandmorrison.com/projects/custom-house-elizabeth-line-station"
+ },
+ "el_woolrt": {
+  "publisher": "Railway Technology, Crossrail Woolwich station",
+  "about": "Woolwich Elizabeth line station: box 256 m long and about 15 m deep, built by a housing developer",
+  "url": "https://www.railway-technology.com/projects/crossrail-woolwich-station/"
+ },
+ "el_wikiwool": {
+  "publisher": "Wikipedia, Woolwich railway station (unverified)",
+  "about": "Woolwich Elizabeth line station: 14 m below ground, one entrance, walk to Woolwich Arsenal",
+  "url": "https://en.wikipedia.org/wiki/Woolwich_railway_station"
+ },
+ "el_wikiabw": {
+  "publisher": "Wikipedia, Abbey Wood railway station (unverified)",
+  "about": "Abbey Wood: station building of 2017, four platforms, entries and exits, off-peak service",
+  "url": "https://en.wikipedia.org/wiki/Abbey_Wood_railway_station"
+ },
+ "el_gva": {
+  "publisher": "GVA for Crossrail Ltd, Crossrail Property Impact and Regeneration Study 2012 to 2026",
+  "about": "Elizabeth line: the promoter’s forecast of property values near stations (a forecast, not a measured effect)",
+  "url": "https://learninglegacy.crossrail.co.uk/wp-content/uploads/2018/07/4D-003-crossrail_property_impact_regeneration_study.pdf"
+ },
+ "el_tax07": {
+  "publisher": "Colin Buchanan and Volterra, The economic benefits of Crossrail, October 2007",
+  "about": "Elizabeth line: the promoter’s forecast of extra tax receipts, 9.9 to 19.2 billion pounds in present value",
+  "url": "https://learninglegacy.crossrail.co.uk/wp-content/uploads/2023/04/The-economic-benefits-of-Crossrail-October-2007.pdf"
+ },
+ "el_ecb": {
+  "publisher": "European Central Bank, euro reference rates, 12 October 2026",
+  "about": "Exchange rate used to convert pounds: 0.84478 pounds per euro",
+  "url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html"
+ },
+ "el_ukcpi": {
+  "publisher": "rateinflation.com, United Kingdom consumer price index (unverified: commercial site republishing official data)",
+  "about": "British consumer prices used to bring the cost of the Elizabeth line to 2026",
+  "url": "https://www.rateinflation.com/consumer-price-index/uk-historical-cpi/"
+ },
+ "el_tunneltalk15": {
+  "publisher": "TunnelTalk, June 2015",
+  "about": "Elizabeth line: last tunnelling machine broke through at Farringdon on 26 May 2015; 42 km bored",
+  "url": "https://tunneltalk.com/Crossrail-11June2014-Final-breakthrough-at-Farringdon-completes-TBM-tunnelling.php"
+ },
+ "el_elc22": {
+  "publisher": "Transport for London, Elizabeth Line Committee, finance and risk update, 24 November 2022",
+  "about": "Elizabeth line: central section 15.9 billion pounds; works on the existing lines by Network Rail about 3.0 billion",
+  "url": "https://board.tfl.gov.uk/documents/s18983/elc-20221124-pt1-finance-and-risk-update.pdf"
+ }
+}

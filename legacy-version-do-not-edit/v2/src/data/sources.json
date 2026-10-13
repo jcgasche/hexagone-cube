@@ -1,0 +1,517 @@
+{
+ "survey": {
+  "publisher": "OMNIL (STIF and Gares & Connexions), 2015",
+  "about": "Station survey 2012-13: passengers by station and service, passengers changing between Paris stations, where trips start and end",
+  "url": "https://omnil.fr/medias/omnil/d3eb9ab4-65c2-4fab-bd3b-4394ce512838_gares_connexions_web.pdf"
+ },
+ "art24": {
+  "publisher": "Autorité de régulation des transports, rail market 2024",
+  "about": "High-speed passengers by axis, trains per day by line, share of ticket revenue paid in track charges",
+  "url": "https://www.autorite-transports.fr/wp-content/uploads/2025/12/bilan-ferroviaire-2024-essentiel-2.pdf"
+ },
+ "art19": {
+  "publisher": "Autorité de régulation des transports, 2019 survey of high-speed passengers",
+  "about": "Access and egress average 55 minutes, 26% of a high-speed trip",
+  "url": "https://autorite-transports.fr/wp-content/uploads/2020/07/enquete-tagv-2019.pdf"
+ },
+ "cdgx": {
+  "publisher": "CDG Express, history of the project",
+  "about": "Gare du Nord turned down as a terminal because it was at full capacity",
+  "url": "https://cdgexpress.com/en/discover-cdg-express/history-project"
+ },
+ "ae14": {
+  "publisher": "Autorité environnementale, opinion 2014-04",
+  "about": "Montparnasse: 9 high-speed departures an hour on 9 tracks; LGV Atlantique 11 to 13 trains an hour",
+  "url": "https://www.igedd.developpement-durable.gouv.fr/IMG/pdf/009501-01_avis-delibere_ae_cle119c56.pdf"
+ },
+ "lgvse": {
+  "publisher": "SNCF Réseau, Paris to Lyon high-speed line project",
+  "about": "Capacity from 13 to 16 trains an hour each way by 2030",
+  "url": "https://www.sncf-reseau.com/en/projets-et-travaux-majeurs/paris-lyon-lgv-line-innovative-project"
+ },
+ "nordest": {
+  "publisher": "Île-de-France Mobilités, Gare du Nord to Gare de l’Est link",
+  "about": "Gare du Nord and Gare de l’Est are 500 m apart; 800,000 travellers a day in the two stations",
+  "url": "https://www.iledefrance-mobilites.fr/le-reseau/projets/liaison-garedunord-garedelest"
+ },
+ "magenta": {
+  "publisher": "École des Ponts course paper on the Eole underground stations",
+  "about": "Magenta and Haussmann-Saint-Lazare: caverns 225 m long and 54 to 58 m wide for 4 tracks, 30 m deep; ground conditions",
+  "url": "https://educnet.enpc.fr/pluginfile.php/23485/mod_folder/content/0/T144-329a340-GaresSouterraines.pdf?forcedownload=1"
+ },
+ "ouigo": {
+  "publisher": "International Railway Journal, 4 June 2013",
+  "about": "A TGV is in service about 7 hours a day; quick-turnaround sets run 13 hours; shortest turnaround 26 minutes",
+  "url": "https://www.railjournal.com/in_depth/ouigo-leads-the-way-in-low-fare-high-speed-rail/"
+ },
+ "landy": {
+  "publisher": "Wikipedia (French), Technicentre du Landy",
+  "about": "High-speed train depot 2 km north of Gare du Nord (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Technicentre_du_Landy"
+ },
+ "dgitm": {
+  "publisher": "French Ministry for Ecological Transition (DGITM), reference values, May 2019",
+  "about": "Official values of time; weights on walking (2), waiting (1.5) and changing (2); comfort multiplier for standing passengers",
+  "url": "https://www.ecologique-solidaire.gouv.fr/sites/default/files/V.3.pdf"
+ },
+ "ww": {
+  "publisher": "Wheat and Wardman, Transportation Research Part A, 2017",
+  "about": "Demand rises about 11% for 10% less journey time; adding a change loses 37% of passengers",
+  "url": "https://eprints.whiterose.ac.uk/id/eprint/107059/8/TRA_2016_351_Revision%201_V0.pdf"
+ },
+ "bypass": {
+  "publisher": "Réseau ferré de France, ex-post review of the Île-de-France bypass line, 2005",
+  "about": "Paris bypass line: traffic gained when the change of station in Paris disappeared; two hours of equivalent time per avoided change; forecast against outturn; central underground option set aside",
+  "url": "https://www.igedd.developpement-durable.gouv.fr/IMG/pdf/Lgv_InterConnex_IDF_cle0fa1af.pdf"
+ },
+ "fs25": {
+  "publisher": "France Stratégie, scientific council opinion 2025-3, May 2025",
+  "about": "Official method adds a 20-minute margin before departure for infrequent services",
+  "url": "https://www.strategie-plan.gouv.fr/files/files/Publications/ESE%20-%20Juin%202025/Avis%20du%20CS%20ESE%20FS%20du%2021%20mai%202025%20-%20fr%C3%A9quence%20dessertes%20V2bis.pdf"
+ },
+ "gates": {
+  "publisher": "SNCF Connect, boarding gates",
+  "about": "Platform shown in general 20 minutes before departure; access closes 2 minutes before",
+  "url": "https://www.sncf-connect.com/aide/portes-embarquement"
+ },
+ "sbb": {
+  "publisher": "SBB, platform displays",
+  "about": "Swiss platforms show in advance the sector where each coach stops",
+  "url": "https://www.sbb.ch/de/reiseinformationen/bahnhoefe/services-bahnhof/kundeninformation-bahnhof/perronanzeiger.html"
+ },
+ "nr": {
+  "publisher": "Network Rail, Station Capacity Planning Guidance",
+  "about": "Walking speeds, escalator flows, concourse sizing with and without late platform announcement",
+  "url": "https://www.networkrail.co.uk/wp-content/uploads/2023/12/NR-GN-CIV-100-03-Station-Capacity-Planning-guidance.pdf"
+ },
+ "kroes": {
+  "publisher": "Kroes, Kouwenhoven, Debrincat and Pauget, ITF discussion paper 2013-18",
+  "about": "Île-de-France survey: time in a crowded metro counts up to 1.39 times seated and 1.55 standing",
+  "url": "https://www.itf-oecd.org/sites/default/files/dp201318.pdf"
+ },
+ "trial18": {
+  "publisher": "Journal de l’économie, 11 January 2018",
+  "about": "SNCF trial of platform display 30 minutes before departure at Gare de Lyon and Montparnasse",
+  "url": "https://www.journaldeleconomie.fr/sncf-vers-laffichage-des-trains-30-minutes-avant-le-depart/"
+ },
+ "metropolist": {
+  "publisher": "Île-de-France Mobilités network data of 5 October 2026, through the open metropolist dataset",
+  "about": "Network data behind the access model",
+  "url": "https://github.com/alexislours/metropolist"
+ },
+ "modus": {
+  "publisher": "DRIEAT Île-de-France, travel model MODUS 3.1",
+  "about": "The State’s regional travel model applies a penalty for access to deep stations; its value is not published",
+  "url": "https://www.drieat.ile-de-france.developpement-durable.gouv.fr/IMG/pdf/modelisation_des_deplacements_en_idf_avec_modus_3.1.pdf"
+ },
+ "fsrate": {
+  "publisher": "France Stratégie, revision of the discount rate, 23 November 2021",
+  "about": "Official discount rate: 1.2% plus a risk premium, which gives 3.2% to 4.6% for transport projects",
+  "url": "https://www.strategie-plan.gouv.fr/files/files/Publications/2017%20SP/2017-12-05%20-%20Guide%20ESE%20des%20investissements%20publics/fs-guide-evaluation-i-taux_dactualisation-23novembre2021.pdf"
+ },
+ "art_eu": {
+  "publisher": "Autorité de régulation des transports, France and Europe 2024",
+  "about": "Ticket price per passenger-km, used to derive the average high-speed fare",
+  "url": "https://www.autorite-transports.fr/wp-content/uploads/2026/06/art-bilan-ferroviaire-france-europe-2024.pdf"
+ },
+ "bt19": {
+  "publisher": "Deutscher Bundestag, Drucksache 19/11967, July 2019",
+  "about": "Stuttgart: trains per hour on 8 through tracks; stops of 3 to 5 minutes; the 16-platform terminus it replaces",
+  "url": "https://dserver.bundestag.de/btd/19/119/1911967.pdf"
+ },
+ "dhz": {
+  "publisher": "Deutsche Handwerks Zeitung and dpa, 2011",
+  "about": "Stuttgart stress test: 49 arrivals in the peak hour on 8 through tracks",
+  "url": "https://www.deutsche-handwerks-zeitung.de/?p=128652"
+ },
+ "rffcdg": {
+  "publisher": "Réseau ferré de France, Roissy-Picardie public debate",
+  "about": "Charles de Gaulle TGV station: 8 trains an hour each way on 4 tracks in theory; 20 minutes to turn a train",
+  "url": "https://cpdp.debatpublic.fr/cpdp-roissypicardie/DOCS/CAHIERS_ACTEURS/CA_19_ELEMENT_REPONSE_RFF.PDF"
+ },
+ "fnaut": {
+  "publisher": "FNAUT, May 2017",
+  "about": "TGV stop of 3 minutes, 4 to 5 at the largest hubs; a TGV reversing at a platform takes 10 to 12 minutes, about 3 with a second driver",
+  "url": "https://www.fnaut.fr/uploads/2017/05/db1705crpt.pdf"
+ },
+ "zvv": {
+  "publisher": "Zürcher Verkehrsverbund, cross-city line project page",
+  "about": "Zürich Löwenstrasse: 4 through tracks 16 m under the terminal, 460 trains a day of which 140 long-distance",
+  "url": "https://www.zvv.ch/de/ueber-uns/infrastrukturprojekte/in-betrieb/durchmesserlinie.html"
+ },
+ "vienna": {
+  "publisher": "International Railway Journal, 11 September 2013",
+  "about": "Vienna: 10 through tracks replaced two terminals",
+  "url": "https://www.railjournal.com/in_depth/viennese-transformation/"
+ },
+ "amsterdam": {
+  "publisher": "Railway Gazette, 13 February 2025",
+  "about": "Amsterdam: sealed terminal for London trains, up to 650 passengers a train",
+  "url": "https://railwaygazette.com/high-speed/higher-capacity-uk-terminal-opens-at-amsterdam-centraal-station/68307.article"
+ },
+ "an14775": {
+  "publisher": "Assemblée nationale, written question 14775, answer of September 2026",
+  "about": "Limits of the cross-Channel terminal at Gare du Nord",
+  "url": "https://questions.assemblee-nationale.fr/q17/17-14775QE.htm"
+ },
+ "tsi": {
+  "publisher": "European Union, Regulation 1299/2014 (infrastructure)",
+  "about": "European rules: gradients up to 35 mm per metre, platforms 400 m long",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02014R1299-20190616"
+ },
+ "tsit": {
+  "publisher": "European Union, Regulation 1303/2014 (safety in railway tunnels)",
+  "about": "European rules: exits or cross-passages in long tunnels",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:02014R1303-20190616"
+ },
+ "quarries": {
+  "publisher": "Inspection générale des carrières, annual report 2025",
+  "about": "Old quarries under the south of Paris",
+  "url": "https://cdn.paris.fr/paris/2026/08/18/ra-igc-2025-paris-Quu3.pdf"
+ },
+ "eolekit": {
+  "publisher": "SNCF Réseau, Eole press kit",
+  "about": "RER E stations: Porte Maillot 300 M, La Défense 354 M, Nanterre 262 M (contracts)",
+  "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/content/download/52324/346245/file/EOLE_DOSSIER-DE-PRESSE_TUNNELIER.pdf"
+ },
+ "afgc": {
+  "publisher": "AFGC, Gare de la Porte Maillot",
+  "about": "Porte Maillot: 225 m long, 35 m deep, 205,000 m3 excavated",
+  "url": "https://www.afgc.asso.fr/app/uploads/2021/10/11-Gare-de-la-Porte-Maillot.pdf"
+ },
+ "d92cnit": {
+  "publisher": "Defense-92, 29 October 2018",
+  "about": "La Défense station under the CNIT: contract given as 466 M; dimensions",
+  "url": "https://www.defense-92.fr/chantier/sous-le-cnit-on-se-prepare-a-creuser-la-gare-cathedrale-deole-58731"
+ },
+ "d92lots": {
+  "publisher": "Defense-92, 7 April 2016",
+  "about": "RER E: three civil lots for 1,016 M covering 8 km of tunnel and two deep stations",
+  "url": "https://www.defense-92.fr/projets/projet-eole-la-sncf-attribue-trois-marches-de-genie-civil-pour-un-milliard-deuros-45419"
+ },
+ "d92over": {
+  "publisher": "Defense-92, February 2022",
+  "about": "RER E extension: budget from 3.74 to 5.4 billion; causes of the overrun",
+  "url": "https://www.defense-92.fr/?p=71885"
+ },
+ "cgpc": {
+  "publisher": "Conseil général des ponts et chaussées, opinion on ex-post reviews, May 2007",
+  "about": "Eole 1999: cost 1,322 M (2003), 44% over; running cost 21 M a year for two deep stations and 4 km; RER D and RER E traffic against forecast",
+  "url": "https://igedd.documentation.developpement-durable.gouv.fr/documents/Affaires-0004635/004956-01_avis-delibere_et_rapport.pdf"
+ },
+ "sgpi": {
+  "publisher": "Secrétariat général pour l’investissement, counter-expertise of lines 15 East and West, 2021",
+  "about": "Grand Paris Express line 15: tunnel 59 M per km, stations 134 to 251 M each, systems 23 to 45 M per km (2012 euros); benefits by type; reviewers ask for 20% contingency",
+  "url": "https://info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2022_09_rapport_ce_l15_eo_vf.pdf"
+ },
+ "d92l15": {
+  "publisher": "Defense-92, 20 July 2023",
+  "about": "Grand Paris Express line 15 West lot 1: 2.71 billion for 14 km and 5 stations",
+  "url": "https://www.defense-92.fr/?p=77084"
+ },
+ "tso": {
+  "publisher": "TSO press release, 2019",
+  "about": "RER E track and overhead line contract: 144 M",
+  "url": "https://www.tso.fr/app/uploads/sites/3/2019/08/RER-E-CP-.pdf"
+ },
+ "senat44": {
+  "publisher": "Sénat, information report 44 (2020-2021)",
+  "about": "Grand Paris Express: risk cover raised to 24% to 32% per line in 2017",
+  "url": "https://www.senat.fr/rap/r20-044/r20-0447.html"
+ },
+ "melun": {
+  "publisher": "Île-de-France Mobilités, Melun hub public inquiry file",
+  "about": "SNCF convention at inquiry stage: design 12%, client management 8%, contingency 15%",
+  "url": "https://iledefrance-mobilites.fr/medias/portail-idfm-projets/489f875f-c21a-4652-9e12-1a234ecfc888_13.pdf"
+ },
+ "cdc24": {
+  "publisher": "Cour des comptes, report on the Société du Grand Paris, April 2024",
+  "about": "Land at 5.7% of cost, against 5% to 10% usual for metros",
+  "url": "https://mobilites.newstank.fr/file/public/1de36dbb371000eeef5c39c59f29e52b/rapport-cour-comptes-exercices-2017-suivants-societe-grand-paris-avril-2024.pdf"
+ },
+ "insee": {
+  "publisher": "INSEE, public works price indices, July 2026",
+  "about": "Index TP01 used to bring older costs to 2026 euros",
+  "url": "https://www.insee.fr/fr/statistiques/fichier/version-html/9052342/IR220_IndexPTP-juil26.pdf"
+ },
+ "lyon19": {
+  "publisher": "SNCF Réseau, Lyon rail node public debate, 6 June 2019",
+  "about": "Lyon: underground core section with a 4-track deep station, 3.0 billion",
+  "url": "https://www.noeud-ferroviaire-lyonnais.debatpublic.fr/images//archives-rencontres/lyonamenagement-06062019/NFL-reunionlyonamenagement-060619-SNCF-1.pdf"
+ },
+ "lyon15": {
+  "publisher": "Réseau ferré de France, Lyon rail node, technical report on the underground option, 8 June 2015",
+  "about": "Lyon: station box 938 m long for platforms of about 365 m, rails 31 m down",
+  "url": "https://www.noeud-ferroviaire-lyonnais.debatpublic.fr/images/sncf-reseau/A-rapports-techniques-et-environnementaux/piece-04-RG140940C_Rapport_scenario_B_en_TC.pdf"
+ },
+ "marseille": {
+  "publisher": "SNCF Réseau, presentation to AFTES, 2025",
+  "about": "Marseille Saint-Charles: underground station with 406 m platforms 25 m deep and 8 km of tunnel in a 2.7 billion phase",
+  "url": "https://www.aftes.fr/wp-content/uploads/2025/04/aftes-toulouse2025-20-sncf-la-future-traversee-souterraine-lnpca-jtn.pdf"
+ },
+ "nordkit": {
+  "publisher": "SNCF Gares & Connexions, Gare du Nord press kit, 25 June 2024",
+  "about": "Gare du Nord: 2,200 trains and 700,000 passengers a day; 50 M of works delivered in 2024",
+  "url": "https://www.regionsmagazine.com/wp-content/uploads/2024/08/25062024_DP_Modernisation-Gare-du-nord-pdf.pdf"
+ },
+ "wikinord": {
+  "publisher": "Wikipedia (French), Gare de Paris-Nord, Gare de Paris-Austerlitz, Gare de Paris-Montparnasse",
+  "about": "Station rebuilding budgets: Gare du Nord 600 M then 1.5 billion (dropped), Austerlitz about 600 M, Montparnasse 150 M (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Gare_de_Paris-Nord"
+ },
+ "merimee": {
+  "publisher": "Ministry of Culture, heritage register",
+  "about": "Gare du Nord inscribed in 1975, Gare de l’Est and Gare de Lyon in 1984",
+  "url": "https://www.pop.culture.gouv.fr/notice/merimee/PA00086492"
+ },
+ "nao19": {
+  "publisher": "UK National Audit Office, Completing Crossrail, May 2019",
+  "about": "Elizabeth line: cost of each central station, tunnels and systems contracts",
+  "url": "https://www.nao.org.uk/wp-content/uploads/2019/05/Completing-Crossrail.pdf"
+ },
+ "nao26": {
+  "publisher": "UK National Audit Office, High Speed Two: reset, June 2026",
+  "about": "Old Oak Common station: 4.3 billion pounds for six underground platforms, from 2.0 billion",
+  "url": "https://www.nao.org.uk/wp-content/uploads/2026/06/high-speed-two-reset.pdf"
+ },
+ "zh": {
+  "publisher": "Canton of Zürich, government decision 869/2018",
+  "about": "Zürich cross-city line: Löwenstrasse station CHF 674 million, Weinberg tunnel CHF 498 million, total CHF 2.05 billion",
+  "url": "https://www.zh.ch/bin/zhweb/publish/regierungsratsbeschluss-unterlagen./2018/869/RRB-2018-0869.pdf"
+ },
+ "bologna": {
+  "publisher": "RFI and Comune di Bologna, June 2013",
+  "about": "Bologna high-speed station: 530 million, 4 tracks 23 m deep",
+  "url": "https://archivio-notizie.comune.bologna.it/wp-content/uploads/2013/06/NUOVA-STAZIONE-AV-DI-BOLOGNA.pdf"
+ },
+ "atocha": {
+  "publisher": "Government of Spain, La Moncloa, 31 January 2024",
+  "about": "Madrid Atocha through station: 452 million contract, 4 tracks",
+  "url": "https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/transportes-movilidad-sostenible/paginas/2024/310124-adjudicacion-nueva-estacion-atocha.aspx"
+ },
+ "sol": {
+  "publisher": "FCC, 4 June 2008",
+  "about": "Madrid Sol commuter station: 140 million, cavern 207 m long",
+  "url": "https://www.fccco.com/en/web/construccion/w/la-ministra-de-fomento-visita-las-obras-de-la-nueva-estacion-de-cercanias-en-sol"
+ },
+ "malmo": {
+  "publisher": "Tunnelbuilder, Malmö Citytunneln",
+  "about": "Malmö C lower station: SEK 1.2 billion for 4 tracks",
+  "url": "https://tunnelbuilder.com/Archive/Projects/Sweden/sw12-Railway.aspx"
+ },
+ "marienhof": {
+  "publisher": "Tunnelbuilder, Munich second trunk line",
+  "about": "Munich Marienhof station shell: 394 million, about 40 m deep",
+  "url": "https://tunnelbuilder.com/Archive/Projects/Germany/de55-Railway-6.aspx"
+ },
+ "s21shell": {
+  "publisher": "salzburg24 and APA, 26 March 2012",
+  "about": "Stuttgart 21 station shell contract: about 300 million",
+  "url": "https://www.salzburg24.at/s24-archiv/alpine-baut-mit-partnern-tunnel-fuer-stuttgart-21-290-mio-auftrag-art-185948"
+ },
+ "s21": {
+  "publisher": "ZDF, 26 June 2026",
+  "about": "Stuttgart 21: cost of about 14.5 billion, opening moved to December 2031",
+  "url": "https://www.zdfheute.de/panorama/stuttgart-21-milliarden-mehrkosten-100.html"
+ },
+ "munich": {
+  "publisher": "Schwäbische Zeitung and dpa, April 2025",
+  "about": "Munich second trunk line: 9.4 billion, forecast 10.9 billion",
+  "url": "https://www.schwaebische.de/regional/bayern/bahn-zweite-stammstrecke-kostet-ueber-elf-milliarden-euro-3481723"
+ },
+ "tag": {
+  "publisher": "UK Department for Transport, TAG unit A1.2, May 2025",
+  "about": "Official early-stage uplifts on cost: rail 56%, tunnels 55%, stations 70%",
+  "url": "https://assets.publishing.service.gov.uk/media/667e75a04ae39c5e45fe4d83/tag-a1-2-cost-estimation.pdf"
+ },
+ "flyv": {
+  "publisher": "Flyvbjerg, Project Management Journal, 2006",
+  "about": "Rail projects overran by 45% on average; 57% uplift for an 80% chance of staying within budget",
+  "url": "https://risknet.de/fileadmin/eLibrary/Flyvbjerg-Nobel-PMJ2006.pdf"
+ },
+ "frankfurt": {
+  "publisher": "Journal Frankfurt, 29 June 2021",
+  "about": "Frankfurt long-distance tunnel: 4 tracks under the terminal, 3.6 billion, up to 8 minutes saved, 20% more trains",
+  "url": "https://www.journal-frankfurt.de/journal_news/Gesellschaft-2/Machbarkeitsstudie-vorgestellt-Der-Fernbahntunnel-kann-kommen-37591.html"
+ },
+ "lucerne": {
+  "publisher": "Rapp Trans for the Canton of Lucerne, benefit study, March 2015",
+  "about": "Lucerne through station: yearly benefits about equal to yearly costs; about 10 hectares of land freed",
+  "url": "https://durchgangsbahnhof.lu.ch/-/media/Durchgangsbahnhof_Luzern/Dokumente/20150312_Nutzenstudie_Durchgangsbahnhof.pdf"
+ },
+ "sl": {
+  "publisher": "Region Stockholm, Fakta om SL och länet 2020",
+  "about": "Stockholm commuter rail: 325,000 boardings a weekday in 2016, 410,000 in 2019; rest of the network +3%",
+  "url": "https://regionstockholm.se/4a272e/contentassets/d6c4da12e11843c0ab8249c297dfd8fe/fakta-om-sl-och-lanet-2020.pdf"
+ },
+ "citybanan": {
+  "publisher": "Trafikverket, ex-post appraisal of the Stockholm Citybanan, December 2022",
+  "about": "Stockholm Citybanan: formal review after opening; extra trains just over half of forecast; benefits below cost",
+  "url": "https://bransch.trafikverket.se/TrvSeFiler/Samhallsekonomiskt_beslutsunderlag/Region_Stockholm/Region%20Stockholm/5%20Efterkalkyler/2022/pm%20efterkalkyl%20citybanan%202022-12-02_g.pdf"
+ },
+ "sma": {
+  "publisher": "SMA und Partner, 25 Jahre Zürcher S-Bahn, 2015",
+  "about": "Zürich 1990 through station: +24% in year 1, +180% in 24 years; trains per hour doubled",
+  "url": "https://sma-partner.com/storage/app/media/Dokumente/Veranstaltungen%20und%20Publikationen/25-Jahre-Z%C3%BCrcher-S-Bahn_de.pdf"
+ },
+ "zvv19": {
+  "publisher": "Zürcher Verkehrsverbund, annual results",
+  "about": "Zürich S-Bahn passengers 2014 to 2019: +19%",
+  "url": "https://www.zvv.ch/content/dam/zvv/medienmitteilungen/2020/MM_GB_2019_200624_DEF.pdf"
+ },
+ "toyo13": {
+  "publisher": "Toyo Keizai, 12 November 2013",
+  "about": "Tokyo Fukutoshin line: +30% in six months after through running began; one third of the revenue rise attributed to it",
+  "url": "https://toyokeizai.net/articles/-/23845"
+ },
+ "leipzig": {
+  "publisher": "City of Leipzig, answer VII-F-09055, September 2023",
+  "about": "Leipzig: weekday boardings 2016 to 2022",
+  "url": "https://www.l-iz.de/wp-content/uploads/2023/10/2023-09-13-VII-F-09055-AW-01-Die-zukuenftige-Ausge-VO.pdf"
+ },
+ "art25": {
+  "publisher": "Autorité de régulation des transports, first figures 2025",
+  "about": "RER E +10% in 2025 on 30% more service; high-speed ticket revenue of 10.3 euros per 100 passenger-km",
+  "url": "https://www.autorite-transports.fr/wp-content/uploads/2026/07/art-bilan-ferroviaire-france-premiers-chiffres-2025.pdf"
+ },
+ "sg": {
+  "publisher": "Canton of St. Gallen, public transport report 2020",
+  "about": "St. Gallen: 25% more train-km for 5% more passenger-km",
+  "url": "https://www.sg.ch/content/dam/sgch/kanton-stgallen/statistik/statakt/20200818%20%C3%B6V-Bericht%202020.pdf"
+ },
+ "philly": {
+  "publisher": "Wikipedia, SEPTA Regional Rail",
+  "about": "Philadelphia 1984: ridership took over ten years to recover after the tunnel opened (unverified)",
+  "url": "https://en.wikipedia.org/wiki/SEPTA_Regional_Rail"
+ },
+ "til24": {
+  "publisher": "Transport for London, Travel in London 2024",
+  "about": "Elizabeth line and its predecessor services: 56 million journeys in 2019/20, 220 million in 2023/24",
+  "url": "https://content.tfl.gov.uk/travel-in-london-2024-trends-in-public-transport-demand-and-operational-performance-acc.pdf"
+ },
+ "tfleval": {
+  "publisher": "Transport for London and Department for Transport, Elizabeth line post-opening evaluation, 2025",
+  "about": "Elizabeth line evaluation: 71,000 more public-transport trips a weekday, 9% to 10% of the line’s journeys; 6.3 perceived minutes saved per new trip, little more than one minute across all trips",
+  "url": "https://content.tfl.gov.uk/elizabeth-line-post-opening-evaluation-summary-findings.pdf"
+ },
+ "gla": {
+  "publisher": "Greater London Authority, monitoring report Q4 2025/26",
+  "about": "Elizabeth line: 242 million journeys in 2025/26, income and running cost",
+  "url": "https://www.london.gov.uk/about-us/londonassembly/meetings/documents/b31788/Quarter%204%20202526%20GLA%20Group%20Monitoring%20Reports%20TfL%20Thursday%2009-Jul-2026%2010.00%20Budget%20and%20Performa.pdf?T=9"
+ },
+ "sydney": {
+  "publisher": "Sydney Metro, 18 August 2025",
+  "about": "Sydney Metro City: 66.8 million trips in year one, of which 17.8 million new to public transport",
+  "url": "https://www.sydneymetro.info/article/sydney-metro-city-celebrates-its-record-breaking-first-year-passenger-services"
+ },
+ "munichs": {
+  "publisher": "Deutsche Bahn, 50 years of the Munich S-Bahn",
+  "about": "Munich 1972: 430,000 travellers a day in the first year against 240,000 forecast",
+  "url": "https://www.deutschebahn.com/de/konzern/Im-Fokus/Ein-bunter-Zug-zum-runden-Geburtstag-7603108"
+ },
+ "leman": {
+  "publisher": "Léman Express, press release, June 2025",
+  "about": "Geneva Léman Express: 80,000 passengers a day in 2024; four-year target reached in two years",
+  "url": "https://www.lemanexpress.com/wp-content/uploads/2025/06/2025.06.12_CP_LEX_5-ans-du-Leman-Express-et-L7-1.pdf"
+ },
+ "kyushu": {
+  "publisher": "JR Kyushu, submission to the Japanese transport ministry, 16 February 2026",
+  "about": "Kyushu through trains: rail travel to Kansai +112% and +172% in seven years; lease paid by the operator set on its profit gain",
+  "url": "https://www.mlit.go.jp/policy/shingikai/content/001982150.pdf"
+ },
+ "tips": {
+  "publisher": "Tips.at, relaying ÖBB, 23 May 2016",
+  "about": "Vienna: long-distance passengers +4.7% in the first quarter after the through station opened",
+  "url": "https://www.tips.at/nachrichten/horn/wirtschaft-politik/345673-oebb-mehr-fahrgaeste-taktfahrplan-wirkt"
+ },
+ "berlin": {
+  "publisher": "Pieper and Schweikart, AGIT 2007",
+  "about": "Berlin: access to long-distance trains after a second city stop was dropped",
+  "url": "https://labor.bht-berlin.de/fileadmin/labor/geovis/Forschung/Publikationen/2010-2001/Berlins_neuer_Hauptbahnhof_-_indikatorgestuetzte_Erreichbarkeitsmodellierung_fuer_den_nationalen_Fernverkehr_2007_.pdf"
+ },
+ "shinagawa": {
+  "publisher": "Toyo Keizai (first page of a paywalled article)",
+  "about": "Tokyo Shinagawa: boardings up about 10% after the second stop opened",
+  "url": "https://toyokeizai.net/articles/-/563224"
+ },
+ "brussels": {
+  "publisher": "BX1 and Belga, 7 July 2020",
+  "about": "Brussels: three through stations with almost equal boardings",
+  "url": "https://bx1.be/communes/schaerbeek/bruxelles-nord-central-et-midi-restent-les-gares-les-plus-frequentees-de-belgique/"
+ },
+ "idfm26": {
+  "publisher": "Île-de-France Mobilités, 2026 budget report",
+  "about": "Fare revenue of 4.2 billion a year, about 1.2 euros a trip; payments to operators",
+  "url": "https://echanges.dila.gouv.fr/OPENDATA/AMF/523/2026/01/FC523610843_20260119.pdf"
+ },
+ "fares26": {
+  "publisher": "Île-de-France Mobilités, 2026 fares",
+  "about": "Navigo pass 998.80 euros a year; single ticket 2.55 euros",
+  "url": "https://www.iledefrance-mobilites.fr/tarifs-titre-de-transport-en-commun-2026"
+ },
+ "nao21": {
+  "publisher": "UK National Audit Office, Crossrail: a progress update, 2021",
+  "about": "Elizabeth line: cost of 18.9 billion pounds against a first budget of 14.8 billion",
+  "url": "https://www.nao.org.uk/wp-content/uploads/2021/07/Crossrail-a-progress-update-Summary.pdf"
+ },
+ "baltica": {
+  "publisher": "Rail Baltica, July 2024",
+  "about": "Rail Baltica: 1.2 billion euros of European grants in one award",
+  "url": "https://www.railbaltica.org/news/rail-baltica-set-to-receive-additional-e1-2-billion-in-eu-funding-to-accelerate-development-and-construction-works/"
+ },
+ "hs1": {
+  "publisher": "UK Department for Transport, first interim evaluation of HS1, 2015",
+  "about": "Fares about 20% higher on the new line",
+  "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/466084/first_interim_evaluation_hs1_main-report.pdf"
+ },
+ "dbrs": {
+  "publisher": "Morningstar DBRS",
+  "about": "Société des grands projets: 904 million of earmarked taxes in 2024, 30.6 billion of debt",
+  "url": "https://dbrs.morningstar.com/research/452551/morningstar-dbrs-attribue-la-note-a-long-terme-aa-high-a-la-societe-des-grands-projets-tendance-negative"
+ },
+ "senat24": {
+  "publisher": "Sénat, report on the 2024 budget",
+  "about": "Grand Paris Express: cost, borrowing at an average of 1.1%, repayment to about 2071",
+  "url": "https://www.senat.fr/rap/l23-128-311-2/l23-128-311-27.html"
+ },
+ "senat25": {
+  "publisher": "Sénat, report on the 2025 budget",
+  "about": "Fee of 0.8 million per km a year paid by the regional transport authority for the Grand Paris Express",
+  "url": "https://www.senat.fr/rap/l24-144-311-2/l24-144-311-27.html"
+ },
+ "amend": {
+  "publisher": "Assemblée nationale, amendment I-CF1950 to the 2024 finance bill",
+  "about": "Rise in the Île-de-France office tax said to yield 900 million a year",
+  "url": "https://www.assemblee-nationale.fr/dyn/16/amendements/1680A/CION_FIN/CF1950.pdf"
+ },
+ "cdgx2": {
+  "publisher": "Sénat, report on the 2020 budget",
+  "about": "CDG Express: State loan repaid by tolls and a levy on air passengers",
+  "url": "https://www.senat.fr/rap/l19-140-312/l19-140-31212.html"
+ },
+ "cef": {
+  "publisher": "European Union, Regulation 2021/1153",
+  "about": "European grants: up to 30% of works on the core network",
+  "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32021R1153"
+ },
+ "crossrail": {
+  "publisher": "Mayor of London, decision MD2943, 2022",
+  "about": "Crossrail: supplement on business property tax",
+  "url": "https://www.london.gov.uk/decisions/md2943-crossrail-business-rates-supplement"
+ },
+ "aft": {
+  "publisher": "Agence France Trésor, auction of 1 October 2026, and market data",
+  "about": "French long-term borrowing rates in October 2026",
+  "url": "https://www.aft.gouv.fr/en/publications/communiques-presse/01-october-2026-issuance-oats"
+ },
+ "batignolles": {
+  "publisher": "Banque des Territoires, November 2006",
+  "about": "Batignolles rail yards: about 650 million agreed in 2006, reported for 16 hectares",
+  "url": "https://www.banquedesterritoires.fr/cession-des-batignolles-16-hectares-contre-650-millions-deuros"
+ },
+ "prg": {
+  "publisher": "SEMAPA, investor presentation",
+  "about": "Paris Rive Gauche: building rights and cost of covering tracks",
+  "url": "https://www.semapa.fr/wp-content/uploads/2024/01/2022.02_semapa.presentation_investisseurs_ex.2020.pdf"
+ }
+}

@@ -1,0 +1,775 @@
+{
+ "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the link is 5 km (4.5 to 6). The Seine and the existing lines are sketched by hand for orientation.",
+ "view": {
+  "wide": {
+   "lon": [
+    2.216,
+    2.478
+   ],
+   "lat": [
+    48.787,
+    48.94
+   ]
+  },
+  "narrow": {
+   "lon": [
+    2.252,
+    2.448
+   ],
+   "lat": [
+    48.791,
+    48.933
+   ]
+  }
+ },
+ "seine": [
+  [
+   2.408,
+   48.786
+  ],
+  [
+   2.4078,
+   48.803
+  ],
+  [
+   2.404,
+   48.814
+  ],
+  [
+   2.3975,
+   48.82
+  ],
+  [
+   2.3895,
+   48.8262
+  ],
+  [
+   2.3745,
+   48.8385
+  ],
+  [
+   2.3655,
+   48.8452
+  ],
+  [
+   2.3585,
+   48.8505
+  ],
+  [
+   2.347,
+   48.8552
+  ],
+  [
+   2.341,
+   48.8578
+  ],
+  [
+   2.33,
+   48.8602
+  ],
+  [
+   2.3195,
+   48.8635
+  ],
+  [
+   2.301,
+   48.8637
+  ],
+  [
+   2.292,
+   48.8598
+  ],
+  [
+   2.2875,
+   48.8555
+  ],
+  [
+   2.28,
+   48.85
+  ],
+  [
+   2.2755,
+   48.8465
+  ],
+  [
+   2.269,
+   48.8395
+  ],
+  [
+   2.262,
+   48.8345
+  ],
+  [
+   2.25,
+   48.828
+  ],
+  [
+   2.234,
+   48.824
+  ]
+ ],
+ "stations": [
+  {
+   "name": "Paris Nord-Est",
+   "short": "Nord-Est",
+   "at": [
+    2.3568,
+    48.879
+   ],
+   "stage": 1,
+   "where": "Under and between Gare du Nord and Gare de l’Est, which are 500 m apart.",
+   "calls": "Trains of all four lines stop here: from the north, the east, the south-east and the Atlantic. One of the six TGV tracks can be closed off for each London departure.",
+   "surface": "Both halls become entrances. The surface platforms and the approach tracks of both stations become a park.",
+   "axis": [
+    [
+     2.3583,
+     48.8862
+    ],
+    [
+     2.3566,
+     48.8718
+    ]
+   ],
+   "lbl": [
+    18,
+    0,
+    "start"
+   ],
+   "under": "under Gare du Nord and Gare de l’Est",
+   "london": 1
+  },
+  {
+   "name": "Gare de Lyon",
+   "short": "Gare de Lyon",
+   "at": [
+    2.3735,
+    48.8449
+   ],
+   "stage": 1,
+   "where": "Under the present station.",
+   "calls": "Trains of all four lines: those of the south-east, and the half of the northern, eastern and Atlantic trains that pair with them. A junction at the city end leads to the direct link to Montparnasse.",
+   "surface": "The hall is kept as the entrance. The surface tracks towards Bercy become a park.",
+   "axis": [
+    [
+     2.367,
+     48.8545
+    ],
+    [
+     2.388,
+     48.8345
+    ]
+   ],
+   "lbl": [
+    15,
+    -9,
+    "start"
+   ]
+  },
+  {
+   "name": "Montparnasse",
+   "short": "Montparnasse",
+   "at": [
+    2.3205,
+    48.8412
+   ],
+   "stage": 2,
+   "where": "Under the present station.",
+   "calls": "Trains of all four lines: those of the Atlantic, and the half of the northern, eastern and south-eastern trains that pair with them. A junction at the city end leads to the direct link to Gare de Lyon.",
+   "surface": "The hall is kept as the entrance. The surface tracks towards the ring road become a park.",
+   "axis": [
+    [
+     2.335,
+     48.852
+    ],
+    [
+     2.3085,
+     48.832
+    ]
+   ],
+   "lbl": [
+    -13,
+    -10,
+    "end"
+   ]
+  }
+ ],
+ "junctions": [
+  {
+   "id": "j1",
+   "at": [
+    2.3583,
+    48.8862
+   ],
+   "name": "Northern junction",
+   "what": "Where the corridors from the north and from the east meet, just before the station.",
+   "pairs": 2
+  },
+  {
+   "id": "j2",
+   "at": [
+    2.3566,
+    48.8718
+   ],
+   "name": "Southern junction",
+   "what": "Where the tunnels to Gare de Lyon and to Montparnasse part, just after the station.",
+   "pairs": 2
+  },
+  {
+   "id": "j3",
+   "at": [
+    2.328,
+    48.847
+   ],
+   "name": "Montparnasse junction",
+   "pairs": 1,
+   "what": "Where the direct link to Gare de Lyon leaves the corridor from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed."
+  },
+  {
+   "id": "j4",
+   "at": [
+    2.3695,
+    48.851
+   ],
+   "name": "Gare de Lyon junction",
+   "pairs": 1,
+   "what": "Where the direct link from Montparnasse joins the corridor from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed."
+  }
+ ],
+ "trunks": [
+  [
+   [
+    2.3583,
+    48.8862
+   ],
+   [
+    2.3572,
+    48.8826
+   ],
+   [
+    2.3568,
+    48.879
+   ]
+  ],
+  [
+   [
+    2.3568,
+    48.879
+   ],
+   [
+    2.3565,
+    48.8754
+   ],
+   [
+    2.3566,
+    48.8718
+   ]
+  ]
+ ],
+ "corridors": [
+  {
+   "id": "north",
+   "name": "North",
+   "from": "Saint-Denis",
+   "to": "Paris Nord-Est",
+   "km": 5.0,
+   "stage": 1,
+   "hs": "High-speed trains to Lille, London and Brussels",
+   "sub": "Suburban lines H and K",
+   "ter": "Regional express",
+   "path": [
+    [
+     2.3558,
+     48.9218
+    ],
+    [
+     2.3512,
+     48.9085
+    ],
+    [
+     2.3518,
+     48.8965
+    ],
+    [
+     2.3583,
+     48.8862
+    ]
+   ],
+   "lbl": [
+    -11,
+    4,
+    "end"
+   ],
+   "pairs": 2
+  },
+  {
+   "id": "east",
+   "name": "East",
+   "from": "Pantin",
+   "to": "Paris Nord-Est",
+   "km": 4.5,
+   "stage": 1,
+   "hs": "High-speed trains to Reims and Strasbourg",
+   "sub": "Suburban line P",
+   "ter": "Regional express",
+   "path": [
+    [
+     2.4035,
+     48.8974
+    ],
+    [
+     2.389,
+     48.8935
+    ],
+    [
+     2.373,
+     48.8893
+    ],
+    [
+     2.3583,
+     48.8862
+    ]
+   ],
+   "lbl": [
+    2,
+    19,
+    "middle"
+   ],
+   "pairs": 2
+  },
+  {
+   "id": "nelyon",
+   "name": "Nord-Est to Lyon",
+   "from": "Paris Nord-Est",
+   "to": "Gare de Lyon",
+   "km": 5.0,
+   "stage": 1,
+   "all": "All trains between Paris Nord-Est and the south-east",
+   "path": [
+    [
+     2.3566,
+     48.8718
+    ],
+    [
+     2.3605,
+     48.864
+    ],
+    [
+     2.367,
+     48.8545
+    ],
+    [
+     2.3735,
+     48.8449
+    ]
+   ],
+   "lbl": [
+    12,
+    2,
+    "start"
+   ],
+   "pairs": 2
+  },
+  {
+   "id": "nemont",
+   "name": "Nord-Est to Montparnasse",
+   "from": "Paris Nord-Est",
+   "to": "Montparnasse, under the Seine",
+   "km": 6.0,
+   "stage": 2,
+   "all": "All trains between Paris Nord-Est and the Atlantic",
+   "path": [
+    [
+     2.3566,
+     48.8718
+    ],
+    [
+     2.349,
+     48.863
+    ],
+    [
+     2.335,
+     48.852
+    ],
+    [
+     2.3205,
+     48.8412
+    ]
+   ],
+   "lbl": [
+    -12,
+    -2,
+    "end"
+   ],
+   "pairs": 2
+  },
+  {
+   "id": "southeast",
+   "name": "South-east",
+   "from": "Gare de Lyon",
+   "to": "Maisons-Alfort",
+   "km": 7.0,
+   "stage": 1,
+   "hs": "High-speed trains to Lyon and Marseille",
+   "sub": "Suburban line R",
+   "ter": "Regional express",
+   "path": [
+    [
+     2.3735,
+     48.8449
+    ],
+    [
+     2.3905,
+     48.8372
+    ],
+    [
+     2.4115,
+     48.8245
+    ],
+    [
+     2.4262,
+     48.803
+    ]
+   ],
+   "lbl": [
+    13,
+    -2,
+    "start"
+   ],
+   "pairs": 2
+  },
+  {
+   "id": "atlantic",
+   "name": "Atlantic",
+   "from": "Montparnasse",
+   "to": "Clamart",
+   "km": 6.0,
+   "stage": 2,
+   "hs": "High-speed trains to Bordeaux, Rennes and Nantes",
+   "sub": "Suburban line N",
+   "ter": "Regional express",
+   "path": [
+    [
+     2.3205,
+     48.8412
+    ],
+    [
+     2.3115,
+     48.8298
+    ],
+    [
+     2.2965,
+     48.8196
+    ],
+    [
+     2.274,
+     48.814
+    ]
+   ],
+   "lbl": [
+    12,
+    13,
+    "start"
+   ],
+   "pairs": 2
+  },
+  {
+   "id": "link",
+   "name": "Montparnasse to Gare de Lyon link",
+   "from": "Montparnasse",
+   "to": "Gare de Lyon, under the Seine",
+   "km": 5.0,
+   "stage": 2,
+   "pairs": 1,
+   "hs": "TGVs between the Atlantic and the south-east, direct",
+   "path": [
+    [
+     2.328,
+     48.847
+    ],
+    [
+     2.338,
+     48.8505
+    ],
+    [
+     2.35,
+     48.8528
+    ],
+    [
+     2.361,
+     48.8535
+    ],
+    [
+     2.3695,
+     48.851
+    ]
+   ],
+   "lbl": [
+    0,
+    18,
+    "middle"
+   ]
+  }
+ ],
+ "portals": [
+  {
+   "name": "Saint-Denis",
+   "at": [
+    2.3558,
+    48.9218
+   ],
+   "corridor": "north",
+   "line": "the line to Lille and the northern suburbs",
+   "lbl": [
+    11,
+    4,
+    "start"
+   ]
+  },
+  {
+   "name": "Pantin",
+   "at": [
+    2.4035,
+    48.8974
+   ],
+   "corridor": "east",
+   "line": "the line to Strasbourg and the eastern suburbs",
+   "lbl": [
+    0,
+    -11,
+    "middle"
+   ]
+  },
+  {
+   "name": "Maisons-Alfort",
+   "at": [
+    2.4262,
+    48.803
+   ],
+   "corridor": "southeast",
+   "line": "the line to Lyon and the south-eastern suburbs",
+   "lbl": [
+    9,
+    18,
+    "end"
+   ]
+  },
+  {
+   "name": "Clamart",
+   "at": [
+    2.274,
+    48.814
+   ],
+   "corridor": "atlantic",
+   "line": "the line to Brittany, the Atlantic high-speed line and the south-western suburbs",
+   "lbl": [
+    -9,
+    18,
+    "start"
+   ]
+  }
+ ],
+ "lines": [
+  {
+   "name": "Gare du Nord",
+   "terminal": [
+    2.3552,
+    48.8802
+   ],
+   "path": [
+    [
+     2.3552,
+     48.8802
+    ],
+    [
+     2.3562,
+     48.89
+    ],
+    [
+     2.3606,
+     48.899
+    ],
+    [
+     2.36,
+     48.91
+    ],
+    [
+     2.3558,
+     48.9218
+    ],
+    [
+     2.348,
+     48.933
+    ],
+    [
+     2.344,
+     48.94
+    ]
+   ]
+  },
+  {
+   "name": "Gare de l’Est",
+   "terminal": [
+    2.3584,
+    48.8767
+   ],
+   "path": [
+    [
+     2.3584,
+     48.8767
+    ],
+    [
+     2.3612,
+     48.884
+    ],
+    [
+     2.3665,
+     48.8895
+    ],
+    [
+     2.3745,
+     48.896
+    ],
+    [
+     2.389,
+     48.8974
+    ],
+    [
+     2.4035,
+     48.8974
+    ],
+    [
+     2.43,
+     48.8958
+    ],
+    [
+     2.46,
+     48.8945
+    ],
+    [
+     2.485,
+     48.894
+    ]
+   ]
+  },
+  {
+   "name": "Gare de Lyon",
+   "terminal": [
+    2.3735,
+    48.8449
+   ],
+   "path": [
+    [
+     2.3735,
+     48.8449
+    ],
+    [
+     2.3826,
+     48.8392
+    ],
+    [
+     2.3925,
+     48.8318
+    ],
+    [
+     2.405,
+     48.8238
+    ],
+    [
+     2.415,
+     48.8168
+    ],
+    [
+     2.4262,
+     48.803
+    ],
+    [
+     2.433,
+     48.788
+    ]
+   ]
+  },
+  {
+   "name": "Montparnasse",
+   "terminal": [
+    2.3205,
+    48.8412
+   ],
+   "path": [
+    [
+     2.3205,
+     48.8412
+    ],
+    [
+     2.3125,
+     48.8345
+    ],
+    [
+     2.305,
+     48.8282
+    ],
+    [
+     2.2985,
+     48.8255
+    ],
+    [
+     2.286,
+     48.8195
+    ],
+    [
+     2.274,
+     48.814
+    ],
+    [
+     2.252,
+     48.805
+    ],
+    [
+     2.23,
+     48.799
+    ]
+   ]
+  }
+ ],
+ "others": [
+  {
+   "name": "Saint-Lazare",
+   "at": [
+    2.3253,
+    48.8763
+   ],
+   "lbl": [
+    0,
+    -9,
+    "middle"
+   ]
+  },
+  {
+   "name": "Austerlitz",
+   "at": [
+    2.365,
+    48.8423
+   ],
+   "lbl": [
+    7,
+    16,
+    "start"
+   ]
+  },
+  {
+   "name": "Bercy",
+   "at": [
+    2.3812,
+    48.8368
+   ],
+   "lbl": [
+    -7,
+    14,
+    "end"
+   ]
+  }
+ ],
+ "seine_label": [
+  2.273,
+  48.8585
+ ]
+}

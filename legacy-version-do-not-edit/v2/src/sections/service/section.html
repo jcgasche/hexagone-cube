@@ -1,0 +1,101 @@
+<p class="lede">The same pattern of trains is assumed every hour. Every high-speed train stops at Paris Nord-Est; trains from the southeast also stop at Gare de Lyon, and trains from the Atlantic at Montparnasse. In a standard busy hour, {{ m.service.through_each_way | 0 }} trains each way run straight through Paris and {{ m.service.reversing_each_way | 0 }} each way pass from one southern line to the other by reversing at Nord-Est. That pattern, with room kept for the day the southern lines are full, sets the number of platforms.</p>
+
+<div class="block" id="service.hour">
+  <h2>One standard hour of high-speed trains</h2>
+  <ul>
+    <li><strong>Every train stops at Paris Nord-Est.</strong> A train from Bordeaux stops at Montparnasse, then at Nord-Est, then goes on. A train from Lille stops at Nord-Est, then at Gare de Lyon or at Montparnasse. So most trains stop twice in Paris, and every line meets every other at Nord-Est.</li>
+    <li><strong>The same pattern every hour.</strong> The study assumes that the same trains run at the same minutes every hour. It has not drawn up a timetable, and the platform count below assumes that stops are spread through the hour. A timetable in which trains wait for each other at Nord-Est, as in Switzerland, is an option; it would need more platform tracks (see <a class="xref" href="#pulse.paris">the Swiss timetable applied to Paris</a>).</li>
+    <li><strong>Platforms are fixed.</strong> The 14:07 to Lyon leaves from the same platform every day, printed in the timetable, with the place of each coach marked on the platform.[[sbb]] What that changes for boarding is in <a class="xref" href="#stations.boarding">the three stations</a>.</li>
+    <li><strong>High-speed trains are not for trips inside Paris.</strong> Tickets are sold from or to a station outside the region.</li>
+  </ul>
+  <p>How many trains is a standard hour? This study takes {{ m.hour_today.Atlantic | 0 }} TGVs an hour each way on the Atlantic line, {{ m.hour_today.Southeast | 0 }} on the southeast line, {{ m.hour_today.North | 0 }} on the northern line and {{ m.hour_today.East | 0 }} on the eastern line <span class="tag assume">assumption</span>. These are round numbers for a busy hour, not counts; the real pattern has to come from a timetable study (see <a class="xref" href="#risks.verify">what to verify</a>). The second pattern below fills the two southern lines to their planned capacity: {{ m.hour_full.Southeast | 0 }} trains an hour on the line to Lyon from 2030,[[lgvse]] and up to {{ m.hour_full.Atlantic | 0 }} on the Atlantic line with new signalling.[[ae14, cgedd09]] No capacity figure was found for the northern and eastern lines; they are held at {{ m.hour_full.North | 0 }} and {{ m.hour_full.East | 0 }} <span class="tag assume">assumption</span>.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong id="svc-flow-title">Trains from the south either run on to the north or east, or swap southern lines at Nord-Est</strong><span>High-speed trains an hour in each direction; the width of a band is the number of trains <span class="tag sketch">illustrative sketch</span></span></div>
+    <div class="controls" id="svc-flow-ctl"></div>
+    <div id="svc-flows"></div>
+    <ul class="legend" id="svc-flow-legend"></ul>
+    <figcaption>An illustrative pattern, not a timetable. Each band runs both ways: {{ m.service.flows['Atlantic to north'] | 0 }} trains an hour from the Atlantic to the north also means {{ m.service.flows['Atlantic to north'] | 0 }} from the north to the Atlantic. Hover or focus a band for its stops in Paris.</figcaption>
+  </figure>
+  <div class="tbl-wrap"><table class="tbl svc-tbl">
+    <thead><tr><th>TGVs an hour, each way</th><th class="num">Standard busy hour</th><th class="num">Southern lines full</th></tr></thead>
+    <tbody>
+      <tr><th>On the Atlantic line</th><td class="num">{{ m.hour_today.Atlantic | 0 }}</td><td class="num">{{ m.hour_full.Atlantic | 0 }}</td></tr>
+      <tr><th>On the southeast line</th><td class="num">{{ m.hour_today.Southeast | 0 }}</td><td class="num">{{ m.hour_full.Southeast | 0 }}</td></tr>
+      <tr><th>On the northern line</th><td class="num">{{ m.hour_today.North | 0 }}</td><td class="num">{{ m.hour_full.North | 0 }}</td></tr>
+      <tr><th>On the eastern line</th><td class="num">{{ m.hour_today.East | 0 }}</td><td class="num">{{ m.hour_full.East | 0 }}</td></tr>
+      <tr class="total"><th>How they are paired</th><td class="num"></td><td class="num"></td></tr>
+      <tr><th>Atlantic and north</th><td class="num">{{ m.service.flows['Atlantic to north'] | 0 }}</td><td class="num">{{ m.service_full.flows['Atlantic to north'] | 0 }}</td></tr>
+      <tr><th>Atlantic and east</th><td class="num">{{ m.service.flows['Atlantic to east'] | 0 }}</td><td class="num">{{ m.service_full.flows['Atlantic to east'] | 0 }}</td></tr>
+      <tr><th>Southeast and north</th><td class="num">{{ m.service.flows['Southeast to north'] | 0 }}</td><td class="num">{{ m.service_full.flows['Southeast to north'] | 0 }}</td></tr>
+      <tr><th>Southeast and east</th><td class="num">{{ m.service.flows['Southeast to east'] | 0 }}</td><td class="num">{{ m.service_full.flows['Southeast to east'] | 0 }}</td></tr>
+      <tr><th>Atlantic and southeast, reversing at Nord-Est</th><td class="num">{{ m.service.flows['Atlantic to southeast, reversing at Nord-Est'] | 0 }}</td><td class="num">{{ m.service_full.flows['Atlantic to southeast, reversing at Nord-Est'] | 0 }}</td></tr>
+      <tr><th>Left without a partner, turning back at Nord-Est</th><td class="num">{{ m.service.spare | 0 }}</td><td class="num">{{ m.service_full.spare | 0 }}</td></tr>
+    </tbody></table></div>
+</div>
+
+<div class="block" id="service.pairing">
+  <h2>Any line can be paired with any other</h2>
+  <p>The tunnels join all four lines at Nord-Est, so a train arriving from one line can leave by any of the others. The timetable is free to pair them as traffic requires, and to change the pairing from one hour to the next.</p>
+  <p>The four lines are not equal. The two southern lines carry more than twice the passengers of the northern and eastern ones: about 44 and 35 million a year counted at their Paris terminals, against 21.5 and 12 (derived).[[art24]] So not every train from the south can find a partner in the north or the east. In the standard hour, {{ m.service.flows['Atlantic to north'] | 0 }} trains from each southern line go on to the north and {{ m.service.flows['Atlantic to east'] | 0 }} to the east, which uses every train of the northern and eastern lines. The {{ m.service.reversing_each_way | 0 }} trains left on each southern line are paired with each other.</p>
+  <p>For passengers, this gives direct trains on five of the six pairs of lines; only north to east has none. <a class="xref" href="#crossing.tgv">Crossing Paris by TGV</a> gives the times for each pair.</p>
+  <div class="callout"><b>If trains kept to fixed pairs</b><p>A simpler timetable would tie the southeast line to the north and the Atlantic line to the east, with no reversing. Direct trains would then exist on two pairs of lines only, and the project would add {{ m.sens['Trains keep to fixed pairs of lines, none reverse'].tgv_journeys | 1 }} million high-speed journeys a year instead of {{ m.yearly.tgv_journeys | 1 }} million. The other tests are in <a class="xref" href="#risks.sensitivity">what could change the answer</a>.</p></div>
+</div>
+
+<div class="block" id="service.reversing">
+  <h2>The trains that reverse at Nord-Est</h2>
+  <div class="tiles">
+    <div class="tile"><span class="n">{{ 2 * m.service.reversing_each_way | 0 }}</span><span class="k">trains an hour reverse at Nord-Est</span><span class="d">Both directions together. {{ 2 * m.service_full.reversing_each_way + m.service_full.spare | 0 }} when the southern lines are full</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">{{ m.reverse | 0 }}<small>min</small></span><span class="k">allowed to change direction</span><span class="d"><span class="tag assume">assumption</span> A driver waits at the other end of the train. One more minute is counted for the train to clear the platform</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">{{ m.connecting.central.pairs['Montparnasse-Lyon'].direct | 0 }}<small>min</small></span><span class="k">from Montparnasse to Gare de Lyon</span><span class="d">On the train: {{ m.TH.M | 0 }} minutes to Nord-Est, {{ m.reverse | 0 }} to reverse, {{ m.TH.L | 0 }} to Gare de Lyon</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">{{ m.service.rev_equiv | 2 }}</span><span class="k">stops' worth of platform time</span><span class="d">A reversing train holds its platform {{ m.reverse + 1 | 0 }} minutes ({{ m.reverse | 0 }} to reverse and 1 to clear), against {{ (m.reverse + 1) / m.service.rev_equiv | 0 }} for a stop</span></div>
+  </div>
+  <p>A train from Bordeaux stops at Montparnasse and at Nord-Est, changes direction there, stops at Gare de Lyon and continues to Marseille. This balances the four lines, and it gives direct trains between the Atlantic and the southeast, the largest flow across Paris.</p>
+  <ul>
+    <li><strong>How long it takes.</strong> A TGV needs 10 to 12 minutes to reverse at a platform, or about 3 with a second driver waiting at the other end.[[fnaut]] The estimate allows {{ m.reverse | 0 }}, and counts {{ m.reverse + 1 | 0 }} minutes of platform time: one more for the train to clear the platform. The times between stations ({{ m.TH.L | 0 }} and {{ m.TH.M | 0 }} minutes, stop included) are assumptions too.</li>
+    <li><strong>What it costs.</strong> Platform time: reversals take up {{ (2 * m.service.reversing_each_way + m.service.spare) * m.service.rev_equiv / m.service.nordest_stops | pct }} of the platform time at Nord-Est in the standard hour. That is one reason why this station is the largest.</li>
+    <li><strong>What it is worth to passengers.</strong> Less than a through run: {{ m.connecting.central.pairs['Montparnasse-Lyon'].direct | 0 }} minutes in Paris against {{ m.connecting.central.pairs['Montparnasse-Nord'].direct | 0 }} for a train that runs straight through, but still about half of today's {{ m.connecting.central.pairs['Montparnasse-Lyon'].old_clock | 1 }} minutes and with no change of train.</li>
+    <li><strong>Other ways to handle the surplus</strong> remain open: sidings beside the high-speed depot 2 km north of Gare du Nord (unverified),[[landy]] or running on to the airport station at Roissy. Neither is costed here.</li>
+  </ul>
+</div>
+
+<div class="block" id="service.platforms">
+  <h2>How many platforms</h2>
+  <p>Through stations are planned for four to six long-distance trains an hour on each platform track. Stuttgart's new station, which is planned and not yet open, reached six in a simulated stress test,[[bt19, dhz]] and the airport station at Roissy is rated at 8 trains an hour each way on its 4 tracks in theory.[[rffcdg]] One station in service gives a measure: Zürich's Löwenstrasse station handles about 460 trains a day on four tracks,[[zvv]] and through trains that wait for connections there stand 6 to 9 minutes (derived from the departure boards; see <a class="xref" href="#zurich.results">Zürich</a>).[[zh_board_arr, zh_board_dep]] The rule used here: {{ m.per_track | 0 }} stops of {{ (m.reverse + 1) / m.service.rev_equiv | 0 }} minutes an hour on each track, so that a track is free two thirds of the time and a late train finds its platform. A train that reverses holds its platform for {{ m.reverse + 1 | 0 }} minutes, {{ m.reverse | 0 }} to change direction and 1 to clear, and counts as {{ m.service.rev_equiv | 2 }} stops. The stations are sized for the day the southern lines are full.</p>
+  <div class="cols wide-left">
+    <div class="card">
+      <div class="controls" id="svc-calc-ctl"></div>
+      <div id="svc-calc-sliders" class="svc-sliders"></div>
+      <p class="note">The sliders change the rule, not the timetable: more stops an hour on each track means less slack when trains run late.</p>
+    </div>
+    <div class="card">
+      <h4>Paris Nord-Est, high-speed tracks</h4>
+      <dl class="read" id="svc-calc-read"></dl>
+    </div>
+  </div>
+  <figure class="fig">
+    <div class="fig-head"><strong id="svc-calc-title">Platform tracks the rule asks for at each station, against those layout A provides</strong><span>Platform tracks for high-speed trains at each station: what the rule asks for with the settings above, against what layout A provides</span></div>
+    <div id="svc-calc-tracks" class="svc-tracks"></div>
+    <ul class="legend svc-legend">
+      <li><i class="svc-pip full"></i>Needed by the rule</li>
+      <li><i class="svc-pip free"></i>Provided, spare</li>
+      <li><i class="svc-pip sealed"></i>Sealed for London trains</li>
+      <li><i class="svc-pip short"></i>Missing</li>
+    </ul>
+    <figcaption>One mark is one platform track 400 m long; marks are grouped in pairs because a platform has a track on each side. The count is rounded up to whole platforms, and the sealed pair for London trains comes on top.</figcaption>
+  </figure>
+  <div class="tbl-wrap"><table class="tbl svc-tbl">
+    <thead><tr><th>Station</th><th>Standard busy hour</th><th>Southern lines full</th><th>High-speed tracks provided, layout A</th></tr></thead>
+    <tbody>
+      <tr><th>Paris Nord-Est</th><td>{{ 2 * m.service.through_each_way | 0 }} stops and {{ 2 * m.service.reversing_each_way + m.service.spare | 0 }} reversals: {{ m.service.nordest_tracks_calc | 1 }} tracks</td><td>{{ 2 * m.service_full.through_each_way | 0 }} stops and {{ 2 * m.service_full.reversing_each_way + m.service_full.spare | 0 }} reversals: {{ m.service_full.nordest_tracks_calc | 1 }} tracks</td><td>{{ m.cost.A.detail['Paris Nord-Est'].hs | 0 }}: {{ m.cost.A.detail['Paris Nord-Est'].hs - 2 | 0 }}, plus 2 sealed for London trains</td></tr>
+      <tr><th>Gare de Lyon</th><td>{{ 2 * m.hour_today.Southeast | 0 }} stops: {{ m.service.lyon_tracks_calc | 1 }} tracks</td><td>{{ 2 * m.hour_full.Southeast | 0 }} stops: {{ m.service_full.lyon_tracks_calc | 1 }} tracks</td><td>{{ m.cost.A.detail['Gare de Lyon'].hs | 0 }}</td></tr>
+      <tr><th>Montparnasse</th><td>{{ 2 * m.hour_today.Atlantic | 0 }} stops: {{ m.service.montparnasse_tracks_calc | 1 }} tracks</td><td>{{ 2 * m.hour_full.Atlantic | 0 }} stops: {{ m.service_full.montparnasse_tracks_calc | 1 }} tracks</td><td>{{ m.cost.A.detail['Montparnasse'].hs | 0 }}</td></tr>
+    </tbody></table></div>
+  <p class="note">Stops and reversals an hour, both directions together. Montparnasse has no margin beyond the rule when the Atlantic line is full.</p>
+  <h3>Regional, suburban and London trains</h3>
+  <ul>
+    <li><strong>Layout B shares the platforms.</strong> High-speed and regional express trains use the same tracks, as on the surface today: {{ m.cost.B.detail['Paris Nord-Est'].hs | 0 }} at Nord-Est, {{ m.cost.B.detail['Gare de Lyon'].hs | 0 }} at Gare de Lyon and {{ m.cost.B.detail['Montparnasse'].hs | 0 }} at Montparnasse. That is two fewer at each station than the two groups have in layout A <span class="tag assume">assumption</span>. The two layouts are described in <a class="xref" href="#project.layouts">the project</a>.</li>
+    <li><strong>Regional express and suburban platforms</strong> are not worked out from a timetable: {{ m.cost.A.detail['Paris Nord-Est'].ter | 0 }} and {{ m.cost.A.detail['Paris Nord-Est'].sub | 0 }} tracks at Nord-Est, {{ m.cost.A.detail['Gare de Lyon'].ter | 0 }} and {{ m.cost.A.detail['Gare de Lyon'].sub | 0 }} at each southern station <span class="tag assume">assumption</span>. One imbalance needs attention: line H runs about four times as many trains as line R, its partner across Paris (476 against 120 a weekday, unverified).[[wikilines]] Most line H trains would turn back south of Gare de Lyon. The cost includes sidings for that.</li>
+    <li><strong>London trains</strong> have two sealed tracks at Nord-Est with a hall of their own, counted on top of the tracks the rule gives (see <a class="xref" href="#stations.nordest">Paris Nord-Est</a>).</li>
+    <li><strong>Depots</strong> stay where they are; trains reach them through the tunnel portals (see <a class="xref" href="#works.surface">changes on the surface</a>).</li>
+  </ul>
+</div>

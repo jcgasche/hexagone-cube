@@ -1,0 +1,117 @@
+/* Elizabeth line annex. Every selector is prefixed with #elizabeth. */
+
+/* ---- legend keys (lines and markers instead of squares) */
+#elizabeth .legend i.el-key { background: none; border-radius: 0; width: 22px; height: 12px; position: relative }
+#elizabeth .legend i.el-key-new::before, #elizabeth .legend i.el-key-old::before { content: ""; position: absolute; left: 0; right: 0; top: 4.5px; height: 3px; border-radius: 2px; background: var(--new) }
+#elizabeth .legend i.el-key-old::before { background: var(--old) }
+#elizabeth .legend i.el-key-st, #elizabeth .legend i.el-key-b, #elizabeth .legend i.el-key-a { width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box }
+#elizabeth .legend i.el-key-st { background: var(--surface); border: 3px solid var(--new) }
+#elizabeth .legend i.el-key-b { background: var(--surface); border: 2.5px solid var(--today) }
+#elizabeth .legend i.el-key-a { background: var(--s1) }
+#elizabeth .legend i.el-key-w { width: 12px; height: 12px; border-radius: 50%; box-sizing: border-box; background: var(--surface); border: 2.5px solid var(--s1) }
+#elizabeth .legend i.el-key-ref { width: 2px; height: 14px; background: var(--ink) }
+
+/* ---- line diagram and depth profile */
+#elizabeth .el-map { max-width: none }
+#elizabeth .el-map text { font-size: 12.5px }
+#elizabeth .el-map text.lbl-muted { font-size: 11.5px; fill: var(--muted) }
+#elizabeth .el-map.el-tight text.el-name { font-size: 11.5px }
+#elizabeth .el-map text.el-depth { font-size: 12px; font-variant-numeric: tabular-nums }
+#elizabeth .el-map .el-hit { fill: transparent; stroke: transparent; stroke-width: 2 }
+#elizabeth .el-map .el-hot { cursor: pointer; outline: none }
+#elizabeth .el-map .el-hot:hover, #elizabeth .el-map .el-hot.sel { filter: none }
+#elizabeth .el-map .el-hot:focus-visible .el-hit { stroke: var(--accent) }
+#elizabeth .el-map .el-dot { fill: var(--surface); stroke: var(--new); stroke-width: 3 }
+#elizabeth .el-map .el-end { fill: var(--surface); stroke: var(--old); stroke-width: 2.4 }
+#elizabeth .el-map .el-hot:hover .el-dot, #elizabeth .el-map .el-hot:hover .el-end { stroke-width: 4.5 }
+#elizabeth .el-map .el-hot.sel .el-dot { fill: var(--new) }
+#elizabeth .el-map .el-hot.sel .el-end { fill: var(--old) }
+#elizabeth .el-map .el-hot.sel text.el-name { font-weight: 600 }
+#elizabeth .el-map .el-hot:hover text.el-name { text-decoration: underline }
+#elizabeth .el-map .el-box { fill: var(--new-soft); stroke: var(--new); stroke-width: 1.8 }
+#elizabeth .el-map .el-box.el-open { fill: var(--surface); stroke-dasharray: 3 2.5 }
+#elizabeth .el-map .el-hot.sel .el-box { fill: var(--new) }
+#elizabeth .el-map .el-hot:hover .el-box { stroke-width: 3 }
+#elizabeth .el-map .el-drop { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 2 4; opacity: .55 }
+#elizabeth .el-map .el-drop.sel { stroke: var(--new); stroke-width: 1.6; stroke-dasharray: none; opacity: 1 }
+#elizabeth .el-map .el-gridline { stroke: var(--ground-edge); stroke-width: 1; stroke-dasharray: 2 4; opacity: .7 }
+#elizabeth .el-map .el-surface { fill: none; stroke: var(--ground-edge); stroke-width: 1.4 }
+
+/* ---- chosen station */
+#elizabeth .el-pick { border-top: 1px solid var(--rule); padding-top: 12px; display: flex; flex-direction: column; gap: 10px }
+#elizabeth .el-pick-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 16px }
+#elizabeth .el-pick-head h3 { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center }
+#elizabeth .el-nav { display: flex; align-items: center; gap: 8px }
+#elizabeth .el-nav span { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; min-width: 52px; text-align: center }
+#elizabeth .el-nav .btn { padding: 4px 12px }
+#elizabeth .el-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px 24px; margin: 0 }
+#elizabeth .el-facts dt { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600 }
+#elizabeth .el-facts dd { margin: 2px 0 0; font-size: 14px }
+
+/* ---- before and after tool */
+#elizabeth .block > h3 { margin-top: 10px }
+#elizabeth .el-res { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 14px 32px; align-items: start; border-top: 1px solid var(--rule); padding-top: 12px }
+#elizabeth .el-res-side h3 { text-wrap: balance }
+#elizabeth .el-res-side { display: flex; flex-direction: column; gap: 8px; min-width: 0 }
+@media (max-width: 700px) { #elizabeth .el-res { grid-template-columns: minmax(0, 1fr) } }
+#elizabeth .el-res-note { font-size: 13px; color: var(--muted) }
+#elizabeth .el-res-note b { color: var(--text) }
+
+/* ---- before and after chart (uses the .bars grid) */
+#elizabeth .el-db .track { height: 22px; background-image: linear-gradient(to right, var(--rule) 1px, transparent 1px); background-size: 28.5714% 100%; background-repeat: repeat-x }
+#elizabeth .el-db button.track { appearance: none; border: 0; padding: 0; margin: 0; font: inherit; cursor: pointer; background-color: transparent; border-radius: 3px; display: block; width: 100% }
+#elizabeth .el-db button.track:hover, #elizabeth .el-db button.track.hl { background-color: var(--accent-soft) }
+#elizabeth .el-db .lab { cursor: pointer }
+#elizabeth .el-db .lab.hl { font-weight: 600; color: var(--ink) }
+#elizabeth .el-db .el-rng { position: absolute; top: 9px; height: 4px; background: var(--neutral-mark); border-radius: 2px }
+#elizabeth .el-db .el-b, #elizabeth .el-db .el-a { position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%; transform: translate(-50%, -50%); box-sizing: border-box }
+#elizabeth .el-db .el-b { background: var(--surface); border: 2.5px solid var(--today) }
+#elizabeth .el-db .el-a { background: var(--s1); border: 1.5px solid var(--surface); width: 13px; height: 13px }
+#elizabeth .el-db .el-ax { background: none; height: 16px }
+#elizabeth .el-db .el-ax span { position: absolute; top: 0; transform: translateX(-50%); font-size: 12px; color: var(--muted); white-space: nowrap }
+#elizabeth .el-db .el-ax span:first-child { transform: none }
+#elizabeth .el-db .el-axval { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600; text-align: right }
+#elizabeth .el-db .val { min-width: 62px }
+
+#elizabeth .el-bcr .track { background-size: 25% 100%; height: 24px }
+#elizabeth .el-bcr .el-ax { height: 16px }
+#elizabeth .el-bcr .el-ref { position: absolute; top: -5px; bottom: -5px; left: 25%; width: 2px; margin-left: -1px; background: var(--ink) }
+#elizabeth .el-bcr .el-rng { top: 10px }
+#elizabeth .el-bcr .el-w { position: absolute; top: 50%; box-sizing: border-box }
+#elizabeth .el-bcr .el-w { width: 13px; height: 13px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--surface); border: 2.5px solid var(--s1) }
+#elizabeth .el-bcr .val { min-width: 0 }
+#elizabeth .el-bcr .lab small { color: var(--muted) }
+
+/* ---- stages */
+#elizabeth .el-stage text { font-size: 12.5px }
+#elizabeth .el-stage text.lbl-muted { font-size: 12px; fill: var(--muted) }
+#elizabeth .el-stage .el-stub { fill: none; stroke: var(--old); stroke-width: 1.4; stroke-dasharray: 3 3 }
+#elizabeth .el-stage .el-plan { fill: none; stroke: var(--new); stroke-width: 2; stroke-dasharray: 2 6; stroke-linecap: round; opacity: .7 }
+#elizabeth .el-stage .el-buffer { stroke: var(--ink); stroke-width: 2.4; stroke-linecap: round }
+#elizabeth .el-stage .el-dot { fill: var(--surface); stroke: var(--new); stroke-width: 2.6 }
+#elizabeth .el-stage .el-change { stroke: var(--alt); stroke-width: 1.4; fill: none }
+#elizabeth .el-stage text.el-changelbl { fill: var(--text); font-size: 11.5px }
+#elizabeth #el-stage-steps { margin-bottom: 2px }
+
+/* ---- scale comparison */
+#elizabeth .el-three { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px 28px }
+#elizabeth .el-three > div { display: flex; flex-direction: column; gap: 8px; min-width: 0 }
+#elizabeth .el-size { display: grid; grid-template-columns: minmax(150px, 230px) minmax(0, 1fr); gap: 14px 18px; align-items: center; font-size: 14px }
+#elizabeth .el-size .lab b { display: block }
+#elizabeth .el-size .lab span { color: var(--muted); font-size: 13px }
+#elizabeth .el-size .lines { display: flex; flex-direction: column; gap: 3px; min-width: 0 }
+#elizabeth .el-size .lines i { display: block; height: 4px; border-radius: 2px; background: var(--new); width: var(--w) }
+#elizabeth .el-size .lines.old i { background: var(--s2) }
+#elizabeth .el-size .sep { grid-column: 1 / -1; border-top: 1px solid var(--rule) }
+#elizabeth .el-size .ruler { position: relative; height: 22px; border-top: 1px solid var(--muted) }
+#elizabeth .el-size .ruler span { position: absolute; top: 0; font-size: 12px; color: var(--muted); padding-top: 5px; transform: translateX(-50%); white-space: nowrap }
+#elizabeth .el-size .ruler span::before { content: ""; position: absolute; left: 50%; top: 0; height: 5px; border-left: 1px solid var(--muted) }
+#elizabeth .el-size .ruler span:first-child { transform: none }
+#elizabeth .el-size .ruler span:first-child::before { left: 0 }
+#elizabeth .el-size .ruler span:last-child { transform: translateX(-100%) }
+#elizabeth .el-size .ruler span:last-child::before { left: auto; right: 0 }
+@media (max-width: 620px) {
+  #elizabeth .el-size { grid-template-columns: minmax(0, 1fr); gap: 6px }
+  #elizabeth .el-size .lines { margin-bottom: 8px }
+  #elizabeth .el-size .ruler-lab { display: none }
+}

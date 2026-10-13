@@ -1,0 +1,94 @@
+<p class="lede">Every long-distance line into Paris ends at a buffer stop, in one of four separate stations. So every train has to turn round, a passenger crossing France has to cross the city by metro, and the busiest stations are short of room for more trains. Other cities have removed the same problem by running trains through.</p>
+
+<div class="block" id="why.terminals">
+  <h2>Four stations, four dead ends</h2>
+  <div class="tiles">
+    <div class="tile" style="--tc: var(--today)"><span class="n">4</span><span class="k">terminals for high-speed trains</span><span class="d">Gare du Nord, Gare de l'Est, Gare de Lyon and Montparnasse. Inside Paris, no track joins one to another for long-distance trains</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">118</span><span class="k">platform tracks in the four</span><span class="d">RER platforms included. Derived from published track lists, partly unverified[[tracks118]]</span></div>
+    <div class="tile"><span class="n">{{ m.conn.central | 1 }}<small>million</small></span><span class="k">passengers a year change station in Paris</span><span class="d">Derived from the last survey, in 2012-13, which counted 13,000 a day in the region[[survey]]</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">{{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }}<small>min</small></span><span class="k">from train to train</span><span class="d">Taken in this study for a change of station today <span class="tag assume">assumption</span> The range assumed is 45 to 70 minutes</span></div>
+  </div>
+  <div class="cols">
+    <div class="prose">
+      <p>High-speed trains (TGV) from the north arrive at Gare du Nord, from the east at Gare de l'Est, from the southeast at Gare de Lyon and from the Atlantic coast at Montparnasse. Suburban and regional trains end at the same four stations.</p>
+      <p>All four are <strong>terminals</strong>: the track stops at the end of the platform, and a train can only leave the way it came. A <strong>through station</strong> is the opposite: trains arrive at one end and leave by the other, without turning back.</p>
+      <p>Three things follow from the dead ends. A train holds its platform for a long time while it turns round. A traveller whose trip continues beyond Paris has to change station. And each line reaches only one corner of the city. The rest of this chapter takes them in turn.</p>
+      <details>
+        <summary><strong>Words used in this report</strong></summary>
+        <ul>
+          <li><strong>TGV:</strong> the French high-speed train. A full train is 400 m long; two coupled sets carry more than 1,000 passengers.</li>
+          <li><strong>RER:</strong> the five express lines, A to E, that already cross Paris underground. <strong>Suburban lines H, K, P, N and R</strong> do not: they end at the terminals.</li>
+          <li><strong>Regional express:</strong> trains from towns 50 to 250 km away (TER and Intercités), which also end at the terminals.</li>
+          <li><strong>Hall:</strong> the large room of a station where passengers wait before going to the platforms.</li>
+        </ul>
+      </details>
+    </div>
+    <figure class="fig">
+      <div class="fig-head"><strong>Four lines that stop short of each other</strong><span>Where the high-speed lines end today <span class="tag sketch">illustrative sketch</span></span></div>
+      <svg class="draw why-map" viewBox="0 0 380 312" role="img" aria-label="Sketch of Paris with four high-speed lines arriving from the north, the east, the southeast and the Atlantic coast. Each ends at its own station inside the city: Gare du Nord, Gare de l'Est, Gare de Lyon and Montparnasse. Dotted lines between the stations show the gap that passengers cross by metro.">
+        <ellipse class="ground" cx="190" cy="152" rx="150" ry="94"/>
+        <text class="lbl-muted" x="66" y="150">Paris</text>
+        <g class="why-gap">
+          <path d="M172 98 L140 196"/><path d="M172 98 L226 184"/><path d="M206 106 L226 184"/><path d="M206 106 L140 196"/><path d="M140 196 L226 184"/>
+        </g>
+        <path class="oldline" d="M148 8 L172 98"/>
+        <path class="oldline" d="M374 80 L206 106"/>
+        <path class="oldline" d="M350 296 L226 184"/>
+        <path class="oldline" d="M26 296 L140 196"/>
+        <circle class="struct" cx="172" cy="98" r="6.5"/><circle class="struct" cx="206" cy="106" r="6.5"/><circle class="struct" cx="226" cy="184" r="6.5"/><circle class="struct" cx="140" cy="196" r="6.5"/>
+        <text class="why-halo" x="162" y="94" text-anchor="end" font-weight="600">Gare du Nord</text>
+        <text class="why-halo" x="218" y="130" font-weight="600">Gare de l'Est</text>
+        <text class="why-halo" x="238" y="180" font-weight="600">Gare de Lyon</text>
+        <text class="why-halo" x="150" y="218" font-weight="600">Montparnasse</text>
+        <text x="184" y="160" text-anchor="middle" class="lbl-muted why-halo">by metro or RER</text>
+        <text x="160" y="20" font-weight="600">North</text><text class="lbl-muted" x="160" y="36">Lille, London, Brussels</text>
+        <text x="374" y="50" text-anchor="end" font-weight="600">East</text><text class="lbl-muted" x="374" y="66" text-anchor="end">Reims, Strasbourg</text>
+        <text x="322" y="292" text-anchor="end" font-weight="600">Southeast</text><text class="lbl-muted" x="322" y="308" text-anchor="end">Lyon, Marseille</text>
+        <text x="66" y="292" font-weight="600">Atlantic</text><text class="lbl-muted" x="66" y="308">Bordeaux, Rennes, Nantes</text>
+      </svg>
+      <figcaption>Not to scale. Gare du Nord and Gare de l'Est are 500 m apart.[[nordest]] The others are several kilometres from each other, with no track between them that long-distance trains can use.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div class="block" id="why.capacity">
+  <h2>A terminal uses its platforms badly, and the big ones are short of room</h2>
+  <p>A train that arrives at a terminal is emptied, checked, often cleaned and restocked, filled again, and sent back out across the tracks it came in on. At Montparnasse the nine tracks kept for high-speed trains give at most nine departures an hour: one train per track per hour.[[ae14]] A TGV that only stops needs 3 minutes, or 4 to 5 at the largest hubs.[[fnaut]] Through stations are planned for four to six long-distance trains an hour on each platform track: that is the plan for Stuttgart's new station, which is not yet open.[[bt19, dhz]] One that is in service, Zürich's Löwenstrasse station, handles about 460 trains a day on four tracks,[[zvv]] though the through trains that wait for connections there stand 6 to 9 minutes (derived from the departure boards; see <a class="xref" href="#zurich.results">Zürich</a>).[[zh_board_arr, zh_board_dep]]</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>The longer a train stands, the fewer trains a platform can take</strong><span>One platform track during one hour, kept free two thirds of the time <span class="tag sketch">illustrative sketch</span></span></div>
+    <div id="why-plat-cases"></div>
+    <div id="why-plat-slider"></div>
+    <div class="why-plat">
+      <div class="why-plat-read"><b id="why-plat-n"></b><span id="why-plat-txt"></span></div>
+      <div>
+        <div class="why-hour" id="why-plat-hour" role="img" aria-label="One hour on one platform track, with the minutes a train stands at the platform"></div>
+        <div class="why-hour-axis" aria-hidden="true"><span>0</span><span>15</span><span>30</span><span>45</span><span>60 min</span></div>
+      </div>
+    </div>
+    <p class="note" id="why-plat-note"></p>
+    <figcaption>Each block is one train at the platform. The gaps follow the rule this study uses for its own stations: a track is occupied one third of the hour, so that a late train finds it free <span class="tag assume">assumption</span>. Applied to a 20-minute turn-round, the rule gives one train an hour, which is what each high-speed track at Montparnasse delivers. Standing times: stops and reversals,[[fnaut]] turning a train at a platform,[[rffcdg]] the quickest low-cost turn-round.[[ouigo]] How the rule sizes the new stations is in <a class="xref" href="#service.platforms">how many platforms</a>.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Gare du Nord was turned down as the terminal of the airport express</strong> for lack of capacity.[[cdgx]] It already handles 2,200 trains and 700,000 passengers a day.[[nordkit]]</li>
+    <li><strong>Gare de Lyon must find room.</strong> The high-speed line to Lyon is being upgraded from 13 to 16 trains an hour each way by 2030, and the station has to take them.[[lgvse]]</li>
+    <li><strong>The tracks cut the city.</strong> Approach tracks and platforms run from each terminal out to the ring road and divide the neighbourhoods on both sides. What the project would free is in <a class="xref" href="#works.surface">changes to today's stations</a>.</li>
+  </ul>
+</div>
+
+<div class="block" id="why.crossing">
+  <h2>Crossing France means crossing Paris by metro</h2>
+  <p>A traveller from Lille to Lyon gets off at Gare du Nord, takes the RER or the metro to Gare de Lyon and boards a second train. The last survey, in 2012-13, counted 13,000 passengers a day changing between two stations in the region.[[survey]] Scaled by the growth of high-speed traffic since, that is about {{ m.conn.central | 1 }} million a year (derived; no newer count is published). With the stations joined, the same traveller stays on the train, or changes on the platforms of one station.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Lille to Lyon: {{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }} minutes between trains today, {{ m.connecting.central.pairs['Lyon-Nord'].direct | 0 }} on a through train</strong><span>Minutes in Paris, from the arrival of the train from Lille. Move the slider to follow the three passengers</span></div>
+    <div id="why-trip-slider"></div>
+    <div class="why-trip" id="why-trip"></div>
+    <ul class="legend" id="why-trip-legend"></ul>
+    <figcaption>All times are assumptions of this study, not measurements: {{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }} minutes for a change of station today, {{ m.TH.L | 0 }} minutes for a TGV between Paris Nord-Est and Gare de Lyon with its stop, and {{ m.connecting.central.pairs['Lyon-Nord'].change_clock - m.TH.L | 1 }} minutes to change train inside one station. The other pairs of lines are in <a class="xref" href="#crossing.tgv">crossing Paris by TGV</a>.</figcaption>
+  </figure>
+  <p>Two other groups of passengers pay for the dead ends.</p>
+  <ul>
+    <li><strong>Each traveller has one station to go to.</strong> A Parisian leaving for Bordeaux must reach Montparnasse, wherever in the city the trip starts. From the north-east of Paris that is a long metro ride with changes. <a class="xref" href="#access">Reaching the station</a> measures it.</li>
+    <li><strong>Suburban lines stop at the edge of the centre.</strong> Lines H, K, P, N and R each end at a terminal. A commuter from the northern suburbs who works in the south of Paris changes to the metro at Gare du Nord. <a class="xref" href="#crossing.regional">Regional and suburban passengers</a> gives the numbers.</li>
+  </ul>
+  <div class="callout"><b>Other cities have done it</b><p>Zürich put four through tracks under its terminal, Vienna replaced two terminals with one through station, and Stuttgart is replacing 16 terminal platforms with 8 through tracks.[[zvv, vienna, bt19]] Paris itself did it for part of its suburban network with the RER. The annexes on <a class="xref" href="#zurich">Zürich</a> and <a class="xref" href="#elizabeth">London</a> give the record of two of them, and <a class="xref" href="#project">the next chapter</a> describes what would be built in Paris.</p></div>
+</div>

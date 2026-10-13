@@ -1,0 +1,10 @@
+{
+ "lines": {
+  "N": {"name": "North", "key": "Nord", "city": "Lille", "terminal": "Gare du Nord", "stops": ["Paris Nord-Est"]},
+  "E": {"name": "East", "key": "Est", "city": "Strasbourg", "terminal": "Gare de l’Est", "stops": ["Paris Nord-Est"]},
+  "SE": {"name": "Southeast", "key": "Lyon", "city": "Lyon", "terminal": "Gare de Lyon", "stops": ["Gare de Lyon", "Paris Nord-Est"]},
+  "A": {"name": "Atlantic", "key": "Montparnasse", "city": "Bordeaux", "terminal": "Montparnasse", "stops": ["Montparnasse", "Paris Nord-Est"]}
+ },
+ "second_stop": {"H": "Gare de Lyon", "K": "Gare de Lyon", "P": "Montparnasse", "N": "Paris Nord-Est", "R": "Paris Nord-Est", "TER Nord": "Gare de Lyon or Montparnasse", "TER Est": "Gare de Lyon or Montparnasse", "TER Lyon": "Paris Nord-Est", "TER Montparnasse": "Paris Nord-Est"},
+ "ter_names": {"TER Nord": "Regional express, north", "TER Est": "Regional express, east", "TER Lyon": "Regional express, southeast", "TER Montparnasse": "Regional express, Atlantic"}
+}

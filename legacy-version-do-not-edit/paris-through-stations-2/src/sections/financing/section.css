@@ -1,0 +1,8 @@
+#financing .fin-sl, #financing #fin-c-growth { display: flex; flex-direction: column; gap: 12px }
+#financing #fin-controls { gap: 12px }
+#financing #fin-controls h4 { margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--rule) }
+#financing #fin-controls h4:first-child { border-top: 0; padding-top: 0; margin-top: 0 }
+#financing .fin-out { display: flex; flex-direction: column; gap: 12px; min-width: 0 }
+#financing .fin-out .tiles { grid-template-columns: minmax(0, 1fr) }
+#financing .fin-out .stackrow { grid-template-columns: minmax(0, 1fr) max-content }
+#financing .fin-out .stackrow .lab { grid-column: 1 / -1 }

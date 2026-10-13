@@ -1,0 +1,94 @@
+/* Access map. Layout: three tiles switch the view; the map sits beside the legend, the statistics and the read-out of one point.
+   Colours: minutes use the shared --seq ramp; minutes saved use a ramp mixed from --good and the land colour, so that
+   "no change" stays empty and a larger saving is stronger in both themes. No class for "slower" exists. */
+#access {
+  --acc-g1: color-mix(in oklab, var(--good) 20%, var(--land));
+  --acc-g2: color-mix(in oklab, var(--good) 42%, var(--land));
+  --acc-g3: color-mix(in oklab, var(--good) 68%, var(--land));
+  --acc-g4: var(--good);
+  --acc-g5: color-mix(in oklab, var(--good) 58%, var(--ink));
+}
+#access .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+#access .acc-stage { display: grid; grid-template-columns: minmax(0, 1fr) 310px; grid-template-areas: "map side" "read side"; gap: 16px 18px; align-items: start }
+#access .acc-mapfig { grid-area: map }
+#access .acc-side { grid-area: side }
+#access .acc-read-card { grid-area: read }
+#access .acc-mapfig { padding: 12px; gap: 8px }
+#access .acc-map { border-radius: 4px; min-width: 0 }
+#access .acc-map:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
+#access .acc-map svg { width: 100%; height: auto; touch-action: manipulation }
+#access .acc-pick { font-size: 14px; color: var(--text) }
+#access .acc-pick b { font-variant-numeric: tabular-nums }
+#access .acc-side { display: flex; flex-direction: column; gap: 14px; min-width: 0 }
+#access .acc-hint { color: var(--muted); font-size: 13px }
+
+/* base map */
+#access .acc-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1.4 }
+#access .acc-park { fill: var(--park); stroke: var(--land-edge); stroke-width: 1 }
+#access .acc-arr { fill: none; stroke: var(--arr-edge); stroke-width: 1 }
+#access .acc-arrn { font-size: 13px; fill: var(--muted); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--land); stroke-width: 3px; opacity: .9 }
+
+/* dots */
+#access .acc-dot { stroke: var(--dot-edge); stroke-width: .8; cursor: pointer }
+#access .acc-mark circle { fill: none }
+#access .acc-mark .halo { stroke: var(--surface); stroke-width: 6 }
+#access .acc-mark .ring { stroke: var(--ink); stroke-width: 2.6 }
+#access .acc-min .b0 { fill: var(--seq-0) } #access .acc-min .b1 { fill: var(--seq-1) } #access .acc-min .b2 { fill: var(--seq-2) }
+#access .acc-min .b3 { fill: var(--seq-3) } #access .acc-min .b4 { fill: var(--seq-4) } #access .acc-min .b5 { fill: var(--seq-5) }
+#access .acc-sav .b0 { fill: var(--land); stroke: var(--neutral-mark); stroke-width: 1.3 }
+#access .acc-sav .b1 { fill: var(--acc-g1) } #access .acc-sav .b2 { fill: var(--acc-g2) } #access .acc-sav .b3 { fill: var(--acc-g3) }
+#access .acc-sav .b4 { fill: var(--acc-g4) } #access .acc-sav .b5 { fill: var(--acc-g5) }
+
+/* stations: a filled square is a hall where every train for the chosen direction stops, an outlined one where half of them stop */
+#access .acc-stn rect { fill: var(--surface); stroke: var(--ink); stroke-width: 2.4; transform-box: fill-box; transform-origin: center }
+#access .acc-stn.on rect { fill: var(--ink) }
+#access .acc-stn.off rect { stroke: var(--muted); stroke-width: 1.6 }
+#access .acc-stn text { font-size: 19px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; pointer-events: none }
+#access .acc-stn.off text { fill: var(--muted); font-weight: 500 }
+#access .acc-stn text.acc-hall { font-size: 16px; font-weight: 500 }
+#access .acc-ne-out { fill: none; stroke: var(--ink); stroke-width: 27; stroke-linecap: round }
+#access .acc-ne-in { fill: none; stroke: var(--surface); stroke-width: 22; stroke-linecap: round }
+#access svg.acc-today .acc-ne-proj, #access svg:not(.acc-today) .acc-ne-today { display: none }
+
+/* legend with the number of points in each class */
+#access .acc-legend { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px }
+#access .acc-legend li { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 8px; align-items: center }
+#access .acc-legend i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--dot-edge); background: var(--c) }
+#access .acc-legend i.none { background: var(--land); border: 1.5px solid var(--neutral-mark) }
+#access .acc-legend b { font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums }
+#access .acc-legend li.acc-legend-note { display: block; color: var(--muted); font-size: 13px; margin-top: 2px }
+
+/* read-out of one point */
+#access .acc-read { display: flex; flex-direction: column; gap: 10px; font-size: 14px }
+#access .acc-dirs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px }
+#access .acc-dir { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid var(--rule); min-width: 0 }
+#access .acc-dir.cur { border-top: 3px solid var(--accent); padding-top: 6px }
+#access .acc-dir-h { display: flex; justify-content: space-between; gap: 10px; align-items: baseline }
+#access .acc-dir-h b { font-family: var(--display); font-size: 17px }
+#access .acc-dir-h span { font-size: 13px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums }
+#access .acc-dir-h span.gain { color: var(--ink); font-weight: 600 }
+#access .acc-dir p b { font-variant-numeric: tabular-nums }
+#access .acc-dir ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; color: var(--text) }
+#access .acc-sum { border-top: 2px solid var(--rule); padding-top: 8px; font-weight: 500; color: var(--ink) }
+
+/* tick in the legend of the arrondissement chart */
+#access .legend i.acc-tick { width: 2px; height: 16px; border-radius: 0; background: var(--ink); margin: 0 5px }
+
+@media (max-width: 1140px) {
+  #access .acc-stage { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "map map" "legend stats" "read read" }
+  #access .acc-side { display: contents }
+  #access .acc-legend-card { grid-area: legend } #access .acc-stats-card { grid-area: stats }
+}
+@media (max-width: 620px) {
+  #access .acc-stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "map" "legend" "read" "stats" }
+  #access .tiles { grid-template-columns: minmax(0, 1fr) }
+  #access .tile { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 10px }
+  #access .tile .d { flex-basis: 100% }
+  #access .acc-mapfig { padding: 8px }
+}
+/* narrow map (class set by the script from the width of the map itself) */
+#access svg.acc-narrow .acc-stn text { font-size: 24px; stroke-width: 6px }
+#access svg.acc-narrow .acc-stn text.acc-hall, #access svg.acc-narrow .acc-arrn { display: none }
+#access svg.acc-narrow .acc-stn rect { transform: scale(1.25) }
+#access svg.acc-narrow .acc-ne-out { stroke-width: 31 } #access svg.acc-narrow .acc-ne-in { stroke-width: 25 }
+#access svg.acc-narrow .acc-mark .halo { stroke-width: 7 } #access svg.acc-narrow .acc-mark .ring { stroke-width: 3.2 }

@@ -1,0 +1,23 @@
+{
+  "title": "Paris Through Stations",
+  "sections": [
+    {"id": "summary",   "group": "Report",  "nav": "Summary",                "heading": "Three through stations under Paris"},
+    {"id": "why",       "group": "Report",  "nav": "The problem",            "heading": "Why Paris stops every train"},
+    {"id": "project",   "group": "Report",  "nav": "The project",            "heading": "What would be built"},
+    {"id": "stations",  "group": "Report",  "nav": "The three stations",     "heading": "How the stations would be laid out"},
+    {"id": "works",     "group": "Report",  "nav": "Works and stages",       "heading": "Works, changes to today's stations, and stages"},
+    {"id": "service",   "group": "Report",  "nav": "Trains and timetable",   "heading": "Which trains run where"},
+    {"id": "access",    "group": "Report",  "nav": "Reaching the station",   "heading": "How long to reach a station where your train stops"},
+    {"id": "crossing",  "group": "Report",  "nav": "Crossing Paris",         "heading": "Crossing Paris, by TGV and by regional train"},
+    {"id": "cost",      "group": "Report",  "nav": "Cost",                   "heading": "What it would cost to build"},
+    {"id": "traffic",   "group": "Report",  "nav": "Traffic",                "heading": "How many more passengers"},
+    {"id": "financing", "group": "Report",  "nav": "Financing",              "heading": "Paying to run it, paying to build it"},
+    {"id": "economy",   "group": "Report",  "nav": "Economic return",        "heading": "What the country gets back"},
+    {"id": "risks",     "group": "Report",  "nav": "Risks and next steps",   "heading": "What could change the answer, and what to verify"},
+    {"id": "zurich",    "group": "Annexes", "nav": "Zürich main station",    "heading": "Zürich: a terminus that became a through station"},
+    {"id": "elizabeth", "group": "Annexes", "nav": "Elizabeth line, London", "heading": "The Elizabeth line: joining two sides of a capital"},
+    {"id": "pulse",     "group": "Annexes", "nav": "The Swiss timetable",    "heading": "The Swiss pulse: every train meets every train"},
+    {"id": "method",    "group": "Annexes", "nav": "Method and assumptions", "heading": "How the numbers are made"},
+    {"id": "sources",   "group": "Annexes", "nav": "Sources",                "heading": "Sources"}
+  ]
+}
