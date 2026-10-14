@@ -238,10 +238,10 @@ PTS.section('zurich', function (root) {
   const bench = function (label, v, color, tip, hl) { return { label: label, value: v, color: color, hl: !!hl, tip: '<b>' + label + '</b><br>' + F.n(v, 1) + ' trains an hour per track<br><small>' + tip + '</small>' }; };
   C.bars($('#zh-bench-chart'), { fmt: function (v) { return F.n(v, 1); }, max: 7, rows: [
     bench('Zürich, Löwenstrasse: average over the day', zhPerTrack, 'var(--today)', '460 trains a day on 4 tracks, over 19 to 20 hours of service (derived)'),
-    bench('Paris: what the rule allows on one track', M.per_track, 'var(--s1)', 'stop of ' + F.n(M.stop_min, 0) + ' min, ' + F.n(M.clear_min, 0) + ' min to clear, ' + F.pct(M.util) + ' of the cycle usable (assumptions)', true),
-    bench('Paris Gare de Lyon, lines full', S.lyon_load, 'var(--s1)', F.n(S.lyon_stops, 0) + ' stops an hour on ' + F.n(S.lyon_tracks_calc, 0) + ' tracks'),
-    bench('Paris Montparnasse, lines full', S.montparnasse_load, 'var(--s1)', F.n(S.montparnasse_stops, 0) + ' stops an hour on ' + F.n(S.montparnasse_tracks_calc, 0) + ' tracks'),
-    bench('Paris Nord-Est, lines full', S.nordest_load, 'var(--s1)', F.n(S.nordest_stops, 1) + ' stop equivalents an hour on ' + F.n(S.nordest_tracks_calc, 0) + ' tracks, the one turning train counted as ' + F.n(S.rev_equiv, 2) + ' stops')] });
+    bench('Paris: what the rule allows on one track', M.per_track, 'var(--s1)', 'stop of ' + F.n(M.stop_min, 0) + ' min, ' + F.n(M.reserve_min, 0) + ' min held for a late train, ' + F.n(M.clear_min, 0) + ' min to clear (assumptions)', true),
+    bench('Paris Gare de Lyon, lines full', S.lyon_load, 'var(--s1)', F.n(S.lyon_stops, 0) + ' stops an hour on ' + F.n(2 * M.tracks_per_direction, 0) + ' tracks'),
+    bench('Paris Montparnasse, lines full', S.montparnasse_load, 'var(--s1)', F.n(S.montparnasse_stops, 0) + ' stops an hour on ' + F.n(2 * M.tracks_per_direction, 0) + ' tracks'),
+    bench('Paris Nord-Est, lines full', S.nordest_load, 'var(--s1)', F.n(S.nordest_stops, 1) + ' stop equivalents an hour on ' + F.n(2 * M.tracks_per_direction, 0) + ' tracks, the one turning train counted as ' + F.n(S.rev_equiv, 2) + ' stops')] });
 
   // ================================================================ 5. size against the Paris stations
   const TK = M.cost.tracks, DT = M.cost.detail;

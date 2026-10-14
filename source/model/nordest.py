@@ -33,6 +33,10 @@ Version 2 (after the independent check of 12 October 2026). Changes from version
 Version 3.3 (13 October 2026): suburban lines paired north (H, K) with the Atlantic (N) and east (P) with the south-east (R);
 eastern regional express trains run on to Gare de Lyon; suburb-to-suburb trips across Paris counted (cross_paris); line N traffic
 corrected (30.4 M, not 27.3).
+Version 3.5 (15 October 2026): the 12-minute beat of the timetable annex. A TGV stops 7 minutes and its track is held 2 more for a
+late train, then stays empty 3, so a track takes 5 trains an hour; every run between two of the three stations takes 6 minutes, the
+direct link included, so a ride between two Paris stops is 13 minutes and a passenger who stays on a direct train across Paris spends
+20 minutes in Paris (both stops counted); regional trains take the same 6-minute run plus a 1-minute stop.
 Every assumption that is not sourced is marked ASSUMPTION.
 """
 import csv, json, statistics as S, collections, math
@@ -41,9 +45,10 @@ from estimate import E, W, PSH, SH, gain, loss, VOT_LD, VOT_IDF, VOT_TER, ELAST,
 import os
 M = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'inputs')      # model inputs: access times by point and by commune
 KEYS = ['Nord', 'Est', 'Lyon', 'Montparnasse']
-TH = {'L': 10.0, 'M': 11.0, 'LM': 6.0}  # TGV ride between Nord-Est and Lyon / Montparnasse, and Montparnasse to Lyon by the link, stop included (ASSUMPTION)
+TH = {'L': 13.0, 'M': 13.0, 'LM': 13.0}  # TGV ride between two Paris stations, stop included: a 6-minute run between any two of them and a 7-minute stop,
+                                         # the 12-minute beat of the timetable annex (ASSUMPTION: the 6-minute run is a design target; 4.3 to 5.0 technically)
 REVERSE = 8.0                           # minutes for the rare train that turns back at Nord-Est (ASSUMPTION; 3 to 12 in French practice)
-TR = {'L': 6.0, 'M': 7.0}              # regional train ride between the same stations (ASSUMPTION: 5 to 6 km at 60 km/h plus a stop)
+TR = {'L': 7.0, 'M': 7.0}              # regional train ride between the same stations: the same 6-minute run, plus a 1-minute stop (ASSUMPTION)
 ring = lambda d: 'Paris' if d == '75' else ('Petite couronne' if d in ('92', '93', '94') else 'Grande couronne')
 DATA = {}
 for tag, pf, rf in (('clock', 'points.csv', 'regional.json'), ('eq', 'points_weighted.csv', 'regional_weighted.json'), ('comfort', 'points_comfort.csv', 'regional_comfort.json')):
@@ -151,7 +156,7 @@ def city_pair(ta, tb, p, keep=STATION_KEEP):
     change = ta + tb + (ride or 0.0) + T_NEW
     out = {'today': old, 'change': change, 'transfers': n, 'mult_change': keep / CHANGE_KEEP ** n * tf(change)}
     if ride is not None:
-        out['direct'] = ta + tb + ride; out['mult_direct'] = 1 / CHANGE_KEEP ** n * tf(out['direct'])
+        out['direct'] = ta + tb + ride + STOP_MIN; out['mult_direct'] = 1 / CHANGE_KEEP ** n * tf(out['direct'])
     return out
 
 
@@ -184,7 +189,7 @@ def connecting(c=None, evidence=UPLIFT_DIRECT, tag='eq', direct_share=DIRECT_SHA
         old_eq = 2 * OLD_CLOCK[frozenset(p)] if weights == 'official' else CHANGE_METRO[0] * OLD_CLOCK[frozenset(p)] / T_OLD
         old = CONN_TRAIN + old_eq + ae
         ride = pair_ride(ps); served = ride is not None
-        t_direct, t_change = ride, (ride or 0.0) + chg
+        t_direct, t_change = (ride + STOP_MIN if served else None), (ride or 0.0) + chg     # a direct train stops at both Paris stations
         parts = [(direct_share, t_direct, True), (1 - direct_share, t_change, False)] if served else [(1.0, t_change, False)]
         ax = axis['-'.join(p)]
         for sh, repl, is_direct in parts:
@@ -384,10 +389,11 @@ def second_station(hall='both', thr=SECOND_MIN):
 # ------------------------------------------------------------------ 4. service plan and station sizes
 HOUR_TODAY = {'Atlantic': 12, 'Southeast': 12, 'North': 8, 'East': 4}      # TGVs per hour and direction in a standard busy hour (ASSUMPTION)
 HOUR_FULL = {'Atlantic': 15, 'Southeast': 16, 'North': 8, 'East': 4}       # southern lines at their planned capacity (sourced); north and east unchanged (ASSUMPTION)
-STOP_MIN = 4.0                          # minutes a TGV stands at a through platform (ASSUMPTION; 3 is the TGV norm, 4 to 5 at the largest hubs)
+STOP_MIN = 7.0                          # minutes a TGV stands at a through platform (ASSUMPTION, as in the timetable annex; Lyon Part-Dieu plans 6 for most TGVs)
 CLEAR_MIN = 3.0                         # minutes from a departure to the next arrival on the same track (ASSUMPTION)
-UTIL = 0.65                             # share of that cycle a timetable can use and still absorb late trains (ASSUMPTION; 60 to 75% in practice)
-PER_TRACK = 60 * UTIL / (STOP_MIN + CLEAR_MIN)                             # trains a platform track takes an hour: about 5.6
+RESERVE_MIN = 2.0                       # minutes the track stays held after the planned departure, for a late train (ASSUMPTION, as in the timetable annex)
+UTIL = (STOP_MIN + CLEAR_MIN) / (STOP_MIN + RESERVE_MIN + CLEAR_MIN)      # share of each 12-minute place used by the stop and the clearing time
+PER_TRACK = 60 * UTIL / (STOP_MIN + CLEAR_MIN)                             # trains a platform track takes an hour: 5, one every 12 minutes
 TRACKS_PER_DIRECTION = 3                # TGV platform tracks each way at every station (ASSUMPTION: two would do on paper, the third takes late trains)
 
 

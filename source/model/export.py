@@ -23,7 +23,7 @@ def main():
     m['access'] = {k: d['access'][k] for k in ('central', 'ride', 'no_choice', 'nord_hall', 'deep2')}
     m['tripend_shares'] = N.SH; m['vot'] = {'long_distance': N.VOT_LD, 'regional_express': N.VOT_TER, 'paris_region': N.VOT_IDF}; m['elasticity'] = N.ELAST
     m['hour_today'] = N.HOUR_TODAY; m['hour_full'] = N.HOUR_FULL; m['reverse'] = N.REVERSE; m['per_track'] = N.PER_TRACK
-    m['stop_min'] = N.STOP_MIN; m['clear_min'] = N.CLEAR_MIN; m['util'] = N.UTIL; m['tracks_per_direction'] = N.TRACKS_PER_DIRECTION
+    m['stop_min'] = N.STOP_MIN; m['reserve_min'] = N.RESERVE_MIN; m['run_min'] = N.TH['L'] - N.STOP_MIN; m['clear_min'] = N.CLEAR_MIN; m['util'] = N.UTIL; m['tracks_per_direction'] = N.TRACKS_PER_DIRECTION
     # the corridor lengths of the project map must be the model's
     proj = json.load(open(os.path.join(HERE, '..', 'src', 'sections', 'project', 'data.json')))
     for c in proj['corridors']:
