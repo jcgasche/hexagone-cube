@@ -294,8 +294,10 @@ def anneal(P, seed, steps, feasible_only=False, hour=None, D=None, **kw):
     if not feasible_only:                                              # start from a timetable that keeps the rules, then never break them
         p = anneal(P, seed, 50000, feasible_only=True, hour=hour, D=D, headway=kw.get('headway'))
     def f(q):
+        if feasible_only:                                              # only the rules: no need to measure passengers' time
+            pen = penalty(q.trains(), kw.get('headway')); return 50 * pen, pen
         s, pen = score(q, **kw)
-        return (50 * pen if feasible_only else s), pen
+        return s, pen
     cur, pen = f(p); best, bestv = p.copy(), cur
     T0, T1 = 6.0, 0.02
     for i in range(steps):
