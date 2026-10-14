@@ -123,7 +123,7 @@ PTS.section('cost', function (root) {          // runs once, the first time the 
 summary
 why        why.terminals why.capacity why.crossing
 project    project.network project.networks project.numbers project.parks
-stations   stations.nordest stations.lyon stations.montparnasse stations.depth stations.boarding
+stations   stations.nordest stations.lyon stations.montparnasse stations.halls stations.depth stations.boarding
 works      works.methods works.surface works.stages works.timeline
 service    service.hour service.pairing service.link service.platforms
 access     access.map access.measure access.findings

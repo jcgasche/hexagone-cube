@@ -1,20 +1,118 @@
 {
-  "_note": "Sourced dimensions and the assumptions of the walking-time illustration. The walk figures repeat the constants of model/nordest.py (extras.hall_today and extras.hall_deep), which model.json gives only as totals.",
-  "halls_apart": 500,
-  "magenta": {"tracks": 4, "length": 225, "width": 54, "height": 13.5, "depth": 30},
-  "rerd_depth": 20,
-  "rera_depth": 25,
-  "london": 1,
-  "walk": {"gates": 1.0, "walk_speed": 1.25, "esc_speed": 0.65, "depth": 35, "esc_per_m": 2, "landings": 0.5, "today_m": 200, "deep_m": 50, "platform": 400},
-  "depths": [
-    {"name": "Zürich, Löwenstrasse, 2014", "depth": 16, "kind": "built", "what": "4 tracks, 16 m under the terminal tracks"},
-    {"name": "Paris, RER D tunnel at Gare de Lyon", "depth": 20, "kind": "built", "what": "Depth of the tunnel between Châtelet and Gare de Lyon"},
-    {"name": "Bologna, high-speed station", "depth": 23, "kind": "built", "what": "4 tracks"},
-    {"name": "Marseille Saint-Charles, planned", "depth": 25, "kind": "plan", "what": "4 tracks, platforms of 406 m"},
-    {"name": "Paris, Magenta and Haussmann-Saint-Lazare, 1999", "depth": 30, "kind": "built", "what": "RER E, 4 tracks each, about 30 m"},
-    {"name": "Lyon Part-Dieu, study of 2015", "depth": 31, "kind": "plan", "what": "4 tracks, rails 31 m down"},
-    {"name": "This study, all three stations", "depth": 35, "kind": "here", "what": "Illustration used for the walking time; not a design. Platforms of 400, 350 and 225 m"},
-    {"name": "Paris, Porte Maillot, 2024", "depth": 35, "kind": "built", "what": "RER E, 2 tracks; depth of the excavation"},
-    {"name": "Munich, Marienhof, under construction", "depth": 40, "kind": "plan", "what": "About 40 m"}
-  ]
+ "_note": "Sourced dimensions and the assumptions of the walking-time illustration. The walk figures repeat the constants of model/nordest.py (extras.hall_today and extras.hall_deep), which model.json gives only as totals.",
+ "halls_apart": 500,
+ "magenta": {
+  "tracks": 4,
+  "length": 225,
+  "width": 54,
+  "height": 13.5,
+  "depth": 30
+ },
+ "rerd_depth": 20,
+ "rera_depth": 25,
+ "london": 1,
+ "walk": {
+  "gates": 1.0,
+  "walk_speed": 1.25,
+  "esc_speed": 0.65,
+  "depth": 35,
+  "esc_per_m": 2,
+  "landings": 0.5,
+  "today_m": 200,
+  "deep_m": 50,
+  "platform": 400
+ },
+ "depths": [
+  {
+   "name": "Zürich, Löwenstrasse, 2014",
+   "depth": 16,
+   "kind": "built",
+   "what": "4 tracks, 16 m under the terminal tracks"
+  },
+  {
+   "name": "Paris, RER D tunnel at Gare de Lyon",
+   "depth": 20,
+   "kind": "built",
+   "what": "Depth of the tunnel between Châtelet and Gare de Lyon"
+  },
+  {
+   "name": "Bologna, high-speed station",
+   "depth": 23,
+   "kind": "built",
+   "what": "4 tracks"
+  },
+  {
+   "name": "Marseille Saint-Charles, planned",
+   "depth": 25,
+   "kind": "plan",
+   "what": "4 tracks, platforms of 406 m"
+  },
+  {
+   "name": "Paris, Magenta and Haussmann-Saint-Lazare, 1999",
+   "depth": 30,
+   "kind": "built",
+   "what": "RER E, 4 tracks each, about 30 m"
+  },
+  {
+   "name": "Lyon Part-Dieu, study of 2015",
+   "depth": 31,
+   "kind": "plan",
+   "what": "4 tracks, rails 31 m down"
+  },
+  {
+   "name": "This study, all three stations",
+   "depth": 35,
+   "kind": "here",
+   "what": "Illustration used for the walking time; not a design. Platforms of 400, 350 and 225 m"
+  },
+  {
+   "name": "Paris, Porte Maillot, 2024",
+   "depth": 35,
+   "kind": "built",
+   "what": "RER E, 2 tracks; depth of the excavation"
+  },
+  {
+   "name": "Munich, Marienhof, under construction",
+   "depth": 40,
+   "kind": "plan",
+   "what": "About 40 m"
+  }
+ ],
+ "halls": {
+  "_note": "Passenger space today and with the project. Sourced: shed and shop areas, passengers (see sources.json of the stations section). Assumptions: the waiting area today is 10 to 20% of the hall length (estimate from plans, not measured); one mezzanine across the station above the tracks, 30 m deep, as wide as the tracks at the width per track of Magenta (13.5 m).",
+  "wait_share": [
+   0.1,
+   0.2
+  ],
+  "mezz_depth": 30,
+  "track_width": 13.5,
+  "nord": {
+   "shed_m2": 36000,
+   "shed_w": 70,
+   "shops_m2": 5214,
+   "shops_n": 74,
+   "pax24": 291.7
+  },
+  "lyon": {
+   "hall1_m2": 9160,
+   "hall1_dims": [
+    213,
+    43
+   ],
+   "shops_m2": 5775,
+   "shops_add": 3000,
+   "pax24": 144.6
+  },
+  "montparnasse": {
+   "shops_gla": 19000,
+   "shops_n": 120,
+   "shops_before": 6000,
+   "pax24": 86.3,
+   "garden_ha": 3.4
+  },
+  "est": {
+   "shops_m2": 5500,
+   "pax24": 53.9
+  }
+ }
 }

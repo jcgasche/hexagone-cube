@@ -73,5 +73,45 @@
   "publisher": "Wikipedia (English), Berlin Hauptbahnhof",
   "about": "Berlin main station: 8 through tracks on the lower level, about 15 m below street level (unverified)",
   "url": "https://en.wikipedia.org/wiki/Berlin_Hauptbahnhof"
+ },
+ "st_cite_nord": {
+  "publisher": "Cité de l'architecture et du patrimoine, Gare du Nord, 2017",
+  "about": "Gare du Nord: main hall 70 m wide and 38 m high; the halls cover 36,000 m²",
+  "url": "https://www.citedelarchitecture.fr/sites/default/files/documents/2017-09/fo_garedunord_def.pdf"
+ },
+ "st_cdac_nord": {
+  "publisher": "Paris commercial planning commission (CDAC), decision of September 2022",
+  "about": "Gare du Nord: shop sales area raised from 3,878 to 5,214 m², 73 shops and kiosks and one food store",
+  "url": "https://www.prefectures-regions.gouv.fr/irecontenu/telechargement/99018/631107/file/recueil-75-2022-717-recueil-des-actes-administratifs-special%20du%2005.10.2022.pdf"
+ },
+ "st_cdac_lyon": {
+  "publisher": "Paris commercial planning commission (CDAC), decision of 31 March 2023",
+  "about": "Gare de Lyon: shop sales area raised from 3,276 to 5,775 m²",
+  "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/ile-de-france/irecontenu/telechargement/104531/662812/file/recueil-75-2023-204-recueil-des-actes-administratifs-special%20du%2005.04.2023.pdf"
+ },
+ "st_gc_lyon25": {
+  "publisher": "SNCF Gares & Connexions, press release, 27 November 2025",
+  "about": "Gare de Lyon, works 2025 to 2029: 3,000 m² more shops and 2,000 m² more space to move around; 145 million visitors a year",
+  "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/irecontenu/telechargement/133019/975830/file/Communiqu%C3%A9%20de%20presse%20SNCF%20Gares%20%26%20Connexions_Gare%20de%20Lyon%20se%20m%C3%A9tamorphose%20c%C3%B4t%C3%A9%20Seine_27.11.pdf"
+ },
+ "st_altarea": {
+  "publisher": "Altarea, press kit, 24 September 2021",
+  "about": "Montparnasse renovation: from 6,000 m² and 57 units to 120 shops, services and restaurants on 19,000 m²",
+  "url": "https://altarea.com/wp-content/uploads/communiques/Dossier%20de%20Presse%20-%20Inauguration%20Gare%20Paris-Montparnasse-2021-09-24.pdf"
+ },
+ "st_sncf_freq": {
+  "publisher": "SNCF open data, station footfall",
+  "about": "Passengers and visitors per station, 2024: Nord 291.7 million, Lyon 144.6, Montparnasse 86.3, Est 53.9",
+  "url": "https://ressources.data.sncf.com/explore/dataset/frequentation-gares/"
+ },
+ "st_inquiry_nord": {
+  "publisher": "Public inquiry, Gare du Nord, conclusions of the commission, 2020",
+  "about": "Gare du Nord designed for 500,000 passengers a day, takes more than 700,000",
+  "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/ile-de-france/irecontenu/telechargement/67502/441504/file/2-Conclusions%20Gare%20du%20Nord.pdf"
+ },
+ "st_apur_montp": {
+  "publisher": "Apur, Montparnasse station district, March 2011",
+  "about": "Montparnasse: the cross-platform concourse largely taken up by waiting passengers",
+  "url": "https://www.apur.org/sites/default/files/documents/quartier_gares_parisiennes_montparnasse.pdf"
  }
 }
