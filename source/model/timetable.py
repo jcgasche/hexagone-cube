@@ -38,6 +38,9 @@ HEADWAY = 3                           # minutes between two trains entering, or 
 CHANGE_SAME, CHANGE_OTHER = 4, 6      # minutes for a change between trains going the same way, and to the other direction (ASSUMPTION;
                                       # Zürich sells 4 across one platform and uses 7 as the standard)
 EXTRA_MAX = 3                         # most extra minutes a train may be held at one stop
+LONDON_PRE = 10                       # minutes the London track at Nord-Est is closed off before a train to London arrives, so that passengers
+                                      # checked in the control hall wait on the sealed platform and board in a normal stop (ASSUMPTION)
+LONDON_TRACK = 3                      # the Nord-Est track, on the side of trains to the north, that is closed off for London departures
 # run times between the stations, without the stop. The model's rides include a stop of STOP minutes (nordest.TH).
 # A check from the length of each tunnel: start, run at 100 km/h, stop; 0.4 m/s2 to start, 0.5 m/s2 to brake, 7% margin (ASSUMPTION).
 V, ACC, BRK, MARGIN = 100 / 3.6, 0.4, 0.5, 1.07
@@ -110,12 +113,20 @@ class Pattern:
 
     def trains(self):
         out = []
+        # London trains: one an hour each way, on the first south-east to north path of the hour (Marseille or Lyon to London) and
+        # the first north to south-east path (London to Lyon or Marseille). Towards London the train stops at Nord-Est on the one
+        # track that can be closed off for border checks, closed LONDON_PRE minutes before it arrives; from London it stops as any other.
+        # The train keeps the minutes of its path: a longer stop would push its departure into the path of the next train.
+        ldn = set()
+        for r in ('SN', 'NS'):
+            cells = sorted(c for c, v in self.lab.items() if v == 'N' and self.slots[c[0]]['r'] == r)
+            if cells: ldn.add(cells[0])
         for i, s in enumerate(self.slots):
             (s1, d1), (s2, d2), leg, frm, to = ROUTES[s['r']]
             for k in range(self.R):
+                lab = self.lab.get((i, k)); london = (i, k) in ldn
                 a1 = s['t'] + k * self.P; dp1 = a1 + self.D + s['e'][0]; a2 = dp1 + RUN[leg]; dp2 = a2 + self.D + s['e'][1]
-                lab = self.lab.get((i, k))
-                out.append({'r': s['r'], 'slot': i, 'rep': k, 'from': lab if frm == 'NE*' else frm, 'to': lab if to == 'NE*' else to, 'svc': (i, lab),
+                out.append({'r': s['r'], 'slot': i, 'rep': k, 'from': lab if frm == 'NE*' else frm, 'to': lab if to == 'NE*' else to, 'svc': (i, lab), 'london': london,
                             'stops': [(s1, d1, a1, dp1), (s2, d2, a2, dp2)], 'e': [x + self.D - STOP for x in s['e']]})
         return out
 
@@ -143,7 +154,7 @@ def penalty(trs, headway=None):
     arr, dep, occ = {}, {}, {}
     for t in trs:
         for st, side, a, d in t['stops']:
-            k = (st, side); arr.setdefault(k, []).append(a); dep.setdefault(k, []).append(d); occ.setdefault(k, []).append((a, d + CLEAR))
+            k = (st, side); arr.setdefault(k, []).append(a); dep.setdefault(k, []).append(d); occ.setdefault(k, []).append((a - (LONDON_PRE if lon(t, st, side) else 0), d + CLEAR))
     return sum(gaps_short(arr[k], hw) + gaps_short(dep[k], hw) + overlap_excess(occ[k]) for k in arr)
 
 
@@ -350,6 +361,9 @@ def summary(p, **kw):
             'paris_wait': ev['paris_wait'], 'direct_wait': ev['direct_wait'], 'ne_change': ev['ne_change']}
 
 
+def lon(t, st, side): return bool(t.get('london')) and t['to'] == 'N' and st == 'NE' and side == 'out'
+
+
 def tracks(trs, strict=True):
     """Platform track of each stop (1 to 3 on each side): a track holds a train from its arrival to CLEAR minutes after it leaves,
     and the hour repeats, so occupations are arcs on a 60-minute circle; found by a small exhaustive search."""
@@ -359,12 +373,12 @@ def tracks(trs, strict=True):
         return any(a1 < b2 + k and a2 + k < b1 for k in (-60, 0, 60))
     for st in STN:
         for side in ('in', 'out'):
-            evs = sorted([(a, (d + CLEAR) - a, id(t), j) for t in trs for j, (s_, sd, a, d) in enumerate(t['stops']) if s_ == st and sd == side], key=lambda e: e[0] % 60)
+            evs = sorted([(a - (LONDON_PRE if lon(t, s_, sd) else 0), (d + CLEAR) - a + (LONDON_PRE if lon(t, s_, sd) else 0), id(t), j, lon(t, s_, sd)) for t in trs for j, (s_, sd, a, d) in enumerate(t['stops']) if s_ == st and sd == side], key=lambda e: (not e[4], e[0] % 60))
             asg = [0] * len(evs)
             def place(i):
                 if i == len(evs): return True
-                for k in range(1, TRACKS + 1):
-                    if k > max(asg[:i] + [0]) + 1: break                     # tracks are interchangeable: open them in order
+                for k in ([LONDON_TRACK] if evs[i][4] else range(1, TRACKS + 1)):
+                    if not evs[i][4] and k > max(asg[:i] + [0, LONDON_TRACK if any(e[4] for e in evs) else 0]) + 1: break   # open tracks in order
                     if all(not (asg[j] == k and clash(evs[i], evs[j])) for j in range(i)):
                         asg[i] = k
                         if place(i + 1): return True
@@ -381,7 +395,7 @@ def export(p, name):
     trs = p.trains(); tk = tracks(trs)
     rows = []
     for t in trs:
-        rows.append({'route': t['r'], 'from': t['from'], 'to': t['to'], 'slot': t['slot'], 'rep': t['rep'],
+        rows.append({'route': t['r'], 'from': t['from'], 'to': t['to'], 'slot': t['slot'], 'rep': t['rep'], 'london': t.get('london', False),
                      'stops': [{'st': st, 'side': sd, 'arr': a % 60, 'dep': d % 60, 'arr_abs': a, 'dep_abs': d, 'track': tk[(id(t), j)], 'held': t['e'][j]}
                                for j, (st, sd, a, d) in enumerate(t['stops'])]})
     rows.sort(key=lambda r: (r['stops'][0]['arr_abs'] % 60, r['route']))
@@ -438,6 +452,53 @@ def ceiling():
             'two_tracks_stop4': 2 * 60 / (STOP + CLEAR), 'two_tracks_stop5': 2 * 60 / (5 + CLEAR)}
 
 
+# regional express trains (TER and Intercités, not suburban) at today's terminals in the busiest hour, peak direction: own count from
+# the SNCF timetable open data (GTFS published 13 October 2026, Tuesday 17 November 2026); Gare de Lyon counted with Bercy
+TER_PEAK = {'Nord': 11, 'Est': 3, 'Montparnasse': 6, 'Lyon': 3}
+def platforms(out):
+    """Platform tracks for the trains the first pair of tunnels can bring. Each side of a station is reached by one tunnel track,
+    so all the trains of a side, high-speed and regional, share one train every HEADWAY minutes: TUNNEL an hour in theory, and the
+    solved timetables show what fits in practice. Tracks a side needs follow the platform rule of the report (nordest.PER_TRACK)."""
+    sides = {'NE': ('Paris Nord-Est', out['max_hour']['AN'] + out['max_hour']['SN']),
+             'MP': ('Montparnasse', out['max_hour']['AN'] + out['max_hour']['AS']),
+             'LY': ('Gare de Lyon', out['max_hour']['SN'] + out['max_hour']['AS'])}
+    tunnel = 60 / HEADWAY
+    # what fits in practice: a pattern with the same number of trains on every side, every 20 minutes, on TRACKS tracks each way
+    practical, check = None, {}
+    for n in (9,):                                                 # 18 trains a side (20 would leave no slack at all)
+        hour = {r: n for r in ROUTES}
+        q = next((p for p in (anneal(20, 900 + sd, 60000, feasible_only=True, hour=hour) for sd in range(3))
+                  if penalty(p.trains()) == 0 and tracks(p.trains(), strict=False) is not None), None)
+        check[2 * n] = q is not None
+        if q is not None: practical = 2 * n
+    # regional peak a side, with regional trains running through: from the north half to each southern station, from the east to Lyon
+    ter = {'NE': TER_PEAK['Nord'] + TER_PEAK['Est'], 'MP': max(TER_PEAK['Montparnasse'], TER_PEAK['Nord'] / 2),
+           'LY': max(TER_PEAK['Lyon'], TER_PEAK['Nord'] / 2 + TER_PEAK['Est'])}
+    tgv = {'today': {'NE': N.HOUR_TODAY['North'] + N.HOUR_TODAY['East'], 'MP': N.HOUR_TODAY['Atlantic'], 'LY': N.HOUR_TODAY['Southeast']},
+           'full': {'NE': out['inputs']['hour']['AN'] + out['inputs']['hour']['SN'], 'MP': out['inputs']['hour']['AN'] + out['inputs']['hour']['AS'],
+                    'LY': out['inputs']['hour']['SN'] + out['inputs']['hour']['AS']}}
+    per = {D: 60 * N.UTIL / (D + CLEAR) for D in (4, 5)}
+    rows = {}
+    for k, (name, _) in sides.items():
+        r = {'name': name, 'ter_peak': ter[k]}
+        for h in ('today', 'full'):
+            r[h] = {'tgv': tgv[h][k], 'demand': tgv[h][k] + ter[k], 'room': practical - tgv[h][k], 'short': max(0, tgv[h][k] + ter[k] - practical)}
+        r['tracks_side'] = {D: math.ceil(practical / per[D] - 1e-9) for D in per}
+        r['tracks_side_exact'] = {D: practical / per[D] for D in per}
+        rows[k] = r
+    # cost of the platform layouts, with the model's own cost function
+    base = N.cost()
+    def layout(hs, ter):
+        L = {**N.LAYOUT, 'stations': {n: {'hs': hs, 'ter': ter, 'sub': v['sub']} for n, v in N.LAYOUT['stations'].items()}}
+        return N.cost(L=L)
+    alt8, alt6 = layout(8, 0), layout(6, 0)
+    first = {n: v['hs'] + v['ter'] for n, v in N.LAYOUT['stations'].items()}
+    return {'tunnel': tunnel, 'practical': practical, 'check': check, 'per_track': per, 'ter_peak': TER_PEAK, 'sides': rows,
+            'layouts': {'report': {'tracks': first, 'platform_m': base['platform_total'], 'total': base['total']},
+                        'shared8': {'tracks': 8, 'platform_m': alt8['platform_total'], 'total': alt8['total']},
+                        'shared6': {'tracks': 6, 'platform_m': alt6['platform_total'], 'total': alt6['total']}}}
+
+
 KEYS = ('cross', 'line', 'held_cost', 'score', 'change_avg', 'wait_avg', 'change_wave', 'within20', 'within30', 'paris_wait', 'direct_wait', 'ne_change')
 def mean_of(rows): return {k: sum(r[k] for r in rows) / len(rows) for k in KEYS} if rows else None
 
@@ -458,7 +519,8 @@ def main():
     out = {'inputs': {'stop': STOP, 'clear': CLEAR, 'tracks': TRACKS, 'headway': HEADWAY, 'change_same': CHANGE_SAME, 'change_other': CHANGE_OTHER,
                       'extra_max': EXTRA_MAX, 'run': RUN, 'model_run': MODEL_RUN, 'technical': TECH, 'km': KM, 'speed_kmh': V * 3.6, 'acc': ACC, 'brake': BRK, 'margin': MARGIN,
                       'hour': HOUR, 'east': EAST, 'pair_share': {''.join(sorted(k)): v for k, v in PAIR.items()}, 'ride_share': RIDE_SHARE, 'direct_share': N.DIRECT_SHARE,
-                      'paris_trips': PARIS_TRIPS, 'cross_trips': CROSS_TRIPS, 'ratio': RATIO, 'reverse': N.REVERSE}}
+                      'paris_trips': PARIS_TRIPS, 'cross_trips': CROSS_TRIPS, 'ratio': RATIO, 'reverse': N.REVERSE,
+                      'london_pre': LONDON_PRE, 'london_track': LONDON_TRACK}}
     std = {'AN': 6, 'NA': 6, 'SN': 6, 'NS': 6, 'AS': 6, 'SA': 6}                  # the standard busy hour: 12 trains on each southern line
     cases = {}
     even20 = solve(20, seeds, steps, goal='even', hold=False); cases['even20'] = summary(even20)
@@ -486,6 +548,7 @@ def main():
     RUN['LM'] = keep
     out.update({'cases': cases, 'frontier': frontier, 'sens': sens, 'chosen': export(even20, 'even 20'), 'standard': export(even10, 'even 10'), 'maximum': export(evenmax, 'even 20, most trains'), 'spare_max': spare_paths(evenmax), 'max_hour': MAX_HOUR, 'ceiling': ceiling(),
                 'turn_minutes': turn_slot(even20), 'spare': spare_paths(even20), 'spare_standard': spare_paths(even10)})
+    out['platforms'] = platforms(json.loads(json.dumps(out)))
     os.makedirs(os.path.join(HERE, 'outputs'), exist_ok=True)
     json.dump(out, open(os.path.join(HERE, 'outputs', 'timetable.json'), 'w'), indent=1)
     os.makedirs(SITE, exist_ok=True)
@@ -497,5 +560,15 @@ def main():
     print('run', RUN, 'technical', {k: P(v) for k, v in TECH.items()}, 'ratio', P(RATIO), 'turn', out['turn_minutes'], 'spare', out['spare'])
 
 
+def refresh_platforms():
+    """Recompute only the platform analysis from the saved timetables (seconds, no search)."""
+    path = os.path.join(HERE, 'outputs', 'timetable.json')
+    out = json.load(open(path)); out['platforms'] = platforms(out)
+    json.dump(out, open(path, 'w'), indent=1); json.dump(out, open(os.path.join(SITE, 'data.json'), 'w'), separators=(',', ':'))
+    print(json.dumps(out['platforms'], indent=1))
+
+
 if __name__ == '__main__':
-    main()
+    import sys
+    if '--platforms' in sys.argv: refresh_platforms()
+    else: main()

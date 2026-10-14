@@ -79,11 +79,7 @@
   }
  ],
  "halls": {
-  "_note": "Passenger space today and with the project. Sourced: shed and shop areas, passengers (see sources.json of the stations section). Assumptions: the waiting area today is 10 to 20% of the hall length (estimate from plans, not measured); one mezzanine across the station above the tracks, 30 m deep, as wide as the tracks at the width per track of Magenta (13.5 m).",
-  "wait_share": [
-   0.1,
-   0.2
-  ],
+  "_note": "Passenger space today and with the project. Sourced: shop areas, passengers, the Gare du Nord roofs (see sources.json). Assumptions: the covered halls kept at Gare du Nord, Gare de Lyon (Hall 1, as far as Hall 2) and Montparnasse are each about 150 m long from the street end, with about 30 m used today for waiting and the rest by the ends of the tracks (estimate from the SNCF station plans); widths from the number of tracks under each hall on those plans, at 6.5 m per track with its share of platform; one mezzanine across each deep station, 30 m deep, as wide as the tracks at the width per track of Magenta (13.5 m).",
   "mezz_depth": 30,
   "track_width": 13.5,
   "nord": {
@@ -113,6 +109,14 @@
   "est": {
    "shops_m2": 5500,
    "pax24": 53.9
+  },
+  "hall_len": 150,
+  "wait_len": 30,
+  "pitch": 6.5,
+  "under": {
+   "nord": 17,
+   "lyon": 12,
+   "montparnasse": 24
   }
  }
 }

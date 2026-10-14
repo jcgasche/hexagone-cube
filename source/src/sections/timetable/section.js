@@ -16,12 +16,14 @@ PTS.section('timetable', function (root) {
   const KIND = {
     AN: { c: 'var(--s1)', name: 'Atlantic and north' }, AE: { c: 'var(--s7)', name: 'Atlantic and east' },
     SN: { c: 'var(--s2)', name: 'South-east and north' }, SE: { c: 'var(--s4)', name: 'South-east and east' },
-    AS: { c: 'var(--s3)', name: 'Atlantic and south-east, by the link' }
+    AS: { c: 'var(--s3)', name: 'Atlantic and south-east, by the link' },
+    LO: { c: 'var(--s8)', name: 'London and the south-east (Eurostar)' }
   };
   const kindOf = function (t) {
     const ends = [t.from, t.to], has = function (x) { return ends.indexOf(x) >= 0; };
     const k = has('A') && has('S') ? 'AS' : (has('A') ? 'A' : 'S') + (has('N') ? 'N' : 'E');
     const dark = t.to === 'N' || t.to === 'E' || (t.from === 'A' && t.to === 'S');
+    if (t.london) return { k: 'LO', dark: t.to === 'N' };
     return { k: k, dark: dark };
   };
   const SC = { full: T.chosen, std: T.standard, max: T.maximum };
@@ -33,10 +35,10 @@ PTS.section('timetable', function (root) {
     });
     return SC[sc]._t;
   };
-  const label = function (t) { return 'From ' + LINE[t.from] + ' to ' + LINE[t.to]; };
+  const label = function (t) { return t.london ? (t.to === 'N' ? 'Eurostar from ' + LINE[t.from] + ' to London' : 'Eurostar from London to ' + LINE[t.to]) : 'From ' + LINE[t.from] + ' to ' + LINE[t.to]; };
   const tipOf = function (t) {
     const a = t.stops[0], b = t.stops[1];
-    return '<b>' + SHORT[t.from] + ' to ' + SHORT[t.to].toLowerCase() + '</b><br>' + ST[a.st] + ' ' + pad(a.arr) + ' to ' + pad(a.dep) + ', track ' + a.track +
+    return '<b>' + label(t) + '</b><br>' + ST[a.st] + ' ' + pad(a.arr) + ' to ' + pad(a.dep) + ', track ' + a.track +
       '<br>' + ST[b.st] + ' ' + pad(b.arr) + ' to ' + pad(b.dep) + ', track ' + b.track + '<br><small>' + (a.dep_abs - a.arr_abs + b.dep_abs - b.arr_abs) + ' minutes stopped in Paris, ' +
       (b.dep_abs - a.arr_abs) + ' from the first arrival to the last departure</small>';
   };
@@ -134,7 +136,7 @@ PTS.section('timetable', function (root) {
         const other = r.t.stops[1 - r.j];
         tb.appendChild(h('tr', null,
           h('td', { class: 'num', text: pad(r.x.arr) }), h('td', { class: 'num', text: pad(r.x.dep) }), h('td', { class: 'num', text: r.x.track + (r.x.side === 'in' ? ' a' : ' b') }),
-          h('td', null, h('i', { class: 'tt-sw', style: { '--c': r.t.col } }), SHORT[r.t.from] + ' to ' + SHORT[r.t.to].toLowerCase()),
+          h('td', null, h('i', { class: 'tt-sw', style: { '--c': r.t.col } }), r.t.london ? (r.t.to === 'N' ? 'Eurostar to London' : 'Eurostar from London') : SHORT[r.t.from] + ' to ' + SHORT[r.t.to].toLowerCase()),
           h('td', { text: (r.j === 0 ? 'next ' : 'from ') + ST[other.st] + ' ' + pad(r.j === 0 ? other.arr : other.dep) })));
       });
       host.appendChild(h('details', { class: 'tt-board' }, h('summary', null, h('strong', { text: ST[st] }), ': the ' + Pd + ' minutes that repeat, ' + rows.length + ' trains'),

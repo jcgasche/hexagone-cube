@@ -1,7 +1,32 @@
 {
- "iau13": {"publisher": "Institut Paris Region (IAU îdF), Le fonctionnement des grandes gares ferroviaires à Paris, Londres, Berlin et Madrid, November 2013", "about": "Paris terminals at the 8 to 9 morning peak (2012-13): Montparnasse 16 high-speed trains on tracks 1 to 9, Gare de Lyon 14, Gare du Nord saturated except the Eurostar tracks, Gare de l'Est about one train per track per hour", "url": "https://www.institutparisregion.fr/fileadmin/NewEtudes/Etude_1035/Paris__Londres__Berlin__Madrid_Le_fonctionnement_des_grandes_gares_ferroviaires.pdf"},
- "cgi17": {"publisher": "Report to the Commissaire général à l'investissement, counter-assessment of the Paris to Lyon high-speed line capacity project, December 2017", "about": "Paris to Lyon line limited to 13 paths an hour each way, 16 with new signalling by 2030; at Gare de Lyon, turnarounds at the platform must fall from 55 to 40 minutes", "url": "https://www.info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2021_04_rapport_ce_hpgvse.pdf"},
- "sma19": {"publisher": "SMA, Projet Gare du Nord: avis d'expert, for the City of Paris, 17 December 2019", "about": "Gare du Nord: at most 15 of the 19 main-line tracks needed at the peak by the timetable", "url": "https://www.prefectures-regions.gouv.fr/content/download/67474/441392/file/contribution%203298%202019-12-17_sma_r%C3%A9sultats-avis-expert-PN_1-01%20-%20Copie.pdf"},
- "senat02": {"publisher": "French Senate, written question 01833, ministry's answer, 2002", "about": "Gare du Nord: no further trains can be accepted; tracks and approach are full", "url": "https://www.senat.fr/questions/base/2002/qSEQ020801833.html"},
- "cgpc04": {"publisher": "Conseil général des ponts et chaussées, report 2004-0085-01", "about": "Signalling of the high-speed lines rated at 15 trains an hour each way; Gare de Lyon short of departures at the evening peak", "url": "https://igedd.documentation.developpement-durable.gouv.fr/documents/Affaires-0004166/2004-0085-01.pdf"}
+ "iau13": {
+  "publisher": "Institut Paris Region (IAU îdF), Le fonctionnement des grandes gares ferroviaires à Paris, Londres, Berlin et Madrid, November 2013",
+  "about": "Paris terminals at the 8 to 9 morning peak (2012-13): Montparnasse 16 high-speed trains on tracks 1 to 9, Gare de Lyon 14, Gare du Nord saturated except the Eurostar tracks, Gare de l'Est about one train per track per hour",
+  "url": "https://www.institutparisregion.fr/fileadmin/NewEtudes/Etude_1035/Paris__Londres__Berlin__Madrid_Le_fonctionnement_des_grandes_gares_ferroviaires.pdf"
+ },
+ "cgi17": {
+  "publisher": "Report to the Commissaire général à l'investissement, counter-assessment of the Paris to Lyon high-speed line capacity project, December 2017",
+  "about": "Paris to Lyon line limited to 13 paths an hour each way, 16 with new signalling by 2030; at Gare de Lyon, turnarounds at the platform must fall from 55 to 40 minutes",
+  "url": "https://www.info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2021_04_rapport_ce_hpgvse.pdf"
+ },
+ "sma19": {
+  "publisher": "SMA, Projet Gare du Nord: avis d'expert, for the City of Paris, 17 December 2019",
+  "about": "Gare du Nord: at most 15 of the 19 main-line tracks needed at the peak by the timetable",
+  "url": "https://www.prefectures-regions.gouv.fr/content/download/67474/441392/file/contribution%203298%202019-12-17_sma_r%C3%A9sultats-avis-expert-PN_1-01%20-%20Copie.pdf"
+ },
+ "senat02": {
+  "publisher": "French Senate, written question 01833, ministry's answer, 2002",
+  "about": "Gare du Nord: no further trains can be accepted; tracks and approach are full",
+  "url": "https://www.senat.fr/questions/base/2002/qSEQ020801833.html"
+ },
+ "cgpc04": {
+  "publisher": "Conseil général des ponts et chaussées, report 2004-0085-01",
+  "about": "Signalling of the high-speed lines rated at 15 trains an hour each way; Gare de Lyon short of departures at the evening peak",
+  "url": "https://igedd.documentation.developpement-durable.gouv.fr/documents/Affaires-0004166/2004-0085-01.pdf"
+ },
+ "sncf_gtfs": {
+  "publisher": "SNCF, timetable open data (GTFS), published 13 October 2026",
+  "about": "Regional express and Intercités trains at the Paris terminals, busiest hour, counted for Tuesday 17 November 2026: Gare du Nord 11, Gare de l'Est 3, Montparnasse 6, Gare de Lyon with Bercy 3 (own count)",
+  "url": "https://eu.ftp.opendatasoft.com/sncf/plandata/Export_OpenData_SNCF_GTFS_NewTripId.zip"
+ }
 }
