@@ -28,5 +28,15 @@
   "publisher": "SNCF, timetable open data (GTFS), published 13 October 2026",
   "about": "Regional express and Intercités trains at the Paris terminals, busiest hour, counted for Tuesday 17 November 2026: Gare du Nord 11, Gare de l'Est 3, Montparnasse 6, Gare de Lyon with Bercy 3 (own count)",
   "url": "https://eu.ftp.opendatasoft.com/sncf/plandata/Export_OpenData_SNCF_GTFS_NewTripId.zip"
+ },
+ "sncf_gtfs_tgv": {
+  "publisher": "SNCF, timetable open data (GTFS), published 13 October 2026",
+  "about": "Planned stops of TGV and OUIGO trains on Tuesday 17 November 2026: Lyon Part-Dieu 6 minutes for most (median 7, 10 when trains are coupled), Paris-CDG 2, Bordeaux and Rennes 6, Marne-la-Vallée 4 to 5, smaller stations 3 (own count)",
+  "url": "https://eu.ftp.opendatasoft.com/sncf/plandata/Export_OpenData_SNCF_GTFS_NewTripId.zip"
+ },
+ "delfi_gtfs": {
+  "publisher": "gtfs.de, German long-distance timetable data provided by DELFI e.V., October 2026",
+  "about": "Planned stops of ICE trains on Tuesday 20 October 2026: Hamburg Hbf and Berlin Hbf 4 minutes, Hannover and Nürnberg 3, Frankfurt and Stuttgart Hbf 6 where trains reverse (own count)",
+  "url": "https://download.gtfs.de/germany/fv_free/latest.zip"
  }
 }

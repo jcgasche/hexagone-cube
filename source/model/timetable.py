@@ -241,7 +241,7 @@ def mean_wait(times):
     """Average minutes from a random moment to the next of these times, on a 60-minute circle (half the gap, weighted by gap)."""
     ts = sorted(x % 60 for x in times)
     if not ts: return None
-    gaps = [(ts[(i + 1) % len(ts)] - ts[i]) % 60 or 60 for i in range(len(ts))] if len(ts) > 1 else [60]
+    gaps = [ts[i + 1] - ts[i] for i in range(len(ts) - 1)] + [ts[0] + 60 - ts[-1]] if len(ts) > 1 else [60]
     return sum(g * g for g in gaps) / 120
 
 
@@ -427,7 +427,8 @@ def spare_count(trs):
     for st in STN:
         for side in ('in', 'out'):
             ts = sorted(s[2] % 60 for t in trs for s in t['stops'] if s[0] == st and s[1] == side)
-            n += sum(max(0, int(((ts[(i + 1) % len(ts)] - ts[i]) % 60 or 60) // HEADWAY) - 1) for i in range(len(ts)))
+            g = [ts[i + 1] - ts[i] for i in range(len(ts) - 1)] + [ts[0] + 60 - ts[-1]]
+            n += sum(max(0, int(x // HEADWAY) - 1) for x in g)
     return n
 
 
@@ -438,7 +439,7 @@ def spare_paths(p):
     for st in STN:
         for side in ('in', 'out'):
             ts = sorted(s[2] % 60 for t in trs for s in t['stops'] if s[0] == st and s[1] == side)
-            gaps = [(ts[(i + 1) % len(ts)] - ts[i]) % 60 or 60 for i in range(len(ts))]
+            gaps = [ts[i + 1] - ts[i] for i in range(len(ts) - 1)] + [ts[0] + 60 - ts[-1]]
             out[st + ' ' + side] = {'tgv': len(ts), 'spare': sum(max(0, int(g // HEADWAY) - 1) for g in gaps)}
     return out
 

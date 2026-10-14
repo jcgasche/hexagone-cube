@@ -4766,5 +4766,4108 @@
     "total": 33.3067025
    }
   }
+ },
+ "table": {
+  "params": {
+   "a_stop": 7,
+   "a_reserve": 3,
+   "a": 10,
+   "b": 3,
+   "headway": 3,
+   "per_track": 4,
+   "run": {
+    "MP-NE": 7,
+    "LY-NE": 6,
+    "MP-LY": 5
+   }
+  },
+  "scenarios": {
+   "today": {
+    "MP": {
+     "NE": 6,
+     "LY": 6
+    },
+    "LY": {
+     "NE": 6,
+     "MP": 6
+    },
+    "NE": {
+     "MP": 6,
+     "LY": 6
+    },
+    "east": 4
+   },
+   "full": {
+    "MP": {
+     "NE": 6,
+     "LY": 9
+    },
+    "LY": {
+     "NE": 6,
+     "MP": 9
+    },
+    "NE": {
+     "MP": 6,
+     "LY": 6
+    },
+    "east": 4
+   },
+   "max": {
+    "MP": {
+     "NE": 8,
+     "LY": 7
+    },
+    "LY": {
+     "NE": 8,
+     "MP": 7
+    },
+    "NE": {
+     "MP": 8,
+     "LY": 8
+    },
+    "east": 5
+   }
+  },
+  "timetables": {
+   "today": {
+    "name": "table today",
+    "period": 60,
+    "trains": [
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 0,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 0,
+        "dep_abs": 7,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 14,
+        "dep": 21,
+        "arr_abs": 14,
+        "dep_abs": 21,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 1,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 3,
+        "dep": 10,
+        "arr_abs": 3,
+        "dep_abs": 10,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 15,
+        "dep": 22,
+        "arr_abs": 15,
+        "dep_abs": 22,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 2,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 6,
+        "dep": 13,
+        "arr_abs": 6,
+        "dep_abs": 13,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 20,
+        "dep": 27,
+        "arr_abs": 20,
+        "dep_abs": 27,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 24,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 12,
+        "dep": 19,
+        "arr_abs": 12,
+        "dep_abs": 19,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 26,
+        "dep": 33,
+        "arr_abs": 26,
+        "dep_abs": 33,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 3,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 13,
+        "dep": 20,
+        "arr_abs": 13,
+        "dep_abs": 20,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 25,
+        "dep": 32,
+        "arr_abs": 25,
+        "dep_abs": 32,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 12,
+      "rep": 0,
+      "london": true,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 14,
+        "dep": 21,
+        "arr_abs": 14,
+        "dep_abs": 21,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 27,
+        "dep": 34,
+        "arr_abs": 27,
+        "dep_abs": 34,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 25,
+      "rep": 0,
+      "london": true,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 15,
+        "dep": 22,
+        "arr_abs": 15,
+        "dep_abs": 22,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 28,
+        "dep": 35,
+        "arr_abs": 28,
+        "dep_abs": 35,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 4,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 16,
+        "dep": 23,
+        "arr_abs": 16,
+        "dep_abs": 23,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 30,
+        "dep": 37,
+        "arr_abs": 30,
+        "dep_abs": 37,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 13,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 17,
+        "dep": 24,
+        "arr_abs": 17,
+        "dep_abs": 24,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "E",
+      "to": "A",
+      "slot": 26,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 18,
+        "dep": 25,
+        "arr_abs": 18,
+        "dep_abs": 25,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 5,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 19,
+        "dep": 26,
+        "arr_abs": 19,
+        "dep_abs": 26,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 31,
+        "dep": 38,
+        "arr_abs": 31,
+        "dep_abs": 38,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "E",
+      "slot": 14,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 20,
+        "dep": 27,
+        "arr_abs": 20,
+        "dep_abs": 27,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 33,
+        "dep": 40,
+        "arr_abs": 33,
+        "dep_abs": 40,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 27,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 25,
+        "dep": 32,
+        "arr_abs": 25,
+        "dep_abs": 32,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 38,
+        "dep": 45,
+        "arr_abs": 38,
+        "dep_abs": 45,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 6,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 26,
+        "dep": 33,
+        "arr_abs": 26,
+        "dep_abs": 33,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 40,
+        "dep": 47,
+        "arr_abs": 40,
+        "dep_abs": 47,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 15,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 27,
+        "dep": 34,
+        "arr_abs": 27,
+        "dep_abs": 34,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 28,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 28,
+        "dep": 35,
+        "arr_abs": 28,
+        "dep_abs": 35,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 42,
+        "dep": 49,
+        "arr_abs": 42,
+        "dep_abs": 49,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 7,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 41,
+        "dep": 48,
+        "arr_abs": 41,
+        "dep_abs": 48,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 16,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 30,
+        "dep": 37,
+        "arr_abs": 30,
+        "dep_abs": 37,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 43,
+        "dep": 50,
+        "arr_abs": 43,
+        "dep_abs": 50,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 29,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 31,
+        "dep": 38,
+        "arr_abs": 31,
+        "dep_abs": 38,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 44,
+        "dep": 51,
+        "arr_abs": 44,
+        "dep_abs": 51,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 8,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 46,
+        "dep": 53,
+        "arr_abs": 46,
+        "dep_abs": 53,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 17,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 33,
+        "dep": 40,
+        "arr_abs": 33,
+        "dep_abs": 40,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 45,
+        "dep": 52,
+        "arr_abs": 45,
+        "dep_abs": 52,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 30,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 38,
+        "dep": 45,
+        "arr_abs": 38,
+        "dep_abs": 45,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 52,
+        "dep": 59,
+        "arr_abs": 52,
+        "dep_abs": 59,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 9,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 51,
+        "dep": 58,
+        "arr_abs": 51,
+        "dep_abs": 58,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 18,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 40,
+        "dep": 47,
+        "arr_abs": 40,
+        "dep_abs": 47,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 53,
+        "dep": 0,
+        "arr_abs": 53,
+        "dep_abs": 60,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 31,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 41,
+        "dep": 48,
+        "arr_abs": 41,
+        "dep_abs": 48,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 54,
+        "dep": 1,
+        "arr_abs": 54,
+        "dep_abs": 61,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 10,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 42,
+        "dep": 49,
+        "arr_abs": 42,
+        "dep_abs": 49,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 56,
+        "dep": 3,
+        "arr_abs": 56,
+        "dep_abs": 63,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 19,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 43,
+        "dep": 50,
+        "arr_abs": 43,
+        "dep_abs": 50,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 55,
+        "dep": 2,
+        "arr_abs": 55,
+        "dep_abs": 62,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "E",
+      "to": "A",
+      "slot": 32,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 44,
+        "dep": 51,
+        "arr_abs": 44,
+        "dep_abs": 51,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 58,
+        "dep": 5,
+        "arr_abs": 58,
+        "dep_abs": 65,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 11,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 45,
+        "dep": 52,
+        "arr_abs": 45,
+        "dep_abs": 52,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 57,
+        "dep": 4,
+        "arr_abs": 57,
+        "dep_abs": 64,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "E",
+      "slot": 20,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 46,
+        "dep": 53,
+        "arr_abs": 46,
+        "dep_abs": 53,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 59,
+        "dep": 6,
+        "arr_abs": 59,
+        "dep_abs": 66,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 33,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 51,
+        "dep": 58,
+        "arr_abs": 51,
+        "dep_abs": 58,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 4,
+        "dep": 11,
+        "arr_abs": 64,
+        "dep_abs": 71,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 21,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 53,
+        "dep": 0,
+        "arr_abs": 53,
+        "dep_abs": 60,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 5,
+        "dep": 12,
+        "arr_abs": 65,
+        "dep_abs": 72,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 34,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 54,
+        "dep": 1,
+        "arr_abs": 54,
+        "dep_abs": 61,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 8,
+        "dep": 15,
+        "arr_abs": 68,
+        "dep_abs": 75,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 22,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 56,
+        "dep": 3,
+        "arr_abs": 56,
+        "dep_abs": 63,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 9,
+        "dep": 16,
+        "arr_abs": 69,
+        "dep_abs": 76,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 35,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 57,
+        "dep": 4,
+        "arr_abs": 57,
+        "dep_abs": 64,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 10,
+        "dep": 17,
+        "arr_abs": 70,
+        "dep_abs": 77,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 23,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 59,
+        "dep": 6,
+        "arr_abs": 59,
+        "dep_abs": 66,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 11,
+        "dep": 18,
+        "arr_abs": 71,
+        "dep_abs": 78,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     }
+    ],
+    "offsets": {
+     "MP": 0,
+     "LY": 14,
+     "NE": 12
+    },
+    "smallest_gap": 3
+   },
+   "full": {
+    "name": "table full",
+    "period": 60,
+    "trains": [
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 0,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 0,
+        "dep_abs": 7,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 14,
+        "dep": 21,
+        "arr_abs": 14,
+        "dep_abs": 21,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 30,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 0,
+        "dep": 8,
+        "arr_abs": 0,
+        "dep_abs": 8,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 15,
+        "dep": 22,
+        "arr_abs": 15,
+        "dep_abs": 22,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 15,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 0,
+        "dep_abs": 7,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 12,
+        "dep": 19,
+        "arr_abs": 12,
+        "dep_abs": 19,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 1,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 3,
+        "dep": 10,
+        "arr_abs": 3,
+        "dep_abs": 10,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 15,
+        "dep": 22,
+        "arr_abs": 15,
+        "dep_abs": 22,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 31,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 3,
+        "dep": 12,
+        "arr_abs": 3,
+        "dep_abs": 12,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 18,
+        "dep": 25,
+        "arr_abs": 18,
+        "dep_abs": 25,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 16,
+      "rep": 0,
+      "london": true,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 3,
+        "dep": 11,
+        "arr_abs": 3,
+        "dep_abs": 11,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 17,
+        "dep": 24,
+        "arr_abs": 17,
+        "dep_abs": 24,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 2,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 6,
+        "dep": 13,
+        "arr_abs": 6,
+        "dep_abs": 13,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 20,
+        "dep": 27,
+        "arr_abs": 20,
+        "dep_abs": 27,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 32,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 6,
+        "dep": 15,
+        "arr_abs": 6,
+        "dep_abs": 15,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 22,
+        "dep": 29,
+        "arr_abs": 22,
+        "dep_abs": 29,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 17,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 6,
+        "dep": 14,
+        "arr_abs": 6,
+        "dep_abs": 14,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 19,
+        "dep": 26,
+        "arr_abs": 19,
+        "dep_abs": 26,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 3,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 9,
+        "dep": 16,
+        "arr_abs": 9,
+        "dep_abs": 16,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 21,
+        "dep": 28,
+        "arr_abs": 21,
+        "dep_abs": 28,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 18,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 9,
+        "dep": 17,
+        "arr_abs": 9,
+        "dep_abs": 17,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 23,
+        "dep": 30,
+        "arr_abs": 23,
+        "dep_abs": 30,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 4,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 13,
+        "dep": 20,
+        "arr_abs": 13,
+        "dep_abs": 20,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 25,
+        "dep": 32,
+        "arr_abs": 25,
+        "dep_abs": 32,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 33,
+      "rep": 0,
+      "london": true,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 13,
+        "dep": 22,
+        "arr_abs": 13,
+        "dep_abs": 22,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 28,
+        "dep": 35,
+        "arr_abs": 28,
+        "dep_abs": 35,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 19,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 13,
+        "dep": 20,
+        "arr_abs": 13,
+        "dep_abs": 20,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 25,
+        "dep": 32,
+        "arr_abs": 25,
+        "dep_abs": 32,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 5,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 16,
+        "dep": 23,
+        "arr_abs": 16,
+        "dep_abs": 23,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 30,
+        "dep": 37,
+        "arr_abs": 30,
+        "dep_abs": 37,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "E",
+      "to": "A",
+      "slot": 34,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 16,
+        "dep": 25,
+        "arr_abs": 16,
+        "dep_abs": 25,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 20,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 16,
+        "dep": 23,
+        "arr_abs": 16,
+        "dep_abs": 23,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 28,
+        "dep": 35,
+        "arr_abs": 28,
+        "dep_abs": 35,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 6,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 19,
+        "dep": 26,
+        "arr_abs": 19,
+        "dep_abs": 26,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 31,
+        "dep": 38,
+        "arr_abs": 31,
+        "dep_abs": 38,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 35,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 19,
+        "dep": 28,
+        "arr_abs": 19,
+        "dep_abs": 28,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 34,
+        "dep": 41,
+        "arr_abs": 34,
+        "dep_abs": 41,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "E",
+      "slot": 21,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 19,
+        "dep": 27,
+        "arr_abs": 19,
+        "dep_abs": 27,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 33,
+        "dep": 40,
+        "arr_abs": 33,
+        "dep_abs": 40,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 7,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 22,
+        "dep": 29,
+        "arr_abs": 22,
+        "dep_abs": 29,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 36,
+        "dep": 43,
+        "arr_abs": 36,
+        "dep_abs": 43,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 22,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 22,
+        "dep": 30,
+        "arr_abs": 22,
+        "dep_abs": 30,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 35,
+        "dep": 42,
+        "arr_abs": 35,
+        "dep_abs": 42,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 8,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 26,
+        "dep": 33,
+        "arr_abs": 26,
+        "dep_abs": 33,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 38,
+        "dep": 45,
+        "arr_abs": 38,
+        "dep_abs": 45,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 23,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 26,
+        "dep": 33,
+        "arr_abs": 26,
+        "dep_abs": 33,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 9,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 41,
+        "dep": 48,
+        "arr_abs": 41,
+        "dep_abs": 48,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 24,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 41,
+        "dep": 48,
+        "arr_abs": 41,
+        "dep_abs": 48,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 10,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 46,
+        "dep": 53,
+        "arr_abs": 46,
+        "dep_abs": 53,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 25,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 44,
+        "dep": 51,
+        "arr_abs": 44,
+        "dep_abs": 51,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 36,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 34,
+        "dep": 41,
+        "arr_abs": 34,
+        "dep_abs": 41,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 48,
+        "dep": 55,
+        "arr_abs": 48,
+        "dep_abs": 55,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 11,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 35,
+        "dep": 42,
+        "arr_abs": 35,
+        "dep_abs": 42,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 47,
+        "dep": 54,
+        "arr_abs": 47,
+        "dep_abs": 54,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 26,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 35,
+        "dep": 43,
+        "arr_abs": 35,
+        "dep_abs": 43,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 49,
+        "dep": 56,
+        "arr_abs": 49,
+        "dep_abs": 56,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 37,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 37,
+        "dep": 44,
+        "arr_abs": 37,
+        "dep_abs": 44,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 50,
+        "dep": 57,
+        "arr_abs": 50,
+        "dep_abs": 57,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 12,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 53,
+        "dep": 0,
+        "arr_abs": 53,
+        "dep_abs": 60,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 27,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 51,
+        "dep": 58,
+        "arr_abs": 51,
+        "dep_abs": 58,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 38,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 40,
+        "dep": 47,
+        "arr_abs": 40,
+        "dep_abs": 47,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 54,
+        "dep": 1,
+        "arr_abs": 54,
+        "dep_abs": 61,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 13,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 42,
+        "dep": 49,
+        "arr_abs": 42,
+        "dep_abs": 49,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 54,
+        "dep": 1,
+        "arr_abs": 54,
+        "dep_abs": 61,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "E",
+      "slot": 28,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 42,
+        "dep": 50,
+        "arr_abs": 42,
+        "dep_abs": 50,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 56,
+        "dep": 3,
+        "arr_abs": 56,
+        "dep_abs": 63,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 14,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 45,
+        "dep": 52,
+        "arr_abs": 45,
+        "dep_abs": 52,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 57,
+        "dep": 4,
+        "arr_abs": 57,
+        "dep_abs": 64,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 29,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 45,
+        "dep": 53,
+        "arr_abs": 45,
+        "dep_abs": 53,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 58,
+        "dep": 5,
+        "arr_abs": 58,
+        "dep_abs": 65,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 39,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 47,
+        "dep": 54,
+        "arr_abs": 47,
+        "dep_abs": 54,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 60,
+        "dep_abs": 67,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "E",
+      "to": "A",
+      "slot": 40,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 50,
+        "dep": 57,
+        "arr_abs": 50,
+        "dep_abs": 57,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 4,
+        "dep": 11,
+        "arr_abs": 64,
+        "dep_abs": 71,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 41,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 53,
+        "dep": 0,
+        "arr_abs": 53,
+        "dep_abs": 60,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 6,
+        "dep": 13,
+        "arr_abs": 66,
+        "dep_abs": 73,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     }
+    ],
+    "offsets": {
+     "MP": 0,
+     "LY": 0,
+     "NE": 34
+    },
+    "smallest_gap": 3
+   },
+   "max": {
+    "name": "table max",
+    "period": 60,
+    "trains": [
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 0,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 0,
+        "dep_abs": 7,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 14,
+        "dep": 21,
+        "arr_abs": 14,
+        "dep_abs": 21,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 30,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 0,
+        "dep_abs": 7,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 14,
+        "dep": 21,
+        "arr_abs": 14,
+        "dep_abs": 21,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 15,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 2,
+        "dep": 12,
+        "arr_abs": 2,
+        "dep_abs": 12,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 17,
+        "dep": 24,
+        "arr_abs": 17,
+        "dep_abs": 24,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 1,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 3,
+        "dep": 10,
+        "arr_abs": 3,
+        "dep_abs": 10,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 17,
+        "dep": 24,
+        "arr_abs": 17,
+        "dep_abs": 24,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 31,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 3,
+        "dep": 10,
+        "arr_abs": 3,
+        "dep_abs": 10,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 16,
+        "dep": 23,
+        "arr_abs": 16,
+        "dep_abs": 23,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 16,
+      "rep": 0,
+      "london": true,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 5,
+        "dep": 15,
+        "arr_abs": 5,
+        "dep_abs": 15,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 21,
+        "dep": 28,
+        "arr_abs": 21,
+        "dep_abs": 28,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 2,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 6,
+        "dep": 14,
+        "arr_abs": 6,
+        "dep_abs": 14,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 19,
+        "dep": 26,
+        "arr_abs": 19,
+        "dep_abs": 26,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 32,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 6,
+        "dep": 13,
+        "arr_abs": 6,
+        "dep_abs": 13,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 20,
+        "dep": 27,
+        "arr_abs": 20,
+        "dep_abs": 27,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 17,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 8,
+        "dep": 18,
+        "arr_abs": 8,
+        "dep_abs": 18,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 23,
+        "dep": 30,
+        "arr_abs": 23,
+        "dep_abs": 30,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 3,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 9,
+        "dep": 17,
+        "arr_abs": 9,
+        "dep_abs": 17,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 24,
+        "dep": 31,
+        "arr_abs": 24,
+        "dep_abs": 31,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 33,
+      "rep": 0,
+      "london": true,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 9,
+        "dep": 16,
+        "arr_abs": 9,
+        "dep_abs": 16,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 22,
+        "dep": 29,
+        "arr_abs": 22,
+        "dep_abs": 29,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "E",
+      "slot": 18,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 11,
+        "dep": 21,
+        "arr_abs": 11,
+        "dep_abs": 21,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 27,
+        "dep": 34,
+        "arr_abs": 27,
+        "dep_abs": 34,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 4,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 13,
+        "dep": 20,
+        "arr_abs": 13,
+        "dep_abs": 20,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 25,
+        "dep": 32,
+        "arr_abs": 25,
+        "dep_abs": 32,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "E",
+      "to": "A",
+      "slot": 34,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 13,
+        "dep": 20,
+        "arr_abs": 13,
+        "dep_abs": 20,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 27,
+        "dep": 34,
+        "arr_abs": 27,
+        "dep_abs": 34,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 19,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 15,
+        "dep": 25,
+        "arr_abs": 15,
+        "dep_abs": 25,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 30,
+        "dep": 37,
+        "arr_abs": 30,
+        "dep_abs": 37,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 5,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 16,
+        "dep": 23,
+        "arr_abs": 16,
+        "dep_abs": 23,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 30,
+        "dep": 37,
+        "arr_abs": 30,
+        "dep_abs": 37,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 35,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 16,
+        "dep": 23,
+        "arr_abs": 16,
+        "dep_abs": 23,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 20,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 18,
+        "dep": 28,
+        "arr_abs": 18,
+        "dep_abs": 28,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 34,
+        "dep": 41,
+        "arr_abs": 34,
+        "dep_abs": 41,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 6,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 19,
+        "dep": 27,
+        "arr_abs": 19,
+        "dep_abs": 27,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 36,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 19,
+        "dep": 26,
+        "arr_abs": 19,
+        "dep_abs": 26,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 33,
+        "dep": 40,
+        "arr_abs": 33,
+        "dep_abs": 40,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 21,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 21,
+        "dep": 31,
+        "arr_abs": 21,
+        "dep_abs": 31,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 36,
+        "dep": 43,
+        "arr_abs": 36,
+        "dep_abs": 43,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 7,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 22,
+        "dep": 30,
+        "arr_abs": 22,
+        "dep_abs": 30,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 37,
+        "dep": 44,
+        "arr_abs": 37,
+        "dep_abs": 44,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 37,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 22,
+        "dep": 29,
+        "arr_abs": 22,
+        "dep_abs": 29,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 35,
+        "dep": 42,
+        "arr_abs": 35,
+        "dep_abs": 42,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 22,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 24,
+        "dep": 34,
+        "arr_abs": 24,
+        "dep_abs": 34,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 40,
+        "dep": 47,
+        "arr_abs": 40,
+        "dep_abs": 47,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 8,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 26,
+        "dep": 33,
+        "arr_abs": 26,
+        "dep_abs": 33,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 38,
+        "dep": 45,
+        "arr_abs": 38,
+        "dep_abs": 45,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 38,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 26,
+        "dep": 33,
+        "arr_abs": 26,
+        "dep_abs": 33,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 40,
+        "dep": 47,
+        "arr_abs": 40,
+        "dep_abs": 47,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 23,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 28,
+        "dep": 38,
+        "arr_abs": 28,
+        "dep_abs": 38,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 43,
+        "dep": 50,
+        "arr_abs": 43,
+        "dep_abs": 50,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 9,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 43,
+        "dep": 50,
+        "arr_abs": 43,
+        "dep_abs": 50,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 39,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 29,
+        "dep": 36,
+        "arr_abs": 29,
+        "dep_abs": 36,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 42,
+        "dep": 49,
+        "arr_abs": 42,
+        "dep_abs": 49,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "E",
+      "slot": 24,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 31,
+        "dep": 41,
+        "arr_abs": 31,
+        "dep_abs": 41,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 47,
+        "dep": 54,
+        "arr_abs": 47,
+        "dep_abs": 54,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 10,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 32,
+        "dep": 40,
+        "arr_abs": 32,
+        "dep_abs": 40,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 45,
+        "dep": 52,
+        "arr_abs": 45,
+        "dep_abs": 52,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "E",
+      "to": "A",
+      "slot": 40,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 32,
+        "dep": 39,
+        "arr_abs": 32,
+        "dep_abs": 39,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 46,
+        "dep": 53,
+        "arr_abs": 46,
+        "dep_abs": 53,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 25,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 34,
+        "dep": 44,
+        "arr_abs": 34,
+        "dep_abs": 44,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 49,
+        "dep": 56,
+        "arr_abs": 49,
+        "dep_abs": 56,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "N",
+      "slot": 11,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 35,
+        "dep": 43,
+        "arr_abs": 35,
+        "dep_abs": 43,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 50,
+        "dep": 57,
+        "arr_abs": 50,
+        "dep_abs": 57,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 41,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 35,
+        "dep": 42,
+        "arr_abs": 35,
+        "dep_abs": 42,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 48,
+        "dep": 55,
+        "arr_abs": 48,
+        "dep_abs": 55,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 26,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 37,
+        "dep": 47,
+        "arr_abs": 37,
+        "dep_abs": 47,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 53,
+        "dep": 0,
+        "arr_abs": 53,
+        "dep_abs": 60,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 12,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 51,
+        "dep": 58,
+        "arr_abs": 51,
+        "dep_abs": 58,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 42,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 39,
+        "dep": 46,
+        "arr_abs": 39,
+        "dep_abs": 46,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 53,
+        "dep": 0,
+        "arr_abs": 53,
+        "dep_abs": 60,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SA",
+      "from": "S",
+      "to": "A",
+      "slot": 27,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 41,
+        "dep": 51,
+        "arr_abs": 41,
+        "dep_abs": 51,
+        "track": 1,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 56,
+        "dep": 3,
+        "arr_abs": 56,
+        "dep_abs": 63,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AN",
+      "from": "A",
+      "to": "E",
+      "slot": 13,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 42,
+        "dep": 49,
+        "arr_abs": 42,
+        "dep_abs": 49,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 56,
+        "dep": 3,
+        "arr_abs": 56,
+        "dep_abs": 63,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "E",
+      "to": "S",
+      "slot": 43,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 42,
+        "dep": 49,
+        "arr_abs": 42,
+        "dep_abs": 49,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 55,
+        "dep": 2,
+        "arr_abs": 55,
+        "dep_abs": 62,
+        "track": 1,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 28,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 44,
+        "dep": 54,
+        "arr_abs": 44,
+        "dep_abs": 54,
+        "track": 2,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 0,
+        "dep": 7,
+        "arr_abs": 60,
+        "dep_abs": 67,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "AS",
+      "from": "A",
+      "to": "S",
+      "slot": 14,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "MP",
+        "side": "in",
+        "arr": 45,
+        "dep": 53,
+        "arr_abs": 45,
+        "dep_abs": 53,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 58,
+        "dep": 5,
+        "arr_abs": 58,
+        "dep_abs": 65,
+        "track": 2,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NA",
+      "from": "N",
+      "to": "A",
+      "slot": 44,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 45,
+        "dep": 52,
+        "arr_abs": 45,
+        "dep_abs": 52,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "MP",
+        "side": "out",
+        "arr": 59,
+        "dep": 6,
+        "arr_abs": 59,
+        "dep_abs": 66,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "SN",
+      "from": "S",
+      "to": "N",
+      "slot": 29,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "LY",
+        "side": "in",
+        "arr": 47,
+        "dep": 57,
+        "arr_abs": 47,
+        "dep_abs": 57,
+        "track": 3,
+        "held": 0
+       },
+       {
+        "st": "NE",
+        "side": "out",
+        "arr": 3,
+        "dep": 10,
+        "arr_abs": 63,
+        "dep_abs": 70,
+        "track": 4,
+        "held": 0
+       }
+      ]
+     },
+     {
+      "route": "NS",
+      "from": "N",
+      "to": "S",
+      "slot": 45,
+      "rep": 0,
+      "london": false,
+      "stops": [
+       {
+        "st": "NE",
+        "side": "in",
+        "arr": 48,
+        "dep": 55,
+        "arr_abs": 48,
+        "dep_abs": 55,
+        "track": 4,
+        "held": 0
+       },
+       {
+        "st": "LY",
+        "side": "out",
+        "arr": 1,
+        "dep": 8,
+        "arr_abs": 61,
+        "dep_abs": 68,
+        "track": 3,
+        "held": 0
+       }
+      ]
+     }
+    ],
+    "offsets": {
+     "MP": 0,
+     "LY": 2,
+     "NE": 0
+    },
+    "smallest_gap": 3
+   }
+  },
+  "sides": {
+   "today": {
+    "MP": {
+     "in": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     },
+     "out": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     }
+    },
+    "LY": {
+     "in": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     },
+     "out": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     }
+    },
+    "NE": {
+     "in": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     },
+     "out": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     }
+    }
+   },
+   "full": {
+    "MP": {
+     "in": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     },
+     "out": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     }
+    },
+    "LY": {
+     "in": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     },
+     "out": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     }
+    },
+    "NE": {
+     "in": {
+      "trains": 12,
+      "tracks": 3,
+      "places": 12,
+      "free": 0
+     },
+     "out": {
+      "trains": 12,
+      "tracks": 4,
+      "places": 16,
+      "free": 4
+     }
+    }
+   },
+   "max": {
+    "MP": {
+     "in": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     },
+     "out": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     }
+    },
+    "LY": {
+     "in": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     },
+     "out": {
+      "trains": 15,
+      "tracks": 4,
+      "places": 16,
+      "free": 1
+     }
+    },
+    "NE": {
+     "in": {
+      "trains": 16,
+      "tracks": 4,
+      "places": 16,
+      "free": 0
+     },
+     "out": {
+      "trains": 16,
+      "tracks": 4,
+      "places": 16,
+      "free": 0
+     }
+    }
+   }
+  },
+  "measures": {
+   "today": {
+    "paris_wait": 4.244186046511628,
+    "direct_wait": 8.826967634061866,
+    "ne_change": 11.833333333333334,
+    "line": {
+     "A": {
+      "out": 3.7,
+      "in": 3.7,
+      "trains": 12
+     },
+     "S": {
+      "out": 3.0166666666666666,
+      "in": 3.7,
+      "trains": 12
+     },
+     "N": {
+      "out": 4.916666666666667,
+      "in": 5.5,
+      "trains": 8
+     },
+     "E": {
+      "out": 7.9,
+      "in": 7.9,
+      "trains": 4
+     }
+    },
+    "pair": {
+     "AS": 5.8,
+     "AN": 7.8,
+     "AE": 15.266666666666667,
+     "SA": 5.8,
+     "SN": 7.8,
+     "SE": 15.266666666666667,
+     "NA": 7.8,
+     "NS": 8.6,
+     "EA": 15.266666666666667,
+     "ES": 15.266666666666667
+    },
+    "spare_paths": {
+     "MP in": 7,
+     "MP out": 7,
+     "LY in": 7,
+     "LY out": 6,
+     "NE in": 7,
+     "NE out": 6
+    },
+    "direct_min": 19,
+    "direct_max": 21
+   },
+   "full": {
+    "paris_wait": 3.6500000000000004,
+    "direct_wait": 9.08901130618257,
+    "ne_change": 11.916666666666666,
+    "line": {
+     "A": {
+      "out": 2.2666666666666666,
+      "in": 3.1,
+      "trains": 15
+     },
+     "S": {
+      "out": 2.35,
+      "in": 3.1,
+      "trains": 15
+     },
+     "N": {
+      "out": 5.8,
+      "in": 4.3,
+      "trains": 8
+     },
+     "E": {
+      "out": 8.45,
+      "in": 7.9,
+      "trains": 4
+     }
+    },
+    "pair": {
+     "AS": 4.7,
+     "AN": 8.516666666666667,
+     "AE": 15.266666666666667,
+     "SA": 4.15,
+     "SN": 9.916666666666666,
+     "SE": 15.816666666666666,
+     "NA": 10.466666666666667,
+     "NS": 10.466666666666667,
+     "EA": 15.266666666666667,
+     "ES": 15.266666666666667
+    },
+    "spare_paths": {
+     "MP in": 4,
+     "MP out": 3,
+     "LY in": 4,
+     "LY out": 4,
+     "NE in": 7,
+     "NE out": 7
+    },
+    "direct_min": 19,
+    "direct_max": 23
+   },
+   "max": {
+    "paris_wait": 3.4875968992248065,
+    "direct_wait": 7.937841872686015,
+    "ne_change": 11.25,
+    "line": {
+     "A": {
+      "out": 3.1,
+      "in": 3.1,
+      "trains": 15
+     },
+     "S": {
+      "out": 3.1,
+      "in": 3.1,
+      "trains": 15
+     },
+     "N": {
+      "out": 3.2666666666666666,
+      "in": 3.35,
+      "trains": 11
+     },
+     "E": {
+      "out": 6.85,
+      "in": 6.85,
+      "trains": 5
+     }
+    },
+    "pair": {
+     "AS": 5.8,
+     "AN": 8.0,
+     "AE": 10.016666666666667,
+     "SA": 5.8,
+     "SN": 6.3,
+     "SE": 16.666666666666668,
+     "NA": 5.7,
+     "NS": 7.2,
+     "EA": 17.016666666666666,
+     "ES": 10.016666666666667
+    },
+    "spare_paths": {
+     "MP in": 4,
+     "MP out": 4,
+     "LY in": 4,
+     "LY out": 4,
+     "NE in": 3,
+     "NE out": 2
+    },
+    "direct_min": 20,
+    "direct_max": 23
+   }
+  }
  }
 }

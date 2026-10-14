@@ -26,7 +26,9 @@ PTS.section('timetable', function (root) {
     if (t.london) return { k: 'LO', dark: t.to === 'N' };
     return { k: k, dark: dark };
   };
-  const SC = { full: T.chosen, std: T.standard, max: T.maximum };
+  const TB = T.table && T.table.timetables;                         // the track-by-track hour (model/table_timetable.py) when present
+  const SC = TB ? { full: TB.full, std: TB.today, max: TB.max } : { full: T.chosen, std: T.standard, max: T.maximum };
+  const NTR = 4;                                                     // platform tracks drawn on each side of a station
   const trainsOf = function (sc) {
     if (SC[sc]._t) return SC[sc]._t;
     SC[sc]._t = SC[sc].trains.map(function (t, i) {
@@ -72,9 +74,9 @@ PTS.section('timetable', function (root) {
   };
 
   // ---------------------------------------------------------------- 1. a clock for each station: six rings, one for each platform track
-  const CX = 190, CY = 190, RD = 74, R0 = RD + 16, RW = 12, GAPG = 7;
+  const CX = 190, CY = 190, RD = 70, R0 = RD + 14, RW = 10, GAPG = 6;
   const pt = function (m, r) { const a = m / 60 * 2 * Math.PI; return [CX + r * Math.sin(a), CY - r * Math.cos(a)]; };
-  const ringR = function (side, track) { return R0 + (side === 'in' ? track - 1 : 3 + track - 1) * RW + (side === 'in' ? 0 : GAPG); };
+  const ringR = function (side, track) { return R0 + (side === 'in' ? track - 1 : NTR + track - 1) * RW + (side === 'in' ? 0 : GAPG); };
   const arcD = function (m1, m2, r) {
     const a = pt(m1, r), b = pt(m2, r), big = (m2 - m1) > 30 ? 1 : 0;
     return 'M' + a[0].toFixed(1) + ',' + a[1].toFixed(1) + ' A' + r + ',' + r + ' 0 ' + big + ' 1 ' + b[0].toFixed(1) + ',' + b[1].toFixed(1);
@@ -92,7 +94,7 @@ PTS.section('timetable', function (root) {
       add(svg, 'circle', { cx: CX, cy: CY, r: RD, class: 'tt-face' });
       for (let m = 0; m < 60; m++) { const a = pt(m, RD), b = pt(m, RD - (m % 5 ? 4 : 9)); add(svg, 'line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: m % 5 ? 'tt-tick' : 'tt-tick five' }); }
       [[0, ':00'], [15, ':15'], [30, ':30'], [45, ':45']].forEach(function (q) { const p = pt(q[0], RD - 21); add(svg, 'text', { x: p[0], y: p[1] + 4.5, 'text-anchor': 'middle', class: 'tt-num', text: q[1] }); });
-      ['in', 'out'].forEach(function (side) { for (let k = 1; k <= 3; k++) add(svg, 'circle', { cx: CX, cy: CY, r: ringR(side, k), class: 'tt-ring' }); });
+      ['in', 'out'].forEach(function (side) { for (let k = 1; k <= NTR; k++) add(svg, 'circle', { cx: CX, cy: CY, r: ringR(side, k), class: 'tt-ring' }); });
       stays.forEach(function (e) {
         const r = ringR(e.x.side, e.x.track), a1 = e.x.arr_abs, a2 = e.x.dep_abs;
         const g = add(svg, 'g', { class: 'tt-stay', tabindex: 0 }); g.style.setProperty('--c', e.t.col);
@@ -104,7 +106,7 @@ PTS.section('timetable', function (root) {
         PTS.tip.bind(g, function () { return '<b>' + label(e.t) + '</b><br>Track ' + e.x.track + (e.x.side === 'in' ? ' a' : ' b') + ', ' + pad(e.x.arr) + ' to ' + pad(e.x.dep) + ' (' + (a2 - a1) + ' minutes)'; });
         e.el = g;
       });
-      const hand = add(svg, 'line', { x1: CX, y1: CY, x2: CX, y2: CY - (R0 + 6 * RW + GAPG + 2), class: 'tt-handline' }); add(svg, 'circle', { cx: CX, cy: CY, r: 4.5, class: 'tt-hub' });
+      const hand = add(svg, 'line', { x1: CX, y1: CY, x2: CX, y2: CY - (R0 + 2 * NTR * RW + GAPG + 2), class: 'tt-handline' }); add(svg, 'circle', { cx: CX, cy: CY, r: 4.5, class: 'tt-hub' });
       const now = h('span', { class: 'tt-cap-now' });
       const box = h('div', { class: 'tt-clockbox' }, h('h4', { text: ST[st] }), svg,
         h('p', { class: 'tt-cap' }, h('span', { text: n + ' trains an hour' }), now));
@@ -112,7 +114,7 @@ PTS.section('timetable', function (root) {
       clocks.push({ hand: hand, stays: stays, now: now, st: st });
     });
     const leg = $('#tt-ringnote');
-    if (leg) leg.textContent = 'Inner three rings: tracks a, for trains coming in from the station\u2019s own line; outer three rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure.';
+    if (leg) leg.textContent = 'Inner four rings: tracks a, for trains coming in from the station\u2019s own line; outer four rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure; an empty ring is a track the hour does not need.';
   };
   listeners.push(function (v) {
     clocks.forEach(function (c) {
@@ -139,10 +141,10 @@ PTS.section('timetable', function (root) {
           h('td', null, h('i', { class: 'tt-sw', style: { '--c': r.t.col } }), r.t.london ? (r.t.to === 'N' ? 'Eurostar to London' : 'Eurostar from London') : SHORT[r.t.from] + ' to ' + SHORT[r.t.to].toLowerCase()),
           h('td', { text: (r.j === 0 ? 'next ' : 'from ') + ST[other.st] + ' ' + pad(r.j === 0 ? other.arr : other.dep) })));
       });
-      host.appendChild(h('details', { class: 'tt-board' }, h('summary', null, h('strong', { text: ST[st] }), ': the ' + Pd + ' minutes that repeat, ' + rows.length + ' trains'),
+      host.appendChild(h('details', { class: 'tt-board' }, h('summary', null, h('strong', { text: ST[st] }), Pd >= 60 ? ': the hour, ' + rows.length + ' trains' : ': the ' + Pd + ' minutes that repeat, ' + rows.length + ' trains'),
         h('div', { class: 'tbl-wrap' }, h('table', { class: 'tbl no-stack' },
           h('thead', null, h('tr', null, h('th', { class: 'num', text: 'In' }), h('th', { class: 'num', text: 'Out' }), h('th', { class: 'num', text: 'Track' }), h('th', { text: 'Train' }), h('th', { text: 'Other Paris stop' }))), tb)),
-        h('p', { class: 'note', text: 'The same minutes come back ' + (60 / Pd) + ' times an hour: a train at :0' + (rows.length ? Math.floor(rows[0].x.arr) % 10 : 0) + ' is also at ' + reps(rows.length ? rows[0].x.arr : 0).split(' ').slice(1).join(' and ') + '. Tracks a are for trains coming from ' + (st === 'NE' ? 'the north and east' : st === 'LY' ? 'the south-east' : 'the Atlantic') + ', tracks b for trains going there.' })));
+        h('p', { class: 'note', text: (Pd >= 60 ? 'The same minutes every hour. ' : 'The same minutes come back ' + (60 / Pd) + ' times an hour: a train at :0' + (rows.length ? Math.floor(rows[0].x.arr) % 10 : 0) + ' is also at ' + reps(rows.length ? rows[0].x.arr : 0).split(' ').slice(1).join(' and ') + '. ') + 'Tracks a are for trains coming from ' + (st === 'NE' ? 'the north and east' : st === 'LY' ? 'the south-east' : 'the Atlantic') + ', tracks b for trains going there.' })));
     });
   };
 
@@ -194,16 +196,16 @@ PTS.section('timetable', function (root) {
     edge(outer.N, nm('N'), 'end', -8, 14); edge(outer.E, nm('E'), 'start', 8, 14);
     edge(outer.S, nm('S'), 'end', -6, -8); edge(outer.A, nm('A'), 'start', 6, -8);
     // stations: three tracks on each side
-    const GAP = narrow ? 7 : 10, LEN = narrow ? 34 : 54;
+    const GAP = narrow ? 6 : 8.5, LEN = narrow ? 34 : 54;
     Object.keys(stn).forEach(function (id) {
       const x = stn[id], a = x.axis[0], b = x.axis[1], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy);
       x.u = [dx / L, dy / L]; x.n = [-x.u[1], x.u[0]];
       const g = s('g', { class: 'tt-stn' });
       const box = [-3.6, 3.6].map(function (sg) { return sg; });
-      const c = x.at, hw = LEN / 2 + 5, hn = 3 * GAP + 4;
+      const c = x.at, hw = LEN / 2 + 5, hn = NTR * GAP + 4;
       const corner = function (p, q) { return [c[0] + x.u[0] * p + x.n[0] * q, c[1] + x.u[1] * p + x.n[1] * q]; };
       g.appendChild(s('path', { class: 'tt-box', d: dp([corner(-hw, -hn), corner(hw, -hn), corner(hw, hn), corner(-hw, hn)], true) }));
-      [-1, 1].forEach(function (sg) { for (let tk = 1; tk <= 3; tk++) { const o = sg * (tk - 0.5) * GAP; g.appendChild(s('line', { class: 'tt-track', x1: corner(-LEN / 2, o)[0], y1: corner(-LEN / 2, o)[1], x2: corner(LEN / 2, o)[0], y2: corner(LEN / 2, o)[1] })); } });
+      [-1, 1].forEach(function (sg) { for (let tk = 1; tk <= NTR; tk++) { const o = sg * (tk - 0.5) * GAP; g.appendChild(s('line', { class: 'tt-track', x1: corner(-LEN / 2, o)[0], y1: corner(-LEN / 2, o)[1], x2: corner(LEN / 2, o)[0], y2: corner(LEN / 2, o)[1] })); } });
       svg.appendChild(g);
       const lbl = (narrow ? { NE: [hn + 8, 4, 'start'], LY: [0, hn + 22, 'middle'], MP: [0, hn + 22, 'middle'] } : { NE: [hn + 10, 4, 'start'], LY: [hn + 8, 18, 'start'], MP: [-hn - 8, -10, 'end'] })[id];
       svg.appendChild(s('text', { class: 'tt-sname', x: c[0] + lbl[0], y: c[1] + lbl[1], 'text-anchor': lbl[2], text: ST[id] }));
@@ -273,27 +275,19 @@ PTS.section('timetable', function (root) {
 
   // ---------------------------------------------------------------- 3. connections: pulse against a timetable not built for them
   const drawPairs = function () {
-    const sc = state.sc, full = sc !== 'std', E = T.cases[{ std: 'even10', full: 'even20', max: 'evenmax' }[sc]];
-    const Pu = sc === 'max' ? null : full ? T.cases.pulse20 : T.cases.pulse10, R = sc === 'max' ? null : full ? T.cases.random20 : T.cases.random10;
-    const ev = E.even, hour = sc === 'full' ? T.inputs.hour : sc === 'max' ? T.max_hour : { AN: 6, SN: 6, AS: 6 };
+    const sc = state.sc;
+    const E = TB ? T.table.measures[{ std: 'today', full: 'full', max: 'max' }[sc]] : T.cases[{ std: 'even10', full: 'even20', max: 'evenmax' }[sc]].even;
+    const routes = TB ? SC[sc].trains : null;
+    const count = function (a, b) { return routes ? routes.filter(function (t) { return t.from === a && t.to === b; }).length : null; };
     const NAME = { AS: 'Atlantic and south-east', AN: 'Atlantic and north', AE: 'Atlantic and east', SN: 'South-east and north', SE: 'South-east and east' };
-    const n = { AS: hour.AS, AN: hour.AN * 2 / 3, AE: hour.AN / 3, SN: hour.SN * 2 / 3, SE: hour.SN / 3 };
     const rows = [];
     Object.keys(NAME).forEach(function (k) {
-      const a = ev.pair[k], b = ev.pair[k.charAt(1) + k.charAt(0)], v = (a + b) / 2, ideal = 30 / n[k];
-      rows.push({ label: NAME[k] + ' <small>' + n0(n[k]) + ' direct trains an hour each way</small>', value: v, mark: ideal, text: F.n(v, 1) + ' min', color: 'var(--s3)',
+      const a = E.pair[k], b = E.pair[k.charAt(1) + k.charAt(0)], v = (a + b) / 2, n = count(k.charAt(0), k.charAt(1)) || 1, ideal = 30 / n;
+      rows.push({ label: NAME[k] + ' <small>' + n0(n) + ' direct trains an hour each way</small>', value: v, mark: ideal, text: F.n(v, 1) + ' min', color: 'var(--s3)',
         tip: '<b>' + NAME[k] + '</b><br>Average wait for the next direct train: ' + F.n(a, 1) + ' and ' + F.n(b, 1) + ' minutes in the two directions<br><small>With trains exactly evenly spaced: ' + F.n(ideal, 1) + '</small>' });
     });
-    PTS.chart.bars($('#tt-pairs'), { rows: rows, max: 16, fmt: function (v) { return F.n(v, 1) + ' min'; } });
-    const host = PTS.clear($('#tt-compare')), m1 = function (v) { return F.n(v, 1); };
-    const lines = [
-      ['Wait for the next train to or from one\u2019s line (Paris passengers)', 'paris_wait'],
-      ['Wait for the next direct train (passengers crossing Paris)', 'direct_wait'],
-      ['North to east: minutes in Paris, with the change', 'ne_change'],
-      ['A passenger who changes to one service: minutes in Paris', 'change_avg']];
-    const tb = h('tbody');
-    lines.forEach(function (r) { tb.appendChild(h('tr', { class: r[1] === 'paris_wait' ? 'hl' : null }, h('th', { text: r[0] }), h('td', { class: 'num', text: m1(E[r[1]]) }), h('td', { class: 'num', text: Pu ? m1(Pu[r[1]]) : 'not run' }), h('td', { class: 'num', text: R ? m1(R[r[1]]) : 'not run' }))); });
-    host.appendChild(h('div', { class: 'tbl-wrap' }, h('table', { class: 'tbl no-stack' }, h('thead', null, h('tr', null, h('th', { text: 'Average minutes' }), h('th', { class: 'num', text: 'Even' }), h('th', { class: 'num', text: 'Timed for changes' }), h('th', { class: 'num', text: 'Untimed' }))), tb)));
+    PTS.chart.bars($('#tt-pairs'), { rows: rows, max: 25, fmt: function (v) { return F.n(v, 1) + ' min'; } });
+    const cmp = $('#tt-compare'); if (cmp) PTS.clear(cmp);
   };
 
   // ---------------------------------------------------------------- 4. longer stops

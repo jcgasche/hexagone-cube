@@ -18,7 +18,7 @@
 #timetable .tt-handline { stroke: var(--ink); stroke-width: 3; stroke-linecap: round }
 #timetable .tt-hub { fill: var(--ink) }
 #timetable .tt-ring { fill: none; stroke: var(--rule); stroke-width: 1 }
-#timetable .tt-arc { fill: none; stroke: var(--c); stroke-width: 9; stroke-linecap: butt; opacity: .45 }
+#timetable .tt-arc { fill: none; stroke: var(--c); stroke-width: 8; stroke-linecap: butt; opacity: .45 }
 #timetable .tt-stay.on .tt-arc { opacity: 1 }
 #timetable .tt-stay:focus { outline: none }
 #timetable .tt-stay:focus-visible .tt-arc { opacity: 1; stroke-width: 11 }
