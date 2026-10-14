@@ -27,8 +27,9 @@ PTS.section('timetable', function (root) {
     return { k: k, dark: dark };
   };
   const TB = T.table && T.table.timetables;                         // the track-by-track hour (model/table_timetable.py) when present
-  const SC = TB ? { full: TB.full, std: TB.today, max: TB.max } : { full: T.chosen, std: T.standard, max: T.maximum };
-  const NTR = 4;                                                     // platform tracks drawn on each side of a station
+  const GR = T.table && T.table.grid && T.table.grid.timetables;     // the synchronised 12-minute hour, when present
+  const SC = GR ? { full: GR.full, std: GR.today, max: GR.max } : TB ? { full: TB.full, std: TB.today, max: TB.max } : { full: T.chosen, std: T.standard, max: T.maximum };
+  const NTR = GR ? 3 : 4;                                                     // platform tracks drawn on each side of a station
   const trainsOf = function (sc) {
     if (SC[sc]._t) return SC[sc]._t;
     SC[sc]._t = SC[sc].trains.map(function (t, i) {
@@ -114,7 +115,7 @@ PTS.section('timetable', function (root) {
       clocks.push({ hand: hand, stays: stays, now: now, st: st });
     });
     const leg = $('#tt-ringnote');
-    if (leg) leg.textContent = 'Inner four rings: tracks a, for trains coming in from the station\u2019s own line; outer four rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure; an empty ring is a track the hour does not need.';
+    if (leg) leg.textContent = 'Inner ' + ['', 'one', 'two', 'three', 'four'][NTR] + ' rings: tracks a, for trains coming in from the station\u2019s own line; outer ' + ['', 'one', 'two', 'three', 'four'][NTR] + ' rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure; an empty ring is a track the hour does not need.';
   };
   listeners.push(function (v) {
     clocks.forEach(function (c) {
@@ -276,7 +277,8 @@ PTS.section('timetable', function (root) {
   // ---------------------------------------------------------------- 3. connections: pulse against a timetable not built for them
   const drawPairs = function () {
     const sc = state.sc;
-    const E = TB ? T.table.measures[{ std: 'today', full: 'full', max: 'max' }[sc]] : T.cases[{ std: 'even10', full: 'even20', max: 'evenmax' }[sc]].even;
+    const key = { std: 'today', full: 'full', max: 'max' }[sc];
+    const E = GR ? T.table.grid.measures[key] : TB ? T.table.measures[key] : T.cases[{ std: 'even10', full: 'even20', max: 'evenmax' }[sc]].even;
     const routes = TB ? SC[sc].trains : null;
     const count = function (a, b) { return routes ? routes.filter(function (t) { return t.from === a && t.to === b; }).length : null; };
     const NAME = { AS: 'Atlantic and south-east', AN: 'Atlantic and north', AE: 'Atlantic and east', SN: 'South-east and north', SE: 'South-east and east' };
@@ -308,7 +310,7 @@ PTS.section('timetable', function (root) {
 
   // ---------------------------------------------------------------- controls and first draw
   const redraw = function () { drawClocks(); drawBoards(); drawMap(); drawPairs(); show(); };
-  const scen = [['std', 'About today'], ['full', 'Southern lines full'], ['max', 'Most the stations take']];
+  const scen = [['std', 'About today'], ['full', 'Southern lines full'], ['max', 'Nord-Est filled too']];
   const segs = [];
   const setSc = function (v) { state.sc = v; segs.forEach(function (x) { x.set(v, true); }); redraw(); };
   segs.push(PTS.seg($('#tt-scen-2'), scen, state.sc, setSc, 'Hour shown'));
