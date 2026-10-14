@@ -17,11 +17,13 @@
 #timetable .tt-clock .tt-inside { font-size: 12.5px; fill: var(--muted) }
 #timetable .tt-handline { stroke: var(--ink); stroke-width: 3; stroke-linecap: round }
 #timetable .tt-hub { fill: var(--ink) }
-#timetable .tt-ev { stroke: var(--c); stroke-width: 2; fill: var(--surface); opacity: .55 }
-#timetable .tt-ev.done { fill: var(--c); opacity: 1 }
-#timetable .tt-ev:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
-#timetable .legend i.tt-arr { background: var(--muted); border-radius: 50% }
-#timetable .legend i.tt-dep { background: var(--muted); border-radius: 2px }
+#timetable .tt-ring { fill: none; stroke: var(--rule); stroke-width: 1 }
+#timetable .tt-arc { fill: none; stroke: var(--c); stroke-width: 9; stroke-linecap: butt; opacity: .45 }
+#timetable .tt-stay.on .tt-arc { opacity: 1 }
+#timetable .tt-stay:focus { outline: none }
+#timetable .tt-stay:focus-visible .tt-arc { opacity: 1; stroke-width: 11 }
+#timetable .tt-cap { display: flex; flex-direction: column; align-items: center; line-height: 1.35 }
+#timetable .tt-cap-now { color: var(--ink); font-variant-numeric: tabular-nums }
 #timetable .legend i.tt-pair { display: inline-flex; width: auto; height: auto; background: none; gap: 2px; border: 0 }
 #timetable .legend i.tt-pair b { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--c) }
 @media (max-width: 760px) {

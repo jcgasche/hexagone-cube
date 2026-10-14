@@ -15,23 +15,30 @@
   <p><strong>What "as evenly as the tracks allow" means.</strong> The search spreads, for each of the four lines, the trains leaving Paris to it and arriving from it; and, for each pair of lines, the direct trains between them. It also keeps the change between the north and the east short, and leaves gaps for regional express trains, which share the same tunnels: without that, trains every 4 minutes on a track that takes one every {{ d.timetable.inputs.headway | 0 }} would leave no room for them. Weights of these aims are a compromise found by trial <span class="tag assume">assumption</span>.</p>
 </div>
 
-<div class="block" id="timetable.clocks">
-  <h2>The hour at each station</h2>
-  <p>Each clock shows when trains arrive (circles) and leave (squares) at one station, in the colour of the two lines the train joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way. Play the hour, or drag the minute; the map below follows the same minute.</p>
-  <div class="controls" id="tt-scen-1"></div>
-  <div class="tt-bar" id="tt-bar-1"></div>
-  <figure class="fig">
-    <div class="fig-head"><strong>Trains of every direction come round the clock at regular intervals, about one every two minutes at each station</strong><span>Arrivals and departures of high-speed trains in one hour at the three stations. Hover or focus a mark for the train</span></div>
-    <div class="tt-clocks" id="tt-clocks"></div>
-    <ul class="legend" id="tt-legend"><li><i class="tt-arr"></i>Arrival</li><li><i class="tt-dep"></i>Departure</li></ul>
-    <figcaption>Minutes from the model (<code>model/timetable.py</code>), at the rules stated above. A mark fills when its minute has passed in the last 20 minutes. Regional express trains, which use the same tunnels and their own platforms, are not shown.</figcaption>
-  </figure>
-  <div class="tt-boards" id="tt-boards"></div>
-  <p>The tracks are those the timetable needs, never more than {{ d.timetable.inputs.tracks | 0 }} on each side of a station. Montparnasse and Gare de Lyon each see 5 trains every 20 minutes on each side; at {{ d.timetable.inputs.stop | 0 }} minutes stopped and {{ d.timetable.inputs.clear | 0 }} to clear, that is 35 of the 60 minutes the three tracks offer, the same load as the platform rule of the <a class="xref" href="#service.platforms">service chapter</a>. The pattern carries {{ d.timetable.inputs.hour.SN + d.timetable.inputs.hour.AS | 0 }} south-east trains an hour, not {{ m.hour_full.Southeast | 0 }}: the sixteenth, which has no partner and would turn back at Nord-Est, holding a track there for {{ d.timetable.inputs.reverse + 1 | 0 }} minutes, fits at none of the 60 minutes of the hour without breaking a rule (model). It would have to turn back south of Paris, or the pattern would lose a link train.</p>
+<div class="block" id="timetable.capacity">
+  <h2>Today's terminals are full; the through stations would not be</h2>
+  <p>The four terminals that receive high-speed trains are, for the most part, at their limit. The figures below are the latest found; most date from 2012 to 2019, and no recent count of trains at the peak was found.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Terminal</th><th>Today</th><th>What limits it</th></tr></thead>
+    <tbody>
+      <tr><th>Montparnasse</th><td>9 tracks for high-speed trains; at most 9 high-speed departures an hour, 11 after the works planned on its approach.[[ae14]] 16 high-speed trains on those tracks in the morning peak hour.[[iau13]]</td><td>The platforms: a terminal track takes about one train an hour. The line takes 11 to 13 trains an hour each way today, 15 with new signalling.[[ae14, cgedd09]]</td></tr>
+      <tr><th>Gare de Lyon</th><td>14 high-speed trains in the morning peak hour.[[iau13]]</td><td>The line: 13 paths an hour each way, 16 with new signalling by 2030;[[lgvse, cgi17]] and the station, where trains must turn round at the platform in 40 minutes instead of 55 to use them.[[cgi17]]</td></tr>
+      <tr><th>Gare du Nord</th><td>All main-line tracks saturated at the peak except Eurostar's;[[iau13]] the timetable needs up to 15 of the 19 main-line tracks.[[sma19]]</td><td>Tracks and approach; since 2002 the ministry has answered that no further trains can be accepted.[[senat02]]</td></tr>
+      <tr><th>Gare de l'Est</th><td>About one train an hour on each main-line track: not saturated.[[iau13]]</td><td>Platforms of about 400 m, too short for two coupled sets, and the narrow approach.[[iau13]]</td></tr>
+    </tbody></table></div>
+  <p><strong>What the through stations could take.</strong> A through track is not held while a train is emptied, cleaned and refilled: at {{ d.timetable.inputs.stop | 0 }} minutes stopped and {{ d.timetable.inputs.clear | 0 }} to clear, three tracks each way could take {{ d.timetable.ceiling.tracks_stop4 | 0 }} trains an hour in each direction ({{ d.timetable.ceiling.tracks_stop5 | 0 }} with 5-minute stops). The tunnel track that reaches each side allows one train every {{ d.timetable.inputs.headway | 0 }} minutes, {{ d.timetable.ceiling.headway | 0 }} an hour. So each side of each station takes up to {{ d.timetable.ceiling.headway | 0 }} trains an hour (model), more than any of the four lines can bring today or with new signalling, about 15 to 16.[[lgvse, cgedd09, cgpc04]] With the project the stations stop being the limit, and the lines become it.</p>
+  <div class="tiles">
+    <div class="tile" style="--tc: var(--today)"><span class="n">{{ m.hour_today.Atlantic + m.hour_today.Southeast + m.hour_today.North + m.hour_today.East | 0 }}</span><span class="k">trains an hour each way into Paris in a busy hour about today</span><span class="d">{{ m.hour_today.Atlantic | 0 }} Atlantic, {{ m.hour_today.Southeast | 0 }} south-east, {{ m.hour_today.North | 0 }} north, {{ m.hour_today.East | 0 }} east: round numbers of this study <span class="tag assume">assumption</span></span></div>
+    <div class="tile" style="--tc: var(--s1)"><span class="n">{{ m.hour_full.Atlantic + m.hour_full.Southeast + m.hour_full.North + m.hour_full.East | 0 }}</span><span class="k">with the two southern lines full</span><span class="d">+{{ (m.hour_full.Atlantic + m.hour_full.Southeast + m.hour_full.North + m.hour_full.East) / (m.hour_today.Atlantic + m.hour_today.Southeast + m.hour_today.North + m.hour_today.East) - 1 | pct }}: {{ m.hour_full.Atlantic | 0 }} and {{ m.hour_full.Southeast | 0 }} trains an hour, the limits of their lines</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">{{ d.timetable.max_hour.AN + d.timetable.max_hour.AS + d.timetable.max_hour.SN + d.timetable.max_hour.AS + d.timetable.max_hour.AN + d.timetable.max_hour.SN | 0 }}</span><span class="k">the most the timetable fits with the southern lines full</span><span class="d">+{{ (d.timetable.max_hour.AN * 2 + d.timetable.max_hour.SN * 2 + d.timetable.max_hour.AS * 2) / (m.hour_today.Atlantic + m.hour_today.Southeast + m.hour_today.North + m.hour_today.East) - 1 | pct }}: Nord-Est filled to {{ d.timetable.max_hour.AN + d.timetable.max_hour.SN | 0 }} trains an hour each way from the north and east</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">+{{ m.hour_full.Atlantic / 9 - 1 | pct }}</span><span class="k">high-speed departures an hour on the Atlantic side</span><span class="d">From Montparnasse's 9 today to {{ m.hour_full.Atlantic | 0 }}; +{{ m.hour_full.Atlantic / 11 - 1 | pct }} against the 11 planned after its works[[ae14]]</span></div>
+  </div>
+  <p>The third figure counts each train once for each line it uses, as the first two do: {{ d.timetable.max_hour.AN + d.timetable.max_hour.SN | 0 }} trains an hour each way from the north and east would mean {{ d.timetable.max_hour.AN + d.timetable.max_hour.SN - m.hour_full.North - m.hour_full.East | 0 }} more than this study assumes for those lines today. No capacity figure was found for the northern and eastern high-speed lines; their signalling is rated at about 15 trains an hour,[[cgpc04]] and their trains also serve the airport and the lines that bypass Paris. So this is what the stations allow, not a forecast <span class="tag assume">assumption</span>. At that level the tunnels into Nord-Est carry a high-speed train every {{ 60 / (d.timetable.max_hour.AN + d.timetable.max_hour.SN) | 1 }} minutes on average and leave {{ d.timetable.spare_max['NE in'].spare | 0 }} paths for regional express trains (model): the second and the third figure are the same stations used two ways. Whether the lines, rather than the terminals, cap today's traffic is study point I1 in <a class="xref" href="#risks.verify">what to verify</a>. The map and the clocks below show all three hours.</p>
 </div>
 
 <div class="block" id="timetable.map">
-  <h2>The trains on the map</h2>
+  <h2>The hour on the map and at each station</h2>
+  <p>Press play: the map and the three clocks below run the same hour. Choose today's traffic or the most the three stations can take. Each train has the colour of the two lines it joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way.</p>
   <div class="controls" id="tt-scen-2"></div>
   <div class="tt-bar" id="tt-bar-2"></div>
   <figure class="fig">
@@ -47,6 +54,14 @@
     </div>
     <figcaption>Each station is drawn with its six high-speed platform tracks: on one side the trains coming from the station's own line (the north and east at Nord-Est), on the other the trains going out to it. Trains appear five minutes before their first Paris stop and leave the map five minutes after their last. The dashed line is the direct link. Hover or focus a dot for its minutes.</figcaption>
   </figure>
+  <figure class="fig" id="timetable.clocks">
+    <div class="fig-head"><strong>Six rings for six platform tracks: each arc is a train standing at its platform</strong><span>One hour at each station. The hand moves with the map; arcs light up while their train is at the platform. Hover or focus an arc for the train</span></div>
+    <div class="tt-clocks" id="tt-clocks"></div>
+    <p class="note" id="tt-ringnote"></p>
+    <figcaption>Minutes from the model (<code>model/timetable.py</code>), at the rules stated above. A track is also kept free {{ d.timetable.inputs.clear | 0 }} minutes after each departure, which the arcs do not show. Regional express trains, which use the same tunnels and their own platforms, are not shown.</figcaption>
+  </figure>
+  <div class="tt-boards" id="tt-boards"></div>
+  <p>The tracks are those the timetable needs, never more than {{ d.timetable.inputs.tracks | 0 }} on each side of a station. Montparnasse and Gare de Lyon each see 5 trains every 20 minutes on each side; at {{ d.timetable.inputs.stop | 0 }} minutes stopped and {{ d.timetable.inputs.clear | 0 }} to clear, that is 35 of the 60 minutes the three tracks offer, the same load as the platform rule of the <a class="xref" href="#service.platforms">service chapter</a>. The pattern carries {{ d.timetable.inputs.hour.SN + d.timetable.inputs.hour.AS | 0 }} south-east trains an hour, not {{ m.hour_full.Southeast | 0 }}: the sixteenth, which has no partner and would turn back at Nord-Est, holding a track there for {{ d.timetable.inputs.reverse + 1 | 0 }} minutes, fits at none of the 60 minutes of the hour without breaking a rule (model). It would have to turn back south of Paris, or the pattern would lose a link train.</p>
 </div>
 
 <div class="block" id="timetable.connections">

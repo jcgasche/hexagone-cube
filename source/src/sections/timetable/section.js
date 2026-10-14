@@ -24,7 +24,7 @@ PTS.section('timetable', function (root) {
     const dark = t.to === 'N' || t.to === 'E' || (t.from === 'A' && t.to === 'S');
     return { k: k, dark: dark };
   };
-  const SC = { full: T.chosen, std: T.standard };
+  const SC = { full: T.chosen, std: T.standard, max: T.maximum };
   const trainsOf = function (sc) {
     if (SC[sc]._t) return SC[sc]._t;
     SC[sc]._t = SC[sc].trains.map(function (t, i) {
@@ -42,7 +42,7 @@ PTS.section('timetable', function (root) {
   };
 
   // ---------------------------------------------------------------- shared clock: one minute for the clocks and the map
-  const state = { sc: 'full', v: 0, playing: false, raf: 0, last: 0, speed: 1 };
+  const state = { sc: 'std', v: 0, playing: false, raf: 0, last: 0, speed: 1 };
   const listeners = [];
   const show = function () { listeners.forEach(function (fn) { fn(state.v); }); };
   const players = [];
@@ -69,44 +69,55 @@ PTS.section('timetable', function (root) {
     setLabel();
   };
 
-  // ---------------------------------------------------------------- 1. a clock for each station
-  const CX = 190, CY = 190, RD = 104;
+  // ---------------------------------------------------------------- 1. a clock for each station: six rings, one for each platform track
+  const CX = 190, CY = 190, RD = 74, R0 = RD + 16, RW = 12, GAPG = 7;
   const pt = function (m, r) { const a = m / 60 * 2 * Math.PI; return [CX + r * Math.sin(a), CY - r * Math.cos(a)]; };
+  const ringR = function (side, track) { return R0 + (side === 'in' ? track - 1 : 3 + track - 1) * RW + (side === 'in' ? 0 : GAPG); };
+  const arcD = function (m1, m2, r) {
+    const a = pt(m1, r), b = pt(m2, r), big = (m2 - m1) > 30 ? 1 : 0;
+    return 'M' + a[0].toFixed(1) + ',' + a[1].toFixed(1) + ' A' + r + ',' + r + ' 0 ' + big + ' 1 ' + b[0].toFixed(1) + ',' + b[1].toFixed(1);
+  };
   const clocks = [];
+  const FROM = { NE: 'the north and east', LY: 'the south-east', MP: 'the Atlantic' };
   const drawClocks = function () {
     const host = PTS.clear($('#tt-clocks')); clocks.length = 0;
     const trs = trainsOf(state.sc);
     ORDER.forEach(function (st) {
-      const evs = [];
-      trs.forEach(function (t) { t.stops.forEach(function (x) { if (x.st === st) { evs.push({ kind: 'arr', m: x.arr, t: t, x: x }); evs.push({ kind: 'dep', m: x.dep, t: t, x: x }); } }); });
-      evs.sort(function (a, b) { return a.m - b.m || (a.kind === 'arr' ? -1 : 1); });
-      const stack = {}; evs.forEach(function (e) { e.k = stack[e.m] = stack[e.m] == null ? 0 : stack[e.m] + 1; });
-      const n = trs.filter(function (t) { return t.stops.some(function (x) { return x.st === st; }); }).length;
-      const svg = s('svg', { class: 'draw tt-clock', viewBox: '0 0 380 380', role: 'img', 'aria-label': ST[st] + ': ' + n + ' high-speed trains an hour stop here, ' + (n / 2) + ' each way on average; the pattern repeats every ' + SC[state.sc].period + ' minutes.' });
+      const stays = [];
+      trs.forEach(function (t) { t.stops.forEach(function (x) { if (x.st === st) stays.push({ t: t, x: x }); }); });
+      const n = stays.length;
+      const svg = s('svg', { class: 'draw tt-clock', viewBox: '0 0 380 380', role: 'img', 'aria-label': ST[st] + ': ' + n + ' high-speed trains an hour stop here, on six platform tracks drawn as six rings; each coloured arc is a train standing at its track.' });
       add(svg, 'circle', { cx: CX, cy: CY, r: RD, class: 'tt-face' });
-      for (let m = 0; m < 60; m++) { const a = pt(m, RD), b = pt(m, RD - (m % 5 ? 5 : 10)); add(svg, 'line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: m % 5 ? 'tt-tick' : 'tt-tick five' }); }
-      [[0, ':00'], [15, ':15'], [30, ':30'], [45, ':45']].forEach(function (q) { const p = pt(q[0], RD - 26); add(svg, 'text', { x: p[0], y: p[1] + 5, 'text-anchor': 'middle', class: 'tt-num', text: q[1] }); });
-      const hand = add(svg, 'line', { x1: CX, y1: CY, x2: CX, y2: CY - RD + 8, class: 'tt-handline' }); add(svg, 'circle', { cx: CX, cy: CY, r: 5, class: 'tt-hub' });
-      const inside = add(svg, 'text', { x: CX, y: CY + 36, 'text-anchor': 'middle', class: 'tt-inside' });
-      evs.forEach(function (e) {
-        const p = pt(e.m, RD + 18 + e.k * 12.5);
-        e.el = e.kind === 'arr' ? add(svg, 'circle', { cx: p[0], cy: p[1], r: 5, class: 'tt-ev arr' }) : add(svg, 'rect', { x: p[0] - 4.6, y: p[1] - 4.6, width: 9.2, height: 9.2, rx: 1.5, class: 'tt-ev dep' });
-        e.el.style.setProperty('--c', e.t.col); e.el.setAttribute('tabindex', 0);
-        PTS.tip.bind(e.el, function () { return '<b>' + pad(e.m) + (e.kind === 'arr' ? ' arrives' : ' leaves') + ', track ' + e.x.track + '</b><br>' + label(e.t) + '<br><small>' + (e.kind === 'arr' ? 'Stands ' + (e.x.dep_abs - e.x.arr_abs) + ' minutes' : 'Arrived at ' + pad(e.x.arr)) + '</small>'; });
+      for (let m = 0; m < 60; m++) { const a = pt(m, RD), b = pt(m, RD - (m % 5 ? 4 : 9)); add(svg, 'line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: m % 5 ? 'tt-tick' : 'tt-tick five' }); }
+      [[0, ':00'], [15, ':15'], [30, ':30'], [45, ':45']].forEach(function (q) { const p = pt(q[0], RD - 21); add(svg, 'text', { x: p[0], y: p[1] + 4.5, 'text-anchor': 'middle', class: 'tt-num', text: q[1] }); });
+      ['in', 'out'].forEach(function (side) { for (let k = 1; k <= 3; k++) add(svg, 'circle', { cx: CX, cy: CY, r: ringR(side, k), class: 'tt-ring' }); });
+      stays.forEach(function (e) {
+        const r = ringR(e.x.side, e.x.track), a1 = e.x.arr_abs, a2 = e.x.dep_abs;
+        const g = add(svg, 'g', { class: 'tt-stay', tabindex: 0 }); g.style.setProperty('--c', e.t.col);
+        const parts = [[a1, a2]].reduce(function (acc, q) {                    // split an arc that crosses the full hour
+          const m1 = ((q[0] % 60) + 60) % 60, m2 = m1 + (q[1] - q[0]);
+          return m2 > 60 ? acc.concat([[m1, 60], [0, m2 - 60]]) : acc.concat([[m1, m2]]);
+        }, []);
+        parts.forEach(function (q) { add(g, 'path', { d: arcD(q[0], q[1], r), class: 'tt-arc' }); });
+        PTS.tip.bind(g, function () { return '<b>' + label(e.t) + '</b><br>Track ' + e.x.track + (e.x.side === 'in' ? ' a' : ' b') + ', ' + pad(e.x.arr) + ' to ' + pad(e.x.dep) + ' (' + (a2 - a1) + ' minutes)'; });
+        e.el = g;
       });
-      const box = h('div', { class: 'tt-clockbox' }, h('h4', { text: ST[st] }), svg, h('p', { class: 'tt-cap', text: n + ' trains an hour stop here' }));
+      const hand = add(svg, 'line', { x1: CX, y1: CY, x2: CX, y2: CY - (R0 + 6 * RW + GAPG + 2), class: 'tt-handline' }); add(svg, 'circle', { cx: CX, cy: CY, r: 4.5, class: 'tt-hub' });
+      const now = h('span', { class: 'tt-cap-now' });
+      const box = h('div', { class: 'tt-clockbox' }, h('h4', { text: ST[st] }), svg,
+        h('p', { class: 'tt-cap' }, h('span', { text: n + ' trains an hour' }), now));
       host.appendChild(box);
-      clocks.push({ hand: hand, evs: evs, inside: inside, st: st });
+      clocks.push({ hand: hand, stays: stays, now: now, st: st });
     });
+    const leg = $('#tt-ringnote');
+    if (leg) leg.textContent = 'Inner three rings: tracks a, for trains coming in from the station\u2019s own line; outer three rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure.';
   };
   listeners.push(function (v) {
     clocks.forEach(function (c) {
       c.hand.setAttribute('transform', 'rotate(' + ((calm ? Math.floor(v) : v) * 6).toFixed(2) + ' ' + CX + ' ' + CY + ')');
       let here = 0;
-      const vi = Math.floor(v);
-      c.evs.forEach(function (e) { e.el.classList.toggle('done', (vi - e.m + 60) % 60 < 20 && (vi - e.m + 60) % 60 >= 0); });
-      trainsOf(state.sc).forEach(function (t) { t.stops.forEach(function (x) { if (x.st === c.st && ((v - x.arr_abs) % 60 + 60) % 60 < x.dep_abs - x.arr_abs) here++; }); });
-      c.inside.textContent = here + (here === 1 ? ' train' : ' trains') + ' at the platforms';
+      c.stays.forEach(function (e) { const on = ((v - e.x.arr_abs) % 60 + 60) % 60 < e.x.dep_abs - e.x.arr_abs; e.el.classList.toggle('on', on); if (on) here++; });
+      c.now.textContent = here + (here === 1 ? ' at a platform now' : ' at the platforms now');
     });
   });
 
@@ -254,14 +265,15 @@ PTS.section('timetable', function (root) {
   PTS.onResize(mapHost, function (w) { mapW = Math.min(w, 760); drawMap(); });
 
   // legend
-  ['#tt-legend', '#tt-legend-map'].forEach(function (sel) { const leg = $(sel); Object.keys(KIND).forEach(function (k) {
+  ['#tt-legend-map'].forEach(function (sel) { const leg = $(sel); Object.keys(KIND).forEach(function (k) {
     leg.appendChild(h('li', null, h('i', { class: 'tt-pair' }, h('b', { style: { '--c': KIND[k].c } }), h('b', { style: { '--c': 'color-mix(in srgb, ' + KIND[k].c + ' 45%, var(--surface))' } })), KIND[k].name));
   }); });
 
   // ---------------------------------------------------------------- 3. connections: pulse against a timetable not built for them
   const drawPairs = function () {
-    const full = state.sc === 'full', E = full ? T.cases.even20 : T.cases.even10, Pu = full ? T.cases.pulse20 : T.cases.pulse10, R = full ? T.cases.random20 : T.cases.random10;
-    const ev = E.even, hour = full ? T.inputs.hour : { AN: 6, SN: 6, AS: 6 };
+    const sc = state.sc, full = sc !== 'std', E = T.cases[{ std: 'even10', full: 'even20', max: 'evenmax' }[sc]];
+    const Pu = sc === 'max' ? null : full ? T.cases.pulse20 : T.cases.pulse10, R = sc === 'max' ? null : full ? T.cases.random20 : T.cases.random10;
+    const ev = E.even, hour = sc === 'full' ? T.inputs.hour : sc === 'max' ? T.max_hour : { AN: 6, SN: 6, AS: 6 };
     const NAME = { AS: 'Atlantic and south-east', AN: 'Atlantic and north', AE: 'Atlantic and east', SN: 'South-east and north', SE: 'South-east and east' };
     const n = { AS: hour.AS, AN: hour.AN * 2 / 3, AE: hour.AN / 3, SN: hour.SN * 2 / 3, SE: hour.SN / 3 };
     const rows = [];
@@ -278,7 +290,7 @@ PTS.section('timetable', function (root) {
       ['North to east: minutes in Paris, with the change', 'ne_change'],
       ['A passenger who changes to one service: minutes in Paris', 'change_avg']];
     const tb = h('tbody');
-    lines.forEach(function (r) { tb.appendChild(h('tr', { class: r[1] === 'paris_wait' ? 'hl' : null }, h('th', { text: r[0] }), h('td', { class: 'num', text: m1(E[r[1]]) }), h('td', { class: 'num', text: m1(Pu[r[1]]) }), h('td', { class: 'num', text: m1(R[r[1]]) }))); });
+    lines.forEach(function (r) { tb.appendChild(h('tr', { class: r[1] === 'paris_wait' ? 'hl' : null }, h('th', { text: r[0] }), h('td', { class: 'num', text: m1(E[r[1]]) }), h('td', { class: 'num', text: Pu ? m1(Pu[r[1]]) : 'not run' }), h('td', { class: 'num', text: R ? m1(R[r[1]]) : 'not run' }))); });
     host.appendChild(h('div', { class: 'tbl-wrap' }, h('table', { class: 'tbl no-stack' }, h('thead', null, h('tr', null, h('th', { text: 'Average minutes' }), h('th', { class: 'num', text: 'Even' }), h('th', { class: 'num', text: 'Timed for changes' }), h('th', { class: 'num', text: 'Untimed' }))), tb)));
   };
 
@@ -300,11 +312,10 @@ PTS.section('timetable', function (root) {
 
   // ---------------------------------------------------------------- controls and first draw
   const redraw = function () { drawClocks(); drawBoards(); drawMap(); drawPairs(); show(); };
-  const scen = [['full', 'Southern lines full: every 20 minutes'], ['std', 'Standard busy hour: every 10 minutes']];
+  const scen = [['std', 'About today'], ['full', 'Southern lines full'], ['max', 'Most the stations take']];
   const segs = [];
   const setSc = function (v) { state.sc = v; segs.forEach(function (x) { x.set(v, true); }); redraw(); };
-  segs.push(PTS.seg($('#tt-scen-1'), scen, state.sc, setSc, 'Hour shown'));
   segs.push(PTS.seg($('#tt-scen-2'), scen, state.sc, setSc, 'Hour shown'));
-  bar($('#tt-bar-1'), false); bar($('#tt-bar-2'), true);
+  bar($('#tt-bar-2'), true);
   drawStops(); redraw();
 });

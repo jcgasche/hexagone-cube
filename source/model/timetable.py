@@ -427,6 +427,17 @@ def spare_paths(p):
     return out
 
 
+# the most trains the three stations can take: the southern lines at the limits of their lines (15 Atlantic, 15 of the 16 south-east,
+# as in the full hour), and Nord-Est filled to 18 trains an hour each way from the north and east (12 north, 6 east: ASSUMPTION, the
+# capacity of the northern and eastern lines is not known to this study); 6 Atlantic to south-east trains by the link.
+MAX_HOUR = {'AN': 9, 'NA': 9, 'SN': 9, 'NS': 9, 'AS': 6, 'SA': 6}
+def ceiling():
+    """Trains an hour one side of a station can take: one every HEADWAY minutes on its tunnel track, and TRACKS tracks each freed
+    for the next train STOP + CLEAR minutes after a train arrives (STOP and 5 minutes)."""
+    return {'headway': 60 / HEADWAY, 'tracks_stop4': TRACKS * 60 / (STOP + CLEAR), 'tracks_stop5': TRACKS * 60 / (5 + CLEAR),
+            'two_tracks_stop4': 2 * 60 / (STOP + CLEAR), 'two_tracks_stop5': 2 * 60 / (5 + CLEAR)}
+
+
 KEYS = ('cross', 'line', 'held_cost', 'score', 'change_avg', 'wait_avg', 'change_wave', 'within20', 'within30', 'paris_wait', 'direct_wait', 'ne_change')
 def mean_of(rows): return {k: sum(r[k] for r in rows) / len(rows) for k in KEYS} if rows else None
 
@@ -452,6 +463,8 @@ def main():
     cases = {}
     even20 = solve(20, seeds, steps, goal='even', hold=False); cases['even20'] = summary(even20)
     even10 = solve(10, seeds, steps, hour=std, goal='even', hold=False); cases['even10'] = summary(even10)
+    # the most the stations take: southern lines at their limits, Nord-Est filled to 6 trains each way every 20 minutes
+    evenmax = solve(20, seeds, steps, hour=MAX_HOUR, goal='even', hold=False); cases['evenmax'] = summary(evenmax)
     best20 = solve(20, seeds, steps); cases['pulse20'] = summary(best20)
     cases['random20'] = random_cases(20, nr)
     best10 = solve(10, seeds, steps, hour=std); cases['pulse10'] = summary(best10)
@@ -471,7 +484,7 @@ def main():
     pk = solve(20, seeds[:2], steps * 2 // 3); rc = random_cases(20, nr // 3)
     sens['link at the model time'] = dict(mean_of([summary(pk)]), random=rc and rc['cross']) if pk else None
     RUN['LM'] = keep
-    out.update({'cases': cases, 'frontier': frontier, 'sens': sens, 'chosen': export(even20, 'even 20'), 'standard': export(even10, 'even 10'),
+    out.update({'cases': cases, 'frontier': frontier, 'sens': sens, 'chosen': export(even20, 'even 20'), 'standard': export(even10, 'even 10'), 'maximum': export(evenmax, 'even 20, most trains'), 'spare_max': spare_paths(evenmax), 'max_hour': MAX_HOUR, 'ceiling': ceiling(),
                 'turn_minutes': turn_slot(even20), 'spare': spare_paths(even20), 'spare_standard': spare_paths(even10)})
     os.makedirs(os.path.join(HERE, 'outputs'), exist_ok=True)
     json.dump(out, open(os.path.join(HERE, 'outputs', 'timetable.json'), 'w'), indent=1)
