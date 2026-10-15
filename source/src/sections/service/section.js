@@ -10,6 +10,7 @@ PTS.section('service', function (root) {
   const hourOf = function (scen) { return scen === 'full' ? D.hour_full : D.hour_today; };
   const perTrack = function (st) { return 60 * st.util / (st.stop + st.clear); };    // trains one platform track takes an hour
   const ST = ['Paris Nord-Est', 'Gare de Lyon', 'Montparnasse'];
+  const PROV = function (n) { return D.cost.detail[n].hs; };                         // high-speed platform tracks provided at a station, both directions
 
   /* The model's service plan (model/nordest.py, section 4), repeated here so that the controls can move its settings.
      North and east trains pair with a southern line, half each; the rest of the southern trains pair with each other by the link;
@@ -22,7 +23,7 @@ PTS.section('service', function (root) {
     const legs = { 'Montparnasse to Nord-Est': through / 2 + spareA, 'Gare de Lyon to Nord-Est': through / 2 + spareSE, 'Montparnasse to Gare de Lyon': link };
     const stopsDir = { 'Paris Nord-Est': through + spare * revEq / 2, 'Gare de Lyon': SE, 'Montparnasse': A };   // stop-equivalents an hour in one direction
     const pt = perTrack(st), tracks = {}, load = {};
-    ST.forEach(function (n) { tracks[n] = 2 * stopsDir[n] / pt; load[n] = stopsDir[n] / D.tracks_per_direction; });
+    ST.forEach(function (n) { tracks[n] = 2 * stopsDir[n] / pt; load[n] = stopsDir[n] / (PROV(n) / 2); });
     return { A: A, SE: SE, N: N, E: E, through: through, link: link, spareA: spareA, spareSE: spareSE, spare: spare, revEq: revEq, legs: legs, stopsDir: stopsDir, perTrack: pt, tracks: tracks, load: load };
   };
 
@@ -135,7 +136,6 @@ PTS.section('service', function (root) {
   PTS.onResize(wrap, drawFlows);
 
   // ---------------------------------------------------------------- platform calculator
-  const PROVIDED = 2 * D.tracks_per_direction;
   const drawHour = function (p) {
     const host = PTS.clear($('#svc-hour'));
     const busiest = ST.reduce(function (a, n) { return p.load[n] > p.load[a] ? n : a; }, ST[0]);
@@ -159,22 +159,24 @@ PTS.section('service', function (root) {
       ['Trains an hour on each track provided', t1(p.load['Paris Nord-Est']), 'sum']);
     rows.forEach(function (r) { read.appendChild(h('dt', { class: r[2] || null, text: r[0] })); read.appendChild(h('dd', { class: r[2] || null, text: r[1] })); });
     const worst = ST.reduce(function (a, n) { return p.tracks[n] > p.tracks[a] ? n : a; }, ST[0]), need = p.tracks[worst];
-    $('#svc-calc-title').textContent = (state.scen === 'full' ? 'Southern lines full: ' : 'Standard busy hour: ') + (need <= PROVIDED + 0.05
-      ? 'the rule asks for at most ' + t1(need) + ' of the ' + PROVIDED + ' tracks, at ' + worst + '; every station keeps a margin'
-      : 'the rule asks for ' + t1(need) + ' tracks at ' + worst + ', more than the ' + PROVIDED + ' provided');
+    const short = ST.filter(function (n) { return p.tracks[n] > PROV(n) + 0.05; });
+    $('#svc-calc-title').textContent = (state.scen === 'full' ? 'Southern lines full: ' : 'Standard busy hour: ') + (!short.length
+      ? 'the rule asks for at most ' + t1(need) + ' tracks, at ' + worst + '; every station has as many as it needs'
+      : 'the rule asks for ' + t1(p.tracks[short[0]]) + ' tracks at ' + short[0] + ', more than the ' + PROV(short[0]) + ' provided');
     const host = PTS.clear($('#svc-calc-tracks'));
     ST.forEach(function (name) {
-      const need = p.tracks[name], full = Math.floor(need + 1e-9), part = need - full;
+      const PROVIDED = PROV(name), need = p.tracks[name], full = Math.floor(need + 1e-9), part = need - full;
       const pips = h('div', { class: 'svc-pips', role: 'img', 'aria-label': name + ': ' + t1(need) + ' tracks needed, ' + PROVIDED + ' provided' });
       const total = Math.max(PROVIDED, Math.ceil(need - 1e-9));
       for (let i = 0; i < total; i++) {
         const used = i < full ? 'full' : (i === full && part > 0.01 ? 'part' : null), cls = i >= PROVIDED ? 'short' : (used || 'free');
-        pips.appendChild(h('i', { class: 'svc-pip ' + cls, style: cls === 'part' ? { '--f': Math.round(part * 100) + '%' } : null }));
+        pips.appendChild(h('i', { class: 'svc-pip ' + cls + ((i + 1) % (PROVIDED / 2) === 0 ? ' dir-end' : ''), style: cls === 'part' ? { '--f': Math.round(part * 100) + '%' } : null }));
       }
       const margin = PROVIDED - r1(need);
       const verdict = margin >= 0.05 ? h('span', null, t1(need) + ' needed, ' + PROVIDED + ' provided: ', h('span', { class: 'ok', text: t1(margin) + ' spare' }))
         : margin > -0.05 ? h('span', null, t1(need) + ' needed, ' + PROVIDED + ' provided: ', h('span', { class: 'ko', text: 'no margin' }))
         : h('span', null, t1(need) + ' needed, ' + PROVIDED + ' provided: ', h('span', { class: 'ko', text: t1(-margin) + ' short' }));
+      if (PROVIDED > 2 * D.tracks_per_direction) verdict.appendChild(h('span', { text: '; the fourth track each way also takes the TER' }));
       host.appendChild(h('div', { class: 'svc-st' }, h('div', { class: 'lab' }, h('b', { text: name }), verdict), pips));
     });
     drawHour(p);

@@ -303,7 +303,7 @@ PTS.section('elizabeth', function (root) {
       Object.assign({ label: 'Paris, this study', value: paris, color: PAR }, (extra && extra.paris) || {})] }));
   };
   two('#el-scale-tunnel', function (v) { return F.n(v, v % 1 ? 1 : 0) + ' km'; }, L.tunnel_km, cP.tunnel_km,
-    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.tunnel_km, 1) + ' km of twin-track tunnel, one for each kind of train: ' + F.n(M.tunnels.km.tgv, 1) + ' km for high-speed trains with the ' + F.n(M.link_km, 0) + ' km direct link, ' + F.n(M.tunnels.km.ter, 1) + ' for regional express trains, ' + F.n(M.tunnels.km.n, 1) + ' for line N and ' + F.n(M.tunnels.km.h, 1) + ' for line H' } });
+    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.tunnel_km, 1) + ' km of twin-track tunnel: ' + F.n(M.tunnels.km.tgv, 1) + ' km for high-speed trains with the ' + F.n(M.link_km, 0) + ' km direct link, which the regional express trains share, ' + F.n(M.tunnels.km.n, 1) + ' for line N and ' + F.n(M.tunnels.km.h, 1) + ' for line H' } });
   two('#el-scale-platform', function (v) { return F.n(v) + ' m'; }, L.platform_m, cP.platform_total,
     { paris: { tip: '<b>Paris</b><br>' + F.n(cP.platform_total) + ' m of platform track on ' + Object.keys(cP.tracks).reduce(function (a, k) { return a + cP.tracks[k]; }, 0) + ' tracks in four stations, Saint-Lazare included' } });
   two('#el-scale-cost', function (v) { return F.bn(v, v % 1 ? 1 : 0); }, L.cost_eur, cP.total, { lon: { text: 'about €' + L.cost_eur + 'bn' },

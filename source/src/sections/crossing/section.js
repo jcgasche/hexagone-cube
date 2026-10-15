@@ -82,7 +82,7 @@ PTS.section('crossing', function (root) {
   // ---------------------------------------------------------------- regional and suburban services
   const G = D.regional;
   const nameOf = function (k) { return own.ter_names[k] || own.sub_names[k] || 'Line ' + k; };
-  const stopOf = function (k) { return own.second_stop[k] ? 'on to ' + own.second_stop[k] : own.no_through; };   // line R and Gare de Lyon's regional trains do not run through
+  const stopOf = function (k) { return own.second_stop[k] ? 'on to ' + own.second_stop[k] : own.no_through; };   // line R does not run through
   const rank = function (r) { const i = own.sub_order.indexOf(r[0]); return i < 0 ? 99 : i; };
   const ROWS = G.rows.slice().sort(function (a, b) { return rank(a) - rank(b); });   // suburban lines in the order of the two through lines, then regional express
   const MEASURE = {

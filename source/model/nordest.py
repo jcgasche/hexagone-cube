@@ -519,7 +519,7 @@ def service(H=HOUR_TODAY):
         key = {'Paris Nord-Est': 'nordest', 'Gare de Lyon': 'lyon', 'Montparnasse': 'montparnasse'}[n]
         out[key + '_stops'] = 2 * sd                                        # both directions together
         out[key + '_tracks_calc'] = 2 * math.ceil(sd / PER_TRACK - 1e-9)   # what the rule asks for, by direction
-        out[key + '_load'] = sd / TRACKS_PER_DIRECTION                      # trains an hour on each of the provided tracks
+        out[key + '_load'] = sd / (LAYOUT['stations'][n]['hs'] / 2)          # trains an hour on each of the provided tracks (Gare de Lyon: 4 each way, version 4.1)
     return out
 
 

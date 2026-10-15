@@ -30,7 +30,7 @@ PTS.section('stations', function (root) {
   // ================================================================ plans: the platforms of each station, all to one scale
   const PLAN = {
     'Paris Nord-Est': { halls: ['Gare du Nord', 'Gare de l’Est'], from: ['to the north and the east', 'north, east'], to: ['to Gare de Lyon and Montparnasse', 'Lyon, Montparnasse'], arrow: ['to Lyon, Montparnasse, Saint-Lazare', 'south, west'], magenta: { name: 'Magenta', where: 'It lies between the two halls.' }, london: S.london },
-    'Gare de Lyon': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to the south-east', 'south-east'], link: 'Montparnasse' },
+    'Gare de Lyon': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to the south-east', 'south-east'], link: 'Montparnasse', shared: 'The fourth track each way also takes the regional express trains (TER) that run through to Paris Nord-Est: busy ' + F.n(D.ter_paths.platforms.lyon_4th.used, 0) + ' of ' + F.n(D.ter_paths.platforms.lyon_4th.avail, 0) + ' minutes in the peak hour' },
     'Montparnasse': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to the Atlantic', 'Atlantic'], link: 'Gare de Lyon' },
     'Saint-Lazare': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to Pont-Cardinet and the west', 'west'], magenta: { name: 'Haussmann-Saint-Lazare', where: 'It lies close to the station.' } }
   };
@@ -74,7 +74,7 @@ PTS.section('stations', function (root) {
         pas.forEach(function (m) { grp.appendChild(s('circle', { class: 'st-way', cx: X(m), cy: yy + pitch * 0.5, r: narrow ? 2.2 : 3 })); });
       }
       grp.appendChild(s('rect', { class: 'st-hit', x: pad, y: g.y - 18, width: W - 2 * pad, height: g.n * pitch + 20 }));
-      const tip = '<b>' + g.label + '</b><br>' + g.tracks + ' tracks on ' + g.n + ' island platforms, ' + g.len + ' m long<br>' + F.n(g.tracks * g.len, 0) + ' m of platform track' + (g.k === 'hs' ? '<br>Dedicated by direction: ' + g.note + ', ' + cfg.from[1] + ' on one side, ' + cfg.to[1] + ' on the other' : '');
+      const tip = '<b>' + g.label + '</b><br>' + g.tracks + ' tracks on ' + g.n + ' island platforms, ' + g.len + ' m long<br>' + F.n(g.tracks * g.len, 0) + ' m of platform track' + (g.k === 'hs' ? '<br>Dedicated by direction: ' + g.note + ', ' + cfg.from[1] + ' on one side, ' + cfg.to[1] + ' on the other' + (cfg.shared ? '<br>' + cfg.shared : '') : '');
       svg.appendChild(note(grp, g.label + ', ' + g.tracks + ' tracks of ' + g.len + ' m', tip));
     });
     if (cfg.london) {                                          // one TGV track can be closed off for each London departure; its control hall is on the Gare du Nord side

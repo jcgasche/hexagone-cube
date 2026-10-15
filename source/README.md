@@ -2,12 +2,12 @@
 
 A pre-feasibility case, written as an interactive document, for one project: replacing the four Paris terminals used by high-speed
 trains by three deep through stations (Paris Nord-Est under Gare du Nord and Gare de l'Est, Gare de Lyon, Montparnasse) on a triangle
-of TGV tunnels, with one twin-track tunnel for each kind of train ("the plan", 15 October 2026). Regional express trains and suburban
-line N (formerly P and N) run in their own tunnels from the north and east through Nord-Est to Montparnasse and the Atlantic side;
-suburban line H (formerly H, K and L) runs under Nord-Est to a new deep through station under Saint-Lazare. Only TGVs go to Gare de
-Lyon underground; its regional trains stay on the surface for now (open item). 58.4 km of twin-track tunnel and 46 platform tracks
-in all. The tunnels come up on the existing tracks at the ring road (on the eastern line at Rosa Parks). No train reverses in Paris;
-every high-speed train calls at two of the three TGV stations. The concept, the central figures and the model keys are in
+of TGV tunnels ("the plan", 15 October 2026, version 4.1). Regional express trains run through Paris in the TGV tunnels, on the
+2-minute paths between the TGVs of the 12-minute beat (condition: signalling for trains about 1.5 minutes apart). Suburban line N
+(formerly P and N) has its own tunnel from the east through Nord-Est to Montparnasse and the Atlantic side; suburban line H (formerly
+H, K and L) runs under Nord-Est to a new deep through station under Saint-Lazare. Line R stays on a small surface terminal at Gare de
+Lyon. 44.5 km of twin-track tunnel and 48 platform tracks in all. The tunnels come up on the existing tracks at the ring road (on the
+eastern line at Rosa Parks). No train reverses in Paris. The concept, the central figures and the model keys are in
 `docs/TRIANGLE_BRIEF.md`.
 
 The document is one self-contained HTML page built from independent sections. Each section can be worked on alone:
@@ -104,6 +104,6 @@ six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` 
 
 ## Status
 
-Version of 15 October 2026: the plan (one tunnel for each kind of train, Saint-Lazare for line H), on the 12-minute beat, with 15% risk on the cost, and the approach tunnels ending at the ring road. Nothing here is a design: quantities are planning assumptions and
+Version of 15 October 2026, evening: the plan with regional express trains in the TGV tunnels (version 4.1), on the 12-minute beat, with 15% risk on the cost, and the approach tunnels ending at the ring road. Nothing here is a design: quantities are planning assumptions and
 the drawings are sketches. The access model, traffic estimates and construction cost were checked twice by an independent
 reviewer for an earlier report of 12 October 2026. See "What changed in this version" in the Method annex.

@@ -29,7 +29,7 @@
 #service .svc-st .lab span { font-size: 13px; color: var(--muted) }
 #service .svc-pips { display: flex; flex-wrap: wrap; gap: 6px 3px; align-items: center }
 #service .svc-pip { display: block; width: 12px; height: 30px; border-radius: 3px; border: 1.5px solid var(--struct-edge); background: transparent; flex: none }
-#service .svc-pips .svc-pip:nth-child(3n) { margin-right: 10px }
+#service .svc-pips .svc-pip.dir-end { margin-right: 10px }
 #service .svc-pip.full { background: var(--s1); border-color: var(--s1) }
 #service .svc-pip.part { border-color: var(--s1); background: linear-gradient(to top, var(--s1) var(--f), transparent var(--f)) }
 #service .svc-pip.short { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 35%, transparent) }

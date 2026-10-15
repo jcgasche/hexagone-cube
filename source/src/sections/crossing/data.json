@@ -5,9 +5,9 @@
   "SE": {"name": "Southeast", "key": "Lyon", "city": "Lyon", "terminal": "Gare de Lyon", "stops": ["Gare de Lyon", "Paris Nord-Est"]},
   "A": {"name": "Atlantic", "key": "Montparnasse", "city": "Bordeaux", "terminal": "Montparnasse", "stops": ["Montparnasse", "Paris Nord-Est"]}
  },
- "second_stop": {"H": "Saint-Lazare", "K": "Saint-Lazare", "L": "Paris Nord-Est", "P": "Montparnasse", "N": "Paris Nord-Est", "R": null, "TER Nord": "Montparnasse", "TER Est": "Montparnasse", "TER Lyon": null, "TER Montparnasse": "Paris Nord-Est"},
- "no_through": "stays at Gare de Lyon (open item)",
+ "second_stop": {"H": "Saint-Lazare", "K": "Saint-Lazare", "L": "Paris Nord-Est", "P": "Montparnasse", "N": "Paris Nord-Est", "R": null, "TER Nord": "Montparnasse", "TER Est": "Gare de Lyon", "TER Lyon": "Paris Nord-Est", "TER Montparnasse": "Paris Nord-Est"},
+ "no_through": "stays on the surface at Gare de Lyon (running through is a later option)",
  "sub_order": ["H", "K", "L", "P", "N", "R"],
  "sub_names": {"H": "Line H, from Gare du Nord", "K": "Line K, from Gare du Nord", "L": "Line L, from Saint-Lazare", "P": "Line P, from Gare de l’Est", "N": "Line N, from Montparnasse", "R": "Line R, Gare de Lyon"},
- "ter_names": {"TER Nord": "Regional express, north", "TER Est": "Regional express, east", "TER Lyon": "Regional express, southeast", "TER Montparnasse": "Regional express, Atlantic"}
+ "ter_names": {"TER Nord": "Regional express, north", "TER Est": "Regional express, east", "TER Lyon": "Regional express, south-east", "TER Montparnasse": "Regional express, Atlantic"}
 }

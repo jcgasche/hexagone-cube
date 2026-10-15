@@ -4,7 +4,7 @@ PTS.section('cost', function (root) {
   const $ = function (sel) { return root.querySelector(sel); };
   const ITEMS = [['Tunnels, civil works', 'var(--s1)'], ['Tunnels, rail systems', 'var(--s7)'], ['Stations', 'var(--s2)'], ['Historic halls', 'var(--s4)'],
                  ['Underground junctions', 'var(--s3)'], ['Portals and links to existing lines', 'var(--s5)'], ['Sidings and depot links', 'var(--s6)'],
-                 ['Control hall for London trains', 'var(--today)']];
+                 ['Control hall for London trains', 'var(--today)'], ['TER links into the TGV tunnels', 'var(--new)']];
   const pctRisk = function (R) { return F.pct(R.risk); };
   const parts = function (c, R) {
     const p = ITEMS.map(function (it) { return { label: it[0], value: c.items[it[0]], color: it[1] }; });
@@ -14,7 +14,7 @@ PTS.section('cost', function (root) {
   };
 
   // ---- build-up of the cost
-  C.stack($('#cost-buildup'), { fmt: F.bn, rows: [{ label: '<b>The triangle</b><br>four deep stations, a tunnel for each kind of train, the direct link', parts: parts(D.cost, D.rates) }] });
+  C.stack($('#cost-buildup'), { fmt: F.bn, rows: [{ label: '<b>The triangle</b><br>four deep stations, a tunnel for each kind of train (the regional express in the TGV one), the direct link', parts: parts(D.cost, D.rates) }] });
 
   // ---- deep stations per metre of platform track
   C.ranges($('#cost-stations-chart'), {
@@ -32,8 +32,10 @@ PTS.section('cost', function (root) {
   const state = { tunnel_civil: R0.central.tunnel_civil, tunnel_systems: R0.central.tunnel_systems, platform_m: R0.central.platform_m, risk: R0.central.risk, hs: hs0 };
   const sliders = {};
   const layoutWith = function (hs) {
-    const st = {};       // only stations that have TGV tracks change; Saint-Lazare (suburban only) keeps none
-    Object.keys(L0.stations).forEach(function (n) { st[n] = Object.assign({}, L0.stations[n], L0.stations[n].hs > 0 ? { hs: hs } : {}); });
+    // the slider moves every station that has TGV tracks by the same number from its own base (Gare de Lyon keeps its two extra
+    // tracks for the regional express trains and the 16th south-east TGV); Saint-Lazare (suburban only) keeps none
+    const st = {}, dh = hs - hs0;
+    Object.keys(L0.stations).forEach(function (n) { st[n] = Object.assign({}, L0.stations[n], L0.stations[n].hs > 0 ? { hs: L0.stations[n].hs + dh } : {}); });
     return Object.assign({}, L0, { stations: st });
   };
   const draw = function () {
@@ -47,7 +49,7 @@ PTS.section('cost', function (root) {
     C.bars($('#cost-ex-bars'), { fmt: F.bn, max: 35, compact: true, rows: [
       { label: 'Tunnels', value: c.items['Tunnels, civil works'] + c.items['Tunnels, rail systems'], color: 'var(--s1)' },
       { label: 'Stations', value: c.items.Stations, color: 'var(--s2)' },
-      { label: 'Halls, junctions, portals, sidings, London hall', value: c.hard - c.items['Tunnels, civil works'] - c.items['Tunnels, rail systems'] - c.items.Stations, color: 'var(--s3)' },
+      { label: 'Halls, junctions, portals, sidings, London hall, regional express links', value: c.hard - c.items['Tunnels, civil works'] - c.items['Tunnels, rail systems'] - c.items.Stations, color: 'var(--s3)' },
       { label: 'Design, client costs, land bought', value: c.soft + c.land, color: 'var(--neutral-mark)' },
       { label: 'Risk, ' + pctRisk(R), value: c.risk, color: 'var(--s8)' }] });
   };
@@ -57,7 +59,7 @@ PTS.section('cost', function (root) {
   mk('tunnel_civil', { label: 'Tunnel, civil works, per km', min: 0.08, max: 0.18, step: 0.005, format: function (v) { return '€' + F.n(v * 1000, 0) + 'm'; }, note: 'Grand Paris 100 to 130, London 140 to 170' });
   mk('tunnel_systems', { label: 'Track, power, signalling, per km', min: 0.03, max: 0.105, step: 0.005, format: function (v) { return '€' + F.n(v * 1000, 0) + 'm'; }, note: 'Grand Paris 31 to 58, London 104' });
   mk('risk', { label: 'Risk allowance, on top of everything', min: 0.05, max: 0.6, step: 0.01, format: function (v) { return F.pct(v); }, note: F.pct(R0.central.risk) + ' here, on final costs and contracts; Grand Paris 24% to 32% on estimates; average overrun of rail projects 45%' });
-  mk('hs', { label: 'TGV platform tracks in each station', min: 4, max: 8, step: 1, format: function (v) { return F.n(v, 0) + ' tracks'; }, note: hs0 + ' here, three each way, at Nord-Est, Gare de Lyon and Montparnasse; four were ruled out as too tight' });
+  mk('hs', { label: 'TGV platform tracks in each station', min: 4, max: 8, step: 1, format: function (v) { return F.n(v, 0) + ' tracks'; }, note: hs0 + ' here, three each way, at Nord-Est and Montparnasse; Gare de Lyon has ' + L0.stations['Gare de Lyon'].hs + ' and moves with them; four were ruled out as too tight' });
   const preset = function (name) {
     const R = name === 'zurich' ? Object.assign({}, R0.central, { platform_m: 0.00055 }) : name === 'london' ? Object.assign({}, R0.central, { platform_m: 0.002 }) : R0[name];
     ['platform_m', 'tunnel_civil', 'tunnel_systems', 'risk'].forEach(function (k) { state[k] = R[k]; sliders[k].set(R[k], true); });

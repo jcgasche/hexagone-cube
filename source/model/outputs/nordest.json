@@ -7455,7 +7455,7 @@
   "nordest_load": 4.0,
   "lyon_stops": 24,
   "lyon_tracks_calc": 6,
-  "lyon_load": 4.0,
+  "lyon_load": 3.0,
   "montparnasse_stops": 24,
   "montparnasse_tracks_calc": 6,
   "montparnasse_load": 4.0
@@ -7495,7 +7495,7 @@
   "nordest_load": 4.214285714285714,
   "lyon_stops": 32,
   "lyon_tracks_calc": 8,
-  "lyon_load": 5.333333333333333,
+  "lyon_load": 4.0,
   "montparnasse_stops": 30,
   "montparnasse_tracks_calc": 6,
   "montparnasse_load": 5.0

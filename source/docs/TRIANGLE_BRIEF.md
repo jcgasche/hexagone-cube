@@ -1,5 +1,26 @@
 # The plan: brief for the site (15 October 2026)
 
+## 0a. Version 4.1 (15 October 2026, evening): regional express trains in the TGV tunnels. Where this differs from 0, this wins.
+
+- No regional express tunnel (13.9 km, 3 portals and 1 junction removed). Tunnels 44.5 km: TGV 26.8 (link included), line N 11.5, line H 6.2.
+- Regional express trains run in the TGV tunnels on a 2-minute grid of paths (30 an hour each way); TGVs keep their 4-minute places in
+  the 12-minute beat (the 2-minute reserve is the window between doors closing and the train leaving; public times unchanged) and TER
+  take the paths between. Condition: signalling for trains about 1.5 minutes apart (ETCS level 2, short blocks, automatic driving).
+- TER at the peak, each way: Nord 11 through Nord-Est to Montparnasse and the Atlantic lines (Atlantic side 7 to 11); Est 3 + 1 new = 4
+  through Nord-Est to Gare de Lyon and Burgundy; all Gare de Lyon and Bercy TER underground (Bercy freed). No TER turns back.
+- Gare de Lyon 8 tracks (2 new 400 m, one each way: the 16th south-east TGV and the 4 TER). 48 tracks, 15,300 m. Junctions 4, portals 8.
+- New cost line "TER links into the TGV tunnels" 0.65 bn before mark-ups (6 throat tie-ins, 2 dive-unders at Nord-Est, 3 portal links).
+- Tunnel occupation at the peak (1.5 / 2 minutes): north 19 trains (48% / 63%), Atlantic 26 (65% / 87%), south-east 20 (50% / 67%),
+  Nord-Est to Montparnasse 17 (42% / 57%); UIC 406 keeps the peak under 75%. Platform time: Nord-Est TER 94%, Gare de Lyon 4th track 70%,
+  Montparnasse TER 69%. If signalling only reaches 2 minutes, the Atlantic approach needs its own TER tunnel to Vanves (about 0.9 bn).
+- Line R stays on a small surface terminal; running it through (2 more tracks of 330 m at Gare de Lyon and Nord-Est, about 2.1 bn) is a
+  later option. Authority fee on 39.5 km (suburban tunnels plus the TGV tunnel km the TER use; assumption).
+- Central figures: construction 41.7 bn (low 27.8, high 62.0); stages 22.4 and 19.3.
+  Yearly cost 2193 m. Benefits 1413 m a year (64% of the yearly cost). Operations covered 189%.
+  Grant 12.0 bn (29%). Rate of return 1.12%.
+- Model keys added: `m.ter_paths{paths_per_hour, signal_min, uic_peak, ter_hour, loads, platforms, r_option, atlantic_option}`,
+  `m.ter_corridors`, `m.rates.ter_links`; `m.tunnels.km` has no `ter` key.
+
 ## 0. Version 4, the plan (Charles, 15 October 2026). Where this differs from the older text below, this wins.
 
 - TGV triangle unchanged: Paris Nord-Est, Gare de Lyon, Montparnasse; one twin-track TGV tunnel on each side of the triangle

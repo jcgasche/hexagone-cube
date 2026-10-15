@@ -80,7 +80,15 @@ PTS.section('works', function (root) {
   const yearName = function (y) { return y === 0 ? 'Before the works' : y > YEARS ? 'After year ' + YEARS : 'Year ' + y; };
   const NODE = { nordest: [0.5, 0.36], lyon: [0.76, 0.66], montparnasse: [0.24, 0.66], saintlazare: [0.2, 0.36] };
   const LINE = { north: [[0.34, 0.13], 'nordest', 'Porte de la Chapelle'], east: [[0.66, 0.13], 'nordest', 'Rosa Parks'], nelyon: ['nordest', 'lyon'], nemont: ['nordest', 'montparnasse'], southeast: ['lyon', [0.9, 0.88], 'Porte de Charenton'], atlantic: ['montparnasse', [0.1, 0.88], 'Porte de Vanves'], link: ['montparnasse', 'lyon'], nesl: ['nordest', 'saintlazare'], slwest: ['saintlazare', [0.08, 0.13], 'Pont-Cardinet'] };
-  const KIND = { tgv: 'TGV', ter: 'Regional express', n: 'Line N', h: 'Line H' };
+  const KIND = { tgv: 'TGV', n: 'Line N', h: 'Line H' };
+  // no regional express tunnel (version 4.1): the regional express trains run in the TGV tunnel of the corridors marked e.ter (as model.ter_corridors),
+  // from the opening of their platforms at Nord-Est in the second stage (assumed)
+  const TER_FROM = S.open.second;
+  const terOn = function (y) { return y >= TER_FROM; };
+  (function () {
+    const want = (D.ter_corridors || []).slice().sort().join(), have = S.elements.filter(function (e) { return e.ter; }).map(function (e) { return e.id; }).sort().join();
+    if (want !== have) console.warn('works: corridors with regional express trains differ from the model', want, have);
+  })();
   const CORS = S.elements.filter(function (e) { return e.kind === 'corridor'; });
   const TUNNELS = [];                                         // every twin-track tunnel, with its length from the model
   CORS.forEach(function (c) { c.tunnels.forEach(function (t) { TUNNELS.push({ cor: c, t: t, km: c.id === 'link' ? D.link_km : D.corridor_km[c.id] }); }); });
@@ -97,6 +105,7 @@ PTS.section('works', function (root) {
     if (e.id === 'saintlazare') return y < e.open ? 'Terminal in use above' : 'Surface station stays';
     if (y < e.open) return two ? 'Two terminals in use above' : 'Terminal in use above';
     if (two && y <= YEARS) return 'Some surface platforms in use';
+    if (e.id === 'lyon' && y > YEARS) return 'Hall; line R terminal above';
     if (e.id === 'lyon' && y >= e.open + 2) return 'Hall; regional trains above';
     if (y < e.open + 2 && y <= YEARS) return 'Surface platforms closing';
     return two ? 'Two halls as entrances' : 'Hall as entrance';
@@ -112,6 +121,7 @@ PTS.section('works', function (root) {
       e.tunnels.forEach(function (t, i) {
         const o = (i - (n - 1) / 2) * gap;
         g.appendChild(s('line', { class: 'wk-line single ' + statusOf(t, y), x1: a[0] + nx * o, y1: a[1] + ny * o, x2: b[0] + nx * o, y2: b[1] + ny * o }));
+        if (t.type === 'tgv' && e.ter && terOn(y) && statusOf(t, y) === 'open') g.appendChild(s('line', { class: 'wk-ter', x1: a[0] + nx * o, y1: a[1] + ny * o, x2: b[0] + nx * o, y2: b[1] + ny * o }));
       });
       g.appendChild(s('line', { class: 'wk-hit', x1: a[0], y1: a[1], x2: b[0], y2: b[1] }));
       const what = e.id === 'link' ? e.name + ', with its junction caverns at both ends' : e.name + ' corridor';
@@ -120,7 +130,8 @@ PTS.section('works', function (root) {
         return KIND[t.type] + ' tunnel, ' + F.n(km, 1) + ' km: ' + WORD[statusOf(t, y)] + ' <small>(stage ' + t.stage + ', ' + span(t).toLowerCase() + ', opens after year ' + (t.open - 1) + ')</small>';
       });
       svg.appendChild(note(g, what + ': ' + e.tunnels.map(function (t) { return KIND[t.type] + ' ' + WORD[statusOf(t, y)]; }).join(', '),
-        '<b>' + what + '</b><br>' + (n > 1 ? n + ' twin-track tunnels side by side, in ' : 'In ') + yearName(y).toLowerCase() + ':<br>' + list.join('<br>') + '<br><small>Assumed schedule</small>'));
+        '<b>' + what + '</b><br>' + (n > 1 ? n + ' twin-track tunnels side by side, in ' : 'In ') + yearName(y).toLowerCase() + ':<br>' + list.join('<br>') +
+        (e.ter ? '<br>Regional express trains share the TGV tunnel' + (terOn(y) ? '' : ' once their Nord-Est platforms open, after year ' + (TER_FROM - 1)) : '') + '<br><small>Assumed schedule</small>'));
       if (L[2]) {
         const p = typeof L[0] === 'string' ? b : a, up = p[1] < H / 2, edge = p[0] < W * 0.15 ? 'start' : p[0] > W * 0.85 ? 'end' : 'middle';
         svg.appendChild(s('path', { class: 'wk-node ' + stt, d: 'M' + p[0] + ',' + (p[1] - 7) + 'l7,12h-14z' }));
@@ -176,6 +187,7 @@ PTS.section('works', function (root) {
   [['none', 'Not started'], ['works', 'Under construction'], ['open', 'Open']].forEach(function (l) {
     legend.appendChild(h('li', null, s('svg', { class: 'draw', viewBox: '0 0 30 12', width: 30, height: 12, 'aria-hidden': 'true' }, s('line', { class: 'wk-line ' + l[0], x1: 2, x2: 28, y1: 6, y2: 6 })), l[1]));
   });
+  legend.appendChild(h('li', null, s('svg', { class: 'draw', viewBox: '0 0 30 12', width: 30, height: 12, 'aria-hidden': 'true' }, s('line', { class: 'wk-line single open', x1: 2, x2: 28, y1: 6, y2: 6 }), s('line', { class: 'wk-ter', x1: 2, x2: 28, y1: 6, y2: 6 })), 'TGV tunnel open, regional express trains in it too'));
   [['civil', 'Structures and tunnels'], ['fit', 'Track, power and signalling'], ['test', 'Tests'], ['surface', 'Halls and surface']].forEach(function (l) { legend.appendChild(h('li', null, h('i', { class: 'wg-key ' + l[0] }), l[1])); });
 
   const setYear = function (v) { state.year = v; readout(); gantt(); seen(); redraw(); };

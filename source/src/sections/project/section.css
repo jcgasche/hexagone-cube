@@ -38,3 +38,8 @@
 #project .project-xs text { font-size: 13px }
 #project h3 { margin-top: 4px }
 #project .project-nowrap tbody th { white-space: nowrap }
+#project .pm-ter { fill: none; stroke-width: 1.2; stroke-linejoin: round; stroke-dasharray: 4 2 }
+#project .pm-kept.few { stroke-width: 1 }
+#project .pm-other.freed { stroke-dasharray: 2.5 1.5 }
+#project .project-carries li.project-in { padding-left: 20px }
+#project .project-grid { width: 100%; max-width: 560px; height: auto }

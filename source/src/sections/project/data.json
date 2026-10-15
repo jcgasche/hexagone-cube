@@ -1,5 +1,5 @@
 {
- "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the four approach corridors end where the tunnels come up on the existing tracks, at the ring road (east: at Rosa Parks, just inside it); line H comes up near Pont-Cardinet; the link is 5 km (4.5 to 6). Each corridor lists the tunnels that run in it (tgv, ter, n, h), as model.tunnels.corridors. The Seine and the existing lines are sketched by hand for orientation.",
+ "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the four approach corridors end where the tunnels come up on the existing tracks, at the ring road (east: at Rosa Parks, just inside it); line H comes up near Pont-Cardinet; the link is 5 km (4.5 to 6). Each corridor lists the tunnels that run in it (tgv, n, h), as model.tunnels.corridors. There is no regional express tunnel (version 4.1): the corridors whose TGV tunnel also carries regional express trains have a 'ter' key (the load key in model.ter_paths.loads) and a 'carries.ter' text. The Seine and the existing lines are sketched by hand for orientation.",
  "view": {
   "wide": {
    "lon": [
@@ -118,7 +118,7 @@
    ],
    "stage": 1,
    "where": "Under and between Gare du Nord and Gare de l’Est, which are 500 m apart.",
-   "calls": "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains from the north and the east run through to Montparnasse, line N from the east runs through to Montparnasse, and line H from the north runs on to Saint-Lazare.",
+   "calls": "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains run through in the TGV tunnels: those from the north on to Montparnasse and the Atlantic lines, those from the east on to Gare de Lyon and Burgundy. Their four platforms lie on the west side of the box, beside the TGV platforms. Line N from the east runs through to Montparnasse, and line H from the north runs on to Saint-Lazare.",
    "surface": "Every train of Gare du Nord and Gare de l’Est goes underground, so all the surface tracks of both stations are freed: both halls become entrances, and the platforms and approach tracks become one park.",
    "axis": [
     [
@@ -148,8 +148,8 @@
    ],
    "stage": 1,
    "where": "Under the present station.",
-   "calls": "TGVs only: those of the south-east, and the half of the northern, eastern and Atlantic TGVs that pair with them. A junction at the city end leads to the direct link to Montparnasse.",
-   "surface": "The hall is kept as the entrance. The TGVs go underground, but the regional express trains, line R and the Bercy trains stay on the surface tracks for now (open item: Gare de Lyon regional trains), so only part of the tracks towards Bercy can become a park, and later.",
+   "calls": "TGVs of the south-east, and the half of the northern, eastern and Atlantic TGVs that pair with them; regional express trains of Burgundy, running through in the TGV tunnel to Nord-Est and the east. Two of the eight tracks, one each way, take the planned sixteenth south-eastern TGV an hour and the regional express trains. A junction at the city end leads to the direct link to Montparnasse.",
+   "surface": "The hall is kept as the entrance. The TGVs and the regional express trains go underground and the Bercy station is freed. Line R keeps a small terminal of a few surface tracks; running it through as well is left as a later option.",
    "axis": [
     [
      2.367,
@@ -164,7 +164,8 @@
     15,
     -9,
     "start"
-   ]
+   ],
+   "tgv_note": "two of them, one each way, also take the regional express trains"
   },
   {
    "name": "Montparnasse",
@@ -175,7 +176,7 @@
    ],
    "stage": 2,
    "where": "Under the present station.",
-   "calls": "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains running through from the north and the east and on to the Chartres, Le Mans and Granville lines; line N running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon.",
+   "calls": "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains of the Chartres, Le Mans and Granville lines, running through in the TGV tunnel to Nord-Est and the north; line N running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon.",
    "surface": "Every train goes underground. The hall is kept as the entrance; the surface tracks towards the ring road become a park.",
    "axis": [
     [
@@ -231,10 +232,9 @@
    ],
    "name": "Northern junction",
    "tunnels": [
-    "tgv",
-    "ter"
+    "tgv"
    ],
-   "what": "Where the TGV tunnels from the north and from the east become one, and the regional express tunnels too, just before the station. Line H comes from the north only and line N from the east only, so they need no junction."
+   "what": "Where the TGV tunnels from the north and from the east become one, just before the station. The regional express trains of both lines ride in these TGV tunnels and need no cavern of their own. Line H comes from the north only and line N from the east only, so they need no junction."
   },
   {
    "id": "j2",
@@ -246,7 +246,7 @@
    "tunnels": [
     "tgv"
    ],
-   "what": "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station. The regional express and line N tunnels run on to Montparnasse only, and line H turns west to Saint-Lazare, so they need no junction."
+   "what": "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. Line N runs on to Montparnasse only, and line H turns west to Saint-Lazare, so they need no junction."
   },
   {
    "id": "j3",
@@ -277,7 +277,6 @@
   {
    "tunnels": [
     "tgv",
-    "ter",
     "n",
     "h"
    ],
@@ -299,7 +298,6 @@
   {
    "tunnels": [
     "tgv",
-    "ter",
     "n",
     "h"
    ],
@@ -348,14 +346,14 @@
    ],
    "tunnels": [
     "tgv",
-    "ter",
     "h"
    ],
    "carries": {
     "tgv": "High-speed trains to Lille, London and Brussels",
-    "ter": "Regional express trains from the north, running through to Montparnasse",
-    "h": "Suburban line H (formerly lines H and K), running on to Saint-Lazare"
-   }
+    "h": "Suburban line H (formerly lines H and K), running on to Saint-Lazare",
+    "ter": "Regional express trains from the north, running through to Montparnasse and the Atlantic lines"
+   },
+   "ter": "north"
   },
   {
    "id": "east",
@@ -385,14 +383,14 @@
    ],
    "tunnels": [
     "tgv",
-    "ter",
     "n"
    ],
    "carries": {
     "tgv": "High-speed trains to Reims and Strasbourg",
-    "ter": "Regional express trains from the east, running through to Montparnasse",
-    "n": "Suburban line N (formerly line P), running through to Montparnasse"
-   }
+    "n": "Suburban line N (formerly line P), running through to Montparnasse",
+    "ter": "Regional express trains from the east, running through to Gare de Lyon and Burgundy"
+   },
+   "ter": "east"
   },
   {
    "id": "nelyon",
@@ -428,9 +426,11 @@
     "tgv"
    ],
    "carries": {
-    "tgv": "TGVs between Paris Nord-Est and the south-east"
+    "tgv": "TGVs between Paris Nord-Est and the south-east",
+    "ter": "Regional express trains between the east and Burgundy, through Nord-Est and Gare de Lyon"
    },
-   "note": "TGVs only: no regional or suburban train runs to Gare de Lyon underground."
+   "note": "One TGV tunnel, which the regional express trains between the east and Burgundy share. No suburban train runs to Gare de Lyon underground.",
+   "ter": "nelyon"
   },
   {
    "id": "nemont",
@@ -464,15 +464,15 @@
    ],
    "tunnels": [
     "tgv",
-    "ter",
     "n"
    ],
    "carries": {
     "tgv": "TGVs between Paris Nord-Est and the Atlantic",
-    "ter": "Regional express trains from the north and the east, through to the Atlantic side",
-    "n": "Line N, between the eastern and the south-western suburbs"
+    "n": "Line N, between the eastern and the south-western suburbs",
+    "ter": "Regional express trains between the north and the Atlantic lines, through Nord-Est and Montparnasse"
    },
-   "note": "Three twin-track tunnels side by side, one for each kind of train."
+   "note": "Two twin-track tunnels side by side: the TGV tunnel, which the regional express trains share, and line N.",
+   "ter": "nemont"
   },
   {
    "id": "southeast",
@@ -504,9 +504,11 @@
     "tgv"
    ],
    "carries": {
-    "tgv": "High-speed trains to Lyon and Marseille"
+    "tgv": "High-speed trains to Lyon and Marseille",
+    "ter": "Regional express trains to Burgundy, running through to Nord-Est and the east"
    },
-   "note": "TGVs only. The regional express trains, line R and the Bercy trains stay on the surface at Gare de Lyon for now (open item: Gare de Lyon regional trains)."
+   "note": "One TGV tunnel, shared with the regional express trains of Burgundy. Line R stays on the surface at Gare de Lyon, on a small terminal.",
+   "ter": "southeast"
   },
   {
    "id": "atlantic",
@@ -536,14 +538,14 @@
    ],
    "tunnels": [
     "tgv",
-    "ter",
     "n"
    ],
    "carries": {
     "tgv": "High-speed trains to Bordeaux, Rennes and Nantes",
-    "ter": "Regional express trains to Chartres, Le Mans and Granville, running through to Nord-Est",
-    "n": "Suburban line N, running through to Nord-Est"
-   }
+    "n": "Suburban line N, running through to Nord-Est",
+    "ter": "Regional express trains to Chartres, Le Mans and Granville, running through to Nord-Est and the north"
+   },
+   "ter": "atlantic"
   },
   {
    "id": "link",
@@ -671,7 +673,8 @@
     -11,
     4,
     "end"
-   ]
+   ],
+   "ter": "The regional express trains from the north join the TGV tunnel on its ramp here."
   },
   {
    "name": "Rosa Parks",
@@ -685,7 +688,8 @@
     11,
     4,
     "start"
-   ]
+   ],
+   "ter": "The regional express trains from the east join the TGV tunnel on its ramp here."
   },
   {
    "name": "Porte de Charenton",
@@ -699,7 +703,8 @@
     9,
     18,
     "end"
-   ]
+   ],
+   "ter": "The regional express trains of Burgundy use the TGV tunnel from here."
   },
   {
    "name": "Porte de Vanves",
@@ -713,7 +718,8 @@
     -9,
     18,
     "start"
-   ]
+   ],
+   "ter": "The regional express trains of the Atlantic lines join the TGV tunnel on its ramp here."
   },
   {
    "name": "Pont-Cardinet",
@@ -893,7 +899,20 @@
      48.788
     ]
    ],
-   "freed": [],
+   "freed": [
+    [
+     2.3735,
+     48.8449
+    ],
+    [
+     2.3826,
+     48.8392
+    ],
+    [
+     2.3925,
+     48.8318
+    ]
+   ],
    "kept_inside": [
     [
      2.3735,
@@ -924,7 +943,7 @@
      48.788
     ]
    ],
-   "note": "surface tracks kept for now: regional express, line R, Bercy (open item)"
+   "note": "most surface tracks freed: TGVs and regional express trains run below, Bercy closes; line R keeps a small terminal and a few tracks out of Paris"
   },
   {
    "name": "Montparnasse",
@@ -1043,7 +1062,8 @@
     7,
     16,
     "start"
-   ]
+   ],
+   "tip": "Left as it is"
   },
   {
    "name": "Bercy",
@@ -1055,7 +1075,9 @@
     -7,
     14,
     "end"
-   ]
+   ],
+   "tip": "Freed: its regional express trains run through below from Gare de Lyon",
+   "freed": true
   }
  ],
  "seine_label": [
