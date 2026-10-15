@@ -14,17 +14,17 @@ PTS.section('service', function (root) {
 
   /* The model's service plan (model/nordest.py, section 4), repeated here so that the controls can move its settings.
      North and east trains pair with a southern line, half each; the rest of the southern trains pair with each other by the link;
-     a train left without a partner turns back at Nord-Est. */
+     a southern train left without a partner runs on through Nord-Est to the east line, as a new link: no train turns back. */
   const plan = function (H, st) {
     const A = H.Atlantic, SE = H.Southeast, N = H.North, E = H.East, through = N + E;
     const link = Math.min(A - through / 2, SE - through / 2);
-    const spareA = A - through / 2 - link, spareSE = SE - through / 2 - link, spare = spareA + spareSE;
-    const revEq = (D.reverse + 1) / st.stop;                                        // a turning train holds a platform as long as revEq stopping trains
-    const legs = { 'Montparnasse to Nord-Est': through / 2 + spareA, 'Gare de Lyon to Nord-Est': through / 2 + spareSE, 'Montparnasse to Gare de Lyon': link };
-    const stopsDir = { 'Paris Nord-Est': through + spare * revEq / 2, 'Gare de Lyon': SE, 'Montparnasse': A };   // stop-equivalents an hour in one direction
+    const newA = A - through / 2 - link, newSE = SE - through / 2 - link, newEast = newA + newSE;
+    const spareA = newA, spareSE = newSE, spare = 0, revEq = 1;                    // nothing turns back; unpaired trains stop at Nord-Est like any other
+    const legs = { 'Montparnasse to Nord-Est': through / 2 + newA, 'Gare de Lyon to Nord-Est': through / 2 + newSE, 'Montparnasse to Gare de Lyon': link };
+    const stopsDir = { 'Paris Nord-Est': through + newEast, 'Gare de Lyon': SE, 'Montparnasse': A };   // stops an hour in one direction
     const pt = perTrack(st), tracks = {}, load = {};
     ST.forEach(function (n) { tracks[n] = 2 * stopsDir[n] / pt; load[n] = stopsDir[n] / (PROV(n) / 2); });
-    return { A: A, SE: SE, N: N, E: E, through: through, link: link, spareA: spareA, spareSE: spareSE, spare: spare, revEq: revEq, legs: legs, stopsDir: stopsDir, perTrack: pt, tracks: tracks, load: load };
+    return { A: A, SE: SE, N: N, E: E, through: through, link: link, newEast: newEast, spareA: spareA, spareSE: spareSE, spare: spare, revEq: revEq, legs: legs, stopsDir: stopsDir, perTrack: pt, tracks: tracks, load: load };
   };
 
   // ---------------------------------------------------------------- flow diagram of one hour: the triangle
@@ -65,10 +65,10 @@ PTS.section('service', function (root) {
     const svg = s('svg', { class: 'draw', width: W, height: H, viewBox: '0 0 ' + W + ' ' + H, role: 'img',
       'aria-label': 'Flow diagram of high-speed trains in one hour on the triangle of three stations. From the Atlantic line through Montparnasse and from the south-east line through Gare de Lyon, ' +
         n0(p.through) + ' trains an hour each way reach Paris Nord-Est and run on to the north or east; ' + n0(p.link) + ' an hour each way run between Montparnasse and Gare de Lyon by the direct link' +
-        (p.spare > 0 ? '; ' + n0(p.spare) + ' turns back at Nord-Est' : '') + '.' });
-    const aN = p.N / 2, aE = p.E / 2, sN = p.N / 2, sE = p.E / 2;
+        (p.newEast > 0 ? '; ' + n0(p.newEast) + ' with no partner runs on to the east line as a new link' : '') + '.' });
+    const aN = p.N / 2, aE = p.E / 2 + p.spareA, sN = p.N / 2, sE = p.E / 2 + p.spareSE;      // an unpaired southern train runs on to the east line
     const TA = p.A * u, TS = p.SE * u;                                                   // width of the Atlantic and south-east approaches
-    const hM = (aN + aE + p.spareA) * u / 2, hL = (sN + sE + p.spareSE) * u / 2, hN = (aN + sN) * u / 2, hE = (aE + sE) * u / 2;   // half-widths of the legs and exits
+    const hM = (aN + aE) * u / 2, hL = (sN + sE) * u / 2, hN = (aN + sN) * u / 2, hE = (aE + sE) * u / 2;   // half-widths of the legs and exits
     const past = function (a, b, len) { const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1; return [b[0] + dx / L * len, b[1] + dy / L * len]; };
     // offsets: on each segment the bands are laid side by side so that the bundle is centred on the line
     const flows = [
@@ -83,10 +83,6 @@ PTS.section('service', function (root) {
       { kind: 'link', n: p.link, name: 'Atlantic and south-east', stops: 'Stops in Paris: Montparnasse and Gare de Lyon, by the direct link',
         pts: [AEnd, M, L, SEnd], offs: [-TA / 2 + p.link * u / 2, 0, TS / 2 - p.link * u / 2] }
     ];
-    if (p.spareSE > 0) flows.push({ kind: 'back', n: p.spareSE, cap: true, name: 'South-east line, no partner', stops: 'Stops at Gare de Lyon, turns back at Paris Nord-Est',
-      pts: [SEnd, L, past(L, NE, 38)], offs: [TS / 2 - p.link * u - sN * u - sE * u - p.spareSE * u / 2, hL - sN * u - sE * u - p.spareSE * u / 2] });
-    if (p.spareA > 0) flows.push({ kind: 'back', n: p.spareA, cap: true, name: 'Atlantic line, no partner', stops: 'Stops at Montparnasse, turns back at Paris Nord-Est',
-      pts: [AEnd, M, past(M, NE, 38)], offs: [TA / 2 - aN * u - aE * u - p.spareA * u / 2, hM - aN * u - aE * u - p.spareA * u / 2] });
     const paths = [];
     flows.forEach(function (f) {
       if (!(f.n > 0)) return;
@@ -120,15 +116,15 @@ PTS.section('service', function (root) {
         s('tspan', { class: 'nm', x: cx, text: name }), s('tspan', { x: cx, dy: 16, text: n0(n) + (narrow ? ' an hour' : ' an hour each way') }), s('tspan', { class: 'lbl-muted', x: cx, dy: 15, text: places }));
       svg.appendChild(t);
     };
-    end(NEnd[0], 14, 'North', p.N, 'Lille, London, Brussels'); end(EEnd[0], 14, 'East', p.E, 'Reims, Strasbourg');
+    end(NEnd[0], 14, 'North', p.N, 'Lille, London, Brussels'); end(EEnd[0], 14, 'East', p.E + p.newEast, 'Reims, Strasbourg');
     end(AEnd[0], yB + 18, 'Atlantic', p.A, 'Bordeaux, Rennes, Nantes'); end(SEnd[0], yB + 18, 'South-east', p.SE, 'Lyon, Marseille');
     wrap.appendChild(svg);
     const south = p.A + p.SE;
     $('#svc-flow-title').textContent = (state.scen === 'full' ? 'With the southern lines full, ' : 'In the standard hour, ') + n0(p.through) + ' of the ' + n0(south) + ' trains an hour from the south run on to the north or east through Nord-Est; ' +
-      n0(p.link) + ' cross from one southern station to the other by the link' + (p.spare > 0 ? ' and ' + n0(p.spare) + (p.spare === 1 ? ' turns back' : ' turn back') : '');
+      n0(p.link) + ' cross from one southern station to the other by the link' + (p.newEast > 0 ? '; ' + n0(p.newEast) + ' with no partner runs on to the east line as a new link' : '');
     // legend with the numbers
     const leg = PTS.clear($('#svc-flow-legend'));
-    [['north', p.N], ['east', p.E], ['link', p.link], ['back', p.spare]].forEach(function (r) {
+    [['north', p.N], ['east', p.E + p.newEast], ['link', p.link]].forEach(function (r) {
       if (!(r[1] > 0)) return;
       leg.appendChild(h('li', null, h('i', { style: { '--c': KIND[r[0]].color } }), KIND[r[0]].label + ': ', h('b', { text: n0(r[1]) + (r[0] === 'back' ? ' an hour' : ' an hour each way') })));
     });
@@ -152,8 +148,8 @@ PTS.section('service', function (root) {
   const drawCalc = function () {
     const p = plan(hourOf(state.scen), state);
     const read = PTS.clear($('#svc-calc-read')), ne = p.tracks['Paris Nord-Est'], whole = 2 * Math.ceil(ne / 2 - 1e-9);
-    const rows = [['Trains running through to the north or east, each way', n0(p.through)]];
-    if (p.spare > 0) rows.push(['Trains turning back, no partner', n0(p.spare) + ', counted as ' + F.n(p.revEq, 2) + ' stops each']);
+    const rows = [['Trains running through to the north or east, each way', n0(p.through + p.newEast)]];
+    if (p.newEast > 0) rows.push(['Of which a new link to the east line, no partner', n0(p.newEast)]);
     rows.push(['Stops an hour in each direction', t1(p.stopsDir['Paris Nord-Est'])], ['One track takes, an hour', t1(p.perTrack) + ' trains'],
       ['Tracks each way by the rule', t1(ne / 2) + ', so ' + n0(whole / 2)], ['Tracks each way provided', n0(D.tracks_per_direction)],
       ['Trains an hour on each track provided', t1(p.load['Paris Nord-Est']), 'sum']);

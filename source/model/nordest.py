@@ -63,7 +63,7 @@ TH = {'L': 13.0, 'M': 13.0, 'LM': 13.0}  # TGV ride between two Paris stations, 
                                          # the 12-minute beat of the timetable annex (ASSUMPTION: the 6-minute run is a design target; 4.3 to 5.0 technically)
 TH_ACCESS = {'L': 6.0, 'M': 6.0, 'LM': 6.0}   # the same ride in the access measure that counts it (version 4): the 6-minute run only, the passenger
                                              # boarding a train that is already standing at the platform (ASSUMPTION; the crossing measure keeps TH)
-REVERSE = 8.0                           # minutes for the rare train that turns back at Nord-Est (ASSUMPTION; 3 to 12 in French practice)
+REVERSE = 8.0                           # minutes a train would need to turn back at Nord-Est (none does since version 4.1) (ASSUMPTION; 3 to 12 in French practice)
 TR = {'L': 7.0, 'M': 7.0, 'SL': 4.0}   # regional train ride between the same stations: the same 6-minute run, plus a 1-minute stop (ASSUMPTION);
                                       # SL: line H from Nord-Est to Saint-Lazare, 2.6 km, 4 minutes stop included (ASSUMPTION; RER E Magenta to Haussmann is 2.46 km)
 ring = lambda d: 'Paris' if d == '75' else ('Petite couronne' if d in ('92', '93', '94') else 'Grande couronne')
@@ -356,7 +356,7 @@ def ter_paths():
     """Tunnel occupation at the peak, each way, with the full TGV service and regional express trains in the TGV tunnels; platform time
     of the tracks regional trains use; the line R option (2 more tracks at Gare de Lyon and at Nord-Est), not built."""
     sv = service(HOUR_FULL); H = HOUR_FULL
-    tgv = {'north': H['North'], 'east': H['East'], 'ne_joint': H['North'] + H['East'], 'nemont': sv['legs']['Montparnasse to Nord-Est'],
+    tgv = {'north': H['North'], 'east': H['East'] + sv['new_east_tgv'], 'ne_joint': H['North'] + H['East'] + sv['new_east_tgv'], 'nemont': sv['legs']['Montparnasse to Nord-Est'],
            'nelyon': sv['legs']['Gare de Lyon to Nord-Est'], 'link': sv['legs']['Montparnasse to Gare de Lyon'], 'atlantic': H['Atlantic'], 'southeast': H['Southeast']}
     ter = dict(TER_FLOW, ne_joint=0)
     loads = {k: {'tgv': v, 'ter': ter[k], 'total': v + ter[k], 'occ_15': (v + ter[k]) * SIGNAL_MIN[0] / 60, 'occ_20': (v + ter[k]) * SIGNAL_MIN[1] / 60} for k, v in tgv.items()}
@@ -503,17 +503,19 @@ TRACKS_PER_DIRECTION = 3                # TGV platform tracks each way at every 
 
 def service(H=HOUR_TODAY):
     """One standard hour in the triangle. North and east trains pair with a southern line; the rest of the southern trains pair with
-    each other by the direct link; a train left without a partner turns back at Nord-Est. No train reverses otherwise."""
+    each other by the direct link; a southern train left without a partner runs on through Nord-Est to the east line, as a new hourly
+    link (version 4.1: no train reverses anywhere, Charles, 15 October 2026)."""
     A, SE, N, Ea = H['Atlantic'], H['Southeast'], H['North'], H['East']
     through = N + Ea                                                        # trains an hour each way between a southern line and the north or east
     link = min(A - through / 2, SE - through / 2)                           # Atlantic to south-east trains an hour each way, by the link
-    spare_a, spare_se = A - through / 2 - link, SE - through / 2 - link     # trains with no partner: they turn back at Nord-Est
-    spare = spare_a + spare_se
-    flows = {'Atlantic to north': N / 2, 'Atlantic to east': Ea / 2, 'Southeast to north': N / 2, 'Southeast to east': Ea / 2, 'Atlantic to southeast, by the direct link': link}
-    rev_equiv = (REVERSE + 1.0) / STOP_MIN                                  # a turning train holds a platform as long as 2.25 stopping trains
-    legs = {'Montparnasse to Nord-Est': through / 2 + spare_a, 'Gare de Lyon to Nord-Est': through / 2 + spare_se, 'Montparnasse to Gare de Lyon': link}
-    stops_dir = {'Paris Nord-Est': through + spare * rev_equiv / 2, 'Gare de Lyon': SE, 'Montparnasse': A}        # stop-equivalents an hour in one direction
-    out = {'hour': H, 'flows': flows, 'through_each_way': through, 'link_each_way': link, 'spare': spare, 'rev_equiv': rev_equiv, 'legs': legs,
+    new_a, new_se = A - through / 2 - link, SE - through / 2 - link         # trains with no partner: they run on to the east line as a new link
+    new_east = new_a + new_se
+    spare = 0.0                                                             # no train turns back at Nord-Est
+    flows = {'Atlantic to north': N / 2, 'Atlantic to east': Ea / 2 + new_a, 'Southeast to north': N / 2, 'Southeast to east': Ea / 2 + new_se, 'Atlantic to southeast, by the direct link': link}
+    rev_equiv = (REVERSE + 1.0) / STOP_MIN                                  # kept for reference: what a turning train would hold
+    legs = {'Montparnasse to Nord-Est': through / 2 + new_a, 'Gare de Lyon to Nord-Est': through / 2 + new_se, 'Montparnasse to Gare de Lyon': link}
+    stops_dir = {'Paris Nord-Est': through + new_east, 'Gare de Lyon': SE, 'Montparnasse': A}        # stops an hour in one direction
+    out = {'hour': H, 'flows': flows, 'through_each_way': through, 'link_each_way': link, 'spare': spare, 'new_east_tgv': new_east, 'east_total': Ea + new_east, 'rev_equiv': rev_equiv, 'legs': legs,
            'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'stops_direction': stops_dir}
     for n, sd in stops_dir.items():
         key = {'Paris Nord-Est': 'nordest', 'Gare de Lyon': 'lyon', 'Montparnasse': 'montparnasse'}[n]

@@ -7437,6 +7437,8 @@
   "through_each_way": 12,
   "link_each_way": 6.0,
   "spare": 0.0,
+  "new_east_tgv": 0.0,
+  "east_total": 4.0,
   "rev_equiv": 1.2857142857142858,
   "legs": {
    "Montparnasse to Nord-Est": 6.0,
@@ -7471,12 +7473,14 @@
    "Atlantic to north": 4.0,
    "Atlantic to east": 2.0,
    "Southeast to north": 4.0,
-   "Southeast to east": 2.0,
+   "Southeast to east": 3.0,
    "Atlantic to southeast, by the direct link": 9.0
   },
   "through_each_way": 12,
   "link_each_way": 9.0,
-  "spare": 1.0,
+  "spare": 0.0,
+  "new_east_tgv": 1.0,
+  "east_total": 5.0,
   "rev_equiv": 1.2857142857142858,
   "legs": {
    "Montparnasse to Nord-Est": 6.0,
@@ -7486,13 +7490,13 @@
   "per_track": 5.0,
   "tracks_per_direction": 3,
   "stops_direction": {
-   "Paris Nord-Est": 12.642857142857142,
+   "Paris Nord-Est": 13.0,
    "Gare de Lyon": 16,
    "Montparnasse": 15
   },
-  "nordest_stops": 25.285714285714285,
+  "nordest_stops": 26.0,
   "nordest_tracks_calc": 6,
-  "nordest_load": 4.214285714285714,
+  "nordest_load": 4.333333333333333,
   "lyon_stops": 32,
   "lyon_tracks_calc": 8,
   "lyon_load": 4.0,
@@ -7688,18 +7692,18 @@
     "occ_20": 0.6333333333333333
    },
    "east": {
-    "tgv": 4,
+    "tgv": 5.0,
     "ter": 4,
-    "total": 8,
-    "occ_15": 0.2,
-    "occ_20": 0.26666666666666666
+    "total": 9.0,
+    "occ_15": 0.225,
+    "occ_20": 0.3
    },
    "ne_joint": {
-    "tgv": 12,
+    "tgv": 13.0,
     "ter": 0,
-    "total": 12,
-    "occ_15": 0.3,
-    "occ_20": 0.4
+    "total": 13.0,
+    "occ_15": 0.325,
+    "occ_20": 0.43333333333333335
    },
    "nemont": {
     "tgv": 6.0,
