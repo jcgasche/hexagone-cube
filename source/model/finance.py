@@ -44,7 +44,6 @@ TER_YIELD = 8.0              # euros per new regional express journey (ASSUMPTIO
 SHOP_FEE = 0.19              # euros of shop rent per traveller in a rebuilt Paris station (Montparnasse contract, 2021, guaranteed minimum, derived)
 SHOP_NET = 0.5               # share of that rent that is new, not moved from the shops of the surface halls (ASSUMPTION)
 AUTH_FEE = 0.0008            # bn euros per km of line and year paid by the regional transport authority (Grand Paris Express rule)
-FEE_PAIRS = 2                # pairs of tracks used by regional and suburban trains
 SET_YEAR = 3.1e-3            # bn euros a year to own and maintain one high-speed trainset (2.7 to 3.5 m, derived from an old maintenance figure)
 SETS = (12, 22)              # trainsets freed when trains stop turning round in Paris (derived)
 FLEET_CAPTURE = 0.5          # share of that saving recovered through a higher track or station charge (ASSUMPTION, to negotiate)
@@ -91,7 +90,7 @@ def make_base():
     c = {lv: N.cost(R) for lv, R in levels}; cc = c['central']
     om = lambda t, st: cc['tunnel_km'] * t + cc['platform_total'] * N.OM_STATION * st
     lay = {'capex': {lv: v['total'] for lv, v in c.items()}, 'systems': {lv: c[lv]['items']['Tunnels, rail systems'] * f_sys(R) for lv, R in levels},
-                    'tunnel_km': cc['tunnel_km'], 'platform_m': cc['platform_total'], 'fee_km': FEE_PAIRS * N.ROUTE_KM,
+                    'tunnel_km': cc['tunnel_km'], 'platform_m': cc['platform_total'], 'fee_km': N.FEE_KM,
                     'om_low': om(N.OM_TUNNEL_LOW, STATION_LOW) / om(N.OM_TUNNEL, 1.0), 'om_high': om(N.OM_TUNNEL_HIGH, 1.0) / om(N.OM_TUNNEL, 1.0),
                     'items': cc['items'], 'hard': cc['hard'], 'soft': cc['soft'], 'land': cc['land'], 'risk': cc['risk'],
                     'stations': cc['detail'], 'station_m': cc['platform_m'], 'tracks': cc['tracks']}
@@ -100,7 +99,7 @@ def make_base():
           'low': traffic(method='single', uplift=N.REG_UPLIFT_LOW),
           'ride': traffic(measure='ride')}
     curves = {m: N.access_curve(measure=m) for m in ('station', 'ride')}
-    cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'route_km': N.ROUTE_KM, 'link_km': N.LINK_KM, 'radials': N.RADIALS, 'len': N.LEN, 'layout': N.LAYOUT}
+    cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'link_km': N.LINK_KM, 'len': N.LEN, 'layout': N.LAYOUT}
     return {'cost_def': cost_def, 'r': N.r_, 'n': N.n_, 'build_years': N.BUILD_YEARS, 'renew_year': N.RENEW_YEAR, 'fare': FARE, 'track_share': N.TRACK_SHARE, 'fare_response': N.FARE_RESPONSE,
             'layout': lay, 'om': {'tunnel': N.OM_TUNNEL, 'station': N.OM_STATION, 'trains': N.REG_TRAINKM * N.REG_TRAINKM_COST / 1000},
             'traffic': tr, 'access_curve': curves, 'park_ha': PARK_HA, 'rex_second': REX_SECOND, 'rex_through': REX_THROUGH,

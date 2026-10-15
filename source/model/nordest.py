@@ -37,6 +37,14 @@ Version 3.5 (15 October 2026): the 12-minute beat of the timetable annex. A TGV 
 late train, then stays empty 3, so a track takes 5 trains an hour; every run between two of the three stations takes 6 minutes, the
 direct link included, so a ride between two Paris stops is 13 minutes and a passenger who stays on a direct train across Paris spends
 20 minutes in Paris (both stops counted); regional trains take the same 6-minute run plus a 1-minute stop.
+Version 4 (15 October 2026), the plan: one twin-track tunnel for each kind of train. TGVs keep the triangle (one tunnel on each side,
+the four approach corridors). Regional express trains get their own tunnel from the north and east approaches through Nord-Est to
+Montparnasse and out on the Atlantic side; suburban lines P and N become one line (N) in a tunnel from the east approach through
+Nord-Est to Montparnasse and the Atlantic side; suburban lines H, K and L become one line (H) in a tunnel from the north approach under
+Nord-Est to a new deep through station under Saint-Lazare, which comes back up on the Batignolles tracks. Nothing but TGVs runs
+between Nord-Est and Gare de Lyon; regional trains of Gare de Lyon (TER Bourgogne, line R, Bercy) stay on the surface for now (open item,
+not costed). 46 platform tracks, 58.4 km of twin-track tunnel. The access measure that counts the ride between Paris stops now counts
+the 6-minute run only (TH_ACCESS); the crossing measure keeps the run and the stop (TH).
 Every assumption that is not sourced is marked ASSUMPTION.
 """
 import csv, json, statistics as S, collections, math
@@ -47,13 +55,47 @@ M = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'inputs')      # mo
 KEYS = ['Nord', 'Est', 'Lyon', 'Montparnasse']
 TH = {'L': 13.0, 'M': 13.0, 'LM': 13.0}  # TGV ride between two Paris stations, stop included: a 6-minute run between any two of them and a 7-minute stop,
                                          # the 12-minute beat of the timetable annex (ASSUMPTION: the 6-minute run is a design target; 4.3 to 5.0 technically)
+TH_ACCESS = {'L': 6.0, 'M': 6.0, 'LM': 6.0}   # the same ride in the access measure that counts it (version 4): the 6-minute run only, the passenger
+                                             # boarding a train that is already standing at the platform (ASSUMPTION; the crossing measure keeps TH)
 REVERSE = 8.0                           # minutes for the rare train that turns back at Nord-Est (ASSUMPTION; 3 to 12 in French practice)
-TR = {'L': 7.0, 'M': 7.0}              # regional train ride between the same stations: the same 6-minute run, plus a 1-minute stop (ASSUMPTION)
+TR = {'L': 7.0, 'M': 7.0, 'SL': 4.0}   # regional train ride between the same stations: the same 6-minute run, plus a 1-minute stop (ASSUMPTION);
+                                      # SL: line H from Nord-Est to Saint-Lazare, 2.6 km, 4 minutes stop included (ASSUMPTION; RER E Magenta to Haussmann is 2.46 km)
 ring = lambda d: 'Paris' if d == '75' else ('Petite couronne' if d in ('92', '93', '94') else 'Grande couronne')
 DATA = {}
 for tag, pf, rf in (('clock', 'points.csv', 'regional.json'), ('eq', 'points_weighted.csv', 'regional_weighted.json'), ('comfort', 'points_comfort.csv', 'regional_comfort.json')):
     DATA[tag] = ([{k: float(r['t_' + k]) for k in KEYS} for r in csv.DictReader(open(f'{M}/{pf}'))], json.load(open(f'{M}/{rf}'))['rows'])
 WALKW = {'clock': 1.0, 'eq': 2.0, 'comfort': 2.0}
+# Saint-Lazare (version 4). The network data are not on this machine, so the minutes from each Paris point to Saint-Lazare are DERIVED:
+# for each point and each weighting, a straight line t = a + b x distance fitted on its minutes to Nord, Est and Montparnasse, applied
+# to the distance to Saint-Lazare, or walking all the way when that is shorter (ASSUMPTION; to replace by a run of model.py).
+XY = {'Nord': (48.880185, 2.355151), 'Est': (48.876742, 2.358424), 'Montparnasse': (48.841172, 2.320514), 'Saint-Lazare': (48.8763, 2.3254)}
+WALK_MIN_PER_KM = 60 / 4.5 * 1.3                 # as in model.py: 4.5 km/h, detour factor 1.3
+
+
+def hav(a, b):
+    p1, p2 = math.radians(a[0]), math.radians(b[0]); dl = math.radians(b[1] - a[1])
+    h = math.sin((p2 - p1) / 2) ** 2 + math.cos(p1) * math.cos(p2) * math.sin(dl / 2) ** 2
+    return 2 * 6371.0088 * math.asin(math.sqrt(h))
+
+
+SL_FLOOR = (6.0, 2.5)                   # the fitted line is never taken below 6 minutes plus 2.5 a km (metro at about 24 km/h with access and wait), scaled for the weighting (ASSUMPTION)
+
+
+def sl_time(xy, t, walkw, scale=1.0):
+    """Derived minutes from a point to the Saint-Lazare platforms: straight line on the minutes to the other three terminals (never below
+    SL_FLOOR), or walking all the way when that is shorter."""
+    ds = [hav(xy, XY[k]) for k in ('Nord', 'Est', 'Montparnasse')]; ts = [t[k] for k in ('Nord', 'Est', 'Montparnasse')]
+    md, mt = S.mean(ds), S.mean(ts); var = sum((d - md) ** 2 for d in ds)
+    b = max(0.0, sum((d - md) * (x - mt) for d, x in zip(ds, ts)) / var) if var > 1e-9 else 0.0
+    d = hav(xy, XY['Saint-Lazare'])
+    fit = max(mt + b * (d - md), scale * (SL_FLOOR[0] + SL_FLOOR[1] * d))
+    return min(fit, walkw * (d * WALK_MIN_PER_KM + 1.0))
+
+
+for tag, pf in (('clock', 'points.csv'), ('eq', 'points_weighted.csv'), ('comfort', 'points_comfort.csv')):
+    sc = S.mean(sum(t.values()) for t in DATA[tag][0]) / S.mean(sum(t.values()) for t in DATA['clock'][0])
+    for r, t in zip(csv.DictReader(open(f'{M}/{pf}')), DATA[tag][0]):
+        t['SL'] = sl_time((float(r['lat']), float(r['lon'])), t, WALKW[tag], sc)
 
 # passengers changing between Paris stations: 13,000 a day in the 2012-13 survey, 88% of them in the stations inside Paris,
 # all kinds of train; scaled by the growth of high-speed traffic at the terminals (derived; no newer count exists)
@@ -76,7 +118,7 @@ def tgv_times(t, deep, choice=True, measure='station', hall='both'):
     ne = min(t['Nord'], t['Est']) if hall == 'both' else t['Nord']
     if not choice:
         return {'Nord': ne + deep, 'Est': ne + deep, 'Lyon': t['Lyon'] + deep, 'Montparnasse': t['Montparnasse'] + deep}
-    th = TH if measure == 'ride' else {'L': 0.0, 'M': 0.0, 'LM': 0.0}
+    th = TH_ACCESS if measure == 'ride' else {'L': 0.0, 'M': 0.0, 'LM': 0.0}
     viaL, viaM = min(ne, t['Lyon'] + th['L']), min(ne, t['Montparnasse'] + th['M'])          # north and east trains come half from each southern line
     lyonNE, lyonM = min(t['Lyon'], ne + th['L']), min(t['Lyon'], t['Montparnasse'] + th['LM'])   # south-east trains: half go on to Nord-Est, half to Montparnasse by the link
     montNE, montL = min(t['Montparnasse'], ne + th['M']), min(t['Montparnasse'], t['Lyon'] + th['LM'])
@@ -212,7 +254,7 @@ def tgv_choice(t, dd, measure='station', cm=0.0, hall='both'):
     The historic station keeps today's price, so the passenger pays only by choosing the other one.
     Returns, by direction, (minutes, minutes plus the charge, share who pay, minutes saved against today by those who pay)."""
     ne = min(t['Nord'], t['Est']) if hall == 'both' else t['Nord']
-    th = TH if measure == 'ride' else {'L': 0.0, 'M': 0.0, 'LM': 0.0}
+    th = TH_ACCESS if measure == 'ride' else {'L': 0.0, 'M': 0.0, 'LM': 0.0}
     home = {'Nord': ne, 'Est': ne, 'Lyon': t['Lyon'], 'Montparnasse': t['Montparnasse']}
     other = {'Nord': [t['Lyon'] + th['L'], t['Montparnasse'] + th['M']], 'Lyon': [ne + th['L'], t['Montparnasse'] + th['LM']],
              'Montparnasse': [ne + th['M'], t['Lyon'] + th['LM']]}
@@ -263,8 +305,11 @@ def access_curve(tag='eq', measure='station', c=None):
 
 
 # ------------------------------------------------------------------ 3. regional trains
-LINES = {'H': 54.6, 'K': 4.1, 'P': 27.3, 'N': 30.4, 'R': 19.1}                     # million journeys a year (derived from daily counts, unverified; N was 27.3, a copy of P: 117,000 a day x 260)
-TERM_SHARE = {'H': 119900 / 215000, 'K': 119900 / 215000, 'N': 66800 / 117000, 'P': 63900 / 105000, 'R': 33000 / 70000}
+LINES = {'H': 54.6, 'K': 4.1, 'P': 27.3, 'N': 30.4, 'R': 19.1,                    # million journeys a year (derived from daily counts, unverified; N was 27.3, a copy of P: 117,000 a day x 260)
+         'L': 297000 * 260 / 1e6}                                                     # line L, Saint-Lazare: 297,000 trips a weekday (version 4; unverified)
+TERM_SHARE = {'H': 119900 / 215000, 'K': 119900 / 215000, 'N': 66800 / 117000, 'P': 63900 / 105000, 'R': 33000 / 70000,
+              'L': 0.5}                 # half of line L's riders start or end at Saint-Lazare (ASSUMPTION)
+THROUGH_TRAINS = {'L': 0.88}            # share of a line's trains that run through the new tunnel; the rest end at the surface station (ASSUMPTION; 1 for the others)
 TER_DAY = {'Nord': 69200, 'Montparnasse': 23800, 'Lyon': 14900, 'Est': 8100}        # TER and Intercites, weekday, 2012-13
 TER = {k: v * 350 / 1e6 for k, v in TER_DAY.items()}
 REG_UPLIFT = 0.15                       # suburban lines joined through a centre: 5% to 30% observed, middle about 17%; 15% taken as net of background growth
@@ -272,35 +317,41 @@ REG_UPLIFT_HIGH, REG_UPLIFT_LOW = 0.25, 0.05
 TER_TRIP = 100.0                        # door-to-door equivalent minutes of an average regional express trip (ASSUMPTION)
 NEW_MONEY = 0.30                        # share of extra suburban journeys paid by new customers (London 9%, Sydney 27%, East London line about 30%)
 YIELD = {'transilien': 1.22, 'ter': 8.0}        # euros per journey (Ile-de-France average; regional express ASSUMPTION)
-REG_TRAINKM = 2.0                       # million extra train-km a year for regional trains running on to the second station (ASSUMPTION from 1,166 trains a weekday)
+REG_TRAINKM = 2.0 * 0.77                # million extra train-km a year for regional trains running through (ASSUMPTION: 77% of the 2.0 M of the earlier layout, version 4)
 REG_TRAINKM_COST = 27.5                 # euros per extra train-km: half the average cost per train-km paid by the region (ASSUMPTION)
 SECOND_MIN = 1.0                        # a passenger uses the second station when it saves more than this, on the clock (ASSUMPTION)
 TER_THROUGH_SHARE = 0.05                # share of regional express passengers who cross Paris today (ASSUMPTION; study point I15)
-# version 3.3: which line runs on to which station. Suburban: north (H, K) with the Atlantic (N), east (P) with the south-east (R);
-# this puts the busiest line on the side of Paris worth most to its passengers, joins Val-d'Oise to the job centres of Versailles and
-# Saint-Quentin-en-Yvelines, and shares the trains without a partner between the two southern legs. Regional express: northern trains
-# alternate between the two southern stations (the passenger picks), eastern trains run on to Gare de Lyon (same Regiolis fleets).
-SUB_PAIR = {'H': 'Montparnasse', 'K': 'Montparnasse', 'P': 'Lyon'}
-TER_RUN = {'Nord': 'both', 'Est': 'Lyon'}
-SOUTH_LINE = {'N': 'Montparnasse', 'R': 'Lyon'}
-LEG = {'Lyon': 'L', 'Montparnasse': 'M'}
+# version 4 (the plan): which line runs on to which station. Suburban: H and K (Gare du Nord) run under Nord-Est to Saint-Lazare and
+# on as line L; P (Gare de l'Est) runs through Nord-Est to Montparnasse and on as line N; line R (Gare de Lyon) stays on the surface,
+# no through running. Regional express: northern and eastern trains run through Nord-Est to Montparnasse, Atlantic trains (Montparnasse)
+# run through to Nord-Est; Gare de Lyon's regional trains stay on the surface (open item).
+SUB_PAIR = {'H': 'Saint-Lazare', 'K': 'Saint-Lazare', 'P': 'Montparnasse'}
+TER_RUN = {'Nord': 'Montparnasse', 'Est': 'Montparnasse'}
+SOUTH_LINE = {'N': 'Montparnasse', 'L': 'Saint-Lazare', 'R': 'Lyon'}     # the lines across Paris from H, K and P (L is west, not south, but plays the same part)
+LEG = {'Lyon': 'L', 'Montparnasse': 'M', 'Saint-Lazare': 'SL'}
+REG_PLATFORMS = {                       # platform rule for regional and suburban tracks (Charles, 15 October 2026; ASSUMPTION)
+    'ter': {'stop': 5.0, 'gap': 2.5, 'per_track': 8, 'tracks': 4, 'peak_today': {'Nord': 11, 'Est': 3}, 'peak_planned': 15},
+    'n': {'per_track': 10, 'tracks': 4, 'peak': {'P': 11, 'N': 12}, 'peak_clamart': 16},
+    'h': {'per_track': 10, 'tracks': 6, 'peak': {'H': 20, 'K': 3}, 'peak_l': (24, 28)}}
 
-# suburb to suburb across Paris (version 3.3): trips between a northern or eastern suburban line and a southern one
+# suburb to suburb across Paris (version 4): trips between H, K or P and N, L or R
 TRANSIT_SHARE = 0.14                    # trips through the Paris stations between two suburban departements, only passing through Paris (OMNIL and Gares & Connexions survey, 2012-13: 145,000 a weekday, 14%)
-CROSS_SHARE = 0.20                      # share of those, on lines H, K, P, N and R, bound for a suburban line on the other side of the triangle (ASSUMPTION; 10% to 30% tested)
+CROSS_SHARE = 0.20                      # share of those, on these lines, bound for a suburban line on the other side of Paris (ASSUMPTION; 10% to 30% tested)
 CHANGE_LOSS = 0.37                      # traffic lost for each change of train added; today's trip has two (train to metro, metro to train)
 EASY_CHANGE = 0.5                       # a change between two suburban trains on the platforms of Nord-Est counts as half a change (ASSUMPTION)
-CORRIDOR = {'H': (600, 200, 20), 'K': (70, 20, 30), 'P': (450, 120, 30), 'N': (650, 300, 25), 'R': (300, 110, 35)}   # thousands of residents and jobs near the stations, minutes to Paris (ASSUMPTION, orders of magnitude)
+CORRIDOR = {'H': (600, 200, 20), 'K': (70, 20, 30), 'P': (450, 120, 30), 'N': (650, 300, 25), 'R': (300, 110, 35),
+            'L': (900, 450, 25)}        # thousands of residents and jobs near the stations, minutes to Paris (ASSUMPTION, orders of magnitude)
 CROSS_DECAY = 40.0                      # minutes: trips between two corridors fall by e for every 40 minutes of travel (ASSUMPTION; 25 to infinite give the same ranking)
-CROSS_TODAY = {'Montparnasse': 35.0, 'Lyon': 28.0}     # clock minutes today from a suburban train at Gare du Nord or de l'Est to one leaving the southern terminal (metro 4, RER D; ASSUMPTION)
+CROSS_TODAY = {'Montparnasse': 35.0, 'Saint-Lazare': 18.0, 'Lyon': 28.0}     # clock minutes today from a suburban train at Gare du Nord or de l'Est to one leaving the other terminal (ASSUMPTION)
 CROSS_OUT = 0.5                         # share of that time spent walking, waiting and changing, counted twice at official weights (ASSUMPTION)
 CROSS_CHANGE_EQ = 16.0                  # weighted minutes of a change at Nord-Est: 4 to cross the platform and 4 of waiting, counted twice (ASSUMPTION)
 
 
 def cross_paris(pair=SUB_PAIR, share=CROSS_SHARE, realise=1.0):
-    """Suburb-to-suburb trips across Paris between lines H, K, P and lines N, R. Today they change twice (train to metro, metro to
-    train); with the project they stay on a direct train, or change once on the platforms of Nord-Est. Each change costs CHANGE_LOSS
-    of the traffic. Today's trips are split between the six pairs of lines in proportion to residents times jobs, discounted with time."""
+    """Suburb-to-suburb trips across Paris between lines H, K, P and lines N, L, R. Today they change twice (train to metro, metro to
+    train); with the project they stay on a direct train (H and K to L, P to N), or change once on the platforms of Nord-Est (H and K
+    to N, P to L). Line R does not run through: its pairs are unchanged. Each change costs CHANGE_LOSS of the traffic. Today's trips
+    are split between the nine pairs of lines in proportion to residents times jobs, discounted with time."""
     users = sum(LINES[l] * TERM_SHARE[l] for l in LINES)
     base = users * TRANSIT_SHARE * share / 2                # each trip uses two lines
     idx = {}
@@ -311,15 +362,19 @@ def cross_paris(pair=SUB_PAIR, share=CROSS_SHARE, realise=1.0):
     tot = sum(idx.values())
     out = {'today': 0.0, 'project': 0.0, 'new': 0.0, 'benefit': 0.0, 'direct_today': 0.0, 'pairs': {}}
     for (a, b), w in idx.items():
-        st = SOUTH_LINE[b]; direct = pair[a] == st
-        d0 = base * w / tot
+        st = SOUTH_LINE[b]; d0 = base * w / tot
+        if b == 'R':                                        # no through running on line R: nothing changes
+            out['today'] += d0; out['project'] += d0
+            out['pairs'][a + '-' + b] = {'direct': False, 'served': False, 'today': d0, 'project': d0, 'saving_eq': 0.0, 'saving_clock': 0.0}
+            continue
+        direct = pair[a] == st
         changes = 0.0 if direct else EASY_CHANGE
         d1 = d0 / (1 - CHANGE_LOSS) ** (2 - changes)
         n = (d1 - d0) * realise
         s = CROSS_TODAY[st] * (1 + CROSS_OUT) - TR[LEG[st]] - (0.0 if direct else CROSS_CHANGE_EQ)
         out['benefit'] += gain(d0, n, s, VOT_IDF); out['today'] += d0; out['project'] += d0 + n; out['new'] += n
         if direct: out['direct_today'] += d0
-        out['pairs'][a + '-' + b] = {'direct': direct, 'today': d0, 'project': d0 + n, 'saving_eq': s,
+        out['pairs'][a + '-' + b] = {'direct': direct, 'served': True, 'today': d0, 'project': d0 + n, 'saving_eq': s,
                                      'saving_clock': CROSS_TODAY[st] - TR[LEG[st]] - (0.0 if direct else 8.0)}
     out['uplift'] = out['new'] / out['today']; out['daily_today'] = out['today'] * 1e6 / 260; out['daily_project'] = out['project'] * 1e6 / 260
     return out
@@ -328,12 +383,14 @@ def cross_paris(pair=SUB_PAIR, share=CROSS_SHARE, realise=1.0):
 def _reach(hall):
     """Saving functions of a Paris point t for each service, on the pairing above (minutes from the train to the point)."""
     ne = (lambda t: min(t['Nord'], t['Est'])) if hall == 'both' else (lambda t: t['Nord'])
-    on = {'Lyon': lambda t: TR['L'] + t['Lyon'], 'Montparnasse': lambda t: TR['M'] + t['Montparnasse']}
-    def best(dest):                     # the passenger picks the train that runs on to the best station
-        return (lambda t: min(ne(t), on['Lyon'](t), on['Montparnasse'](t))) if dest == 'both' else (lambda t: min(ne(t), on[dest](t)))
+    on = {'Lyon': lambda t: TR['L'] + t['Lyon'], 'Montparnasse': lambda t: TR['M'] + t['Montparnasse'], 'Saint-Lazare': lambda t: TR['SL'] + t['SL']}
+    def best(dest):                     # the passenger gets off at Nord-Est or at the station the train runs on to, whichever is better
+        return lambda t: min(ne(t), on[dest](t))
+    zero = lambda t: 0.0
     alt = {'H': lambda t: t['Nord'] - best(SUB_PAIR['H'])(t), 'K': lambda t: t['Nord'] - best(SUB_PAIR['K'])(t), 'P': lambda t: t['Est'] - best(SUB_PAIR['P'])(t),
-           'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'R': lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t))}
-    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'])(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'])(t), 'Lyon': alt['R'], 'Montparnasse': alt['N']}
+           'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'L': lambda t: t['SL'] - min(t['SL'], TR['SL'] + ne(t)),
+           'R': zero}                   # line R stays on the surface at Gare de Lyon (open item)
+    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'])(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'])(t), 'Lyon': zero, 'Montparnasse': alt['N']}
     return ne, alt, alt_ter
 
 
@@ -356,11 +413,14 @@ def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both', cr
     def value(u, n, s, vot):                       # existing users get the whole change; new ones half of a saving
         return gain(u, n, s, vot) if s >= 0 else -loss(u, 0.0, -s, vot)
     for l, q in LINES.items():
+        thr = THROUGH_TRAINS.get(l, 1.0) if sv[l] > 0 else 0.0      # riders of trains that stay on the surface see no change, not even the deeper platform
         u = q * TERM_SHARE[l]; s = sv[l] - dd
-        n = q * uplift * realise * (max(0.0, s / sv[l]) if sv[l] > 0 else 0.0)
-        ben += value(u, n, s, VOT_IDF); new_t += n; base_t += q; users += u; minutes += u * svc[l]
-        out['rows'].append([l, q, u, svc[l], sv[l]])
+        n = q * thr * uplift * realise * (max(0.0, s / sv[l]) if sv[l] > 0 else 0.0)
+        ben += value(u * thr, n, s, VOT_IDF); new_t += n; base_t += q; users += u; minutes += u * thr * svc[l]
+        out['rows'].append([l, q, u, thr * svc[l], thr * sv[l]])
     for k, q in TER.items():
+        if sv['TER ' + k] <= 0:                    # Gare de Lyon's regional trains stay on the surface (open item)
+            base_r += q; users += q; out['rows'].append(['TER ' + k, q, q, 0.0, 0.0]); continue
         s = sv['TER ' + k] - dd
         n = q * ((1 - max(0.0, s) / TER_TRIP) ** ELAST - 1) * realise                 # time model: no observed case for regional express
         ben += value(q, n, s, VOT_TER); new_r += n; base_r += q; users += q; minutes += q * svc['TER ' + k]
@@ -372,7 +432,8 @@ def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both', cr
                 'avg_clock_saving': minutes / users, 'ter_uplift': new_r / base_r,
                 'fares': (new_t * NEW_MONEY * YIELD['transilien'] + new_r * YIELD['ter']) / 1000})
     out.update(second_station(hall))
-    out['through_ter'] = base_r * TER_THROUGH_SHARE * (1 + UPLIFT_DIRECT) * realise          # regional express passengers crossing Paris on a through train
+    ter_thr = sum(q for k, q in TER.items() if k != 'Lyon')          # Gare de Lyon's regional trains do not run through
+    out['through_ter'] = ter_thr * TER_THROUGH_SHARE * (1 + UPLIFT_DIRECT) * realise          # regional express passengers crossing Paris on a through train
     return out
 
 
@@ -381,7 +442,7 @@ def second_station(hall='both', thr=SECOND_MIN):
     pts = DATA['clock'][0]
     ne, alt, alt_ter = _reach(hall)
     share = lambda fn: sum(1 for t in pts if fn(t) > thr) / len(pts)
-    sub = {l: q * TERM_SHARE[l] * share(alt[l]) for l, q in LINES.items()}
+    sub = {l: q * TERM_SHARE[l] * THROUGH_TRAINS.get(l, 1.0) * share(alt[l]) for l, q in LINES.items()}
     ter = {k: q * share(alt_ter[k]) for k, q in TER.items()}
     return {'second_station_sub': sum(sub.values()), 'second_station_ter': sum(ter.values()), 'second_station_share': {**{l: share(alt[l]) for l in LINES}, **{'TER ' + k: share(alt_ter[k]) for k in TER}}}
 
@@ -436,21 +497,33 @@ RATE_HIGH = dict(RATE, tunnel_civil=0.170, tunnel_systems=0.070, platform_m=0.00
 # the existing surface tracks: at the ring road for the north, south-east and Atlantic lines, at Rosa Parks just inside it for the
 # east. At 35 mm per metre a tunnel 35 to 40 m deep reaches the surface in 1.0 to 1.2 km, so it need not stay underground any further.
 # Earlier the portals were beyond the ring road (Saint-Denis 5.0, Pantin 4.5, Maisons-Alfort 7.0, Clamart 6.0: 33.5 km in all).
-CORRIDOR_KM = {'north': 2.4, 'east': 2.7, 'nelyon': 5.0, 'nemont': 6.0, 'southeast': 2.9, 'atlantic': 2.8}
-ROUTE_KM = sum(CORRIDOR_KM.values())
-STAGE_CORRIDORS = {'first': ('north', 'east', 'nelyon', 'southeast'), 'second': ('nemont', 'atlantic')}
+CORRIDOR_KM = {'north': 2.4, 'east': 2.7, 'nelyon': 5.0, 'nemont': 6.0, 'southeast': 2.9, 'atlantic': 2.8,
+               'nesl': 2.6, 'slwest': 1.2}   # version 4: Nord-Est to Saint-Lazare with the curve, and the climb back to the Batignolles tracks (ASSUMPTION; RER E Magenta to Haussmann 2.46 km)
 LINK_KM = 5.0                       # the direct TGV link between the city ends of Montparnasse and Gare de Lyon (ASSUMPTION: 4.5 to 6 km)
-RADIALS = 4                         # corridors that come to the surface: north, east, southeast, Atlantic
-# stations: TGV tracks by direction from the service rule (3 each way); regional express and suburban tracks as in the reference case (ASSUMPTION)
-LAYOUT = {'pairs': 2, 'halls': ['Nord', 'Est', 'Lyon', 'Montparnasse'],
-          'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 6, 'sub': 4}, 'Gare de Lyon': {'hs': 6, 'ter': 4, 'sub': 2}, 'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 2}}}
+# version 4 (the plan): one twin-track tunnel for each kind of train. Each tunnel is the list of corridors it runs along.
+TUNNELS = {'tgv': ['north', 'east', 'nelyon', 'nemont', 'southeast', 'atlantic', 'link'],   # the triangle and its four approaches
+           'ter': ['north', 'east', 'nemont', 'atlantic'],                                    # regional express: north and east, Nord-Est, Montparnasse, Atlantic
+           'n': ['east', 'nemont', 'atlantic'],                                               # suburban line N (formerly P and N)
+           'h': ['north', 'nesl', 'slwest']}                                                  # suburban line H (formerly H, K and L)
+TUNNEL_KM = {k: sum(LINK_KM if c == 'link' else CORRIDOR_KM[c] for c in v) for k, v in TUNNELS.items()}
+ROUTE_KM = sum(CORRIDOR_KM.values())
+FEE_KM = sum(v for k, v in TUNNEL_KM.items() if k != 'tgv')                                 # tunnel km used by regional and suburban trains (authority fee)
+# stations: TGV tracks by direction from the service rule (3 each way); regional express and suburban tracks from the platform rule of each line (ASSUMPTION)
+# junctions: TGV 4 (where north and east meet, where the two southern sides part, the two ends of the link), regional express 1 (north and east meet)
+# portals and tie-ins to existing lines: TGV 4, regional express 3 (north, east, Atlantic), line N 2 (east, Atlantic), line H 2 (north, west of Saint-Lazare)
+JUNCTIONS = {'tgv': 4, 'ter': 1, 'n': 0, 'h': 0}
+PORTALS = {'tgv': 4, 'ter': 3, 'n': 2, 'h': 2}
+LAYOUT = {'tunnels': TUNNEL_KM, 'junctions': JUNCTIONS, 'portals': PORTALS, 'halls': ['Nord', 'Est', 'Lyon', 'Montparnasse'],
+          'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 4, 'sub': 10}, 'Gare de Lyon': {'hs': 6, 'ter': 0, 'sub': 0},
+                       'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 4}, 'Saint-Lazare': {'hs': 0, 'ter': 0, 'sub': 6}}}
+SUB_TRACKS = {'Paris Nord-Est': {'n': 4, 'h': 6}, 'Montparnasse': {'n': 4}, 'Saint-Lazare': {'h': 6}}     # suburban tracks by line
 LEN = {'hs': 400, 'ter': 350, 'sub': 225}   # platform lengths: a double TGV; regional express trains of 270 to 330 m; suburban as on RER E
+STAGE_CORRIDORS = {'first': ('north', 'east', 'nelyon', 'southeast'), 'second': ('nemont', 'atlantic')}
 
 
 def cost(R=RATE, L=LAYOUT):
-    portals = RADIALS * L['pairs']                                         # one portal and tie-in per pair of tracks and per radial
-    junctions = 2 * L['pairs'] + 2                                         # per pair: where north and east meet, where the two southern corridors part; two more where the link joins
-    km = ROUTE_KM * L['pairs'] + LINK_KM
+    portals = sum(L['portals'].values()); junctions = sum(L['junctions'].values())
+    km = sum(L['tunnels'].values())
     plat = {n: sum(v * LEN[k] for k, v in s.items()) for n, s in L['stations'].items()}
     items = {'Tunnels, civil works': km * R['tunnel_civil'], 'Tunnels, rail systems': km * R['tunnel_systems'],
              'Stations': sum(plat.values()) * R['platform_m'], 'Historic halls': sum(R['hall'][h] for h in L['halls']),
@@ -459,8 +532,10 @@ def cost(R=RATE, L=LAYOUT):
     hard = sum(items.values())
     soft = hard * (R['design'] + R['client']); land = hard * R['land']
     risk = (hard + soft + land) * R['risk']
-    return {'tunnel_km': km, 'link_km': LINK_KM, 'platform_m': plat, 'platform_total': sum(plat.values()), 'tracks': {n: sum(s.values()) for n, s in L['stations'].items()}, 'detail': L['stations'],
-            'portals': portals, 'junctions': junctions, 'items': items, 'station_cost': {n: v * R['platform_m'] for n, v in plat.items()},
+    return {'tunnel_km': km, 'tunnel_by_type': dict(L['tunnels']), 'link_km': LINK_KM, 'platform_m': plat, 'platform_total': sum(plat.values()), 'tracks': {n: sum(s.values()) for n, s in L['stations'].items()},
+            'tracks_total': sum(sum(s.values()) for s in L['stations'].values()), 'detail': L['stations'],
+            'portals': portals, 'junctions': junctions, 'portals_by_type': dict(L['portals']), 'junctions_by_type': dict(L['junctions']),
+            'items': items, 'station_cost': {n: v * R['platform_m'] for n, v in plat.items()},
             'hard': hard, 'soft': soft, 'land': land, 'risk': risk, 'total': hard + soft + land + risk}
 
 
@@ -546,7 +621,7 @@ def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=R
 
 
 if __name__ == '__main__':
-    out = {'TH': TH, 'TR': TR, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
+    out = {'TH': TH, 'TH_ACCESS': TH_ACCESS, 'TR': TR, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
     # access
     acc = {}
     for name, kw in {'central': dict(), 'ride': dict(measure='ride'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items():
@@ -556,11 +631,11 @@ if __name__ == '__main__':
     out['paris'] = {'today': today_mean('clock'), 'station': today_mean('clock') + acc['central']['clock']['rings']['Paris'], 'ride': today_mean('clock') + acc['ride']['clock']['rings']['Paris'],
                     'no_choice': today_mean('clock') + acc['no_choice']['clock']['rings']['Paris'], 'nord_hall': today_mean('clock') + acc['nord_hall']['clock']['rings']['Paris']}
     pts = DATA['clock'][0]; ne_ = lambda t: min(t['Nord'], t['Est'])
-    out['far_stop_share'] = {'southeast': sum(min(ne_(t) + TH['L'], t['Montparnasse'] + TH['LM']) < t['Lyon'] for t in pts) / len(pts),
-                             'atlantic': sum(min(ne_(t) + TH['M'], t['Lyon'] + TH['LM']) < t['Montparnasse'] for t in pts) / len(pts),
-                             'north_via_lyon': sum(t['Lyon'] + TH['L'] < ne_(t) for t in pts) / len(pts), 'north_via_montparnasse': sum(t['Montparnasse'] + TH['M'] < ne_(t) for t in pts) / len(pts)}
-    out['far_stop_share_comfort'] = {'southeast': sum(min(ne_(t) + TH['L'], t['Montparnasse'] + TH['LM']) < t['Lyon'] for t in DATA['comfort'][0]) / len(pts),
-                                     'atlantic': sum(min(ne_(t) + TH['M'], t['Lyon'] + TH['LM']) < t['Montparnasse'] for t in DATA['comfort'][0]) / len(pts)}
+    out['far_stop_share'] = {'southeast': sum(min(ne_(t) + TH_ACCESS['L'], t['Montparnasse'] + TH_ACCESS['LM']) < t['Lyon'] for t in pts) / len(pts),
+                             'atlantic': sum(min(ne_(t) + TH_ACCESS['M'], t['Lyon'] + TH_ACCESS['LM']) < t['Montparnasse'] for t in pts) / len(pts),
+                             'north_via_lyon': sum(t['Lyon'] + TH_ACCESS['L'] < ne_(t) for t in pts) / len(pts), 'north_via_montparnasse': sum(t['Montparnasse'] + TH_ACCESS['M'] < ne_(t) for t in pts) / len(pts)}
+    out['far_stop_share_comfort'] = {'southeast': sum(min(ne_(t) + TH_ACCESS['L'], t['Montparnasse'] + TH_ACCESS['LM']) < t['Lyon'] for t in DATA['comfort'][0]) / len(pts),
+                                     'atlantic': sum(min(ne_(t) + TH_ACCESS['M'], t['Lyon'] + TH_ACCESS['LM']) < t['Montparnasse'] for t in DATA['comfort'][0]) / len(pts)}
     arr = [int(float(r['arr'])) for r in csv.DictReader(open(f'{M}/points.csv'))]
     by = collections.defaultdict(list)
     for a, t in zip(arr, pts): by[a].append(sum(W[k] * (tgv_times(t, 0.0, True, 'ride')[k] - t[k]) for k in W))     # with the ride counted
@@ -583,14 +658,15 @@ if __name__ == '__main__':
     out['regional'] = regional(); out['regional_high'] = regional(REG_UPLIFT_HIGH); out['regional_low'] = regional(REG_UPLIFT_LOW); out['regional_deep2'] = regional(deep=2.0)
     out['service'] = service(); out['service_full'] = service(HOUR_FULL)
     out['cost'] = cost(); out['cost_low'] = cost(RATE_LOW)['total']; out['cost_high'] = cost(RATE_HIGH)['total']
-    out['layout'] = LAYOUT; out['len'] = LEN; out['link_km'] = LINK_KM
+    out['layout'] = LAYOUT; out['len'] = LEN; out['link_km'] = LINK_KM; out['tunnels'] = {'corridors': TUNNELS, 'km': TUNNEL_KM, 'fee_km': FEE_KM}
+    out['sub_tracks'] = SUB_TRACKS; out['reg_platforms'] = REG_PLATFORMS; out['corridor_km'] = CORRIDOR_KM
     out['rates'] = {k: v for k, v in RATE.items()}; out['rates_low'] = {k: v for k, v in RATE_LOW.items()}; out['rates_high'] = {k: v for k, v in RATE_HIGH.items()}; out['backtest'] = backtest()
     out['AF'] = AF; out['idc'] = idc(); out['ratios'] = {'comfort': R_COMFORT, 'wider': R_WIDER}
     out['params'] = {'uplift_direct': UPLIFT_DIRECT, 'uplift_direct_high': UPLIFT_DIRECT_HIGH, 'reg_uplift': REG_UPLIFT, 'reg_uplift_high': REG_UPLIFT_HIGH, 'reg_uplift_low': REG_UPLIFT_LOW, 'new_money': NEW_MONEY,
                      'build_years': BUILD_YEARS, 'om_tunnel': OM_TUNNEL, 'om_tunnel_low': OM_TUNNEL_LOW, 'om_tunnel_high': OM_TUNNEL_HIGH, 'om_station': OM_STATION, 'reg_trainkm': REG_TRAINKM, 'reg_trainkm_cost': REG_TRAINKM_COST, 'ter_trip': TER_TRIP, 'old_ne': 30.0,
                      'stop_min': STOP_MIN, 'clear_min': CLEAR_MIN, 'util': UTIL, 'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'second_min': SECOND_MIN, 'ter_through_share': TER_THROUGH_SHARE, 'park_ha': PARK_HA, 'direct_share': DIRECT_SHARE,
                      'transit_share': TRANSIT_SHARE, 'cross_share': CROSS_SHARE, 'change_loss': CHANGE_LOSS, 'easy_change': EASY_CHANGE, 'cross_today': CROSS_TODAY, 'cross_out': CROSS_OUT, 'cross_change_eq': CROSS_CHANGE_EQ, 'cross_decay': CROSS_DECAY,
-                     'corridor': CORRIDOR, 'sub_pair': SUB_PAIR, 'ter_run': TER_RUN,
+                     'corridor': CORRIDOR, 'sub_pair': SUB_PAIR, 'ter_run': TER_RUN, 'south_line': SOUTH_LINE, 'through_trains': THROUGH_TRAINS, 'term_share': TERM_SHARE, 'lines': LINES, 'ter': TER,
                      'change_keep': CHANGE_KEEP, 'station_keep': STATION_KEEP, 'acc_egr': ACC_EGR, 'elast': ELAST}
     Y = yearly(); out['yearly'] = Y
     out['yearly_ride'] = yearly(measure='ride')
@@ -626,14 +702,18 @@ if __name__ == '__main__':
         return res
     out['rate_tests'] = {'3.6': at_rate(0.036), '4.6': at_rate(0.046)}
     f = (1 + RATE['design'] + RATE['client'] + RATE['land']) * (1 + RATE['risk']); out['gross_up'] = f
-    # staging (cost only): first the north to south-east axis with Nord-Est and Gare de Lyon, then Montparnasse with the link
-    def stage(km, stations, halls, junc, portals, sid, london):
-        c = cost(); hard = km * (RATE['tunnel_civil'] + RATE['tunnel_systems']) + sum(c['station_cost'][n] for n in stations) + sum(RATE['hall'][h] for h in halls) + junc * RATE['junction'] + portals * RATE['portal'] + sid + london
-        return {'hard': hard, 'total': hard * f, 'km': km}
+    # staging (cost only): first the TGV axis from the north and east to the south-east, with Nord-Est, Gare de Lyon and line H to
+    # Saint-Lazare; then Montparnasse with its TGV side, the link, and the regional express and line N tunnels (version 4)
+    def stage(km, plat_m, halls, junc, portals, sid, london):
+        hard = km * (RATE['tunnel_civil'] + RATE['tunnel_systems']) + plat_m * RATE['platform_m'] + sum(RATE['hall'][h] for h in halls) + junc * RATE['junction'] + portals * RATE['portal'] + sid + london
+        return {'hard': hard, 'total': hard * f, 'km': km, 'platform_m': plat_m}
     skm = {k: sum(CORRIDOR_KM[c] for c in v) for k, v in STAGE_CORRIDORS.items()}
-    out['stages'] = {'first': stage(skm['first'] * LAYOUT['pairs'], ['Paris Nord-Est', 'Gare de Lyon'], ['Nord', 'Est', 'Lyon'], 4, 6, 0.4, RATE['london_hall']),
-                     'second': stage(skm['second'] * LAYOUT['pairs'] + LINK_KM, ['Montparnasse'], ['Montparnasse'], 2, 2, 0.2, 0.0)}
-    for k in skm: out['stages'][k]['route_km'] = skm[k] + (LINK_KM if k == 'second' else 0.0)
+    km1 = skm['first'] + TUNNEL_KM['h']; km2 = skm['second'] + LINK_KM + TUNNEL_KM['ter'] + TUNNEL_KM['n']
+    pm1 = 6 * LEN['hs'] * 2 + 2 * 6 * LEN['sub']; pm2 = cost()['platform_total'] - pm1
+    out['stages'] = {'first': stage(km1, pm1, ['Nord', 'Est', 'Lyon'], JUNCTIONS['tgv'] - 2, PORTALS['tgv'] - 1 + PORTALS['h'], 0.4, RATE['london_hall']),
+                     'second': stage(km2, pm2, ['Montparnasse'], 2 + JUNCTIONS['ter'], 1 + PORTALS['ter'] + PORTALS['n'], 0.2, 0.0)}
+    out['stages']['first']['route_km'] = skm['first'] + TUNNEL_KM['h']; out['stages']['second']['route_km'] = km2
+    assert abs(out['stages']['first']['total'] + out['stages']['second']['total'] - cost()['total']) < 1e-9
     # things not in the central estimate
     dep = (HS_TERMINALS - 2 * CONN) / 2
     out['extras'] = {'margin_5min': dep * 5 / 60 * 1.5 * VOT_LD / 1000, 'departures': dep,

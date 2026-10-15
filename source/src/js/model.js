@@ -19,8 +19,9 @@
   /* Cost of the triangle from unit rates (bn euros of 2026). R: rates object, as base.cost_def.rates.central; L: a layout like base.cost_def.layout. */
   M.cost = function (R, L) {
     const D = M.base().cost_def; L = L || D.layout;
-    const portals = D.radials * L.pairs, junctions = 2 * L.pairs + 2;
-    const km = D.route_km * L.pairs + D.link_km;
+    const total = function (o) { let t = 0; Object.keys(o).forEach(function (k) { t += o[k]; }); return t; };
+    const portals = total(L.portals), junctions = total(L.junctions);
+    const km = total(L.tunnels);
     const plat = {}; let platTotal = 0;
     Object.keys(L.stations).forEach(function (n) { let m = 0; Object.keys(L.stations[n]).forEach(function (k) { m += L.stations[n][k] * D.len[k]; }); plat[n] = m; platTotal += m; });
     let halls = 0; L.halls.forEach(function (hname) { halls += R.hall[hname]; });
@@ -31,7 +32,7 @@
     };
     let hard = 0; Object.keys(items).forEach(function (k) { hard += items[k]; });
     const soft = hard * (R.design + R.client), land = hard * R.land, risk = (hard + soft + land) * R.risk;
-    return { tunnel_km: km, link_km: D.link_km, platform_m: plat, platform_total: platTotal, portals: portals, junctions: junctions, items: items, hard: hard, soft: soft, land: land, risk: risk, total: hard + soft + land + risk,
+    return { tunnel_km: km, tunnel_by_type: L.tunnels, link_km: D.link_km, platform_m: plat, platform_total: platTotal, portals: portals, junctions: junctions, items: items, hard: hard, soft: soft, land: land, risk: risk, total: hard + soft + land + risk,
              systems: items['Tunnels, rail systems'] * (1 + R.design + R.client) * (1 + R.risk) };
   };
 
