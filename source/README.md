@@ -1,10 +1,14 @@
 # Paris Through Stations
 
-A pre-feasibility case, written as an interactive document, for one project, "the triangle": replacing the four Paris terminals used
-by high-speed trains by three deep through stations (Paris Nord-Est under Gare du Nord and Gare de l'Est, Gare de Lyon, Montparnasse)
-joined by two pairs of tunnels on a Y and a direct high-speed link between the two southern stations, 48.6 km of twin-track tunnel and
-40 platform tracks in all. The tunnels come up on the existing tracks at the ring road (on the eastern line at Rosa Parks). No train reverses in Paris; every high-speed train calls at two of the three stations. The concept, the
-central figures and the model keys are in `docs/TRIANGLE_BRIEF.md`.
+A pre-feasibility case, written as an interactive document, for one project: replacing the four Paris terminals used by high-speed
+trains by three deep through stations (Paris Nord-Est under Gare du Nord and Gare de l'Est, Gare de Lyon, Montparnasse) on a triangle
+of TGV tunnels, with one twin-track tunnel for each kind of train ("the plan", 15 October 2026). Regional express trains and suburban
+line N (formerly P and N) run in their own tunnels from the north and east through Nord-Est to Montparnasse and the Atlantic side;
+suburban line H (formerly H, K and L) runs under Nord-Est to a new deep through station under Saint-Lazare. Only TGVs go to Gare de
+Lyon underground; its regional trains stay on the surface for now (open item). 58.4 km of twin-track tunnel and 46 platform tracks
+in all. The tunnels come up on the existing tracks at the ring road (on the eastern line at Rosa Parks). No train reverses in Paris;
+every high-speed train calls at two of the three TGV stations. The concept, the central figures and the model keys are in
+`docs/TRIANGLE_BRIEF.md`.
 
 The document is one self-contained HTML page built from independent sections. Each section can be worked on alone:
 its text, its interactive parts, its data and its sources live in one folder.
@@ -67,7 +71,7 @@ six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` 
 | `summary` | Summary | Two accounts at a glance |
 | `why` | The problem | One platform in one hour; Lille to Lyon today and through |
 | `project` | The project | Map of the network with layers; the numbers; the four parks |
-| `stations` | The three stations | Plan and cross-sections; follow a passenger to the platform |
+| `stations` | The stations | Plan and cross-sections of the three TGV stations and Saint-Lazare; follow a passenger to the platform |
 | `works` | Works and stages | Building methods; year-by-year timeline |
 | `service` | Trains and timetable | One hour of trains; which trains pair; the direct link; platform calculator |
 | `access` | Reaching the station | Map of 1,000 points, two measures, by direction |
@@ -87,7 +91,7 @@ six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` 
 |---|---|
 | `model/model.py` | Builds the access times of 1,000 points in Paris and 1,265 communes from the regional network data (needs `shapely` and the network file; its results are already in `model/inputs/`, so it only needs re-running if the network or the grid changes) |
 | `model/estimate.py` | Shared constants (values of time, traffic by station, elasticities). Earlier material in it that this document no longer uses is not read by the site |
-| `model/nordest.py` | The triangle: access with a choice of boarding station, passengers crossing Paris, regional trains, service plan (pairings, the direct link, platform rule), bottom-up cost with 15% risk, yearly cost, sensitivity tests, stages |
+| `model/nordest.py` | The plan: access with a choice of boarding station (Saint-Lazare times derived from the other terminals), passengers crossing Paris, regional trains, service plan (pairings, the direct link, platform rule), bottom-up cost with 15% risk, yearly cost, sensitivity tests, stages |
 | `model/finance.py` | Operations and capital accounts, the passenger charge and its effect on traffic, Navigo, taxes, rate of return |
 | `model/export.py` | Writes the JSON files of `src/data/` and the two measures of the access map |
 | `model/timetable.py` | The hour of high-speed trains: searches the minutes of every train at full capacity, under stated rules, for an evenly spaced hour (the one shown) and for one timed for changes (the comparison) |
@@ -100,6 +104,6 @@ six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` 
 
 ## Status
 
-Version of 13 October 2026, evening: one project, the triangle, with 15% risk on the cost, and the approach tunnels ending at the ring road. Nothing here is a design: quantities are planning assumptions and
+Version of 15 October 2026: the plan (one tunnel for each kind of train, Saint-Lazare for line H), on the 12-minute beat, with 15% risk on the cost, and the approach tunnels ending at the ring road. Nothing here is a design: quantities are planning assumptions and
 the drawings are sketches. The access model, traffic estimates and construction cost were checked twice by an independent
 reviewer for an earlier report of 12 October 2026. See "What changed in this version" in the Method annex.

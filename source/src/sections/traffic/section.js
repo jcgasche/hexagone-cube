@@ -19,7 +19,7 @@ PTS.section('traffic', function (root) {
     }).concat([
       { label: 'Average of the eight cases', marks: [{ value: avg, kind: 'avg', over: F.n(avg, 0) + '%', tip: '<b>Average of the eight cases</b><br>+' + F.n(avg, 0) + '%, before deducting growth that would have come anyway' }] },
       { label: 'This study: ' + pc(P.reg_uplift * 100) + ' (' + pc(P.reg_uplift_low * 100) + ' to ' + pc(P.reg_uplift_high * 100) + ')', hl: true, lo: P.reg_uplift_low * 100, hi: P.reg_uplift_high * 100,
-        marks: [{ value: P.reg_uplift * 100, kind: 'here', tip: '<b>Assumed in this study</b><br>+' + pc(P.reg_uplift * 100) + ' on the five suburban lines<br><small>Low case ' + pc(P.reg_uplift_low * 100) + ', high case ' + pc(P.reg_uplift_high * 100) + '</small>' }] }])
+        marks: [{ value: P.reg_uplift * 100, kind: 'here', tip: '<b>Assumed in this study</b><br>+' + pc(P.reg_uplift * 100) + ' on the five suburban lines that run through (H, K, P, N, L)<br><small>Low case ' + pc(P.reg_uplift_low * 100) + ', high case ' + pc(P.reg_uplift_high * 100) + '</small>' }] }])
   });
 
   // ---- long-distance evidence
@@ -76,7 +76,7 @@ PTS.section('traffic', function (root) {
   };
   C.bars($('#tr-est-chart'), { fmt: mil, max: Math.ceil(T.high.new_transilien / 5) * 5, rows: [
     { group: 'High-speed trains' }, row('Starting or ending in the Paris region', 'paris_new', 'var(--s1)'), row('Crossing Paris', 'cross_new', 'var(--s1)'),
-    { group: 'Suburban and regional trains' }, row('Suburban lines H, K, P, N, R', 'new_transilien', 'var(--s2)'), row('Regional express', 'new_ter', 'var(--s2)')] });
+    { group: 'Suburban and regional trains' }, row('Suburban lines H, K, L, P, N, R', 'new_transilien', 'var(--s2)'), row('Regional express', 'new_ter', 'var(--s2)')] });
 
   // ---- new journeys before and with the charge on new uses
   const tg = FC.central.tgv, FP = PTS.data.finance.params, mi = function (v) { return F.n(v, 1) + ' million'; };

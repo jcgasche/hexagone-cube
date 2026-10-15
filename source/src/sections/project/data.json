@@ -1,5 +1,5 @@
 {
- "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the four approach corridors end where the tunnels come up on the existing tracks, at the ring road (east: at Rosa Parks, just inside it); the link is 5 km (4.5 to 6). The Seine and the existing lines are sketched by hand for orientation.",
+ "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the four approach corridors end where the tunnels come up on the existing tracks, at the ring road (east: at Rosa Parks, just inside it); line H comes up near Pont-Cardinet; the link is 5 km (4.5 to 6). Each corridor lists the tunnels that run in it (tgv, ter, n, h), as model.tunnels.corridors. The Seine and the existing lines are sketched by hand for orientation.",
  "view": {
   "wide": {
    "lon": [
@@ -118,8 +118,8 @@
    ],
    "stage": 1,
    "where": "Under and between Gare du Nord and Gare de l’Est, which are 500 m apart.",
-   "calls": "Trains of all four lines stop here: from the north, the east, the south-east and the Atlantic. One of the six TGV tracks can be closed off for each London departure.",
-   "surface": "Both halls become entrances. The surface platforms and the approach tracks of both stations become a park.",
+   "calls": "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains from the north and the east run through to Montparnasse, line N from the east runs through to Montparnasse, and line H from the north runs on to Saint-Lazare.",
+   "surface": "Every train of Gare du Nord and Gare de l’Est goes underground, so all the surface tracks of both stations are freed: both halls become entrances, and the platforms and approach tracks become one park.",
    "axis": [
     [
      2.3583,
@@ -136,7 +136,8 @@
     "start"
    ],
    "under": "under Gare du Nord and Gare de l’Est",
-   "london": 1
+   "london": 1,
+   "stage_note": "TGV and line H platforms in stage 1; regional express and line N platforms in stage 2."
   },
   {
    "name": "Gare de Lyon",
@@ -147,8 +148,8 @@
    ],
    "stage": 1,
    "where": "Under the present station.",
-   "calls": "Trains of all four lines: those of the south-east, and the half of the northern, eastern and Atlantic trains that pair with them. A junction at the city end leads to the direct link to Montparnasse.",
-   "surface": "The hall is kept as the entrance. The surface tracks towards Bercy become a park.",
+   "calls": "TGVs only: those of the south-east, and the half of the northern, eastern and Atlantic TGVs that pair with them. A junction at the city end leads to the direct link to Montparnasse.",
+   "surface": "The hall is kept as the entrance. The TGVs go underground, but the regional express trains, line R and the Bercy trains stay on the surface tracks for now (open item: Gare de Lyon regional trains), so only part of the tracks towards Bercy can become a park, and later.",
    "axis": [
     [
      2.367,
@@ -174,8 +175,8 @@
    ],
    "stage": 2,
    "where": "Under the present station.",
-   "calls": "Trains of all four lines: those of the Atlantic, and the half of the northern, eastern and south-eastern trains that pair with them. A junction at the city end leads to the direct link to Gare de Lyon.",
-   "surface": "The hall is kept as the entrance. The surface tracks towards the ring road become a park.",
+   "calls": "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains running through from the north and the east and on to the Chartres, Le Mans and Granville lines; line N running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon.",
+   "surface": "Every train goes underground. The hall is kept as the entrance; the surface tracks towards the ring road become a park.",
    "axis": [
     [
      2.335,
@@ -191,6 +192,34 @@
     -10,
     "end"
    ]
+  },
+  {
+   "name": "Saint-Lazare",
+   "short": "Saint-Lazare",
+   "at": [
+    2.3254,
+    48.8763
+   ],
+   "stage": 1,
+   "where": "Deep under the present station, a new through station for line H only.",
+   "calls": "Line H only: trains from the north (formerly lines H and K) run through Nord-Est to here, then back up onto the Batignolles tracks at Pont-Cardinet and on to the branches of line L, which become further branches of line H. The point is less Saint-Lazare itself, which RER E already serves, than a ride without a change from the northern suburbs to Pont-Cardinet, Clichy-Levallois, Courbevoie and La Défense.",
+   "surface": "The surface station stays as it is, for line J and the Normandy trains: no park here, and no new hall.",
+   "axis": [
+    [
+     2.3315,
+     48.8757
+    ],
+    [
+     2.3193,
+     48.8771
+    ]
+   ],
+   "lbl": [
+    -17,
+    6,
+    "end"
+   ],
+   "under": "line H only"
   }
  ],
  "junctions": [
@@ -201,8 +230,11 @@
     48.8862
    ],
    "name": "Northern junction",
-   "what": "Where the corridors from the north and from the east meet, just before the station.",
-   "pairs": 2
+   "tunnels": [
+    "tgv",
+    "ter"
+   ],
+   "what": "Where the TGV tunnels from the north and from the east become one, and the regional express tunnels too, just before the station. Line H comes from the north only and line N from the east only, so they need no junction."
   },
   {
    "id": "j2",
@@ -211,8 +243,10 @@
     48.8718
    ],
    "name": "Southern junction",
-   "what": "Where the tunnels to Gare de Lyon and to Montparnasse part, just after the station.",
-   "pairs": 2
+   "tunnels": [
+    "tgv"
+   ],
+   "what": "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station. The regional express and line N tunnels run on to Montparnasse only, and line H turns west to Saint-Lazare, so they need no junction."
   },
   {
    "id": "j3",
@@ -221,8 +255,10 @@
     48.847
    ],
    "name": "Montparnasse junction",
-   "pairs": 1,
-   "what": "Where the direct link to Gare de Lyon leaves the corridor from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed."
+   "tunnels": [
+    "tgv"
+   ],
+   "what": "Where the direct link to Gare de Lyon leaves the TGV tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed."
   },
   {
    "id": "j4",
@@ -231,39 +267,57 @@
     48.851
    ],
    "name": "Gare de Lyon junction",
-   "pairs": 1,
-   "what": "Where the direct link from Montparnasse joins the corridor from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed."
+   "tunnels": [
+    "tgv"
+   ],
+   "what": "Where the direct link from Montparnasse joins the TGV tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed."
   }
  ],
  "trunks": [
-  [
-   [
-    2.3583,
-    48.8862
+  {
+   "tunnels": [
+    "tgv",
+    "ter",
+    "n",
+    "h"
    ],
-   [
-    2.3572,
-    48.8826
-   ],
-   [
-    2.3568,
-    48.879
+   "path": [
+    [
+     2.3583,
+     48.8862
+    ],
+    [
+     2.3572,
+     48.8826
+    ],
+    [
+     2.3568,
+     48.879
+    ]
    ]
-  ],
-  [
-   [
-    2.3568,
-    48.879
+  },
+  {
+   "tunnels": [
+    "tgv",
+    "ter",
+    "n",
+    "h"
    ],
-   [
-    2.3565,
-    48.8754
-   ],
-   [
-    2.3566,
-    48.8718
+   "path": [
+    [
+     2.3568,
+     48.879
+    ],
+    [
+     2.3565,
+     48.8754
+    ],
+    [
+     2.3566,
+     48.8718
+    ]
    ]
-  ]
+  }
  ],
  "corridors": [
   {
@@ -273,9 +327,6 @@
    "to": "Paris Nord-Est",
    "km": 2.4,
    "stage": 1,
-   "hs": "High-speed trains to Lille, London and Brussels",
-   "sub": "Suburban lines H and K",
-   "ter": "Regional express",
    "path": [
     [
      2.3606,
@@ -295,7 +346,16 @@
     4,
     "end"
    ],
-   "pairs": 2
+   "tunnels": [
+    "tgv",
+    "ter",
+    "h"
+   ],
+   "carries": {
+    "tgv": "High-speed trains to Lille, London and Brussels",
+    "ter": "Regional express trains from the north, running through to Montparnasse",
+    "h": "Suburban line H (formerly lines H and K), running on to Saint-Lazare"
+   }
   },
   {
    "id": "east",
@@ -304,9 +364,6 @@
    "to": "Paris Nord-Est",
    "km": 2.7,
    "stage": 1,
-   "hs": "High-speed trains to Reims and Strasbourg",
-   "sub": "Suburban line P",
-   "ter": "Regional express",
    "path": [
     [
      2.3745,
@@ -326,7 +383,16 @@
     19,
     "middle"
    ],
-   "pairs": 2
+   "tunnels": [
+    "tgv",
+    "ter",
+    "n"
+   ],
+   "carries": {
+    "tgv": "High-speed trains to Reims and Strasbourg",
+    "ter": "Regional express trains from the east, running through to Montparnasse",
+    "n": "Suburban line N (formerly line P), running through to Montparnasse"
+   }
   },
   {
    "id": "nelyon",
@@ -335,7 +401,6 @@
    "to": "Gare de Lyon",
    "km": 5.0,
    "stage": 1,
-   "all": "All trains between Paris Nord-Est and the south-east",
    "path": [
     [
      2.3566,
@@ -359,7 +424,13 @@
     2,
     "start"
    ],
-   "pairs": 2
+   "tunnels": [
+    "tgv"
+   ],
+   "carries": {
+    "tgv": "TGVs between Paris Nord-Est and the south-east"
+   },
+   "note": "TGVs only: no regional or suburban train runs to Gare de Lyon underground."
   },
   {
    "id": "nemont",
@@ -368,7 +439,6 @@
    "to": "Montparnasse, under the Seine",
    "km": 6.0,
    "stage": 2,
-   "all": "All trains between Paris Nord-Est and the Atlantic",
    "path": [
     [
      2.3566,
@@ -392,7 +462,17 @@
     -2,
     "end"
    ],
-   "pairs": 2
+   "tunnels": [
+    "tgv",
+    "ter",
+    "n"
+   ],
+   "carries": {
+    "tgv": "TGVs between Paris Nord-Est and the Atlantic",
+    "ter": "Regional express trains from the north and the east, through to the Atlantic side",
+    "n": "Line N, between the eastern and the south-western suburbs"
+   },
+   "note": "Three twin-track tunnels side by side, one for each kind of train."
   },
   {
    "id": "southeast",
@@ -401,9 +481,6 @@
    "to": "Porte de Charenton",
    "km": 2.9,
    "stage": 1,
-   "hs": "High-speed trains to Lyon and Marseille",
-   "sub": "Suburban line R",
-   "ter": "Regional express",
    "path": [
     [
      2.3735,
@@ -423,7 +500,13 @@
     -2,
     "start"
    ],
-   "pairs": 2
+   "tunnels": [
+    "tgv"
+   ],
+   "carries": {
+    "tgv": "High-speed trains to Lyon and Marseille"
+   },
+   "note": "TGVs only. The regional express trains, line R and the Bercy trains stay on the surface at Gare de Lyon for now (open item: Gare de Lyon regional trains)."
   },
   {
    "id": "atlantic",
@@ -432,9 +515,6 @@
    "to": "Porte de Vanves",
    "km": 2.8,
    "stage": 2,
-   "hs": "High-speed trains to Bordeaux, Rennes and Nantes",
-   "sub": "Suburban line N",
-   "ter": "Regional express",
    "path": [
     [
      2.3205,
@@ -454,7 +534,16 @@
     13,
     "start"
    ],
-   "pairs": 2
+   "tunnels": [
+    "tgv",
+    "ter",
+    "n"
+   ],
+   "carries": {
+    "tgv": "High-speed trains to Bordeaux, Rennes and Nantes",
+    "ter": "Regional express trains to Chartres, Le Mans and Granville, running through to Nord-Est",
+    "n": "Suburban line N, running through to Nord-Est"
+   }
   },
   {
    "id": "link",
@@ -463,8 +552,6 @@
    "to": "Gare de Lyon, under the Seine",
    "km": 5.0,
    "stage": 2,
-   "pairs": 1,
-   "hs": "TGVs between the Atlantic and the south-east, direct",
    "path": [
     [
      2.328,
@@ -491,6 +578,83 @@
     0,
     18,
     "middle"
+   ],
+   "tunnels": [
+    "tgv"
+   ],
+   "carries": {
+    "tgv": "TGVs between the Atlantic and the south-east, direct"
+   },
+   "note": "No regional or suburban train uses the link."
+  },
+  {
+   "id": "nesl",
+   "name": "Nord-Est to Saint-Lazare",
+   "from": "Paris Nord-Est",
+   "to": "Saint-Lazare, curving west under the 9th and 8th arrondissements",
+   "km": 2.6,
+   "stage": 1,
+   "tunnels": [
+    "h"
+   ],
+   "carries": {
+    "h": "Line H, from the north through Nord-Est to the deep station under Saint-Lazare"
+   },
+   "path": [
+    [
+     2.3566,
+     48.8718
+    ],
+    [
+     2.3495,
+     48.8738
+    ],
+    [
+     2.3375,
+     48.8754
+    ],
+    [
+     2.3254,
+     48.8763
+    ]
+   ],
+   "lbl": [
+    0,
+    -9,
+    "middle"
+   ]
+  },
+  {
+   "id": "slwest",
+   "name": "Saint-Lazare to Pont-Cardinet",
+   "from": "Saint-Lazare",
+   "to": "the Batignolles tracks near Pont-Cardinet",
+   "km": 1.2,
+   "stage": 1,
+   "tunnels": [
+    "h"
+   ],
+   "carries": {
+    "h": "Line H, from Saint-Lazare back up onto the Batignolles tracks and the western branches"
+   },
+   "path": [
+    [
+     2.3254,
+     48.8763
+    ],
+    [
+     2.3198,
+     48.8812
+    ],
+    [
+     2.3145,
+     48.8865
+    ]
+   ],
+   "lbl": [
+    9,
+    2,
+    "start"
    ]
   }
  ],
@@ -549,6 +713,20 @@
     -9,
     18,
     "start"
+   ]
+  },
+  {
+   "name": "Pont-Cardinet",
+   "at": [
+    2.3145,
+    48.8865
+   ],
+   "corridor": "slwest",
+   "line": "the Batignolles tracks and the lines to the western suburbs (line L today, line H branches in the plan)",
+   "lbl": [
+    -10,
+    2,
+    "end"
    ]
   }
  ],
@@ -714,7 +892,39 @@
      2.433,
      48.788
     ]
-   ]
+   ],
+   "freed": [],
+   "kept_inside": [
+    [
+     2.3735,
+     48.8449
+    ],
+    [
+     2.3826,
+     48.8392
+    ],
+    [
+     2.3925,
+     48.8318
+    ],
+    [
+     2.405,
+     48.8238
+    ],
+    [
+     2.415,
+     48.8168
+    ],
+    [
+     2.4262,
+     48.803
+    ],
+    [
+     2.433,
+     48.788
+    ]
+   ],
+   "note": "surface tracks kept for now: regional express, line R, Bercy (open item)"
   },
   {
    "name": "Montparnasse",
@@ -756,21 +966,73 @@
      48.799
     ]
    ]
+  },
+  {
+   "name": "Saint-Lazare",
+   "terminal": [
+    2.3254,
+    48.8763
+   ],
+   "path": [
+    [
+     2.3254,
+     48.8763
+    ],
+    [
+     2.3215,
+     48.8812
+    ],
+    [
+     2.3165,
+     48.8868
+    ],
+    [
+     2.3075,
+     48.8925
+    ],
+    [
+     2.2985,
+     48.8975
+    ],
+    [
+     2.287,
+     48.905
+    ],
+    [
+     2.272,
+     48.913
+    ],
+    [
+     2.25,
+     48.922
+    ]
+   ],
+   "freed": [],
+   "kept_inside": [
+    [
+     2.3254,
+     48.8763
+    ],
+    [
+     2.3215,
+     48.8812
+    ],
+    [
+     2.3165,
+     48.8868
+    ],
+    [
+     2.3075,
+     48.8925
+    ],
+    [
+     2.2985,
+     48.8975
+    ]
+   ]
   }
  ],
  "others": [
-  {
-   "name": "Saint-Lazare",
-   "at": [
-    2.3253,
-    48.8763
-   ],
-   "lbl": [
-    0,
-    -9,
-    "middle"
-   ]
-  },
   {
    "name": "Austerlitz",
    "at": [

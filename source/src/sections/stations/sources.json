@@ -113,5 +113,15 @@
   "publisher": "Apur, Montparnasse station district, March 2011",
   "about": "Montparnasse: the cross-platform concourse largely taken up by waiting passengers",
   "url": "https://www.apur.org/sites/default/files/documents/quartier_gares_parisiennes_montparnasse.pdf"
+ },
+ "st_wiki_sl": {
+  "publisher": "Wikipedia (French), Gare de Paris-Saint-Lazare",
+  "about": "Saint-Lazare: 27 platform tracks; suburban lines J and L and trains to Normandy (unverified)",
+  "url": "https://fr.wikipedia.org/wiki/Gare_de_Paris-Saint-Lazare"
+ },
+ "st_wiki_slmetro": {
+  "publisher": "Wikipedia (English), Saint-Lazare station (Paris Métro)",
+  "about": "Metro lines 3, 12, 13 and 14 at Saint-Lazare, linked to Haussmann-Saint-Lazare on RER line E (unverified)",
+  "url": "https://en.wikipedia.org/wiki/Saint-Lazare_station_(Paris_M%C3%A9tro)"
  }
 }

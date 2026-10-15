@@ -300,12 +300,12 @@ PTS.section('elizabeth', function (root) {
   const two = function (sel, fmt, lon, paris, extra) {
     C.bars($(sel), Object.assign({ compact: true, fmt: fmt, rows: [
       Object.assign({ label: 'Elizabeth line', value: lon, color: LON }, (extra && extra.lon) || {}),
-      Object.assign({ label: 'Paris, the three stations', value: paris, color: PAR }, (extra && extra.paris) || {})] }));
+      Object.assign({ label: 'Paris, this study', value: paris, color: PAR }, (extra && extra.paris) || {})] }));
   };
   two('#el-scale-tunnel', function (v) { return F.n(v, v % 1 ? 1 : 0) + ' km'; }, L.tunnel_km, cP.tunnel_km,
-    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.tunnel_km, 0) + ' km of twin-track tunnel: two pairs on the Y and the ' + F.n(cP.link_km, 0) + ' km direct link' } });
+    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.tunnel_km, 1) + ' km of twin-track tunnel, one for each kind of train: ' + F.n(M.tunnels.km.tgv, 1) + ' km for high-speed trains with the ' + F.n(M.link_km, 0) + ' km direct link, ' + F.n(M.tunnels.km.ter, 1) + ' for regional express trains, ' + F.n(M.tunnels.km.n, 1) + ' for line N and ' + F.n(M.tunnels.km.h, 1) + ' for line H' } });
   two('#el-scale-platform', function (v) { return F.n(v) + ' m'; }, L.platform_m, cP.platform_total,
-    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.platform_total) + ' m of platform track on ' + Object.keys(cP.tracks).reduce(function (a, k) { return a + cP.tracks[k]; }, 0) + ' tracks in three stations' } });
+    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.platform_total) + ' m of platform track on ' + Object.keys(cP.tracks).reduce(function (a, k) { return a + cP.tracks[k]; }, 0) + ' tracks in four stations, Saint-Lazare included' } });
   two('#el-scale-cost', function (v) { return F.bn(v, v % 1 ? 1 : 0); }, L.cost_eur, cP.total, { lon: { text: 'about €' + L.cost_eur + 'bn' },
     paris: { lo: M.cost_low, hi: M.cost_high, tip: '<b>Paris</b><br>' + F.bn(cP.total) + ' central; ' + F.bn(M.cost_low) + ' with low prices and 10% risk, ' + F.bn(M.cost_high) + ' with high prices and 30% risk' } });
   // capital per yearly journey (derived): London's final cost over the journeys of its first full year; Paris, the cost over the
@@ -328,7 +328,9 @@ PTS.section('elizabeth', function (root) {
   size.appendChild(h('div', { class: 'sep' }));
   sizeRow('Paris Nord-Est, high-speed trains', ne.hs + ' tracks of ' + len.hs + ' m', ne.hs, len.hs);
   sizeRow('Paris Nord-Est, regional express trains', ne.ter + ' tracks of ' + len.ter + ' m', ne.ter, len.ter);
-  sizeRow('Paris Nord-Est, suburban trains', ne.sub + ' tracks of ' + len.sub + ' m', ne.sub, len.sub);
+  const sub = M.sub_tracks['Paris Nord-Est'];
+  sizeRow('Paris Nord-Est, line N', sub.n + ' tracks of ' + len.sub + ' m', sub.n, len.sub);
+  sizeRow('Paris Nord-Est, line H', sub.h + ' tracks of ' + len.sub + ' m', sub.h, len.sub);
   size.appendChild(h('div', { class: 'lab ruler-lab' }, h('span', { text: 'Scale' })));
   size.appendChild(h('div', { class: 'ruler', 'aria-hidden': 'true' }, [0, 100, 200, 300, 400].map(function (v) { return h('span', { style: { left: (v / 4) + '%' }, text: v ? v + ' m' : '0' }); })));
   $('#el-size').appendChild(size);

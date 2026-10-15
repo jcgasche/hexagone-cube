@@ -123,7 +123,7 @@ PTS.section('cost', function (root) {          // runs once, the first time the 
 summary
 why        why.terminals why.capacity why.crossing
 project    project.network project.networks project.numbers project.parks
-stations   stations.nordest stations.lyon stations.montparnasse stations.halls stations.depth stations.boarding
+stations   stations.nordest stations.lyon stations.montparnasse stations.saintlazare stations.halls stations.depth stations.boarding
 works      works.methods works.surface works.stages works.timeline
 service    service.hour service.pairing service.link service.platforms
 access     access.map access.measure access.findings
@@ -137,6 +137,6 @@ zurich     zurich.layout zurich.why zurich.results zurich.lessons
 elizabeth  elizabeth.line elizabeth.times elizabeth.ridership elizabeth.money elizabeth.lessons
 pulse      pulse.idea pulse.nodes pulse.edges pulse.paris
 timetable  timetable.cycle timetable.capacity timetable.map timetable.clocks timetable.london timetable.connections timetable.stops timetable.limits
-method     method.access method.traffic method.cost method.finance method.assumptions
+method     method.access method.traffic method.cost method.finance method.assumptions method.changes
 sources    sources.<key>
 ```

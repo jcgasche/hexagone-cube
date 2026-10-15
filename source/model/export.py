@@ -16,7 +16,7 @@ def main():
     d = json.load(open(f'{HERE}/outputs/nordest.json'))
     fin = json.load(open(f'{HERE}/outputs/finance.json'))
     # ---- model.json: the parts of the traffic and cost model that pages show
-    keep = ['TH', 'TR', 'conn', 'paris', 'far_stop_share', 'by_arr', 'by_dir', 'share_quicker', 'share_slower', 'share_within1', 'max_gain', 'value_of_choice', 'access_effect',
+    keep = ['TH', 'TH_ACCESS', 'tunnels', 'sub_tracks', 'reg_platforms', 'corridor_km', 'TR', 'conn', 'paris', 'far_stop_share', 'by_arr', 'by_dir', 'share_quicker', 'share_slower', 'share_within1', 'max_gain', 'value_of_choice', 'access_effect',
             'connecting', 'regional', 'regional_high', 'regional_low', 'service', 'service_full', 'cost', 'cost_low', 'cost_high', 'layout', 'len', 'link_km', 'rates', 'rates_low', 'rates_high',
             'backtest', 'AF', 'idc', 'ratios', 'params', 'yearly', 'yearly_ride', 'sens', 'deep2_scaled', 'rate_tests', 'gross_up', 'stages', 'extras', 'station_total', 'today', 'destinations', 'dest_axis', 'dest']
     m = {k: d[k] for k in keep}
@@ -42,7 +42,7 @@ def main():
     slower = sum(1 for x, y in zip(pure, today) if x > y + 1e-9) + sum(1 for x, y in zip(best, today) if x > y + 1e-9)
     assert slower == 0, 'a point is slower than today: the measure is broken'
     pts = {'rows': rows, 'cols': ['id', 'lat', 'lon', 'arr', 'today_N', 'today_E', 'today_L', 'today_M', 'station_N', 'station_E', 'station_L', 'station_M', 'ride_N', 'ride_E', 'ride_L', 'ride_M'],
-           'w': W, 'th': N.TH,
+           'w': W, 'th': N.TH_ACCESS,
            'avg': {'today': S.mean(today), 'station': S.mean(pure), 'ride': S.mean(best)},
            'share_quicker': {'station': sum(1 for x, y in zip(pure, today) if x < y - 0.05) / len(rows), 'ride': sum(1 for x, y in zip(best, today) if x < y - 0.05) / len(rows)},
            'max_gain': {'station': max(y - x for x, y in zip(pure, today)), 'ride': max(y - x for x, y in zip(best, today))}}

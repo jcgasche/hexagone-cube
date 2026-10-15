@@ -2,7 +2,7 @@ PTS.section('stations', function (root) {
   'use strict';
   const D = PTS.data.model, S = PTS.data.stations, F = PTS.fmt, h = PTS.h, s = PTS.s;
   const $ = function (sel) { return root.querySelector(sel); };
-  const LEN = D.len, C = D.cost, COL = { hs: 'var(--s1)', ter: 'var(--s2)', sub: 'var(--s3)' };
+  const LEN = D.len, C = D.cost, COL = { hs: 'var(--s1)', ter: 'var(--s2)', n: 'var(--s3)', h: 'var(--s4)' };
   const state = { step: 3, depth: S.walk.depth };
   const drawings = [];                                       // every drawing registers a function that redraws it at its current width
   const redrawAll = function () { drawings.forEach(function (f) { f(); }); };
@@ -17,20 +17,22 @@ PTS.section('stations', function (root) {
     PTS.tip.bind(el, tip);
     return el;
   }
-  // platform groups of one station: TGV tracks (three each way), regional express, suburban
+  // platform groups of one station: TGV tracks (three each way), regional express, suburban line N, suburban line H
   function groups(name) {
-    const det = C.detail[name], g = [];
-    g.push({ k: 'hs', label: 'TGV', tracks: det.hs, len: LEN.hs, color: COL.hs, note: (det.hs / 2) + ' tracks each way' });
+    const det = C.detail[name], sub = D.sub_tracks[name] || {}, g = [];
+    if (det.hs) g.push({ k: 'hs', label: 'TGV', tracks: det.hs, len: LEN.hs, color: COL.hs, note: (det.hs / 2) + ' tracks each way' });
     if (det.ter) g.push({ k: 'ter', label: 'Regional express', tracks: det.ter, len: LEN.ter, color: COL.ter });
-    g.push({ k: 'sub', label: 'Suburban', tracks: det.sub, len: LEN.sub, color: COL.sub });
+    if (sub.n) g.push({ k: 'n', label: 'Line N', tracks: sub.n, len: LEN.sub, color: COL.n, sub: true });
+    if (sub.h) g.push({ k: 'h', label: 'Line H', tracks: sub.h, len: LEN.sub, color: COL.h, sub: true });
     return g;
   }
 
   // ================================================================ plans: the platforms of each station, all to one scale
   const PLAN = {
-    'Paris Nord-Est': { halls: ['Gare du Nord', 'Gare de l’Est'], from: ['to the north and the east', 'north, east'], to: ['to Gare de Lyon and Montparnasse', 'Lyon, Montparnasse'], magenta: true, london: S.london },
+    'Paris Nord-Est': { halls: ['Gare du Nord', 'Gare de l’Est'], from: ['to the north and the east', 'north, east'], to: ['to Gare de Lyon and Montparnasse', 'Lyon, Montparnasse'], arrow: ['to Lyon, Montparnasse, Saint-Lazare', 'south, west'], magenta: { name: 'Magenta', where: 'It lies between the two halls.' }, london: S.london },
     'Gare de Lyon': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to the south-east', 'south-east'], link: 'Montparnasse' },
-    'Montparnasse': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to the Atlantic', 'Atlantic'], link: 'Gare de Lyon' }
+    'Montparnasse': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to the Atlantic', 'Atlantic'], link: 'Gare de Lyon' },
+    'Saint-Lazare': { halls: ['Hall'], from: ['to Paris Nord-Est', 'Nord-Est'], to: ['to Pont-Cardinet and the west', 'west'], magenta: { name: 'Haussmann-Saint-Lazare', where: 'It lies close to the station.' } }
   };
   function plan(W, name) {
     const cfg = PLAN[name], two = cfg.halls.length === 2, narrow = W < 430, pad = narrow ? 8 : 14, sc = (W - 2 * pad) / S.halls_apart, X = function (m) { return pad + m * sc; };
@@ -38,9 +40,9 @@ PTS.section('stations', function (root) {
     const bw = narrow ? 82 : 96, x0 = X(50), x1 = X(450), pas = [150, 350];
     let y = 96; const rowsY = [];
     gs.forEach(function (g) { g.y = y + 17; g.n = g.tracks / 2; y = g.y + g.n * pitch + 6; rowsY.push(g); });
-    const fieldBottom = y, magY = fieldBottom + 44, magH = M.width * sc, H = Math.round(cfg.magenta ? magY + Math.max(magH, 50) + 34 : fieldBottom + (cfg.link ? 74 : 52));
+    const fieldBottom = y, magY = fieldBottom + 44, magH = M.width * sc, H = Math.round(cfg.magenta ? magY + Math.max(magH, 50) + 34 : fieldBottom + (cfg.link ? 74 : 52)), MG = cfg.magenta;
     const svg = s('svg', { class: 'draw', viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
-      'aria-label': 'Plan of the ' + name + ' station: ' + C.tracks[name] + ' platform tracks' + (two ? ' between the halls of Gare du Nord and Gare de l’Est, with the Magenta station drawn to the same scale' : ', entered from the hall at one end, with the junction towards the link to ' + cfg.link + ' at the city end') });
+      'aria-label': 'Plan of the ' + name + ' station: ' + C.tracks[name] + ' platform tracks' + (two ? ' between the halls of Gare du Nord and Gare de l’Est' : ', entered from the hall at one end') + (cfg.link ? ', with the junction towards the link to ' + cfg.link + ' at the city end' : '') + (MG ? ', with the ' + MG.name + ' station of RER line E drawn to the same scale' : '') });
     const hall = function (x, label, tip) {
       const g = s('g', null, s('rect', { class: 'struct', x: x, y: 8, width: bw, height: 30, rx: 3 }), s('text', { class: 'st-b', x: x + bw / 2, y: 28, 'text-anchor': 'middle', text: label }));
       return note(g, label + (two ? ' hall' : ''), tip);
@@ -63,7 +65,7 @@ PTS.section('stations', function (root) {
     // platforms, group by group
     rowsY.forEach(function (g) {
       const a = X(250 - g.len / 2), b = X(250 + g.len / 2), grp = s('g');
-      grp.appendChild(s('text', { class: 'st-lbl st-halo', x: g.k === 'sub' ? a : x0, y: g.y - 6, text: g.label + ': ' + g.tracks + ' tracks, ' + g.len + ' m' + (g.note && !narrow ? ', ' + g.note : '') }));
+      grp.appendChild(s('text', { class: 'st-lbl st-halo', x: g.sub ? a : x0, y: g.y - 6, text: g.label + ': ' + g.tracks + ' tracks, ' + g.len + ' m' + (g.note && !narrow ? ', ' + g.note : '') }));
       for (let i = 0; i < g.n; i++) {
         const yy = g.y + i * pitch;
         grp.appendChild(s('rect', { class: 'st-plat', x: a, y: yy + pitch * 0.3, width: b - a, height: pitch * 0.4 }));
@@ -84,7 +86,7 @@ PTS.section('stations', function (root) {
       svg.appendChild(note(lg, 'One TGV track that can be closed off for London departures, with its control hall on the Gare du Nord side', '<b>London departures</b><br>Any one of the TGV tracks can be closed off for the time of a departure: passengers pass the border checks in a control hall on the Gare du Nord side and board in 10 to 15 minutes.<br><small>Assumption; Amsterdam already works this way</small>'));
     }
     svg.appendChild(s('text', { class: 'lbl-muted', x: x0, y: fieldBottom + 14, text: '← ' + cfg.from[narrow ? 1 : 0] }));
-    svg.appendChild(s('text', { class: 'lbl-muted', x: x1, y: fieldBottom + 14, 'text-anchor': 'end', text: cfg.to[narrow ? 1 : 0] + ' →' }));
+    svg.appendChild(s('text', { class: 'lbl-muted', x: x1, y: fieldBottom + 14, 'text-anchor': 'end', text: (cfg.arrow || cfg.to)[narrow ? 1 : 0] + ' →' }));
     if (cfg.link) {                                            // the junction towards the direct link to the other southern station, at the city end: not designed
       const g0 = rowsY[0], a = X(250 - g0.len / 2), ym = g0.y + g0.n * pitch / 2, jg = s('g');
       jg.appendChild(s('path', { class: 'st-link', d: 'M' + a + ',' + ym + 'C' + X(20) + ',' + ym + ' ' + X(20) + ',' + (fieldBottom + 22) + ' ' + X(0) + ',' + (fieldBottom + 44) }));
@@ -92,12 +94,12 @@ PTS.section('stations', function (root) {
       jg.appendChild(s('text', { class: 'lbl-muted st-halo', x: x0, y: fieldBottom + 36, text: narrow ? 'Junction to the link to ' + cfg.link : 'Junction towards the direct link to ' + cfg.link + ': not designed' }));
       svg.appendChild(note(jg, 'Junction at the city end towards the direct link to ' + cfg.link + ', not designed', '<b>Junction towards ' + cfg.link + '</b><br>At the city end, the TGV tracks fork: towards Paris Nord-Est, and towards the direct link to ' + cfg.link + ' (' + F.n(D.link_km, 0) + ' km). Its geometry has not been designed and is a study point.'));
     }
-    if (cfg.magenta) {                                        // Magenta, to the same scale
+    if (MG) {                                                 // Magenta (or Haussmann-Saint-Lazare, the same size), to the same scale
       const mg = s('g', null, s('rect', { class: 'struct', x: x0, y: magY, width: M.length * sc, height: magH, rx: 3 }));
       for (let i = 0; i < M.tracks; i++) mg.appendChild(s('line', { class: 'st-oldtrack', x1: x0 + 4, x2: x0 + M.length * sc - 4, y1: magY + magH * (i + 0.5) / M.tracks, y2: magY + magH * (i + 0.5) / M.tracks }));
       const tx = x0 + M.length * sc + 10;
-      [narrow ? 'Magenta, RER E' : 'Magenta, RER E, for scale', M.tracks + ' tracks, ' + M.length + ' m long,', M.width + ' m wide, ' + M.depth + ' m down'].forEach(function (t, i) { mg.appendChild(s('text', { class: i ? 'lbl-muted' : 'st-b', x: tx, y: magY + 12 + i * 15, text: t })); });
-      svg.appendChild(note(mg, 'Magenta station of RER line E, for scale', '<b>Magenta, RER line E, opened in 1999</b><br>' + M.tracks + ' tracks in a cavern ' + M.length + ' m long and ' + M.width + ' m wide, about ' + M.depth + ' m down. It lies between the two halls.'));
+      [narrow ? MG.name + ', RER E' : MG.name + ', RER E, for scale', M.tracks + ' tracks, ' + M.length + ' m long,', M.width + ' m wide, ' + M.depth + ' m down'].forEach(function (t, i) { mg.appendChild(s('text', { class: i ? 'lbl-muted' : 'st-b', x: tx, y: magY + 12 + i * 15, text: t })); });
+      svg.appendChild(note(mg, MG.name + ' station of RER line E, for scale', '<b>' + MG.name + ', RER line E, opened in 1999</b><br>' + M.tracks + ' tracks in a cavern ' + M.length + ' m long and about ' + M.width + ' m wide, about ' + M.depth + ' m down. ' + MG.where));
     }
     svg.appendChild(s('path', { class: 'st-dim', d: 'M' + X(350) + ',' + (H - 12) + 'H' + X(450) + 'M' + X(350) + ',' + (H - 16) + 'v8M' + X(450) + ',' + (H - 16) + 'v8' }));
     svg.appendChild(s('text', { class: 'lbl-muted', x: X(400), y: H - 18, 'text-anchor': 'middle', text: '100 m' }));
@@ -110,12 +112,12 @@ PTS.section('stations', function (root) {
     groups(name).forEach(function (g) { add(g.label + ', ' + g.len + ' m' + (g.note ? ' (' + g.note + ')' : ''), g.tracks); });
     add('Platform tracks', c.tracks[name], 'sum');
     add('Platform track', F.n(c.platform_m[name], 0) + ' m');
-    if (PLAN[name].magenta) add('Magenta, for comparison', F.n(M.tracks * M.length, 0) + ' m');
+    if (PLAN[name].magenta) add(PLAN[name].magenta.name + ', for comparison', F.n(M.tracks * M.length, 0) + ' m');
     else add('Share of the platform track of Paris Nord-Est', F.pct(c.platform_m[name] / c.platform_m['Paris Nord-Est']));
     add('Width at Magenta’s width per track', 'about ' + F.n(Math.round(c.tracks[name] * M.width / M.tracks / 10) * 10, 0) + ' m');
     add('Cost with design, land and 15% risk', F.bn(D.station_total[name]));
   }
-  const PLANS = [['Paris Nord-Est', '#stations-plan', '#stations-plan-read'], ['Gare de Lyon', '#stations-plan-lyon', '#stations-plan-read-lyon'], ['Montparnasse', '#stations-plan-montparnasse', '#stations-plan-read-montparnasse']];
+  const PLANS = [['Paris Nord-Est', '#stations-plan', '#stations-plan-read'], ['Gare de Lyon', '#stations-plan-lyon', '#stations-plan-read-lyon'], ['Montparnasse', '#stations-plan-montparnasse', '#stations-plan-read-montparnasse'], ['Saint-Lazare', '#stations-plan-saintlazare', '#stations-plan-read-saintlazare']];
   const planReads = function () { PLANS.forEach(function (p) { planRead(p[0], p[2]); }); };
 
   // ================================================================ cross-sections
@@ -156,7 +158,7 @@ PTS.section('stations', function (root) {
     });
     return api;
   }
-  // shapes shared by the three cross-sections
+  // shapes shared by the four cross-sections
   const P = {
     hall: function (fr, f0, f1, top, arch) {
       const a = fr.x(f0), b = fr.x(f1), y0 = fr.y(0), ye = fr.y(-top);
@@ -223,6 +225,17 @@ PTS.section('stations', function (root) {
       K.add('quarry', [q], [fr.x(0.82), fr.y(18)]);
       K.add('new', [P.neu(fr, 'Montparnasse', 0.12, 0.6)], [fr.x(0.16), fr.y(S.walk.depth - 6.5)]);
       K.add('ways', [P.way(fr, 0.14, 0.24)], [fr.x(0.235), fr.y(11)]);
+      return fr.svg;
+    },
+    saintlazare: function (W) {
+      const fr = frame(W, 'Cross-section under Saint-Lazare: the surface station, which stays, metro lines, line 14, the Haussmann-Saint-Lazare station of RER line E about 30 m down and the new platforms about ' + S.walk.depth + ' m down'), K = keyed(fr, $('#stations-key-saintlazare')), M = S.magenta;
+      K.add('surface', [P.surface(fr, 0.25, 0.7)], [fr.x(0.475), fr.y(0) - 34]);
+      K.add('hall1', [P.hall(fr, 0.02, 0.24, 10, false)], [fr.x(0.13), fr.y(-8)]);
+      K.add('metro', [P.box(fr, 0.03, 0.15, 3, 8, 'st-unk'), P.box(fr, 0.74, 0.86, 3, 8, 'st-unk')], [fr.x(0.09), fr.y(5.5), fr.x(0.8), fr.y(5.5)]);
+      K.add('m14', [P.box(fr, 0.89, 0.99, 12, 19, 'st-unk')], [fr.x(0.94), fr.y(15.5)]);
+      K.add('rere', [P.box(fr, 0.74, 0.86, M.depth - M.height + 1, M.depth + 1, 'struct'), s('line', { class: 'st-rail', x1: fr.x(0.75), x2: fr.x(0.85), y1: fr.y(M.depth), y2: fr.y(M.depth) }), P.depth(fr, 0.8, M.depth + 4.2, M.depth + ' m', 'middle')], [fr.x(0.8), fr.y(M.depth - 6)]);
+      K.add('new', [P.neu(fr, 'Saint-Lazare', 0.18, 0.62)], [fr.x(0.22), fr.y(S.walk.depth - 6.5)]);
+      K.add('ways', [P.way(fr, 0.215, 0.3)], [fr.x(0.29), fr.y(9)]);
       return fr.svg;
     }
   };
@@ -316,5 +329,6 @@ PTS.section('stations', function (root) {
   mount('#stations-xs-nordest', XS.nordest, 620);
   mount('#stations-xs-lyon', XS.lyon, 620);
   mount('#stations-xs-montparnasse', XS.montparnasse, 620);
+  mount('#stations-xs-saintlazare', XS.saintlazare, 620);
   mount('#stations-walk', walk, 640);
 });

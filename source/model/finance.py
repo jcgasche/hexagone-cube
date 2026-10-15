@@ -1,4 +1,4 @@
-"""Financial accounts of the triangle (three through stations, two tunnel pairs and the direct link).
+"""Financial accounts of the plan (three TGV through stations on a triangle, one tunnel for each kind of train, Saint-Lazare for line H).
 
 Builds on nordest.py (access, traffic, cost) and adds:
 - a charge on high-speed passengers who use what the project adds: 2.55 euros for boarding or leaving at a Paris station their line
@@ -99,7 +99,8 @@ def make_base():
           'low': traffic(method='single', uplift=N.REG_UPLIFT_LOW),
           'ride': traffic(measure='ride')}
     curves = {m: N.access_curve(measure=m) for m in ('station', 'ride')}
-    cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'link_km': N.LINK_KM, 'len': N.LEN, 'layout': N.LAYOUT}
+    cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'link_km': N.LINK_KM, 'len': N.LEN, 'layout': N.LAYOUT,
+                'corridor_km': N.CORRIDOR_KM, 'tunnels': N.TUNNELS, 'tunnel_km': N.TUNNEL_KM, 'fee_km': N.FEE_KM}
     return {'cost_def': cost_def, 'r': N.r_, 'n': N.n_, 'build_years': N.BUILD_YEARS, 'renew_year': N.RENEW_YEAR, 'fare': FARE, 'track_share': N.TRACK_SHARE, 'fare_response': N.FARE_RESPONSE,
             'layout': lay, 'om': {'tunnel': N.OM_TUNNEL, 'station': N.OM_STATION, 'trains': N.REG_TRAINKM * N.REG_TRAINKM_COST / 1000},
             'traffic': tr, 'access_curve': curves, 'park_ha': PARK_HA, 'rex_second': REX_SECOND, 'rex_through': REX_THROUGH,

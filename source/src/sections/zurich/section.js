@@ -245,8 +245,8 @@ PTS.section('zurich', function (root) {
 
   // ================================================================ 5. size against the Paris stations
   const TK = M.cost.tracks, DT = M.cost.detail;
-  const paris = function (k) { const d = DT[k]; return { label: k + ' (project)', value: TK[k], color: 'var(--s1)', tip: '<b>' + k + '</b><br>' + TK[k] + ' platform tracks: ' + d.hs + ' high-speed, ' + d.ter + ' regional express, ' + d.sub + ' suburban' }; };
+  const paris = function (k) { const d = DT[k]; return { label: k + ' (project)', value: TK[k], color: 'var(--s1)', tip: '<b>' + k + '</b><br>' + TK[k] + ' platform tracks: ' + [[d.hs, 'high-speed'], [d.ter, 'regional express'], [d.sub, 'suburban']].filter(function (x) { return x[0] > 0; }).map(function (x) { return x[0] + ' ' + x[1]; }).join(', ') }; };
   C.bars($('#zh-size-chart'), { fmt: function (v) { return F.n(v, 0); }, rows: [
     { label: 'Zürich, Museumstrasse (1990)', value: 4, color: 'var(--today)' }, { label: 'Zürich, Löwenstrasse (2014)', value: 4, color: 'var(--today)' },
-    paris('Montparnasse'), paris('Gare de Lyon'), paris('Paris Nord-Est')] });
+    paris('Saint-Lazare'), paris('Gare de Lyon'), paris('Montparnasse'), paris('Paris Nord-Est')] });
 });

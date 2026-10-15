@@ -52,7 +52,7 @@ PTS.section('access', function (root) {
   // ---------------------------------------------------------------- where to board: the two halves of the trains for one direction
   /* Every train stops at two stations. For a direction, half of the trains come through one other station and half through the
      other; each half can be boarded at the direction's own station or at the train's first stop, with the ride between the two
-     counted on the ride measure. The ride measure takes the better half, the passenger picking the train; the station measure averages the halves. */
+     counted on the ride measure (the run only, P.th, from points.json: the train is already at the platform, so its stop is not counted). The ride measure takes the better half, the passenger picking the train; the station measure averages the halves. */
   function plan(p, d, m) {
     const t = { Nord: p[TI.Nord], Est: p[TI.Est], Lyon: p[TI.Lyon], Montparnasse: p[TI.Montparnasse] }, L = P.th.L, A = P.th.M, LM = P.th.LM;
     const hall = d === 'Est' ? (t.Est <= t.Nord ? 'Est' : 'Nord') : (t.Nord <= t.Est ? 'Nord' : 'Est');
@@ -125,7 +125,7 @@ PTS.section('access', function (root) {
     $('#access-n-today').innerHTML = f1(a.today) + '<small>min</small>';
     $('#access-n-project').innerHTML = f1(a.project) + '<small>min</small>';
     $('#access-n-saved').innerHTML = f1(a.today - a.project) + '<small>min</small>';
-    $('#access-d-project').textContent = m === 'station' ? 'Average time to the entrance of the nearest station where your train stops' : 'The same, plus the train’s ride between its Paris stops, picking a train that calls at your best station';
+    $('#access-d-project').textContent = m === 'station' ? 'Average time to the entrance of the nearest station where your train stops' : 'The same, plus the train’s ' + F.n(P.th.L, 0) + '-minute run between its Paris stops (the stop is not counted), picking a train that calls at your best station';
     const forDir = d === 'all' ? 'Trains for all directions, weighted by traffic' : 'Trains for ' + DIR[d].toward + ' (' + DIR[d].ex + ')';
     $('#access-title').textContent = state.view === 'today' ? 'Today: minutes to the terminal that serves your direction'
       : state.view === 'project' ? 'With the project: minutes to a station where your train stops, ' + MEASURE[m]

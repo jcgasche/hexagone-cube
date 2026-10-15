@@ -1,4 +1,41 @@
-# The triangle: brief for updating the site (13 October 2026, updated in the evening for the shorter approach tunnels)
+# The plan: brief for the site (15 October 2026)
+
+## 0. Version 4, the plan (Charles, 15 October 2026). Where this differs from the older text below, this wins.
+
+- TGV triangle unchanged: Paris Nord-Est, Gare de Lyon, Montparnasse; one twin-track TGV tunnel on each side of the triangle
+  (Nord-Est to Lyon, Nord-Est to Montparnasse, the direct Montparnasse-Lyon link) and the four TGV approach corridors. 6 TGV tracks
+  a station (3 each way, 400 m). 12-minute beat; every run between two of the stations 6 minutes. TGV service and charges unchanged.
+- One tunnel for each kind of train. Nord-Est to Montparnasse: three twin-track tunnels (TGV, regional express, suburban line N).
+  Nord-Est to Gare de Lyon and the link: TGV only.
+- Regional express: own tunnel north and east approaches, Nord-Est, Montparnasse, Atlantic side (13.9 km). 4 tracks of 350 m at
+  Nord-Est and 4 at Montparnasse; 5-minute stop with margin + 2.5-minute gap = 8 trains an hour a track (16 each way; peak today 14,
+  Nord 11 + Est 3; 15 planned). Northern and eastern TER run on to Montparnasse (Chartres, Le Mans, Granville); Atlantic TER to Nord-Est.
+- Line N (formerly P and N): own tunnel east approach, Nord-Est, Montparnasse, Atlantic side (11.5 km); 4 tracks of 225 m at Nord-Est
+  and at Montparnasse; 10 trains an hour a track; peak P 11, N 12 (16 with the Clamart plan).
+- Line H (formerly H, K and L): tunnel from the north approach under Nord-Est to a new deep through station under Saint-Lazare, then up
+  to the Batignolles tracks (6.2 km: 2.4 + 2.6 + 1.2); 6 tracks of 225 m at Nord-Est and at Saint-Lazare; peak H 20 + K 3 against
+  L 24 to 28. Line J and the Normandy trains stay at the surface station of Saint-Lazare.
+- Open item: Gare de Lyon's regional trains (TER, line R, Bercy) stay on the surface, not costed.
+- Tracks: Nord-Est 20 (6 TGV, 4 TER, 4 N, 6 H), Montparnasse 14, Gare de Lyon 6, Saint-Lazare 6: 46 tracks, 14,500 m. Junctions 5
+  (TGV 4, TER 1); portals 11 (TGV 4, TER 3, N 2, H 2). Tunnels 58.4 km (TGV 26.8, TER 13.9, N 11.5, H 6.2). Authority fee on 31.6 km.
+- Surface: Gare du Nord, Gare de l'Est and Montparnasse surface tracks freed (parks); Gare de Lyon keeps its regional surface tracks for now.
+- Access measure that counts the ride: the 6-minute run (`TH_ACCESS`); the crossing measure keeps 13 (`TH`, run and stop).
+- Regional pairings: H and K to Saint-Lazare (4 min), L joins (297,000 trips a weekday, 88% of trains through, half its riders at
+  Saint-Lazare: assumptions); P to Montparnasse; N to Nord-Est; R no through running. TER Nord and Est to Montparnasse, TER Montparnasse
+  to Nord-Est, TER Lyon none. Saint-Lazare access times derived (straight line on the Nord, Est and Montparnasse times, floored at 6 min
+  + 2.5 min a km, or walking). Suburb to suburb: (H, K, P) x (N, L, R). Extra regional train-km 77% of the earlier 2.0 M.
+- Central figures: construction 44.1 bn (low 29.8, high 65.7); same rates on the earlier layout 40.5.
+  Yearly cost 2333 m (repayment 1914, running 365, renewal 54).
+  Benefits 1401 m a year (60% of the yearly cost; regional time 164 m).
+  Operations covered 172%. Grant 15.4 bn (35%), public money in all 37.2 bn.
+  Rate of return 0.80% (2.38% with growth). Stages: first 20.5 bn, second 23.7 bn.
+- Model keys added: `m.TH_ACCESS`, `m.TR.SL`, `m.tunnels{corridors, km, fee_km}`, `m.corridor_km` (adds nesl, slwest), `m.sub_tracks`,
+  `m.reg_platforms`, `m.cost.tunnel_by_type, tracks_total, junctions_by_type, portals_by_type`; `m.layout` and `b.cost_def.layout` are
+  `{tunnels, junctions, portals, halls, stations}` (no `pairs`); `b.cost_def` has `corridor_km, tunnels, tunnel_km, fee_km` (no `route_km`,
+  `radials`); regional keys add line L and Saint-Lazare; `m.params` adds `south_line, through_trains, term_share, lines, ter`.
+
+# Earlier brief: the triangle (13 October 2026, updated in the evening for the shorter approach tunnels)
+
 
 The site describes one project only: the triangle. Layouts A and B, the lean variants and the Pleyel hub are gone, not kept for
 comparison. The model (model/nordest.py, model/finance.py, model/export.py, src/js/model.js) is already rebuilt; this brief says

@@ -1,9 +1,5 @@
 {
- "_note": "An illustrative schedule for the timeline. The model assumes only twelve years of works with even spending (params.build_years); the split of those years between tasks and stages is an assumption made for this page, not a programme. Staging itself is a study point.",
- "stage_km": {
-  "first": 13.0,
-  "second": 13.8
- },
+ "_note": "An illustrative schedule for the timeline. The model assumes only twelve years of works with even spending (params.build_years); the split of those years between tasks and stages is an assumption made for this page, not a programme. Staging itself is a study point. Each corridor lists its twin-track tunnels by kind of train (tgv, ter = regional express, n = line N, h = line H); their lengths come from model.json (corridor_km, link_km), and the page checks that they add up to cost.tunnel_km.",
  "open": {
   "first": 10,
   "second": 13
@@ -26,6 +22,14 @@
    "open": 10
   },
   {
+   "id": "saintlazare",
+   "kind": "station",
+   "name": "Saint-Lazare",
+   "stage": 1,
+   "start": 1,
+   "open": 10
+  },
+  {
    "id": "montparnasse",
    "kind": "station",
    "name": "Montparnasse",
@@ -37,62 +41,171 @@
    "id": "north",
    "kind": "corridor",
    "name": "North",
-   "stage": 1,
-   "start": 3,
-   "open": 10
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    },
+    {
+     "type": "h",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    },
+    {
+     "type": "ter",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    }
+   ]
   },
   {
    "id": "east",
    "kind": "corridor",
    "name": "East",
-   "stage": 1,
-   "start": 3,
-   "open": 10
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    },
+    {
+     "type": "ter",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    },
+    {
+     "type": "n",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    }
+   ]
   },
   {
    "id": "nelyon",
    "kind": "corridor",
    "name": "Nord-Est to Lyon",
-   "stage": 1,
-   "start": 3,
-   "open": 10
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    }
+   ]
   },
   {
    "id": "southeast",
    "kind": "corridor",
    "name": "South-east",
-   "stage": 1,
-   "start": 3,
-   "open": 10
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    }
+   ]
+  },
+  {
+   "id": "nesl",
+   "kind": "corridor",
+   "name": "Nord-Est to Saint-Lazare",
+   "tunnels": [
+    {
+     "type": "h",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    }
+   ]
+  },
+  {
+   "id": "slwest",
+   "kind": "corridor",
+   "name": "West of Saint-Lazare",
+   "tunnels": [
+    {
+     "type": "h",
+     "stage": 1,
+     "start": 3,
+     "open": 10
+    }
+   ]
   },
   {
    "id": "nemont",
    "kind": "corridor",
-   "name": "Nord-Est to Montparnasse",
-   "stage": 2,
-   "start": 5,
-   "open": 13
+   "name": "Nord-Est to Montparnasse, under the Seine",
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    },
+    {
+     "type": "ter",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    },
+    {
+     "type": "n",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    }
+   ]
   },
   {
    "id": "atlantic",
    "kind": "corridor",
    "name": "Atlantic",
-   "stage": 2,
-   "start": 5,
-   "open": 13
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    },
+    {
+     "type": "ter",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    },
+    {
+     "type": "n",
+     "stage": 2,
+     "start": 5,
+     "open": 13
+    }
+   ]
   },
   {
    "id": "link",
    "kind": "corridor",
    "name": "Montparnasse to Gare de Lyon link",
-   "stage": 2,
-   "start": 6,
-   "open": 13
+   "tunnels": [
+    {
+     "type": "tgv",
+     "stage": 2,
+     "start": 6,
+     "open": 13
+    }
+   ]
   }
  ],
  "tasks": [
   {
-   "group": "First stage: north to south-east"
+   "group": "First stage: TGV north to south-east, and line H"
   },
   {
    "label": "Shafts, work sites, moving pipes and cables",
@@ -101,7 +214,13 @@
    "to": 2
   },
   {
-   "label": "Stations: Paris Nord-Est and Gare de Lyon",
+   "label": "Stations: Paris Nord-Est (TGV and line H platforms) and Gare de Lyon",
+   "kind": "civil",
+   "from": 2,
+   "to": 7
+  },
+  {
+   "label": "Station: Saint-Lazare, under the working station",
    "kind": "civil",
    "from": 2,
    "to": 7
@@ -113,7 +232,13 @@
    "to": 7
   },
   {
-   "label": "Tunnels: north, east, Nord-Est to Lyon, south-east",
+   "label": "TGV tunnels: north, east, Nord-Est to Lyon, south-east",
+   "kind": "civil",
+   "from": 3,
+   "to": 7
+  },
+  {
+   "label": "Line H tunnel: north, Nord-Est to Saint-Lazare, up to Pont-Cardinet",
    "kind": "civil",
    "from": 3,
    "to": 7
@@ -138,7 +263,7 @@
    "opens": "First stage opens"
   },
   {
-   "group": "Second stage: Atlantic and the link"
+   "group": "Second stage: Montparnasse, the link, regional express and line N"
   },
   {
    "label": "Shafts, work sites, moving pipes and cables",
@@ -153,10 +278,22 @@
    "to": 9
   },
   {
-   "label": "Tunnels: Nord-Est to Montparnasse, Atlantic",
+   "label": "Paris Nord-Est: regional express and line N platforms",
+   "kind": "civil",
+   "from": 4,
+   "to": 9
+  },
+  {
+   "label": "TGV tunnels: Nord-Est to Montparnasse, under the Seine, Atlantic",
    "kind": "civil",
    "from": 5,
    "to": 9
+  },
+  {
+   "label": "Regional express and line N tunnels, beside the TGV tunnel to Montparnasse",
+   "kind": "civil",
+   "from": 5,
+   "to": 10
   },
   {
    "label": "Link tunnel, Montparnasse to Gare de Lyon, under the Seine",
@@ -199,7 +336,7 @@
    "to": 12
   },
   {
-   "label": "Surface tracks closed, north, east and south-east; first parks after that (not costed)",
+   "label": "Surface tracks closed where the first stage takes the trains below: TGV tracks, and those of lines H, K and L (not costed)",
    "kind": "surface",
    "from": 10,
    "to": 12
@@ -212,11 +349,11 @@
   },
   {
    "to": 12,
-   "text": "Trains from the north, the east and the south-east run through Paris Nord-Est and Gare de Lyon, and some run straight through Paris. Atlantic trains still end at Montparnasse: no through train reaches the Atlantic, and the link is not open."
+   "text": "TGVs from the north, the east and the south-east run through Paris Nord-Est and Gare de Lyon, and some run straight through Paris. Line H runs from the northern suburbs through Nord-Est and Saint-Lazare to the west. Atlantic TGVs, the regional express trains and lines P and N still end at their terminals: no through train reaches the Atlantic, and the link is not open."
   },
   {
    "to": 13,
-   "text": "The four lines are joined in a triangle. Every train stops at two stations, every station has direct trains to all four directions, and TGVs between the Atlantic and the south-east take the link."
+   "text": "The four TGV lines are joined in a triangle: every TGV stops at two stations, and TGVs between the Atlantic and the south-east take the link. Regional express trains run from the north and the east through Nord-Est to Montparnasse and on; line N joins the east to the south-west. The regional trains of Gare de Lyon stay on the surface for now (open item)."
   }
  ],
  "seen": [
@@ -242,17 +379,17 @@
     {
      "to": 9,
      "state": "Tests",
-     "text": "The station below is complete; empty trains run through it. New ways down appear in the two halls, still closed. The control hall for London trains is fitted out on the Gare du Nord side."
+     "text": "The TGV and line H platforms below are complete; empty trains run through them. New ways down appear in the two halls, still closed. The control hall for London trains is fitted out on the Gare du Nord side."
     },
     {
-     "to": 11,
-     "state": "Open below",
-     "text": "Trains leave from the deep platforms. The two halls are the entrances. London trains board from a TGV platform closed off for each departure. The surface platforms close and the halls are refitted."
+     "to": 12,
+     "state": "Open below, in part",
+     "text": "TGVs and line H trains leave from the deep platforms; London trains board from a TGV platform closed off for each departure. Their surface platforms close. Regional express trains and line P still use the surface while their own platforms are built below."
     },
     {
      "to": 13,
      "state": "Finished",
-     "text": "One station with two halls. The surface tracks are closed and cleared; the park on their site can open some years later (assumption)."
+     "text": "One station with two halls. Every train now runs below, so all the surface tracks of both stations close and are cleared; the park on their site can open some years later (assumption)."
     }
    ]
   },
@@ -278,17 +415,48 @@
     {
      "to": 9,
      "state": "Tests",
-     "text": "Empty trains run through the station below. New ways down appear in the hall, still closed."
+     "text": "Empty TGVs run through the station below. New ways down appear in the hall, still closed."
     },
     {
      "to": 11,
      "state": "Open below",
-     "text": "Trains leave from the deep platforms and continue to Paris Nord-Est. The surface platforms close and the hall is refitted. The link is joined to the junction cavern from inside, without closing the station."
+     "text": "TGVs leave from the deep platforms and continue to Paris Nord-Est. Their surface platforms close and the hall is refitted. The regional trains, line R and the Bercy trains keep the surface. The link is joined to the junction cavern from inside, without closing the station."
     },
     {
      "to": 13,
      "state": "Finished",
-     "text": "The hall is the entrance; half the trains continue to Montparnasse by the link. The tracks towards Bercy are closed; the park on their site can open some years later (assumption)."
+     "text": "The hall is the entrance; half the TGVs continue to Montparnasse by the link. The regional trains keep their surface tracks for now (open item), so the park here is smaller, or comes later."
+    }
+   ]
+  },
+  {
+   "name": "Saint-Lazare",
+   "stage": 1,
+   "phases": [
+    {
+     "to": 0,
+     "state": "As today",
+     "text": "A terminal for suburban lines J and L and the trains to Normandy."
+    },
+    {
+     "to": 2,
+     "state": "Works begin",
+     "text": "Trains run as today. Work sites appear on railway land in the station and towards Pont-Cardinet."
+    },
+    {
+     "to": 8,
+     "state": "Works under the tracks",
+     "text": "Trains run, with fewer platforms at a time. A few platforms are closed in turn above the works."
+    },
+    {
+     "to": 9,
+     "state": "Tests",
+     "text": "Empty line H trains run through the station below, between Nord-Est and the west."
+    },
+    {
+     "to": 13,
+     "state": "Open below",
+     "text": "Line H trains, which now include those of line L, run through the deep station between Nord-Est and the west. The surface station stays for line J and the trains to Normandy."
     }
    ]
   },
@@ -319,7 +487,7 @@
     {
      "to": 11,
      "state": "Still a terminal",
-     "text": "All Atlantic trains still end here on the surface, while the other three lines are already joined. Below, the station and the link are being fitted out."
+     "text": "All Atlantic trains, regional express trains and line N still end here on the surface, while line H and the other TGV lines are already open below. Below, the station and the tunnels are being fitted out."
     },
     {
      "to": 12,
@@ -329,7 +497,7 @@
     {
      "to": 13,
      "state": "Open below",
-     "text": "Trains leave from the deep platforms, half to Paris Nord-Est and half to Gare de Lyon by the link. The surface platforms and the tracks to the ring road close; the park comes later."
+     "text": "TGVs leave from the deep platforms, half to Paris Nord-Est and half to Gare de Lyon by the link; regional express trains and line N run through to Nord-Est. The surface platforms and the tracks to the ring road close; the park comes later."
     }
    ]
   }
@@ -350,8 +518,8 @@
    "span": "April 2016 to May 2024"
   },
   {
-   "name": "This study, all three stations",
-   "what": "The model's assumption: three stations of 16, 12 and 12 tracks and 48.6 km of twin tunnel",
+   "name": "This study, all four stations",
+   "what": "",
    "years": 12,
    "kind": "here",
    "span": "12 years, assumed"

@@ -81,7 +81,10 @@ PTS.section('crossing', function (root) {
 
   // ---------------------------------------------------------------- regional and suburban services
   const G = D.regional;
-  const nameOf = function (k) { return own.ter_names[k] || 'Line ' + k; };
+  const nameOf = function (k) { return own.ter_names[k] || own.sub_names[k] || 'Line ' + k; };
+  const stopOf = function (k) { return own.second_stop[k] ? 'on to ' + own.second_stop[k] : own.no_through; };   // line R and Gare de Lyon's regional trains do not run through
+  const rank = function (r) { const i = own.sub_order.indexOf(r[0]); return i < 0 ? 99 : i; };
+  const ROWS = G.rows.slice().sort(function (a, b) { return rank(a) - rank(b); });   // suburban lines in the order of the two through lines, then regional express
   const MEASURE = {
     min: { label: 'Minutes saved', sub: 'Minutes saved on the clock by an average passenger, by service, with the second station each one runs on to', fmt: function (v) { return F.n(v, 1) + ' min'; }, get: function (r) { return r[3]; } },
     users: { label: 'Journeys concerned', sub: 'Million journeys a year to or from the Paris terminal, by service', fmt: function (v) { return F.n(v, 1) + ' million'; }, get: function (r) { return r[2]; } },
@@ -90,10 +93,10 @@ PTS.section('crossing', function (root) {
   const drawReg = function (key) {
     const M = MEASURE[key];
     const row = function (r) {
-      return { label: nameOf(r[0]) + '<br><small>on to ' + own.second_stop[r[0]] + '</small>', value: M.get(r), color: 'var(--s1)',
-        tip: '<b>' + nameOf(r[0]) + '</b><br>' + F.n(r[2], 1) + ' million journeys a year through its Paris terminal<br>' + F.n(r[3], 1) + ' minutes saved on average<br>' + F.n(r[2] * r[3] / 60, 2) + ' million hours a year' };
+      return { label: nameOf(r[0]) + '<br><small>' + stopOf(r[0]) + '</small>', value: M.get(r), color: 'var(--s1)',
+        tip: '<b>' + nameOf(r[0]) + '</b>, ' + stopOf(r[0]) + '<br>' + F.n(r[2], 1) + ' million journeys a year through its Paris terminal<br>' + F.n(r[3], 1) + ' minutes saved on average<br>' + F.n(r[2] * r[3] / 60, 2) + ' million hours a year' };
     };
-    const sub = G.rows.filter(function (r) { return r[0].indexOf('TER') !== 0; }), ter = G.rows.filter(function (r) { return r[0].indexOf('TER') === 0; });
+    const sub = ROWS.filter(function (r) { return r[0].indexOf('TER') !== 0; }), ter = ROWS.filter(function (r) { return r[0].indexOf('TER') === 0; });
     C.bars($('#cx-reg-chart'), { fmt: M.fmt, rows: [{ group: 'Suburban lines' }].concat(sub.map(row), [{ group: 'Regional express trains' }], ter.map(row)) });
     $('#cx-reg-sub').textContent = M.sub;
   };
@@ -103,6 +106,6 @@ PTS.section('crossing', function (root) {
   PTS.table($('#cx-reg-table'), [
     { key: 'name', label: 'Service' }, { key: 'q', label: 'Journeys a year', num: true, fmt: f1 }, { key: 'u', label: 'Of which through the Paris terminal', num: true, fmt: f1 },
     { key: 'stop', label: 'Second stop' }, { key: 'm', label: 'Minutes saved, average', num: true, fmt: f1 }],
-    G.rows.map(function (r) { return { name: nameOf(r[0]), q: r[1], u: r[2], stop: own.second_stop[r[0]], m: r[3] }; })
+    ROWS.map(function (r) { return { name: nameOf(r[0]), q: r[1], u: r[2], stop: own.second_stop[r[0]] || 'None, ' + own.no_through, m: r[3] }; })
       .concat([{ name: 'Total', q: G.base, u: G.users, stop: '', m: G.avg_clock_saving, _class: 'total' }]));
 });

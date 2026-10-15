@@ -1,17 +1,17 @@
-<p class="lede">Three deep stations under the existing ones, joined by {{ b.cost_def.route_km + b.cost_def.link_km | 1 }} km of tunnel routes, with nothing left on the surface but the station halls. Every train stops at two of the three stations, and every station has direct trains to all four directions, on half of the trains of each line. Nothing here has been designed: the map and the quantities are planning assumptions.</p>
+<p class="lede">Three deep TGV stations under the existing ones, joined in a triangle, and a fourth deep station under Saint-Lazare for suburban line H. Each kind of train has its own tunnel: {{ m.cost.tunnel_km | 1 }} km of twin-track tunnel in all, so that every train of Gare du Nord, Gare de l’Est and Montparnasse can leave the surface and their tracks can become parks. Every TGV stops at two of the three stations, and each of the three has direct TGVs to all four directions. Nothing here has been designed: the map and the quantities are planning assumptions.</p>
 
 <div class="block" id="project.network">
-  <h2>Three stations and seven tunnel corridors</h2>
+  <h2>Four deep stations and four kinds of tunnel</h2>
   <div class="tiles">
-    <div class="tile"><span class="n">3</span><span class="k">deep through stations</span><span class="d">Paris Nord-Est, Gare de Lyon and Montparnasse: {{ sum(m.cost.tracks.values()) | 0 }} platform tracks, {{ m.cost.tracks['Paris Nord-Est'] | 0 }}, {{ m.cost.tracks['Gare de Lyon'] | 0 }} and {{ m.cost.tracks['Montparnasse'] | 0 }}</span></div>
-    <div class="tile" style="--tc: var(--s1)"><span class="n">{{ b.cost_def.route_km + b.cost_def.link_km | 1 }}<small>km</small></span><span class="k">of route in seven corridors</span><span class="d">{{ m.cost.tunnel_km | 0 }} km of twin-track tunnel: two pairs of tracks on {{ b.cost_def.route_km | 1 }} km, one pair on the {{ m.cost.link_km | 0 }} km link between Montparnasse and Gare de Lyon</span></div>
+    <div class="tile"><span class="n">4</span><span class="k">deep through stations</span><span class="d">Paris Nord-Est, Gare de Lyon, Montparnasse and Saint-Lazare: {{ m.cost.tracks_total | 0 }} platform tracks, {{ m.cost.tracks['Paris Nord-Est'] | 0 }}, {{ m.cost.tracks['Gare de Lyon'] | 0 }}, {{ m.cost.tracks['Montparnasse'] | 0 }} and {{ m.cost.tracks['Saint-Lazare'] | 0 }}</span></div>
+    <div class="tile" style="--tc: var(--s1)"><span class="n">{{ m.cost.tunnel_km | 1 }}<small>km</small></span><span class="k">of twin-track tunnel</span><span class="d">{{ m.tunnels.km.tgv | 1 }} km TGV (with the {{ m.cost.link_km | 0 }} km link), {{ m.tunnels.km.ter | 1 }} km regional express, {{ m.tunnels.km.n | 1 }} km line N, {{ m.tunnels.km.h | 1 }} km line H</span></div>
     <div class="tile" style="--tc: var(--s2)"><span class="n">{{ m.cost.platform_total / 1000 | 1 }}<small>km</small></span><span class="k">of platform track</span><span class="d">{{ m.len.hs | 0 }} m long for TGVs, {{ m.len.ter | 0 }} m for regional express trains, {{ m.len.sub | 0 }} m for suburban trains</span></div>
-    <div class="tile" style="--tc: var(--today)"><span class="n">4</span><span class="k">station halls kept, parks in place of the tracks</span><span class="d">The listed halls of Gare du Nord, Gare de l’Est and Gare de Lyon, and the recent hall of Montparnasse, become the entrances to the stations below. The surface tracks become parks</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">4</span><span class="k">station halls kept, parks in place of the tracks</span><span class="d">The listed halls of Gare du Nord, Gare de l’Est and Gare de Lyon, and the recent hall of Montparnasse, become the entrances to the stations below. Most of the surface tracks become parks</span></div>
   </div>
-  <p>A <strong>through station</strong> is a station where trains arrive at one end and leave by the other, without turning back. A <strong>corridor</strong> is a route followed by two tunnels side by side, each with two tracks; the link has one tunnel. A <strong>portal</strong> is the place where a tunnel comes up to join an existing line. An <strong>underground junction</strong> is a cavern where two tunnels become one. The <strong>TGV</strong> is the French high-speed train. <strong>Regional express</strong> trains are the TER services that join Paris to the towns of the surrounding regions. The <strong>RER</strong> is the set of express suburban lines that cross Paris underground.</p>
-  <p>The corridors run from each station to the existing tracks at the ring road, where the tunnels come up; on the eastern line they come up at Rosa Parks, just inside it. A tunnel 35 to 40 m deep needs only about 1.1 to 1.2 km to reach the surface, and a kilometre kept underground costs far more than a kilometre of existing track, so the tunnels go no further. The three stations form a triangle: two sides of it are the corridors through Paris Nord-Est, the third is the direct link between the two southern stations. Switch layers on and off, and select a station, a corridor, a portal or a junction to read its facts.</p>
+  <p>A <strong>through station</strong> is a station where trains arrive at one end and leave by the other, without turning back. A <strong>twin-track tunnel</strong> carries two tracks, one each way. A <strong>corridor</strong> is a route followed by one or more such tunnels side by side. A <strong>portal</strong> is the place where a tunnel comes up to join an existing line. An <strong>underground junction</strong> is a cavern where two tunnels become one. The <strong>TGV</strong> is the French high-speed train. <strong>Regional express</strong> trains are the TER services that join Paris to the towns of the surrounding regions. The <strong>RER</strong> is the set of express suburban lines that cross Paris underground.</p>
+  <p>The approach corridors run from each station to the existing tracks at the ring road, where the tunnels come up; on the eastern line they come up at Rosa Parks, just inside it, and line H comes up near Pont-Cardinet, on the tracks out of Saint-Lazare. A tunnel 35 to 40 m deep needs only about 1.1 to 1.2 km to reach the surface, and a kilometre kept underground costs far more than a kilometre of existing track, so the tunnels go no further. The three TGV stations form a triangle: two sides of it run through Paris Nord-Est, the third is the direct link between the two southern stations. Switch each kind of tunnel on and off, and select a station, a corridor, a portal or a junction to read its facts.</p>
   <figure class="fig">
-    <div class="fig-head"><strong>Every train stops twice in Paris, and every station sees trains of every line <span class="tag sketch">illustrative sketch</span></strong><span>Schematic map. Tunnel routes are drawn from point to point: no alignment has been studied</span></div>
+    <div class="fig-head"><strong>Each kind of train has its own tunnel: three side by side to Montparnasse, TGVs only to Gare de Lyon <span class="tag sketch">illustrative sketch</span></strong><span>Schematic map. Tunnel routes are drawn from point to point: no alignment has been studied</span></div>
     <div class="controls" id="project-controls"></div>
     <div class="cols project-mapcols">
       <div class="project-left">
@@ -20,77 +20,106 @@
       </div>
       <div class="card project-panel" id="project-panel" aria-live="polite"></div>
     </div>
-    <figcaption>Each coloured line is one pair of tracks in its own tunnel. Stations, portals and junctions are symbols, not drawn to scale. The outline of Paris and the places of the four terminals are real. The Seine, the existing lines and the three stations left as they are are sketched for orientation. Corridor lengths are planning estimates read from maps <span class="tag assume">assumption</span>; the link is taken as {{ m.cost.link_km | 0 }} km, between 4.5 and 6 <span class="tag assume">assumption</span>.</figcaption>
+    <figcaption>Each coloured line is one twin-track tunnel. Stations, portals and junctions are symbols, not drawn to scale. The outline of Paris and the places of the four terminals are real. The Seine, the existing lines and the stations left as they are are sketched for orientation. Corridor lengths are planning estimates read from maps <span class="tag assume">assumption</span>; the link is taken as {{ m.cost.link_km | 0 }} km, between 4.5 and 6 <span class="tag assume">assumption</span>.</figcaption>
   </figure>
 </div>
 
 <div class="block" id="project.networks">
-  <h2>Two networks in the tunnels</h2>
-  <p>Each corridor carries two pairs of tracks, each pair in a tunnel of its own. One pair is for the main-line trains, TGVs and regional express trains together, as on the surface today. The other is for the suburban trains: lines H and K from the north run on to line N in the Atlantic, and line P from the east on to line R in the south-east. The link between Montparnasse and Gare de Lyon is one pair of tracks for TGVs only.</p>
+  <h2>Separation by type of train</h2>
+  <p>Each kind of train has its own twin-track tunnel, as the plan sets out. There is one TGV tunnel on each side of the triangle: Nord-Est to Gare de Lyon, Nord-Est to Montparnasse, and the direct link between Montparnasse and Gare de Lyon, with the four TGV approaches from the north, the east, the south-east and the Atlantic. Between Nord-Est and Montparnasse, three tunnels run side by side: TGV, regional express and line N. Between Nord-Est and Gare de Lyon there is only the TGV tunnel. Line H has a tunnel of its own, from the north under Nord-Est to a new deep station under Saint-Lazare, and back up onto the tracks at Pont-Cardinet.</p>
   <div class="cols">
     <div class="card">
-      <h4>One corridor, seen in cross-section</h4>
-      <svg class="draw project-xs" viewBox="0 0 330 150" role="img" aria-label="A corridor seen in cross-section, with two tunnels of two tracks each: one for suburban trains, one shared by TGVs and regional express trains">
+      <h4>Nord-Est to Montparnasse, seen in cross-section</h4>
+      <svg class="draw project-xs" viewBox="0 0 330 150" role="img" aria-label="The corridor between Nord-Est and Montparnasse seen in cross-section, with three tunnels of two tracks each: one for TGVs, one for regional express trains, one for line N">
         <rect class="ground" x="0" y="26" width="330" height="124" stroke="none"/>
         <line x1="0" y1="26" x2="330" y2="26" stroke="var(--ground-edge)"/>
         <text x="6" y="18" class="lbl-muted">Street</text>
-        <g><circle class="struct" cx="95" cy="84" r="34"/><rect x="73" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><rect x="99" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><text x="95" y="140" text-anchor="middle">Suburban</text></g>
-        <g><circle class="struct" cx="235" cy="84" r="34"/><rect x="213" y="80" width="18" height="20" rx="2" fill="var(--s1)"/><rect x="239" y="80" width="18" height="20" rx="2" fill="var(--s2)"/><text x="235" y="140" text-anchor="middle">TGV and regional express</text></g>
+        <g><circle class="struct" cx="56" cy="84" r="34"/><rect x="34" y="80" width="18" height="20" rx="2" fill="var(--s1)"/><rect x="60" y="80" width="18" height="20" rx="2" fill="var(--s1)"/><text x="56" y="140" text-anchor="middle">TGV</text></g>
+        <g><circle class="struct" cx="165" cy="84" r="34"/><rect x="143" y="80" width="18" height="20" rx="2" fill="var(--s2)"/><rect x="169" y="80" width="18" height="20" rx="2" fill="var(--s2)"/><text x="165" y="140" text-anchor="middle">Regional express</text></g>
+        <g><circle class="struct" cx="274" cy="84" r="34"/><rect x="252" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><rect x="278" y="80" width="18" height="20" rx="2" fill="var(--s3)"/><text x="274" y="140" text-anchor="middle">Line N</text></g>
       </svg>
-      <p class="note">Cross-section of one corridor, not to scale <span class="tag sketch">illustrative sketch</span>. On the RER E extension opened in 2024, one tunnel 9.6 m wide inside carries two tracks.[[eolekit]]</p>
+      <p class="note">Cross-section of the corridor, not to scale <span class="tag sketch">illustrative sketch</span>. Whether three tunnels fit side by side, under the Seine, has not been studied. On the RER E extension opened in 2024, one tunnel 9.6 m wide inside carries two tracks.[[eolekit]]</p>
     </div>
     <div class="card">
-      <h4>Why two, and not one or three</h4>
+      <h4>What runs in each tunnel</h4>
       <ul>
-        <li><strong>Suburban trains apart.</strong> They stop more often and run to a tighter rhythm. On their own pair, a late suburban train never holds up a TGV, and the pair can be signalled like a metro line.</li>
-        <li><strong>TGVs and regional express trains together,</strong> as in Zürich, Vienna and Stuttgart.[[zvv, vienna, bt19]] In the stations each kind has platforms of its own, so the two share only the running tunnels.</li>
-        <li><strong>The link for TGVs only.</strong> It exists for the {{ m.service_full.flows['Atlantic to southeast, by the direct link'] | 0 }} trains an hour each way between the Atlantic and the south-east when both lines are full; no regional or suburban train needs it.</li>
-        <li><strong>What it adds up to.</strong> {{ b.cost_def.route_km | 1 }} km of route with two tunnels and {{ m.cost.link_km | 0 }} km with one: {{ m.cost.tunnel_km | 0 }} km of two-track tunnel, {{ m.cost.portals | 0 }} portals and {{ m.cost.junctions | 0 }} junction caverns.</li>
+        <li><strong>TGV</strong>, {{ m.tunnels.km.tgv | 1 }} km: all the high-speed trains, on the triangle and the four approaches. The link exists for the {{ m.service_full.flows['Atlantic to southeast, by the direct link'] | 0 }} TGVs an hour each way between the Atlantic and the south-east when both lines are full.</li>
+        <li><strong>Regional express</strong>, {{ m.tunnels.km.ter | 1 }} km: the TER of the north and the east run through Nord-Est to Montparnasse and on to the Chartres, Le Mans and Granville lines; the Atlantic TER run through to Nord-Est. No regional express train goes underground at Gare de Lyon.</li>
+        <li><strong>Line N</strong>, {{ m.tunnels.km.n | 1 }} km: suburban lines P (east) and N (south-west) become one line, called line N, through Nord-Est and Montparnasse.</li>
+        <li><strong>Line H</strong>, {{ m.tunnels.km.h | 1 }} km: suburban lines H and K (north) and L (west) become one line, called line H; the branches of line L become further branches of line H. The ride from Nord-Est to Saint-Lazare takes {{ m.TR.SL | 0 }} minutes.</li>
+        <li><strong>What it adds up to.</strong> {{ m.cost.tunnel_km | 1 }} km of twin-track tunnel, {{ m.cost.portals | 0 }} portals and {{ m.cost.junctions | 0 }} junction caverns.</li>
       </ul>
     </div>
   </div>
-  <p>Whether one suburban pair takes the whole peak of lines H, K and P is a study point: a third pair of tunnels on the two sides of the triangle would cost about €{{ (b.cost_def.route_km * (m.rates.tunnel_civil + m.rates.tunnel_systems) + b.cost_def.radials * m.rates.portal + 2 * m.rates.junction) * m.gross_up | 0 }} billion more (derived from the unit prices). The cost is built up in <a class="xref" href="#cost.total">the cost chapter</a>; which trains use which tracks, and how the link is used, is in <a class="xref" href="#service.hour">trains and timetable</a>.</p>
+  <h3>Why these through lines</h3>
+  <p>Separating the kinds of train keeps each tunnel simple: a late suburban train never holds up a TGV, and each suburban tunnel can be signalled like a metro line. But the through lines were chosen for where they lead, not for the Paris stations themselves; this is the plan’s reasoning.</p>
+  <ul>
+    <li><strong>Line N is an employment corridor.</strong> The point is not that line P riders reach Montparnasse: they have other ways. Line N serves the research, science, university and company clusters of the south-west, at Massy-Palaiseau, Polytechnique, Saclay, Versailles and Saint-Quentin. Joining it to line P puts the homes of the north-east and the east much closer to those highly qualified jobs.</li>
+    <li><strong>Line H leads to La Défense.</strong> The point is not Saint-Lazare, which RER E already serves. It is a ride without a change from the northern suburbs to Pont-Cardinet, Clichy-Levallois, Courbevoie and La Défense, large job clusters, and it relieves RER E, which is saturated in the morning. It also joins Saint-Lazare and the western suburbs directly to Gare du Nord: the airport connections, line K, and an easy change to RER B towards Roissy, Villepinte and Tremblay-en-France.</li>
+    <li><strong>Suburb to suburb.</strong> Trips from one side of the Paris region to the other are rare today because they are nearly impossible, not for lack of demand. Grand Paris Express line 15 was built on that same reasoning.</li>
+    <li><strong>Everything underground at Nord and Est.</strong> Taking every line of Gare du Nord and Gare de l’Est underground frees all the surface tracks of both stations for the park; leaving even one line on the surface would keep most of the cost of the tracks and lose the park.</li>
+  </ul>
+  <p class="note">The benefits counted in this study measure only the minutes saved to reach Paris destinations near the second station. The employment-corridor benefits, from what lies beyond the stations, are not yet counted: they need a method and data of their own, a next step. See <a class="xref" href="#economy.benefits">the economic return</a>.</p>
+  <p>The platforms are sized by the plan’s rules <span class="tag assume">assumption</span>. Regional express: a {{ m.reg_platforms.ter.stop | 0 }}-minute stop with margin and a {{ m.reg_platforms.ter.gap | 1 }}-minute gap give {{ m.reg_platforms.ter.per_track | 0 }} trains an hour a track, so {{ m.reg_platforms.ter.per_track * m.reg_platforms.ter.tracks / 2 | 0 }} each way on {{ m.reg_platforms.ter.tracks | 0 }} tracks, against {{ m.reg_platforms.ter.peak_today.Nord + m.reg_platforms.ter.peak_today.Est | 0 }} at the peak today and {{ m.reg_platforms.ter.peak_planned | 0 }} planned. Suburban: {{ m.reg_platforms.n.per_track | 0 }} trains an hour a track, so {{ m.reg_platforms.n.per_track * m.reg_platforms.n.tracks / 2 | 0 }} each way for line N (peak {{ m.reg_platforms.n.peak.P | 0 }} on P and {{ m.reg_platforms.n.peak.N | 0 }} on N, {{ m.reg_platforms.n.peak_clamart | 0 }} with the Clamart plan) and {{ m.reg_platforms.h.per_track * m.reg_platforms.h.tracks / 2 | 0 }} for line H (peak {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} on H and K, {{ m.reg_platforms.h.peak_l[0] | 0 }} to {{ m.reg_platforms.h.peak_l[1] | 0 }} on L). None has been drawn as a timetable.</p>
+  <p class="callout warn"><strong>Open item: Gare de Lyon regional trains.</strong> Only TGVs go underground at Gare de Lyon. Its regional express trains, line R and the Bercy trains stay on the surface for now and are not costed; extra regional tracks there, or moving some trains to Austerlitz and keeping Bercy, are to be decided later.</p>
+  <p>The cost is built up in <a class="xref" href="#cost.total">the cost chapter</a>; which trains use which tracks, and how the link is used, is in <a class="xref" href="#service.hour">trains and timetable</a>.</p>
 </div>
 
 <div class="block" id="project.numbers">
   <h2>The project in numbers</h2>
-  <h3>Three stations</h3>
+  <h3>Four stations</h3>
   <div class="tbl-wrap"><table class="tbl project-nowrap stack-sm">
     <thead><tr><th>Station</th><th>Where</th><th>Platform tracks</th><th>On the surface</th></tr></thead>
     <tbody>
       <tr><th>Paris Nord-Est</th><td data-l="Where">Under and between Gare du Nord and Gare de l’Est, which are 500 m apart[[nordest]]</td>
-        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Paris Nord-Est'] | 0 }}</strong>: {{ m.cost.detail['Paris Nord-Est'].hs | 0 }} TGV ({{ d.project.stations[0].london | 0 }} of them can be closed off for London departures), {{ m.cost.detail['Paris Nord-Est'].ter | 0 }} regional express, {{ m.cost.detail['Paris Nord-Est'].sub | 0 }} suburban</td>
-        <td data-l="On the surface">Both halls become entrances. The surface platforms and the approach tracks of both stations become one park, from the halls to the portals at the ring road and at Rosa Parks</td></tr>
+        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Paris Nord-Est'] | 0 }}</strong>: {{ m.cost.detail['Paris Nord-Est'].hs | 0 }} TGV ({{ d.project.stations[0].london | 0 }} of them can be closed off for London departures), {{ m.cost.detail['Paris Nord-Est'].ter | 0 }} regional express, {{ m.sub_tracks['Paris Nord-Est'].n | 0 }} line N, {{ m.sub_tracks['Paris Nord-Est'].h | 0 }} line H</td>
+        <td data-l="On the surface">Every train goes underground, so all the surface tracks of both stations are freed. Both halls become entrances; the platforms and approach tracks become one park, from the halls to the portals at the ring road and at Rosa Parks</td></tr>
       <tr><th>Gare de Lyon</th><td data-l="Where">Under the present station</td>
-        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Gare de Lyon'] | 0 }}</strong>: {{ m.cost.detail['Gare de Lyon'].hs | 0 }} TGV, {{ m.cost.detail['Gare de Lyon'].ter | 0 }} regional express, {{ m.cost.detail['Gare de Lyon'].sub | 0 }} suburban</td>
-        <td data-l="On the surface">The hall is kept as the entrance. The tracks towards Bercy become a park</td></tr>
+        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Gare de Lyon'] | 0 }}</strong>: {{ m.cost.detail['Gare de Lyon'].hs | 0 }} TGV only</td>
+        <td data-l="On the surface">The hall is kept as the entrance. The regional express, line R and Bercy tracks stay for now (open item), so only part of the tracks towards Bercy can become a park, and later</td></tr>
       <tr><th>Montparnasse</th><td data-l="Where">Under the present station</td>
-        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Montparnasse'] | 0 }}</strong>: {{ m.cost.detail['Montparnasse'].hs | 0 }} TGV, {{ m.cost.detail['Montparnasse'].ter | 0 }} regional express, {{ m.cost.detail['Montparnasse'].sub | 0 }} suburban</td>
-        <td data-l="On the surface">The hall is kept as the entrance. The tracks towards the ring road become a park</td></tr>
-      <tr class="total"><th>Total</th><td data-l="Where"></td><td data-l="Platform tracks">{{ sum(m.cost.tracks.values()) | 0 }} tracks, {{ m.cost.platform_total | int }} m of platform track</td><td data-l="On the surface">Four parks, about {{ m.params.park_ha | 0 }} hectares <span class="tag assume">assumption</span></td></tr>
+        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Montparnasse'] | 0 }}</strong>: {{ m.cost.detail['Montparnasse'].hs | 0 }} TGV, {{ m.cost.detail['Montparnasse'].ter | 0 }} regional express, {{ m.sub_tracks['Montparnasse'].n | 0 }} line N</td>
+        <td data-l="On the surface">Every train goes underground. The hall is kept as the entrance; the tracks towards the ring road become a park</td></tr>
+      <tr><th>Saint-Lazare</th><td data-l="Where">Deep under the present station</td>
+        <td data-l="Platform tracks"><strong>{{ m.cost.tracks['Saint-Lazare'] | 0 }}</strong>: {{ m.sub_tracks['Saint-Lazare'].h | 0 }} line H</td>
+        <td data-l="On the surface">The surface station stays as it is, for line J and the Normandy trains; no new hall</td></tr>
+      <tr class="total"><th>Total</th><td data-l="Where"></td><td data-l="Platform tracks">{{ m.cost.tracks_total | 0 }} tracks, {{ m.cost.platform_total | int }} m of platform track</td><td data-l="On the surface">Parks on about {{ m.params.park_ha | 0 }} hectares with all of Gare de Lyon, less at first <span class="tag assume">assumption</span></td></tr>
     </tbody></table></div>
-  <p>TGV platforms are {{ m.len.hs | 0 }} m long, the length of a full high-speed train.[[tsi]] Regional express platforms are {{ m.len.ter | 0 }} m: the Regio 2N trains of the Paris region are 81 to 135 m long and run up to three coupled, 270 to 330 m in all (unverified).[[regio2n]] Suburban platforms are {{ m.len.sub | 0 }} m, as on RER line E.[[magenta]] The six TGV tracks of each station are dedicated by direction, three each way. The four terminals have 118 platform tracks today, counted in <a class="xref" href="#why.terminals">the problem</a>. The number of tracks in each new station comes from the timetable in <a class="xref" href="#service.platforms">how many platforms</a>; their arrangement is sketched in <a class="xref" href="#stations">the three stations</a>.</p>
-  <h3>Seven tunnel corridors</h3>
+  <p>TGV platforms are {{ m.len.hs | 0 }} m long, the length of a full high-speed train.[[tsi]] Regional express platforms are {{ m.len.ter | 0 }} m: the Regio 2N trains of the Paris region are 81 to 135 m long and run up to three coupled, 270 to 330 m in all (unverified).[[regio2n]] Suburban platforms are {{ m.len.sub | 0 }} m, as on RER line E.[[magenta]] The six TGV tracks of each station are dedicated by direction, three each way. The four terminals have 118 platform tracks today, counted in <a class="xref" href="#why.terminals">the problem</a>. The number of tracks in each new station comes from the timetable in <a class="xref" href="#service.platforms">how many platforms</a>; their arrangement is sketched in <a class="xref" href="#stations">the stations</a>.</p>
+  <h3>Four kinds of tunnel</h3>
   <div class="tbl-wrap"><table class="tbl stack-sm">
-    <thead><tr><th>Corridor</th><th>From and to</th><th class="num">Route km</th><th>Carries</th></tr></thead>
+    <thead><tr><th>Tunnel</th><th>Runs</th><th class="num">Km</th><th class="num">Portals</th><th class="num">Junctions</th></tr></thead>
     <tbody>
-      <tr><th>North</th><td data-l="From and to">Porte de la Chapelle to Paris Nord-Est</td><td data-l="Route km" class="num">{{ d.project.corridors[0].km | 1 }}</td><td data-l="Carries">One pair: TGVs to Lille, London and Brussels, with regional express trains. The other: suburban lines H and K</td></tr>
-      <tr><th>East</th><td data-l="From and to">Rosa Parks to Paris Nord-Est</td><td data-l="Route km" class="num">{{ d.project.corridors[1].km | 1 }}</td><td data-l="Carries">One pair: TGVs to Reims and Strasbourg, with regional express trains. The other: suburban line P</td></tr>
-      <tr><th>Nord-Est to Lyon</th><td data-l="From and to">Paris Nord-Est to Gare de Lyon</td><td data-l="Route km" class="num">{{ d.project.corridors[2].km | 1 }}</td><td data-l="Carries">All trains between Paris Nord-Est and the south-east, on both pairs</td></tr>
-      <tr><th>Nord-Est to Montparnasse</th><td data-l="From and to">Paris Nord-Est to Montparnasse, under the Seine</td><td data-l="Route km" class="num">{{ d.project.corridors[3].km | 1 }}</td><td data-l="Carries">All trains between Paris Nord-Est and the Atlantic, on both pairs</td></tr>
-      <tr><th>South-east</th><td data-l="From and to">Gare de Lyon to Porte de Charenton</td><td data-l="Route km" class="num">{{ d.project.corridors[4].km | 1 }}</td><td data-l="Carries">One pair: TGVs to Lyon and Marseille, with regional express trains. The other: suburban line R</td></tr>
-      <tr><th>Atlantic</th><td data-l="From and to">Montparnasse to Porte de Vanves</td><td data-l="Route km" class="num">{{ d.project.corridors[5].km | 1 }}</td><td data-l="Carries">One pair: TGVs to Bordeaux, Rennes and Nantes, with regional express trains. The other: suburban line N</td></tr>
-      <tr class="hl"><th>Link</th><td data-l="From and to">Montparnasse to Gare de Lyon, city end to city end, under the Seine</td><td data-l="Route km" class="num">{{ d.project.corridors[6].km | 1 }}</td><td data-l="Carries">One pair only: TGVs between the Atlantic and the south-east, direct</td></tr>
-      <tr class="total"><th>Total</th><td data-l="From and to"></td><td data-l="Route km" class="num">{{ b.cost_def.route_km + b.cost_def.link_km | 1 }}</td><td data-l="Carries">{{ m.cost.tunnel_km | 0 }} km of two-track tunnel</td></tr>
+      <tr><th>TGV</th><td data-l="Runs">The triangle, the link and the four approaches</td><td data-l="Km" class="num">{{ m.tunnels.km.tgv | 1 }}</td><td data-l="Portals" class="num">{{ m.cost.portals_by_type.tgv | 0 }}</td><td data-l="Junctions" class="num">{{ m.cost.junctions_by_type.tgv | 0 }}</td></tr>
+      <tr><th>Regional express</th><td data-l="Runs">North and east approaches, through Nord-Est to Montparnasse and out on the Atlantic side</td><td data-l="Km" class="num">{{ m.tunnels.km.ter | 1 }}</td><td data-l="Portals" class="num">{{ m.cost.portals_by_type.ter | 0 }}</td><td data-l="Junctions" class="num">{{ m.cost.junctions_by_type.ter | 0 }}</td></tr>
+      <tr><th>Line N</th><td data-l="Runs">East approach, through Nord-Est and Montparnasse, out on the Atlantic side</td><td data-l="Km" class="num">{{ m.tunnels.km.n | 1 }}</td><td data-l="Portals" class="num">{{ m.cost.portals_by_type.n | 0 }}</td><td data-l="Junctions" class="num">{{ m.cost.junctions_by_type.n | 0 }}</td></tr>
+      <tr><th>Line H</th><td data-l="Runs">North approach, under Nord-Est to Saint-Lazare, up at Pont-Cardinet</td><td data-l="Km" class="num">{{ m.tunnels.km.h | 1 }}</td><td data-l="Portals" class="num">{{ m.cost.portals_by_type.h | 0 }}</td><td data-l="Junctions" class="num">{{ m.cost.junctions_by_type.h | 0 }}</td></tr>
+      <tr class="total"><th>Total</th><td data-l="Runs"></td><td data-l="Km" class="num">{{ m.cost.tunnel_km | 1 }}</td><td data-l="Portals" class="num">{{ m.cost.portals | 0 }}</td><td data-l="Junctions" class="num">{{ m.cost.junctions | 0 }}</td></tr>
     </tbody></table></div>
-  <p class="note">The corridor lengths are planning estimates read from maps <span class="tag assume">assumption</span>. Each kilometre of route is two kilometres of two-track tunnel, except on the link, where it is one.</p>
+  <h3>Nine corridors</h3>
+  <div class="tbl-wrap"><table class="tbl stack-sm">
+    <thead><tr><th>Corridor</th><th>From and to</th><th class="num">Route km</th><th class="num">Tunnels</th><th>Carries</th></tr></thead>
+    <tbody>
+      <tr><th>North</th><td data-l="From and to">Porte de la Chapelle to Paris Nord-Est</td><td data-l="Route km" class="num">{{ m.corridor_km.north | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[0].tunnels) | 0 }}</td><td data-l="Carries">TGV (Lille, London, Brussels), regional express, line H (formerly H and K)</td></tr>
+      <tr><th>East</th><td data-l="From and to">Rosa Parks to Paris Nord-Est</td><td data-l="Route km" class="num">{{ m.corridor_km.east | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[1].tunnels) | 0 }}</td><td data-l="Carries">TGV (Reims, Strasbourg), regional express, line N (formerly P)</td></tr>
+      <tr><th>Nord-Est to Lyon</th><td data-l="From and to">Paris Nord-Est to Gare de Lyon</td><td data-l="Route km" class="num">{{ m.corridor_km.nelyon | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[2].tunnels) | 0 }}</td><td data-l="Carries">TGV only</td></tr>
+      <tr><th>Nord-Est to Montparnasse</th><td data-l="From and to">Paris Nord-Est to Montparnasse, under the Seine</td><td data-l="Route km" class="num">{{ m.corridor_km.nemont | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[3].tunnels) | 0 }}</td><td data-l="Carries">TGV, regional express and line N, side by side</td></tr>
+      <tr><th>South-east</th><td data-l="From and to">Gare de Lyon to Porte de Charenton</td><td data-l="Route km" class="num">{{ m.corridor_km.southeast | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[4].tunnels) | 0 }}</td><td data-l="Carries">TGV only (Lyon, Marseille); the regional trains stay on the surface for now (open item)</td></tr>
+      <tr><th>Atlantic</th><td data-l="From and to">Montparnasse to Porte de Vanves</td><td data-l="Route km" class="num">{{ m.corridor_km.atlantic | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[5].tunnels) | 0 }}</td><td data-l="Carries">TGV (Bordeaux, Rennes, Nantes), regional express, line N</td></tr>
+      <tr class="hl"><th>Link</th><td data-l="From and to">Montparnasse to Gare de Lyon, city end to city end, under the Seine</td><td data-l="Route km" class="num">{{ m.cost.link_km | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[6].tunnels) | 0 }}</td><td data-l="Carries">TGVs between the Atlantic and the south-east, direct</td></tr>
+      <tr><th>Nord-Est to Saint-Lazare</th><td data-l="From and to">Paris Nord-Est to Saint-Lazare, curving west under the 9th and 8th arrondissements</td><td data-l="Route km" class="num">{{ m.corridor_km.nesl | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[7].tunnels) | 0 }}</td><td data-l="Carries">Line H</td></tr>
+      <tr><th>Saint-Lazare to Pont-Cardinet</th><td data-l="From and to">Saint-Lazare to the Batignolles tracks near Pont-Cardinet</td><td data-l="Route km" class="num">{{ m.corridor_km.slwest | 1 }}</td><td data-l="Tunnels" class="num">{{ len(d.project.corridors[8].tunnels) | 0 }}</td><td data-l="Carries">Line H</td></tr>
+      <tr class="total"><th>Total</th><td data-l="From and to"></td><td data-l="Route km" class="num">{{ sum(m.corridor_km.values()) + m.cost.link_km | 1 }}</td><td data-l="Tunnels" class="num"></td><td data-l="Carries">{{ m.cost.tunnel_km | 1 }} km of twin-track tunnel</td></tr>
+    </tbody></table></div>
+  <p class="note">The corridor lengths are planning estimates read from maps <span class="tag assume">assumption</span>. Each kilometre of route counts once for each tunnel in it. The line H tunnel is {{ m.tunnels.km.h | 1 }} km in all; for comparison, the RER E tunnel between Magenta and Haussmann-Saint-Lazare is 2.46 km (the plan).</p>
   <div class="cols">
     <div class="card">
       <h4>Left as it is</h4>
       <ul>
         <li>The five RER lines, A to E, which already cross Paris underground.</li>
         <li>The metro.</li>
-        <li>Saint-Lazare, Austerlitz and Bercy stations.</li>
+        <li>The surface station of Saint-Lazare, for line J and the Normandy trains; Austerlitz and Bercy stations.</li>
+        <li>For now, the surface tracks of Gare de Lyon for its regional express trains, line R and the Bercy trains (open item).</li>
         <li>The train depots, which stay beside the approach lines; see <a class="xref" href="#works.surface">changes at today's stations</a>.</li>
       </ul>
     </div>
@@ -100,21 +129,23 @@
         <li>New trains.</li>
         <li>Clearing the surface tracks once they are closed, and making the parks.</li>
         <li>Anything built beside the parks.</li>
+        <li>Any new underground platforms for the regional trains of Gare de Lyon.</li>
       </ul>
     </div>
   </div>
-  <p>How the stations sit under the present ones is in <a class="xref" href="#stations">the three stations</a>. How all this could be built while trains keep running is in <a class="xref" href="#works">works and stages</a>.</p>
+  <p>How the stations sit under the present ones is in <a class="xref" href="#stations">the stations</a>. How all this could be built while trains keep running is in <a class="xref" href="#works">works and stages</a>.</p>
 </div>
 
 <div class="block" id="project.parks">
-  <h2>Four parks where the tracks were</h2>
-  <p>No surface platform is kept for trains. Once the deep stations are open, the four fans of tracks inside Paris are no longer needed: the two fans north of Gare du Nord and Gare de l’Est, the tracks from Gare de Lyon towards Bercy, and the tracks from Montparnasse to the ring road. The project turns them into four park areas, from the end of each station building outwards, with some small plots kept for new buildings or for reusing the buildings already there. About {{ m.params.park_ha | 0 }} hectares could be released in all, an estimate read from maps <span class="tag assume">assumption</span>; no official measure of the four track corridors exists. The one published figure found is about 30 hectares of rail corridor inside the Bercy-Charenton development area (derived).[[w_bercy]]</p>
+  <h2>Parks where the tracks were</h2>
+  <p>Once both stages are open, every train of Gare du Nord, Gare de l’Est and Montparnasse runs underground, and the fans of tracks inside Paris are no longer needed: the two fans north of Gare du Nord and Gare de l’Est, and the tracks from Montparnasse to the ring road. This is why every line of Nord and Est goes underground: leaving even one on the surface would keep the tracks and lose the park. At Gare de Lyon only the TGVs go underground; its regional express trains, line R and the Bercy trains stay on the surface for now, so its park towards Bercy is smaller, or comes later (open item). The project turns the freed tracks into parks, from the end of each station building outwards, with some small plots kept for new buildings or for reusing the buildings already there. About {{ m.params.park_ha | 0 }} hectares could be released if all four fans were freed, an estimate read from maps <span class="tag assume">assumption</span>; less while the Gare de Lyon tracks stay. No official measure of the track corridors exists. The one published figure found is about 30 hectares of rail corridor inside the Bercy-Charenton development area (derived).[[w_bercy]]</p>
   <div class="cols">
     <div class="card">
       <h4>What stays</h4>
       <ul>
         <li>The four halls, as entrances to the stations below.</li>
         <li>The RER and metro stations under them.</li>
+        <li>The surface station of Saint-Lazare, for line J and the Normandy trains.</li>
         <li>The depots, beyond the ring road, reached through the portals and the existing tracks.</li>
       </ul>
     </div>
@@ -127,5 +158,5 @@
       </ul>
     </div>
   </div>
-  <p><strong>Two points are open.</strong> The airport express train to Roissy is due to end at surface platforms of Gare de l’Est;[[cdgx]] what becomes of it has not been studied. And whether Gare du Nord can be emptied at the peak depends on one suburban pair carrying the whole peak of lines H, K and P, which has not been checked against a timetable; see <a class="xref" href="#project.networks">two networks in the tunnels</a>.</p>
+  <p><strong>Two points are open.</strong> The airport express train to Roissy is due to end at surface platforms of Gare de l’Est;[[cdgx]] what becomes of it, when all the surface tracks there are freed, has not been studied. And the regional trains of Gare de Lyon stay on the surface for now; how much of its park can be made, and when, depends on that later decision; see <a class="xref" href="#project.networks">separation by type of train</a>.</p>
 </div>

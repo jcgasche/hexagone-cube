@@ -1,6 +1,6 @@
-"""The triangle: three deep through stations (Paris Nord-Est under Gare du Nord and Gare de l'Est, Gare de Lyon, Montparnasse),
-joined by two pairs of tunnels on a Y and a direct TGV link between the two southern stations. Access, service plan, bottom-up cost,
-traffic, direct and indirect return.
+"""The plan: three deep TGV through stations (Paris Nord-Est under Gare du Nord and Gare de l'Est, Gare de Lyon, Montparnasse) on a
+triangle of TGV tunnels, with separate tunnels for regional express trains and suburban lines N and H, and a deep station for line H
+under Saint-Lazare (version 4 below). Access, service plan, bottom-up cost, traffic, direct and indirect return.
 
 Version 3.1 (13 October 2026): the approach tunnels come up on the existing tracks at the ring road (east: at Rosa Parks), not beyond
 it; route 21.8 km instead of 33.5, so 48.6 km of twin-track tunnel instead of 72.

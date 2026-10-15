@@ -1,10 +1,10 @@
 {
   "title": "Paris Through Stations",
   "sections": [
-    {"id": "summary",   "group": "Report",  "nav": "Summary",                "heading": "Three through stations under Paris"},
+    {"id": "summary",   "group": "Report",  "nav": "Summary",                "heading": "Through stations under Paris"},
     {"id": "why",       "group": "Report",  "nav": "The problem",            "heading": "Why Paris stops every train"},
     {"id": "project",   "group": "Report",  "nav": "The project",            "heading": "What would be built"},
-    {"id": "stations",  "group": "Report",  "nav": "The three stations",     "heading": "How the stations would be laid out"},
+    {"id": "stations",  "group": "Report",  "nav": "The stations",           "heading": "How the stations would be laid out"},
     {"id": "works",     "group": "Report",  "nav": "Works and stages",       "heading": "Works, changes to today's stations, and stages"},
     {"id": "service",   "group": "Report",  "nav": "Trains and timetable",   "heading": "Which trains run where"},
     {"id": "access",    "group": "Report",  "nav": "Reaching the station",   "heading": "How long to reach a station where your train stops"},

@@ -78,29 +78,53 @@ PTS.section('works', function (root) {
   const statusOf = function (e, y) { return y < e.start ? 'none' : y < e.open ? 'works' : 'open'; };
   const WORD = { none: 'not started', works: 'under construction', open: 'open' };
   const yearName = function (y) { return y === 0 ? 'Before the works' : y > YEARS ? 'After year ' + YEARS : 'Year ' + y; };
-  const NODE = { nordest: [0.5, 0.36], lyon: [0.76, 0.66], montparnasse: [0.24, 0.66] };
-  const LINE = { north: [[0.34, 0.13], 'nordest', 'Porte de la Chapelle'], east: [[0.66, 0.13], 'nordest', 'Rosa Parks'], nelyon: ['nordest', 'lyon'], nemont: ['nordest', 'montparnasse'], southeast: ['lyon', [0.9, 0.88], 'Porte de Charenton'], atlantic: ['montparnasse', [0.1, 0.88], 'Porte de Vanves'], link: ['montparnasse', 'lyon'] };
-  const NCOR = S.elements.filter(function (e) { return e.kind === 'corridor'; }).length;
+  const NODE = { nordest: [0.5, 0.36], lyon: [0.76, 0.66], montparnasse: [0.24, 0.66], saintlazare: [0.2, 0.36] };
+  const LINE = { north: [[0.34, 0.13], 'nordest', 'Porte de la Chapelle'], east: [[0.66, 0.13], 'nordest', 'Rosa Parks'], nelyon: ['nordest', 'lyon'], nemont: ['nordest', 'montparnasse'], southeast: ['lyon', [0.9, 0.88], 'Porte de Charenton'], atlantic: ['montparnasse', [0.1, 0.88], 'Porte de Vanves'], link: ['montparnasse', 'lyon'], nesl: ['nordest', 'saintlazare'], slwest: ['saintlazare', [0.08, 0.13], 'Pont-Cardinet'] };
+  const KIND = { tgv: 'TGV', ter: 'Regional express', n: 'Line N', h: 'Line H' };
+  const CORS = S.elements.filter(function (e) { return e.kind === 'corridor'; });
+  const TUNNELS = [];                                         // every twin-track tunnel, with its length from the model
+  CORS.forEach(function (c) { c.tunnels.forEach(function (t) { TUNNELS.push({ cor: c, t: t, km: c.id === 'link' ? D.link_km : D.corridor_km[c.id] }); }); });
+  const KM_ALL = TUNNELS.reduce(function (a, x) { return a + x.km; }, 0);
+  if (Math.abs(KM_ALL - D.cost.tunnel_km) > 0.05) console.warn('works: the tunnels of the timeline add up to ' + KM_ALL + ' km, the model has ' + D.cost.tunnel_km);
+  [['first', 1], ['second', 2]].forEach(function (st) {
+    const km = TUNNELS.filter(function (x) { return x.t.stage === st[1]; }).reduce(function (a, x) { return a + x.km; }, 0);
+    if (Math.abs(km - D.stages[st[0]].km) > 0.05) console.warn('works: stage ' + st[1] + ' of the timeline has ' + km + ' km of tunnel, the model ' + D.stages[st[0]].km);
+  });
+  const RANK = { none: 0, works: 1, open: 2 };
+  const corStatus = function (c, y) { return c.tunnels.map(function (t) { return statusOf(t, y); }).sort(function (a, b) { return RANK[b] - RANK[a]; })[0]; };
   function surfaceWord(e, y) {
     const two = e.id === 'nordest';
+    if (e.id === 'saintlazare') return y < e.open ? 'Terminal in use above' : 'Surface station stays';
     if (y < e.open) return two ? 'Two terminals in use above' : 'Terminal in use above';
+    if (two && y <= YEARS) return 'Some surface platforms in use';
+    if (e.id === 'lyon' && y >= e.open + 2) return 'Hall; regional trains above';
     if (y < e.open + 2 && y <= YEARS) return 'Surface platforms closing';
     return two ? 'Two halls as entrances' : 'Hall as entrance';
   }
   function net(W) {
     const y = state.year, narrow = W < 430, H = Math.round(Math.max(270, W * 0.66)), nw = narrow ? 104 : 124, nh = 30;
     const P = function (p) { const q = typeof p === 'string' ? NODE[p] : p; return [q[0] * W, q[1] * H]; };
-    const svg = s('svg', { class: 'draw', viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img', 'aria-label': 'Diagram of the network in ' + yearName(y).toLowerCase() + ': ' + S.elements.map(function (e) { return e.name + ' ' + WORD[statusOf(e, y)]; }).join(', ') });
+    const svg = s('svg', { class: 'draw', viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img', 'aria-label': 'Diagram of the network in ' + yearName(y).toLowerCase() + ': ' + S.elements.map(function (e) { return e.kind === 'station' ? e.name + ' ' + WORD[statusOf(e, y)] : e.name + ': ' + e.tunnels.map(function (t) { return KIND[t.type] + ' tunnel ' + WORD[statusOf(t, y)]; }).join(', '); }).join('; ') });
     const span = function (e) { return e.start === 1 ? 'Works from the first year' : 'Works from year ' + e.start; };
-    S.elements.filter(function (e) { return e.kind === 'corridor'; }).forEach(function (e) {
-      const L = LINE[e.id], a = P(L[0]), b = P(L[1]), stt = statusOf(e, y);
-      const g = s('g', null, s('line', { class: 'wk-line ' + stt + (e.id === 'link' ? ' single' : ''), x1: a[0], y1: a[1], x2: b[0], y2: b[1] }), s('line', { class: 'wk-hit', x1: a[0], y1: a[1], x2: b[0], y2: b[1] }));
-      const what = e.id === 'link' ? e.name + ', one pair of tracks, with its junction caverns at both ends' : e.name + ' corridor';
-      svg.appendChild(note(g, what + ', ' + WORD[stt], '<b>' + what + '</b><br>' + WORD[stt].charAt(0).toUpperCase() + WORD[stt].slice(1) + ' in ' + yearName(y).toLowerCase() + '<br><small>' + span(e) + '; opens after year ' + (e.open - 1) + ' (assumed)</small>'));
+    CORS.forEach(function (e) {                                // one line for each twin-track tunnel, side by side along the corridor
+      const L = LINE[e.id], a = P(L[0]), b = P(L[1]), stt = corStatus(e, y), n = e.tunnels.length, gap = narrow ? 4 : 5;
+      const len = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, nx = -(b[1] - a[1]) / len, ny = (b[0] - a[0]) / len, g = s('g');
+      e.tunnels.forEach(function (t, i) {
+        const o = (i - (n - 1) / 2) * gap;
+        g.appendChild(s('line', { class: 'wk-line single ' + statusOf(t, y), x1: a[0] + nx * o, y1: a[1] + ny * o, x2: b[0] + nx * o, y2: b[1] + ny * o }));
+      });
+      g.appendChild(s('line', { class: 'wk-hit', x1: a[0], y1: a[1], x2: b[0], y2: b[1] }));
+      const what = e.id === 'link' ? e.name + ', with its junction caverns at both ends' : e.name + ' corridor';
+      const list = e.tunnels.map(function (t) {
+        const km = e.id === 'link' ? D.link_km : D.corridor_km[e.id];
+        return KIND[t.type] + ' tunnel, ' + F.n(km, 1) + ' km: ' + WORD[statusOf(t, y)] + ' <small>(stage ' + t.stage + ', ' + span(t).toLowerCase() + ', opens after year ' + (t.open - 1) + ')</small>';
+      });
+      svg.appendChild(note(g, what + ': ' + e.tunnels.map(function (t) { return KIND[t.type] + ' ' + WORD[statusOf(t, y)]; }).join(', '),
+        '<b>' + what + '</b><br>' + (n > 1 ? n + ' twin-track tunnels side by side, in ' : 'In ') + yearName(y).toLowerCase() + ':<br>' + list.join('<br>') + '<br><small>Assumed schedule</small>'));
       if (L[2]) {
-        const p = typeof L[0] === 'string' ? b : a, up = p[1] < H / 2;
+        const p = typeof L[0] === 'string' ? b : a, up = p[1] < H / 2, edge = p[0] < W * 0.15 ? 'start' : p[0] > W * 0.85 ? 'end' : 'middle';
         svg.appendChild(s('path', { class: 'wk-node ' + stt, d: 'M' + p[0] + ',' + (p[1] - 7) + 'l7,12h-14z' }));
-        svg.appendChild(up ? s('text', { class: 'lbl-muted', x: p[0], y: p[1] - 12, 'text-anchor': 'middle', text: L[2] })
+        svg.appendChild(up ? s('text', { class: 'lbl-muted', x: p[0] + (edge === 'start' ? -8 : edge === 'end' ? 8 : 0), y: p[1] - 12, 'text-anchor': edge, text: L[2] })
                            : s('text', { class: 'lbl-muted', x: p[0] + (p[0] < W / 2 ? 12 : -12), y: p[1] + 6, 'text-anchor': p[0] < W / 2 ? 'start' : 'end', text: L[2] }));
       }
     });
@@ -115,10 +139,10 @@ PTS.section('works', function (root) {
   }
   function readout() {
     const y = state.year, total = D.cost.total, names = function (stt) { const l = S.elements.filter(function (e) { return e.kind === 'station' && statusOf(e, y) === stt; }).map(function (e) { return e.name; }); return l.length ? l.join(', ') : 'none'; };
-    const km = function (stt) { return S.elements.filter(function (e) { return e.kind === 'corridor' && statusOf(e, y) === stt; }).length; };
+    const km = function (stt) { return F.n(TUNNELS.filter(function (x) { return statusOf(x.t, y) === stt; }).reduce(function (a, x) { return a + x.km; }, 0), 1); };
     $('#works-tl-title').textContent = yearName(y);
     const dl = PTS.clear($('#works-tl-read'));
-    [['Stations under construction', names('works')], ['Stations open', names('open')], ['Tunnel corridors, the link counted as one', km('works') + ' under construction, ' + km('open') + ' open, of ' + NCOR],
+    [['Stations under construction', names('works')], ['Stations open', names('open')], ['Twin-track tunnel, km', km('works') + ' under construction, ' + km('open') + ' open, of ' + F.n(KM_ALL, 1)],
       ['Spent by the end of the year, if spending is even', F.bn(total * Math.min(y, YEARS) / YEARS, 0) + ' of ' + F.bn(total, 0)]].forEach(function (r) { dl.appendChild(h('dt', { text: r[0] })); dl.appendChild(h('dd', { text: r[1] })); });
     $('#works-tl-network').textContent = S.network.filter(function (n) { return y <= n.to; })[0].text;
   }
@@ -164,7 +188,8 @@ PTS.section('works', function (root) {
 
   // ================================================================ how long comparable works took
   PTS.chart.bars($('#works-durations'), { max: 24, rows: S.durations.map(function (r) {
+    const what = r.kind !== 'here' ? r.what : 'The model’s assumption: four stations of ' + ['Paris Nord-Est', 'Gare de Lyon', 'Montparnasse', 'Saint-Lazare'].map(function (n) { return D.cost.tracks[n]; }).join(', ') + ' tracks (Nord-Est, Lyon, Montparnasse, Saint-Lazare) and ' + F.n(D.cost.tunnel_km, 1) + ' km of twin-track tunnel';
     return { label: r.name, value: r.years, hl: r.kind === 'here', color: r.kind === 'here' ? 'var(--s2)' : r.kind === 'built' ? 'var(--s1)' : 'var(--neutral-mark)', text: F.n(r.years, r.years % 1 ? 1 : 0) + ' years',
-      tip: '<b>' + r.name + '</b><br>' + r.what + '<br>' + r.span };
+      tip: '<b>' + r.name + '</b><br>' + what + '<br>' + r.span };
   }) });
 });

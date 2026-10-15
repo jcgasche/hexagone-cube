@@ -113,7 +113,51 @@
       "sub": 6
      }
     }
-   }
+   },
+   "corridor_km": {
+    "north": 2.4,
+    "east": 2.7,
+    "nelyon": 5.0,
+    "nemont": 6.0,
+    "southeast": 2.9,
+    "atlantic": 2.8,
+    "nesl": 2.6,
+    "slwest": 1.2
+   },
+   "tunnels": {
+    "tgv": [
+     "north",
+     "east",
+     "nelyon",
+     "nemont",
+     "southeast",
+     "atlantic",
+     "link"
+    ],
+    "ter": [
+     "north",
+     "east",
+     "nemont",
+     "atlantic"
+    ],
+    "n": [
+     "east",
+     "nemont",
+     "atlantic"
+    ],
+    "h": [
+     "north",
+     "nesl",
+     "slwest"
+    ]
+   },
+   "tunnel_km": {
+    "tgv": 26.8,
+    "ter": 13.9,
+    "n": 11.5,
+    "h": 6.2
+   },
+   "fee_km": 31.6
   },
   "r": 0.03,
   "n": 60,
