@@ -28,7 +28,7 @@
     const items = {
       'Tunnels, civil works': km * R.tunnel_civil, 'Tunnels, rail systems': km * R.tunnel_systems, 'Stations': platTotal * R.platform_m, 'Historic halls': halls,
       'Underground junctions': junctions * R.junction, 'Portals and links to existing lines': portals * R.portal, 'Sidings and depot links': R.sidings,
-      'Control hall for London trains': R.london_hall
+      'Control hall for London trains': R.london_hall, 'TER links into the TGV tunnels': R.ter_links || 0
     };
     let hard = 0; Object.keys(items).forEach(function (k) { hard += items[k]; });
     const soft = hard * (R.design + R.client), land = hard * R.land, risk = (hard + soft + land) * R.risk;

@@ -45,6 +45,12 @@ Nord-Est to a new deep through station under Saint-Lazare, which comes back up o
 between Nord-Est and Gare de Lyon; regional trains of Gare de Lyon (TER Bourgogne, line R, Bercy) stay on the surface for now (open item,
 not costed). 46 platform tracks, 58.4 km of twin-track tunnel. The access measure that counts the ride between Paris stops now counts
 the 6-minute run only (TH_ACCESS); the crossing measure keeps the run and the stop (TH).
+Version 4.1 (15 October 2026, evening): no regional express tunnel. Regional express trains run in the TGV tunnels, on a 2-minute grid
+of paths (30 an hour each way): TGVs keep their 4-minute places in the 12-minute beat and regional trains take the paths in between
+(condition: signalling for trains about 1.5 minutes apart, ETCS level 2 with short blocks and automatic driving in the tunnels).
+Northern regional trains run through Nord-Est to Montparnasse and the Atlantic lines; eastern ones (3, plus one new) run through
+Nord-Est to Gare de Lyon and on to Burgundy, so Gare de Lyon and Bercy regional trains go underground too. Gare de Lyon gets 2 more
+400 m tracks (8), for the 16th south-east TGV and the regional trains. Line R stays on a small surface terminal. 44.5 km, 48 tracks.
 Every assumption that is not sourced is marked ASSUMPTION.
 """
 import csv, json, statistics as S, collections, math
@@ -326,13 +332,49 @@ TER_THROUGH_SHARE = 0.05                # share of regional express passengers w
 # no through running. Regional express: northern and eastern trains run through Nord-Est to Montparnasse, Atlantic trains (Montparnasse)
 # run through to Nord-Est; Gare de Lyon's regional trains stay on the surface (open item).
 SUB_PAIR = {'H': 'Saint-Lazare', 'K': 'Saint-Lazare', 'P': 'Montparnasse'}
-TER_RUN = {'Nord': 'Montparnasse', 'Est': 'Montparnasse'}
+TER_RUN = {'Nord': 'Montparnasse', 'Est': 'Lyon'}             # version 4.1: eastern regional trains run on to Gare de Lyon and Burgundy
 SOUTH_LINE = {'N': 'Montparnasse', 'L': 'Saint-Lazare', 'R': 'Lyon'}     # the lines across Paris from H, K and P (L is west, not south, but plays the same part)
 LEG = {'Lyon': 'L', 'Montparnasse': 'M', 'Saint-Lazare': 'SL'}
 REG_PLATFORMS = {                       # platform rule for regional and suburban tracks (Charles, 15 October 2026; ASSUMPTION)
     'ter': {'stop': 5.0, 'gap': 2.5, 'per_track': 8, 'tracks': 4, 'peak_today': {'Nord': 11, 'Est': 3}, 'peak_planned': 15},
     'n': {'per_track': 10, 'tracks': 4, 'peak': {'P': 11, 'N': 12}, 'peak_clamart': 16},
     'h': {'per_track': 10, 'tracks': 6, 'peak': {'H': 20, 'K': 3}, 'peak_l': (24, 28)}}
+
+# version 4.1: regional express trains in the TGV tunnels. Peak trains an hour each way (Charles, 15 October 2026; ASSUMPTION)
+TER_HOUR = {'Nord': 11, 'Est': 3, 'new_east_link': 1, 'atlantic_today': 7, 'lyon_today': 4}
+TER_FLOW = {'north': 11, 'east': 4, 'nemont': 11, 'nelyon': 4, 'atlantic': 11, 'southeast': 4, 'link': 0}
+PATH_MIN = 2.0                          # tunnel paths on a 2-minute grid: 30 an hour each way; TGVs keep the 4-minute places of the 12-minute beat
+SIGNAL_MIN = (1.5, 2.0)                 # minutes between two trains the signalling allows: 1.5 (ETCS level 2, short blocks, automatic driving) or 2
+UIC_PEAK = 0.75                         # planners keep the peak-hour occupation of a line under this (UIC code 406)
+TER_PLATFORM_MIN = 7.5                  # a regional express train holds its platform 5 minutes (stop and margin) plus 2.5 empty
+TGV_PLATFORM_MIN = 12.0                 # a TGV holds its track 7 + 2 and leaves it empty 3: one 12-minute place
+R_OPTION = {'tracks_lyon': 2, 'tracks_ne': 2, 'len': 330, 'trains': 5, 'tie_ins': 2, 'partner': 'extra line P trains towards Meaux or Provins'}   # line R through running, not built (ASSUMPTION)
+SUB_PLATFORM_MIN = 6.0                  # a suburban train holds its platform 6 minutes in all: 10 trains an hour a track
+
+
+def ter_paths():
+    """Tunnel occupation at the peak, each way, with the full TGV service and regional express trains in the TGV tunnels; platform time
+    of the tracks regional trains use; the line R option (2 more tracks at Gare de Lyon and at Nord-Est), not built."""
+    sv = service(HOUR_FULL); H = HOUR_FULL
+    tgv = {'north': H['North'], 'east': H['East'], 'ne_joint': H['North'] + H['East'], 'nemont': sv['legs']['Montparnasse to Nord-Est'],
+           'nelyon': sv['legs']['Gare de Lyon to Nord-Est'], 'link': sv['legs']['Montparnasse to Gare de Lyon'], 'atlantic': H['Atlantic'], 'southeast': H['Southeast']}
+    ter = dict(TER_FLOW, ne_joint=0)
+    loads = {k: {'tgv': v, 'ter': ter[k], 'total': v + ter[k], 'occ_15': (v + ter[k]) * SIGNAL_MIN[0] / 60, 'occ_20': (v + ter[k]) * SIGNAL_MIN[1] / 60} for k, v in tgv.items()}
+    lyon_extra = H['Southeast'] - TRACKS_PER_DIRECTION * PER_TRACK            # the 16th south-east TGV, on the 4th track each way
+    plat = {'lyon_4th': {'used': lyon_extra * TGV_PLATFORM_MIN + TER_FLOW['nelyon'] * TER_PLATFORM_MIN, 'avail': 60.0},
+            'nordest_ter': {'used': (TER_FLOW['north'] + TER_FLOW['east']) * TER_PLATFORM_MIN, 'avail': 2 * 60.0},
+            'montparnasse_ter': {'used': TER_FLOW['atlantic'] * TER_PLATFORM_MIN, 'avail': 2 * 60.0}}
+    for v in plat.values(): v['share'] = v['used'] / v['avail']
+    r = R_OPTION['trains']
+    r_hard = (R_OPTION['tracks_lyon'] + R_OPTION['tracks_ne']) * R_OPTION['len'] * RATE['platform_m'] + R_OPTION['tie_ins'] * 0.05
+    f = (1 + RATE['design'] + RATE['client'] + RATE['land']) * (1 + RATE['risk'])
+    ropt = dict(R_OPTION, cost=r_hard * f, lyon_4th=plat['lyon_4th']['used'] + r * SUB_PLATFORM_MIN, nordest_ter=plat['nordest_ter']['used'] + r * SUB_PLATFORM_MIN,
+                southeast_load=loads['southeast']['total'] + r, southeast_occ_15=(loads['southeast']['total'] + r) * SIGNAL_MIN[0] / 60)
+    atl = dict(km=CORRIDOR_KM['atlantic'], cost=CORRIDOR_KM['atlantic'] * (RATE['tunnel_civil'] + RATE['tunnel_systems']) * f + 0.15 * f)   # option if signalling only reaches 2 minutes: its own TER tunnel to Vanves
+    return {'paths_per_hour': 60 / PATH_MIN, 'signal_min': SIGNAL_MIN, 'uic_peak': UIC_PEAK, 'ter_hour': TER_HOUR, 'loads': loads, 'platforms': plat,
+            'ter_platform_min': TER_PLATFORM_MIN, 'tgv_platform_min': TGV_PLATFORM_MIN, 'r_option': ropt, 'atlantic_option': atl,
+            'max_occ_15': max(v['occ_15'] for v in loads.values()), 'max_occ_20': max(v['occ_20'] for v in loads.values())}
+
 
 # suburb to suburb across Paris (version 4): trips between H, K or P and N, L or R
 TRANSIT_SHARE = 0.14                    # trips through the Paris stations between two suburban departements, only passing through Paris (OMNIL and Gares & Connexions survey, 2012-13: 145,000 a weekday, 14%)
@@ -390,7 +432,8 @@ def _reach(hall):
     alt = {'H': lambda t: t['Nord'] - best(SUB_PAIR['H'])(t), 'K': lambda t: t['Nord'] - best(SUB_PAIR['K'])(t), 'P': lambda t: t['Est'] - best(SUB_PAIR['P'])(t),
            'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'L': lambda t: t['SL'] - min(t['SL'], TR['SL'] + ne(t)),
            'R': zero}                   # line R stays on the surface at Gare de Lyon (open item)
-    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'])(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'])(t), 'Lyon': zero, 'Montparnasse': alt['N']}
+    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'])(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'])(t),
+               'Lyon': lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t)), 'Montparnasse': alt['N']}      # Gare de Lyon and Bercy trains run through to Nord-Est (version 4.1)
     return ne, alt, alt_ter
 
 
@@ -432,7 +475,7 @@ def regional(uplift=REG_UPLIFT, tag='eq', deep=0.0, realise=1.0, hall='both', cr
                 'avg_clock_saving': minutes / users, 'ter_uplift': new_r / base_r,
                 'fares': (new_t * NEW_MONEY * YIELD['transilien'] + new_r * YIELD['ter']) / 1000})
     out.update(second_station(hall))
-    ter_thr = sum(q for k, q in TER.items() if k != 'Lyon')          # Gare de Lyon's regional trains do not run through
+    ter_thr = sum(TER.values())                                      # every regional express train runs through (version 4.1)
     out['through_ter'] = ter_thr * TER_THROUGH_SHARE * (1 + UPLIFT_DIRECT) * realise          # regional express passengers crossing Paris on a through train
     return out
 
@@ -489,6 +532,8 @@ RATE = {'tunnel_civil': 0.130,      # per km of twin-track tunnel, with shafts (
         'portal': 0.15,             # per portal and tie-in of one track pair to an existing line (ASSUMPTION)
         'sidings': 0.6,             # turnback sidings and depot links (ASSUMPTION)
         'london_hall': 0.2,         # control hall and waiting room for London trains above a switchable platform at Nord-Est (ASSUMPTION)
+        'ter_links': 0.65,          # regional express trains into the TGV tunnels (version 4.1, ASSUMPTION): 6 throat tie-ins at 0.05 (Nord-Est 4, Montparnasse 2),
+                                    # 2 dive-unders in the Nord-Est throats at 0.10, links at 3 TGV portal ramps (north, east, Atlantic) at 0.05
         'design': 0.12, 'client': 0.08, 'land': 0.07,
         'risk': 0.15}               # the unit prices are final costs or contracts and already hold past overruns (ASSUMPTION: 15%; 10% low, 30% high)
 RATE_LOW = dict(RATE, tunnel_civil=0.100, tunnel_systems=0.035, platform_m=0.00055, risk=0.10)
@@ -502,19 +547,19 @@ CORRIDOR_KM = {'north': 2.4, 'east': 2.7, 'nelyon': 5.0, 'nemont': 6.0, 'southea
 LINK_KM = 5.0                       # the direct TGV link between the city ends of Montparnasse and Gare de Lyon (ASSUMPTION: 4.5 to 6 km)
 # version 4 (the plan): one twin-track tunnel for each kind of train. Each tunnel is the list of corridors it runs along.
 TUNNELS = {'tgv': ['north', 'east', 'nelyon', 'nemont', 'southeast', 'atlantic', 'link'],   # the triangle and its four approaches
-           'ter': ['north', 'east', 'nemont', 'atlantic'],                                    # regional express: north and east, Nord-Est, Montparnasse, Atlantic
            'n': ['east', 'nemont', 'atlantic'],                                               # suburban line N (formerly P and N)
            'h': ['north', 'nesl', 'slwest']}                                                  # suburban line H (formerly H, K and L)
 TUNNEL_KM = {k: sum(LINK_KM if c == 'link' else CORRIDOR_KM[c] for c in v) for k, v in TUNNELS.items()}
 ROUTE_KM = sum(CORRIDOR_KM.values())
-FEE_KM = sum(v for k, v in TUNNEL_KM.items() if k != 'tgv')                                 # tunnel km used by regional and suburban trains (authority fee)
+TER_CORRIDORS = ['north', 'east', 'nelyon', 'nemont', 'southeast', 'atlantic']               # version 4.1: regional express trains run in the TGV tunnels, all but the link
+FEE_KM = sum(v for k, v in TUNNEL_KM.items() if k != 'tgv') + sum(CORRIDOR_KM[c] for c in TER_CORRIDORS)   # km of tunnel used by regional and suburban trains (authority fee; ASSUMPTION: TGV tunnel km count when regional trains use them)
 # stations: TGV tracks by direction from the service rule (3 each way); regional express and suburban tracks from the platform rule of each line (ASSUMPTION)
 # junctions: TGV 4 (where north and east meet, where the two southern sides part, the two ends of the link), regional express 1 (north and east meet)
 # portals and tie-ins to existing lines: TGV 4, regional express 3 (north, east, Atlantic), line N 2 (east, Atlantic), line H 2 (north, west of Saint-Lazare)
-JUNCTIONS = {'tgv': 4, 'ter': 1, 'n': 0, 'h': 0}
-PORTALS = {'tgv': 4, 'ter': 3, 'n': 2, 'h': 2}
+JUNCTIONS = {'tgv': 4, 'ter': 0, 'n': 0, 'h': 0}      # version 4.1: no regional express tunnel, so no junction or portal of its own
+PORTALS = {'tgv': 4, 'ter': 0, 'n': 2, 'h': 2}
 LAYOUT = {'tunnels': TUNNEL_KM, 'junctions': JUNCTIONS, 'portals': PORTALS, 'halls': ['Nord', 'Est', 'Lyon', 'Montparnasse'],
-          'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 4, 'sub': 10}, 'Gare de Lyon': {'hs': 6, 'ter': 0, 'sub': 0},
+          'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 4, 'sub': 10}, 'Gare de Lyon': {'hs': 8, 'ter': 0, 'sub': 0},
                        'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 4}, 'Saint-Lazare': {'hs': 0, 'ter': 0, 'sub': 6}}}
 SUB_TRACKS = {'Paris Nord-Est': {'n': 4, 'h': 6}, 'Montparnasse': {'n': 4}, 'Saint-Lazare': {'h': 6}}     # suburban tracks by line
 LEN = {'hs': 400, 'ter': 350, 'sub': 225}   # platform lengths: a double TGV; regional express trains of 270 to 330 m; suburban as on RER E
@@ -528,7 +573,7 @@ def cost(R=RATE, L=LAYOUT):
     items = {'Tunnels, civil works': km * R['tunnel_civil'], 'Tunnels, rail systems': km * R['tunnel_systems'],
              'Stations': sum(plat.values()) * R['platform_m'], 'Historic halls': sum(R['hall'][h] for h in L['halls']),
              'Underground junctions': junctions * R['junction'], 'Portals and links to existing lines': portals * R['portal'], 'Sidings and depot links': R['sidings'],
-             'Control hall for London trains': R['london_hall']}
+             'Control hall for London trains': R['london_hall'], 'TER links into the TGV tunnels': R['ter_links']}
     hard = sum(items.values())
     soft = hard * (R['design'] + R['client']); land = hard * R['land']
     risk = (hard + soft + land) * R['risk']
@@ -659,6 +704,7 @@ if __name__ == '__main__':
     out['service'] = service(); out['service_full'] = service(HOUR_FULL)
     out['cost'] = cost(); out['cost_low'] = cost(RATE_LOW)['total']; out['cost_high'] = cost(RATE_HIGH)['total']
     out['layout'] = LAYOUT; out['len'] = LEN; out['link_km'] = LINK_KM; out['tunnels'] = {'corridors': TUNNELS, 'km': TUNNEL_KM, 'fee_km': FEE_KM}
+    out['ter_paths'] = ter_paths(); out['ter_corridors'] = TER_CORRIDORS
     out['sub_tracks'] = SUB_TRACKS; out['reg_platforms'] = REG_PLATFORMS; out['corridor_km'] = CORRIDOR_KM
     out['rates'] = {k: v for k, v in RATE.items()}; out['rates_low'] = {k: v for k, v in RATE_LOW.items()}; out['rates_high'] = {k: v for k, v in RATE_HIGH.items()}; out['backtest'] = backtest()
     out['AF'] = AF; out['idc'] = idc(); out['ratios'] = {'comfort': R_COMFORT, 'wider': R_WIDER}
@@ -708,10 +754,11 @@ if __name__ == '__main__':
         hard = km * (RATE['tunnel_civil'] + RATE['tunnel_systems']) + plat_m * RATE['platform_m'] + sum(RATE['hall'][h] for h in halls) + junc * RATE['junction'] + portals * RATE['portal'] + sid + london
         return {'hard': hard, 'total': hard * f, 'km': km, 'platform_m': plat_m}
     skm = {k: sum(CORRIDOR_KM[c] for c in v) for k, v in STAGE_CORRIDORS.items()}
-    km1 = skm['first'] + TUNNEL_KM['h']; km2 = skm['second'] + LINK_KM + TUNNEL_KM['ter'] + TUNNEL_KM['n']
-    pm1 = 6 * LEN['hs'] * 2 + 2 * 6 * LEN['sub']; pm2 = cost()['platform_total'] - pm1
-    out['stages'] = {'first': stage(km1, pm1, ['Nord', 'Est', 'Lyon'], JUNCTIONS['tgv'] - 2, PORTALS['tgv'] - 1 + PORTALS['h'], 0.4, RATE['london_hall']),
-                     'second': stage(km2, pm2, ['Montparnasse'], 2 + JUNCTIONS['ter'], 1 + PORTALS['ter'] + PORTALS['n'], 0.2, 0.0)}
+    km1 = skm['first'] + TUNNEL_KM['h']; km2 = skm['second'] + LINK_KM + TUNNEL_KM['n']
+    pm1 = 6 * LEN['hs'] + 8 * LEN['hs'] + 2 * 6 * LEN['sub']; pm2 = cost()['platform_total'] - pm1     # stage 1: Nord-Est TGV and H, Gare de Lyon (8), Saint-Lazare
+    tl1 = 0.5                       # TER links in stage 1: the Nord-Est throats and the north and east portal ramps; the rest (0.15) with Montparnasse
+    out['stages'] = {'first': stage(km1, pm1, ['Nord', 'Est', 'Lyon'], JUNCTIONS['tgv'] - 2, PORTALS['tgv'] - 1 + PORTALS['h'], 0.4 + tl1, RATE['london_hall']),
+                     'second': stage(km2, pm2, ['Montparnasse'], 2 + JUNCTIONS['ter'], 1 + PORTALS['ter'] + PORTALS['n'], 0.2 + RATE['ter_links'] - tl1, 0.0)}
     out['stages']['first']['route_km'] = skm['first'] + TUNNEL_KM['h']; out['stages']['second']['route_km'] = km2
     assert abs(out['stages']['first']['total'] + out['stages']['second']['total'] - cost()['total']) < 1e-9
     # things not in the central estimate
