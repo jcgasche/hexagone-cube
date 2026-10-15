@@ -62,3 +62,12 @@
 
 /* comparison */
 #timetable .tt-vs { color: var(--muted); font-weight: 400 }
+
+/* all trains: squares for TGVs, dots for suburban lines, ringed dots for regional express */
+#timetable .tt-dot .tt-halo { fill: none; stroke: var(--c); stroke-width: 1.4 }
+#timetable .tt-dot.stopped .tt-halo { stroke: var(--ink); stroke-width: 1 }
+#timetable .tt-ln.sub { stroke: var(--c); stroke-width: 2; opacity: .45 }
+#timetable .tt-box.reg { fill: var(--struct) }
+#timetable .legend i.tt-pair.sq b { border-radius: 2px }
+#timetable .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
+#timetable .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }

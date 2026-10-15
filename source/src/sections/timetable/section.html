@@ -73,8 +73,9 @@
 
 <div class="block" id="timetable.map">
   <h2>The hour on the map and at each station</h2>
-  <p>Press play: the map and the three clocks below run the same hour. Choose today's traffic or the most the three stations can take. Each train has the colour of the two lines it joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way.</p>
+  <p>Press play: the map and the three clocks below run the same hour. Choose today's traffic or the most the three stations can take. Each train has the colour of the two lines it joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way. The second tab, all trains, adds the others: TGVs become squares, regional express trains are ringed grey dots running in the TGV tunnels between the TGVs, and suburban lines N and H are dots, one colour for each line, in their own tunnels.</p>
   <div class="controls" id="tt-scen-2"></div>
+  <div class="controls" id="tt-layer"></div>
   <div class="tt-bar" id="tt-bar-2"></div>
   <figure class="fig">
     <div class="fig-head"><strong>Every dot is a high-speed train; at the platforms the dots stand side by side, one line for each track</strong><span>One hour, played at one minute a second. The lines are schematic; times are those of the timetable <span class="tag sketch">illustrative sketch</span></span></div>
@@ -87,7 +88,7 @@
         <ul class="legend" id="tt-legend-map"></ul>
       </div>
     </div>
-    <figcaption>Each station is drawn with three high-speed platform tracks each way (the fourth at Gare de Lyon is not drawn): on one side the trains coming from the station's own line (the north and east at Nord-Est), on the other the trains going out to it. Trains appear five minutes before their first Paris stop and leave the map five minutes after their last. The dashed line is the direct link. Hover or focus a dot for its minutes.</figcaption>
+    <figcaption>Each station is drawn with three high-speed platform tracks each way (the fourth at Gare de Lyon is not drawn): on one side the trains coming from the station's own line (the north and east at Nord-Est), on the other the trains going out to it. Trains appear five minutes before their first Paris stop and leave the map five minutes after their last. The dashed line is the direct link. Hover or focus a dot for its minutes. In the all-trains tab small boxes beside each station hold the platforms of the other trains (regional express on one side, suburban on the other; at Gare de Lyon the fourth track each way), and Saint-Lazare is added. The regional express and suburban trains follow an illustrative peak pattern built from the model's trains an hour ({{ m.ter_paths.ter_hour.Nord | 0 }} regional express trains each way between the north and the Atlantic, {{ m.ter_paths.ter_hour.Est + m.ter_paths.ter_hour.new_east_link | 0 }} between the east and the south-east, line N every {{ 60 / max(m.reg_platforms.n.peak.P, m.reg_platforms.n.peak.N) | 0 }} minutes, line H {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} an hour, the trains of today's lines H and K) and its run times, not from a timetable model: regional express trains leave on the odd minutes, the 2-minute paths between the TGVs.</figcaption>
   </figure>
   <figure class="fig" id="timetable.clocks">
     <div class="fig-head"><strong>One ring for each platform track: each arc is a train standing at its platform</strong><span>One hour at each station. The hand moves with the map; arcs light up while their train is at the platform. Hover or focus an arc for the train</span></div>
