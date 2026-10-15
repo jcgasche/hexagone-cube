@@ -449,7 +449,9 @@ PTS.section('timetable', function (root) {
 
   // ---------------------------------------------------------------- controls and first draw
   const redraw = function () { drawClocks(); drawBoards(); drawMap(); drawLegend(); drawPairs(); show(); };
-  PTS.seg($('#tt-layer'), [['tgv', 'High-speed trains'], ['all', 'All trains']], state.layer, function (v) { state.layer = v; drawMap(); drawLegend(); show(); }, 'Trains shown');
+  PTS.seg($('#tt-layer'), [['tgv', 'High-speed trains'], ['all', 'All trains']], state.layer, function (v) { state.layer = v; setTitle(); drawMap(); drawLegend(); show(); }, 'Trains shown');
+  const title0 = $('#tt-map-title').textContent;
+  const setTitle = function () { $('#tt-map-title').textContent = state.layer === 'all' ? 'Every square is a TGV, every ringed dot a regional express train, every dot a suburban train; at the platforms they stand side by side, one line for each track' : title0; };
   const scen = [['std', 'About today'], ['full', 'Southern lines full'], ['max', 'Nord-Est filled too']];
   const segs = [];
   const setSc = function (v) { state.sc = v; segs.forEach(function (x) { x.set(v, true); }); redraw(); };

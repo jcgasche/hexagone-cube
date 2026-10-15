@@ -4078,7 +4078,7 @@ details[open] > summary { margin-bottom: 4px }
   <div class="controls" id="tt-layer"></div>
   <div class="tt-bar" id="tt-bar-2"></div>
   <figure class="fig">
-    <div class="fig-head"><strong>Every dot is a high-speed train; at the platforms the dots stand side by side, one line for each track</strong><span>One hour, played at one minute a second. The lines are schematic; times are those of the timetable <span class="tag sketch">illustrative sketch</span></span></div>
+    <div class="fig-head"><strong id="tt-map-title">Every dot is a high-speed train; at the platforms the dots stand side by side, one line for each track</strong><span>One hour, played at one minute a second. The lines are schematic; times are those of the timetable <span class="tag sketch">illustrative sketch</span></span></div>
     <div class="tt-mapwrap">
       <div id="tt-map"></div>
       <div class="card tt-now">
@@ -8426,7 +8426,9 @@ PTS.section('timetable', function (root) {
 
   // ---------------------------------------------------------------- controls and first draw
   const redraw = function () { drawClocks(); drawBoards(); drawMap(); drawLegend(); drawPairs(); show(); };
-  PTS.seg($('#tt-layer'), [['tgv', 'High-speed trains'], ['all', 'All trains']], state.layer, function (v) { state.layer = v; drawMap(); drawLegend(); show(); }, 'Trains shown');
+  PTS.seg($('#tt-layer'), [['tgv', 'High-speed trains'], ['all', 'All trains']], state.layer, function (v) { state.layer = v; setTitle(); drawMap(); drawLegend(); show(); }, 'Trains shown');
+  const title0 = $('#tt-map-title').textContent;
+  const setTitle = function () { $('#tt-map-title').textContent = state.layer === 'all' ? 'Every square is a TGV, every ringed dot a regional express train, every dot a suburban train; at the platforms they stand side by side, one line for each track' : title0; };
   const scen = [['std', 'About today'], ['full', 'Southern lines full'], ['max', 'Nord-Est filled too']];
   const segs = [];
   const setSc = function (v) { state.sc = v; segs.forEach(function (x) { x.set(v, true); }); redraw(); };
