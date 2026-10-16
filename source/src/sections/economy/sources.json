@@ -313,5 +313,50 @@
   "publisher": "Transport for London, Elizabeth line passenger usage, July 2023",
   "about": "Journeys between branches multiplied by 2 to 6 where the Elizabeth line removed changes; about 30% of its journeys new",
   "url": "https://board.tfl.gov.uk/documents/s20504/elc-20230725-part-1-item10-elizabeth-line-passenger-usage-insight.pdf"
+ },
+ "wardman04": {
+  "publisher": "Wardman, Shires, Lythgoe and Tyler, International Journal of Transport Management, 2004",
+  "about": "Rail travellers value an hourly clockface timetable at 3.6 minutes a journey, even intervals at 4.6 to 8.6 minutes with two to four trains an hour; demand effects small",
+  "url": "https://eprints.whiterose.ac.uk/id/eprint/2033/2/ITS8_Consumer_Benefits_and_Demand_Impacts_UPLOADABLE.pdf"
+ },
+ "sbb_b2000": {
+  "publisher": "Moneycab, SBB results, 11 April 2006",
+  "about": "Swiss federal railways: 8.9% more passengers in 2005, the year after the Bahn 2000 timetable, far above expectations",
+  "url": "https://www.moneycab.com/news/sbb-mehr-passagiere-dank-bahn-2000-weiter-sorgen-mit-sbb-cargo/amp/"
+ },
+ "orval": {
+  "publisher": "University of Exeter, ORVal outdoor recreation valuation tool, case study on urban greens",
+  "about": "About 2.8 pounds of welfare a visit to an urban green (586,000 pounds a year for 212,000 visits; derived)",
+  "url": "https://www.leep.exeter.ac.uk/orval/pdf-reports/casestudy2_greens.pdf"
+ },
+ "bc_visits": {
+  "publisher": "Journée mondiale, parc des Buttes-Chaumont",
+  "about": "About 25 hectares and more than 3 million visitors a year (unverified)",
+  "url": "https://www.journee-mondiale.com/parc-des-buttes-chaumont-24-7-hectares-de-nature-et-40-metres-de-denivele-en-plein-paris-6145.htm"
+ },
+ "villette23": {
+  "publisher": "La Villette, activity report 2023",
+  "about": "2.14 million visitors in 2023 on the 55 hectares of the park",
+  "url": "https://www.lavillette.com/wp-content/uploads/files/RA_COP/2023/LA-VILLETTE_RapportActivite2023_web.pdf"
+ },
+ "london_nca": {
+  "publisher": "Greater London Authority, natural capital account for public green space, November 2017",
+  "about": "London’s parks: 5 billion pounds a year of benefits, 926 million of recreation and 950 million of health costs avoided",
+  "url": "https://london.gov.uk/what-we-do/environment/parks-green-spaces-and-biodiversity/green-infrastructure/natural-capital-account-london"
+ },
+ "ce_l15": {
+  "publisher": "Secrétariat général pour l’investissement, counter-expertise of lines 15 East and West, 2022",
+  "about": "Grand Paris Express: no line for the disturbance of the works; effects rise to 2035 as homes and jobs move, not complete at opening",
+  "url": "https://info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2022_09_rapport_ce_l15_eo_vf.pdf"
+ },
+ "interco_c2": {
+  "publisher": "Réseau ferré de France, southern bypass line, public debate file, chapter 2, 2010",
+  "about": "Province-to-province TGV passengers: 10.2 million in 1999, 21.9 million in 2009, of which 17.6 million on trains stopping in the Paris region; 3.4 million by Massy in 2008",
+  "url": "https://cpdp.debatpublic.fr/cpdp-interconnexionsudlgv/docs/dossier-mo/DS_Interco_C2.pdf"
+ },
+ "bdt_tgv23": {
+  "publisher": "Banque des Territoires, 19 January 2024",
+  "about": "122 million TGV passengers in 2023, a record; one TGV in three ran full",
+  "url": "https://www.banquedesterritoires.fr/annee-record-pour-le-tgv-en-2023-et-engouement-inedit-pour-le-ter"
  }
 }

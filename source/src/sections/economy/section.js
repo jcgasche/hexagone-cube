@@ -2,18 +2,19 @@ PTS.section('economy', function (root) {
   'use strict';
   const FIN = PTS.data.finance, K = FIN.cases, FR = PTS.data.french, MOD = PTS.data.model, F = PTS.fmt, C = PTS.chart, h = PTS.h, s = PTS.s, own = PTS.data.economy;
   const $ = function (sel) { return root.querySelector(sel); };
-  const cen = K.central, fc = FR.cases.central, st = FR.study.central;
+  const cen = K.central, fc = FR.cases.central, st = FR.study.central, NM = FR.names, KEY = NM.key;
   const mEur = function (v) { return F.m(v); }, bn1 = function (v) { return F.bn(v, 1); }, bn2 = function (v) { return F.bn(v, 2); };
   const signedBn = function (v) { return (v < 0 ? '-' : '+') + F.bn(Math.abs(v), 1); }, bnS = function (v) { return (v < 0 ? '-' : '') + F.bn(Math.abs(v), Math.abs(v) < 0.95 ? 2 : 1); };
+  const isWider = function (k) { return NM.wider.indexOf(k) >= 0; };
+  const hm = function (min) { const H = Math.floor(min / 60), M = Math.round(min - H * 60); return H + 'h' + (M < 10 ? '0' : '') + M; };
 
   // ---- one colour per family of benefits, used by every chart of the page
   const FAM = {
     'Passengers’ time': 'var(--s1)', 'Room for more trains in the busy hours': 'var(--s7)', 'The railway’s own gains': 'var(--s2)', 'Comfort and ease': 'var(--s3)',
-    'Job access across Paris': 'var(--s4)', 'Environment': 'var(--s6)', 'Land, parks and one-off savings': 'var(--s5)', 'Costs of the works themselves': 'var(--s8)',
+    'Job access across Paris': 'var(--s4)', 'Environment': 'var(--s6)', 'Parks, land and one-off savings': 'var(--s5)', 'Carbon of the works': 'var(--s8)',
     'Construction and running costs': 'var(--s8)', 'Cost of public funds': 'var(--neutral-mark)', 'Wider effects, measured': 'var(--neutral-mark)'
   };
-  const famOf = {}; FR.names.families.forEach(function (f) { f[1].forEach(function (k) { famOf[k] = f[0]; }); });
-  const short = function (k) { return k.replace(/^(W?\d+\.|W\d\.)\s*/, '').replace(/\s*\(.*?\)\s*$/, ''); };
+  const short = function (k) { return k.replace(/\s*\(.*?\)\s*$/, ''); };
 
   /* Donut. cfg: {slices: [{label, value, color, alpha, note}], fmt, centre: [big, small], share: true}. Values below zero are left out. */
   function donut(host, legendHost, cfg) {
@@ -90,12 +91,12 @@ PTS.section('economy', function (root) {
       slices: Object.keys(st.families).map(function (k) { return { label: k, value: st.families[k], color: FAM[k] }; }) });
   })();
 
-  // ---- every item in today's money, with its range from the low to the high case
+  // ---- every item in today's money, with its range from the low to the high case, and what each one is
+  const skip = {}; NM.costs.forEach(function (k) { skip[k] = 1; }); skip[KEY.cofp] = 1; skip[KEY.cofp_added] = 1;
   (function () {
     const lo = FR.cases.low.pv, hi = FR.cases.high.pv, pv = fc.pv;
-    const skip = { 'Construction': 1, 'Renewal of rail systems': 1, 'Running tunnels and stations': 1, 'Extra regional train running': 1, 'Cost of public funds': 1, 'Public funds on the items above': 1 };
     const rows = [];
-    FR.names.families.forEach(function (f) {
+    NM.families.forEach(function (f) {
       const ks = f[1].filter(function (k) { return pv[k] != null && !skip[k] && !(pv[k] === 0 && (lo[k] || 0) === 0 && (hi[k] || 0) === 0); });
       if (!ks.length) return;
       rows.push({ group: f[0] });
@@ -103,7 +104,7 @@ PTS.section('economy', function (root) {
         const a = Math.min(lo[k] == null ? pv[k] : lo[k], hi[k] == null ? pv[k] : hi[k]), b = Math.max(lo[k] == null ? pv[k] : lo[k], hi[k] == null ? pv[k] : hi[k]);
         const ranged = Math.abs(b - a) > 1e-6;
         rows.push({ label: short(k), value: pv[k], color: FAM[f[0]], lo: ranged ? a : null, hi: ranged ? b : null,
-                    tip: '<b>' + short(k) + '</b><br>' + bn2(pv[k]) + ' in today’s money' + (ranged ? '<br><small>' + bnS(a) + ' to ' + bnS(b) + ' from the low to the high value</small>' : '<br><small>one value</small>') });
+                    tip: '<b>' + short(k) + '</b><br><small>' + NM.explain[k] + '</small><br>' + bn2(pv[k]) + ' in today’s money' + (ranged ? '<br><small>' + bnS(a) + ' to ' + bnS(b) + ' from the low to the high value</small>' : '<br><small>one value</small>') });
       });
     });
     C.bars($('#eco-pv-items-chart'), { rows: rows, fmt: bnS });
@@ -112,26 +113,37 @@ PTS.section('economy', function (root) {
   // ---- the table of every item
   (function () {
     const t = $('#eco-items-table'), lo = FR.cases.low, hi = FR.cases.high;
-    const conf = { 'TGV time: Paris region': 'Medium', 'TGV time: crossing Paris': 'Medium', 'Regional time: Paris side': 'Medium', 'TER time: crossing Paris': 'Medium', 'TGV capacity in the busy hours': 'Low',
-      'Producers: margins and track charges on new TGV journeys': 'Official rule, debated', 'Trainsets freed by through running': 'Medium', 'Upkeep of surface terminals saved': 'Medium', 'Carbon': 'High', 'Road accidents, noise, pollution, congestion': 'High',
-      '1. Job access: suburb-to-suburb users': 'Medium, measured', '2. Freed land (net sale value)': 'Low', '2. Parks (amenity less upkeep)': 'Low', '3. Crowding relief (replaces the borrowed comfort ratio)': 'Medium', '5. Signal boxes not renewed': 'Medium',
-      '6. Reliability of the merged lines': 'Unknown, zero', '7. Noise along the closed approaches': 'Medium', '8. Shift from air: carbon': 'Medium', '8. Shift from air: travellers and operators': 'Medium', '10. Departure margin at through platforms': 'Low',
-      '11. Carbon of the works': 'Medium', '11. Disruption during the works': 'Low', 'W1. Job access: agglomeration': 'Low', 'W2. Job access: people into work': 'Low', 'W3. Job access: better jobs': 'Low', 'W4. TGV links: market access': 'Low', 'W5. TGV links: imperfect competition': 'Low' };
-    t.appendChild(h('thead', null, h('tr', null, h('th', { text: 'Item' }), h('th', { text: 'Family' }), h('th', { class: 'num', text: '€ million a year, flat' }), h('th', { class: 'num', text: '€ billion today, central' }), h('th', { class: 'num', text: 'Low' }), h('th', { class: 'num', text: 'High' }), h('th', { text: 'Confidence' }))));
+    t.appendChild(h('thead', null, h('tr', null, h('th', { text: 'Item: what it is' }), h('th', { text: 'Family' }), h('th', { class: 'num', text: '€ million a year, flat' }), h('th', { class: 'num', text: '€ billion today, central' }), h('th', { class: 'num', text: 'Low' }), h('th', { class: 'num', text: 'High' }), h('th', { text: 'Confidence' }))));
     const tb = h('tbody'); t.appendChild(tb);
-    const skip = { 'Construction': 1, 'Renewal of rail systems': 1, 'Running tunnels and stations': 1, 'Extra regional train running': 1, 'Cost of public funds': 1, 'Public funds on the items above': 1 };
     const once = st.once; let sumPv = 0;
-    FR.names.families.forEach(function (f) {
+    NM.families.forEach(function (f) {
       f[1].forEach(function (k) {
         if (skip[k] || fc.pv[k] == null) return;
         if (fc.pv[k] === 0 && !(lo.pv[k] || hi.pv[k]) && !(st.benefits[k] || st.wider[k])) return;
-        if (!/^W/.test(k)) sumPv += fc.pv[k];
-        const yearly = st.benefits[k] != null ? mEur(st.benefits[k]) : st.wider[k] != null ? mEur(st.wider[k]) + ' (apart)' : once[k] != null ? F.bn(once[k], 2) + ' once' : '';
-        tb.appendChild(h('tr', { class: /^W/.test(k) ? 'muted' : null }, h('th', { text: short(k) }), h('td', { text: f[0] }), h('td', { class: 'num', text: yearly }), h('td', { class: 'num', text: F.n(fc.pv[k], 2) }),
-          h('td', { class: 'num', text: lo.pv[k] == null ? '' : F.n(lo.pv[k], 2) }), h('td', { class: 'num', text: hi.pv[k] == null ? '' : F.n(hi.pv[k], 2) }), h('td', { text: conf[k] || '' })));
+        if (!isWider(k)) sumPv += fc.pv[k];
+        const yearly = st.benefits[k] != null ? mEur(st.benefits[k]) + (k === KEY.parks ? ' once open' : '') : st.wider[k] != null ? mEur(st.wider[k]) + ' (apart)' : once[k] != null ? F.bn(once[k], 2) + ' once' : '';
+        tb.appendChild(h('tr', { class: isWider(k) ? 'muted' : null }, h('th', null, h('span', { text: short(k) }), h('small', { class: 'eco-what', text: NM.explain[k] })), h('td', { text: f[0] }), h('td', { class: 'num', text: yearly }), h('td', { class: 'num', text: F.n(fc.pv[k], 2) }),
+          h('td', { class: 'num', text: lo.pv[k] == null ? '' : F.n(lo.pv[k], 2) }), h('td', { class: 'num', text: hi.pv[k] == null ? '' : F.n(hi.pv[k], 2) }), h('td', { text: NM.confidence[k] || '' })));
       });
     });
     tb.appendChild(h('tr', { class: 'total' }, h('th', { text: 'Total, wider effects apart' }), h('td'), h('td', { class: 'num', text: mEur(st.benefit_total) }), h('td', { class: 'num', text: F.n(sumPv, 2) }), h('td', { class: 'num', text: '' }), h('td', { class: 'num', text: '' }), h('td')));
+  })();
+
+  // ---- across France: the city pairs, and the times written into the text
+  (function () {
+    const rows = FR.france.show, byPair = {};
+    rows.forEach(function (r) { byPair[r.pair.join(',')] = r; byPair[r.pair.slice().reverse().join(',')] = r; });
+    root.querySelectorAll('[data-pair]').forEach(function (el) { const r = byPair[el.getAttribute('data-pair')]; if (r) el.textContent = hm(el.getAttribute('data-what') === 'today' ? r.today_min : r.project_min); });
+    const t = $('#eco-france-table');
+    t.appendChild(h('thead', null, h('tr', null, h('th', { text: 'Between' }), h('th', { text: 'Today, by train' }), h('th', { class: 'num', text: 'Time today' }), h('th', { class: 'num', text: 'With the project, every hour' }), h('th', { class: 'num', text: 'By air, door to door' }), h('th', { class: 'num', text: 'Air passengers 2025' }), h('th', { class: 'num', text: 'Rail’s share, today to project' }))));
+    const tb = h('tbody'); t.appendChild(tb);
+    rows.forEach(function (r) {
+      const gain = r.today_min - r.project_min;
+      tb.appendChild(h('tr', null, h('th', { text: r.pair[0] + ' and ' + r.pair[1] }), h('td', { text: r.today }), h('td', { class: 'num', text: hm(r.today_min) }),
+        h('td', { class: 'num', html: '<b>' + hm(r.project_min) + '</b>' + (gain > 0 ? ' <small>(' + F.n(gain, 0) + ' min less)</small>' : gain < 0 ? ' <small>(' + F.n(-gain, 0) + ' min more)</small>' : '') }),
+        h('td', { class: 'num', text: hm(r.air_door_min) }), h('td', { class: 'num', text: r.air_pax ? F.n(r.air_pax / 1000, 0) + ',000' : 'no route listed' }),
+        h('td', { class: 'num', text: F.pct(r.share_today) + ' to ' + F.pct(r.share_project) })));
+    });
   })();
 
   // ---- the largest commune pairs of the job-access measurement
@@ -144,9 +156,42 @@ PTS.section('economy', function (root) {
     });
   })();
 
+  // ---- the years: job access, money, value and the running total
+  (function () {
+    const T = FR.timeline, Y = T.years, open = FR.params.open;
+    const pts = function (arr, from, to, scale) { return Y.map(function (y, i) { return [y, arr[i] * (scale || 1)]; }).filter(function (p) { return p[0] >= (from || Y[0]) && p[0] <= (to || Y[Y.length - 1]); }); };
+    const yr = { fmt: function (v) { return v % 1 ? '' : String(v); }, tipLabel: function (v) { return 'In ' + v; } };
+    const mFmt = function (v) { return F.n(v, 0); }, bFmt = function (v) { return F.n(v, 1); };
+    C.line($('#eco-jobs-years'), { label: 'Access to jobs over the years', height: 260, x: Object.assign({ min: open, max: FR.params.last + 5 }, yr), y: { min: 0, fmt: mFmt, label: '' },
+      series: [{ name: 'Commuters’ gain, central', color: 'var(--s4)', points: pts(T.jobs.users, open, null, 1000) },
+               { name: 'Low case', color: 'var(--s4)', dash: true, points: pts(T.jobs_low.users, open, null, 1000) },
+               { name: 'High case', color: 'var(--s3)', dash: true, points: pts(T.jobs_high.users, open, null, 1000) },
+               { name: 'Wider effects, apart (central)', color: 'var(--neutral-mark)', points: pts(T.jobs.wider, open, null, 1000) }] });
+    const B = FR.budget, runren = B.running.map(function (v, i) { return v + B.renewal[i]; });
+    C.line($('#eco-budget-chart'), { label: 'Money spent and earned year by year', height: 280, x: Object.assign({ min: Y[0], max: 2100 }, yr), y: { min: 0, fmt: bFmt },
+      vlines: [{ x: open, label: 'opening' }],
+      series: [{ name: 'Construction', color: 'var(--s8)', points: pts(B.construction, null, 2100) },
+               { name: 'Running, and the renewals', color: 'var(--s5)', points: pts(runren, null, 2100) },
+               { name: 'The project’s own income', color: 'var(--s1)', points: pts(B.income, null, 2100) },
+               { name: 'Repayment of construction, simple reading', color: 'var(--s8)', dash: true, points: pts(B.repayment, null, 2100) }] });
+    C.line($('#eco-flows-chart'), { label: 'Benefits and costs year by year', height: 280, x: Object.assign({ min: Y[0], max: 2100 }, yr), y: { min: 0, fmt: bFmt },
+      vlines: [{ x: open, label: 'opening' }],
+      series: [{ name: 'Benefits counted', color: 'var(--s3)', points: pts(T.benefits, null, 2100) },
+               { name: 'Wider effects, apart', color: 'var(--neutral-mark)', dash: true, points: pts(T.families['Wider effects, measured'], null, 2100) },
+               { name: 'Costs: works, running, renewals, public funds', color: 'var(--s8)', points: pts(T.costs, null, 2100) }] });
+    const firstPos = function (arr) { for (let i = 0; i < Y.length; i++) if (Y[i] > open && arr[i] >= 0) return Y[i]; return null; };
+    const beLo = firstPos(T.low), beHi = firstPos(T.high);
+    C.line($('#eco-cum-chart'), { label: 'Running total in today’s money', height: 300, x: Object.assign({ min: Y[0], max: Y[Y.length - 1] }, yr), y: { fmt: bFmt },
+      hlines: [{ y: 0, label: 'paid back' }], vlines: [{ x: T.break_even, label: String(T.break_even) }],
+      series: [{ name: 'Central case', color: 'var(--s3)', points: pts(T.cum_npv) },
+               { name: 'With the wider effects', color: 'var(--neutral-mark)', dash: true, points: pts(T.cum_npv_wider) },
+               { name: 'Low case' + (beLo ? ', paid back in ' + beLo : ''), color: 'var(--s8)', dash: true, points: pts(T.low) },
+               { name: 'High case' + (beHi ? ', paid back in ' + beHi : ''), color: 'var(--s1)', dash: true, points: pts(T.high) }] });
+  })();
+
   // ---- present value by family under the French rules
   (function () {
-    const pf = fc.pv_families, order = FR.names.families.map(function (f) { return f[0]; });
+    const pf = fc.pv_families, order = NM.families.map(function (f) { return f[0]; });
     const rows = order.filter(function (k) { return pf[k] != null && k !== 'Wider effects, measured'; }).map(function (k) {
       return { label: k, value: pf[k], color: FAM[k], tip: '<b>' + k + '</b><br>' + bn2(pf[k]) + ' in today’s money' };
     });
@@ -204,6 +249,11 @@ PTS.section('economy', function (root) {
       step('No value for the room in the busy hours', 'no_capacity', 'sourced', 'var(--s8)'),
       step('Room in the busy hours at €' + F.n(pr.cap_value * 2, 0) + ' a journey instead of €' + F.n(pr.cap_value, 0), 'capacity_40', 'assumed'),
       step('The railway’s own gains left out', 'no_producers', 'sourced', 'var(--s8)'),
+      step('The regular timetable left out', 'no_timetable', 'assumed', 'var(--s8)'),
+      step('The cross-France journeys left out: bypass travellers, air, their fares and carbon', 'no_france', 'assumed', 'var(--s8)'),
+      step('No later arrival at through platforms', 'no_margin', 'assumed', 'var(--s8)'),
+      step('The parks left out', 'no_parks', 'assumed', 'var(--s8)'),
+      step('Homes and jobs do not move towards the better access', 'no_landuse', 'assumed', 'var(--s8)'),
       step('Long-distance value of time 15% lower', 'vot_ld_085', 'assumed', 'var(--s8)'),
       step('Cost of public funds at 1.25', 'cofp_125', 'sourced', 'var(--s8)'),
       step('Fares on journeys across Paris 40% higher', 'fares_14', 'assumed', 'var(--s8)'),
