@@ -4,6 +4,7 @@ PTS.section('timetable', function (root) {
   const $ = function (sel) { return root.querySelector(sel); };
   const calm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   const pad = function (m) { m = ((Math.floor(m) % 60) + 60) % 60; return ':' + (m < 10 ? '0' : '') + m; };
+  const padh = function (m) { return pad(m) + (Math.abs(m - Math.floor(m) - 0.5) < 0.01 ? '\u00bd' : ''); };     // half minutes, as in a working timetable
   const add = function (g, tag, attrs) { const e = s(tag, attrs); g.appendChild(e); return e; };
   const n0 = function (v) { return F.n(v, 0); };
 
@@ -91,10 +92,10 @@ PTS.section('timetable', function (root) {
       const stays = [];
       trs.forEach(function (t) { t.stops.forEach(function (x) { if (x.st === st) stays.push({ t: t, x: x }); }); });
       const n = stays.length;
-      const svg = s('svg', { class: 'draw tt-clock', viewBox: '0 0 380 380', role: 'img', 'aria-label': ST[st] + ': ' + n + ' high-speed trains an hour stop here, on six platform tracks drawn as six rings; each coloured arc is a train standing at its track.' });
+      const svg = s('svg', { class: 'draw tt-clock', viewBox: '30 30 320 320', role: 'img', 'aria-label': ST[st] + ': ' + n + ' high-speed trains an hour stop here, on six platform tracks drawn as six rings; each coloured arc is a train standing at its track.' });
       add(svg, 'circle', { cx: CX, cy: CY, r: RD, class: 'tt-face' });
       for (let m = 0; m < 60; m++) { const a = pt(m, RD), b = pt(m, RD - (m % 5 ? 4 : 9)); add(svg, 'line', { x1: a[0], y1: a[1], x2: b[0], y2: b[1], class: m % 5 ? 'tt-tick' : 'tt-tick five' }); }
-      [[0, ':00'], [15, ':15'], [30, ':30'], [45, ':45']].forEach(function (q) { const p = pt(q[0], RD - 21); add(svg, 'text', { x: p[0], y: p[1] + 4.5, 'text-anchor': 'middle', class: 'tt-num', text: q[1] }); });
+      [[0, ':00'], [15, ':15'], [30, ':30'], [45, ':45']].forEach(function (q) { const p = pt(q[0], RD - 24); add(svg, 'text', { x: p[0], y: p[1] + 6, 'text-anchor': 'middle', class: 'tt-num', text: q[1] }); });
       ['in', 'out'].forEach(function (side) { for (let k = 1; k <= NTR; k++) add(svg, 'circle', { cx: CX, cy: CY, r: ringR(side, k), class: 'tt-ring' }); });
       stays.forEach(function (e) {
         const r = ringR(e.x.side, e.x.track), a1 = e.x.arr_abs, a2 = e.x.dep_abs;
@@ -109,7 +110,7 @@ PTS.section('timetable', function (root) {
       });
       const hand = add(svg, 'line', { x1: CX, y1: CY, x2: CX, y2: CY - (R0 + 2 * NTR * RW + GAPG + 2), class: 'tt-handline' }); add(svg, 'circle', { cx: CX, cy: CY, r: 4.5, class: 'tt-hub' });
       const now = h('span', { class: 'tt-cap-now' });
-      const box = h('div', { class: 'tt-clockbox' }, h('h4', { text: ST[st] }), svg,
+      const box = h('div', { class: 'tt-clockbox' }, st === 'NE' ? h('h4', null, h('span', { class: 'tt-pre', text: 'Paris ' }), 'Nord-Est') : h('h4', { text: ST[st] }), svg,
         h('p', { class: 'tt-cap' }, h('span', { text: n + ' trains an hour' }), now));
       host.appendChild(box);
       clocks.push({ hand: hand, stays: stays, now: now, st: st });
@@ -217,9 +218,11 @@ PTS.section('timetable', function (root) {
     // each train: a path through time
     const slot = function (st, side, track, toward) {                     // a train stands on its track; `toward` = the next point of its way
       const x = stn[st], sg = side === 'in' ? -1 : 1, o = sg * (track - 0.5) * GAP;
-      const c = [x.at[0] + x.n[0] * o, x.at[1] + x.n[1] * o];
+      const m = [x.at[0] + x.n[0] * o, x.at[1] + x.n[1] * o];
       const along = (toward[0] - x.at[0]) * x.u[0] + (toward[1] - x.at[1]) * x.u[1] >= 0 ? 1 : -1;
-      return { c: c, back: [c[0] - x.u[0] * along * LEN / 2, c[1] - x.u[1] * along * LEN / 2], front: [c[0] + x.u[0] * along * LEN / 2, c[1] + x.u[1] * along * LEN / 2] };
+      // it stands a little before or after the middle of the platform, by turns from one track to the next, so neighbours never touch
+      const i = side === 'in' ? NTR - track : NTR + track - 1, st8 = (i % 2 ? 1 : -1) * LEN * 0.12, c = [m[0] + x.u[0] * st8, m[1] + x.u[1] * st8];
+      return { c: c, back: [m[0] - x.u[0] * along * LEN / 2, m[1] - x.u[1] * along * LEN / 2], front: [m[0] + x.u[0] * along * LEN / 2, m[1] + x.u[1] * along * LEN / 2] };
     };
     const poly = function (pts) {
       const cum = [0]; for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
@@ -263,35 +266,23 @@ PTS.section('timetable', function (root) {
   };
 
   // ---------------------------------------------------------------- 2b. regional express and suburban trains (the all-trains view)
-  // Not from a timetable model: an illustrative pattern at the peak, from the model's trains an hour (m.ter_paths, m.reg_platforms) and
-  // its run times; regional express trains take the 2-minute paths left between the TGVs in each tunnel; suburban lines run evenly in
-  // their own tunnels.
+  // Regional express trains (TER): the minutes of the model (model/ter_timetable.py, checked by model/table_timetable.py), in the
+  // TGV tunnels between the TGVs. Suburban lines N and H: evenly spaced at the model's trains an hour, in tunnels of their own.
   const M = PTS.data.model;
   const REG = {
     TER: { c: 'var(--neutral-mark)', name: 'Regional express (TER), in the TGV tunnels', shape: 'ring' },
     N: { c: 'color-mix(in srgb, #00a092 85%, var(--ink))', name: 'Suburban line N (formerly P and N)', shape: 'sub' },          // Île-de-France colours of lines N and H
     H: { c: 'color-mix(in srgb, #8d5e2a 72%, var(--ink))', name: 'Suburban line H (formerly H, K and L)', shape: 'sub' }
   };
-  const TER_STOP = M.reg_platforms.ter.stop, RUN = M.TH.L - M.stop_min, SUB_STOP = 1, SUB_RUN = { MP: M.TR.M - 1, SL: M.TR.SL - 1 };
-  const regionalTrains = function (tgv) {
-    // TGV minutes into each tunnel, by direction, to keep regional express trains in the paths between
-    const busy = {};
-    tgv.forEach(function (t) { const a = t.stops[0], b = t.stops[1]; (busy[a.st + '>' + b.st] = busy[a.st + '>' + b.st] || []).push(((a.dep_abs % 60) + 60) % 60); });
-    const clash = function (key, m, taken) { return (busy[key] || []).concat(taken).some(function (x) { const d = Math.abs(((m - x) % 60 + 90) % 60 - 30); return 30 - d < 2; }); };
+  const SUB_STOP = 1, SUB_RUN = { MP: M.TR.M - 1, SL: M.TR.SL - 1 };
+  const REGT = T.table && T.table.grid && T.table.grid.regional;            // the regional express hour of each scenario
+  const regionalTrains = function () {
     const out = [];
-    const ter = function (n, from, to, a, b, key) {                     // n trains an hour from line `from` through stations a then b to line `to`
-      const taken = [];
-      for (let i = 0; i < n; i++) {
-        let m = Math.round((i * 60 / n) / 2) * 2 + 1, tries = 0;          // odd minutes: the paths between the TGV places
-        while (clash(a + '>' + b, m, taken) && tries < 30) { m = (m + 2) % 60; tries++; }
-        taken.push(m);
-        const d1 = m, a1 = d1 - TER_STOP, a2 = d1 + RUN, d2 = a2 + TER_STOP;
-        out.push({ kind: 'TER', from: from, to: to, stops: [{ st: a, arr_abs: a1, dep_abs: d1 }, { st: b, arr_abs: a2, dep_abs: d2 }], track: i, fwd: from === 'N' || from === 'E' });
-      }
-    };
-    const T_ = M.ter_paths.ter_hour;
-    ter(T_.Nord, 'N', 'A', 'NE', 'MP'); ter(T_.Nord, 'A', 'N', 'MP', 'NE');
-    ter(T_.Est + T_.new_east_link, 'E', 'S', 'NE', 'LY'); ter(T_.Est + T_.new_east_link, 'S', 'E', 'LY', 'NE');
+    const R_ = REGT && REGT[{ std: 'today', full: 'full', max: 'max' }[state.sc]];
+    (R_ ? R_.trains : []).forEach(function (t) {
+      out.push({ kind: 'TER', from: t.from, to: t.to, fwd: t.from === 'N' || t.from === 'E',
+        stops: t.stops.map(function (x) { return { st: x.st, arr_abs: x.arr_abs, dep_abs: x.dep_abs, track: x.track }; }) });
+    });
     const sub = function (line, n, from, to, a, b, run, off) {
       for (let i = 0; i < n; i++) {
         const d1 = off + i * 60 / n, a2 = d1 + run;
@@ -332,7 +323,8 @@ PTS.section('timetable', function (root) {
       const lo = from, hi = from + n * g2, gg = s('g', { class: 'tt-stn' });
       gg.appendChild(s('path', { class: 'tt-box reg', d: dp([c(-hl, lo), c(hl, lo), c(hl, hi), c(-hl, hi)], true) }));
       const pts = [];
-      for (let k = 0; k < n; k++) { const q = lo + (k + 0.5) * g2; gg.appendChild(s('line', { class: 'tt-track', x1: c(-hl + 3, q)[0], y1: c(-hl + 3, q)[1], x2: c(hl - 3, q)[0], y2: c(hl - 3, q)[1] })); pts.push(c(0, q)); }
+      // a train stands a little before or after the middle of its platform, by turns from one track to the next, so neighbours never touch
+      for (let k = 0; k < n; k++) { const q = lo + (k + 0.5) * g2; gg.appendChild(s('line', { class: 'tt-track', x1: c(-hl + 3, q)[0], y1: c(-hl + 3, q)[1], x2: c(hl - 3, q)[0], y2: c(hl - 3, q)[1] })); pts.push(c((k % 2 ? 1 : -1) * hl * 0.3, q)); }
       svg.insertBefore(gg, o.g);
       (tracksAt[st] = tracksAt[st] || {})[kind] = pts;
     };
@@ -345,25 +337,30 @@ PTS.section('timetable', function (root) {
     });
     if (o.sl.at) {
       const n = SUBT['Saint-Lazare'].h; drawGroup('SL', o.sl, 'H', n, -n * g2 / 2);
-      svg.insertBefore(s('text', { class: 'tt-sname', x: o.sl.at[0], y: o.sl.at[1] - n * g2 / 2 - 8, 'text-anchor': 'middle', text: 'Saint-Lazare' }), o.g);
+      const ex = Math.abs(o.sl.u[0]) * hl + Math.abs(o.sl.n[0]) * n * g2 / 2;      // half the box's width on screen
+      svg.insertBefore(s('text', { class: 'tt-sname', x: o.sl.at[0] - ex - 6, y: o.sl.at[1] + 4, 'text-anchor': 'end', text: 'Saint-Lazare' }), o.g);
     }
     o.edge(lineH, 'Line H: west', 'start', 6, -6);
-    const spot = function (t, st) {                                         // half the tracks for each direction, trains in turn
-      const pts = tracksAt[st][t.kind], half = Math.max(1, Math.floor(pts.length / 2));
-      return pts[pts.length === 1 ? 0 : (t.fwd ? 0 : half) + (t.track % half)];
+    const spot = function (t, j) {                                          // half the tracks for each direction: the timetable's track, or trains in turn
+      const pts = tracksAt[t.stops[j].st][t.kind], half = Math.max(1, Math.floor(pts.length / 2)), k = t.stops[j].track === undefined ? t.track : t.stops[j].track;
+      return pts[pts.length === 1 ? 0 : (t.fwd ? 0 : half) + (k % half)];
     };
     const near = function (pts, q) { let best = 0, bd = 1e9; pts.forEach(function (p, i) { const dd = Math.hypot(p[0] - q[0], p[1] - q[1]); if (dd < bd) { bd = dd; best = i; } }); return best; };
     const st2pt = function (st) { return st === 'SL' ? o.sl.at : o.stn[st].at; };
     const route = function (t) {                                            // from the map edge, between the two stops, out to the edge
       const a = t.stops[0].st, b = t.stops[1].st;
-      if (t.kind === 'TER') return { inn: rev(o.outer[t.from]), mid: o.between[a + '-' + b] || rev(o.between[b + '-' + a]), out: o.outer[t.to] };
+      if (t.kind === 'TER') {                                               // at Nord-Est the TER leave the TGV tracks at the ends of the station, for their own platforms
+        const mid = o.between[a + '-' + b] || rev(o.between[b + '-' + a]);
+        return { inn: a === 'NE' ? rev(o.outer[t.from]).slice(0, -1) : rev(o.outer[t.from]), mid: a === 'NE' ? mid.slice(1) : b === 'NE' ? mid.slice(0, -1) : mid,
+          out: b === 'NE' ? o.outer[t.to].slice(1) : o.outer[t.to] };
+      }
       const full = t.kind === 'N' ? lineN : lineH, pl = (t.from === 'E' || t.from === 'N') ? full : rev(full);
       const ia = near(pl, st2pt(a)), ib = near(pl, st2pt(b));
       return { inn: pl.slice(0, ia + 1), mid: pl.slice(ia, ib + 1), out: pl.slice(ib) };
     };
-    regionalTrains(trainsOf(state.sc)).forEach(function (t, k) {
+    regionalTrains().forEach(function (t, k) {
       const a = t.stops[0], b = t.stops[1], R = REG[t.kind];
-      const pa = spot(t, a.st), pb = spot(t, b.st);
+      const pa = spot(t, 0), pb = spot(t, 1);
       const rt = route(t), inn = rt.inn, out = rt.out, mid = rt.mid;
       const legs = [
         { t0: a.arr_abs - o.APPROACH, t1: a.arr_abs, pl: o.poly(inn.slice(0, -1).concat([pa])), e: function (f) { return 1 - (1 - f) * (1 - f); } },
@@ -375,7 +372,8 @@ PTS.section('timetable', function (root) {
       const nm = { NE: 'Nord-Est', LY: 'Gare de Lyon', MP: 'Montparnasse', SL: 'Saint-Lazare' };
       const el = mark(R.shape, o.narrow, R.name + ', ' + nm[a.st] + ' to ' + nm[b.st]);
       el.style.setProperty('--c', R.c);
-      PTS.tip.bind(el, '<b>' + R.name + '</b><br>' + nm[a.st] + ' ' + pad(a.arr_abs) + ' to ' + pad(a.dep_abs) + '<br>' + nm[b.st] + ' ' + pad(b.arr_abs) + ' to ' + pad(b.dep_abs) + '<br><small>Illustrative pattern at the peak, not a timetable</small>');
+      PTS.tip.bind(el, '<b>' + R.name + '</b><br>' + nm[a.st] + ' ' + padh(a.arr_abs) + ' to ' + padh(a.dep_abs) + '<br>' + nm[b.st] + ' ' + padh(b.arr_abs) + ' to ' + padh(b.dep_abs) +
+        (t.kind === 'TER' ? '' : '<br><small>Evenly spaced at the trains an hour of the model</small>'));
       o.g.appendChild(el); dots.push({ t: t, legs: legs, el: el, reg: t.kind });
     });
   };
@@ -390,7 +388,7 @@ PTS.section('timetable', function (root) {
           d.stopped = !!l.still; return true;
         });
       });
-      if (p) { d.el.setAttribute('transform', 'translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')'); d.el.style.display = ''; d.el.classList.toggle('stopped', d.stopped); }
+      if (p) { d.el.setAttribute('transform', 'translate(' + p[0].toFixed(1) + ' ' + p[1].toFixed(1) + ')' + (d.reg === 'TER' && d.stopped ? ' scale(.6)' : '')); d.el.style.display = ''; d.el.classList.toggle('stopped', d.stopped); }
       else d.el.style.display = 'none';
     });
     $('#tt-now').textContent = pad(v);

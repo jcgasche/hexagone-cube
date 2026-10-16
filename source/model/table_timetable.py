@@ -20,7 +20,7 @@ import nordest as N
 import timetable as T
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-A_STOP = 7          # minutes a train stops (ASSUMPTION; Lyon Part-Dieu plans 6 for most TGVs, 10 when trains are coupled; see the annex)
+A_STOP = 7          # minutes a train stops (ASSUMPTION; Lyon Part-Dieu plans 6 for most TGVs, 10 when trains are coupled; see the timetable chapter)
 A_RESERVE = 3       # minutes the track stays reserved after the planned departure, for a late train (ASSUMPTION)
 B = int(T.CLEAR)         # minutes the track stays empty between a departure and the next arrival (the report's value, 3; ASSUMPTION)
 H = int(T.HEADWAY)       # minutes between two trains coming out of, or going into, the same tunnel track (3; ASSUMPTION)
@@ -290,6 +290,61 @@ def grid_check(tt):
     return bad
 
 
+
+# ---------------------------------------------------------------- the regional express trains (TER) in the TGV tunnels
+TER_END = {'NE': {'N': 'n', 'E': 'n', 'MP': 's', 'LY': 's'}, 'MP': {'A': 'sw', 'NE': 'ne', 'LY': 'ne'}, 'LY': {'S': 'se', 'NE': 'nw', 'MP': 'nw'}}
+
+
+def ter_check(sc, tt, ter):
+    """The TER hour of model/ter_timetable.py (kept in model/inputs/), checked again rule by rule against this TGV hour, with the
+    measures the page shows: how close trains come on each shared track, platform tracks, stops."""
+    p = ter['params']; trains = ter['hours'][sc]['trains']
+    want = {'NA': N.TER_HOUR['Nord'], 'AN': N.TER_HOUR['Nord'], 'ES': N.TER_HOUR['Est'] + N.TER_HOUR['new_east_link'], 'SE': N.TER_HOUR['Est'] + N.TER_HOUR['new_east_link']}
+    have = {k: sum(1 for t in trains if t['line'] == k) for k in want}
+    if have != want or p['stop'] != N.REG_PLATFORMS['ter']['stop'] or p['gap'] != N.REG_PLATFORMS['ter']['gap']:
+        raise SystemExit(f'TER hour {sc}: trains {have}, rules {p["stop"]}/{p["gap"]} differ from the plan: rerun model/ter_timetable.py')
+    ev = {}                                                   # track -> [(minute, line or 'TGV')]
+    def put(k, t, who): ev.setdefault(k, []).append((t % 60, who))
+    for t in tt['trains']:
+        a, b = t['stops']
+        put(('in', a['st'], t['from']), a['arr_abs'], 'TGV'); put(('tun', a['st'], b['st']), a['dep_abs'], 'TGV'); put(('out', b['st'], t['to']), b['dep_abs'], 'TGV')
+        for st, end, x, d in ((a['st'], TER_END[a['st']][t['from']], a['arr_abs'], 'in'), (a['st'], TER_END[a['st']][b['st']], a['dep_abs'], 'out'),
+                              (b['st'], TER_END[b['st']][a['st']], b['arr_abs'], 'in'), (b['st'], TER_END[b['st']][t['to']], b['dep_abs'], 'out')):
+            if st == 'NE': put(('end', end, d), x, 'TGV')
+    plat = {}
+    for i, t in enumerate(trains):
+        a, b = t['stops']; who = t['line'] + str(i)
+        if b['arr_abs'] - a['dep_abs'] != G_RUN: raise SystemExit(f'TER hour {sc}: a run of {b["arr_abs"] - a["dep_abs"]} minutes')
+        put(('in', a['st'], t['from']), a['arr_abs'], who); put(('tun', a['st'], b['st']), a['dep_abs'], who); put(('out', b['st'], t['to']), b['dep_abs'], who)
+        for st, end, x, d in ((a['st'], TER_END[a['st']][t['from']], a['arr_abs'], 'in'), (a['st'], TER_END[a['st']][b['st']], a['dep_abs'], 'out'),
+                              (b['st'], TER_END[b['st']][a['st']], b['arr_abs'], 'in'), (b['st'], TER_END[b['st']][t['to']], b['dep_abs'], 'out')):
+            if st == 'NE': put(('end', end, d), x, who)
+        for x in (a, b):
+            if not p['stop'] <= x['dep_abs'] - x['arr_abs'] <= p['stop_max']: raise SystemExit(f'TER hour {sc}: a stop of {x["dep_abs"] - x["arr_abs"]} minutes')
+            plat.setdefault((x['st'], 'S' if t['from'] in 'NE' else 'N', x['track']), []).append((x['arr_abs'] % 60, x['dep_abs'] - x['arr_abs'] + p['gap']))
+    def dist(x, y): d = abs(x - y) % 60; return min(d, 60 - d)
+    gaps = []; meets = []
+    for k, xs in ev.items():
+        for i, (x, w) in enumerate(xs):
+            for y, w2 in xs[i + 1:]:
+                if w.startswith('TGV') and w2.startswith('TGV'): continue
+                if k[0] == 'end':
+                    if w[:2] != w2[:2] and not (w.startswith('TGV') and w2.startswith('TGV')): meets.append(dist(x, y))
+                else: gaps.append(dist(x, y))
+    for (st, d, k), xs in plat.items():
+        if k >= {'NE': 2, 'MP': 2, 'LY': 1}[st]: raise SystemExit(f'TER hour {sc}: platform track {k} at {st}')
+        for i, (x, n) in enumerate(xs):
+            for y, n2 in xs[i + 1:]:
+                e = (y - x) % 60
+                if e < n or 60 - e < n2: raise SystemExit(f'TER hour {sc}: two TER on platform track {k} at {st} within {e} minutes')
+    if min(gaps) < p['floor']: raise SystemExit(f'TER hour {sc}: trains {min(gaps)} minutes apart on a track, under the {p["floor"]} the signalling allows')
+    stops = [x['dep_abs'] - x['arr_abs'] for t in trains for x in t['stops']]
+    busy = {st: sum(x['dep_abs'] - x['arr_abs'] + p['gap'] for t in trains for x in t['stops'] if x['st'] == st) for st in ('NE', 'MP', 'LY')}
+    return {'min_gap': min(gaps), 'close': sum(1 for g in gaps if g < p['sep']), 'pairs': len(gaps), 'min_meet': min(meets) if meets else None,
+            'close_meet': sum(1 for g in meets if g < p['meet']), 'longer_stops': sum(1 for x in stops if x > p['stop']), 'stops': len(stops),
+            'max_stop': max(stops), 'busy': busy}
+
+
 def main():
     path = os.path.join(HERE, 'outputs', 'timetable.json')
     data = json.load(open(path))
@@ -336,6 +391,13 @@ def main():
         grid['measures'][sc] = {'paris_wait': ev['paris_wait'], 'direct_wait': ev['direct_wait'], 'ne_change': ev['ne_change'], 'line': ev['line'], 'pair': ev['pair'],
                                 'spare_paths': spare, 'direct': G_STOP + G_RUN + G_STOP}
         print('grid', sc, {k: (v['in']['trains'], v['out']['trains']) for k, v in sides_.items()}, 'waits', round(ev['paris_wait'], 1), round(ev['direct_wait'], 1), round(ev['ne_change'], 1), 'spare', spare)
+    ter_path = os.path.join(HERE, 'inputs', 'ter_timetable.json')
+    if os.path.exists(ter_path):
+        ter = json.load(open(ter_path)); grid['regional'] = {}; grid['regional_params'] = ter['params']
+        for sc in GRID:
+            ms = ter_check(sc, grid['timetables'][sc], ter)
+            grid['regional'][sc] = {'trains': ter['hours'][sc]['trains'], 'measures': ms}
+            print('TER', sc, {k: v for k, v in ms.items() if k != 'busy'})
     table['grid'] = grid
     data['table'] = table
     json.dump(data, open(path, 'w'), indent=1)

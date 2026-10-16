@@ -185,7 +185,7 @@ PTS.section('service', function (root) {
   segCalc = PTS.seg($('#svc-calc-ctl'), SCEN, state.scen, setScen, 'Hour');
   const sl = $('#svc-calc-sliders');
   PTS.slider(sl, { label: 'Minutes a train stops at the platform', min: 2, max: 10, step: 0.5, value: state.stop, format: function (v) { return n0(v) + ' min'; },
-    note: 'A TGV stop takes 3 minutes, 6 at Lyon Part-Dieu for most trains. Used in this study, as in the timetable annex: ' + n0(D.stop_min) }, function (v) { state.stop = v; drawCalc(); });
+    note: 'A TGV stop takes 3 minutes, 6 at Lyon Part-Dieu for most trains. Used in this study and its timetable: ' + n0(D.stop_min) }, function (v) { state.stop = v; drawCalc(); });
   PTS.slider(sl, { label: 'Minutes to clear the track after a departure', min: 1, max: 5, step: 0.5, value: state.clear, format: function (v) { return n0(v) + ' min'; },
     note: 'From one train leaving to the next pulling in. Used in this study: ' + n0(D.clear_min) }, function (v) { state.clear = v; drawCalc(); });
   PTS.slider(sl, { label: 'Share of the hour a timetable can use', min: 50, max: 85, step: 5, value: Math.round(state.util * 100), format: function (v) { return n0(v) + '%'; },

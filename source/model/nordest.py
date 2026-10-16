@@ -33,7 +33,7 @@ Version 2 (after the independent check of 12 October 2026). Changes from version
 Version 3.3 (13 October 2026): suburban lines paired north (H, K) with the Atlantic (N) and east (P) with the south-east (R);
 eastern regional express trains run on to Gare de Lyon; suburb-to-suburb trips across Paris counted (cross_paris); line N traffic
 corrected (30.4 M, not 27.3).
-Version 3.5 (15 October 2026): the 12-minute beat of the timetable annex. A TGV stops 7 minutes and its track is held 2 more for a
+Version 3.5 (15 October 2026): the 12-minute beat of the timetable. A TGV stops 7 minutes and its track is held 2 more for a
 late train, then stays empty 3, so a track takes 5 trains an hour; every run between two of the three stations takes 6 minutes, the
 direct link included, so a ride between two Paris stops is 13 minutes and a passenger who stays on a direct train across Paris spends
 20 minutes in Paris (both stops counted); regional trains take the same 6-minute run plus a 1-minute stop.
@@ -60,7 +60,7 @@ import os
 M = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'inputs')      # model inputs: access times by point and by commune
 KEYS = ['Nord', 'Est', 'Lyon', 'Montparnasse']
 TH = {'L': 13.0, 'M': 13.0, 'LM': 13.0}  # TGV ride between two Paris stations, stop included: a 6-minute run between any two of them and a 7-minute stop,
-                                         # the 12-minute beat of the timetable annex (ASSUMPTION: the 6-minute run is a design target; 4.3 to 5.0 technically)
+                                         # the 12-minute beat of the timetable (ASSUMPTION: the 6-minute run is a design target; 4.3 to 5.0 technically)
 TH_ACCESS = {'L': 6.0, 'M': 6.0, 'LM': 6.0}   # the same ride in the access measure that counts it (version 4): the 6-minute run only, the passenger
                                              # boarding a train that is already standing at the platform (ASSUMPTION; the crossing measure keeps TH)
 REVERSE = 8.0                           # minutes a train would need to turn back at Nord-Est (none does since version 4.1) (ASSUMPTION; 3 to 12 in French practice)
@@ -336,7 +336,9 @@ TER_RUN = {'Nord': 'Montparnasse', 'Est': 'Lyon'}             # version 4.1: eas
 SOUTH_LINE = {'N': 'Montparnasse', 'L': 'Saint-Lazare', 'R': 'Lyon'}     # the lines across Paris from H, K and P (L is west, not south, but plays the same part)
 LEG = {'Lyon': 'L', 'Montparnasse': 'M', 'Saint-Lazare': 'SL'}
 REG_PLATFORMS = {                       # platform rule for regional and suburban tracks (Charles, 15 October 2026; ASSUMPTION)
-    'ter': {'stop': 5.0, 'gap': 2.5, 'per_track': 8, 'tracks': 4, 'peak_today': {'Nord': 11, 'Est': 3}, 'peak_planned': 15},
+    # TER: the track stays empty 2 minutes after a departure (2.5 in the rule of 15 October): with 2.5, Nord-Est's two TER tracks each way
+    # leave no hour in which every TER keeps 1.5 minutes from the TGVs in the tunnels; with 2, every TER keeps 2 (model/ter_timetable.py)
+    'ter': {'stop': 5.0, 'gap': 2.0, 'per_track': 8, 'tracks': 4, 'peak_today': {'Nord': 11, 'Est': 3}, 'peak_planned': 15},
     'n': {'per_track': 10, 'tracks': 4, 'peak': {'P': 11, 'N': 12}, 'peak_clamart': 16},
     'h': {'per_track': 10, 'tracks': 6, 'peak': {'H': 20, 'K': 3}, 'peak_l': (24, 28)}}
 
@@ -346,7 +348,7 @@ TER_FLOW = {'north': 11, 'east': 4, 'nemont': 11, 'nelyon': 4, 'atlantic': 11, '
 PATH_MIN = 2.0                          # tunnel paths on a 2-minute grid: 30 an hour each way; TGVs keep the 4-minute places of the 12-minute beat
 SIGNAL_MIN = (1.5, 2.0)                 # minutes between two trains the signalling allows: 1.5 (ETCS level 2, short blocks, automatic driving) or 2
 UIC_PEAK = 0.75                         # planners keep the peak-hour occupation of a line under this (UIC code 406)
-TER_PLATFORM_MIN = 7.5                  # a regional express train holds its platform 5 minutes (stop and margin) plus 2.5 empty
+TER_PLATFORM_MIN = REG_PLATFORMS['ter']['stop'] + REG_PLATFORMS['ter']['gap']   # a regional express train holds its platform 5 minutes (stop and margin), then 2 empty
 TGV_PLATFORM_MIN = 12.0                 # a TGV holds its track 7 + 2 and leaves it empty 3: one 12-minute place
 R_OPTION = {'tracks_lyon': 2, 'tracks_ne': 2, 'len': 330, 'trains': 5, 'tie_ins': 2, 'partner': 'extra line P trains towards Meaux or Provins'}   # line R through running, not built (ASSUMPTION)
 SUB_PLATFORM_MIN = 6.0                  # a suburban train holds its platform 6 minutes in all: 10 trains an hour a track
@@ -493,9 +495,9 @@ def second_station(hall='both', thr=SECOND_MIN):
 # ------------------------------------------------------------------ 4. service plan and station sizes
 HOUR_TODAY = {'Atlantic': 12, 'Southeast': 12, 'North': 8, 'East': 4}      # TGVs per hour and direction in a standard busy hour (ASSUMPTION)
 HOUR_FULL = {'Atlantic': 15, 'Southeast': 16, 'North': 8, 'East': 4}       # southern lines at their planned capacity (sourced); north and east unchanged (ASSUMPTION)
-STOP_MIN = 7.0                          # minutes a TGV stands at a through platform (ASSUMPTION, as in the timetable annex; Lyon Part-Dieu plans 6 for most TGVs)
+STOP_MIN = 7.0                          # minutes a TGV stands at a through platform (ASSUMPTION, as in the timetable; Lyon Part-Dieu plans 6 for most TGVs)
 CLEAR_MIN = 3.0                         # minutes from a departure to the next arrival on the same track (ASSUMPTION)
-RESERVE_MIN = 2.0                       # minutes the track stays held after the planned departure, for a late train (ASSUMPTION, as in the timetable annex)
+RESERVE_MIN = 2.0                       # minutes the track stays held after the planned departure, for a late train (ASSUMPTION, as in the timetable)
 UTIL = (STOP_MIN + CLEAR_MIN) / (STOP_MIN + RESERVE_MIN + CLEAR_MIN)      # share of each 12-minute place used by the stop and the clearing time
 PER_TRACK = 60 * UTIL / (STOP_MIN + CLEAR_MIN)                             # trains a platform track takes an hour: 5, one every 12 minutes
 TRACKS_PER_DIRECTION = 3                # TGV platform tracks each way at every station (ASSUMPTION: two would do on paper, the third takes late trains)

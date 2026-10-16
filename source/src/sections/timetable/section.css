@@ -13,7 +13,7 @@
 #timetable .tt-face { fill: var(--surface-2); stroke: var(--struct-edge); stroke-width: 1.4 }
 #timetable .tt-tick { stroke: var(--muted); stroke-width: 1 }
 #timetable .tt-tick.five { stroke: var(--ink); stroke-width: 1.6 }
-#timetable .tt-clock .tt-num { font-size: 13px; fill: var(--muted); font-variant-numeric: tabular-nums }
+#timetable .tt-clock .tt-num { fill: var(--muted); font-variant-numeric: tabular-nums }
 #timetable .tt-clock .tt-inside { font-size: 12.5px; fill: var(--muted) }
 #timetable .tt-handline { stroke: var(--ink); stroke-width: 3; stroke-linecap: round }
 #timetable .tt-hub { fill: var(--ink) }
@@ -26,9 +26,20 @@
 #timetable .tt-cap-now { color: var(--ink); font-variant-numeric: tabular-nums }
 #timetable .legend i.tt-pair { display: inline-flex; width: auto; height: auto; background: none; gap: 2px; border: 0 }
 #timetable .legend i.tt-pair b { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--c) }
-@media (max-width: 760px) {
-  #timetable .tt-clocks { grid-template-columns: minmax(0, 1fr) }
-  #timetable .tt-clock { max-width: 300px }
+/* the clocks sit in a row above the map, small enough to watch both at once */
+#timetable .tt-mapcol { display: flex; flex-direction: column; gap: 6px; min-width: 0 }
+#timetable .tt-mapcol .tt-clocks { gap: 4px 10px }
+#timetable .tt-mapcol .tt-clock { max-width: 205px }
+#timetable .tt-mapcol .tt-clockbox h4 { font-size: 14px; text-align: center }
+#timetable .tt-mapcol .tt-cap { font-size: 12.5px; text-align: center }
+#timetable .tt-clock .tt-num { font-size: 17px }
+#timetable .tt-maphead { font-size: 13.5px; color: var(--muted); margin: 6px 0 0; padding-top: 8px; border-top: 1px solid var(--rule) }
+@media (max-width: 560px) {
+  #timetable .tt-mapcol .tt-clocks { gap: 2px 6px }
+  #timetable .tt-clock .tt-num { display: none }
+  #timetable .tt-mapcol .tt-clockbox h4 { font-size: 12.5px }
+  #timetable .tt-clockbox .tt-pre { display: none }
+  #timetable .tt-mapcol .tt-cap { font-size: 11.5px }
 }
 
 /* boards */

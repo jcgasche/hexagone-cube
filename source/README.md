@@ -44,12 +44,13 @@ python3 model/finance.py         # the two accounts, return, taxes       -> mode
 python3 model/french.py          # the French appraisal, every benefit     -> model/outputs/french.json (about 25 seconds)
 python3 model/export.py          # data the site reads                   -> src/data/model.json, finance.json, french.json, points.json
 python3 model/timetable.py       # the hour of trains (about 20 minutes)  -> src/sections/timetable/data.json
+python3 model/table_timetable.py # the TGV hour shown, and the TER hour checked against it -> src/sections/timetable/data.json
 node tools/check_model.js        # the browser model must give the same numbers as the Python one
 python3 build.py
 ```
 
 Change an assumption in `model/nordest.py`, `model/finance.py` or `model/french.py` (every assumption is a named constant with a comment), run the
-seven commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
+eight commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
 
 ## What is where
 
@@ -74,8 +75,9 @@ seven commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 | `project` | The project | Map of the network with layers; the numbers; the four parks |
 | `stations` | The stations | Plan and cross-sections of the three TGV stations and Saint-Lazare; follow a passenger to the platform |
 | `works` | Works and stages | Building methods; year-by-year timeline |
-| `service` | Trains and timetable | One hour of trains; which trains pair; the direct link; platform calculator |
+| `service` | Trains and platforms | One hour of trains; which trains pair; the direct link; platform calculator |
 | `access` | Reaching the station | Map of 1,000 points, two measures, by direction |
+| `timetable` | The timetable | An evenly spaced hour at the three stations: the stations' clocks above an animated map of the trains, high-speed only or every train, against a pulse timed for changes |
 | `crossing` | Crossing Paris | Pair selector; regional lines |
 | `cost` | Cost | Price explorer; test against built projects |
 | `traffic` | Traffic | Evidence from other cities; the estimate |
@@ -83,8 +85,7 @@ seven commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 | `economy` | Economic return | Benefits, taxes, comparison with other projects |
 | `risks` | Risks and next steps | One assumption at a time; study points with filters |
 | `zurich`, `elizabeth`, `pulse` | Annexes A to C | Zürich main station, the Elizabeth line, the Swiss timetable |
-| `timetable` | Annex D | An evenly spaced hour at the three stations: a clock for each station, trains on an animated map, against a pulse timed for changes |
-| `method`, `sources` | Annexes E and F | Method and assumptions; numbered sources |
+| `method`, `sources` | Annexes D and E | Method and assumptions; numbered sources |
 
 ### The model
 
@@ -96,7 +97,9 @@ seven commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 | `model/finance.py` | Operations and capital accounts, the passenger charge and its effect on traffic, Navigo, taxes, rate of return |
 | `model/french.py` | The official French appraisal (DGITM rules: growth, 4.5% rate, horizon 2140, cost of public funds, producers' balances) of the complete list of benefits: time, the railway's own gains, comfort and the regular timetable, job access measured on the census with a land-use ramp, the parks by their visits, the cross-France journeys (bypass travellers, air, fares, carbon), the works' carbon; the year-by-year timeline and budget, the sensitivity cases, and the study's simple reading of the same list |
 | `model/export.py` | Writes the JSON files of `src/data/` and the two measures of the access map |
-| `model/timetable.py` | The hour of high-speed trains: searches the minutes of every train at full capacity, under stated rules, for an evenly spaced hour (the one shown) and for one timed for changes (the comparison) |
+| `model/timetable.py` | The hour of high-speed trains: searches the minutes of every train at full capacity, under stated rules, for an evenly spaced hour and for one timed for changes (the comparison) |
+| `model/table_timetable.py` | The hour shown: TGVs on the 12-minute beat, every place of every track filled by rule, checked; reads the TER hour of `model/inputs/ter_timetable.json`, checks every rule again against the TGVs and exports it with its measures |
+| `model/ter_timetable.py` | The minutes of the regional express trains in the TGV tunnels, fitted between the TGVs by a constraint solver (needs `ortools`; its result is kept in `model/inputs/ter_timetable.json`, so it only needs re-running if the TGV hour or the regional trains change) |
 | `model/inputs/` | Access times by point and by commune, three weightings; `job_access.json`, the results of the job-access demand model fitted on the census (code and data in the project files) |
 | `src/js/model.js` | The accounts and the cost build-up again, in the browser, for the calculators |
 

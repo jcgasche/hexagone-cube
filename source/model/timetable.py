@@ -276,7 +276,7 @@ def evenness(trs, cs=None, co=None):
 
 
 W_NE, W_SPARE = 0.2, 0.3      # weight of the north-east change (6% of passengers crossing Paris) and of each path left for regional express
-                              # trains, against one minute of average wait (ASSUMPTION: a compromise found by trial; see the annex)
+                              # trains, against one minute of average wait (ASSUMPTION: a compromise found by trial; see the timetable chapter)
 
 
 def score(p, **kw):

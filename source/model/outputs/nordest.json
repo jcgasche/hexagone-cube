@@ -7743,22 +7743,22 @@
   },
   "platforms": {
    "lyon_4th": {
-    "used": 42.0,
+    "used": 40.0,
     "avail": 60.0,
-    "share": 0.7
+    "share": 0.6666666666666666
    },
    "nordest_ter": {
-    "used": 112.5,
+    "used": 105.0,
     "avail": 120.0,
-    "share": 0.9375
+    "share": 0.875
    },
    "montparnasse_ter": {
-    "used": 82.5,
+    "used": 77.0,
     "avail": 120.0,
-    "share": 0.6875
+    "share": 0.6416666666666667
    }
   },
-  "ter_platform_min": 7.5,
+  "ter_platform_min": 7.0,
   "tgv_platform_min": 12.0,
   "r_option": {
    "tracks_lyon": 2,
@@ -7768,8 +7768,8 @@
    "tie_ins": 2,
    "partner": "extra line P trains towards Meaux or Provins",
    "cost": 2.0739100000000006,
-   "lyon_4th": 72.0,
-   "nordest_ter": 142.5,
+   "lyon_4th": 70.0,
+   "nordest_ter": 135.0,
    "southeast_load": 25,
    "southeast_occ_15": 0.625
   },
@@ -7803,7 +7803,7 @@
  "reg_platforms": {
   "ter": {
    "stop": 5.0,
-   "gap": 2.5,
+   "gap": 2.0,
    "per_track": 8,
    "tracks": 4,
    "peak_today": {

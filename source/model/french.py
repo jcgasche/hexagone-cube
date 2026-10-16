@@ -122,7 +122,7 @@ LAND_YEARS = (2043, 2055); RESIGNAL_YEAR = 2036
 BYPASS_2009, TGV_2009, TGV_NOW = 21.9, 117.2, 122.0
 BYPASS = {frozenset('NS'): dict(pax=14.2, extra=0.0, per_day=7.0), frozenset('AS'): dict(pax=2.0, extra=25.0, per_day=4.0),
           frozenset('NA'): dict(pax=0.9, extra=65.0, per_day=2.0), frozenset('EA'): dict(pax=0.5, extra=75.0, per_day=2.0)}
-PROJ_PER_DAY = 16.0          # through trains a day between two large cities once every radial train runs through Paris: hourly (the timetable annex)
+PROJ_PER_DAY = 16.0          # through trains a day between two large cities once every radial train runs through Paris: hourly (the timetable chapter)
 DAY_MIN = 16 * 60            # minutes of service a day
 DISPLACE_CAP = 120.0         # the wait for the next convenient train is a quarter of the interval between trains, at most two hours (ASSUMPTION)
 GC_ELAST = -1.0              # long-distance rail demand to generalised time (British demand handbook, order of magnitude)

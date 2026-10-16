@@ -56,6 +56,7 @@ FORMATS = {
     'm': lambda x: num(x * 1000, 0),                 # billions shown as millions
     'bn': lambda x: num(x, 1), 'bn2': lambda x: num(x, 2),
     'int': lambda x: num(round(x), 0), 'str': str,
+    'g': lambda x: num(x, 0) if abs(x - round(x)) < 1e-9 else num(x, 1),     # 2, 2.5: one decimal only when there is one
     'money': lambda x: ('€' + num(x, 2) + 'bn') if abs(x) >= 1 else ('€' + num(abs(x) * 1000, 0) + 'm'),
 }
 
