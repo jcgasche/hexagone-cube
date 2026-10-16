@@ -43,7 +43,7 @@ PTS.section('traffic', function (root) {
       { label: 'This study, direct train: +' + pc(directUp) + ', two or three changes removed', hl: true,
         marks: [{ value: directUp, kind: 'here', tip: '<b>Taken in this study</b><br>Passengers who get a direct train across Paris: <b>+' + pc(directUp) + '</b><br><small>Each change of vehicle today keeps ' + F.pct(P.change_keep) + ' of the potential traffic; the shorter trip adds the time model. Average of the five pairs of lines with direct trains</small>' }] },
       { label: 'Result, all who cross: +' + up(K.central) + ' (' + up(K.single) + ' to ' + up(K.high) + ')', hl: true, lo: K.single.uplift * 100, hi: K.high.uplift * 100,
-        marks: [{ value: K.central.uplift * 100, kind: 'here', tip: '<b>This study</b><br>All passengers who cross Paris: <b>+' + up(K.central) + '</b><br><small>Those who still change do so across one platform, counted as half a change, which keeps ' + F.pct(P.station_keep) + ' of them. Low case +' + up(K.single) + ', the first estimate of this study; high case +' + up(K.high) + ', every passenger of a served pair on a direct train</small>' }] }])
+        marks: [{ value: K.central.uplift * 100, kind: 'here', tip: '<b>This study</b><br>All passengers who cross Paris: <b>+' + up(K.central) + '</b><br><small>Those who still change do so across one platform, counted as half a change, which keeps ' + F.pct(P.station_keep) + ' of them. Low case +' + up(K.single) + '; high case +' + up(K.high) + ', every passenger of a served pair on a direct train</small>' }] }])
   });
 
   // ---- destination by destination

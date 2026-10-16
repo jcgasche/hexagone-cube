@@ -1,6 +1,6 @@
 PTS.section('economy', function (root) {
   'use strict';
-  const FIN = PTS.data.finance, P = FIN.params, K = FIN.cases, FR = PTS.data.french, MOD = PTS.data.model, F = PTS.fmt, C = PTS.chart, h = PTS.h, s = PTS.s, own = PTS.data.economy;
+  const FIN = PTS.data.finance, K = FIN.cases, FR = PTS.data.french, MOD = PTS.data.model, F = PTS.fmt, C = PTS.chart, h = PTS.h, s = PTS.s, own = PTS.data.economy;
   const $ = function (sel) { return root.querySelector(sel); };
   const cen = K.central, fc = FR.cases.central, st = FR.study.central;
   const mEur = function (v) { return F.m(v); }, bn1 = function (v) { return F.bn(v, 1); }, bn2 = function (v) { return F.bn(v, 2); };
