@@ -82,7 +82,8 @@ PTS.section('financing', function (root) {
     tiles.appendChild(tile(a.cap_gap > 0 ? '€' + F.n(a.grant_bn, 1) + '<small>bn</small>' : 'None', 'of grants needed',
       a.cap_gap > 0 ? 'Against a construction cost of ' + F.bn(a.capex) + (a.shortfall_bn > 0.05 ? '; ' + F.bn(a.shortfall_bn) + ' of it covers the shortfall of operations' : '') + '. Public money in all: ' + F.pct(a.public_share) + ' of the cost'
                     : 'The sources chosen exceed the need by ' + bn2(-a.cap_gap) + ' a year', 'var(--today)'));
-    tiles.appendChild(tile(F.pct(a.econ_cover_all), 'share of benefits', 'Yearly benefits ' + bn2(a.benefit_total) + ' against a yearly cost of ' + bn2(a.yearly_cost), 'var(--s3)'));
+    const FRS = PTS.data.french.study.central, A0 = PTS.data.finance.cases.central, benAll = FRS.benefit_total + a.benefit_total - A0.benefit_total;
+    tiles.appendChild(tile(F.pct(benAll / a.yearly_cost), 'of the yearly cost returned in benefits', 'Yearly benefits ' + bn2(benAll) + ' against a yearly cost of ' + bn2(a.yearly_cost) + ': the complete count, moved with the assumptions above', 'var(--s3)'));
     const list = function (obj, color) { return Object.keys(obj).filter(function (k) { return Math.abs(obj[k]) > 1e-9; }).map(function (k) { return { label: lab(k), value: obj[k], color: color }; }); };
     C.bars($('#fin-o-ops'), { compact: true, fmt: mEur, rows: [{ group: 'Running costs' }].concat(list(a.ops_cost, 'var(--s8)'), [{ label: 'Total running costs', value: a.ops_cost_total, color: 'var(--s8)', hl: true }, { group: 'Income' }],
       list(a.ops_rev, 'var(--s1)'), [{ label: 'Total income', value: a.ops_rev_total, color: 'var(--s1)', hl: true }]) });

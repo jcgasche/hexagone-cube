@@ -1,18 +1,17 @@
 PTS.section('risks', function (root) {
   'use strict';
-  const D = PTS.data.model, F = PTS.fmt, C = PTS.chart, h = PTS.h;
+  const F = PTS.fmt, C = PTS.chart, h = PTS.h;
   const $ = function (sel) { return root.querySelector(sel); };
 
   // ---- one assumption at a time (the triangle; tests that change only the project's income are left out of the chart)
-  const S = D.sens, Y = D.yearly;
-  const rows = Object.keys(S).filter(function (k) { return !/^Platforms no longer cap/.test(k); }).map(function (k) { return { label: k, value: S[k].cover_all }; });
-  rows.push({ label: 'Time savings only, no comfort or wider effects', value: Y.cover_time });
-  rows.push({ label: 'Official discount rate for regional projects, 3.6%', value: D.rate_tests['3.6'].all });
-  rows.push({ label: 'Official discount rate for long-distance projects, 4.6%', value: D.rate_tests['4.6'].all });
-  rows.push({ label: 'Benefits grow 1.5% a year with incomes and traffic', value: PTS.model.accounts({ growth: PTS.data.finance.params.growth, charge_end: 0, charge_through: 0, rex_second: 0, rex_through: 0 }).econ_cover_all });
+  const S = PTS.data.french.study.central, T = S.tests;
+  const rows = Object.keys(T).filter(function (k) { return !/^Platforms no longer cap/.test(k) && !/^rate_/.test(k) && k !== 'time_only'; }).map(function (k) { return { label: k, value: T[k].cover }; });
+  rows.push({ label: 'Passengers’ time only, no other family', value: T.time_only.cover });
+  rows.push({ label: 'Official discount rate for regional projects, 3.6%', value: T['rate_3.6'].cover });
+  rows.push({ label: 'Official discount rate for long-distance projects, 4.6%', value: T['rate_4.6'].cover });
   rows.sort(function (a, b) { return b.value - a.value; });
-  const c = Y.cover_all;
-  C.bars($('#risk-sens-chart'), { fmt: function (v) { return F.pct(v); }, max: 0.55, rows: rows.map(function (r) {
+  const c = S.cover;
+  C.bars($('#risk-sens-chart'), { fmt: function (v) { return F.pct(v); }, max: 1.75, rows: rows.map(function (r) {
     const d = r.value - c;
     return { label: r.label, value: r.value, mark: c, color: Math.abs(d) < 0.005 ? 'var(--neutral-mark)' : d > 0 ? 'var(--s3)' : 'var(--s2)',
              tip: '<b>' + r.label + '</b><br>Benefits cover <b>' + F.pct(r.value, 1) + '</b> of the yearly cost<br><small>' + F.signed(d * 100, 1) + ' points against the central case of ' + F.pct(c, 1) + '</small>' };

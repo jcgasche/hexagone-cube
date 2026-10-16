@@ -9,6 +9,6 @@ PTS.section('summary', function (root) {
     { group: 'Income, line by line' }].concat(revRows) });
   C.bars(root.querySelector('#sum-cap'), { fmt: mEur, rows: [
     { label: 'Repayment of construction', value: A.annuity, color: 'var(--s8)' },
-    { label: 'Benefits to the country', value: A.benefit_total, color: 'var(--s3)', text: mEur(A.benefit_total) + ' (' + F.pct(A.econ_cover_capital) + ')' },
+    { label: 'Benefits to the country', value: PTS.data.french.study.central.benefit_total, color: 'var(--s3)', text: mEur(PTS.data.french.study.central.benefit_total) + ' (' + F.pct(PTS.data.french.study.central.cover_capital) + ')' },
     { label: 'Returned to public budgets, middle reading', value: A.tax_total, color: 'var(--s4)' }] });
 });

@@ -6529,7 +6529,144 @@
    "cover_wider": 1.0161826931253797,
    "cover_capital": 1.1901344811954284,
    "irr": 0.029148227926279247,
-   "irr_wider": 0.030711565496502113
+   "irr_wider": 0.030711565496502113,
+   "tests": {
+    "Low unit prices and 10% risk": {
+     "benefits": 2.151289820968453,
+     "cost": 1.5790614344140481,
+     "cover": 1.3623851321318257
+    },
+    "High unit prices and 30% risk": {
+     "benefits": 2.151289820968453,
+     "cost": 3.1054738973719447,
+     "cover": 0.6927412343697416
+    },
+    "Works take 15 years, not 12": {
+     "benefits": 2.151289820968453,
+     "cost": 2.2806892000935655,
+     "cover": 0.9432630368400027
+    },
+    "Every passenger takes 2 minutes longer to board than today": {
+     "benefits": 1.7130634952305326,
+     "cost": 2.1931748435210507,
+     "cover": 0.7810884299950662
+    },
+    "TGV passengers\u2019 ride across Paris counted against them": {
+     "benefits": 2.1411445298144884,
+     "cost": 2.1931748435210507,
+     "cover": 0.9762762582015441
+    },
+    "Nord-Est entered from the Gare du Nord hall only": {
+     "benefits": 1.9947653051977237,
+     "cost": 2.1931748435210507,
+     "cover": 0.9095331870555341
+    },
+    "Crowded metro time counted 25% heavier": {
+     "benefits": 2.2196899292673895,
+     "cost": 2.1931748435210507,
+     "cover": 1.01208981847693
+    },
+    "Every passenger on a served pair finds a direct train": {
+     "benefits": 2.250650099746443,
+     "cost": 2.1931748435210507,
+     "cover": 1.0262064177852406
+    },
+    "A change inside one station costs as much as a change today": {
+     "benefits": 2.119880262216414,
+     "cost": 2.1931748435210507,
+     "cover": 0.966580602763542
+    },
+    "A change inside one station costs 11%, as in a Swiss timed timetable": {
+     "benefits": 2.170307546002865,
+     "cost": 2.1931748435210507,
+     "cover": 0.9895734270408312
+    },
+    "Cross-Paris gain as on the Paris bypass line, 57% on direct trains": {
+     "benefits": 1.9418939104442745,
+     "cost": 2.1931748435210507,
+     "cover": 0.8854259459435732
+    },
+    "Cross-Paris gain as first estimated: 37% on direct trains": {
+     "benefits": 1.9283649195833612,
+     "cost": 2.1931748435210507,
+     "cover": 0.879257267280821
+    },
+    "Cross-Paris gain from the time model only": {
+     "benefits": 1.9243069000078852,
+     "cost": 2.1931748435210507,
+     "cover": 0.8774069726782433
+    },
+    "Today\u2019s change of station weighted like a metro trip": {
+     "benefits": 1.9916009864262487,
+     "cost": 2.1931748435210507,
+     "cover": 0.9080903842708757
+    },
+    "Suburban traffic grows 25%": {
+     "benefits": 2.1728703799978244,
+     "cost": 2.1931748435210507,
+     "cover": 0.9907419768272426
+    },
+    "Suburban traffic grows 5%": {
+     "benefits": 2.1297092619390816,
+     "cost": 2.1931748435210507,
+     "cover": 0.9710622334696865
+    },
+    "Tunnel upkeep as on the first RER E section": {
+     "benefits": 2.151289820968453,
+     "cost": 2.248799843521051,
+     "cover": 0.9566390833610511
+    },
+    "Tunnel upkeep at the average of the RER network": {
+     "benefits": 2.151289820968453,
+     "cost": 2.137549843521051,
+     "cover": 1.0064279097346187
+    },
+    "Passengers crossing Paris at the top of the survey range": {
+     "benefits": 2.3477776931123286,
+     "cost": 2.1931748435210507,
+     "cover": 1.070492715183195
+    },
+    "Half as many passengers cross Paris": {
+     "benefits": 1.9130289366365094,
+     "cost": 2.1931748435210507,
+     "cover": 0.8722646725079252
+    },
+    "Half as many suburb-to-suburb trips across Paris": {
+     "benefits": 2.126538412042862,
+     "cost": 2.1931748435210507,
+     "cover": 0.9696164527533944
+    },
+    "Half as many more suburb-to-suburb trips across Paris": {
+     "benefits": 2.176041229894044,
+     "cost": 2.1931748435210507,
+     "cover": 0.9921877575435347
+    },
+    "New traffic reaches 60% of the estimate": {
+     "benefits": 2.02674619242266,
+     "cost": 2.1931748435210507,
+     "cover": 0.9241151923705287
+    },
+    "Platforms no longer cap the lines: 10% more TGV traffic": {
+     "benefits": 2.151289820968453,
+     "cost": 2.1931748435210507,
+     "cover": 0.9809021051484645
+    },
+    "rate_3.6": {
+     "benefits": 2.151289820968453,
+     "cost": 2.506911125065173,
+     "cover": 0.8581436331982153
+    },
+    "rate_4.6": {
+     "benefits": 2.151289820968453,
+     "cost": 3.1046960719951757,
+     "cover": 0.6929147881409101
+    },
+    "time_only": {
+     "benefits": 1.1691628145054882,
+     "cost": 2.1931748435210507,
+     "cover": 0.5330914760213308
+    }
+   }
   },
   "central": {
    "benefits": {
@@ -6590,7 +6727,144 @@
    "cover_wider": 1.229555851655976,
    "cover_capital": 1.411579829423258,
    "irr": 0.036805828851858124,
-   "irr_wider": 0.03935089738125741
+   "irr_wider": 0.03935089738125741,
+   "tests": {
+    "Low unit prices and 10% risk": {
+     "benefits": 2.5515749409028254,
+     "cost": 1.5790614344140481,
+     "cover": 1.6158807284465495
+    },
+    "High unit prices and 30% risk": {
+     "benefits": 2.5515749409028254,
+     "cost": 3.1054738973719447,
+     "cover": 0.8216378643730141
+    },
+    "Works take 15 years, not 12": {
+     "benefits": 2.5515749409028254,
+     "cost": 2.2806892000935655,
+     "cover": 1.1187736324608135
+    },
+    "Every passenger takes 2 minutes longer to board than today": {
+     "benefits": 2.023982317696551,
+     "cost": 2.1931748435210507,
+     "cover": 0.9228549760524938
+    },
+    "TGV passengers\u2019 ride across Paris counted against them": {
+     "benefits": 2.5414296497488613,
+     "cost": 2.1931748435210507,
+     "cover": 1.1587902611853336
+    },
+    "Nord-Est entered from the Gare du Nord hall only": {
+     "benefits": 2.3950504251320957,
+     "cost": 2.1931748435210507,
+     "cover": 1.0920471900393232
+    },
+    "Crowded metro time counted 25% heavier": {
+     "benefits": 2.6199750492017615,
+     "cost": 2.1931748435210507,
+     "cover": 1.1946038214607189
+    },
+    "Every passenger on a served pair finds a direct train": {
+     "benefits": 2.650935219680815,
+     "cost": 2.1931748435210507,
+     "cover": 1.2087204207690294
+    },
+    "A change inside one station costs as much as a change today": {
+     "benefits": 2.5201653821507866,
+     "cost": 2.1931748435210507,
+     "cover": 1.1490946057473312
+    },
+    "A change inside one station costs 11%, as in a Swiss timed timetable": {
+     "benefits": 2.570592665937237,
+     "cost": 2.1931748435210507,
+     "cover": 1.1720874300246202
+    },
+    "Cross-Paris gain as on the Paris bypass line, 57% on direct trains": {
+     "benefits": 2.3421790303786465,
+     "cost": 2.1931748435210507,
+     "cover": 1.0679399489273622
+    },
+    "Cross-Paris gain as first estimated: 37% on direct trains": {
+     "benefits": 2.328650039517733,
+     "cost": 2.1931748435210507,
+     "cover": 1.06177127026461
+    },
+    "Cross-Paris gain from the time model only": {
+     "benefits": 2.324592019942258,
+     "cost": 2.1931748435210507,
+     "cover": 1.0599209756620327
+    },
+    "Today\u2019s change of station weighted like a metro trip": {
+     "benefits": 2.3918861063606207,
+     "cost": 2.1931748435210507,
+     "cover": 1.0906043872546647
+    },
+    "Suburban traffic grows 25%": {
+     "benefits": 2.5731554999321964,
+     "cost": 2.1931748435210507,
+     "cover": 1.1732559798110316
+    },
+    "Suburban traffic grows 5%": {
+     "benefits": 2.529994381873454,
+     "cost": 2.1931748435210507,
+     "cover": 1.1535762364534756
+    },
+    "Tunnel upkeep as on the first RER E section": {
+     "benefits": 2.5515749409028254,
+     "cost": 2.248799843521051,
+     "cover": 1.1346385265252
+    },
+    "Tunnel upkeep at the average of the RER network": {
+     "benefits": 2.5515749409028254,
+     "cost": 2.137549843521051,
+     "cover": 1.1936914353771404
+    },
+    "Passengers crossing Paris at the top of the survey range": {
+     "benefits": 2.7480628130467006,
+     "cost": 2.1931748435210507,
+     "cover": 1.2530067181669842
+    },
+    "Half as many passengers cross Paris": {
+     "benefits": 2.313314056570882,
+     "cost": 2.1931748435210507,
+     "cover": 1.0547786754917143
+    },
+    "Half as many suburb-to-suburb trips across Paris": {
+     "benefits": 2.5268235319772345,
+     "cost": 2.1931748435210507,
+     "cover": 1.1521304557371836
+    },
+    "Half as many more suburb-to-suburb trips across Paris": {
+     "benefits": 2.5763263498284164,
+     "cost": 2.1931748435210507,
+     "cover": 1.1747017605273238
+    },
+    "New traffic reaches 60% of the estimate": {
+     "benefits": 2.4270313123570326,
+     "cost": 2.1931748435210507,
+     "cover": 1.106629195354318
+    },
+    "Platforms no longer cap the lines: 10% more TGV traffic": {
+     "benefits": 2.5515749409028254,
+     "cost": 2.1931748435210507,
+     "cover": 1.1634161081322538
+    },
+    "rate_3.6": {
+     "benefits": 2.5515749409028254,
+     "cost": 2.506911125065173,
+     "cover": 1.0178162741355625
+    },
+    "rate_4.6": {
+     "benefits": 2.5515749409028254,
+     "cost": 3.1046960719951757,
+     "cover": 0.821843710860594
+    },
+    "time_only": {
+     "benefits": 1.2069321167742506,
+     "cost": 2.1931748435210507,
+     "cover": 0.5503127670553486
+    }
+   }
   },
   "high": {
    "benefits": {
@@ -6651,7 +6925,144 @@
    "cover_wider": 1.5482200914376143,
    "cover_capital": 1.6849974900512652,
    "irr": 0.045081789562475216,
-   "irr_wider": 0.05035828256015196
+   "irr_wider": 0.05035828256015196,
+   "tests": {
+    "Low unit prices and 10% risk": {
+     "benefits": 3.045805332069395,
+     "cost": 1.5790614344140481,
+     "cover": 1.9288706985612758
+    },
+    "High unit prices and 30% risk": {
+     "benefits": 3.045805332069395,
+     "cost": 3.1054738973719447,
+     "cover": 0.9807860032721432
+    },
+    "Works take 15 years, not 12": {
+     "benefits": 3.045805332069395,
+     "cost": 2.2806892000935655,
+     "cover": 1.3354758429795874
+    },
+    "Every passenger takes 2 minutes longer to board than today": {
+     "benefits": 2.428846411394766,
+     "cost": 2.1931748435210507,
+     "cover": 1.1074568079101956
+    },
+    "TGV passengers\u2019 ride across Paris counted against them": {
+     "benefits": 3.0356600409154306,
+     "cost": 2.1931748435210507,
+     "cover": 1.3841395499693974
+    },
+    "Nord-Est entered from the Gare du Nord hall only": {
+     "benefits": 2.889280816298666,
+     "cost": 2.1931748435210507,
+     "cover": 1.3173964788233874
+    },
+    "Crowded metro time counted 25% heavier": {
+     "benefits": 3.1142054403683317,
+     "cost": 2.1931748435210507,
+     "cover": 1.419953110244783
+    },
+    "Every passenger on a served pair finds a direct train": {
+     "benefits": 3.145165610847385,
+     "cost": 2.1931748435210507,
+     "cover": 1.4340697095530939
+    },
+    "A change inside one station costs as much as a change today": {
+     "benefits": 3.0143957733173568,
+     "cost": 2.1931748435210507,
+     "cover": 1.3744438945313955
+    },
+    "A change inside one station costs 11%, as in a Swiss timed timetable": {
+     "benefits": 3.064823057103807,
+     "cost": 2.1931748435210507,
+     "cover": 1.3974367188086845
+    },
+    "Cross-Paris gain as on the Paris bypass line, 57% on direct trains": {
+     "benefits": 2.8364094215452167,
+     "cost": 2.1931748435210507,
+     "cover": 1.2932892377114265
+    },
+    "Cross-Paris gain as first estimated: 37% on direct trains": {
+     "benefits": 2.8228804306843034,
+     "cost": 2.1931748435210507,
+     "cover": 1.2871205590486743
+    },
+    "Cross-Paris gain from the time model only": {
+     "benefits": 2.8188224111088274,
+     "cost": 2.1931748435210507,
+     "cover": 1.2852702644460965
+    },
+    "Today\u2019s change of station weighted like a metro trip": {
+     "benefits": 2.886116497527191,
+     "cost": 2.1931748435210507,
+     "cover": 1.315953676038729
+    },
+    "Suburban traffic grows 25%": {
+     "benefits": 3.0673858910987666,
+     "cost": 2.1931748435210507,
+     "cover": 1.3986052685950958
+    },
+    "Suburban traffic grows 5%": {
+     "benefits": 3.024224773040024,
+     "cost": 2.1931748435210507,
+     "cover": 1.3789255252375396
+    },
+    "Tunnel upkeep as on the first RER E section": {
+     "benefits": 3.045805332069395,
+     "cost": 2.248799843521051,
+     "cover": 1.3544137068688318
+    },
+    "Tunnel upkeep at the average of the RER network": {
+     "benefits": 3.045805332069395,
+     "cost": 2.137549843521051,
+     "cover": 1.4249049402526361
+    },
+    "Passengers crossing Paris at the top of the survey range": {
+     "benefits": 3.242293204213271,
+     "cost": 2.1931748435210507,
+     "cover": 1.4783560069510484
+    },
+    "Half as many passengers cross Paris": {
+     "benefits": 2.807544447737452,
+     "cost": 2.1931748435210507,
+     "cover": 1.2801279642757786
+    },
+    "Half as many suburb-to-suburb trips across Paris": {
+     "benefits": 3.0210539231438047,
+     "cost": 2.1931748435210507,
+     "cover": 1.3774797445212479
+    },
+    "Half as many more suburb-to-suburb trips across Paris": {
+     "benefits": 3.0705567409949857,
+     "cost": 2.1931748435210507,
+     "cover": 1.4000510493113878
+    },
+    "New traffic reaches 60% of the estimate": {
+     "benefits": 2.921261703523603,
+     "cost": 2.1931748435210507,
+     "cover": 1.3319784841383822
+    },
+    "Platforms no longer cap the lines: 10% more TGV traffic": {
+     "benefits": 3.045805332069395,
+     "cost": 2.1931748435210507,
+     "cover": 1.3887653969163178
+    },
+    "rate_3.6": {
+     "benefits": 3.045805332069395,
+     "cost": 2.506911125065173,
+     "cover": 1.2149634271499004
+    },
+    "rate_4.6": {
+     "benefits": 3.045805332069395,
+     "cost": 3.1046960719951757,
+     "cover": 0.9810317214438528
+    },
+    "time_only": {
+     "benefits": 1.2476611022243247,
+     "cost": 2.1931748435210507,
+     "cover": 0.5688835552304881
+    }
+   }
   }
  },
  "model": {

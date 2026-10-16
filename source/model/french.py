@@ -633,10 +633,36 @@ def study_method(m, level=1):
             if v(mid) > 0: lo = mid
             else: hi = mid
         return (lo + hi) / 2
-    return {'benefits': yearly, 'benefit_total': ben, 'wider': wider, 'wider_total': wid, 'borrowed': borrowed, 'once': once, 'families': by_family(yearly),
+    res = {'benefits': yearly, 'benefit_total': ben, 'wider': wider, 'wider_total': wid, 'borrowed': borrowed, 'once': once, 'families': by_family(yearly),
             'yearly_cost': cost, 'annuity': m['annuity'], 'running': run, 'renewal': m['renewal_year'],
             'cover': ben / cost, 'cover_wider': (ben + wid) / cost, 'cover_capital': ben / m['annuity'],
             'irr': flat_irr(ben), 'irr_wider': flat_irr(ben + wid)}
+    res['tests'] = study_tests(res)
+    return res
+
+
+_MODEL_JSON = None
+def model_json():
+    global _MODEL_JSON
+    if _MODEL_JSON is None:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'src', 'data', 'model.json')) as fh: _MODEL_JSON = json.load(fh)
+    return _MODEL_JSON
+
+
+def study_tests(s):
+    """The station model's one-at-a-time tests carried onto the complete count: each test's change of benefit and of yearly cost is applied to the
+    simple reading's totals, the added items unchanged, except that two minutes more to board also cut the later arrival at through platforms.
+    The official discount rates of the fiche (benefits held flat) and passengers' time alone are added as tests of their own."""
+    mj = model_json(); Y = mj['yearly']; tot = s['benefit_total']; cost = s['yearly_cost']
+    margin = s['benefits'].get(MARGIN, 0.0)
+    def one(ben, c, cut=0.0):
+        b = tot + ben - Y['benefit_total'] - cut; k = cost * c / Y['cost']
+        return {'benefits': b, 'cost': k, 'cover': b / k}
+    out = {k: one(v['benefit_total'], v['cost'], margin * min(1.0, 2.0 / P['margin_min'][1]) if 'longer to board' in k else 0.0) for k, v in mj['sens'].items()}
+    for r, v in mj['rate_tests'].items(): out['rate_' + r] = one(Y['benefit_total'], Y['benefit_total'] / v['all'])
+    time = next(v for k, v in s['families'].items() if k.startswith('Passengers'))
+    out['time_only'] = {'benefits': time, 'cost': cost, 'cover': time / cost}
+    return out
 
 
 def budget(m):

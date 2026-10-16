@@ -265,18 +265,19 @@ PTS.section('elizabeth', function (root) {
     { label: 'With the traffic measured since 2022', text: 'not published', marks: [] }];
   // the same ratio on the basis of this study: benefits over the gross cost (capital plus running), and this project's own readings
   const PV = D.london.pv, FC = PTS.data.finance.cases, gross = PV.capex + PV.opex;
+  const FRS = PTS.data.french.study.central, FRC = PTS.data.french.cases.central, netS = FRS.benefit_total / (FC.central.yearly_cost - FC.central.ops_rev_total);
   const gLo = PV.benefits_lo / gross, gHi = PV.benefits_hi / gross;
   const r1 = function (v) { return F.n(v, 1); };
   BCR.push(
     { label: 'Elizabeth line on gross cost, as in this study', sub: '2011 values, derived', range: [gLo, gHi], text: r1(gLo) + ' to ' + r1(gHi), marks: [
       [gLo, 'el-a', 'Benefits of £' + r1(PV.benefits_lo) + 'bn (national values of time) over a gross cost of £' + r1(gross) + 'bn: <b>' + ratio(gLo) + '</b>'],
       [gHi, 'el-a', 'Benefits of £' + r1(PV.benefits_hi) + 'bn (London values of time) over a gross cost of £' + r1(gross) + 'bn: <b>' + ratio(gHi) + '</b>']] },
-    { label: 'This project, central case', sub: 'model of this study', range: [FC.central.econ_cover_all, FC.central.econ_cover_net], text: ratio(FC.central.econ_cover_all) + '; ' + ratio(FC.central.econ_cover_net) + ' net', marks: [
-      [FC.central.econ_cover_all, 'el-p', 'Benefits with wider effects over the yearly cost of the works and of running them: <b>' + ratio(FC.central.econ_cover_all) + '</b>'],
-      [FC.central.econ_cover_net, 'el-pn', 'Over the cost net of the new income, the British basis: <b>' + ratio(FC.central.econ_cover_net) + '</b>']] },
-    { label: 'This project, with ' + F.n(PTS.data.finance.params.growth * 100, 1) + '% growth a year', sub: 'model of this study', range: [FC.growth.econ_cover_all, FC.growth.econ_cover_net], text: ratio(FC.growth.econ_cover_all) + '; ' + ratio(FC.growth.econ_cover_net) + ' net', marks: [
-      [FC.growth.econ_cover_all, 'el-p', 'With traffic and benefits growing: over the gross yearly cost: <b>' + ratio(FC.growth.econ_cover_all) + '</b>'],
-      [FC.growth.econ_cover_net, 'el-pn', 'With growth, over the cost net of the new income: <b>' + ratio(FC.growth.econ_cover_net) + '</b>']] });
+    { label: 'This project, simple reading', sub: 'benefits of the opening year, held flat', range: [FRS.cover, netS], text: ratio(FRS.cover) + '; ' + ratio(netS) + ' net', marks: [
+      [FRS.cover, 'el-p', 'Benefits counted over the yearly cost of the works and of running them: <b>' + ratio(FRS.cover) + '</b>'],
+      [netS, 'el-pn', 'Over the cost net of the new income, the British basis: <b>' + ratio(netS) + '</b>']] },
+    { label: 'This project, French rules', sub: '4.5% rate, growth, to 2140', range: [FRC.ratio, FRC.ratio_wider], text: ratio(FRC.ratio) + '; ' + ratio(FRC.ratio_wider) + ' with wider effects', marks: [
+      [FRC.ratio, 'el-p', 'Benefits over costs in today’s money under the French rules: <b>' + ratio(FRC.ratio) + '</b>'],
+      [FRC.ratio_wider, 'el-w', 'With the wider effects measured on the project’s own flows: <b>' + ratio(FRC.ratio_wider) + '</b>']] });
   const bcr = h('div', { class: 'bars el-db el-bcr' });
   bcr.appendChild(h('div', { class: 'lab' }));
   bcr.appendChild(h('div', { class: 'track el-ax', 'aria-hidden': 'true' }, [0, 1, 2, 3, 4].map(function (v) { return h('span', { style: { left: rpos(v) }, text: String(v) }); })));
