@@ -47,7 +47,7 @@
   <figure class="fig">
     <div class="fig-head"><strong>From the first count to the complete count: €{{ d.french.study.central.first_count | 2 }}bn to €{{ d.french.study.central.benefit_total | 2 }}bn a year</strong><span>€ million a year, central case, at today's traffic and official values</span></div>
     <div id="eco-bridge-chart"></div>
-    <figcaption>The borrowed ratios were worth €{{ d.french.study.central.first_borrowed | m }}m; what replaces them is measured. Passengers' time is re-measured under the official rules (regional express trains crossing Paris added, the charge on new journeys allowed for).</figcaption>
+    <figcaption>The borrowed ratios were worth €{{ d.french.study.central.first_borrowed | m }}m; what replaces them is measured. Passengers' time is re-measured under the official rules: regional express trains crossing Paris are added (€{{ d.french.study.central.benefits['TER time: crossing Paris'] | m }}m), the TGV lines are taken before the small effect of the charges, which the first count had deducted, and the first estimate of suburb to suburb trips moves to the job-access family, where it is measured.</figcaption>
   </figure>
   <div class="eco-fams">
     <div class="card eco-fam" style="--tc: var(--s1)">
