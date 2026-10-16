@@ -1,0 +1,209 @@
+{
+ "exact": {
+  "North to east": "Du Nord vers l’Est",
+  "Walk between Gare du Nord and Gare de l’Est, 500 m apart, and wait for the next train": "Marcher entre la Gare du Nord et la Gare de l’Est, distantes de 500 m, et attendre le train suivant",
+  "North to southeast": "Du Nord vers le Sud-Est",
+  "Leave the train at Gare du Nord, cross Paris by metro or RER, board again at Gare de Lyon": "Descendre du train à la Gare du Nord, traverser Paris en métro ou en RER, reprendre un train à la Gare de Lyon",
+  "Stay on board: the train stops at Paris Nord-Est, then Gare de Lyon": "Rester à bord : le train s’arrête à Paris Nord-Est, puis à la Gare de Lyon",
+  "North to the Atlantic": "Du Nord vers l’Atlantique",
+  "Leave the train at Gare du Nord, cross Paris by metro or RER, board again at Montparnasse": "Descendre du train à la Gare du Nord, traverser Paris en métro ou en RER, reprendre un train à Montparnasse",
+  "Stay on board: the train stops at Paris Nord-Est, then Montparnasse": "Rester à bord : le train s’arrête à Paris Nord-Est, puis à Montparnasse",
+  "East to north": "De l’Est vers le Nord",
+  "Walk between Gare de l’Est and Gare du Nord, 500 m apart, and wait for the next train": "Marcher entre la Gare de l’Est et la Gare du Nord, distantes de 500 m, et attendre le train suivant",
+  "East to southeast": "De l’Est vers le Sud-Est",
+  "Leave the train at Gare de l’Est, cross Paris by metro or RER, board again at Gare de Lyon": "Descendre du train à la Gare de l’Est, traverser Paris en métro ou en RER, reprendre un train à la Gare de Lyon",
+  "East to the Atlantic": "De l’Est vers l’Atlantique",
+  "Leave the train at Gare de l’Est, cross Paris by metro or RER, board again at Montparnasse": "Descendre du train à la Gare de l’Est, traverser Paris en métro ou en RER, reprendre un train à Montparnasse",
+  "Leave the train at Gare de Lyon, cross Paris by metro or RER, board again at Gare du Nord": "Descendre du train à la Gare de Lyon, traverser Paris en métro ou en RER, reprendre un train à la Gare du Nord",
+  "Stay on board: the train stops at Gare de Lyon, then Paris Nord-Est": "Rester à bord : le train s’arrête à la Gare de Lyon, puis à Paris Nord-Est",
+  "Leave the train at Gare de Lyon, cross Paris by metro or RER, board again at Gare de l’Est": "Descendre du train à la Gare de Lyon, traverser Paris en métro ou en RER, reprendre un train à la Gare de l’Est",
+  "Southeast to the Atlantic": "Du Sud-Est vers l’Atlantique",
+  "Leave the train at Gare de Lyon, cross Paris by metro or RER, board again at Montparnasse": "Descendre du train à la Gare de Lyon, traverser Paris en métro ou en RER, reprendre un train à Montparnasse",
+  "Stay on board: Gare de Lyon, then Montparnasse by the direct link, with no reversal": "Rester à bord : Gare de Lyon, puis Montparnasse par la liaison directe, sans changement de sens",
+  "Leave the train at Montparnasse, cross Paris by metro or RER, board again at Gare du Nord": "Descendre du train à Montparnasse, traverser Paris en métro ou en RER, reprendre un train à la Gare du Nord",
+  "Stay on board: the train stops at Montparnasse, then Paris Nord-Est": "Rester à bord : le train s’arrête à Montparnasse, puis à Paris Nord-Est",
+  "Leave the train at Montparnasse, cross Paris by metro or RER, board again at Gare de l’Est": "Descendre du train à Montparnasse, traverser Paris en métro ou en RER, reprendre un train à la Gare de l’Est",
+  "Atlantic to southeast": "De l’Atlantique vers le Sud-Est",
+  "Leave the train at Montparnasse, cross Paris by metro or RER, board again at Gare de Lyon": "Descendre du train à Montparnasse, traverser Paris en métro ou en RER, reprendre un train à la Gare de Lyon",
+  "Stay on board: Montparnasse, then Gare de Lyon by the direct link, with no reversal": "Rester à bord : Montparnasse, puis Gare de Lyon par la liaison directe, sans changement de sens",
+  "Not in the plan: the two lines meet north of Nord-Est, and every train of both runs on to the south": "Pas prévu par le plan : les deux lignes se rejoignent au nord de Nord-Est, et tous les trains de l’une et de l’autre continuent vers le sud",
+  "today, by metro": "aujourd’hui, en métro",
+  "east": "Est",
+  "southeast": "Sud-Est",
+  "Sketch of the route across Paris from the north line to the east line, through Paris Nord-Est.": "Croquis du trajet à travers Paris, de la ligne du Nord à la ligne de l’Est, en passant par Paris Nord-Est.",
+  "Sketch of the route across Paris from the north line to the southeast line, through Paris Nord-Est and Gare de Lyon.": "Croquis du trajet à travers Paris, de la ligne du Nord à la ligne du Sud-Est, en passant par Paris Nord-Est et la Gare de Lyon.",
+  "Sketch of the route across Paris from the north line to the Atlantic line, through Paris Nord-Est and Montparnasse.": "Croquis du trajet à travers Paris, de la ligne du Nord à la ligne de l’Atlantique, en passant par Paris Nord-Est et Montparnasse.",
+  "Sketch of the route across Paris from the east line to the north line, through Paris Nord-Est.": "Croquis du trajet à travers Paris, de la ligne de l’Est à la ligne du Nord, en passant par Paris Nord-Est.",
+  "Sketch of the route across Paris from the east line to the southeast line, through Paris Nord-Est and Gare de Lyon.": "Croquis du trajet à travers Paris, de la ligne de l’Est à la ligne du Sud-Est, en passant par Paris Nord-Est et la Gare de Lyon.",
+  "Sketch of the route across Paris from the east line to the Atlantic line, through Paris Nord-Est and Montparnasse.": "Croquis du trajet à travers Paris, de la ligne de l’Est à la ligne de l’Atlantique, en passant par Paris Nord-Est et Montparnasse.",
+  "Sketch of the route across Paris from the southeast line to the north line, through Gare de Lyon and Paris Nord-Est.": "Croquis du trajet à travers Paris, de la ligne du Sud-Est à la ligne du Nord, en passant par la Gare de Lyon et Paris Nord-Est.",
+  "Sketch of the route across Paris from the southeast line to the east line, through Gare de Lyon and Paris Nord-Est.": "Croquis du trajet à travers Paris, de la ligne du Sud-Est à la ligne de l’Est, en passant par la Gare de Lyon et Paris Nord-Est.",
+  "Sketch of the route across Paris from the southeast line to the Atlantic line, through Montparnasse and Gare de Lyon by the direct link.": "Croquis du trajet à travers Paris, de la ligne du Sud-Est à la ligne de l’Atlantique, en passant par Montparnasse et la Gare de Lyon, par la liaison directe.",
+  "Sketch of the route across Paris from the Atlantic line to the north line, through Montparnasse and Paris Nord-Est.": "Croquis du trajet à travers Paris, de la ligne de l’Atlantique à la ligne du Nord, en passant par Montparnasse et Paris Nord-Est.",
+  "Sketch of the route across Paris from the Atlantic line to the east line, through Montparnasse and Paris Nord-Est.": "Croquis du trajet à travers Paris, de la ligne de l’Atlantique à la ligne de l’Est, en passant par Montparnasse et Paris Nord-Est.",
+  "Sketch of the route across Paris from the Atlantic line to the southeast line, through Montparnasse and Gare de Lyon by the direct link.": "Croquis du trajet à travers Paris, de la ligne de l’Atlantique à la ligne du Sud-Est, en passant par Montparnasse et la Gare de Lyon, par la liaison directe.",
+  "Montparnasse and Gare de Lyon by the direct link": "Montparnasse et la Gare de Lyon, par la liaison directe",
+  "Montparnasse and Paris Nord-Est": "Montparnasse et Paris Nord-Est",
+  "Gare de Lyon and Paris Nord-Est": "la Gare de Lyon et Paris Nord-Est",
+  "Paris Nord-Est and Montparnasse": "Paris Nord-Est et Montparnasse",
+  "Paris Nord-Est and Gare de Lyon": "Paris Nord-Est et la Gare de Lyon",
+  "Today": "Aujourd’hui",
+  "Direct train": "Train direct",
+  "none": "aucun",
+  "Change inside Nord-Est": "Correspondance à Nord-Est",
+  "Saved with a change inside Nord-Est": "Gain avec une correspondance à Nord-Est",
+  "Change inside Montparnasse": "Correspondance à Montparnasse",
+  "Saved with a change inside Montparnasse": "Gain avec une correspondance à Montparnasse",
+  "Change inside Gare de Lyon": "Correspondance à la Gare de Lyon",
+  "Saved with a change inside Gare de Lyon": "Gain avec une correspondance à la Gare de Lyon",
+  "Share of the passengers who cross Paris": "Part des voyageurs qui traversent Paris",
+  "Passengers a year on this pair, both ways": "Voyageurs par an sur ce couple, dans les deux sens",
+  "Saved on a direct train": "Gain en train direct",
+  "no direct train": "pas de train direct",
+  "Already chosen on the other side": "Déjà choisi de l’autre côté",
+  "Coming from": "En provenance de",
+  "Going to": "À destination de",
+  "Line H, from Gare du Nord": "Ligne H, depuis la Gare du Nord",
+  "Line K, from Gare du Nord": "Ligne K, depuis la Gare du Nord",
+  "Line L, from Saint-Lazare": "Ligne L, depuis Saint-Lazare",
+  "Line P, from Gare de l’Est": "Ligne P, depuis la Gare de l’Est",
+  "Line N, from Montparnasse": "Ligne N, depuis Montparnasse",
+  "Line R, Gare de Lyon": "Ligne R, Gare de Lyon",
+  "Regional express, north": "TER, Nord",
+  "Regional express, east": "TER, Est",
+  "Regional express, south-east": "TER, Sud-Est",
+  "Regional express, Atlantic": "TER, Atlantique",
+  "stays on the surface at Gare de Lyon (running through is a later option)": "reste en surface à la Gare de Lyon (la traversée de Paris est une option pour plus tard)",
+  ", stays on the surface at Gare de Lyon (running through is a later option)": ", reste en surface à la Gare de Lyon (la traversée de Paris est une option pour plus tard)",
+  "None, stays on the surface at Gare de Lyon (running through is a later option)": "Aucun, reste en surface à la Gare de Lyon (la traversée de Paris est une option pour plus tard)",
+  "on to Saint-Lazare": "jusqu’à Saint-Lazare",
+  ", on to Saint-Lazare": ", jusqu’à Saint-Lazare",
+  "on to Paris Nord-Est": "jusqu’à Paris Nord-Est",
+  ", on to Paris Nord-Est": ", jusqu’à Paris Nord-Est",
+  "on to Montparnasse": "jusqu’à Montparnasse",
+  ", on to Montparnasse": ", jusqu’à Montparnasse",
+  "on to Gare de Lyon": "jusqu’à la Gare de Lyon",
+  ", on to Gare de Lyon": ", jusqu’à la Gare de Lyon",
+  "Suburban lines": "Lignes de banlieue",
+  "Regional express trains": "TER",
+  "Minutes saved": "Minutes gagnées",
+  "Minutes saved on the clock by an average passenger, by service, with the second station each one runs on to": "Minutes réelles gagnées par un voyageur moyen, par desserte, avec la deuxième gare que chacune rejoint",
+  "Journeys concerned": "Voyages concernés",
+  "Million journeys a year to or from the Paris terminal, by service": "Millions de voyages par an au départ ou à destination du terminus parisien, par desserte",
+  "Hours saved a year": "Heures gagnées par an",
+  "Million hours saved a year (journeys multiplied by minutes saved), by service": "Millions d’heures gagnées par an (voyages multipliés par minutes gagnées), par desserte",
+  "Show": "Afficher",
+  "Service": "Desserte",
+  "Journeys a year": "Voyages par an",
+  "Of which through the Paris terminal": "Dont par le terminus parisien",
+  "Second stop": "Deuxième arrêt",
+  "Minutes saved, average": "Minutes gagnées, en moyenne",
+  "Total": "Total"
+ },
+ "patterns": [
+  [
+   "Sketch of the route across Paris from the {0} line to the {1} line, through {2}.",
+   "Croquis du trajet à travers Paris, de la ligne {0} à la ligne {1}, par {2}."
+  ],
+  [
+   "For example {0} to {1}",
+   "Par exemple, de {0} à {1}"
+  ],
+  [
+   "Today: {0}",
+   "Aujourd’hui : {0}"
+  ],
+  [
+   "Direct train: {0}",
+   "Train direct : {0}"
+  ],
+  [
+   "Change inside Nord-Est: {0}",
+   "Correspondance à Nord-Est : {0}"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Nord-Est, and {1} on the trains inside Paris",
+   "{0} minutes de train à train sur les quais de Nord-Est, et {1} dans les trains à l’intérieur de Paris"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Nord-Est, and {1} on the train by the direct link",
+   "{0} minutes de train à train sur les quais de Nord-Est, et {1} dans le train par la liaison directe"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Nord-Est",
+   "{0} minutes de train à train sur les quais de Nord-Est"
+  ],
+  [
+   "Change inside Montparnasse: {0}",
+   "Correspondance à Montparnasse : {0}"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Montparnasse, and {1} on the trains inside Paris",
+   "{0} minutes de train à train sur les quais de Montparnasse, et {1} dans les trains à l’intérieur de Paris"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Montparnasse, and {1} on the train by the direct link",
+   "{0} minutes de train à train sur les quais de Montparnasse, et {1} dans le train par la liaison directe"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Montparnasse",
+   "{0} minutes de train à train sur les quais de Montparnasse"
+  ],
+  [
+   "Change inside Gare de Lyon: {0}",
+   "Correspondance à la Gare de Lyon : {0}"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Gare de Lyon, and {1} on the trains inside Paris",
+   "{0} minutes de train à train sur les quais de la Gare de Lyon, et {1} dans les trains à l’intérieur de Paris"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Gare de Lyon, and {1} on the train by the direct link",
+   "{0} minutes de train à train sur les quais de la Gare de Lyon, et {1} dans le train par la liaison directe"
+  ],
+  [
+   "{0} minutes from train to train on the platforms of Gare de Lyon",
+   "{0} minutes de train à train sur les quais de la Gare de Lyon"
+  ],
+  [
+   "0,{0} million h",
+   "0,{0} million d’heures"
+  ],
+  [
+   "0,{0} million journeys a year through its Paris terminal",
+   "0,{0} million de voyages par an par son terminus parisien"
+  ],
+  [
+   "0,{0} million",
+   "0,{0} million"
+  ],
+  [
+   "1,{0} million h",
+   "1,{0} million d’heures"
+  ],
+  [
+   "1,{0} million journeys a year through its Paris terminal",
+   "1,{0} million de voyages par an par son terminus parisien"
+  ],
+  [
+   "1,{0} million",
+   "1,{0} million"
+  ],
+  [
+   "{0} million h",
+   "{0} millions d’heures"
+  ],
+  [
+   "{0} million journeys a year through its Paris terminal",
+   "{0} millions de voyages par an par son terminus parisien"
+  ],
+  [
+   "{0} minutes saved on average",
+   "{0} minutes de moins en moyenne"
+  ],
+  [
+   "{0} million",
+   "{0} millions"
+  ]
+ ]
+}

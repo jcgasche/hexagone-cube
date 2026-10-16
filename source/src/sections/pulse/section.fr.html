@@ -1,0 +1,188 @@
+<!-- en: 57e5023783 -->
+<p class="lede">En Suisse, on a conçu l’horaire d’abord et les travaux ensuite. Les trains de toutes les directions arrivent dans les grandes gares juste avant l’heure et repartent juste après, si bien que presque toutes les correspondances ne prennent que quelques minutes. On n’a accéléré les lignes que dans la mesure nécessaire pour aller d’un de ces rendez-vous au suivant en moins d’une heure.</p>
+
+<div class="block" id="pulse.idea">
+  <h2>L’idée : tous les trains sont en gare en même temps</h2>
+  <p>Un horaire cadencé se répète toutes les heures : chaque ligne part aux mêmes minutes toute la journée. Le réseau suisse en a un depuis le 23 mai 1982.[[ch_nc1982]] Le cadencement à la suisse y ajoute une seconde règle. Dans les grandes gares, appelées nœuds, les trains de toutes les lignes arrivent à peu près en même temps et repartent ensemble quelques minutes plus tard.[[ch_fc1994]] Selon les CFF, les chemins de fer fédéraux suisses, trains et bus atteignent un nœud juste avant l’heure pleine et la demi-heure, ou aux minutes 15 et 45, et en repartent peu après.[[ch_sbb1997]] Le voyageur n’a pas à chercher sa correspondance : elle l’attend sur un autre quai.</p>
+  <div class="cols wide-left">
+    <figure class="fig">
+      <div class="fig-head"><strong>Zurich à l’heure pleine : douze trains grandes lignes arrivent en dix minutes, douze repartent dans les dix suivantes</strong><span>Arrivées et départs grandes lignes à la gare centrale de Zurich, sur une heure de l’horaire 2026. Lancez la lecture, ou faites glisser la minute.</span></div>
+      <div class="pu-bar"><button class="btn" type="button" id="pu-play">Lecture</button><div id="pu-scrub"></div></div>
+      <div id="pu-clock"></div>
+      <ul class="legend">
+        <li><i class="pu-dot-arr"></i>Arrivée</li>
+        <li><i class="pu-dot-dep"></i>Départ</li>
+        <li><i class="pu-dot-wait"></i>Encore à venir dans l’heure</li>
+      </ul>
+      <figcaption>Horaire 2026, consulté le 12 octobre 2026. Les minutes se répètent toutes les heures ; la petite vague autour de la demi-heure varie un peu.[[zh_board_arr, zh_board_dep]] Deux trains de la première vague repartent avant l’heure pleine : les douze ne sont donc jamais tous en gare en même temps.</figcaption>
+    </figure>
+    <div class="card" id="pu-side">
+      <div class="pu-now"><span id="pu-min">:45</span><p id="pu-phase" aria-live="polite"></p></div>
+      <dl class="read" id="pu-read"></dl>
+      <div class="pu-lists">
+        <div><h4>Arrivées</h4><ol id="pu-arr" class="pu-list"></ol></div>
+        <div><h4>Départs</h4><ol id="pu-dep" class="pu-list"></ol></div>
+      </div>
+      <p class="note">Minute, ligne, provenance ou destination et voie, pour la vague autour de l’heure pleine. Les voies 31 à 34 sont les quais traversants sous la halle.</p>
+    </div>
+  </div>
+  <figure class="fig">
+    <div class="fig-head"><strong>Quel que soit votre train d’arrivée, les trains vers les autres directions partent dans les 3 à 23 minutes</strong><span>Minutes entre une arrivée et chaque départ de la même vague à Zurich. Choisissez le train par lequel vous arrivez.</span></div>
+    <div class="controls"><div class="field"><label for="pu-from">Vous arrivez de</label><select id="pu-from"></select></div></div>
+    <div id="pu-waits"></div>
+    <ul class="legend">
+      <li><i style="--c: var(--s1)"></i>7 minutes ou plus : la correspondance standard de la gare</li>
+      <li><i style="--c: var(--s4)"></i>Moins de 7 minutes : proposée seulement quand le planificateur désigne la paire de trains</li>
+      <li><i style="--c: var(--s3)"></i>Le même train continue</li>
+    </ul>
+    <figcaption>Horaire 2026 (déduit).[[zh_board_arr, zh_board_dep]] Les trains qui repartent vers la direction d’où vous venez ne sont pas montrés.</figcaption>
+  </figure>
+  <p>Le minimum standard de la gare pour une correspondance est de 7 minutes.[[ch_probahn]] Des correspondances plus courtes existent quand le planificateur désigne la paire de trains : de Berne à Saint-Gall, le trajet est vendu avec 4 minutes de correspondance, parce que les deux trains se font face de part et d’autre d’un même quai.[[zh_search_stg]] Quand aucune valeur n’est fixée, les données horaires suisses comptent 2 minutes.[[ch_ski]]</p>
+</div>
+
+<div class="block" id="pulse.nodes">
+  <h2>Les nœuds et la minute de leur rendez-vous</h2>
+  <p>Le plan de 1994 désignait sept nœuds. Zurich, Bâle, Berne et Winterthour sont desservies à l’heure pleine et, en grande partie, à la demi-heure. Lausanne, Bienne et Lucerne sont desservies aux minutes 15 et 45, parce que les trajets pour les atteindre sont un peu trop longs pour tenir dans l’heure. Un nœud à 15 et 45 demande un train toutes les demi-heures pour offrir de bonnes correspondances.[[ch_fc1994]]</p>
+  <p>L’horaire 2026 montre toujours Zurich, Berne et Bâle à 00 et 30, et Lausanne et Bienne à 15 et 45. Lucerne regroupe désormais ses trains autour de l’heure pleine, et Saint-Gall fonctionne comme un nœud à part entière (déduit de l’horaire). Choisissez une gare ou une ligne.</p>
+  <div class="controls" id="pu-view"></div>
+  <div class="cols wide-left">
+    <figure class="fig">
+      <div class="fig-head"><strong id="pu-net-title">Les principaux nœuds du réseau suisse</strong><span>Minutes entre les nœuds : telles que prévues, ou par le train régulier le plus rapide de 2026. Les positions sont schématiques. <span class="tag sketch">croquis indicatif</span></span></div>
+      <div class="fig-scroll" id="pu-net"></div>
+      <ul class="legend">
+        <li><svg class="pu-leg" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" class="pu-node n00"/><line x1="11" y1="3.5" x2="11" y2="18.5" class="pu-hand"/></svg>Nœud à 00 et 30</li>
+        <li><svg class="pu-leg" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="9" class="pu-node n15"/><line x1="3.5" y1="11" x2="18.5" y2="11" class="pu-hand"/></svg>Nœud à 15 et 45</li>
+        <li><svg class="pu-leg" viewBox="0 0 22 22" aria-hidden="true"><circle cx="11" cy="11" r="5" class="pu-node nx"/></svg>Pas un nœud désigné</li>
+        <li><svg class="pu-leg wide" viewBox="0 0 30 22" aria-hidden="true"><line x1="2" y1="11" x2="28" y2="11" class="pu-edge hour"/></svg>Trajet d’environ une heure</li>
+      </ul>
+      <figcaption>Le plan est celui du Conseil fédéral de 1994, avec les temps de parcours visés en 1986 et en 1994.[[ch_fc1994, ch_cos1986]] Aucune liste officielle des nœuds n’est publiée aujourd’hui : les minutes de 2026 sont déduites de l’horaire. Les sources figurent dans le tableau ci-dessous.<span class="pu-narrow"> Sur un écran étroit, faites glisser la carte sur le côté.</span></figcaption>
+    </figure>
+    <div class="card" id="pu-net-panel" aria-live="polite"></div>
+  </div>
+  <details>
+    <summary><strong>Les éléments</strong> : les nœuds, leur minute prévue et les minutes relevées en 2026</summary>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl">
+      <thead><tr><th>Nœud</th><th>Plan de 1994</th><th>Arrivées grandes lignes, 2026</th><th>Départs grandes lignes, 2026</th></tr></thead>
+      <tbody>
+        <tr><th>Zurich</th><td>00 et 30</td><td>:48 à :58, :22 à :28</td><td>:01 à :12, :28 à :39[[zh_board_arr, zh_board_dep]]</td></tr>
+        <tr><th>Berne</th><td>00 et 30</td><td>:53 à :00, :21 à :28</td><td>:00 à :09, :31 à :39[[ch_board_bern_arr, ch_board_bern]]</td></tr>
+        <tr><th>Bâle</th><td>00 et 30</td><td>Depuis Berne, à :00 et :29[[ch_sch_bebs]]</td><td>:58 à :07, :30 à :36[[ch_board_basel]]</td></tr>
+        <tr><th>Winterthour</th><td>00 et 30</td><td>Depuis Zurich, à :27 et :29[[ch_sch_zhwi]]</td><td>Non vérifié</td></tr>
+        <tr><th>Lausanne</th><td>15 et 45</td><td>:10 à :14, :43 à :46</td><td>:14 à :17, :46 à :49 ; vers Bienne à :04 et :34[[ch_board_lausanne, ch_sch_labi]]</td></tr>
+        <tr><th>Bienne</th><td>15 et 45</td><td>Depuis Lausanne, à :12 et :42[[ch_sch_labi]]</td><td>:16 à :22, :45 à :52[[ch_board_biel]]</td></tr>
+        <tr><th>Lucerne</th><td>15 et 45</td><td>Depuis Berne à :01, depuis Zurich à :25 et :51[[ch_sch_belu, ch_sch_zhlu]]</td><td>:00 à :10, :30 à :39[[ch_board_luzern]]</td></tr>
+        <tr><th>Saint-Gall</th><td>Non désigné</td><td>Depuis Zurich, à :02 et :30[[ch_sch_zhsg]]</td><td>:55 à :07, :25 à :37[[ch_board_stgallen]]</td></tr>
+        <tr><th>Viège</th><td>Non désigné</td><td>Depuis Berne, à :04 et :31[[ch_sch_bevi]]</td><td>Non vérifié</td></tr>
+        <tr><th>Interlaken Ost</th><td>Non désigné</td><td>Depuis Berne, à :28 et :59[[ch_sch_beio]]</td><td>Non vérifié</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">Le plan est celui du Conseil fédéral.[[ch_fc1994]] Les colonnes 2026 sont déduites de l’horaire. Les voyageurs par jour ouvrable en 2023, indiqués dans le panneau, sont des comptages des CFF.[[ch_sbbfacts]] Son canton décrit Zurich comme de loin le plus grand nœud de correspondance du réseau.[[ch_kr426]]</p>
+  </details>
+</div>
+
+<div class="block" id="pulse.edges">
+  <h2>Pourquoi un trajet doit durer un peu moins d’une heure</h2>
+  <p>Si tous les trains sont à Zurich à l’heure pleine et tous les trains à Berne à l’heure pleine, un train entre les deux dispose d’un peu moins d’une heure pour le trajet. Le Conseil fédéral l’a dit en une phrase : le concept exige entre les nœuds des temps de parcours d’un peu moins d’une heure.[[ch_fc1994]] En général, le trajet, plus la moitié de l’arrêt à chaque bout, doit tenir dans un multiple de la moitié de l’intervalle : 30, 60 ou 90 minutes pour une desserte toutes les heures (non vérifié).[[ch_wikiitf]] D’où la devise suisse de 1986 : pas aussi vite que techniquement possible, mais aussi vite que nécessaire.[[ch_cos1986]]</p>
+  <figure class="fig">
+    <div class="fig-head"><strong id="pu-edge-title">De Zurich à Berne</strong><span>Le temps s’écoule de gauche à droite ; chaque trait est un train. Modifiez le temps de parcours et observez l’arrivée par rapport à l’heure pleine.</span></div>
+    <div class="cols wide-left pu-edge-cols">
+      <div>
+        <div id="pu-edge-slider"></div>
+        <div id="pu-edge-steps" style="margin-top:8px"></div>
+        <div id="pu-edge-draw" style="margin-top:10px"></div>
+      </div>
+      <dl class="read" id="pu-edge-read"></dl>
+    </div>
+    <figcaption>Un croquis du principe. Les trains sont placés symétriquement autour de l’heure pleine, comme en 2026, où le train quitte Zurich à :02 et arrive à Berne à :58.[[ch_sch_zhbe]] Au-delà de 60 minutes, on suppose que les autres trains partent à l’heure pleine et circulent toutes les demi-heures. Les 69 et 56 minutes sont publiées ;[[ch_swissinfo2002]] les 58 minutes de décembre 2004 ne sont pas vérifiées.[[ch_wikibahn2000]] <span class="tag sketch">croquis indicatif</span></figcaption>
+  </figure>
+  <p><strong>La même chose sur le vrai tableau des départs.</strong> En 2026, le train venant de Zurich arrive à Berne à :58. Les trains vers Bâle et vers Lausanne et Genève partent à :04, le train vers Viège et Brigue à :07.[[ch_sch_zhbe, ch_board_bern]] Avec les 69 minutes d’avant 2004, il arriverait à :11, après tous ces départs (illustration).</p>
+  <p><strong>Là où l’heure ne peut pas être tenue, le nœud se déplace.</strong> Le trajet de Berne à Lausanne dure 69 minutes : Lausanne est donc un nœud à 15 et 45, et le train quitte Berne à :34 pour arriver à :43.[[ch_sch_bela, ch_fc1994]] Les cartes officielles montrent des créneaux de 60 et 75 minutes sur ces lignes de l’ouest.[[ch_zeb2006]] Un objectif de 57 minutes existe mais n’a pas été atteint,[[ch_fo365]] et le plan pour 2035 retient 68 minutes.[[ch_bav2024]] Les cantons de Suisse occidentale parlent d’un réseau à deux vitesses.[[ch_ctso]]</p>
+
+  <h3>Ce qu’il a fallu</h3>
+  <ul>
+    <li><strong>Un vote.</strong> Le 6 décembre 1987, 57,0&nbsp;% des votants ont approuvé Rail 2000, avec une participation de 47,7&nbsp;%.[[ch_swissvotes]]</li>
+    <li><strong>Un budget taillé pour tenir.</strong> Le crédit était de 5,4 milliards de francs suisses (CHF) aux prix de 1985, environ 7,4 milliards aux prix de 1993. En 1991, les projets du chemin de fer auraient coûté environ 16 milliards. La première étape a alors été plafonnée à 7,4 milliards de francs.[[ch_fc1994]] Des quatre lignes nouvelles du plan soumis aux votants, une seule a été conservée.[[ch_huerlimann]]</li>
+    <li><strong>Une seule ligne nouvelle.</strong> Entre Mattstetten et Rothrist, sur le trajet de Berne à Olten : 45 km (47 km dans deux documents officiels), pour 1,5 milliard de francs selon la presse de 2002 et 1&nbsp;458 millions dans le budget de 1994.[[ch_swissinfo2002, ch_bav2006, ch_sbb1997, ch_fc1994]] Elle a ramené d’un coup trois trajets à environ une heure : de Zurich à Berne, de Berne à Bâle et de Berne à Lucerne.</li>
+    <li><strong>Ailleurs, des trains plutôt que du béton.</strong> Sur la ligne du pied du Jura, de Lausanne à Zurich par Bienne, on a acheté des trains pendulaires au lieu de construire une ligne nouvelle. Des voitures à deux niveaux ont donné 40&nbsp;% de places en plus sans allonger les quais.[[ch_fc1994]] On n’a fait de travaux qu’aux goulets d’étranglement ou là où un trajet entre deux nœuds dépassait 60 minutes.[[ch_rg1997]]</li>
+    <li><strong>Le bilan.</strong> La première étape a ouvert le 12 décembre 2004 et a coûté 5,9 milliards de francs, 1,5 milliard de moins que son plafond.[[ch_bav2006, ch_swissinfo2002]]</li>
+  </ul>
+  <p>Trois trajets sont passés à environ une heure grâce à la ligne nouvelle. Trois autres, à l’ouest, dépassent encore l’heure de 8 à 11 minutes, et tous trois sont plus lents que prévu en 1994.</p>
+  <details>
+    <summary><strong>Les éléments</strong> : dix trajets avant, selon le plan et en 2026</summary>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl">
+    <thead><tr><th>Entre</th><th>Avant</th><th>Prévu</th><th>Horaire 2026</th><th>Ce qui l’a permis</th></tr></thead>
+    <tbody>
+      <tr class="hl"><th>Zurich et Berne</th><td>69 min[[ch_swissinfo2002]]</td><td>Environ 55 (1986)[[ch_cos1986]]</td><td>56 min, :02 à :58[[ch_sch_zhbe]]</td><td>La ligne nouvelle. 58 minutes en 2004, 56 depuis que les trains y roulent à 200 km/h.[[ch_wikibahn2000]]</td></tr>
+      <tr><th>Berne et Bâle</th><td>67 min[[ch_wikibahn2000]]</td><td>Environ 55 (1986)[[ch_cos1986]]</td><td>56 min, :04 à :00[[ch_sch_bebs]]</td><td>La même ligne nouvelle.</td></tr>
+      <tr><th>Berne et Lucerne</th><td>81 min[[ch_wikibahn2000]]</td><td>Pas de chiffre</td><td>61 min, :00 à :01[[ch_sch_belu]]</td><td>La même ligne nouvelle.</td></tr>
+      <tr><th>Zurich et Lucerne</th><td>Pas de chiffre</td><td>38 (1994)[[ch_fc1994]]</td><td>44 min, :07 à :51[[ch_sch_zhlu]]</td><td>Un seul des deux tunnels prévus.</td></tr>
+      <tr><th>Zurich et Saint-Gall</th><td>Pas de chiffre</td><td>Moins de 60</td><td>58 à 60 min[[ch_sch_zhsg]]</td><td>La gare traversante de Zurich, des arrêts supprimés et des trains pendulaires : voir <a class="xref" href="#zurich.results">Zurich</a>.</td></tr>
+      <tr><th>Berne et Lausanne</th><td>66 min pendant des années[[ch_fo365]]</td><td>67 (1994), puis 57[[ch_fc1994, ch_fo365]]</td><td>69 min, :34 à :43[[ch_sch_bela]]</td><td>Rien d’obtenu : l’essentiel de la ligne nouvelle a été reporté en 1994.[[ch_fc1994]]</td></tr>
+      <tr><th>Lausanne et Bienne</th><td>68 min (déduit)</td><td>58 (1994)[[ch_fc1994]]</td><td>68 min, :34 à :42[[ch_sch_labi]]</td><td>Des trains pendulaires ; le temps est revenu à son niveau d’avant.</td></tr>
+      <tr><th>Bienne et Zurich</th><td>87 min (déduit)</td><td>67 (1994)[[ch_fc1994]]</td><td>71 min, :45 à :56[[ch_sch_bizh]]</td><td>Des trains pendulaires et un raccordement depuis la ligne nouvelle.</td></tr>
+      <tr><th>Berne et Viège</th><td>Pas de chiffre</td><td>Moins de 60</td><td>57 min, :07 à :04[[ch_sch_bevi]]</td><td>Un tunnel de base sous les Alpes en 2007 ; 54 minutes à son ouverture.[[ch_sab]]</td></tr>
+      <tr><th>Zurich et Lugano</th><td>2 h 41 en 2016[[ch_wikigbt]]</td><td>Pas de chiffre</td><td>1 h 53, :05 à :58[[ch_sch_zhlg]]</td><td>Deux tunnels de base, en 2016 et en 2020.</td></tr>
+    </tbody></table></div>
+    <p class="note" style="margin-top:8px">Non vérifiés, tirés de Wikipédia : les temps d’avant 2004 de Berne à Bâle et à Lucerne, les 58 et 56 minutes de Zurich à Berne, l’objectif pour Saint-Gall et le temps de 2016 jusqu’à Lugano. Autres trajets en 2026 : de Zurich à Bâle, 52 à 54 minutes ; de Zurich à Winterthour, 25 ; de Berne à Interlaken Ost, 54 à 55 ; de Lausanne à Genève, 39 ; de Zurich à Coire, 74.[[ch_sch_zhbs, ch_sch_zhwi, ch_sch_beio, ch_sch_lage, ch_sch_zhch]] Des travaux sur une ligne pendant la semaine consultée peuvent ajouter une minute.</p>
+  </details>
+
+  <h3>Ce que cela a donné</h3>
+  <div class="tiles">
+    <div class="tile"><span class="n">93,2<small>&nbsp;%</small></span><span class="k">des trains avec moins de 3 minutes de retard</span><span class="d">2024 ; 94,1&nbsp;% en 2025[[ch_sbbfacts, ch_srf2026]]</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">98,7<small>&nbsp;%</small></span><span class="k">des correspondances assurées</span><span class="d">2022 à 2024[[ch_sbbfacts]]</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">+27,5<small>&nbsp;%</small></span><span class="k">de trafic grandes lignes, de 1996 à 2005</span><span class="d">En voyageurs-km ; 7&nbsp;% dans la seule première année du nouvel horaire[[ch_infras]]</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">5,9<small>&nbsp;Md</small></span><span class="k">de francs suisses pour la première étape</span><span class="d">1,5 milliard de moins que son plafond[[ch_swissinfo2002]]</span></div>
+  </div>
+  <div class="cols">
+    <figure class="fig">
+      <div class="fig-head"><strong>Plus de neuf trains sur dix sont à l’heure, et presque toutes les correspondances sont assurées</strong><span>Trains voyageurs des CFF, % par an. À l’heure signifie avec moins de 3 minutes de retard</span></div>
+      <div id="pu-punct"></div>
+      <figcaption>Une correspondance compte comme assurée si le temps prévu pour la correspondance était disponible.[[ch_sbbfacts]] 2025 : ensemble des trains seulement.[[ch_srf2026]]</figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="fig-head"><strong>Les règles empiriques du chemin de fer : c’est la fréquence qui rapporte le plus</strong><span>Voyageurs supplémentaires attendus d’un meilleur horaire, en %, tels que les CFF les comptent dans leur planification</span></div>
+      <div id="pu-rules"></div>
+      <figcaption>Règles de planification présentées par les CFF au parlement néerlandais, et non des mesures. La croissance qui suit un changement d’horaire dure deux à trois ans et elle est la plus forte la première année.[[ch_sbbrules]]</figcaption>
+    </figure>
+  </div>
+  <ul>
+    <li><strong>L’horaire de 2004.</strong> 12&nbsp;% de trains en plus et 14&nbsp;% de trains-km en plus ; environ 90&nbsp;% de tous les horaires ont changé.[[ch_moneycab2004]] Les trajets grandes lignes sont devenus en moyenne 7&nbsp;% plus courts et la fréquence a augmenté de 20&nbsp;%.[[ch_eval2007]] Les CFF ont transporté 253,4 millions de voyageurs en 2004 et 275,9 millions en 2005.[[ch_moneycab2006]]</li>
+    <li><strong>Quelle part revient au cadencement à la suisse ?</strong> L’évaluation officielle attribue un peu moins de la moitié de la croissance de 1996 à 2005 au changement de l’offre. Elle juge réussie la coordination des trains grandes lignes et régionaux dans les nœuds, mais elle n’a pas pu séparer l’effet des rendez-vous dans les nœuds de celui de la vitesse et de la fréquence.[[ch_infras]]</li>
+    <li><strong>La première étape n’a rien apporté tout de suite.</strong> L’horaire cadencé de 1982 n’a produit aucune hausse mesurable du trafic la première année.[[ch_nc1983]]</li>
+    <li><strong>Le protéger a un prix.</strong> Depuis fin 2024, un train très en retard est retenu jusqu’au créneau suivant de sa trame, une demi-heure plus tard, plutôt que de perturber le nœud.[[ch_srf2026]] Pour 2025, les temps de parcours en Suisse romande ont été allongés pour garder les trains à l’heure et les correspondances assurées pendant les travaux.[[ch_srf2024]]</li>
+    <li><strong>Un nœud est gourmand en quais.</strong> Une gare où tous les trains se retrouvent a besoin de plus de voies à quai que n’importe quelle autre organisation de l’horaire.[[ch_sma2022]]</li>
+  </ul>
+</div>
+
+<div class="block" id="pulse.paris">
+  <h2>Ce que cela voudrait dire pour Paris</h2>
+  <div class="callout warn"><b>Une illustration, pas un horaire</b><p>Ce qui suit montre ce dont un cadencement à la suisse a besoin et ce que les gares traversantes rendraient possible. Une esquisse d’une heure de trains dans les trois gares, et de ce que donnerait leur calage sur les correspondances, figure dans le chapitre sur <a class="xref" href="#timetable">l’horaire</a>. Le modèle de ce rapport ne compte aucun avantage d’un tel cadencement.</p></div>
+  <p>Un cadencement à la suisse a besoin d’une chose qui manque à Paris : un lieu où les trains de toutes les lignes stationnent ensemble. Aujourd’hui, ses grandes lignes aboutissent dans des terminus séparés, et un voyageur entre le nord ou l’est de la France et le sud-est ou la côte atlantique change de gare à travers la ville. Dans le modèle, cela prend {{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }} minutes d’un train à l’autre. Les trois gares traversantes ne créent pas non plus un tel lieu. Elles sont à {{ m.TH.L | 0 }} minutes l’une de l’autre en train, soit un trajet de {{ m.run_min | 0 }} minutes et un arrêt de {{ m.stop_min | 0 }} minutes, chaque train à grande vitesse s’arrête dans deux d’entre elles, et la moitié des trains de chaque ligne passe par chaque gare : dans l’heure type, {{ m.service.flows['Atlantic to north'] + m.service.flows['Atlantic to east'] | 0 }} des {{ m.service.hour.Atlantic | 0 }} trains de l’Atlantique continuent par Nord-Est vers le Nord ou l’Est et {{ m.service.link_each_way | 0 }} prennent la liaison directe vers Gare de Lyon et le Sud-Est, et la ligne du Sud-Est se partage de la même façon : voir <a class="xref" href="#service.pairing">quels trains sont associés</a>. Un rendez-vous calé serait donc partiel dans chaque gare (déduit de ce schéma). À Nord-Est, il pourrait relier le Nord et l’Est à la côte atlantique et au Sud-Est, et le Nord à l’Est, avec les trains qui y passent. À Gare de Lyon, il pourrait relier le Sud-Est au Nord et à l’Est, et, par la liaison directe, à la côte atlantique. À Montparnasse, il pourrait relier la côte atlantique au Nord, à l’Est et au Sud-Est. Un voyageur dont le train ne s’arrête pas dans la bonne gare change une fois de plus, ou prend le train suivant de l’heure. Une correspondance dans une même gare est comptée pour {{ m.connecting.central.pairs['Nord-Est'].change_clock | 1 }} minutes d’horloge <span class="tag assume">hypothèse</span>, et environ {{ m.connecting.central.direct_share | pct }} des voyageurs qui traversent Paris ne changeraient pas du tout, parce qu’un train la traverse sans les faire descendre : voir <a class="xref" href="#crossing.tgv">traverser Paris</a>.</p>
+  <p><strong>Un cadencement à la suisse coûte des quais.</strong> Le nombre de quais de ce rapport suppose que les arrêts sont répartis sur l’heure : {{ m.tracks_per_direction | 0 }} voies à grande vitesse dans chaque sens dans chaque gare, {{ 2 * m.tracks_per_direction | 0 }} en tout, chacune capable de prendre {{ m.per_track | 0 }} trains par heure selon la règle utilisée, et chargées à {{ m.service_full.nordest_load | 1 }} trains par heure et par voie à Nord-Est, {{ m.service_full.montparnasse_load | 1 }} à Montparnasse et {{ m.service_full.lyon_load | 1 }} à Gare de Lyon quand les lignes sont pleines : voir <a class="xref" href="#service.platforms">combien de quais</a>. Un horaire où les trains se retrouvent à des minutes fixes demanderait plus de voies, pour deux raisons. Plus de trains stationnent en gare au même moment, et chacun y reste plus longtemps : à Zurich, un train traversant qui attend des correspondances s’arrête 6 à 9 minutes, contre 3 minutes pour un train qui n’attend pas (déduit, voir <a class="xref" href="#zurich.why">Zurich</a>). Le revers de la médaille : une gare à nœud est vide la plus grande partie de l’heure, si bien que son usage moyen, environ 6 trains par heure et par voie à la gare souterraine de Löwenstrasse à Zurich (déduit), est un choix de conception et non un plafond. Il ne dit rien de ce que six voies parisiennes pourraient prendre avec des arrêts répartis régulièrement.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Une correspondance dans une même gare : {{ m.connecting.central.pairs['Nord-Est'].change_clock | 1 }} minutes supposées, contre {{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }} aujourd’hui entre deux gares</strong><span>Minutes d’un train au suivant, ou d’une gare à la suivante. Paris : valeurs du modèle de cette étude. Zurich : valeurs de l’horaire 2026</span></div>
+    <div id="pu-paris"></div>
+    <figcaption>Les valeurs de Paris sont des hypothèses du modèle, décrites dans <a class="xref" href="#method.traffic">la méthode</a> : {{ m.TH.L | 0 }} minutes entre deux des trois gares, quelles qu’elles soient, par la liaison directe ou par Nord-Est, soit un trajet de {{ m.run_min | 0 }} minutes et un arrêt de {{ m.stop_min | 0 }} minutes, et une correspondance à Nord-Est suivie du trajet jusqu’à Gare de Lyon ou Montparnasse. Zurich : le minimum standard pour toute la gare, et la correspondance la plus courte que le planificateur vend de part et d’autre d’un même quai.[[ch_probahn, zh_search_stg]] Les gares traversantes de Zurich ont 4 voies chacune ; Paris Nord-Est en aurait {{ m.cost.tracks['Paris Nord-Est'] | 0 }}, dont {{ m.cost.detail['Paris Nord-Est'].hs | 0 }} pour les trains à grande vitesse.</figcaption>
+  </figure>
+  <div class="cols">
+    <div class="card">
+      <h4>Ce que demanderait un cadencement à la suisse dans les trois gares</h4>
+      <ul>
+        <li><strong>Les mêmes minutes toutes les heures.</strong> Le schéma testé dans ce rapport compte {{ m.service.through_each_way | 0 }} trains à grande vitesse par heure dans chaque sens qui traversent Nord-Est et {{ m.service.link_each_way | 0 }} sur la liaison directe : voir <a class="xref" href="#service.hour">l’heure</a>. Un cadencement à la suisse fixerait les minutes de leurs rendez-vous.</li>
+        <li><strong>Trois rendez-vous, pas un seul.</strong> Un train qui en retrouve d’autres à Nord-Est à l’heure pleine atteint Gare de Lyon ou Montparnasse {{ m.TH.L | 0 }} minutes plus tard : les gares du sud auraient donc leur rendez-vous environ un quart d’heure après Nord-Est, et les trains de la liaison directe entre les deux (illustration). Les trains du Nord et de l’Est arriveraient juste avant chaque rendez-vous, les trains vers le sud repartiraient juste après, et l’inverse une demi-heure plus tard.</li>
+        <li><strong>Des quais connus à l’avance.</strong> En Suisse, une ligne utilise la même voie heure après heure, et la voie est imprimée des semaines à l’avance (déduit).[[ch_board_bern]] Les quais indiquent où s’arrête chaque voiture.[[sbb]]</li>
+        <li><strong>Des trains à l’heure.</strong> Le cadencement à la suisse repose sur plus de neuf trains sur dix arrivant avec moins de trois minutes de retard.[[ch_sbbfacts]]</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Les limites de l’exemple suisse</h4>
+      <ul>
+        <li><strong>L’horaire français n’est pas construit ainsi.</strong> Les trains à grande vitesse ne partent pas aux mêmes minutes toutes les heures sur toutes les lignes (non vérifié).</li>
+        <li><strong>Les places sont réservées.</strong> Un voyageur suisse qui manque sa correspondance prend le train suivant une demi-heure plus tard. Une place réservée ne vaut que pour un train : une correspondance manquée coûte donc plus cher et la marge doit être plus large. Aujourd’hui, la voie est affichée environ 20 minutes avant le départ et l’accès ferme 2 minutes avant.[[gates]]</li>
+        <li><strong>Les distances sont plus longues.</strong> Les nœuds suisses sont à environ une heure les uns des autres, si bien que chaque train rencontre un nœud toutes les heures. Sur les LGV françaises, seules les trois gares parisiennes seraient de tels points de rendez-vous, et aucun train ne s’arrête dans les trois.</li>
+        <li><strong>Peu de voyageurs changent de train.</strong> Dans les voyages grandes lignes en Allemagne, 18&nbsp;% des trajets comportent une correspondance entre deux trains grandes lignes.[[ch_weinhold]] Dans cette étude, environ {{ m.conn.central | 1 }} millions de voyages par an changent de gare à Paris aujourd’hui, {{ m.conn.central + m.connecting.central.new | 1 }} millions avec les nouvelles gares.</li>
+        <li><strong>Un cadencement à la suisse remplit les quais à la même minute.</strong> Une gare où tous les trains se retrouvent demande plus de voies que toute autre organisation de l’horaire.[[ch_sma2022]] Les gares de ce rapport, avec {{ 2 * m.tracks_per_direction | 0 }} voies à grande vitesse chacune, ne sont pas dimensionnées pour cela.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="callout"><b>Ce qu’il faut en retenir</b><p>Les gares traversantes ne sont pas un cadencement à la suisse, et ce rapport n’en a pas besoin. Elles suppriment ce qui rend un tel cadencement impossible à Paris aujourd’hui : des terminus sans aucun train entre eux. Elles ne créent pas un point de rendez-vous unique : avec trois gares à {{ m.TH.L | 0 }} minutes l’une de l’autre et chaque train qui s’arrête dans deux d’entre elles, le cadencement serait fait de trois rendez-vous partiels. Que les trains à grande vitesse français se retrouvent ensuite à des minutes fixes est un choix d’horaire qui pourra être fait plus tard. Il demanderait des trains réguliers et à l’heure, et plus de quais que les six voies à grande vitesse par gare comptées ici.</p></div>
+</div>

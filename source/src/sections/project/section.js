@@ -5,8 +5,8 @@ PTS.section('project', function (root) {
   // one twin-track tunnel for each kind of train: TGV, line N, line H (c.tunnels, as model.tunnels.corridors). The regional express trains
   // have no tunnel of their own (version 4.1): they ride in the TGV tunnel of the corridors marked c.ter (as model.ter_corridors), drawn as a thin line inside it
   const NET = { tgv: { k: 'tgv', label: 'TGV', long: 'TGV', color: 'var(--s1)', plat: 'hs' },
-    n: { k: 'n', label: 'Line N', long: 'line N', color: 'var(--s3)', plat: 'sub' },
-    h: { k: 'h', label: 'Line H', long: 'line H', color: 'var(--s4)', plat: 'sub' } };
+    n: { k: 'n', label: 'RER G', long: 'RER G', color: 'var(--s3)', plat: 'sub' },
+    h: { k: 'h', label: 'RER F', long: 'RER F', color: 'var(--s4)', plat: 'sub' } };
   const NETS = [NET.tgv, NET.n, NET.h];
   const TER = { k: 'ter', label: 'Regional express', long: 'regional express', color: 'var(--s2)', plat: 'ter' };   // platforms of their own, no tunnel
   const TP = D.ter_paths, LOADS = TP.loads;
@@ -23,7 +23,7 @@ PTS.section('project', function (root) {
   if (terWant !== terHave) console.warn('project: corridors with regional express trains differ from the model', terWant, terHave);
   P.corridors.forEach(function (c) { if (c.ter && !LOADS[c.ter]) console.warn('project: no tunnel load in the model for ' + c.id); });
   P.portals.forEach(function (po) { po.tunnels = P.corridors.filter(function (c) { return c.id === po.corridor; })[0].tunnels; });
-  const LAYERS = [['tgv', 'TGV tunnels'], ['ter', 'Regional express, in the TGV tunnels'], ['n', 'Line N'], ['h', 'Line H'], ['stations', 'Stations'], ['nodes', 'Portals and junctions'], ['surface', 'Today’s surface tracks']];
+  const LAYERS = [['tgv', 'TGV tunnels'], ['ter', 'Regional express, in the TGV tunnels'], ['n', 'RER G'], ['h', 'RER F'], ['stations', 'Stations'], ['nodes', 'Portals and junctions'], ['surface', 'Today’s surface tracks']];
   // the stations stand where today's terminals are (positions from paris_geo); Paris Nord-Est lies between Gare du Nord and Gare de l'Est
   const T = G.term, mid = [(T.Nord[0] + T.Est[0]) / 2, (T.Nord[1] + T.Est[1]) / 2];
   const AT = { 'Paris Nord-Est': mid, 'Gare de Lyon': T.Lyon, 'Montparnasse': T.Montparnasse, 'Gare du Nord': T.Nord, 'Gare de l’Est': T.Est };
@@ -70,7 +70,7 @@ PTS.section('project', function (root) {
     const line = function (pts, n) { return spline(pts.map(pr), n || 10); };
     const gap = narrow ? 3.4 : 3.8, on = state.layers, anyNet = NETS.some(function (n) { return on[n.k]; });
     const svg = s('svg', { class: 'draw', viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
-      'aria-label': 'Schematic map of Paris with the four deep stations, the tunnel corridors of the TGV, line N and line H tunnels, the regional express trains running in the TGV tunnels, the direct link between Montparnasse and Gare de Lyon, the five portal sites and the four junction sites' });
+      'aria-label': 'Schematic map of Paris with the four deep stations, the tunnel corridors of the TGV, RER G and RER F tunnels, the regional express trains running in the TGV tunnels, the direct link between Montparnasse and Gare de Lyon, the five portal sites and the four junction sites' });
     const clipId = 'project-clip-paris';
     svg.appendChild(s('defs', null, s('clipPath', { id: clipId }, s('path', { d: G.outline.map(function (r) { return dpath(r.map(pr), true); }).join('') }))));
 
@@ -146,7 +146,7 @@ PTS.section('project', function (root) {
 
     const focus = document.activeElement && host.contains(document.activeElement) ? document.activeElement.getAttribute('aria-label') : null;
     PTS.clear(host).appendChild(svg);
-    if (focus) { const again = PTS.$$('[aria-label]', svg).filter(function (e) { return e.getAttribute('aria-label') === focus; })[0]; if (again) again.focus(); }
+    if (focus) { const again = PTS.$$('[aria-label]', svg).filter(function (e) { const l = e.getAttribute('aria-label'); return l === focus || PTS.tr(l) === focus; })[0]; if (again) again.focus(); }
   }
 
   // ---------------------------------------------------------------- the side panel
@@ -255,7 +255,7 @@ PTS.section('project', function (root) {
   function drawLegend() {
     const ul = PTS.clear($('#project-legend')), on = state.layers;
     const add = function (kind, text, color) { ul.appendChild(h('li', null, sample(kind, color), text)); };
-    const legendText = { tgv: 'TGV tunnel (two tracks)', n: 'Line N tunnel (formerly P and N)', h: 'Line H tunnel (formerly H, K and L)' };
+    const legendText = { tgv: 'TGV tunnel (two tracks)', n: 'RER G tunnel (today’s lines P and N)', h: 'RER F tunnel (today’s lines H, K and L)' };
     NETS.forEach(function (n) { if (on[n.k]) add('net', legendText[n.k], n.color); });
     if (on.ter && on.tgv) add('ter', 'TGV tunnel also used by regional express trains', TER.color);
     if (on.stations) add('station', 'Deep through station');

@@ -1,0 +1,338 @@
+{
+ "exact": {
+  "Gare du Nord hall": "Halle Gare du Nord",
+  "Gare de l’Est hall": "Halle Gare de l’Est",
+  "Paris Nord-Est, Gare du Nord hall": "Paris Nord-Est, halle de la Gare du Nord",
+  "Paris Nord-Est, Gare de l’Est hall": "Paris Nord-Est, halle de la Gare de l’Est",
+  "All directions": "Toutes directions",
+  "North": "Nord",
+  "East": "Est",
+  "South-east": "Sud-Est",
+  "Atlantic": "Atlantique",
+  "the north": "le Nord",
+  "the east": "l’Est",
+  "the south-east": "le Sud-Est",
+  "the Atlantic": "l’Atlantique",
+  "all directions, weighted by traffic": "toutes directions, pondérées par le trafic",
+  "weighted by traffic": "pondérées par le trafic",
+  "to the station entrance": "jusqu’à l’entrée de la gare",
+  "counting the ride across Paris": "en comptant le trajet dans Paris",
+  "Average time to the entrance of the nearest station where your train stops": "Temps moyen jusqu’à l’entrée de la gare la plus proche où s’arrête votre train",
+  "Trains for all directions, weighted by traffic": "Trains de toutes directions, pondérées par le trafic",
+  "Trains for the north (Lille, London, Brussels)": "Trains pour le Nord (Lille, Londres, Bruxelles)",
+  "Trains for the east (Reims, Strasbourg)": "Trains pour l’Est (Reims, Strasbourg)",
+  "Trains for the south-east (Lyon, Marseille)": "Trains pour le Sud-Est (Lyon, Marseille)",
+  "Trains for the Atlantic (Bordeaux, Rennes, Nantes)": "Trains pour l’Atlantique (Bordeaux, Rennes, Nantes)",
+  "Today: minutes to the terminal that serves your direction": "Aujourd’hui : minutes jusqu’au terminus qui dessert votre direction",
+  "Minutes saved against today": "Minutes gagnées par rapport à aujourd’hui",
+  "Minutes to the station": "Minutes jusqu’à la gare",
+  "Under 15 min": "Moins de 15 min",
+  "15 to 20": "15 à 20",
+  "20 to 25": "20 à 25",
+  "25 to 30": "25 à 30",
+  "30 to 35": "30 à 35",
+  "35 min or more": "35 min ou plus",
+  "No change": "Aucun changement",
+  "Up to 1 min saved": "Jusqu’à 1 min de moins",
+  "1 to 2": "1 à 2",
+  "2 to 5": "2 à 5",
+  "5 to 10": "5 à 10",
+  "More than 10 min saved": "Plus de 10 min de moins",
+  "Number of points in each class, on the same scale for the two measures. There is no class for “slower”: no point is.": "Nombre de points dans chaque classe, sur la même échelle pour les deux mesures. Il n’y a pas de classe « plus lent » : aucun point ne l’est.",
+  "Number of points in each class. The same scale is used for today and for the project.": "Nombre de points dans chaque classe. La même échelle sert pour aujourd’hui et pour le projet.",
+  "Average today": "Moyenne aujourd’hui",
+  "Average with the project": "Moyenne avec le projet",
+  "Average saved": "Gain moyen",
+  "Points quicker than today": "Points plus rapides qu’aujourd’hui",
+  "Largest gain": "Gain le plus fort",
+  "Points slower than today": "Points plus lents qu’aujourd’hui",
+  "none": "aucun",
+  "One point": "Un point",
+  "Tap or hover a dot to read its times. With a keyboard, move to the map and use the arrow keys.": "Touchez ou survolez une pastille pour lire ses temps. Au clavier, allez sur la carte et utilisez les flèches.",
+  "1st": "1er",
+  "1st arrondissement": "1er arrondissement",
+  "2nd": "2e",
+  "2nd arrondissement": "2e arrondissement",
+  "3rd": "3e",
+  "3rd arrondissement": "3e arrondissement",
+  "4th": "4e",
+  "4th arrondissement": "4e arrondissement",
+  "5th": "5e",
+  "5th arrondissement": "5e arrondissement",
+  "6th": "6e",
+  "6th arrondissement": "6e arrondissement",
+  "7th": "7e",
+  "7th arrondissement": "7e arrondissement",
+  "8th": "8e",
+  "8th arrondissement": "8e arrondissement",
+  "9th": "9e",
+  "9th arrondissement": "9e arrondissement",
+  "10th": "10e",
+  "10th arrondissement": "10e arrondissement",
+  "11th": "11e",
+  "11th arrondissement": "11e arrondissement",
+  "12th": "12e",
+  "12th arrondissement": "12e arrondissement",
+  "13th": "13e",
+  "13th arrondissement": "13e arrondissement",
+  "14th": "14e",
+  "14th arrondissement": "14e arrondissement",
+  "15th": "15e",
+  "15th arrondissement": "15e arrondissement",
+  "16th": "16e",
+  "16th arrondissement": "16e arrondissement",
+  "17th": "17e",
+  "17th arrondissement": "17e arrondissement",
+  "18th": "18e",
+  "18th arrondissement": "18e arrondissement",
+  "19th": "19e",
+  "19th arrondissement": "19e arrondissement",
+  "20th": "20e",
+  "20th arrondissement": "20e arrondissement",
+  "no change": "aucun changement",
+  ". The read-out gives each direction.": ". Le relevé détaille chaque direction.",
+  "Today:": "Aujourd’hui :",
+  "to Gare du Nord.": "jusqu’à la Gare du Nord.",
+  "to Gare de l’Est.": "jusqu’à la Gare de l’Est.",
+  "to Gare de Lyon.": "jusqu’à la Gare de Lyon.",
+  "to Montparnasse.": "jusqu’à Montparnasse.",
+  "to Gare de Lyon, as today.": "jusqu’à la Gare de Lyon, comme aujourd’hui.",
+  "to Montparnasse, as today.": "jusqu’à Montparnasse, comme aujourd’hui.",
+  "to Paris Nord-Est, Gare du Nord hall, the same hall as today.": "jusqu’à Paris Nord-Est, halle de la Gare du Nord, la même halle qu’aujourd’hui.",
+  "to Paris Nord-Est, Gare du Nord hall, the nearer hall of the same station.": "jusqu’à Paris Nord-Est, halle de la Gare du Nord, la halle la plus proche de la même gare.",
+  "to Paris Nord-Est, Gare du Nord hall, where half of the trains for the south-east also stop.": "jusqu’à Paris Nord-Est, halle de la Gare du Nord, où s’arrête aussi la moitié des trains pour le Sud-Est.",
+  "to Paris Nord-Est, Gare du Nord hall, where half of the trains for the Atlantic also stop.": "jusqu’à Paris Nord-Est, halle de la Gare du Nord, où s’arrête aussi la moitié des trains pour l’Atlantique.",
+  "to Paris Nord-Est, Gare de l’Est hall, the same hall as today.": "jusqu’à Paris Nord-Est, halle de la Gare de l’Est, la même halle qu’aujourd’hui.",
+  "to Paris Nord-Est, Gare de l’Est hall, the nearer hall of the same station.": "jusqu’à Paris Nord-Est, halle de la Gare de l’Est, la halle la plus proche de la même gare.",
+  "to Paris Nord-Est, Gare de l’Est hall, where half of the trains for the south-east also stop.": "jusqu’à Paris Nord-Est, halle de la Gare de l’Est, où s’arrête aussi la moitié des trains pour le Sud-Est.",
+  "to Paris Nord-Est, Gare de l’Est hall, where half of the trains for the Atlantic also stop.": "jusqu’à Paris Nord-Est, halle de la Gare de l’Est, où s’arrête aussi la moitié des trains pour l’Atlantique.",
+  "With the project:": "Avec le projet :",
+  "With the project, picking a train": "Avec le projet, en choisissant un train",
+  "on average.": "en moyenne.",
+  "from the south-east": "venant du Sud-Est",
+  "from the Atlantic": "venant de l’Atlantique",
+  "from the north or the east": "venant du Nord ou de l’Est",
+  "from the Atlantic, by the direct link": "venant de l’Atlantique par la liaison directe",
+  "from the south-east, by the direct link": "venant du Sud-Est par la liaison directe",
+  "To the station entrance": "Jusqu’à l’entrée de la gare",
+  "Counting the ride across Paris": "En comptant le trajet dans Paris",
+  "With the project, measured": "Avec le projet, temps mesuré",
+  "Average minutes to a station where the train stops, by direction, today and with the project on the two measures": "Minutes en moyenne jusqu’à une gare où le train s’arrête, par direction, aujourd’hui et avec le projet selon les deux mesures",
+  "minutes (the axis starts at 20)": "minutes (l’axe commence à 20)",
+  "Today": "Aujourd’hui",
+  "With the project, to the station entrance (used for TGV benefits)": "Avec le projet, jusqu’à l’entrée de la gare (retenu pour les avantages TGV)",
+  "With the project, counting the ride across Paris and picking the train": "Avec le projet, en comptant le trajet dans Paris et en choisissant le train",
+  "With the project, counting the ride across Paris:": "Avec le projet, en comptant le trajet dans Paris :",
+  "With the project, to the station entrance:": "Avec le projet, jusqu’à l’entrée de la gare :",
+  "Arrondissement": "Arrondissement",
+  "Saved at the entrance": "Gain à l’entrée",
+  "Counting the ride": "Trajet compris",
+  "Saved with the ride": "Gain trajet compris"
+ },
+ "patterns": [
+  [
+   "The same, plus the train’s {0}-minute run between its Paris stops (the stop is not counted), picking a train that calls at your best station",
+   "La même chose, plus les {0} minutes de trajet du train entre ses arrêts parisiens (l’arrêt n’est pas compté), en choisissant un train qui dessert votre meilleure gare"
+  ],
+  [
+   "With the project: minutes to a station where your train stops, {0}",
+   "Avec le projet : minutes jusqu’à une gare où s’arrête votre train, {0}"
+  ],
+  [
+   "Minutes saved against today, {0}",
+   "Minutes gagnées par rapport à aujourd’hui, {0}"
+  ],
+  [
+   "{0}. Each direction has its own terminal.",
+   "{0}. Chaque direction a son propre terminus."
+  ],
+  [
+   "{0}. Filled square: the terminal for this direction.",
+   "{0}. Carré plein : le terminus de cette direction."
+  ],
+  [
+   "{0}. Every train stops at two of the three stations.",
+   "{0}. Chaque train s’arrête dans deux des trois gares."
+  ],
+  [
+   "{0}. Filled square: every train for this direction stops there. Outlined square: half of them do.",
+   "{0}. Carré plein : tous les trains de cette direction s’y arrêtent. Carré vide : la moitié d’entre eux."
+  ],
+  [
+   "{0}; with the project, {1}.",
+   "{0} ; avec le projet, {1}."
+  ],
+  [
+   "Point {0}, {1} arrondissement",
+   "Point {0}, {1} arrondissement"
+  ],
+  [
+   ", trains for all directions, weighted by traffic: {0} min today, {1} with the project,",
+   ", trains de toutes directions, pondérées par le trafic : {0} min aujourd’hui, {1} avec le projet,"
+  ],
+  [
+   ", trains for {0}: {1} min today, {2} with the project,",
+   ", trains pour {0} : {1} min aujourd’hui, {2} avec le projet,"
+  ],
+  [
+   "Minutes by public transport from this point. With the project, {0}.",
+   "Minutes en transports en commun depuis ce point. Avec le projet, {0}."
+  ],
+  [
+   "All directions, weighted by traffic: {0} min today, {1} with the project, no change.",
+   "Toutes directions, pondérées par le trafic : {0} min aujourd’hui, {1} avec le projet, aucun changement."
+  ],
+  [
+   "All directions, weighted by traffic: {0} min today, {1} with the project, {2} saved.",
+   "Toutes directions, pondérées par le trafic : {0} min aujourd’hui, {1} avec le projet, {2} min de moins."
+  ],
+  [
+   "({0} min to Gare de Lyon, then {1} min on the train: {2} min, where half of the trains for {3} also stop).",
+   "({0} min jusqu’à la Gare de Lyon, puis {1} min de train : {2} min, où s’arrête aussi la moitié des trains pour {3})."
+  ],
+  [
+   "({0} min to Gare de Lyon, then {1} min on the train: {2} min).",
+   "({0} min jusqu’à la Gare de Lyon, puis {1} min de train : {2} min)."
+  ],
+  [
+   "({0} min to Gare de Lyon).",
+   "({0} min jusqu’à la Gare de Lyon)."
+  ],
+  [
+   "Trains {0} (half): {1} min to Gare de Lyon, then {2} min on the train: {3} min.",
+   "Trains {0} (la moitié) : {1} min jusqu’à la Gare de Lyon, puis {2} min de train : {3} min."
+  ],
+  [
+   "Trains {0} (half): {1} min to Gare de Lyon.",
+   "Trains {0} (la moitié) : {1} min jusqu’à la Gare de Lyon."
+  ],
+  [
+   "({0} min to Montparnasse, then {1} min on the train: {2} min, where half of the trains for {3} also stop).",
+   "({0} min jusqu’à Montparnasse, puis {1} min de train : {2} min, où s’arrête aussi la moitié des trains pour {3})."
+  ],
+  [
+   "({0} min to Montparnasse, then {1} min on the train: {2} min).",
+   "({0} min jusqu’à Montparnasse, puis {1} min de train : {2} min)."
+  ],
+  [
+   "({0} min to Montparnasse).",
+   "({0} min jusqu’à Montparnasse)."
+  ],
+  [
+   "Trains {0} (half): {1} min to Montparnasse, then {2} min on the train: {3} min.",
+   "Trains {0} (la moitié) : {1} min jusqu’à Montparnasse, puis {2} min de train : {3} min."
+  ],
+  [
+   "Trains {0} (half): {1} min to Montparnasse.",
+   "Trains {0} (la moitié) : {1} min jusqu’à Montparnasse."
+  ],
+  [
+   "({0} min to Gare du Nord, then {1} min on the train: {2} min, where half of the trains for {3} also stop).",
+   "({0} min jusqu’à la Gare du Nord, puis {1} min de train : {2} min, où s’arrête aussi la moitié des trains pour {3})."
+  ],
+  [
+   "({0} min to Gare du Nord, then {1} min on the train: {2} min).",
+   "({0} min jusqu’à la Gare du Nord, puis {1} min de train : {2} min)."
+  ],
+  [
+   "({0} min to Gare du Nord).",
+   "({0} min jusqu’à la Gare du Nord)."
+  ],
+  [
+   "Trains {0} (half): {1} min to Gare du Nord, then {2} min on the train: {3} min.",
+   "Trains {0} (la moitié) : {1} min jusqu’à la Gare du Nord, puis {2} min de train : {3} min."
+  ],
+  [
+   "Trains {0} (half): {1} min to Gare du Nord.",
+   "Trains {0} (la moitié) : {1} min jusqu’à la Gare du Nord."
+  ],
+  [
+   "({0} min to Gare de l’Est, then {1} min on the train: {2} min, where half of the trains for {3} also stop).",
+   "({0} min jusqu’à la Gare de l’Est, puis {1} min de train : {2} min, où s’arrête aussi la moitié des trains pour {3})."
+  ],
+  [
+   "({0} min to Gare de l’Est, then {1} min on the train: {2} min).",
+   "({0} min jusqu’à la Gare de l’Est, puis {1} min de train : {2} min)."
+  ],
+  [
+   "({0} min to Gare de l’Est).",
+   "({0} min jusqu’à la Gare de l’Est)."
+  ],
+  [
+   "Trains {0} (half): {1} min to Gare de l’Est, then {2} min on the train: {3} min.",
+   "Trains {0} (la moitié) : {1} min jusqu’à la Gare de l’Est, puis {2} min de train : {3} min."
+  ],
+  [
+   "Trains {0} (half): {1} min to Gare de l’Est.",
+   "Trains {0} (la moitié) : {1} min jusqu’à la Gare de l’Est."
+  ],
+  [
+   "({0} min to Paris Nord-Est, Gare du Nord hall, then {1} min on the train: {2} min, where half of the trains for {3} also stop).",
+   "({0} min jusqu’à Paris Nord-Est, halle de la Gare du Nord, puis {1} min de train : {2} min, où s’arrête aussi la moitié des trains pour {3})."
+  ],
+  [
+   "({0} min to Paris Nord-Est, Gare du Nord hall, then {1} min on the train: {2} min).",
+   "({0} min jusqu’à Paris Nord-Est, halle de la Gare du Nord, puis {1} min de train : {2} min)."
+  ],
+  [
+   "({0} min to Paris Nord-Est, Gare du Nord hall).",
+   "({0} min jusqu’à Paris Nord-Est, halle de la Gare du Nord)."
+  ],
+  [
+   "Trains {0} (half): {1} min to Paris Nord-Est, Gare du Nord hall, then {2} min on the train: {3} min.",
+   "Trains {0} (la moitié) : {1} min jusqu’à Paris Nord-Est, halle de la Gare du Nord, puis {2} min de train : {3} min."
+  ],
+  [
+   "Trains {0} (half): {1} min to Paris Nord-Est, Gare du Nord hall.",
+   "Trains {0} (la moitié) : {1} min jusqu’à Paris Nord-Est, halle de la Gare du Nord."
+  ],
+  [
+   "({0} min to Paris Nord-Est, Gare de l’Est hall, then {1} min on the train: {2} min, where half of the trains for {3} also stop).",
+   "({0} min jusqu’à Paris Nord-Est, halle de la Gare de l’Est, puis {1} min de train : {2} min, où s’arrête aussi la moitié des trains pour {3})."
+  ],
+  [
+   "({0} min to Paris Nord-Est, Gare de l’Est hall, then {1} min on the train: {2} min).",
+   "({0} min jusqu’à Paris Nord-Est, halle de la Gare de l’Est, puis {1} min de train : {2} min)."
+  ],
+  [
+   "({0} min to Paris Nord-Est, Gare de l’Est hall).",
+   "({0} min jusqu’à Paris Nord-Est, halle de la Gare de l’Est)."
+  ],
+  [
+   "Trains {0} (half): {1} min to Paris Nord-Est, Gare de l’Est hall, then {2} min on the train: {3} min.",
+   "Trains {0} (la moitié) : {1} min jusqu’à Paris Nord-Est, halle de la Gare de l’Est, puis {2} min de train : {3} min."
+  ],
+  [
+   "Trains {0} (half): {1} min to Paris Nord-Est, Gare de l’Est hall.",
+   "Trains {0} (la moitié) : {1} min jusqu’à Paris Nord-Est, halle de la Gare de l’Est."
+  ],
+  [
+   "The next train, whichever half: {0} min on average.",
+   "Le prochain train, quelle que soit la moitié : {0} min en moyenne."
+  ],
+  [
+   "{0} of traffic",
+   "{0} du trafic"
+  ],
+  [
+   "{0},{1} min saved",
+   "{0},{1} min de moins"
+  ],
+  [
+   "Today: {0}",
+   "Aujourd’hui : {0}"
+  ],
+  [
+   "To the station entrance: {0},",
+   "Jusqu’à l’entrée de la gare : {0},"
+  ],
+  [
+   "Counting the ride and picking the train: {0},",
+   "En comptant le trajet et en choisissant le train : {0},"
+  ],
+  [
+   "{0},{1} saved",
+   "{0},{1} de moins"
+  ]
+ ]
+}

@@ -1,0 +1,280 @@
+{
+ "exact": {
+  "Regional express": "TER",
+  "Platform tracks": "Voies à quai",
+  "Platform track": "Longueur de voies à quai",
+  "Share of the platform track of Paris Nord-Est": "Part de la longueur de quais de Paris Nord-Est",
+  "Width at Magenta’s width per track": "Largeur, à la largeur par voie de Magenta",
+  "Cost with design, land and 15% risk": "Coût avec études, foncier et 15 % de provision pour risques",
+  "Hall": "Halle",
+  "Gare du Nord hall": "Halle de Gare du Nord",
+  "Gare de l’Est hall": "Halle de Gare de l’Est",
+  "Kept as an entrance to the station below.": "Conservée comme entrée de la gare située en dessous.",
+  "Kept as the entrance to the station below.": "Conservée comme entrée de la gare située en dessous.",
+  "Passage linking the two halls": "Passage reliant les deux halles",
+  "Passage from the hall above the platforms": "Passage partant de la halle, au-dessus des quais",
+  "Passage above the platforms": "Passage au-dessus des quais",
+  "Links the two halls. Escalators and lifts lead down from it to each platform at two points.": "Il relie les deux halles. Des escaliers mécaniques et des ascenseurs en descendent vers chaque quai, en deux points.",
+  "Leads from the hall. Escalators and lifts lead down from it to each platform at two points.": "Il part de la halle. Des escaliers mécaniques et des ascenseurs en descendent vers chaque quai, en deux points.",
+  "Assumption of this sketch": "Hypothèse de ce croquis",
+  "Passage linking the halls": "Passage reliant les halles",
+  "Passage above the platforms, linking the two halls": "Passage au-dessus des quais, reliant les deux halles",
+  "London: 1 track": "Londres : 1 voie",
+  "London: 1 track at a time": "Londres : 1 voie à la fois",
+  "One TGV track that can be closed off for London departures, with its control hall on the Gare du Nord side": "Une voie TGV qui peut être isolée pour les départs vers Londres, avec sa halle de contrôle côté Gare du Nord",
+  "London departures": "Départs vers Londres",
+  "Any one of the TGV tracks can be closed off for the time of a departure: passengers pass the border checks in a control hall on the Gare du Nord side and board in 10 to 15 minutes.": "N’importe laquelle des voies TGV peut être isolée le temps d’un départ : les voyageurs passent les contrôles aux frontières dans une halle de contrôle côté Gare du Nord et embarquent en 10 à 15 minutes.",
+  "Assumption; Amsterdam already works this way": "Hypothèse ; Amsterdam fonctionne déjà ainsi",
+  "← to the north and the east": "← vers le Nord et l’Est",
+  "← north, east": "← Nord, Est",
+  "← to Paris Nord-Est": "← vers Paris Nord-Est",
+  "to Lyon, Montparnasse, Saint-Lazare →": "vers Lyon, Montparnasse, Saint-Lazare →",
+  "south, west →": "sud, ouest →",
+  "to the south-east →": "vers le Sud-Est →",
+  "south-east →": "Sud-Est →",
+  "to the Atlantic →": "vers l’Atlantique →",
+  "Atlantic →": "Atlantique →",
+  "to Pont-Cardinet and the west →": "vers Pont-Cardinet et l’ouest →",
+  "west →": "ouest →",
+  "Junction towards Montparnasse": "Bifurcation vers Montparnasse",
+  "Junction towards Gare de Lyon": "Bifurcation vers Gare de Lyon",
+  "Street": "Rue",
+  "Zürich, Löwenstrasse, 2014": "Zurich, Löwenstrasse, 2014",
+  "4 tracks, 16 m under the terminal tracks": "4 voies, 16 m sous les voies de la gare terminus",
+  "Paris, RER D tunnel at Gare de Lyon": "Paris, tunnel du RER D à Gare de Lyon",
+  "Depth of the tunnel between Châtelet and Gare de Lyon": "Profondeur du tunnel entre Châtelet et Gare de Lyon",
+  "Bologna, high-speed station": "Bologne, gare à grande vitesse",
+  "4 tracks": "4 voies",
+  "Marseille Saint-Charles, planned": "Marseille Saint-Charles, en projet",
+  "4 tracks, platforms of 406 m": "4 voies, quais de 406 m",
+  "Paris, Magenta and Haussmann-Saint-Lazare, 1999": "Paris, Magenta et Haussmann-Saint-Lazare, 1999",
+  "RER E, 4 tracks each, about 30 m": "RER E, 4 voies chacune, environ 30 m",
+  "Lyon Part-Dieu, study of 2015": "Lyon Part-Dieu, étude de 2015",
+  "4 tracks, rails 31 m down": "4 voies, rails à 31 m de profondeur",
+  "This study, all four stations": "Cette étude, les quatre gares",
+  "Illustration used for the walking time; not a design. Platforms of 400, 350 and 225 m": "Illustration utilisée pour le temps de marche ; ce n’est pas un projet. Quais de 400, 350 et 225 m",
+  "RER E, 2 tracks; depth of the excavation": "RER E, 2 voies ; profondeur de la fouille",
+  "Munich, Marienhof, under construction": "Munich, Marienhof, en construction",
+  "About 40 m": "Environ 40 m",
+  "Terminal today": "Gare terminus aujourd’hui",
+  "Deep through station": "Gare traversante profonde",
+  "Passage: not counted": "Passage : non compté",
+  "Passage to the other way down: not counted": "Passage vers l’autre descente : non compté",
+  "Ticket gates": "Portiques",
+  "Getting down": "Descente",
+  "none": "aucune",
+  "Along the platform": "Le long du quai",
+  "Minutes": "Minutes",
+  "Deep station": "Gare profonde",
+  "So far": "Jusqu’ici",
+  "From hall to coach": "De la halle à la voiture",
+  "Reaching a deep platform takes about as long as walking down a terminal platform": "Rejoindre un quai profond prend à peu près autant de temps que longer un quai de gare terminus",
+  "1. In the hall": "1. Dans la halle",
+  "2. Through the gates": "2. Les portiques",
+  "3. Down": "3. La descente",
+  "4. Along the platform": "4. Le long du quai",
+  "Depth of the platforms": "Profondeur des quais"
+ },
+ "patterns": [
+  [
+   "{0}, {1} m ({2} tracks each way)",
+   "{0}, {1} m ({2} voies par sens)"
+  ],
+  [
+   "Regional express, {0} m",
+   "TER, {0} m"
+  ],
+  [
+   "{0}, for comparison",
+   "{0}, pour comparaison"
+  ],
+  [
+   "about {0} m: {1} tracks",
+   "environ {0} m : {1} voies"
+  ],
+  [
+   "about {0} m",
+   "environ {0} m"
+  ],
+  [
+   "Plan of the {0} station: {1} platform tracks between the halls of Gare du Nord and Gare de l’Est, with the {2} station of RER line E drawn to the same scale",
+   "Plan de {0} : {1} voies à quai entre les halles de Gare du Nord et de Gare de l’Est, avec la gare {2} de la ligne E du RER dessinée à la même échelle"
+  ],
+  [
+   "Plan of the {0} station: {1} platform tracks, entered from the hall at one end, with the junction towards the link to {2} at the city end",
+   "Plan de {0} : {1} voies à quai, avec l’entrée par la halle à un bout, et la bifurcation vers la liaison directe vers {2} à l’extrémité côté centre"
+  ],
+  [
+   "Plan of the {0} station: {1} platform tracks, entered from the hall at one end, with the {2} station of RER line E drawn to the same scale",
+   "Plan de {0} : {1} voies à quai, avec l’entrée par la halle à un bout, et la gare {2} de la ligne E du RER dessinée à la même échelle"
+  ],
+  [
+   "Plan of the {0} station: {1} platform tracks, entered from the hall at one end",
+   "Plan de {0} : {1} voies à quai, avec l’entrée par la halle à un bout"
+  ],
+  [
+   "Kept as an entrance, {0} m from Gare du Nord.",
+   "Conservée comme entrée, à {0} m de Gare du Nord."
+  ],
+  [
+   "The hall of {0}",
+   "La halle de {0}"
+  ],
+  [
+   "{0}: {1} tracks, {2} m, {3} tracks each way",
+   "{0} : {1} voies, {2} m, {3} voies par sens"
+  ],
+  [
+   "{0}: {1} tracks, {2} m",
+   "{0} : {1} voies, {2} m"
+  ],
+  [
+   "{0} tracks on {1} island platforms, {2} m long",
+   "{0} voies de part et d’autre de {1} quais centraux de {2} m"
+  ],
+  [
+   "{0} m of platform track",
+   "{0} m de voies à quai"
+  ],
+  [
+   "Dedicated by direction: {0} tracks each way, north, east on one side, Lyon, Montparnasse on the other",
+   "Spécialisées par direction : {0} voies par sens, vers le Nord et l’Est d’un côté, vers Lyon et Montparnasse de l’autre"
+  ],
+  [
+   "Dedicated by direction: {0} tracks each way, Nord-Est on one side, south-east on the other",
+   "Spécialisées par direction : {0} voies par sens, vers Nord-Est d’un côté, vers le Sud-Est de l’autre"
+  ],
+  [
+   "Dedicated by direction: {0} tracks each way, Nord-Est on one side, Atlantic on the other",
+   "Spécialisées par direction : {0} voies par sens, vers Nord-Est d’un côté, vers l’Atlantique de l’autre"
+  ],
+  [
+   "Dedicated by direction: {0} tracks each way, {1} on one side, {2} on the other",
+   "Spécialisées par direction : {0} voies par sens, {1} d’un côté, {2} de l’autre"
+  ],
+  [
+   "The fourth track each way also takes the regional express trains (TER) that run through to Paris Nord-Est: busy {0} of {1} minutes in the peak hour",
+   "La quatrième voie de chaque sens accueille aussi les TER qui continuent vers Paris Nord-Est : occupée {0} minutes sur {1} à l’heure de pointe"
+  ],
+  [
+   "{0}, {1} tracks of {2} m",
+   "{0}, {1} voies de {2} m"
+  ],
+  [
+   "Junction to the link to {0}",
+   "Bifurcation de la liaison vers {0}"
+  ],
+  [
+   "Junction towards the direct link to {0}: not designed",
+   "Bifurcation de la liaison directe vers {0} : non conçue"
+  ],
+  [
+   "Junction at the city end towards the direct link to {0}, not designed",
+   "Bifurcation de la liaison directe vers {0}, côté centre, non conçue"
+  ],
+  [
+   "At the city end, the TGV tracks fork: towards Paris Nord-Est, and towards the direct link to {0} ({1} km). Its geometry has not been designed and is a study point.",
+   "À l’extrémité côté centre, les voies TGV bifurquent : vers Paris Nord-Est, et vers la liaison directe menant à {0} ({1} km). Sa géométrie n’a pas été conçue et reste un point à étudier."
+  ],
+  [
+   "{0}, RER E, for scale",
+   "{0}, RER E, pour l’échelle"
+  ],
+  [
+   "{0} tracks, {1} m long,",
+   "{0} voies, {1} m de long,"
+  ],
+  [
+   "{0} m wide, {1} m down",
+   "{0} m de large, {1} m de profondeur"
+  ],
+  [
+   "{0} station of RER line E, for scale",
+   "Gare {0} de la ligne E du RER, pour l’échelle"
+  ],
+  [
+   "{0}, RER line E, opened in 1999",
+   "{0}, ligne E du RER, ouverte en 1999"
+  ],
+  [
+   "{0} tracks in a cavern {1} m long and about {2} m wide, about {3} m down. It lies between the two halls.",
+   "{0} voies dans une caverne de {1} m de long et d’environ {2} m de large, à environ {3} m de profondeur. Elle se trouve entre les deux halles."
+  ],
+  [
+   "{0} tracks in a cavern {1} m long and about {2} m wide, about {3} m down. It lies close to the station.",
+   "{0} voies dans une caverne de {1} m de long et d’environ {2} m de large, à environ {3} m de profondeur. Elle se trouve tout près de la gare."
+  ],
+  [
+   "Cross-section under Gare du Nord and Gare de l’Est: metro, RER lines B and D, the Magenta station 30 m down and the new platforms about {0} m down",
+   "Coupe sous Gare du Nord et Gare de l’Est : métro, lignes B et D du RER, la gare Magenta à 30 m de profondeur et les nouveaux quais à environ {0} m de profondeur"
+  ],
+  [
+   "Cross-section under Gare de Lyon: metro line 1, RER line D 20 m down, RER line A below it, metro line 14 and the new platforms about {0} m down",
+   "Coupe sous Gare de Lyon : ligne 1 du métro, ligne D du RER à 20 m de profondeur, ligne A du RER en dessous, ligne 14 du métro et les nouveaux quais à environ {0} m de profondeur"
+  ],
+  [
+   "Cross-section under Montparnasse: platforms one level above the street under a slab with a garden, metro lines, old quarries and the new platforms about {0} m down",
+   "Coupe sous Montparnasse : quais un niveau au-dessus de la rue, sous une dalle portant un jardin, lignes de métro, anciennes carrières et nouveaux quais à environ {0} m de profondeur"
+  ],
+  [
+   "Cross-section under Saint-Lazare: the surface station, which stays, metro lines, line 14, the Haussmann-Saint-Lazare station of RER line E about 30 m down and the new platforms about {0} m down",
+   "Coupe sous Saint-Lazare : la gare de surface, qui reste, les lignes de métro, la ligne 14, la gare Haussmann-Saint-Lazare de la ligne E du RER à environ 30 m de profondeur et les nouveaux quais à environ {0} m de profondeur"
+  ],
+  [
+   "Two side views: a terminal today, where the passenger walks {0} m along the platform, and a deep through station, where the passenger goes down {1} m and walks {2} m",
+   "Deux vues de côté : une gare terminus aujourd’hui, où le voyageur marche {0} m le long du quai, et une gare traversante profonde, où il descend de {1} m puis marche {2} m"
+  ],
+  [
+   "Average coach: {0} m from the gates",
+   "Voiture moyenne : à {0} m des portiques"
+  ],
+  [
+   "Average coach: {0} m from a way down",
+   "Voiture moyenne : à {0} m d’une descente"
+  ],
+  [
+   "Average coach: {0} m away",
+   "Voiture moyenne : à {0} m"
+  ],
+  [
+   "With platforms {0} m down, reaching the coach takes {1} minutes longer than in a terminal today",
+   "Avec des quais à {0} m de profondeur, rejoindre la voiture prend {1} min de plus qu’aujourd’hui dans une gare terminus"
+  ],
+  [
+   "With platforms {0} m down, reaching the coach takes {1} minutes less than in a terminal today",
+   "Avec des quais à {0} m de profondeur, rejoindre la voiture prend {1} min de moins qu’aujourd’hui dans une gare terminus"
+  ],
+  [
+   "With platforms {0} m down, the deep station takes the same time as the terminal. Each 10 m of depth adds about {1} seconds of escalator.",
+   "Avec des quais à {0} m de profondeur, la gare profonde prend autant de temps que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {1} secondes d’escalier mécanique."
+  ],
+  [
+   "With platforms {0} m down, the deep station takes the same time as the terminal. Each 10 m of depth adds about {1} seconds of escalator. The model uses {2} m.",
+   "Avec des quais à {0} m de profondeur, la gare profonde prend autant de temps que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {1} secondes d’escalier mécanique. Le modèle retient {2} m."
+  ],
+  [
+   "With platforms {0} m down, the deep station takes {1} minutes more than the terminal. Each 10 m of depth adds about {2} seconds of escalator.",
+   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de plus que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique."
+  ],
+  [
+   "With platforms {0} m down, the deep station takes {1} minutes more than the terminal. Each 10 m of depth adds about {2} seconds of escalator. The model uses {3} m.",
+   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de plus que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique. Le modèle retient {3} m."
+  ],
+  [
+   "With platforms {0} m down, the deep station takes {1} minutes less than the terminal. Each 10 m of depth adds about {2} seconds of escalator.",
+   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de moins que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique."
+  ],
+  [
+   "With platforms {0} m down, the deep station takes {1} minutes less than the terminal. Each 10 m of depth adds about {2} seconds of escalator. The model uses {3} m.",
+   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de moins que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique. Le modèle retient {3} m."
+  ],
+  [
+   "The model’s illustration uses {0} m",
+   "L’illustration du modèle retient {0} m"
+  ],
+  [
+   "TER, {0} tracks of {1} m",
+   "TER, {0} voies de {1} m"
+  ]
+ ]
+}

@@ -161,7 +161,7 @@ PTS.section('timetable', function (root) {
     const pr = function (ll) { return [(ll[0] - view.lon[0]) * k * sc, (view.lat[1] - ll[1]) * sc]; };
     const dp = function (pts, close) { return pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' ') + (close ? 'Z' : ''); };
     const svg = s('svg', { class: 'draw tt-mapsvg', viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
-      'aria-label': state.layer === 'all' ? 'Animated schematic map of every train in the tunnels: high-speed trains as squares, regional express trains as ringed dots, suburban lines N and H as dots, standing at their platforms and moving along the tunnels at the minutes of the timetable.' : 'Animated schematic map of the three stations and their tunnels. Each dot is a high-speed train; dots stand side by side at the platforms of each station and move along the tunnels at the minutes of the timetable.' });
+      'aria-label': state.layer === 'all' ? 'Animated schematic map of every train in the tunnels: high-speed trains as squares, regional express trains as ringed dots, the suburban lines RER G and RER F as dots, standing at their platforms and moving along the tunnels at the minutes of the timetable.' : 'Animated schematic map of the three stations and their tunnels. Each dot is a high-speed train; dots stand side by side at the platforms of each station and move along the tunnels at the minutes of the timetable.' });
     svg.appendChild(s('path', { class: 'tt-land', d: G.outline.map(function (r) { return dp(r.map(pr), true); }).join('') }));
     svg.appendChild(s('path', { class: 'tt-seine', d: dp(P.seine.map(pr)) }));
     // routes, in screen points
@@ -271,8 +271,8 @@ PTS.section('timetable', function (root) {
   const M = PTS.data.model;
   const REG = {
     TER: { c: 'var(--neutral-mark)', name: 'Regional express (TER), in the TGV tunnels', shape: 'ring' },
-    N: { c: 'color-mix(in srgb, #00a092 85%, var(--ink))', name: 'Suburban line N (formerly P and N)', shape: 'sub' },          // Île-de-France colours of lines N and H
-    H: { c: 'color-mix(in srgb, #8d5e2a 72%, var(--ink))', name: 'Suburban line H (formerly H, K and L)', shape: 'sub' }
+    N: { c: 'color-mix(in srgb, #00a092 85%, var(--ink))', name: 'RER G (today’s lines P and N)', shape: 'sub' },          // Île-de-France colours of lines N and H
+    H: { c: 'color-mix(in srgb, #8d5e2a 72%, var(--ink))', name: 'RER F (today’s lines H, K and L)', shape: 'sub' }
   };
   const SUB_STOP = 1, SUB_RUN = { MP: M.TR.M - 1, SL: M.TR.SL - 1 };
   const REGT = T.table && T.table.grid && T.table.grid.regional;            // the regional express hour of each scenario
@@ -340,7 +340,7 @@ PTS.section('timetable', function (root) {
       const ex = Math.abs(o.sl.u[0]) * hl + Math.abs(o.sl.n[0]) * n * g2 / 2;      // half the box's width on screen
       svg.insertBefore(s('text', { class: 'tt-sname', x: o.sl.at[0] - ex - 6, y: o.sl.at[1] + 4, 'text-anchor': 'end', text: 'Saint-Lazare' }), o.g);
     }
-    o.edge(lineH, 'Line H: west', 'start', 6, -6);
+    o.edge(lineH, 'RER F: west', 'start', 6, -6);
     const spot = function (t, j) {                                          // half the tracks for each direction: the timetable's track, or trains in turn
       const pts = tracksAt[t.stops[j].st][t.kind], half = Math.max(1, Math.floor(pts.length / 2)), k = t.stops[j].track === undefined ? t.track : t.stops[j].track;
       return pts[pts.length === 1 ? 0 : (t.fwd ? 0 : half) + (k % half)];
@@ -422,7 +422,7 @@ PTS.section('timetable', function (root) {
     const rows = [];
     Object.keys(NAME).forEach(function (k) {
       const a = E.pair[k], b = E.pair[k.charAt(1) + k.charAt(0)], v = (a + b) / 2, n = count(k.charAt(0), k.charAt(1)) || 1, ideal = 30 / n;
-      rows.push({ label: NAME[k] + ' <small>' + n0(n) + ' direct trains an hour each way</small>', value: v, mark: ideal, text: F.n(v, 1) + ' min', color: 'var(--s3)',
+      rows.push({ label: NAME[k] + ' <small>' + n0(n) + ' direct train' + (n === 1 ? '' : 's') + ' an hour each way</small>', value: v, mark: ideal, text: F.n(v, 1) + ' min', color: 'var(--s3)',
         tip: '<b>' + NAME[k] + '</b><br>Average wait for the next direct train: ' + F.n(a, 1) + ' and ' + F.n(b, 1) + ' minutes in the two directions<br><small>With trains exactly evenly spaced: ' + F.n(ideal, 1) + '</small>' });
     });
     PTS.chart.bars($('#tt-pairs'), { rows: rows, max: 25, fmt: function (v) { return F.n(v, 1) + ' min'; } });

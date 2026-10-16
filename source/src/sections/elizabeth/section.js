@@ -238,7 +238,7 @@ PTS.section('elizabeth', function (root) {
   PTS.onResize(stageHost, drawStage);
   showStage(stage);
 
-  const pctFmt = function (v) { return F.n(v, 0) + '%'; };
+  const pctFmt = function (v) { return F.pct(v / 100); };
   const rail = D.origin.slice(0, 4), onRail = rail.reduce(function (a, r) { return a + r.value; }, 0);
   C.bars($('#el-origin'), { compact: true, fmt: pctFmt, max: 62, rows: rail.map(function (r) { return { label: r.label, value: r.value, color: 'var(--s1)' }; })
     .concat([{ label: 'Already on rail, in all', value: onRail, color: 'var(--s1)', hl: true }, { sep: true },
@@ -258,10 +258,10 @@ PTS.section('elizabeth', function (root) {
   const ratio = function (v) { return F.n(v, 2); }, RMAX = 4, rpos = function (v) { return (v / RMAX * 100) + '%'; };
   const BCR = [
     { label: 'At approval', sub: '2011', range: [3.09, 3.53], text: '1.97; 3.09 to 3.53', marks: [
-      [1.97, 'el-a', 'Transport benefits only: <b>1.97</b>'],
+      [1.97, 'el-a', 'Transport benefits only: <b>' + ratio(1.97) + '</b>'],
       [3.09, 'el-w', 'With wider benefits: <b>3.09 to 3.53</b>'], [3.53, 'el-w', 'With wider benefits: <b>3.09 to 3.53</b>']] },
     { label: 'After the cost rise', sub: '2020', text: '1.37; 1.88', marks: [
-      [1.37, 'el-a', 'Transport benefits only: <b>1.37</b>'], [1.88, 'el-w', 'With wider benefits: <b>1.88</b>']] },
+      [1.37, 'el-a', 'Transport benefits only: <b>' + ratio(1.37) + '</b>'], [1.88, 'el-w', 'With wider benefits: <b>' + ratio(1.88) + '</b>']] },
     { label: 'With the traffic measured since 2022', text: 'not published', marks: [] }];
   // the same ratio on the basis of this study: benefits over the gross cost (capital plus running), and this project's own readings
   const PV = D.london.pv, FC = PTS.data.finance.cases, gross = PV.capex + PV.opex;
@@ -304,7 +304,7 @@ PTS.section('elizabeth', function (root) {
       Object.assign({ label: 'Paris, this study', value: paris, color: PAR }, (extra && extra.paris) || {})] }));
   };
   two('#el-scale-tunnel', function (v) { return F.n(v, v % 1 ? 1 : 0) + ' km'; }, L.tunnel_km, cP.tunnel_km,
-    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.tunnel_km, 1) + ' km of twin-track tunnel: ' + F.n(M.tunnels.km.tgv, 1) + ' km for high-speed trains with the ' + F.n(M.link_km, 0) + ' km direct link, which the regional express trains share, ' + F.n(M.tunnels.km.n, 1) + ' for line N and ' + F.n(M.tunnels.km.h, 1) + ' for line H' } });
+    { paris: { tip: '<b>Paris</b><br>' + F.n(cP.tunnel_km, 1) + ' km of twin-track tunnel: ' + F.n(M.tunnels.km.tgv, 1) + ' km for high-speed trains with the ' + F.n(M.link_km, 0) + ' km direct link, which the regional express trains share, ' + F.n(M.tunnels.km.n, 1) + ' for RER G and ' + F.n(M.tunnels.km.h, 1) + ' for RER F' } });
   two('#el-scale-platform', function (v) { return F.n(v) + ' m'; }, L.platform_m, cP.platform_total,
     { paris: { tip: '<b>Paris</b><br>' + F.n(cP.platform_total) + ' m of platform track on ' + Object.keys(cP.tracks).reduce(function (a, k) { return a + cP.tracks[k]; }, 0) + ' tracks in four stations, Saint-Lazare included' } });
   two('#el-scale-cost', function (v) { return F.bn(v, v % 1 ? 1 : 0); }, L.cost_eur, cP.total, { lon: { text: 'about €' + L.cost_eur + 'bn' },
@@ -330,8 +330,8 @@ PTS.section('elizabeth', function (root) {
   sizeRow('Paris Nord-Est, high-speed trains', ne.hs + ' tracks of ' + len.hs + ' m', ne.hs, len.hs);
   sizeRow('Paris Nord-Est, regional express trains', ne.ter + ' tracks of ' + len.ter + ' m', ne.ter, len.ter);
   const sub = M.sub_tracks['Paris Nord-Est'];
-  sizeRow('Paris Nord-Est, line N', sub.n + ' tracks of ' + len.sub + ' m', sub.n, len.sub);
-  sizeRow('Paris Nord-Est, line H', sub.h + ' tracks of ' + len.sub + ' m', sub.h, len.sub);
+  sizeRow('Paris Nord-Est, RER G', sub.n + ' tracks of ' + len.sub + ' m', sub.n, len.sub);
+  sizeRow('Paris Nord-Est, RER F', sub.h + ' tracks of ' + len.sub + ' m', sub.h, len.sub);
   size.appendChild(h('div', { class: 'lab ruler-lab' }, h('span', { text: 'Scale' })));
   size.appendChild(h('div', { class: 'ruler', 'aria-hidden': 'true' }, [0, 100, 200, 300, 400].map(function (v) { return h('span', { style: { left: (v / 4) + '%' }, text: v ? v + ' m' : '0' }); })));
   $('#el-size').appendChild(size);

@@ -1,0 +1,83 @@
+{
+ "presentation": {
+  "nav_fr": "Présentation",
+  "heading_fr": "Hexagone³"
+ },
+ "summary": {
+  "nav_fr": "Résumé",
+  "heading_fr": "Des gares traversantes sous Paris"
+ },
+ "why": {
+  "nav_fr": "Le problème",
+  "heading_fr": "Pourquoi Paris arrête tous les trains"
+ },
+ "project": {
+  "nav_fr": "Le projet",
+  "heading_fr": "Ce qui serait construit"
+ },
+ "stations": {
+  "nav_fr": "Les gares",
+  "heading_fr": "Comment les gares seraient organisées"
+ },
+ "works": {
+  "nav_fr": "Travaux et étapes",
+  "heading_fr": "Les travaux, les changements dans les gares actuelles et les étapes"
+ },
+ "service": {
+  "nav_fr": "Trains et quais",
+  "heading_fr": "Quels trains circulent où"
+ },
+ "access": {
+  "nav_fr": "Rejoindre la gare",
+  "heading_fr": "Combien de temps pour rejoindre une gare où votre train s’arrête"
+ },
+ "timetable": {
+  "nav_fr": "L’horaire",
+  "heading_fr": "L’horaire : une heure cadencée dans les trois gares"
+ },
+ "crossing": {
+  "nav_fr": "Traverser Paris",
+  "heading_fr": "Traverser Paris, en TGV et en train régional"
+ },
+ "cost": {
+  "nav_fr": "Coût",
+  "heading_fr": "Ce que coûterait la construction"
+ },
+ "traffic": {
+  "nav_fr": "Trafic",
+  "heading_fr": "Combien de voyageurs en plus"
+ },
+ "financing": {
+  "nav_fr": "Financement",
+  "heading_fr": "Payer l’exploitation, payer la construction"
+ },
+ "economy": {
+  "nav_fr": "Bilan socio-économique",
+  "heading_fr": "Ce que le pays y gagne"
+ },
+ "risks": {
+  "nav_fr": "Risques et prochaines étapes",
+  "heading_fr": "Ce qui pourrait changer la réponse, et ce qu’il faut vérifier"
+ },
+ "zurich": {
+  "nav_fr": "Gare centrale de Zurich",
+  "heading_fr": "Zurich : un terminus devenu gare traversante"
+ },
+ "elizabeth": {
+  "nav_fr": "Elizabeth line, Londres",
+  "heading_fr": "L’Elizabeth line : relier les deux côtés d’une capitale"
+ },
+ "pulse": {
+  "nav_fr": "L’horaire suisse",
+  "heading_fr": "Le cadencement à la suisse : chaque train rencontre tous les autres"
+ },
+ "method": {
+  "nav_fr": "Méthode et hypothèses",
+  "heading_fr": "Comment les chiffres sont obtenus"
+ },
+ "sources": {
+  "nav_fr": "Sources",
+  "heading_fr": "Sources"
+ },
+ "title_fr": "Les gares traversantes de Paris"
+}

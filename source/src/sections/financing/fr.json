@@ -1,0 +1,229 @@
+{
+ "exact": {
+  "Running and maintaining tunnels and stations": "Exploitation et entretien des tunnels et des gares",
+  "Renewal of rail systems, set aside each year": "Renouvellement des systèmes ferroviaires, provisionné chaque année",
+  "Renewal of rail systems": "Renouvellement des systèmes ferroviaires",
+  "Extra running of regional trains": "Circulation supplémentaire des trains régionaux",
+  "Charge on high-speed passengers": "Redevance sur les voyageurs à grande vitesse",
+  "Track charges on new TGV journeys": "Péages ferroviaires sur les nouveaux voyages TGV",
+  "New Navigo pass holders": "Nouveaux abonnés Navigo",
+  "Fares from new regional express passengers": "Recettes des nouveaux voyageurs TER",
+  "Fee paid by the regional transport authority": "Redevance versée par l’autorité régionale des transports",
+  "Shops in the new station halls": "Commerces dans les nouvelles halles",
+  "Share of the operators’ saving on trainsets": "Part de l’économie de rames des opérateurs",
+  "Operators’ saving on trainsets, share": "Économie de rames des opérateurs, part récupérée",
+  "Charge on regional express passengers": "Redevance sur les voyageurs des TER",
+  "Surplus of the operations account": "Excédent du compte d’exploitation",
+  "Regional business tax package": "Bouquet de taxes régionales sur les entreprises",
+  "Tax on businesses in the region": "Taxe sur les entreprises de la région",
+  "Payroll transport levy": "Versement mobilité",
+  "European grant": "Subvention européenne",
+  "Grants from the State, the Region and the City": "Subventions de l’État, de la Région et de la Ville",
+  "More than needed": "Au-delà du besoin",
+  "Running costs": "Coûts d’exploitation",
+  "Income": "Recettes",
+  "Repayment of construction": "Remboursement de la construction",
+  "Shortfall of operations": "Déficit d’exploitation",
+  "To find each year": "À trouver chaque année",
+  "Where it comes from": "D’où vient l’argent",
+  "Total running costs": "Total des coûts d’exploitation",
+  "Total income": "Total des recettes",
+  "Running costs as on the first RER E section": "Coûts d’exploitation comme sur le premier tronçon du RER E",
+  "Central case, with the income package": "Cas central, avec le bouquet de recettes",
+  "Running costs at the low end": "Coûts d’exploitation au bas de la fourchette",
+  "Shops at full yield": "Commerces à plein rendement",
+  "TGV charge alone: no regional express charge, no trainset share": "Redevance TGV seule : ni redevance TER, ni part de l’économie de rames",
+  "No charge on any passenger": "Aucune redevance sur aucun voyageur",
+  "Covered:": "Couverture :",
+  "Paris-region passenger who chooses another station": "Voyageur francilien qui choisit une autre gare",
+  "Passenger crossing Paris": "Voyageur qui traverse Paris",
+  "Average gain in time": "Gain de temps moyen",
+  "Charge": "Redevance",
+  "Money from the charge by level of charge": "Recettes de la redevance selon son niveau",
+  "High-speed journeys added by the project by level of charge": "Voyages à grande vitesse ajoutés par le projet selon le niveau de la redevance",
+  "Charge for a station the line did not serve, euros": "Redevance pour une gare que la ligne ne desservait pas, en euros",
+  "Today’s traffic": "Trafic d’aujourd’hui",
+  "Collected": "Perçu",
+  "Collected:": "Perçu :",
+  "Of which from the Paris region": "Dont l’Île-de-France",
+  "Of which from the Paris region:": "Dont l’Île-de-France :",
+  "All added journeys": "Tous les voyages ajoutés",
+  "All added journeys:": "Tous les voyages ajoutés :",
+  "Across Paris": "À travers Paris",
+  "Across Paris:": "À travers Paris :",
+  "9%, as measured in London": "9 %, comme mesuré à Londres",
+  "27%, as in Sydney": "27 %, comme à Sydney",
+  "100%, upper bound": "100 %, borne haute",
+  "bn": "Md",
+  "None": "Aucune",
+  "of running costs covered": "des coûts d’exploitation couverts",
+  "of grants needed": "de subventions nécessaires",
+  "of the yearly cost returned in benefits": "du coût annuel rendu en avantages",
+  "High-speed passengers, through the charge": "Voyageurs à grande vitesse, par la redevance",
+  "Regional passengers and their transport authority": "Voyageurs régionaux et leur autorité des transports",
+  "Train operators": "Opérateurs ferroviaires",
+  "Shops": "Commerces",
+  "Businesses of the region, through taxes": "Entreprises de la région, par les impôts",
+  "Europe": "Europe",
+  "Taxpayers, through grants": "Contribuables, par les subventions",
+  "Yearly cost of both accounts": "Coût annuel des deux comptes",
+  "Journeys the project would add with no charge": "Voyages que le projet ajouterait sans redevance",
+  "Held back by the charge": "Retenus par la redevance",
+  "Change against today": "Écart par rapport à aujourd’hui",
+  "Money collected by the TGV charge": "Recettes de la redevance TGV",
+  "Money collected by the regional express charge": "Recettes de la redevance TER",
+  "New Navigo passes": "Nouveaux abonnements Navigo",
+  "Construction cost": "Coût de construction",
+  "New traffic": "Trafic nouveau",
+  "Low": "Bas",
+  "Central": "Central",
+  "High": "Haut",
+  "Growth of traffic and benefits each year": "Croissance annuelle du trafic et des avantages",
+  "Zero in the central case; 1.5% is the high test": "Nulle dans le cas central ; 1,5 % est le test haut",
+  "Charge for boarding or leaving at a station the line did not serve": "Redevance pour monter ou descendre dans une gare que la ligne ne desservait pas",
+  "Nothing at the line’s own station. A metro ticket costs €2.55; passengers who change inside one station pay it twice": "Rien à la gare propre de la ligne. Un ticket de métro coûte 2,55 € ; les voyageurs qui changent dans une même gare la paient deux fois",
+  "Charge for crossing Paris on a direct train": "Redevance pour traverser Paris en train direct",
+  "Fall in crossing traffic when fares rise 1%": "Baisse du trafic de traversée quand les prix augmentent de 1 %",
+  "French experts use 0.7; perhaps 0.5 where prices vary with demand or the charge is billed to operators": "Les experts français retiennent 0,7 ; peut-être 0,5 quand les prix varient avec la demande ou quand la redevance est facturée aux opérateurs",
+  "Charge for getting off at the second station": "Redevance pour descendre à la deuxième gare",
+  "Charge for crossing Paris on a regional express train": "Redevance pour traverser Paris en TER",
+  "Running cost of tunnels and stations": "Coût d’exploitation des tunnels et des gares",
+  "New suburban journeys made by new pass holders": "Part des nouveaux voyages de banlieue faits par de nouveaux abonnés",
+  "Share of operators’ trainset saving recovered": "Part de l’économie de rames des opérateurs récupérée",
+  "Half in the central case": "La moitié dans le cas central",
+  "Share of shop rents counted as new": "Part des loyers commerciaux comptée comme nouvelle",
+  "Half in the central case; 100% is the full yield": "La moitié dans le cas central ; 100 % correspond au plein rendement",
+  "Tax on businesses in the region, a year": "Taxe sur les entreprises de la région, par an",
+  "The Grand Paris Express receives €0.90bn a year": "Le Grand Paris Express reçoit 0,90 Md€ par an",
+  "Rise in the payroll transport levy": "Hausse du versement mobilité",
+  "About €160m a year per 0.1 point in Paris and the inner ring": "Environ 160 M€ par an par tranche de 0,1 point à Paris et en petite couronne",
+  "Interest rate above inflation": "Taux d’intérêt au-dessus de l’inflation",
+  "Official discount rates run from 3.2% to 4.6%": "Les taux d’actualisation officiels vont de 3,2 % à 4,6 %",
+  "Central case": "Cas central",
+  "TGV charge alone": "Redevance TGV seule",
+  "TGV charges doubled": "Redevances TGV doublées",
+  "Everything favourable": "Tout favorable"
+ },
+ "patterns": [
+  [
+   "0,{0} million",
+   "0,{0} million"
+  ],
+  [
+   "1,{0} million",
+   "1,{0} million"
+  ],
+  [
+   "+0,{0} million",
+   "+0,{0} million"
+  ],
+  [
+   "+1,{0} million",
+   "+1,{0} million"
+  ],
+  [
+   "-0,{0} million",
+   "-0,{0} million"
+  ],
+  [
+   "-1,{0} million",
+   "-1,{0} million"
+  ],
+  [
+   "{0} million",
+   "{0} millions"
+  ],
+  [
+   "({0} of this bar)",
+   "({0} de cette barre)"
+  ],
+  [
+   "after {0} of track charges lost",
+   "après {0} de péages ferroviaires perdus"
+  ],
+  [
+   "Operations: income covers {0} of the running costs",
+   "Exploitation : les recettes couvrent {0} des coûts d’exploitation"
+  ],
+  [
+   "Capital: after a new tax on businesses, grants of {0} remain to be found",
+   "Investissement : après une nouvelle taxe sur les entreprises, il reste {0} de subventions à trouver"
+  ],
+  [
+   "Income {0} against running costs {1}",
+   "Recettes de {0} pour des coûts d’exploitation de {1}"
+  ],
+  [
+   "Charge of €{0}",
+   "Redevance de {0} €"
+  ],
+  [
+   "€{0}m a year",
+   "{0} M€ par an"
+  ],
+  [
+   "€{0}m",
+   "{0} M€"
+  ],
+  [
+   "{0}, used here",
+   "{0}, retenu ici"
+  ],
+  [
+   "{0} new passes",
+   "{0} nouveaux abonnements"
+  ],
+  [
+   "Running costs covered: {0}",
+   "Coûts d’exploitation couverts : {0}"
+  ],
+  [
+   "Surplus of {0} a year",
+   "Excédent de {0} par an"
+  ],
+  [
+   "Shortfall of {0} a year",
+   "Déficit de {0} par an"
+  ],
+  [
+   "Against a construction cost of {0}; {1} of it covers the shortfall of operations. Public money in all: {2} of the cost",
+   "Pour un coût de construction de {0}, dont {1} pour couvrir le déficit d’exploitation. Argent public au total : {2} du coût"
+  ],
+  [
+   "Against a construction cost of {0}. Public money in all: {1} of the cost",
+   "Pour un coût de construction de {0}. Argent public au total : {1} du coût"
+  ],
+  [
+   "The sources chosen exceed the need by {0} a year",
+   "Les sources retenues dépassent le besoin de {0} par an"
+  ],
+  [
+   "Yearly benefits {0} against a yearly cost of {1}: the complete count, moved with the assumptions above",
+   "Avantages annuels de {0} pour un coût annuel de {1} : le bilan complet, recalculé avec les hypothèses ci-dessus"
+  ],
+  [
+   "Users, operators and shops carry {0}, taxes on businesses {1}, grants {2}.",
+   "Les usagers, les opérateurs et les commerces en portent {0}, les impôts sur les entreprises {1}, les subventions {2}."
+  ],
+  [
+   "The time gained is counted at about €{0}; {1} million passengers a year pay it",
+   "Le temps gagné est valorisé à environ {0} € ; {1} millions de voyageurs par an la paient"
+  ],
+  [
+   "{0} million passengers a year; no loss of traffic modelled",
+   "{0} millions de voyageurs par an ; aucune perte de trafic modélisée"
+  ],
+  [
+   "{0} million passengers a year, an assumption",
+   "{0} millions de voyageurs par an, une hypothèse"
+  ],
+  [
+   "{0} of the central rate",
+   "{0} du coût central"
+  ],
+  [
+   "About {0}: tunnels as on the RER network; about {1}: everything as on the first RER E section",
+   "Environ {0} : les tunnels comme sur le réseau RER ; environ {1} : tout comme sur le premier tronçon du RER E"
+  ]
+ ]
+}

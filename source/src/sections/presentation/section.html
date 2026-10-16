@@ -4,9 +4,9 @@
 <section class="pz-slide pz-hero" id="presentation.hero" data-dot="The project">
   <svg class="pz-hero-bg" id="pz-hero-svg" aria-hidden="true"></svg>
   <div class="pz-in">
-    <p class="pz-kicker">The rail triangle under Paris · a pre-feasibility case</p>
-    <h1 class="pz-title">Paris <span>Delta</span></h1>
-    <p class="pz-sub">Three through stations under Paris, joined by three tunnels. No main-line train ends in Paris any more: every train runs through, stops twice and goes on.</p>
+    <p class="pz-kicker">The rail connector of all France, under Paris</p>
+    <h1 class="pz-title" aria-label="Hexagone cube">Hexagone<sup>3</sup></h1>
+    <p class="pz-sub">A connector for every region of France. Three through stations under Paris, joined by three tunnels, link every line to every other, with the regular, reliable timetable that made the Swiss railways a model. And the capital gets a rare chance: four great parks, freed land and quicker journeys.</p>
     <div class="pz-money">
       <div class="pz-big"><b data-count="{{ m.cost.total | 1 }}" data-pre="€" data-post="bn" data-d="1">€{{ m.cost.total | 1 }}bn</b><span>to build, {{ m.rates.risk | pct }} for risk included</span></div>
       <div class="pz-big good"><b data-count="{{ d.french.study.central.benefit_total | 2 }}" data-pre="€" data-post="bn" data-d="2">€{{ d.french.study.central.benefit_total | 2 }}bn</b><span>back every year in benefits, {{ d.french.study.central.cover | pct }} of its yearly bill of €{{ d.french.study.central.yearly_cost | 2 }}bn</span></div>
@@ -15,12 +15,13 @@
     </div>
     <div class="pz-flash">
       <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post=" min" data-d="0">{{ m.run_min | 0 }} min</b><span>from any of the three stations to any other</span></div>
-      <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post=" min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }} min</b><span>on average to reach your TGV from anywhere in Paris, up to {{ pts.max_gain.station | 1 }}</span></div>
-      <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha | 0 }}" data-post=" ha" data-d="0">{{ d.french.parks.central.ha | 0 }} ha</b><span>of new parks where the tracks were, in four big parks</span></div>
+      <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post=" min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }} min</b><span>on average to reach your TGV from anywhere in Paris, up to {{ pts.max_gain.station | 1 }} min less</span></div>
+      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>terminals rebuilt deep underground: the surface is freed</span></div>
+      <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>the Buttes-Chaumont in new parks, in four great parks</span></div>
       <div class="pz-chip"><b data-count="{{ m.conn.central | 1 }}" data-post="M" data-d="1">{{ m.conn.central | 1 }}M</b><span>passengers a year who no longer cross Paris by metro between two trains</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>trips a day between suburbs on two sides of Paris on a through line, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>
-      <div class="pz-chip"><b data-pair="Lille,Bordeaux" data-what="project"></b><span>Lille to Bordeaux with no change, every hour, instead of <i data-pair="Lille,Bordeaux" data-what="today"></i></span></div>
     </div>
+    <div class="pz-trips" id="pz-trips" aria-label="Journeys across France, today with a change of station in Paris and with the project"></div>
     <a class="pz-scroll" href="#presentation.idea">See how it works</a>
   </div>
 </section>
@@ -32,7 +33,7 @@
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-idea-svg" viewBox="0 0 520 400" role="img" aria-label="Schematic of Paris: today four terminals where trains end; with the project three through stations joined in a triangle"></svg></div>
       <div class="pz-story">
-        <div class="pz-steps" id="pz-idea-steps" role="group" aria-label="Steps"></div>
+        <div class="pz-auto" id="pz-idea-steps"></div>
         <div class="pz-step" data-step="0">
           <h3>Today: every train stops at the end of the line</h3>
           <p>Four high-speed terminals, one for each direction. Trains come in, wait, and go back out the way they came. To go on, you take the metro across Paris to another station.</p>
@@ -44,9 +45,9 @@
           <ul><li>{{ m.run_min | 0 }} minutes from any station to any other</li><li>Every station has direct trains to every direction: north, east, south-east and Atlantic</li><li>No train reverses: each one stops twice and goes on</li></ul>
         </div>
         <div class="pz-step" data-step="2" hidden>
-          <h3>Regional and suburban trains too</h3>
-          <p>Regional express trains run in the TGV tunnels, in the gaps between the TGVs, and on to the far side of France's regions. Two suburban tunnels join the suburbs across Paris.</p>
-          <ul><li><b class="pz-ln n">N</b> lines P and N merged, from the north and the east through Nord-Est to Montparnasse</li><li><b class="pz-ln h">H</b> lines H, K and L, through Nord-Est to a deep station under Saint-Lazare</li><li>The surface terminals close; their tracks become parks</li></ul>
+          <h3>With TER and Transilien</h3>
+          <p>Regional express trains (TER) run in the TGV tunnels, in the gaps between the TGVs, and on to the other side of the country. The suburban Transilien lines become new RER lines, crossing Paris instead of ending there.</p>
+          <ul><li><b class="pz-ln g">G</b> RER G: today's lines P and N merge into one line, from the north and the east through Nord-Est to Montparnasse</li><li><b class="pz-ln f">F</b> RER F: today's lines L, H and K merge into one line, through Nord-Est and a deep Saint-Lazare to La Défense</li><li>The surface terminals close; their tracks become parks</li></ul>
         </div>
         <p class="pz-more"><a href="#project">The project in detail</a><a href="#why">Why Paris stops every train</a></p>
       </div>
@@ -54,48 +55,54 @@
   </div>
 </section>
 
-<section class="pz-slide" id="presentation.underground" data-dot="Underground">
+<section class="pz-slide" id="presentation.how" data-dot="Underground">
   <div class="pz-in">
     <p class="pz-kicker">How</p>
     <h2 class="pz-h">The terminals go underground, as in Zürich and London</h2>
-    <p class="pz-lead">The surface stations disappear: their platforms move to deep through stations right under the old halls, and the tunnels come up at the ring road, on today's tracks.</p>
-    <div class="pz-grid4">
-      <div class="pz-stat"><b data-count="3" data-d="0">3</b><span>twin-track TGV tunnels, one on each side of the triangle</span></div>
-      <div class="pz-stat"><b data-count="{{ m.cost.tunnel_km | 1 }}" data-post=" km" data-d="1">{{ m.cost.tunnel_km | 1 }} km</b><span>of twin-track tunnel in all, approaches and suburban lines included</span></div>
-      <div class="pz-stat"><b data-count="{{ m.cost.tracks_total | 0 }}" data-d="0">{{ m.cost.tracks_total | 0 }}</b><span>platform tracks in four deep stations</span></div>
-      <div class="pz-stat"><b>Nord + Est</b><span>become one station, Paris Nord-Est, entered from both halls</span></div>
-    </div>
-    <div class="pz-cases">
-      <a class="pz-case" href="#zurich"><span class="pz-flag">Zürich</span><h3>A terminus that became a through station</h3><p>Twice, in 1990 and 2014, a four-track through station was dug under the terminus while it kept running.</p><i>Read the case</i></a>
-      <a class="pz-case" href="#elizabeth"><span class="pz-flag">London</span><h3>The Elizabeth line</h3><p>A deep tunnel with large stations joining the two sides of the capital, open since 2022.</p><i>Read the case</i></a>
-      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Four deep stations</h3><p>Paris Nord-Est, Gare de Lyon and Montparnasse for the triangle; a deep Saint-Lazare for line H.</p><i>How the stations are laid out</i></a>
-    </div>
-  </div>
-</section>
-
-<section class="pz-slide" id="presentation.nord" data-dot="Gare du Nord">
-  <div class="pz-in">
-    <p class="pz-kicker">Gare du Nord, before and after</p>
-    <h2 class="pz-h">The hall becomes a place to welcome passengers</h2>
+    <h3 class="pz-h2">The hall becomes a place to welcome passengers</h3>
     <div class="pz-split wide">
       <div class="pz-stage pz-iso">
-        <div class="pz-toggle" id="pz-nord-toggle" role="group" aria-label="Before or after"></div>
-        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="Gare du Nord seen from above at an angle: today, tracks fill the hall and the land behind it; with the project, the hall is open to passengers, stairs lead down to the deep platforms, and a park covers the old tracks"></svg>
+        <div class="pz-auto" id="pz-nord-toggle"></div>
+        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="Gare du Nord seen from above at an angle: today, trains run into the hall and back out over a field of tracks; with the project, the hall is open to passengers, stairs lead down to the deep platforms where trains run through, and a park covers the old tracks"></svg>
       </div>
       <div class="pz-story" id="pz-nord-text">
         <div class="pz-step" data-step="0">
-          <h3>Today</h3>
-          <p>The tracks run right into the hall. Passengers wait in a strip of about {{ d.stations.halls.wait_len | 0 }} m at the street end, and behind the hall a field of tracks runs for kilometres.</p>
+          <h3>Today: Gare du Nord</h3>
+          <p>The tracks run right into the hall. Trains come in, wait and leave the way they came. Passengers wait in a strip of about {{ d.stations.halls.wait_len | 0 }} m at the street end, and behind the hall a field of tracks runs for kilometres.</p>
           <div class="pz-mini"><b>{{ round(d.stations.halls.wait_len * d.stations.halls.under.nord * d.stations.halls.pitch, -2) | 0 }} m²</b><span>for passengers in the hall</span></div>
         </div>
         <div class="pz-step" data-step="1" hidden>
           <h3>With the project</h3>
-          <p>The whole hall is for people: a welcome area with ways down to the deep platforms of Paris Nord-Est, where every TGV, regional and suburban train now stops. Outside, a park takes the place of the tracks.</p>
+          <p>The whole hall is for people: a welcome area with ways down to the deep platforms of Paris Nord-Est, where every TGV, TER and RER now stops and runs on. Outside, a park takes the place of the tracks.</p>
           <div class="pz-mini good"><b>{{ round(d.stations.halls.hall_len * d.stations.halls.under.nord * d.stations.halls.pitch, -2) | 0 }} m²</b><span>for passengers in the same hall, {{ d.stations.halls.hall_len / d.stations.halls.wait_len | 0 }} times as much</span></div>
         </div>
         <p class="pz-note">In the three halls of Gare du Nord, Gare de Lyon and Montparnasse, about {{ round(d.stations.halls.wait_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }} m² for passengers today, {{ round(d.stations.halls.hall_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }} m² with the project. An illustration, not a design.</p>
         <p class="pz-more"><a href="#stations.halls">The halls</a><a href="#stations.nordest">Paris Nord-Est</a></p>
       </div>
+    </div>
+    <h3 class="pz-h2">Two tunnels side by side, two tracks in each</h3>
+    <div class="pz-split wide">
+      <div class="pz-stage"><svg id="pz-tube-svg" viewBox="0 0 760 420" role="img" aria-label="Two tunnels side by side under the city, seen cut open: one for TGVs and regional express trains, one for RER G, each with a track in each direction and trains running both ways"></svg></div>
+      <div class="pz-story">
+        <p>Between Nord-Est and Montparnasse two tunnels run side by side: one for the TGVs and the TER that share it, one for RER G. Each holds two tracks, one each way. The other sides of the triangle need only the TGV tunnel.</p>
+        <div class="pz-grid2 small">
+          <div class="pz-stat"><b data-count="{{ m.cost.tunnel_km | 1 }}" data-post=" km" data-d="1">{{ m.cost.tunnel_km | 1 }} km</b><span>of two-track tunnel in all</span></div>
+          <div class="pz-stat"><b data-count="{{ m.cost.tunnel_by_type.tgv | 1 }}" data-post=" km" data-d="1">{{ m.cost.tunnel_by_type.tgv | 1 }} km</b><span>for TGVs and TER, approaches included</span></div>
+          <div class="pz-stat"><b data-count="{{ m.cost.tunnel_by_type.n | 1 }}" data-post=" km" data-d="1">{{ m.cost.tunnel_by_type.n | 1 }} km</b><span>for RER G</span></div>
+          <div class="pz-stat"><b data-count="{{ m.cost.tunnel_by_type.h | 1 }}" data-post=" km" data-d="1">{{ m.cost.tunnel_by_type.h | 1 }} km</b><span>for RER F</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pz-facts">
+      <div><b>3</b><span>TGV tunnels, one on each side of the triangle</span></div>
+      <div><b>{{ m.cost.tracks_total | 0 }}</b><span>platform tracks in four deep stations</span></div>
+      <div><b>Nord + Est</b><span>become one station, Paris Nord-Est, entered from both halls</span></div>
+      <div><b>{{ m.run_min | 0 }} min</b><span>between any two of the three TGV stations</span></div>
+    </div>
+    <div class="pz-cases">
+      <a class="pz-case" href="#zurich"><span class="pz-flag">Zürich</span><h3>A terminus that became a through station</h3><p>Twice, in 1990 and 2014, a four-track through station was dug under the terminus while it kept running.</p><i>Read the case</i></a>
+      <a class="pz-case" href="#elizabeth"><span class="pz-flag">London</span><h3>The Elizabeth line</h3><p>A deep tunnel with large stations joining the two sides of the capital, open since 2022.</p><i>Read the case</i></a>
+      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Four deep stations</h3><p>Paris Nord-Est, Gare de Lyon and Montparnasse for the triangle; a deep Saint-Lazare for RER F.</p><i>How the stations are laid out</i></a>
     </div>
   </div>
 </section>
@@ -104,8 +111,13 @@
   <div class="pz-in">
     <p class="pz-kicker">The timetable</p>
     <h2 class="pz-h">One beat of {{ d.timetable.table.grid.params.slot | 0 }} minutes, the Swiss way</h2>
-    <p class="pz-lead">Every train stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations: {{ d.timetable.table.grid.params.places | 0 }} trains an hour on each side of each station. Press play and watch an hour of TGVs run through Paris.</p>
-    <div class="pz-panel borrow-timetable" id="pz-hour-host"></div>
+    <p class="pz-lead">Every train stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Here is the busiest hour the stations can take.</p>
+    <div class="pz-tt borrow-timetable" id="pz-hour-host">
+      <div class="pz-tt-scrub" id="pz-tt-scrub"></div>
+      <div class="pz-tt-head"><div class="pz-tt-legend" id="pz-tt-legend"></div><div class="pz-tt-ctl" id="pz-tt-ctl"></div></div>
+      <div class="pz-tt-body"><div class="pz-tt-map" id="pz-tt-map"></div><div class="pz-tt-clocks" id="pz-tt-clocks"></div></div>
+    </div>
+    <p class="pz-claim"><b>{{ m.ter_paths.paths_per_hour | 0 }} trains an hour</b> at most in each tunnel and each direction, one every {{ m.ter_paths.signal_min[1] | 0 }} minutes: the TGVs on the beat, the TER between them.</p>
     <p class="pz-more"><a href="#timetable">The timetable</a><a href="#pulse">The Swiss pulse</a><a href="#service">Which trains run where</a></p>
   </div>
 </section>
@@ -117,10 +129,13 @@
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-parks-svg" role="img" aria-label="Map of Paris with the four parks on the old track fields north of Gare du Nord and Gare de l'Est, east of Gare de Lyon and south-west of Montparnasse"></svg></div>
       <div class="pz-story">
+        <div class="pz-bc">
+          <b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b>
+          <span>the Parc des Buttes-Chaumont, in new green space[[buttes_chaumont]]</span>
+          <div class="pz-bc-row" id="pz-bc-row" data-n="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 2 }}"></div>
+        </div>
         <p>No train needs the surface tracks any more, so the fans of tracks behind the stations are freed, from the end of each hall out to where the tunnels come up.</p>
         <div class="pz-grid2">
-          <div class="pz-stat"><b data-count="{{ m.params.park_ha | 0 }}" data-post=" ha" data-d="0">{{ m.params.park_ha | 0 }} ha</b><span>of track fields</span></div>
-          <div class="pz-stat"><b data-count="{{ d.french.params.items.freed_ha.central | 0 }}" data-post=" ha" data-d="0">{{ d.french.params.items.freed_ha.central | 0 }} ha</b><span>freed, once the tracks the RER and freight keep are left</span></div>
           <div class="pz-stat good"><b data-count="{{ d.french.parks.central.ha | 0 }}" data-post=" ha" data-d="0">{{ d.french.parks.central.ha | 0 }} ha</b><span>of parks, and {{ d.french.parks.central.plots_ha | 0 }} ha of building plots</span></div>
           <div class="pz-stat good"><b data-count="{{ d.french.parks.central.visits / 1e6 | 1 }}" data-post="M" data-d="1">{{ d.french.parks.central.visits / 1e6 | 1 }}M</b><span>visits a year</span></div>
         </div>
@@ -135,11 +150,11 @@
   <div class="pz-in">
     <p class="pz-kicker">For all of France</p>
     <h2 class="pz-h">Across France with no change in Paris</h2>
-    <p class="pz-lead">Today a trip from Lille to Bordeaux means a metro ride across Paris or one of the rare trains that loop round it. With the triangle, the train runs through, every hour.</p>
-    <div class="pz-toggle" id="pz-fr-toggle" role="group" aria-label="Today or with the project"></div>
+    <p class="pz-lead">Today, crossing France by Paris means getting off, taking the metro to another station and waiting for the next train. With the triangle, the train runs through, and every pair of cities gets a train every hour instead of a few a day.</p>
+    <div class="pz-auto" id="pz-fr-toggle"></div>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Diagram of French cities joined through Paris, with the time of each journey"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Today's time counts the change of station in Paris as {{ d.french.params.x_today | 0 }} minutes from train to train, as the model does. A few of these pairs also have direct trains that go round Paris, a handful a day; with the project every pair has {{ d.french.params.proj_per_day | 0 }} through trains a day, one an hour.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Cross-France journeys</a><a href="#crossing.tgv">Crossing Paris by TGV</a></p>
   </div>
@@ -147,13 +162,13 @@
 
 <section class="pz-slide" id="presentation.regional" data-dot="Regional trains">
   <div class="pz-in">
-    <p class="pz-kicker">Regional and suburban trains</p>
+    <p class="pz-kicker">TER and Transilien</p>
     <h2 class="pz-h">The suburbs joined across Paris</h2>
-    <p class="pz-lead">The jobs are on the far side of Paris. Through lines take commuters there without a change.</p>
+    <p class="pz-lead">The jobs are on the far side of Paris. Two new RER lines take commuters there without a change.</p>
     <div class="pz-lines">
-      <div class="pz-line n"><b class="pz-ln n">N</b><div><h3>Lines P and N, merged</h3><p>From the north-east and east through Nord-Est to Montparnasse, and on to Massy, Saclay, Versailles and Saint-Quentin.</p></div></div>
-      <div class="pz-line h"><b class="pz-ln h">H</b><div><h3>Lines H, K and L</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense.</p></div></div>
-      <div class="pz-line t"><b class="pz-ln t">TER</b><div><h3>Regional express trains</h3><p>In the TGV tunnels: from the north on to Montparnasse, from the east on to Gare de Lyon. None ends in Paris.</p></div></div>
+      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G: lines P and N, merged</h3><p>From the north-east and east through Nord-Est to Montparnasse, and on to Massy, Saclay, Versailles and Saint-Quentin.</p></div></div>
+      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F: lines L, H and K, merged</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense.</p></div></div>
+      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Regional express trains</h3><p>In the TGV tunnels: from the north on to Montparnasse, from the east on to Gare de Lyon. None ends in Paris.</p></div></div>
     </div>
     <div class="pz-grid3">
       <div class="pz-stat good"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>suburb-to-suburb trips a day across Paris, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>
@@ -169,7 +184,8 @@
   <div class="pz-in">
     <p class="pz-kicker">Reaching the station</p>
     <h2 class="pz-h">Two stations for every train, so one is nearer</h2>
-    <p class="pz-lead">Each train stops at two of the three stations. If you live in the south of Paris, your train to Lille now stops at Montparnasse or Gare de Lyon: no more trek to Gare du Nord. From the average address in Paris, {{ pts.avg.today | 1 }} minutes become {{ pts.avg.station | 1 }}, and no address is further than today.</p>
+    <p class="pz-lead">Each train stops at two of the three stations. If you live in the south of Paris, your train to Lille now stops at Montparnasse or Gare de Lyon: no more trek to Gare du Nord. Every address in Paris is as close to its train as today or closer, up to {{ pts.max_gain.station | 1 }} minutes closer; on average {{ pts.avg.today | 1 }} minutes become {{ pts.avg.station | 1 }}.</p>
+    <div class="pz-auto" id="pz-acc-toggle"></div>
     <div class="pz-panel borrow-access" id="pz-access-host"></div>
     <div class="pz-panel borrow-access" id="pz-access-host-2"></div>
     <p class="pz-more"><a href="#access">Reaching the station</a></p>

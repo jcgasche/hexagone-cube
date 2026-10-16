@@ -80,7 +80,7 @@ PTS.section('works', function (root) {
   const yearName = function (y) { return y === 0 ? 'Before the works' : y > YEARS ? 'After year ' + YEARS : 'Year ' + y; };
   const NODE = { nordest: [0.5, 0.36], lyon: [0.76, 0.66], montparnasse: [0.24, 0.66], saintlazare: [0.2, 0.36] };
   const LINE = { north: [[0.34, 0.13], 'nordest', 'Porte de la Chapelle'], east: [[0.66, 0.13], 'nordest', 'Rosa Parks'], nelyon: ['nordest', 'lyon'], nemont: ['nordest', 'montparnasse'], southeast: ['lyon', [0.9, 0.88], 'Porte de Charenton'], atlantic: ['montparnasse', [0.1, 0.88], 'Porte de Vanves'], link: ['montparnasse', 'lyon'], nesl: ['nordest', 'saintlazare'], slwest: ['saintlazare', [0.08, 0.13], 'Pont-Cardinet'] };
-  const KIND = { tgv: 'TGV', n: 'Line N', h: 'Line H' };
+  const KIND = { tgv: 'TGV', n: 'RER G', h: 'RER F' };
   // no regional express tunnel (version 4.1): the regional express trains run in the TGV tunnel of the corridors marked e.ter (as model.ter_corridors),
   // from the opening of their platforms at Nord-Est in the second stage (assumed)
   const TER_FROM = S.open.second;

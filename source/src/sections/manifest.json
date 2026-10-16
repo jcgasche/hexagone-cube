@@ -1,7 +1,7 @@
 {
   "title": "Paris Through Stations",
   "sections": [
-    {"id": "presentation", "group": "Presentation", "nav": "Presentation", "heading": "Paris Delta", "bare": true, "borrows": ["timetable", "access", "works"]},
+    {"id": "presentation", "group": "Presentation", "nav": "Presentation", "heading": "Hexagone³", "bare": true, "borrows": ["timetable", "access", "works"]},
     {"id": "summary",   "group": "Report",  "nav": "Summary",                "heading": "Through stations under Paris"},
     {"id": "why",       "group": "Report",  "nav": "The problem",            "heading": "Why Paris stops every train"},
     {"id": "project",   "group": "Report",  "nav": "The project",            "heading": "What would be built"},

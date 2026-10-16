@@ -1,0 +1,35 @@
+{
+ "exact": {
+  "Passengers’ time only, no other family": "Temps des voyageurs seul, aucune autre famille d’avantages",
+  "Official discount rate for regional projects, 3.6%": "Taux d’actualisation officiel des projets régionaux, 3,6 %",
+  "Official discount rate for long-distance projects, 4.6%": "Taux d’actualisation officiel des projets grandes lignes, 4,6 %",
+  "Benefits cover": "Les avantages couvrent",
+  "of the yearly cost": "du coût annuel",
+  "All": "Tous",
+  "Estimated": "Estimé",
+  "Assumed": "Supposé",
+  "Open": "Ouvert",
+  "Operation": "Exploitation",
+  "Cost": "Coût",
+  "Passengers": "Voyageurs",
+  "Money": "Argent",
+  "City": "Ville",
+  "Status": "Statut",
+  "Subject": "Thème",
+  "Benefits cover from 55 % to 162 % of the yearly cost, around a central case of 116 %": "Les avantages couvrent de 55 % à 162 % du coût annuel, autour d’un cas central de 116 %"
+ },
+ "patterns": [
+  [
+   "Benefits cover from {0} to {1} of the yearly cost, around a central case of {2}",
+   "Les avantages couvrent de {0} à {1} du coût annuel, autour d’un cas central de {2}"
+  ],
+  [
+   "{0} points against the central case of {1}",
+   "{0} points par rapport au cas central de {1}"
+  ],
+  [
+   "{0} of {1} points shown, {2} of them study points of the brief. In all: {3} estimated, {4} assumed, {5} open.",
+   "{0} points affichés sur {1}, dont {2} points à étudier de la note de cadrage. En tout : {3} estimés, {4} supposés, {5} ouverts."
+  ]
+ ]
+}

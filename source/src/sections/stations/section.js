@@ -22,8 +22,8 @@ PTS.section('stations', function (root) {
     const det = C.detail[name], sub = D.sub_tracks[name] || {}, g = [];
     if (det.hs) g.push({ k: 'hs', label: 'TGV', tracks: det.hs, len: LEN.hs, color: COL.hs, note: (det.hs / 2) + ' tracks each way' });
     if (det.ter) g.push({ k: 'ter', label: 'Regional express', tracks: det.ter, len: LEN.ter, color: COL.ter });
-    if (sub.n) g.push({ k: 'n', label: 'Line N', tracks: sub.n, len: LEN.sub, color: COL.n, sub: true });
-    if (sub.h) g.push({ k: 'h', label: 'Line H', tracks: sub.h, len: LEN.sub, color: COL.h, sub: true });
+    if (sub.n) g.push({ k: 'n', label: 'RER G', tracks: sub.n, len: LEN.sub, color: COL.n, sub: true });
+    if (sub.h) g.push({ k: 'h', label: 'RER F', tracks: sub.h, len: LEN.sub, color: COL.h, sub: true });
     return g;
   }
 

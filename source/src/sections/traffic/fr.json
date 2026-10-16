@@ -1,0 +1,234 @@
+{
+ "exact": {
+  "Growth in passengers on suburban lines after they were joined through a city centre": "Hausse du nombre de voyageurs sur des lignes de banlieue après leur raccordement à travers un centre-ville",
+  "Growth in passengers, %": "Hausse du nombre de voyageurs, en %",
+  "Growth counted on the joined lines": "Hausse comptée sur les lignes reliées",
+  "Rest of the network, same years": "Reste du réseau, mêmes années",
+  "Average of the eight": "Moyenne des huit",
+  "Assumed in this study": "Retenu dans cette étude",
+  "Low and high cases of this study": "Cas bas et haut de cette étude",
+  "Average of the eight cases": "Moyenne des huit cas",
+  "No gain": "Aucun gain",
+  "no gain": "aucun gain",
+  "Rest of the network over the same years:": "Reste du réseau sur les mêmes années :",
+  "Tokyo, Fukutoshin line, 2013": "Tokyo, ligne Fukutoshin, 2013",
+  "Two companies’ lines joined at Shibuya": "Lignes de deux compagnies reliées à Shibuya",
+  "One third of the revenue rise was put down to through running": "Un tiers de la hausse des recettes a été attribué aux trains directs",
+  "Tokyo 2013, in six months": "Tokyo 2013, en six mois",
+  "in six months": "en six mois",
+  "Commuter trains moved into a new tunnel with two central stations": "Les trains de banlieue passent dans un nouveau tunnel avec deux gares centrales",
+  "325,000 boardings a weekday in 2016, 410,000 in 2019. Rest of the network: +3%": "325 000 montées par jour de semaine en 2016, 410 000 en 2019. Reste du réseau : +3 %",
+  "Stockholm 2017, in two years": "Stockholm 2017, en deux ans",
+  "in two years": "en deux ans",
+  "Zürich, 1990": "Zurich, 1990",
+  "in the first year": "la première année",
+  "First through station under the terminal": "Première gare traversante sous la gare terminus",
+  "Trains per hour doubled; +180% in 24 years, while the population grew 25%": "Deux fois plus de trains par heure ; +180 % en 24 ans, pendant que la population augmentait de 25 %",
+  "Zürich 1990, first year": "Zurich 1990, première année",
+  "Zürich, 2014": "Zurich, 2014",
+  "in five years": "en cinq ans",
+  "Second through station and cross-city line": "Deuxième gare traversante et ligne diamétrale",
+  "Whole suburban network; long-distance trains use the new station too": "Tout le réseau de banlieue ; les trains grandes lignes utilisent aussi la nouvelle gare",
+  "Zürich 2014, in five years": "Zurich 2014, en cinq ans",
+  "year three to year six": "de la troisième à la sixième année",
+  "Tunnel under the centre replaced a terminal": "Un tunnel sous le centre remplace une gare terminus",
+  "53,600 boardings a weekday in 2016, 62,300 in 2019. No count before opening": "53 600 montées par jour de semaine en 2016, 62 300 en 2019. Pas de comptage avant l’ouverture",
+  "Leipzig 2013, years 3 to 6": "Leipzig 2013, années 3 à 6",
+  "in 2025": "en 2025",
+  "Terminating line extended west through the centre": "Ligne en terminus prolongée vers l’ouest à travers le centre",
+  "On 30% more service; full service not yet running": "Pour 30 % de service en plus ; service complet pas encore en place",
+  "Paris RER E 2024, in 2025": "Paris RER E 2024, en 2025",
+  "St. Gallen, 2013": "Saint-Gall, 2013",
+  "Regional lines run as through lines": "Lignes régionales exploitées en lignes traversantes",
+  "On 25% more trains": "Pour 25 % de trains en plus",
+  "St. Gallen 2013, in five years": "Saint-Gall 2013, en cinq ans",
+  "Philadelphia, 1984": "Philadelphie, 1984",
+  "for ten years": "pendant dix ans",
+  "Two terminal networks joined by a tunnel": "Deux réseaux terminus reliés par un tunnel",
+  "Opened after a strike and service cuts (unverified)": "Ouverture après une grève et des réductions de service (non vérifié)",
+  "Philadelphia 1984, ten years": "Philadelphie 1984, dix ans",
+  "Growth in long-distance passengers in the few cases where a change of train or of station was removed": "Hausse du nombre de voyageurs grandes lignes dans les rares cas où une correspondance ou un changement de gare a été supprimé",
+  "Measured": "Mesuré",
+  "Measured, with a new line or new stations in the figure": "Mesuré, avec une ligne nouvelle ou des gares nouvelles dans le chiffre",
+  "Derived from a measured loss": "Calculé à partir d’une perte mesurée",
+  "This study": "Cette étude",
+  "Taken in this study": "Retenu dans cette étude",
+  "Passengers who get a direct train across Paris:": "Voyageurs qui ont un train direct à travers Paris :",
+  "All passengers who cross Paris:": "Tous les voyageurs qui traversent Paris :",
+  "British ticket data": "Données de billetterie britanniques",
+  ", long-run effect": ", effet à long terme",
+  "British data, change removed": "Données britanniques, correspondance supprimée",
+  "Paris bypass line, 1994 to 1996": "Interconnexion autour de Paris, 1994 à 1996",
+  ", by 2000": ", en 2000",
+  "Against the same services without the line (derived from the official review). Includes three new stations and large time savings": "Par rapport aux mêmes services sans la ligne (calculé à partir du bilan officiel). Comprend trois gares nouvelles et d’importants gains de temps",
+  "Paris bypass line, by 2000": "Interconnexion, en 2000",
+  "Japan, Osaka to Kumamoto, 2011": "Japon, d’Osaka à Kumamoto, 2011",
+  ", in seven years": ", en sept ans",
+  "Through trains from Osaka replaced a change of train. Includes the effect of a new line section; the whole market grew 34%": "Des trains directs depuis Osaka remplacent une correspondance. Comprend l’effet d’un nouveau tronçon de ligne ; l’ensemble du marché a crû de 34 %",
+  "Japan, Osaka to Kumamoto": "Japon, d’Osaka à Kumamoto",
+  "Japan, Osaka to Kagoshima, 2011": "Japon, d’Osaka à Kagoshima, 2011",
+  "Same through trains. Includes the effect of a new line section; the whole market grew 40%": "Mêmes trains directs. Comprend l’effet d’un nouveau tronçon de ligne ; l’ensemble du marché a crû de 40 %",
+  "Japan, Osaka to Kagoshima": "Japon, d’Osaka à Kagoshima",
+  ", boardings": ", montées",
+  "Second high-speed stop opened in the city; the station also raised the capacity of the line": "Deuxième arrêt à grande vitesse ouvert dans la ville ; la gare a aussi augmenté la capacité de la ligne",
+  "Tokyo, second stop, 2003": "Tokyo, deuxième arrêt, 2003",
+  "Vienna, 2015": "Vienne, 2015",
+  ", first quarter": ", premier trimestre",
+  "Two terminals replaced by a through station with a new regular timetable. All long-distance traffic of the Austrian railways": "Deux gares terminus remplacées par une gare traversante avec un nouvel horaire cadencé. Tout le trafic grandes lignes des chemins de fer autrichiens",
+  "Vienna 2015, first quarter": "Vienne 2015, premier trimestre",
+  "Atlantic and south-east": "Atlantique et Sud-Est",
+  "Atlantic and north": "Atlantique et Nord",
+  "South-east and north": "Sud-Est et Nord",
+  "Atlantic and east": "Atlantique et Est",
+  "South-east and east": "Sud-Est et Est",
+  "North and east": "Nord et Est",
+  "Traffic": "Trafic",
+  "today’s": "celui d’aujourd’hui",
+  "From": "De",
+  "To": "Vers",
+  "Changes today": "Correspondances aujourd’hui",
+  "Today": "Aujourd’hui",
+  "Direct train": "Train direct",
+  "Change in one station": "Correspondance dans une gare",
+  "Minutes saved": "Minutes gagnées",
+  "Traffic, times today": "Trafic, en multiple d’aujourd’hui",
+  "Brussels": "Bruxelles",
+  "London": "Londres",
+  "High-speed trains": "Trains à grande vitesse",
+  "Suburban and regional trains": "Trains de banlieue et TER",
+  "Starting or ending in the Paris region": "Au départ ou à l’arrivée en Île-de-France",
+  "Crossing Paris": "Traversée de Paris",
+  "Suburban lines H, K, L, P, N, R": "Lignes de banlieue H, K, L, P, N, R",
+  "Regional express": "TER",
+  "Central:": "Central :",
+  "more journeys a year": "de voyages en plus par an",
+  "From the time model; no low or high case": "Modèle de temps de parcours seul ; pas de cas bas ni haut",
+  "Before any charge": "Avant toute redevance",
+  "With the charge on new uses": "Avec la redevance sur les nouveaux usages",
+  "Added with the charge": "Ajoutés avec la redevance",
+  "Paris region, with the charge": "Île-de-France, avec la redevance",
+  "Crossing Paris, with the charge": "Traversée de Paris, avec la redevance"
+ },
+ "patterns": [
+  [
+   "0,{0} million",
+   "0,{0} million"
+  ],
+  [
+   "1,{0} million",
+   "1,{0} million"
+  ],
+  [
+   "+0,{0} million",
+   "+0,{0} million"
+  ],
+  [
+   "+1,{0} million",
+   "+1,{0} million"
+  ],
+  [
+   "-0,{0} million",
+   "-0,{0} million"
+  ],
+  [
+   "-1,{0} million",
+   "-1,{0} million"
+  ],
+  [
+   "{0} million",
+   "{0} millions"
+  ],
+  [
+   "0,{0} million a year",
+   "0,{0} million par an"
+  ],
+  [
+   "1,{0} million a year",
+   "1,{0} million par an"
+  ],
+  [
+   "{0} million a year",
+   "{0} millions par an"
+  ],
+  [
+   "{0},{1} times",
+   "{0},{1} fois"
+  ],
+  [
+   "This study: {0}% ({1}% to {2}%)",
+   "Cette étude : {0} % ({1} % à {2} %)"
+  ],
+  [
+   "+{0}%, before deducting growth that would have come anyway",
+   "+{0} %, avant déduction de la croissance qui serait venue de toute façon"
+  ],
+  [
+   "+{0}% on the five suburban lines that run through (H, K, P, N, L)",
+   "+{0} % sur les cinq lignes de banlieue qui traversent (H, K, P, N, L)"
+  ],
+  [
+   "Low case {0}%, high case {1}%",
+   "Cas bas {0} %, cas haut {1} %"
+  ],
+  [
+   "Not a project: across many routes of about 100 miles, an added change of train loses {0}% of passengers in the long run. Read the other way, removing one gains about {1}% (derived)",
+   "Pas un projet : sur de nombreux trajets d’environ 100 miles (160 km), une correspondance de plus fait perdre {0} % des voyageurs à long terme. Lu dans l’autre sens, en supprimer une fait gagner environ {1} % (calculé)"
+  ],
+  [
+   "This study, direct train: +{0}%, two or three changes removed",
+   "Cette étude, train direct : +{0} %, deux ou trois correspondances supprimées"
+  ],
+  [
+   "Each change of vehicle today keeps {0} of the potential traffic; the shorter trip adds the time model. Average of the five pairs of lines with direct trains",
+   "Chaque correspondance d’aujourd’hui garde {0} du trafic potentiel ; le trajet plus court ajoute l’effet du modèle de temps de parcours. Moyenne des cinq paires de lignes qui ont des trains directs"
+  ],
+  [
+   "Result, all who cross: +{0}% ({1}% to {2}%)",
+   "Résultat, tous ceux qui traversent : +{0} % ({1} % à {2} %)"
+  ],
+  [
+   "Those who still change do so across one platform, counted as half a change, which keeps {0} of them. Low case +{1}%; high case +{2}%, every passenger of a served pair on a direct train",
+   "Ceux qui changent encore le font d’un quai à l’autre, ce qui compte pour une demi-correspondance et en garde {0}. Cas bas +{1} % ; cas haut +{2} %, avec tous les voyageurs d’une paire desservie dans un train direct"
+  ],
+  [
+   "{0} changes of vehicle in Paris today; {1} from city to city on average, {2} on a direct train ({3} times), {4} with a change in one station ({5} times)",
+   "{0} correspondances dans Paris aujourd’hui ; {1} de ville à ville en moyenne, {2} en train direct ({3} fois), {4} avec une correspondance dans une même gare ({5} fois)"
+  ],
+  [
+   "{0} changes of vehicle in Paris today; {1} from city to city on average, no direct train, {2} with a change in one station ({3} times)",
+   "{0} correspondances dans Paris aujourd’hui ; {1} de ville à ville en moyenne, pas de train direct, {2} avec une correspondance dans une même gare ({3} fois)"
+  ],
+  [
+   "{0} change of vehicle in Paris today; {1} from city to city on average, {2} on a direct train ({3} times), {4} with a change in one station ({5} times)",
+   "{0} correspondance dans Paris aujourd’hui ; {1} de ville à ville en moyenne, {2} en train direct ({3} fois), {4} avec une correspondance dans une même gare ({5} fois)"
+  ],
+  [
+   "{0} change of vehicle in Paris today; {1} from city to city on average, no direct train, {2} with a change in one station ({3} times)",
+   "{0} correspondance dans Paris aujourd’hui ; {1} de ville à ville en moyenne, pas de train direct, {2} avec une correspondance dans une même gare ({3} fois)"
+  ],
+  [
+   "Low {0}, high {1}",
+   "Bas : {0}, haut : {1}"
+  ],
+  [
+   "The tick: {0} if the ride across Paris is counted against the passenger",
+   "Le repère : {0} si le trajet à travers Paris est compté au voyageur"
+  ],
+  [
+   "{0} more journeys a year",
+   "{0} de voyages en plus par an"
+  ],
+  [
+   "{0} of these passengers choose a station their line did not serve and pay €{1}; the others pay nothing more",
+   "{0} de ces voyageurs choisissent une gare que leur ligne ne desservait pas et paient {1} € ; les autres ne paient rien de plus"
+  ],
+  [
+   "€{0} on a direct train or with a change in one station",
+   "{0} € en train direct ou avec une correspondance dans une même gare"
+  ],
+  [
+   "{0} held back by the charge; none lost against today",
+   "La redevance en retient {0} ; aucun voyage n’est perdu par rapport à aujourd’hui"
+  ]
+ ]
+}

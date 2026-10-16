@@ -1,5 +1,5 @@
 {
- "_note": "An illustrative schedule for the timeline. The model assumes only twelve years of works with even spending (params.build_years); the split of those years between tasks and stages is an assumption made for this page, not a programme. Staging itself is a study point. Each corridor lists its twin-track tunnels by kind of train (tgv, n = line N, h = line H; there is no regional express tunnel since version 4.1, the regional express trains share the TGV tunnels and 'ter' marks the corridors where they do, as model.ter_corridors); their lengths come from model.json (corridor_km, link_km), and the page checks that they add up to cost.tunnel_km and to the km of each stage.",
+ "_note": "An illustrative schedule for the timeline. The model assumes only twelve years of works with even spending (params.build_years); the split of those years between tasks and stages is an assumption made for this page, not a programme. Staging itself is a study point. Each corridor lists its twin-track tunnels by kind of train (tgv, n = RER G, h = RER F; there is no regional express tunnel since version 4.1, the regional express trains share the TGV tunnels and 'ter' marks the corridors where they do, as model.ter_corridors); their lengths come from model.json (corridor_km, link_km), and the page checks that they add up to cost.tunnel_km and to the km of each stage.",
  "open": {
   "first": 10,
   "second": 13
@@ -187,7 +187,7 @@
  ],
  "tasks": [
   {
-   "group": "First stage: TGV north to south-east, and line H"
+   "group": "First stage: TGV north to south-east, and RER F"
   },
   {
    "label": "Shafts, work sites, moving pipes and cables",
@@ -196,7 +196,7 @@
    "to": 2
   },
   {
-   "label": "Stations: Paris Nord-Est (TGV and line H platforms) and Gare de Lyon (all 8 tracks, the 2 new ones included)",
+   "label": "Stations: Paris Nord-Est (TGV and RER F platforms) and Gare de Lyon (all 8 tracks, the 2 new ones included)",
    "kind": "civil",
    "from": 2,
    "to": 7
@@ -220,7 +220,7 @@
    "to": 7
   },
   {
-   "label": "Line H tunnel: north, Nord-Est to Saint-Lazare, up to Pont-Cardinet",
+   "label": "RER F tunnel: north, Nord-Est to Saint-Lazare, up to Pont-Cardinet",
    "kind": "civil",
    "from": 3,
    "to": 7
@@ -251,7 +251,7 @@
    "opens": "First stage opens"
   },
   {
-   "group": "Second stage: Montparnasse, the link and line N"
+   "group": "Second stage: Montparnasse, the link and RER G"
   },
   {
    "label": "Shafts, work sites, moving pipes and cables",
@@ -266,7 +266,7 @@
    "to": 9
   },
   {
-   "label": "Paris Nord-Est: regional express and line N platforms",
+   "label": "Paris Nord-Est: regional express and RER G platforms",
    "kind": "civil",
    "from": 4,
    "to": 9
@@ -278,7 +278,7 @@
    "to": 9
   },
   {
-   "label": "Line N tunnel, beside the TGV tunnel to Montparnasse and on to the Atlantic side",
+   "label": "RER G tunnel, beside the TGV tunnel to Montparnasse and on to the Atlantic side",
    "kind": "civil",
    "from": 5,
    "to": 10
@@ -343,11 +343,11 @@
   },
   {
    "to": 12,
-   "text": "TGVs from the north, the east and the south-east run through Paris Nord-Est and Gare de Lyon, and some run straight through Paris. Line H runs from the northern suburbs through Nord-Est and Saint-Lazare to the west. Atlantic TGVs, the regional express trains and lines P and N still end at their terminals: no through train reaches the Atlantic, and the link is not open."
+   "text": "TGVs from the north, the east and the south-east run through Paris Nord-Est and Gare de Lyon, and some run straight through Paris. RER F runs from the northern suburbs through Nord-Est and Saint-Lazare to the west. Atlantic TGVs, the regional express trains and lines P and N still end at their terminals: no through train reaches the Atlantic, and the link is not open."
   },
   {
    "to": 13,
-   "text": "The four TGV lines are joined in a triangle: every TGV stops at two stations, and TGVs between the Atlantic and the south-east take the link. Regional express trains share the TGV tunnels: those of the north run through Nord-Est to Montparnasse and the Atlantic lines, those of the east through Nord-Est to Gare de Lyon and Burgundy, and none turns back in Paris. Line N joins the east to the south-west. Only line R keeps a small surface terminal at Gare de Lyon."
+   "text": "The four TGV lines are joined in a triangle: every TGV stops at two stations, and TGVs between the Atlantic and the south-east take the link. Regional express trains share the TGV tunnels: those of the north run through Nord-Est to Montparnasse and the Atlantic lines, those of the east through Nord-Est to Gare de Lyon and Burgundy, and none turns back in Paris. RER G joins the east to the south-west. Only line R keeps a small surface terminal at Gare de Lyon."
   }
  ],
  "seen": [
@@ -373,12 +373,12 @@
     {
      "to": 9,
      "state": "Tests",
-     "text": "The TGV and line H platforms below are complete; empty trains run through them. New ways down appear in the two halls, still closed. The control hall for London trains is fitted out on the Gare du Nord side."
+     "text": "The TGV and RER F platforms below are complete; empty trains run through them. New ways down appear in the two halls, still closed. The control hall for London trains is fitted out on the Gare du Nord side."
     },
     {
      "to": 12,
      "state": "Open below, in part",
-     "text": "TGVs and line H trains leave from the deep platforms; London trains board from a TGV platform closed off for each departure. Their surface platforms close. Regional express trains and line P still use the surface while their own platforms are built below, on the west side of the box."
+     "text": "TGVs and RER F trains leave from the deep platforms; London trains board from a TGV platform closed off for each departure. Their surface platforms close. Regional express trains and line P still use the surface while their own platforms are built below, on the west side of the box."
     },
     {
      "to": 13,
@@ -445,12 +445,12 @@
     {
      "to": 9,
      "state": "Tests",
-     "text": "Empty line H trains run through the station below, between Nord-Est and the west."
+     "text": "Empty RER F trains run through the station below, between Nord-Est and the west."
     },
     {
      "to": 13,
      "state": "Open below",
-     "text": "Line H trains, which now include those of line L, run through the deep station between Nord-Est and the west. The surface station stays for line J and the trains to Normandy."
+     "text": "RER F trains, which now include those of line L, run through the deep station between Nord-Est and the west. The surface station stays for line J and the trains to Normandy."
     }
    ]
   },
@@ -481,7 +481,7 @@
     {
      "to": 11,
      "state": "Still a terminal",
-     "text": "All Atlantic trains, regional express trains and line N still end here on the surface, while line H and the other TGV lines are already open below. Below, the station and the tunnels are being fitted out."
+     "text": "All Atlantic trains, regional express trains and line N still end here on the surface, while RER F and three of the TGV lines are already open below. Below, the station and the tunnels are being fitted out."
     },
     {
      "to": 12,
@@ -491,7 +491,7 @@
     {
      "to": 13,
      "state": "Open below",
-     "text": "TGVs leave from the deep platforms, half to Paris Nord-Est and half to Gare de Lyon by the link; regional express trains run through to Nord-Est in the TGV tunnel, and line N in its own. The surface platforms and the tracks to the ring road close; the park comes later."
+     "text": "TGVs leave from the deep platforms, half to Paris Nord-Est and half to Gare de Lyon by the link; regional express trains run through to Nord-Est in the TGV tunnel, and RER G in its own. The surface platforms and the tracks to the ring road close; the park comes later."
     }
    ]
   }

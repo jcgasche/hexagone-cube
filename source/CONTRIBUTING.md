@@ -31,6 +31,11 @@ clocks, the reaching-the-station map and chart, the works before/after. It does 
 nodes into the presentation while it is shown and back when its own section is shown, and the build makes the lending
 section's `#<id>` styles also apply under `.borrow-<id>`. A fix to one of those figures therefore shows in both places.
 
+**Two languages.** The build writes the study in English and in French (`Paris Through Stations - FR.html`). A change to the
+English text of a section must be carried into its `section.fr.html`, and a new label written by a script into its `fr.json`;
+the build warns when a French file is older than its English one. How it works and the words to use: `docs/TRANSLATING.md`.
+`node tools/i18n_check.js --hash <ids>` lists what is still in English on the French page.
+
 Build and look at one section while working on it:
 
 ```

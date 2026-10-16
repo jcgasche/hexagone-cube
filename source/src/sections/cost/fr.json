@@ -1,0 +1,144 @@
+{
+ "exact": {
+  "Design, client costs and land bought": "Études, maîtrise d’ouvrage et foncier",
+  "The triangle": "Le triangle",
+  "four deep stations, a tunnel for each kind of train (the regional express in the TGV one), the direct link": "quatre gares profondes, un tunnel par type de train (les TER dans celui du TGV), la liaison directe",
+  "Cost of deep stations per metre of platform track": "Coût des gares profondes par mètre de voie à quai",
+  "€ million per metre of platform track": "M€ par mètre de voie à quai",
+  "Final cost of a complete station": "Coût final d’une gare complète",
+  "Complete station, budget or forecast": "Gare complète, budget ou prévision",
+  "Contract for the structure only": "Contrat pour la seule structure",
+  "Range given by the source": "Fourchette donnée par la source",
+  "Paris, RER E, Saint-Lazare and Magenta": "Paris, RER E, Saint-Lazare et Magenta",
+  "London, Elizabeth line, 6 central stations": "Londres, Elizabeth line, 6 gares centrales",
+  "London, Old Oak Common": "Londres, Old Oak Common",
+  "Zürich, Löwenstrasse": "Zurich, Löwenstrasse",
+  "Bologna high-speed station": "Bologne, gare à grande vitesse",
+  "Malmö C, lower level": "Malmö C, niveau inférieur",
+  "Stuttgart 21, station": "Stuttgart 21, gare",
+  "2 stations of 4 tracks, 225 m, 30 m deep": "2 gares de 4 voies, 225 m, à 30 m de profondeur",
+  "2 tracks, 225 m, 35 m deep": "2 voies, 225 m, à 35 m de profondeur",
+  "2 tracks, 225 m, under a standing building": "2 voies, 225 m, sous un bâtiment existant",
+  "12 tracks of about 240 m": "12 voies d’environ 240 m",
+  "6 underground tracks of 450 m": "6 voies souterraines de 450 m",
+  "2 tracks (assumed), 210 m, 40 m deep": "2 voies (supposées), 210 m, à 40 m de profondeur",
+  "4 tracks, 420 m, 16 m under a working terminal": "4 voies, 420 m, à 16 m sous un terminus en service",
+  "2 tracks, cavern 207 m long": "2 voies, caverne de 207 m de long",
+  "4 tracks, 23 m deep": "4 voies, à 23 m de profondeur",
+  "4 tracks, 320 m, dug from the surface": "4 voies, 320 m, creusée depuis la surface",
+  "8 tracks, 420 m, 12 m deep": "8 voies, 420 m, à 12 m de profondeur",
+  "final cost of the whole line, tunnel deducted at our price; at most 1.4": "coût final de toute la ligne, tunnel déduit à notre prix ; au plus 1,4",
+  "contract of 2016": "contrat de 2016",
+  "contracts of 2016 to 2018": "contrats de 2016 à 2018",
+  "contracts as forecast in 2018": "contrats selon la prévision de 2018",
+  "under construction": "en construction",
+  "contract of 2018": "contrat de 2018",
+  "final cost": "coût final",
+  "budget of 2008": "budget de 2008",
+  "contract of 2005": "contrat de 2005",
+  "contract of 2012": "contrat de 2012",
+  "Construction cost": "Coût de construction",
+  "Against the central estimate": "Par rapport à l’estimation centrale",
+  "same": "identique",
+  "Yearly repayment over 60 years": "Remboursement annuel sur 60 ans",
+  "Stations, share of works": "Gares, part des travaux",
+  "Platform track": "Voies à quai",
+  "Halls, junctions, portals, sidings, London hall, regional express links": "Halles, bifurcations, têtes de tunnel, voies de garage, zone de Londres, raccordements TER",
+  "Design, client costs, land bought": "Études, maîtrise d’ouvrage, foncier",
+  "Deep station, per metre of platform track": "Gare profonde, par mètre de voie à quai",
+  "Zürich 0.55, Paris 0.9 to 1.4, London 2.0": "Zurich 0,55, Paris 0,9 à 1,4, Londres 2,0",
+  "Tunnel, civil works, per km": "Tunnel, génie civil, par km",
+  "Grand Paris 100 to 130, London 140 to 170": "Grand Paris 100 à 130, Londres 140 à 170",
+  "Track, power, signalling, per km": "Voie, alimentation électrique, signalisation, par km",
+  "Grand Paris 31 to 58, London 104": "Grand Paris 31 à 58, Londres 104",
+  "Risk allowance, on top of everything": "Provision pour risque, en plus de tout le reste",
+  "TGV platform tracks in each station": "Voies à quai TGV dans chaque gare",
+  "4 tracks": "4 voies",
+  "5 tracks": "5 voies",
+  "6 tracks": "6 voies",
+  "7 tracks": "7 voies",
+  "8 tracks": "8 voies",
+  "Stations at Zürich price": "Gares au prix de Zurich",
+  "Stations at London price": "Gares au prix de Londres",
+  "This study’s prices applied to seven projects, against their published cost": "Les prix de cette étude appliqués à sept projets, face à leur coût publié",
+  "€ billion, 2026 prices": "Md€, prix de 2026",
+  "This study’s prices, before risk": "Prix de cette étude, avant risque",
+  "This study’s prices, before risk:": "Prix de cette étude, avant risque :",
+  "Published cost": "Coût publié",
+  "Published cost:": "Coût publié :",
+  "(study)": "(étude)",
+  "(building)": "(en chantier)",
+  "Project": "Projet",
+  "Tunnel, km": "Tunnel, km",
+  "Platform track, m": "Voies à quai, m",
+  "Our prices, no risk": "Nos prix, sans risque",
+  "Note": "Note",
+  "5,8 to 7,1": "5,8 à 7,1"
+ },
+ "patterns": [
+  [
+   "Risk, {0}",
+   "Risque, {0}"
+  ],
+  [
+   "Used here: €{0}m",
+   "Retenu ici : {0} M€"
+  ],
+  [
+   "€{0}m to €{1}m per metre",
+   "{0} à {1} M€ par mètre"
+  ],
+  [
+   "€{0}m per metre",
+   "{0} M€ par mètre"
+  ],
+  [
+   "+{0}bn",
+   "+{0} Md€"
+  ],
+  [
+   "-{0}bn",
+   "-{0} Md€"
+  ],
+  [
+   "−{0}bn",
+   "−{0} Md€"
+  ],
+  [
+   "€{0}m",
+   "{0} M€"
+  ],
+  [
+   "{0} here, on final costs and contracts; Grand Paris 24% to 32% on estimates; average overrun of rail projects 45%",
+   "{0} ici, sur des coûts finaux et des contrats ; Grand Paris 24 % à 32 % sur des estimations ; dépassement moyen des projets ferroviaires 45 %"
+  ],
+  [
+   "{0} here, three each way, at Nord-Est and Montparnasse; Gare de Lyon has {1} and moves with them; four were ruled out as too tight",
+   "{0} ici, trois par sens, à Nord-Est et à Montparnasse ; la Gare de Lyon en a {1} et suit le mouvement ; quatre ont été écartées, trop justes"
+  ],
+  [
+   "Low prices, {0} risk",
+   "Prix bas, {0} de risque"
+  ],
+  [
+   "High prices, {0} risk",
+   "Prix élevés, {0} de risque"
+  ],
+  [
+   "With {0} risk:",
+   "Avec {0} de risque :"
+  ],
+  [
+   "With {0} risk",
+   "Avec {0} de risque"
+  ],
+  [
+   "€{0}bn to €{1}bn",
+   "{0} à {1} Md€"
+  ],
+  [
+   "€{0}bn",
+   "{0} Md€"
+  ]
+ ]
+}

@@ -52,7 +52,7 @@ PTS.section('financing', function (root) {
 
   // ---- charge curves
   const curve = FIN.charge_curve;
-  const euro = function (v) { return '€' + F.n(v, 2); };
+  const euro = function (v) { return F.eur(v, 2); };
   C.line($('#fin-curve-money'), { label: 'Money from the charge by level of charge', height: 250,
     x: { label: 'Charge for a station the line did not serve, euros', fmt: function (v) { return F.n(v, 0); }, tipLabel: function (v) { return 'Charge of ' + euro(v); }, min: 0, max: 10 },
     y: { fmt: function (v) { return F.n(v, 0); }, min: 0 },
@@ -79,7 +79,7 @@ PTS.section('financing', function (root) {
     const a = M.accounts(st);
     const tiles = PTS.clear($('#fin-o-tiles'));
     tiles.appendChild(tile(F.pct(a.ops_cover, 1), 'of running costs covered', a.ops_balance >= 0 ? 'Surplus of ' + mEur(a.ops_balance) + ' a year' : 'Shortfall of ' + mEur(-a.ops_balance) + ' a year', a.ops_balance >= 0 ? 'var(--good)' : 'var(--alt)'));
-    tiles.appendChild(tile(a.cap_gap > 0 ? '€' + F.n(a.grant_bn, 1) + '<small>bn</small>' : 'None', 'of grants needed',
+    tiles.appendChild(tile(a.cap_gap > 0 ? (PTS.lang === 'fr' ? F.n(a.grant_bn, 1) + '<small>&nbsp;Md€</small>' : '€' + F.n(a.grant_bn, 1) + '<small>bn</small>') : 'None', 'of grants needed',
       a.cap_gap > 0 ? 'Against a construction cost of ' + F.bn(a.capex) + (a.shortfall_bn > 0.05 ? '; ' + F.bn(a.shortfall_bn) + ' of it covers the shortfall of operations' : '') + '. Public money in all: ' + F.pct(a.public_share) + ' of the cost'
                     : 'The sources chosen exceed the need by ' + bn2(-a.cap_gap) + ' a year', 'var(--today)'));
     const FRS = PTS.data.french.study.central, A0 = PTS.data.finance.cases.central, benAll = FRS.benefit_total + a.benefit_total - A0.benefit_total;

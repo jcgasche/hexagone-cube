@@ -1,0 +1,215 @@
+{
+ "exact": {
+  "Play": "Lecture",
+  "Next minute": "Minute suivante",
+  "Slow": "Lent",
+  "Fast": "Rapide",
+  "Speed": "Vitesse",
+  "High-speed trains": "Trains à grande vitesse",
+  "All trains": "Tous les trains",
+  "Trains shown": "Trains affichés",
+  "About today": "Proche d’aujourd’hui",
+  "Southern lines full": "Lignes du sud pleines",
+  "Nord-Est filled too": "Nord-Est aussi au maximum",
+  "Hour shown": "Heure affichée",
+  "Every square is a TGV, every ringed dot a regional express train, every dot a suburban train; at the platforms they stand side by side, one line for each track": "Chaque carré est un TGV, chaque point cerclé un TER, chaque point un train de banlieue ; à quai, ils se rangent côte à côte, une ligne par voie",
+  "From the Atlantic to the north": "De l’Atlantique vers le Nord",
+  "From the Atlantic to the east": "De l’Atlantique vers l’Est",
+  "From the Atlantic to the south-east": "De l’Atlantique vers le Sud-Est",
+  "From the south-east to the north": "Du Sud-Est vers le Nord",
+  "From the south-east to the east": "Du Sud-Est vers l’Est",
+  "From the south-east to the Atlantic": "Du Sud-Est vers l’Atlantique",
+  "From the north to the Atlantic": "Du Nord vers l’Atlantique",
+  "From the north to the south-east": "Du Nord vers le Sud-Est",
+  "From the north to the east": "Du Nord vers l’Est",
+  "From the east to the Atlantic": "De l’Est vers l’Atlantique",
+  "From the east to the south-east": "De l’Est vers le Sud-Est",
+  "From the east to the north": "De l’Est vers le Nord",
+  "Eurostar from the south-east to London": "Eurostar du Sud-Est vers Londres",
+  "Eurostar from London to the south-east": "Eurostar de Londres vers le Sud-Est",
+  "Atlantic to north": "De l’Atlantique vers le Nord",
+  "Atlantic to east": "De l’Atlantique vers l’Est",
+  "Atlantic to south-east": "De l’Atlantique vers le Sud-Est",
+  "South-east to north": "Du Sud-Est vers le Nord",
+  "South-east to east": "Du Sud-Est vers l’Est",
+  "South-east to atlantic": "Du Sud-Est vers l’Atlantique",
+  "North to atlantic": "Du Nord vers l’Atlantique",
+  "North to south-east": "Du Nord vers le Sud-Est",
+  "North to east": "Du Nord vers l’Est",
+  "East to atlantic": "De l’Est vers l’Atlantique",
+  "East to south-east": "De l’Est vers le Sud-Est",
+  "East to north": "De l’Est vers le Nord",
+  "Eurostar to London": "Eurostar vers Londres",
+  "Eurostar from London": "Eurostar venu de Londres",
+  "In": "Arrivée",
+  "Out": "Départ",
+  "Track": "Voie",
+  "Other Paris stop": "Autre arrêt à Paris",
+  "The same minutes every hour. Tracks a are for trains coming from the Atlantic, tracks b for trains going there.": "Les mêmes minutes toutes les heures. Les voies a reçoivent les trains venant de l’Atlantique, les voies b ceux qui y repartent.",
+  "The same minutes every hour. Tracks a are for trains coming from the south-east, tracks b for trains going there.": "Les mêmes minutes toutes les heures. Les voies a reçoivent les trains venant du Sud-Est, les voies b ceux qui y repartent.",
+  "The same minutes every hour. Tracks a are for trains coming from the north and east, tracks b for trains going there.": "Les mêmes minutes toutes les heures. Les voies a reçoivent les trains venant du Nord et de l’Est, les voies b ceux qui y repartent.",
+  "Inner three rings: tracks a, for trains coming in from the station’s own line; outer three rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure; an empty ring is a track the hour does not need.": "Les trois anneaux intérieurs : les voies a, pour les trains qui arrivent de la ligne propre à la gare ; les trois anneaux extérieurs : les voies b, pour les trains qui repartent vers elle. Chaque arc est un train à quai, de son arrivée à son départ ; un anneau vide est une voie dont l’heure n’a pas besoin.",
+  "Inner four rings: tracks a, for trains coming in from the station’s own line; outer four rings: tracks b, for trains going out to it. Each arc is a train at its platform, from arrival to departure; an empty ring is a track the hour does not need.": "Les quatre anneaux intérieurs : les voies a, pour les trains qui arrivent de la ligne propre à la gare ; les quatre anneaux extérieurs : les voies b, pour les trains qui repartent vers elle. Chaque arc est un train à quai, de son arrivée à son départ ; un anneau vide est une voie dont l’heure n’a pas besoin.",
+  "Animated schematic map of every train in the tunnels: high-speed trains as squares, regional express trains as ringed dots, the suburban lines RER G and RER F as dots, standing at their platforms and moving along the tunnels at the minutes of the timetable.": "Carte schématique animée de tous les trains dans les tunnels : les trains à grande vitesse en carrés, les TER en points cerclés, les lignes de banlieue RER G et RER F en points, à l’arrêt à leurs quais ou en mouvement dans les tunnels aux minutes de l’horaire.",
+  "Animated schematic map of the three stations and their tunnels. Each dot is a high-speed train; dots stand side by side at the platforms of each station and move along the tunnels at the minutes of the timetable.": "Carte schématique animée des trois gares et de leurs tunnels. Chaque point est un train à grande vitesse ; les points se rangent côte à côte aux quais de chaque gare et avancent dans les tunnels aux minutes de l’horaire.",
+  "North": "Nord",
+  "East": "Est",
+  "South-east": "Sud-Est",
+  "Atlantic": "Atlantique",
+  "North: Lille, London, Brussels": "Nord : Lille, Londres, Bruxelles",
+  "East: Reims, Strasbourg": "Est : Reims, Strasbourg",
+  "South-east: Lyon, Marseille": "Sud-Est : Lyon, Marseille",
+  "Atlantic: Bordeaux, Nantes, Rennes": "Atlantique : Bordeaux, Nantes, Rennes",
+  "RER F: west": "RER F : ouest",
+  "Atlantic and north": "Atlantique et Nord",
+  "Atlantic and east": "Atlantique et Est",
+  "South-east and north": "Sud-Est et Nord",
+  "South-east and east": "Sud-Est et Est",
+  "Atlantic and south-east, by the link": "Atlantique et Sud-Est, par la liaison directe",
+  "Atlantic and south-east": "Atlantique et Sud-Est",
+  "London and the south-east (Eurostar)": "Londres et Sud-Est (Eurostar)",
+  "Regional express (TER), in the TGV tunnels": "TER, dans les tunnels TGV",
+  "RER G (today’s lines P and N)": "RER G (les lignes P et N d’aujourd’hui)",
+  "RER F (today’s lines H, K and L)": "RER F (les lignes H, K et L d’aujourd’hui)",
+  "Evenly spaced at the trains an hour of the model": "À intervalles réguliers, au nombre de trains par heure du modèle",
+  "1 direct trains an hour each way": "1 train direct par heure dans chaque sens",
+  "does not fit the tracks": "ne tient pas sur les voies",
+  "Passengers crossing Paris": "Voyageurs qui traversent Paris",
+  "Paris passengers who stay on board through a stop": "Voyageurs de Paris qui restent à bord pendant un arrêt",
+  "reference": "référence"
+ },
+ "patterns": [
+  [
+   "{0} trains standing at a platform, {1} on the move",
+   "{0} trains à quai, {1} en circulation"
+  ],
+  [
+   "{0} TGVs, {1} regional express and {2} suburban trains on the map; {3} standing at a platform, {4} on the move",
+   "{0} TGV, {1} TER et {2} trains de banlieue sur la carte ; {3} à quai, {4} en circulation"
+  ],
+  [
+   "{0}: {1} high-speed trains an hour stop here, on six platform tracks drawn as six rings; each coloured arc is a train standing at its track.",
+   "{0} : {1} trains à grande vitesse par heure s’arrêtent ici, sur six voies à quai dessinées en six anneaux ; chaque arc de couleur est un train à quai sur sa voie."
+  ],
+  [
+   "Paris Nord-Est {0} to {1}, track {2}",
+   "Paris Nord-Est de {0} à {1}, voie {2}"
+  ],
+  [
+   "Gare de Lyon {0} to {1}, track {2}",
+   "Gare de Lyon de {0} à {1}, voie {2}"
+  ],
+  [
+   "Montparnasse {0} to {1}, track {2}",
+   "Montparnasse de {0} à {1}, voie {2}"
+  ],
+  [
+   "{0} minutes stopped in Paris, {1} from the first arrival to the last departure",
+   "{0} minutes d’arrêt à Paris, {1} de la première arrivée au dernier départ"
+  ],
+  [
+   "Track {0}, {1} to {2} ({3} minutes)",
+   "Voie {0}, de {1} à {2} ({3} minutes)"
+  ],
+  [
+   "{0} trains an hour",
+   "{0} trains par heure"
+  ],
+  [
+   "{0} at a platform now",
+   "{0} à quai en ce moment"
+  ],
+  [
+   "{0} at the platforms now",
+   "{0} à quai en ce moment"
+  ],
+  [
+   ": the hour, {0} trains",
+   " : l’heure entière, {0} trains"
+  ],
+  [
+   ": the {0} minutes that repeat, {1} trains",
+   " : les {0} minutes qui se répètent, {1} trains"
+  ],
+  [
+   "The same minutes come back {0} times an hour: a train at {1} is also at {2}. Tracks a are for trains coming from the Atlantic, tracks b for trains going there.",
+   "Les mêmes minutes reviennent {0} fois par heure : un train à {1} passe aussi à {2}. Les voies a reçoivent les trains venant de l’Atlantique, les voies b ceux qui y repartent."
+  ],
+  [
+   "The same minutes come back {0} times an hour: a train at {1} is also at {2}. Tracks a are for trains coming from the south-east, tracks b for trains going there.",
+   "Les mêmes minutes reviennent {0} fois par heure : un train à {1} passe aussi à {2}. Les voies a reçoivent les trains venant du Sud-Est, les voies b ceux qui y repartent."
+  ],
+  [
+   "The same minutes come back {0} times an hour: a train at {1} is also at {2}. Tracks a are for trains coming from the north and east, tracks b for trains going there.",
+   "Les mêmes minutes reviennent {0} fois par heure : un train à {1} passe aussi à {2}. Les voies a reçoivent les trains venant du Nord et de l’Est, les voies b ceux qui y repartent."
+  ],
+  [
+   "next Paris Nord-Est {0}",
+   "puis Paris Nord-Est à {0}"
+  ],
+  [
+   "next Gare de Lyon {0}",
+   "puis Gare de Lyon à {0}"
+  ],
+  [
+   "next Montparnasse {0}",
+   "puis Montparnasse à {0}"
+  ],
+  [
+   "from Paris Nord-Est {0}",
+   "venu de Paris Nord-Est, parti à {0}"
+  ],
+  [
+   "from Gare de Lyon {0}",
+   "venu de Gare de Lyon, parti à {0}"
+  ],
+  [
+   "from Montparnasse {0}",
+   "venu de Montparnasse, parti à {0}"
+  ],
+  [
+   "Regional express (TER), in the TGV tunnels, {0} to {1}",
+   "TER, dans les tunnels TGV, de {0} à {1}"
+  ],
+  [
+   "RER G (today’s lines P and N), {0} to {1}",
+   "RER G (les lignes P et N d’aujourd’hui), de {0} à {1}"
+  ],
+  [
+   "RER F (today’s lines H, K and L), {0} to {1}",
+   "RER F (les lignes H, K et L d’aujourd’hui), de {0} à {1}"
+  ],
+  [
+   "Nord-Est {0} to {1}",
+   "Nord-Est de {0} à {1}"
+  ],
+  [
+   "Gare de Lyon {0} to {1}",
+   "Gare de Lyon de {0} à {1}"
+  ],
+  [
+   "Montparnasse {0} to {1}",
+   "Montparnasse de {0} à {1}"
+  ],
+  [
+   "Saint-Lazare {0} to {1}",
+   "Saint-Lazare de {0} à {1}"
+  ],
+  [
+   "{0} direct trains an hour each way",
+   "{0} trains directs par heure dans chaque sens"
+  ],
+  [
+   "Average wait for the next direct train: {0} and {1} minutes in the two directions",
+   "Attente moyenne du prochain train direct : {0} et {1} minutes selon le sens"
+  ],
+  [
+   "With trains exactly evenly spaced: {0}",
+   "Avec des trains parfaitement réguliers : {0}"
+  ],
+  [
+   "{0} million hours a year",
+   "{0} M d’heures par an"
+  ]
+ ]
+}

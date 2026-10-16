@@ -1,12 +1,9 @@
 /* Access map. Layout: three tiles switch the view; the map sits beside the legend, the statistics and the read-out of one point.
-   Colours: minutes use the shared --seq ramp; minutes saved use a ramp mixed from --good and the land colour, so that
-   "no change" stays empty and a larger saving is stronger in both themes. No class for "slower" exists. */
+   Colours: minutes run from green (near) through yellow to red (far), one scale for today and for the project, so the same colour
+   means the same time on both maps; minutes saved run from pale yellow to deep green, "no change" staying empty. No class for "slower" exists. */
 #access {
-  --acc-g1: color-mix(in oklab, var(--good) 20%, var(--land));
-  --acc-g2: color-mix(in oklab, var(--good) 42%, var(--land));
-  --acc-g3: color-mix(in oklab, var(--good) 68%, var(--land));
-  --acc-g4: var(--good);
-  --acc-g5: color-mix(in oklab, var(--good) 58%, var(--ink));
+  --acc-m0: #1a9850; --acc-m1: #74c365; --acc-m2: #d2e77f; --acc-m3: #fed976; --acc-m4: #fc8d59; --acc-m5: #d73027;
+  --acc-g1: #fff2ae; --acc-g2: #d9ef8b; --acc-g3: #91cf60; --acc-g4: #2ca25f; --acc-g5: #006837;
 }
 #access .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)) }
 #access .acc-stage { display: grid; grid-template-columns: minmax(0, 1fr) 310px; grid-template-areas: "map side" "read side"; gap: 16px 18px; align-items: start }
@@ -33,8 +30,8 @@
 #access .acc-mark circle { fill: none }
 #access .acc-mark .halo { stroke: var(--surface); stroke-width: 6 }
 #access .acc-mark .ring { stroke: var(--ink); stroke-width: 2.6 }
-#access .acc-min .b0 { fill: var(--seq-0) } #access .acc-min .b1 { fill: var(--seq-1) } #access .acc-min .b2 { fill: var(--seq-2) }
-#access .acc-min .b3 { fill: var(--seq-3) } #access .acc-min .b4 { fill: var(--seq-4) } #access .acc-min .b5 { fill: var(--seq-5) }
+#access .acc-min .b0 { fill: var(--acc-m0) } #access .acc-min .b1 { fill: var(--acc-m1) } #access .acc-min .b2 { fill: var(--acc-m2) }
+#access .acc-min .b3 { fill: var(--acc-m3) } #access .acc-min .b4 { fill: var(--acc-m4) } #access .acc-min .b5 { fill: var(--acc-m5) }
 #access .acc-sav .b0 { fill: var(--land); stroke: var(--neutral-mark); stroke-width: 1.3 }
 #access .acc-sav .b1 { fill: var(--acc-g1) } #access .acc-sav .b2 { fill: var(--acc-g2) } #access .acc-sav .b3 { fill: var(--acc-g3) }
 #access .acc-sav .b4 { fill: var(--acc-g4) } #access .acc-sav .b5 { fill: var(--acc-g5) }

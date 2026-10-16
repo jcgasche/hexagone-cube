@@ -141,7 +141,7 @@ PTS.section('economy', function (root) {
       const gain = r.today_min - r.project_min;
       tb.appendChild(h('tr', null, h('th', { text: r.pair[0] + ' and ' + r.pair[1] }), h('td', { text: r.today }), h('td', { class: 'num', text: hm(r.today_min) }),
         h('td', { class: 'num', html: '<b>' + hm(r.project_min) + '</b>' + (gain > 0 ? ' <small>(' + F.n(gain, 0) + ' min less)</small>' : gain < 0 ? ' <small>(' + F.n(-gain, 0) + ' min more)</small>' : '') }),
-        h('td', { class: 'num', text: hm(r.air_door_min) }), h('td', { class: 'num', text: r.air_pax ? F.n(r.air_pax / 1000, 0) + ',000' : 'no route listed' }),
+        h('td', { class: 'num', text: hm(r.air_door_min) }), h('td', { class: 'num', text: r.air_pax ? F.n(Math.round(r.air_pax / 1000) * 1000, 0) : 'no route listed' }),
         h('td', { class: 'num', text: F.pct(r.share_today) + ' to ' + F.pct(r.share_project) })));
     });
   })();

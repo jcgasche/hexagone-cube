@@ -205,7 +205,7 @@ PTS.section('pulse', function (root) {
     $('#pu-edge-title').textContent = fits ? (slack >= 4 ? 'Zürich to Bern in ' + T + ' minutes: the train is in before the others leave'
       : 'Zürich to Bern in ' + T + ' minutes: in time, with only ' + slack + (slack === 1 ? ' minute' : ' minutes') + ' to change')
       : T === 60 ? 'Zürich to Bern in 60 minutes: the trains only pass each other at the hour, nobody can change'
-      : 'Zürich to Bern in ' + T + ' minutes: ' + (T - 60) + ' minutes too late for the node';
+      : 'Zürich to Bern in ' + T + ' minutes: ' + (T - 60) + (T - 60 === 1 ? ' minute' : ' minutes') + ' too late for the node';
     const read = PTS.clear($('#pu-edge-read'));
     [['Leaves Zürich', fits ? half(d0) + ' min after the hour' : 'at the hour'],
      ['Arrives in Bern', fits ? half(d0) + ' min before the hour' : T === 60 ? 'at the hour' : (T - 60) + ' min after the hour'],

@@ -137,7 +137,7 @@ PTS.section('access', function (root) {
     $('#access-legend-title').textContent = sav ? 'Minutes saved against today' : 'Minutes to the station';
     const lg = PTS.clear($('#access-legend'));
     B.forEach(function (b, i) {
-      lg.appendChild(h('li', null, h('i', sav && i === 0 ? { class: 'none' } : { style: { '--c': sav ? 'var(--acc-g' + i + ')' : 'var(--seq-' + i + ')' } }), h('span', { text: b[1] }), h('b', { text: F.n(counts[i], 0) })));
+      lg.appendChild(h('li', null, h('i', sav && i === 0 ? { class: 'none' } : { style: { '--c': sav ? 'var(--acc-g' + i + ')' : 'var(--acc-m' + i + ')' } }), h('span', { text: b[1] }), h('b', { text: F.n(counts[i], 0) })));
     });
     lg.appendChild(h('li', { class: 'acc-legend-note' }, h('span', { text: sav ? 'Number of points in each class, on the same scale for the two measures. There is no class for “slower”: no point is.' : 'Number of points in each class. The same scale is used for today and for the project.' })));
     // statistics

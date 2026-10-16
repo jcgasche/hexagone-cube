@@ -1,0 +1,221 @@
+<!-- en: 381370fbc4 -->
+<p class="lede">Aucune étude de conception n’existe encore&nbsp;: le coût est donc construit à partir des quantités (kilomètres de tunnel, mètres de quai) et de ce qu’ont coûté des gares et des tunnels une fois construits. Le projet revient à environ {{ m.cost.total | 0 }}&nbsp;Md€, entre {{ m.cost_low | 0 }}&nbsp;Md€ et {{ m.cost_high | 0 }}&nbsp;Md€ avec des prix bas et des prix élevés. Les quatre gares profondes sont le poste le plus lourd&nbsp;; les tunnels, un par type de train, viennent ensuite. Les TER n’ont pas de tunnel à eux&nbsp;: ils circulent dans les tunnels du TGV, ce qui ne coûte que les raccordements qui les y mènent.</p>
+
+<div class="block" id="cost.total">
+  <h2>Le total, et ce qui le compose</h2>
+  <div class="tiles">
+    <div class="tile"><span class="n">{{ m.cost.total | 1 }}<small>&nbsp;Md€</small></span><span class="k">coût de construction</span><span class="d">Quatre gares profondes avec {{ m.cost.tracks_total | 0 }} voies à quai, {{ m.cost.tunnel_km | 0 }}&nbsp;km de tunnel à double voie, quatre halles. Fourchette de {{ m.cost_low | 0 }} à {{ m.cost_high | 0 }}&nbsp;Md€</span></div>
+    <div class="tile" style="--tc: var(--s2)"><span class="n">{{ m.cost.items.Stations / m.cost.hard | pct }}</span><span class="k">des travaux sont des gares</span><span class="d">Les tunnels en font {{ (m.cost.items['Tunnels, civil works'] + m.cost.items['Tunnels, rail systems']) / m.cost.hard | pct }}. Une gare pour des trains de 400&nbsp;m est bien plus grande qu’une station de métro</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">{{ m.gross_up * m.len.hs * m.rates.platform_m * 1000 | 0 }}<small>&nbsp;M€</small></span><span class="k">par voie à quai TGV</span><span class="d">Une voie de {{ m.len.hs | 0 }}&nbsp;m dans une gare profonde, études, maîtrise d’ouvrage, foncier et risque compris</span></div>
+    <div class="tile" style="--tc: var(--s8)"><span class="n">{{ m.rates.risk | pct }}</span><span class="k">de risque, en plus de tout le reste</span><span class="d">{{ m.cost.risk | 1 }}&nbsp;Md€. {{ m.rates_low.risk | pct }} dans le cas bas, {{ m.rates_high.risk | pct }} dans le cas haut. La raison de ces {{ m.rates.risk | pct }} est expliquée plus bas</span></div>
+  </div>
+  <p>Le tracé est décrit dans <a class="xref" href="#project.network">le projet</a>. Les prix sont en euros de 2026. Les fourchettes viennent du calcul de toute l’estimation avec des prix et un risque bas, puis élevés, et non d’une marge statistique.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Les gares font la moitié des travaux, deux fois les tunnels&nbsp;; le risque et les majorations font environ un tiers du total</strong><span>Coût de construction par poste, en milliards d’euros, prix de 2026</span></div>
+    <div id="cost-buildup"></div>
+    <figcaption>Les études et la maîtrise d’ouvrage ajoutent 20&nbsp;% aux travaux, le foncier 7&nbsp;%, et le risque {{ m.rates.risk | pct }} en plus de tout le reste. Les prix unitaires sont des coûts finaux et des contrats signés, qui contiennent déjà les dépassements des projets dont ils viennent&nbsp;; c’est pourquoi le risque est inférieur aux 30&nbsp;% habituels pour une estimation d’étude. Survolez un segment pour voir sa valeur.</figcaption>
+  </figure>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Milliards d’euros, prix de 2026</th><th class="num">Le triangle</th></tr></thead>
+    <tbody>
+      <tr><th>Tunnel à double voie, km</th><td class="num">{{ m.cost.tunnel_km | 1 }}</td></tr>
+      <tr><th>&nbsp;&nbsp;dont TGV, avec la liaison directe de {{ m.cost.link_km | 0 }}&nbsp;km&nbsp;; les TER y circulent aussi</th><td class="num">{{ m.cost.tunnel_by_type.tgv | 1 }}</td></tr>
+      <tr><th>&nbsp;&nbsp;dont RER G, la ligne de banlieue qui réunit les lignes P et N d’aujourd’hui</th><td class="num">{{ m.cost.tunnel_by_type.n | 1 }}</td></tr>
+      <tr><th>&nbsp;&nbsp;dont RER F, la ligne de banlieue qui réunit les lignes H, K et L d’aujourd’hui</th><td class="num">{{ m.cost.tunnel_by_type.h | 1 }}</td></tr>
+      <tr><th>Voies à quai, mètres ({{ m.cost.tracks_total | 0 }} voies)</th><td class="num">{{ m.cost.platform_total | int }}</td></tr>
+      <tr><th>Tunnels, génie civil</th><td class="num">{{ m.cost.items['Tunnels, civil works'] | 1 }}</td></tr>
+      <tr><th>Tunnels, systèmes ferroviaires</th><td class="num">{{ m.cost.items['Tunnels, rail systems'] | 1 }}</td></tr>
+      <tr><th>Quatre gares profondes</th><td class="num">{{ m.cost.items.Stations | 1 }}</td></tr>
+      <tr><th>Quatre halles historiques</th><td class="num">{{ m.cost.items['Historic halls'] | 1 }}</td></tr>
+      <tr><th>Bifurcations souterraines ({{ m.cost.junctions | 0 }}, toutes sur les tunnels TGV)</th><td class="num">{{ m.cost.items['Underground junctions'] | 1 }}</td></tr>
+      <tr><th>Têtes de tunnel et raccordements aux lignes existantes ({{ m.cost.portals | 0 }}&nbsp;: TGV {{ m.cost.portals_by_type.tgv | 0 }}, RER G {{ m.cost.portals_by_type.n | 0 }}, RER F {{ m.cost.portals_by_type.h | 0 }})</th><td class="num">{{ m.cost.items['Portals and links to existing lines'] | 1 }}</td></tr>
+      <tr><th>Voies de garage et accès aux dépôts</th><td class="num">{{ m.cost.items['Sidings and depot links'] | 1 }}</td></tr>
+      <tr><th>Zone de contrôle des trains pour Londres à Nord-Est</th><td class="num">{{ m.cost.items['Control hall for London trains'] | 1 }}</td></tr>
+      <tr><th>Raccordements des TER aux tunnels TGV</th><td class="num">{{ m.cost.items['TER links into the TGV tunnels'] | 2 }}</td></tr>
+      <tr class="total"><th>Travaux</th><td class="num">{{ m.cost.hard | 1 }}</td></tr>
+      <tr><th>Études et maîtrise d’ouvrage, 20&nbsp;%</th><td class="num">{{ m.cost.soft | 1 }}</td></tr>
+      <tr><th>Foncier, 7&nbsp;%</th><td class="num">{{ m.cost.land | 1 }}</td></tr>
+      <tr><th>Risque, {{ m.rates.risk | pct }}</th><td class="num">{{ m.cost.risk | 1 }}</td></tr>
+      <tr class="total"><th>Total</th><td class="num">{{ m.cost.total | 1 }}</td></tr>
+      <tr><th>Avec des prix bas et {{ m.rates_low.risk | pct }} de risque&nbsp;; avec des prix élevés et {{ m.rates_high.risk | pct }} de risque</th><td class="num">{{ m.cost_low | 1 }}&nbsp;; {{ m.cost_high | 1 }}</td></tr>
+    </tbody></table></div>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Gare profonde</th><th class="num">Voies TGV</th><th class="num">Voies TER</th><th class="num">Voies de banlieue</th><th class="num">Voies à quai, m</th><th class="num">Travaux, Md€</th><th class="num">Coût complet, Md€</th></tr></thead>
+    <tbody>
+      <tr><th>Paris Nord-Est</th><td class="num">{{ m.cost.detail['Paris Nord-Est'].hs | 0 }}</td><td class="num">{{ m.cost.detail['Paris Nord-Est'].ter | 0 }}</td><td class="num">{{ m.cost.detail['Paris Nord-Est'].sub | 0 }}</td><td class="num">{{ m.cost.platform_m['Paris Nord-Est'] | int }}</td><td class="num">{{ m.cost.station_cost['Paris Nord-Est'] | 1 }}</td><td class="num">{{ m.station_total['Paris Nord-Est'] | 1 }}</td></tr>
+      <tr><th>Montparnasse</th><td class="num">{{ m.cost.detail['Montparnasse'].hs | 0 }}</td><td class="num">{{ m.cost.detail['Montparnasse'].ter | 0 }}</td><td class="num">{{ m.cost.detail['Montparnasse'].sub | 0 }}</td><td class="num">{{ m.cost.platform_m['Montparnasse'] | int }}</td><td class="num">{{ m.cost.station_cost['Montparnasse'] | 1 }}</td><td class="num">{{ m.station_total['Montparnasse'] | 1 }}</td></tr>
+      <tr><th>Gare de Lyon</th><td class="num">{{ m.cost.detail['Gare de Lyon'].hs | 0 }}</td><td class="num">{{ m.cost.detail['Gare de Lyon'].ter | 0 }}</td><td class="num">{{ m.cost.detail['Gare de Lyon'].sub | 0 }}</td><td class="num">{{ m.cost.platform_m['Gare de Lyon'] | int }}</td><td class="num">{{ m.cost.station_cost['Gare de Lyon'] | 1 }}</td><td class="num">{{ m.station_total['Gare de Lyon'] | 1 }}</td></tr>
+      <tr><th>Saint-Lazare</th><td class="num">{{ m.cost.detail['Saint-Lazare'].hs | 0 }}</td><td class="num">{{ m.cost.detail['Saint-Lazare'].ter | 0 }}</td><td class="num">{{ m.cost.detail['Saint-Lazare'].sub | 0 }}</td><td class="num">{{ m.cost.platform_m['Saint-Lazare'] | int }}</td><td class="num">{{ m.cost.station_cost['Saint-Lazare'] | 1 }}</td><td class="num">{{ m.station_total['Saint-Lazare'] | 1 }}</td></tr>
+      <tr class="total"><th>Quatre gares</th><td class="num">{{ sum(v.hs for v in m.cost.detail.values()) | 0 }}</td><td class="num">{{ sum(v.ter for v in m.cost.detail.values()) | 0 }}</td><td class="num">{{ sum(v.sub for v in m.cost.detail.values()) | 0 }}</td><td class="num">{{ m.cost.platform_total | int }}</td><td class="num">{{ m.cost.items.Stations | 1 }}</td><td class="num">{{ sum(m.station_total.values()) | 1 }}</td></tr>
+    </tbody></table></div>
+  <p>Le «&nbsp;coût complet&nbsp;» ajoute les études, la maîtrise d’ouvrage, le foncier et le risque. La Gare de Lyon a {{ m.cost.detail['Gare de Lyon'].hs | 0 }} voies de {{ m.len.hs | 0 }}&nbsp;m&nbsp;: les deux ajoutées, une par sens, reçoivent le seizième TGV Sud-Est de l’heure et les {{ m.ter_paths.ter_hour.Est + m.ter_paths.ter_hour.new_east_link | 0 }} TER par heure et par sens qui continuent jusqu’à Nord-Est&nbsp;; elle n’a donc pas besoin de voies TER à elle. Saint-Lazare est une gare traversante profonde pour le seul RER F&nbsp;; elle ne demande aucune transformation de halle, car sa gare de surface reste pour la ligne J et les trains de Normandie. Les dimensions sont expliquées dans <a class="xref" href="#stations">les gares</a> et <a class="xref" href="#service.platforms">combien de quais</a>. La liaison directe entre Montparnasse et la Gare de Lyon ajoute {{ m.cost.link_km | 0 }}&nbsp;km de tunnel et deux des bifurcations TGV, soit environ {{ (m.cost.link_km * (m.rates.tunnel_civil + m.rates.tunnel_systems) + 2 * m.rates.junction) * m.gross_up | 1 }}&nbsp;Md€ en coût complet (déduit). Les {{ m.cost.link_km | 0 }}&nbsp;km sont une estimation d’après la carte, entre 4,5 et 6&nbsp;km <span class="tag assume">hypothèse</span>.</p>
+  <h3>Les TER dans les tunnels du TGV</h3>
+  <p>Les TER (trains express régionaux) partagent les tunnels du TGV au lieu d’avoir leur propre tunnel. Les sillons dans les tunnels sont espacés de deux minutes, soit {{ m.ter_paths.paths_per_hour | 0 }} par heure et par sens&nbsp;; les TGV gardent leur place dans la cadence de 12 minutes et les TER prennent les sillons intermédiaires (voir <a class="xref" href="#service">la desserte</a>). Cela demande une signalisation pour des trains espacés d’environ 1,5 minute <span class="tag assume">hypothèse</span>. Ce qui reste à construire, ce sont les accès&nbsp;: les voies TER doivent rejoindre les voies TGV aux deux extrémités des deux gares où elles ont leurs propres quais, Nord-Est et Montparnasse, et les lignes régionales existantes doivent rejoindre les tunnels à leurs têtes. Ce poste coûte {{ m.cost.items['TER links into the TGV tunnels'] | 2 }}&nbsp;Md€ avant majorations, {{ m.cost.items['TER links into the TGV tunnels'] * m.gross_up | 2 }}&nbsp;Md€ en coût complet (déduit) <span class="tag assume">hypothèse</span>&nbsp;:</p>
+  <ul>
+    <li>six raccordements dans les avant-gares, là où les voies TER rejoignent les voies TGV (quatre à Nord-Est, deux à Montparnasse), 0,05&nbsp;Md€ chacun&nbsp;;</li>
+    <li>deux passages en terrier dans les avant-gares de Nord-Est, là où les TER de l’Est et de la Gare de Lyon passent sous les lignes TGV, 0,10&nbsp;Md€ chacun&nbsp;;</li>
+    <li>des raccordements à trois têtes de tunnel TGV (Nord, Est, Atlantique), là où les lignes régionales rejoignent les rampes des tunnels, 0,05&nbsp;Md€ chacun.</li>
+  </ul>
+  <p>Aucun projet ne publie de prix pour de tels raccordements&nbsp;; les chiffres sont des hypothèses, fixées sous le prix d’une tête de tunnel ou d’une bifurcation, car chacun est un ouvrage plus petit. Les tunnels, les bifurcations et les têtes de tunnel sont ceux du TGV&nbsp;: les TER n’ajoutent donc aucun kilomètre de tunnel.</p>
+  <p class="note"><strong>Point ouvert&nbsp;: la ligne R.</strong> La ligne R reste en surface à la Gare de Lyon, sur un petit terminus. La prolonger vers une ligne de l’est demanderait deux voies de plus à la Gare de Lyon et deux à Nord-Est, soit environ {{ m.ter_paths.r_option.cost | 1 }}&nbsp;Md€ en coût complet (déduit), pour {{ m.ter_paths.r_option.trains | 0 }} trains par heure sans partenaire avéré&nbsp;; c’est une option laissée pour plus tard, non chiffrée dans le total. <strong>Vérification&nbsp;:</strong> les mêmes prix unitaires donnaient 40,5&nbsp;Md€ pour le premier triangle et 44,1&nbsp;Md€ pour le plan avec un tunnel TER séparé&nbsp;; faire circuler les TER dans les tunnels du TGV ramène le total à {{ m.cost.total | 1 }}&nbsp;Md€, soit {{ 44.1 - m.cost.total | 1 }}&nbsp;Md€ de moins (déduit).</p>
+  <h3>Pourquoi {{ m.rates.risk | pct }}</h3>
+  <p>La provision habituelle pour une estimation d’étude est d’environ 30&nbsp;%, et c’est celle que portait d’abord cette estimation. Elle est maintenant de {{ m.rates.risk | pct }}, pour trois raisons.</p>
+  <ul>
+    <li><strong>Les prix unitaires sont des coûts finaux ou des contrats signés, pas des estimations préliminaires.</strong> Le premier chiffre du RER E est le coût final de la ligne, qui inclut son dépassement de 44&nbsp;%.[[cgpc]] Les gares du RER E de 2024 sont les contrats de 2016 à 2018.[[eolekit, d92cnit]] Zurich est un coût final&nbsp;;[[zh]] Londres est le coût des contrats des gares tel que prévu vers la fin des travaux.[[nao19]] Les chiffres du Grand Paris sont des contrats et les dossiers révisés en 2017.[[sgpi, d92l15, senat44]] Un prix qui contient déjà un dépassement demande une marge plus faible qu’un prix tiré d’une étude.</li>
+    <li><strong>Le chiffre précédent comptait certaines choses deux fois.</strong> Le prix des gares était d’abord majoré de 1,27, puis de 1,30, pour les études, le foncier et le risque, avant que 30&nbsp;% ne soient ajoutés de nouveau sur l’ensemble. Pour les gares, les études et le foncier étaient ainsi en partie comptés deux fois. Le prix est désormais le chiffre complet de Paris, et les majorations sont appliquées une seule fois.</li>
+    <li><strong>Le test rétrospectif situe les prix.</strong> Avant risque, ils ressortent {{ m.backtest[0].model_no_risk / m.backtest[0].actual - 1 | pct }} au-dessus du premier tronçon du RER E et {{ m.backtest[5].model_no_risk / m.backtest[5].actual - 1 | pct }} au-dessus de Zurich, mais de {{ 1 - m.backtest[1].model_no_risk / m.backtest[1].actual | pct }} à {{ 1 - m.backtest[1].model_no_risk / m.backtest[1].actual_high | pct }} en dessous du prolongement du RER E, et très en dessous de Munich (voir <a class="xref" href="#cost.backtest">la méthode tient-elle&nbsp;?</a>).</li>
+  </ul>
+  <p>Ce que couvrent encore ces {{ m.rates.risk | pct }}&nbsp;: des gares plus profondes que toutes celles construites à Paris, sous des terminus qui restent ouverts pendant toute la durée des travaux&nbsp;; et les postes pour lesquels aucun projet ne publie de prix (cavernes de bifurcation, têtes de tunnel, transformation des halles), soit {{ (m.cost.items['Underground junctions'] + m.cost.items['Portals and links to existing lines'] + m.cost.items['Historic halls']) / m.cost.hard | pct }} des travaux. Deux points à étudier restent ouverts&nbsp;: vérifier, poste par poste, quels prix publiés sont des coûts complets (I9), et fixer une provision pour risque poste par poste au lieu d’un taux unique sur l’ensemble (I10).</p>
+</div>
+
+<div class="block" id="cost.units">
+  <h2>Les prix utilisés, et d’où ils viennent</h2>
+  <ol>
+    <li><strong>Les quantités</strong> viennent du tracé&nbsp;: {{ m.cost.tunnel_km | 0 }}&nbsp;km de tunnel à double voie et {{ m.cost.platform_total | int }}&nbsp;m de voies à quai. Les quais font {{ m.len.hs | 0 }}&nbsp;m pour les TGV, {{ m.len.ter | 0 }}&nbsp;m pour les TER et {{ m.len.sub | 0 }}&nbsp;m pour les trains de banlieue. La longueur des quais TER permet trois rames Regio 2N couplées, longues chacune de 81 à 135&nbsp;m (non vérifié).[[regio2n]]</li>
+    <li><strong>Les prix unitaires</strong> viennent de projets réalisés, ramenés en euros de 2026 avec l’index des travaux publics.[[insee]] Cet index suit les coûts des entreprises. Les prix des travaux souterrains autour de Paris ont augmenté plus vite&nbsp;: ceux du Grand Paris Express d’environ 15 points de plus entre 2012 et 2020 (déduit).[[senat44]] Les projets anciens sont donc sous-estimés.</li>
+    <li><strong>Les études et la maîtrise d’ouvrage</strong> ajoutent 20&nbsp;%, la convention de la SNCF à ce stade (12&nbsp;% et 8&nbsp;%).[[melun]] <strong>Le foncier</strong> ajoute 7&nbsp;%&nbsp;; 5&nbsp;% à 10&nbsp;% est habituel.[[cdc24]]</li>
+    <li><strong>Le risque</strong> ajoute {{ m.rates.risk | pct }} en plus, pour les raisons données plus haut. Le Grand Paris Express porte 24&nbsp;% à 32&nbsp;% depuis 2017, sur des prix qui étaient des estimations.[[senat44]] Le prolongement du RER E portait 6&nbsp;% et a fini 45&nbsp;% au-dessus du budget.[[d92over]]</li>
+  </ol>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Poste</th><th>Prix retenu</th><th>Bas, haut</th><th>Ce qu’ont coûté des projets réalisés, en euros de 2026</th></tr></thead>
+    <tbody>
+      <tr><th>Tunnel à double voie, génie civil avec puits</th><td>{{ m.rates.tunnel_civil * 1000 | 0 }}&nbsp;M€ par km</td><td>{{ m.rates_low.tunnel_civil * 1000 | 0 }}&nbsp;M€, {{ m.rates_high.tunnel_civil * 1000 | 0 }}&nbsp;M€</td><td>Grand Paris, ligne 15&nbsp;: 77&nbsp;M€ par km pour le tunnel, plus 22 à 51&nbsp;M€ pour les puits.[[sgpi]] Londres, Elizabeth line&nbsp;: 138&nbsp;M€, ou 173&nbsp;M€ avec les puits et les têtes de tunnel.[[nao19]] Zurich&nbsp;: 130 à 147&nbsp;M€.[[zh]]</td></tr>
+      <tr><th>Voie, alimentation électrique, signalisation, ventilation</th><td>{{ m.rates.tunnel_systems * 1000 | 0 }}&nbsp;M€ par km</td><td>{{ m.rates_low.tunnel_systems * 1000 | 0 }}&nbsp;M€, {{ m.rates_high.tunnel_systems * 1000 | 0 }}&nbsp;M€</td><td>Grand Paris, ligne 15&nbsp;: 31 à 58&nbsp;M€ par km.[[sgpi]] Elizabeth line&nbsp;: 104&nbsp;M€.[[nao19]]</td></tr>
+      <tr><th>Gare profonde</th><td>{{ m.rates.platform_m * 1000 | 1 }}&nbsp;M€ par mètre de voie à quai</td><td>{{ m.rates_low.platform_m * 1000 | 2 }}&nbsp;M€, {{ m.rates_high.platform_m * 1000 | 1 }}&nbsp;M€</td><td>Voir le graphique ci-dessous.</td></tr>
+      <tr><th>Transformation d’une halle historique</th><td>{{ m.rates.hall.Nord | 1 }}&nbsp;Md€ chacune&nbsp;; {{ m.rates.hall.Est | 1 }}&nbsp;Md€ pour la Gare de l’Est</td><td>Non varié</td><td><span class="tag assume">hypothèse</span> Montparnasse a été réaménagée pour 0,19&nbsp;Md€ et Austerlitz pour environ 0,6&nbsp;Md€&nbsp;; la rénovation abandonnée de la Gare du Nord était chiffrée à 0,76&nbsp;Md€, puis à 1,8&nbsp;Md€ (non vérifié).[[wikinord]]</td></tr>
+      <tr><th>Bifurcation souterraine</th><td>{{ m.rates.junction | 2 }}&nbsp;Md€ chacune</td><td>Non varié</td><td><span class="tag assume">hypothèse</span> Aucun projet ne publie le coût d’une caverne de bifurcation. Sur les tunnels TGV, là où les corridors Nord et Est se rejoignent, là où les deux corridors du sud se séparent, et deux pour la liaison directe&nbsp;: {{ m.cost.junctions_by_type.tgv | 0 }}. Les TER utilisent les mêmes bifurcations, et les tunnels de banlieue n’en ont aucune. {{ m.cost.junctions | 0 }} en tout.</td></tr>
+      <tr><th>Tête de tunnel et raccordement à une ligne existante</th><td>{{ m.rates.portal | 2 }}&nbsp;Md€ chacune</td><td>Non varié</td><td><span class="tag assume">hypothèse</span> Une là où un tunnel rejoint une ligne existante&nbsp;: {{ m.cost.portals_by_type.tgv | 0 }} pour le TGV (les quatre accès), que partagent les TER, {{ m.cost.portals_by_type.n | 0 }} pour le RER G (Est, Atlantique), {{ m.cost.portals_by_type.h | 0 }} pour le RER F (Nord, et à l’ouest de Saint-Lazare). {{ m.cost.portals | 0 }} en tout.</td></tr>
+      <tr><th>Raccordements des TER aux tunnels TGV</th><td>{{ m.rates.ter_links | 2 }}&nbsp;Md€ en tout</td><td>Non varié</td><td><span class="tag assume">hypothèse</span> Six raccordements dans les avant-gares à 0,05&nbsp;Md€, deux passages en terrier à Nord-Est à 0,10&nbsp;Md€, des raccordements à trois têtes de tunnel TGV à 0,05&nbsp;Md€. Aucun précédent n’est chiffré.</td></tr>
+      <tr><th>Voies de garage et accès aux dépôts</th><td>{{ m.rates.sidings | 1 }}&nbsp;Md€ en tout</td><td>Non varié</td><td><span class="tag assume">hypothèse</span></td></tr>
+      <tr><th>Zone de contrôle et salle d’attente des trains pour Londres</th><td>{{ m.rates.london_hall | 1 }}&nbsp;Md€</td><td>Non varié</td><td><span class="tag assume">hypothèse</span> Une salle plus grande au-dessus d’une voie TGV à Nord-Est, fermée à chaque départ pour Londres (voir <a class="xref" href="#stations.boarding">l’embarquement</a>). Aucun précédent n’est chiffré.</td></tr>
+      <tr><th>Risque</th><td>{{ m.rates.risk | pct }}</td><td>{{ m.rates_low.risk | pct }}, {{ m.rates_high.risk | pct }}</td><td>Majorations officielles britanniques sur les estimations préliminaires&nbsp;: 55&nbsp;% pour les tunnels, 70&nbsp;% pour les gares.[[tag]] Dépassement moyen des projets ferroviaires dans le monde&nbsp;: 45&nbsp;%.[[flyv]] Les deux s’appliquent à des estimations, pas à des coûts finaux.</td></tr>
+    </tbody></table></div>
+  <figure class="fig">
+    <div class="fig-head"><strong>Les gares de Paris coûtent environ 1&nbsp;M€ par mètre de voie à quai&nbsp;; Londres deux fois plus, Zurich moitié moins</strong><span>Coût des gares profondes par mètre de voie à quai, en millions d’euros, prix de 2026</span></div>
+    <div id="cost-stations-chart"></div>
+    <figcaption>Un losange est le coût final d’une gare complète. Un point plein est une gare complète, à son budget ou à sa prévision. Un cercle est un contrat pour la seule structure, sans aménagements ni systèmes ferroviaires&nbsp;: il sous-estime donc le coût. La bande grise est la fourchette, quand la source en donne une. Les sources figurent dans le tableau des <a class="xref" href="#cost.evidence">données de référence</a>.</figcaption>
+  </figure>
+  <p><strong>Pourquoi {{ m.rates.platform_m * 1000 | 1 }}&nbsp;M€ par mètre.</strong> Les données de Paris vont dans deux sens. Les premières gares du RER E, Saint-Lazare et Magenta, ont chacune quatre voies dans des cavernes à 30&nbsp;m de profondeur, comme celles qu’il faut ici. La ligne de 1999 a coûté au total 2,5&nbsp;Md€ d’aujourd’hui, coût final&nbsp;; une fois ses 4&nbsp;km de tunnel déduits à notre prix, les gares reviennent à environ 0,9&nbsp;M€ par mètre, tout compris (déduit).[[cgpc]] Les gares à deux voies ouvertes en 2024 ont coûté de 0,9 à 1,4&nbsp;M€ par mètre pour leur seule structure, avant aménagements.[[eolekit, d92cnit]] Le prix retenu se situe entre les deux&nbsp;: il est plutôt haut face au seul chiffre complet de Paris, et bas face à Londres. Avec les études, la maîtrise d’ouvrage, le foncier et le risque, un mètre de voie à quai est compté à {{ m.gross_up * m.rates.platform_m * 1000 | 2 }}&nbsp;M€, soit environ {{ m.gross_up * m.len.hs * m.rates.platform_m | 2 }}&nbsp;Md€ en coût complet pour une voie TGV de {{ m.len.hs | 0 }}&nbsp;m.</p>
+  <p><strong>Non chiffrées à part&nbsp;:</strong> les cavernes à chaque extrémité d’une gare, où deux voies s’épanouissent en un faisceau. Elles sont supposées couvertes par le prix de la gare, comme dans une étude française d’une gare profonde à quatre voies dont la boîte mesure 938&nbsp;m de long pour 365&nbsp;m de quai.[[lyon15]] Pour une gare de {{ m.cost.tracks['Paris Nord-Est'] | 0 }} voies, ce n’est pas vérifié.</p>
+</div>
+
+<div class="block" id="cost.explorer">
+  <h2>Essayez d’autres prix</h2>
+  <p>Faites varier les prix dans les limites de ce que montrent les projets réalisés, et le risque avec eux. Le total et le remboursement annuel suivent. Le remboursement est ce que <a class="xref" href="#financing.capital">le compte de capital</a> doit trouver chaque année.</p>
+  <div class="cols wide-left">
+    <div class="card">
+      <div id="cost-ex-sliders" style="display:flex;flex-direction:column;gap:12px"></div>
+      <div class="steps" id="cost-ex-presets"></div>
+    </div>
+    <div class="card">
+      <h4>Résultat</h4>
+      <dl class="read" id="cost-ex-read"></dl>
+      <div id="cost-ex-bars"></div>
+    </div>
+  </div>
+  <p class="note">Le nombre de voies TGV par gare peut aussi varier. Des gares TGV à quatre voies ont été écartées, trop justes pour l’horaire (voir <a class="xref" href="#service.platforms">combien de quais</a>)&nbsp;; le curseur montre ce qu’elles feraient économiser, pas qu’elles fonctionneraient. Il change les voies TGV à Nord-Est et à Montparnasse, et d’autant à la Gare de Lyon, qui garde ses deux voies supplémentaires pour les TER et le seizième TGV Sud-Est&nbsp;; Saint-Lazare n’en a aucune.</p>
+</div>
+
+<div class="block" id="cost.backtest">
+  <h2>La méthode tient-elle&nbsp;?</h2>
+  <p>Les mêmes prix ont été appliqués à sept projets réalisés ou chiffrés, et comparés à leur coût publié.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Les prix se situent au-dessus des deux projets réalisés les moins chers et en dessous du plus cher&nbsp;; avec {{ m.rates.risk | pct }} de risque, ils rejoignent le milieu de l’échantillon</strong><span>Milliards d’euros, prix de 2026. Les prix de cette étude appliqués à chaque projet, face à son coût publié</span></div>
+    <div id="cost-backtest-chart"></div>
+    <figcaption>Les longueurs de quai et le coût des travaux hors tunnels sont estimés d’après les descriptions publiées. La bande sur le prolongement du RER E montre le doute sur sa base de prix.[[cgpc, d92over, lyon19, marseille, s21, zh, munich]]</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Paris, premier tronçon du RER E, réalisé.</strong> Les prix dépassent&nbsp;: {{ m.backtest[0].model_no_risk | 1 }}&nbsp;Md€ avant risque, {{ m.backtest[0].model_with_risk | 1 }}&nbsp;Md€ avec, contre un coût final de {{ m.backtest[0].actual | 1 }}&nbsp;Md€ qui inclut déjà un dépassement de 44&nbsp;%. L’index utilisé pour ramener les euros de 2003 en 2026 est un plancher&nbsp;: l’écart est donc plus faible qu’il n’y paraît.</li>
+    <li><strong>Paris, prolongement du RER E, réalisé.</strong> Les prix restent en dessous&nbsp;: {{ m.backtest[1].model_no_risk | 1 }}&nbsp;Md€ avant risque contre {{ m.backtest[1].actual | 1 }} à {{ m.backtest[1].actual_high | 1 }}&nbsp;Md€, selon la base de prix du chiffre publié. Avec {{ m.rates.risk | pct }} de risque, {{ m.backtest[1].model_with_risk | 1 }}&nbsp;Md€, encore {{ 1 - m.backtest[1].model_with_risk / m.backtest[1].actual | pct }} sous la lecture basse. C’est le projet le plus proche de celui proposé, et celui que les prix sous-estiment.</li>
+    <li><strong>Lyon et Marseille, estimations d’étude.</strong> Avant risque, les prix encadrent ce que SNCF Réseau estime pour une gare profonde à quatre voies avec ses tunnels&nbsp;: {{ m.backtest[2].model_no_risk | 1 }}&nbsp;Md€ contre {{ m.backtest[2].actual | 1 }}&nbsp;Md€ pour Lyon, {{ m.backtest[3].model_no_risk | 1 }}&nbsp;Md€ contre {{ m.backtest[3].actual | 1 }}&nbsp;Md€ pour Marseille, un chiffre qui couvre toute une phase de travaux. Avec le risque, les deux sont au-dessus des estimations, comme tend à l’être un coût réalisé&nbsp;: ces estimations portent leur propre provision pour aléas, et à Paris de telles estimations ont été dépassées de 45&nbsp;%.</li>
+    <li><strong>Stuttgart, en chantier.</strong> Avec {{ m.rates.risk | pct }} de risque, les prix tombent sur la prévision actuelle ({{ m.backtest[4].model_with_risk | 1 }}&nbsp;Md€ contre {{ m.backtest[4].actual | 1 }}&nbsp;Md€), exprimée en euros courants et qui serait plus élevée en euros de 2026.</li>
+    <li><strong>Zurich, réalisé.</strong> Les prix dépassent un coût final&nbsp;: {{ m.backtest[5].model_no_risk | 1 }}&nbsp;Md€ avant risque contre {{ m.backtest[5].actual | 1 }}&nbsp;Md€. Zurich a construit une gare à quatre voies à 16&nbsp;m seulement de profondeur, sous un terminus en service, pour la moitié du prix parisien par mètre.</li>
+    <li><strong>Munich, en chantier.</strong> Les prix donnent moins de la moitié de la prévision ({{ m.backtest[6].model_with_risk | 1 }}&nbsp;Md€ avec le risque contre {{ m.backtest[6].actual | 1 }}&nbsp;Md€, inflation future comprise). Trois gares à 40&nbsp;m sous le centre&nbsp;: voilà à quoi ressemblerait un projet parisien si tout tournait mal.</li>
+  </ul>
+  <div class="callout"><b>La lecture</b><p>Les prix sont ceux de projets réalisés, et les {{ m.rates.risk | pct }} sont ce qui sépare le milieu de l’échantillon de ses cas les moins chers. Ce n’est pas un coussin pour une estimation préliminaire, car les prix contiennent déjà les dépassements des projets dont ils viennent. L’écart entre Zurich et Munich est la vraie incertitude, et le prolongement du RER E, le précédent le plus proche, se situe au-dessus des prix.</p></div>
+</div>
+
+<div class="block" id="cost.yearly">
+  <h2>Le coût annuel</h2>
+  <p>Pour comparer un coût payé une fois avec des recettes et des avantages qui reviennent chaque année, le coût de construction est converti en remboursement annuel, comme un emprunt remboursé sur 60 ans à 3&nbsp;% au-dessus de l’inflation. L’argent est dépensé pendant des années avant que le premier train ne circule&nbsp;: sur {{ m.params.build_years | 0 }} années de dépenses régulières <span class="tag assume">hypothèse</span>, les intérêts pendant les travaux ajoutent {{ m.idc - 1 | pct }}. Chaque milliard d’euros de construction coûte alors {{ m.AF * m.idc * 1000 | 0 }}&nbsp;M€ par an.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Milliards d’euros par an</th><th class="num">Le triangle</th><th>Quel compte</th></tr></thead>
+    <tbody>
+      <tr><th>Remboursement de la construction, intérêts pendant les travaux compris</th><td class="num">{{ f.central.annuity | 2 }}</td><td><a class="xref" href="#financing.capital">Capital</a></td></tr>
+      <tr><th>Exploitation et entretien des tunnels et des gares</th><td class="num">{{ f.central.ops_cost['Running and maintaining tunnels and stations'] | 2 }}</td><td rowspan="3"><a class="xref" href="#financing.operations">Exploitation</a></td></tr>
+      <tr><th>Renouvellement de la voie, de l’alimentation et de la signalisation après 30 ans</th><td class="num">{{ f.central.ops_cost['Renewal of rail systems, set aside each year'] | 2 }}</td></tr>
+      <tr><th>Circulation supplémentaire des trains régionaux</th><td class="num">{{ f.central.ops_cost['Extra running of regional trains'] | 2 }}</td></tr>
+      <tr class="total"><th>Coûts d’exploitation</th><td class="num">{{ f.central.ops_cost_total | 2 }}</td><td></td></tr>
+      <tr class="total"><th>Coût annuel</th><td class="num">{{ f.central.yearly_cost | 2 }}</td><td></td></tr>
+    </tbody></table></div>
+  <p><strong>L’exploitation des tunnels et des gares.</strong> Il existe deux références françaises. Le premier tronçon du RER E coûtait 21,3&nbsp;M€ par an en 2003 en entretien et en exploitation, pour deux gares profondes et 4&nbsp;km de tunnel&nbsp;; l’entretien des seuls ouvrages représentait six fois la prévision.[[cgpc]] Ramené à aujourd’hui avec l’index des travaux publics, cela fait 13&#8239;200&nbsp;€ par an par mètre de voie à quai et environ 3,5&nbsp;M€ par km de tunnel. Le réseau RER exploité par la RATP coûte plus de 0,5&nbsp;M€ par km de voie en entretien, soit environ 1,0&nbsp;M€ par km de tunnel à double voie.[[fin_art24rer]] Les gares sont comptées au premier chiffre et les tunnels à mi-chemin entre les deux, {{ m.params.om_tunnel * 1000 | 2 }}&nbsp;M€ par km <span class="tag assume">hypothèse</span>. Cela donne {{ f.central.ops_cost['Running and maintaining tunnels and stations'] | m }}&nbsp;M€ par an, entre {{ f.low_running.ops_cost['Running and maintaining tunnels and stations'] | m }}&nbsp;M€ et {{ f.high_running.ops_cost['Running and maintaining tunnels and stations'] | m }}&nbsp;M€ selon les deux références. L’effet sur les comptes est décrit dans <a class="xref" href="#financing.operations">le compte d’exploitation</a>.</p>
+  <p class="note">L’État emprunte à long terme à 5,4&nbsp;% en octobre 2026, inflation comprise.[[aft]] L’économie due à la fermeture des quais et des voies de surface n’est pas déduite, faute d’avoir été mesurée (point à étudier I11). L’exploitation des trains à grande vitesse reste à la charge de leurs opérateurs.</p>
+</div>
+
+<div class="block" id="cost.evidence">
+  <h2>Les données de référence</h2>
+  <p>Les projets qui fondent les prix. Tous les chiffres de 2026 sont des conversions faites pour cette étude&nbsp;: les coûts français avec l’index des travaux publics, les coûts étrangers avec un indice de prix local et le taux de change d’octobre 2026.</p>
+  <details>
+    <summary><strong>Gares profondes</strong>&nbsp;: 14 gares réalisées ou prévues</summary>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl">
+      <thead><tr><th>Gare</th><th>Ce qui a été construit</th><th>Coût publié</th><th>En euros de 2026</th><th>Par mètre de voie à quai</th></tr></thead>
+      <tbody>
+        <tr><th>Paris, RER E, Saint-Lazare et Magenta, 1999</th><td>2 gares de 4 voies, 225&nbsp;m, à 30&nbsp;m de profondeur, avec 4&nbsp;km de tunnel</td><td>1&#8239;322&nbsp;M€ en 2003 pour toute la ligne, coût final&nbsp;; aucune ventilation publiée[[cgpc, magenta]]</td><td>2&#8239;490&nbsp;M€</td><td>Environ 0,9&nbsp;M€, tunnel déduit à notre prix&nbsp;; au plus 1,4&nbsp;M€</td></tr>
+        <tr><th>Paris, RER E, Porte Maillot, 2024</th><td>2 voies, 225&nbsp;m, à 35&nbsp;m de profondeur&nbsp;; 205&#8239;000&nbsp;m³ excavés</td><td>300&nbsp;M€, contrat de 2016[[eolekit, afgc]]</td><td>412&nbsp;M€</td><td>0,9&nbsp;M€, structure</td></tr>
+        <tr><th>Paris, RER E, La Défense, 2024</th><td>2 voies, 225&nbsp;m, construite sous un bâtiment existant</td><td>354 à 466&nbsp;M€, contrats de 2016 à 2018[[eolekit, d92cnit]]</td><td>487 à 641&nbsp;M€</td><td>1,1 à 1,4&nbsp;M€, structure</td></tr>
+        <tr><th>Zurich, Löwenstrasse</th><td>4 voies, 420&nbsp;m, à 16&nbsp;m sous un terminus en service</td><td>674&nbsp;M CHF, coût final[[zh]]</td><td>850 à 960&nbsp;M€</td><td>0,5 à 0,6&nbsp;M€</td></tr>
+        <tr><th>Bologne, gare à grande vitesse</th><td>4 voies, à 23&nbsp;m de profondeur</td><td>530&nbsp;M€, 2013[[bologna]]</td><td>630&nbsp;M€</td><td>0,24&nbsp;M€</td></tr>
+        <tr><th>Madrid, Sol</th><td>2 voies, caverne de 207&nbsp;m de long</td><td>Budget de 140&nbsp;M€, 2008[[sol]]</td><td>200&nbsp;M€</td><td>0,5&nbsp;M€</td></tr>
+        <tr><th>Madrid, gare traversante d’Atocha</th><td>4 voies sous le terminus</td><td>452&nbsp;M€, contrat de 2024[[atocha]]</td><td>470&nbsp;M€</td><td>Longueur de quai non publiée</td></tr>
+        <tr><th>Malmö C, niveau inférieur</th><td>4 voies, 320&nbsp;m, creusée depuis la surface</td><td>1,2&nbsp;Md SEK, contrat de 2005[[malmo]]</td><td>216&nbsp;M€</td><td>0,17&nbsp;M€, structure</td></tr>
+        <tr><th>Stuttgart 21, gare</th><td>8 voies, 420&nbsp;m, à 12&nbsp;m de profondeur</td><td>Environ 300&nbsp;M€, contrat pour la structure, 2012[[s21shell]]</td><td>550&nbsp;M€</td><td>0,16&nbsp;M€, structure</td></tr>
+        <tr><th>Munich, Marienhof</th><td>2 voies (supposées), 210&nbsp;m, à 40&nbsp;m de profondeur</td><td>394&nbsp;M€, contrat pour la structure, 2018[[marienhof]]</td><td>625&nbsp;M€</td><td>1,5&nbsp;M€, structure</td></tr>
+        <tr><th>Londres, Elizabeth line</th><td>6 gares centrales, 12 voies d’environ 240&nbsp;m</td><td>3,4&nbsp;Md£, contrats selon la prévision de 2018[[nao19]]</td><td>5,8&nbsp;Md€</td><td>2,0&nbsp;M€</td></tr>
+        <tr><th>Londres, Old Oak Common</th><td>6 voies souterraines de 450&nbsp;m, plus 8 en surface</td><td>4,3&nbsp;Md£, contre 2,0&nbsp;Md£ au départ[[nao26]]</td><td>5,3&nbsp;Md€</td><td>1,9&nbsp;M€</td></tr>
+        <tr><th>Lyon, étude de 2019</th><td>Gare à 4 voies à 31&nbsp;m de profondeur, avec environ 8,5&nbsp;km de tunnel</td><td>3,0&nbsp;Md€ aux prix de 2018[[lyon19]]</td><td>3,8&nbsp;Md€</td><td>Non séparable</td></tr>
+        <tr><th>Marseille, en projet</th><td>4 voies, 406&nbsp;m, à 25&nbsp;m de profondeur, avec 8&nbsp;km de tunnel</td><td>2,7&nbsp;Md€ aux prix de 2020, pour la phase[[marseille]]</td><td>3,4&nbsp;Md€</td><td>Non séparable</td></tr>
+      </tbody></table></div>
+    <ul style="margin-top:10px">
+      <li><strong>Les contrats sous-estiment.</strong> Un contrat pour la structure laisse de côté les études, la maîtrise d’ouvrage, les aménagements et les systèmes ferroviaires. C’est pourquoi Malmö, Stuttgart et Bologne paraissent bon marché.</li>
+      <li><strong>Les contrats augmentent aussi.</strong> Les sept contrats de gares de l’Elizabeth line sont passés de 1,0&nbsp;Md£ à l’attribution à 3,2&nbsp;Md£ en 2018.[[nao19]]</li>
+      <li><strong>Les chiffres de Paris sont le meilleur repère&nbsp;:</strong> même sous-sol, mêmes entreprises, même maître d’ouvrage. Les gares de 1999 ont quatre voies&nbsp;; personne n’a chiffré à Paris une gare en caverne de {{ m.cost.tracks['Montparnasse'] | 0 }} ou {{ m.cost.tracks['Paris Nord-Est'] | 0 }} voies. Des gares traversantes à quatre voies sous des terminus en service existent à Zurich, à Madrid et à Malmö&nbsp;; six voies TGV dans une même gare, comme ici, vont au-delà.</li>
+      <li><strong>Longueur des trains.</strong> Les quais TER de 350&nbsp;m sont dimensionnés pour trois rames Regio 2N couplées de 81 à 135&nbsp;m (non vérifié).[[regio2n]] Les quais de banlieue de 225&nbsp;m correspondent aux cavernes du RER E.[[magenta]]</li>
+    </ul>
+  </details>
+  <details>
+    <summary><strong>Tunnels et systèmes ferroviaires</strong></summary>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl">
+      <thead><tr><th>Projet</th><th>Objet</th><th>Coût publié</th><th>En euros de 2026, par km</th></tr></thead>
+      <tbody>
+        <tr><th>Grand Paris Express, ligne 15 Est et Ouest</th><td>Tunnel courant&nbsp;; puits&nbsp;; voie et systèmes (ventilation du maître d’ouvrage)</td><td>59&nbsp;M€ par km&nbsp;; 17 à 39&nbsp;M€&nbsp;; 23 à 45&nbsp;M€, aux prix de 2012[[sgpi]]</td><td>77&nbsp;M€&nbsp;; 22 à 51&nbsp;M€&nbsp;; 31 à 58&nbsp;M€</td></tr>
+        <tr><th>Grand Paris Express, ligne 15 Ouest, premier lot</th><td>14&nbsp;km de tunnel et 5 gares, en conception-réalisation, 2023</td><td>2,71&nbsp;Md€[[d92l15]]</td><td>210&nbsp;M€ avec ses gares</td></tr>
+        <tr><th>Paris, prolongement du RER E</th><td>Trois marchés de génie civil&nbsp;: 8&nbsp;km de tunnel et deux gares profondes, 2016</td><td>1&#8239;016&nbsp;M€[[d92lots]]</td><td>175&nbsp;M€ avec ses gares</td></tr>
+        <tr><th>Paris, prolongement du RER E</th><td>Voie et caténaire, 2019</td><td>144&nbsp;M€[[tso]]</td><td>6,5&nbsp;M€ par km de voie unique</td></tr>
+        <tr><th>Londres, Elizabeth line</th><td>21&nbsp;km de tunnels jumeaux&nbsp;; avec puits et têtes de tunnel&nbsp;; systèmes ferroviaires</td><td>1,7&nbsp;Md£&nbsp;; 2,1&nbsp;Md£&nbsp;; 1,3&nbsp;Md£[[nao19]]</td><td>138&nbsp;M€&nbsp;; 173&nbsp;M€&nbsp;; 104&nbsp;M€</td></tr>
+        <tr><th>Zurich, tunnel du Weinberg</th><td>4,8&nbsp;km, double voie</td><td>498&nbsp;M CHF[[zh]]</td><td>130 à 147&nbsp;M€</td></tr>
+      </tbody></table></div>
+    <p class="note" style="margin-top:8px">Un km de tunnel à double voie est compté à {{ (m.rates.tunnel_civil + m.rates.tunnel_systems) * m.gross_up * 1000 | 0 }}&nbsp;M€ en coût complet, avec les études, la maîtrise d’ouvrage, le foncier et le risque.</p>
+  </details>
+  <details>
+    <summary><strong>Majorations, risque et coût final des projets</strong></summary>
+    <div class="tbl-wrap" style="margin-top:10px"><table class="tbl">
+      <thead><tr><th>Sujet</th><th>Ce que montrent les précédents</th></tr></thead>
+      <tbody>
+        <tr><th>Études et maîtrise d’ouvrage</th><td>La SNCF ajoute 12&nbsp;% pour les études et 8&nbsp;% pour la maîtrise d’ouvrage au stade de l’enquête publique, et 15&nbsp;% pour les aléas.[[melun]]</td></tr>
+        <tr><th>Foncier</th><td>5,7&nbsp;% du coût du Grand Paris Express&nbsp;; 5&nbsp;% à 10&nbsp;% est habituel pour les métros.[[cdc24]]</td></tr>
+        <tr><th>Provision pour risque</th><td>Grand Paris Express&nbsp;: portée en 2017 entre 24&nbsp;% et 32&nbsp;% du coût technique.[[senat44]] Prolongement du RER E&nbsp;: 6&nbsp;% dans le budget de 2014.[[d92over]]</td></tr>
+        <tr><th>Majorations officielles britanniques au stade le plus précoce</th><td>56&nbsp;% pour les projets ferroviaires, 55&nbsp;% pour les tunnels, 70&nbsp;% pour les gares.[[tag]]</td></tr>
+        <tr><th>Bilan mondial des projets ferroviaires</th><td>Dépassement moyen de 45&nbsp;%&nbsp;; il faut ajouter 57&nbsp;% pour avoir 80&nbsp;% de chances de tenir le budget.[[flyv]]</td></tr>
+        <tr><th>Paris, RER E, 1999</th><td>44&nbsp;% au-dessus de l’estimation retenue lors de l’approbation.[[cgpc]]</td></tr>
+        <tr><th>Paris, prolongement du RER E, 2024</th><td>De 3,7 à 5,4&nbsp;Md€, soit 45&nbsp;% de dépassement.[[d92over]]</td></tr>
+        <tr><th>Stuttgart 21</th><td>Environ 14,5&nbsp;Md€, plus de trois fois le chiffre de l’approbation&nbsp;; mise en service repoussée à 2031.[[s21]]</td></tr>
+        <tr><th>Munich, deuxième tunnel central du S-Bahn</th><td>9,4&nbsp;Md€, prévision de 10,9&nbsp;Md€.[[munich]]</td></tr>
+        <tr><th>Stockholm, Citybanan</th><td>Achevé dans le budget.[[citybanan]]</td></tr>
+      </tbody></table></div>
+  </details>
+  <details>
+    <summary><strong>Le test des prix, projet par projet</strong></summary>
+    <div id="cost-backtest-table" style="margin-top:10px"></div>
+    <p class="note" style="margin-top:8px">Milliards d’euros, prix de 2026.</p>
+  </details>
+</div>

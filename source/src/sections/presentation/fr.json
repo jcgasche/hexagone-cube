@@ -1,0 +1,23 @@
+{
+  "exact": {
+    "No change in Paris, every hour": "Sans changement à Paris, toutes les heures",
+    "Paris, inside the ring road": "Paris, à l’intérieur du périphérique",
+    "Trains go in, wait, and come back out": "Les trains entrent, attendent et repartent par où ils sont venus",
+    "Today": "Aujourd’hui",
+    "The TGV triangle": "Le triangle TGV",
+    "With TER + Transilien": "Avec TER + Transilien",
+    "With the project": "Avec le projet",
+    "Tracks run into the hall": "Les voies entrent dans la halle",
+    "Kilometres of tracks": "Des kilomètres de voies",
+    "A welcome hall": "Une halle d’accueil",
+    "Deep platforms, Paris Nord-Est": "Quais profonds, Paris Nord-Est",
+    "Tunnels to the ring road": "Tunnels vers le périphérique",
+    "Two tracks in each, one each way": "Deux voies dans chacun, une par sens",
+    "Today, with a change of station in Paris": "Aujourd’hui, avec un changement de gare à Paris",
+    "Through train, every hour": "Train direct, toutes les heures",
+    "Parts of the presentation": "Parties de la présentation"
+  },
+  "patterns": [
+    ["Paid back, {0}", "Remboursé en {0}"]
+  ]
+}

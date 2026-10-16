@@ -22,25 +22,24 @@ body[data-page="presentation"] .brand span, body[data-page="presentation"] .topb
 body[data-page="presentation"] .topbar .here { display: none }
 body[data-page="presentation"] .menu-btn { background: transparent; color: #8fc0ff; border-color: rgba(143,192,255,.5) }
 
-/* the two views, in the top bar */
-.views { display: flex; gap: 4px; margin-left: auto; background: var(--surface-2); border-radius: 999px; padding: 3px }
+/* the top bar: the two views next to the name, the language on the right; the same in both views */
+.views { display: flex; gap: 4px; margin-left: 18px; background: var(--surface-2); border-radius: 999px; padding: 3px; flex: none }
 .views a { font-size: 13px; font-weight: 600; text-decoration: none; color: var(--muted); padding: 5px 12px; border-radius: 999px; white-space: nowrap }
 .views a:hover { color: var(--ink) }
 body[data-page="presentation"] .views { background: rgba(255,255,255,.07) }
 body[data-page="presentation"] .views a[data-view="presentation"], body:not([data-page="presentation"]) .views a[data-view="report"] { background: var(--accent); color: var(--accent-ink) }
 body[data-page="presentation"] .views a[data-view="presentation"] { background: linear-gradient(90deg, #5aa2ff, #44d7ff); color: #06101f }
 body[data-page="presentation"] .views a[data-view="report"] { color: #c4cfdf }
-.topbar .views + .menu-btn { margin-left: 0 }
-@media (min-width: 981px) {
-  .topbar .here { margin-left: auto }
-  .topbar .here + .views { margin-left: 16px }
-  /* on the presentation the contents are a drawer opened from the top bar */
-  body[data-page="presentation"] .shell { grid-template-columns: minmax(0, 1fr) }
-  body[data-page="presentation"] .menu-btn { display: inline-block }
-  body[data-page="presentation"] .contents { position: fixed; top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); right: 0; bottom: 0; left: auto; width: 300px; max-height: none; z-index: 25; background: var(--surface); border-left: 1px solid var(--rule); display: none; box-shadow: -20px 0 60px rgba(0,0,0,.35) }
-  body[data-page="presentation"].menu-open .contents { display: flex }
-}
-@media (max-width: 520px) { .views a { padding: 5px 9px; font-size: 12px } .topbar { gap: 8px } }
+.topbar .here { margin-left: auto }
+.topbar .menu-btn { margin-left: 0 }
+.lang { margin-left: 12px; flex: none; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-decoration: none; color: var(--accent); border: 1px solid var(--rule); border-radius: 999px; padding: 5px 12px }
+.lang:hover { background: var(--surface-2) }
+body[data-page="presentation"] .lang { margin-left: auto; color: #cfe6ff; border-color: rgba(143,192,255,.4) }
+body[data-page="presentation"] .menu-btn { display: none }
+@media (max-width: 980px) { .topbar .here + .menu-btn { margin-left: auto } }
+@media (max-width: 640px) { .brand span { display: none } }
+@media (max-width: 520px) { .views { margin-left: 6px } .views a { padding: 5px 8px; font-size: 12px } .topbar { gap: 6px; padding-inline: 10px } .lang { margin-left: 4px; padding: 5px 8px } .brand b { font-size: 17px } .topbar .menu-btn { padding: 4px 9px; font-size: 0; line-height: 1 } .topbar .menu-btn::before { content: "☰"; font-size: 18px } }
+@media (min-width: 981px) { body[data-page="presentation"] .shell { grid-template-columns: minmax(0, 1fr) } body[data-page="presentation"] .contents { display: none } }
 
 /* ---- slides */
 .pz { position: relative; font-size: 16px }
@@ -64,7 +63,7 @@ body[data-page="presentation"] .views a[data-view="report"] { color: #c4cfdf }
 .pz-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; opacity: .9; pointer-events: none }
 .pz-title { font-family: var(--display); font-weight: 600; font-size: clamp(48px, 9vw, 116px); line-height: .92; color: #fff; letter-spacing: -.02em; margin: 0 }
 .pz-title span { background: linear-gradient(90deg, #5aa2ff, #44d7ff 45%, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
-.pz-sub { font-size: clamp(17px, 2vw, 22px); color: #d6e0ee; max-width: 48ch }
+.pz-sub { font-size: clamp(17px, 1.8vw, 21px); color: #d6e0ee; max-width: 44ch }
 .pz-money { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 8px }
 .pz-big { display: flex; flex-direction: column; gap: 6px; padding: 18px 18px 16px; border-radius: 16px; background: var(--pz-glass); border: 1px solid var(--pz-line); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px) }
 .pz-big b, .pz-stat b, .pz-chip b, .pz-mini b { font-family: var(--display); font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; line-height: 1 }
@@ -108,7 +107,7 @@ body[data-page="presentation"] .views a[data-view="report"] { color: #c4cfdf }
 
 /* line badges */
 .pz-ln { display: inline-grid; place-items: center; min-width: 28px; height: 28px; padding: 0 7px; border-radius: 8px; font-family: var(--display); font-size: 17px; color: #06101f; margin-right: 6px; vertical-align: middle }
-.pz-ln.n { background: var(--pz-amber) } .pz-ln.h { background: var(--pz-pink) } .pz-ln.t { background: var(--pz-violet); font-size: 14px }
+.pz-ln.g { background: var(--pz-amber) } .pz-ln.f { background: var(--pz-pink) } .pz-ln.t { background: var(--pz-violet); font-size: 14px }
 .pz-lines { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px }
 .pz-line { display: flex; gap: 12px; padding: 18px; border-radius: 16px; background: var(--pz-glass); border: 1px solid var(--pz-line); align-items: flex-start }
 .pz-line .pz-ln { flex: none; height: 40px; min-width: 40px; font-size: 22px; border-radius: 12px }
@@ -203,7 +202,11 @@ body[data-page="presentation"] .views a[data-view="report"] { color: #c4cfdf }
 }
 
 /* the Gare du Nord drawing */
-@keyframes pz-train { from { transform: translate(0, 0) } to { transform: translate(var(--dx), var(--dy)) } }
+@keyframes pz-thru {
+  0% { transform: translate(calc(var(--ux) * var(--a)), calc(var(--uy) * var(--a))) }
+  42%, 58% { transform: translate(0, 0) }
+  100% { transform: translate(calc(var(--ux) * var(--b)), calc(var(--uy) * var(--b))) } }
+@keyframes pz-run { from { transform: translate(calc(var(--ux) * var(--a)), calc(var(--uy) * var(--a))) } to { transform: translate(calc(var(--ux) * var(--b)), calc(var(--uy) * var(--b))) } }
 .pz-tree { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(.1); transition: transform .8s cubic-bezier(.3,1.4,.5,1) var(--d) }
 .is-after .pz-tree { transform: none }
 @keyframes pz-walk { 0%, 100% { transform: translate(0, 0) } 50% { transform: translate(3px, 1.5px) } }
@@ -211,3 +214,74 @@ body[data-page="presentation"] .views a[data-view="report"] { color: #c4cfdf }
 @media (prefers-reduced-motion: reduce) { .pz-tree { transition: none } .is-after .pz-person { animation: none } }
 
 @media (max-width: 860px) { .pz-hero-bg { opacity: .28 } }
+
+/* ---- round two: second headings, steps that move on by themselves, journeys, facts */
+.pz-h2 { font-family: var(--display); font-size: clamp(22px, 2.6vw, 32px); line-height: 1.1; color: #cfe6ff; font-weight: 600; margin-top: 6px }
+.pz-auto { position: relative; display: inline-flex; flex-direction: column; gap: 6px; align-self: flex-start; z-index: 2 }
+.pz-auto .steps { display: inline-flex; gap: 4px; padding: 5px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(143,192,255,.35); box-shadow: 0 0 0 4px rgba(68,215,255,.06), 0 10px 30px rgba(0,0,0,.3); flex-wrap: wrap }
+.pz-auto .steps button { appearance: none; font: inherit; font-size: 15px; font-weight: 600; border: 0; background: transparent; color: #dbe7f7; padding: 8px 16px; border-radius: 999px; cursor: pointer; transition: background .3s, color .3s }
+.pz-auto .steps button:hover { background: rgba(255,255,255,.08) }
+.pz-auto .steps button[aria-pressed="true"] { background: linear-gradient(90deg, #5aa2ff, #44d7ff); color: #06101f; box-shadow: 0 6px 20px rgba(68,215,255,.35) }
+.pz-timer { display: block; height: 3px; margin: 0 18px; border-radius: 3px; background: rgba(255,255,255,.08); overflow: hidden }
+.pz-timer i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5) }
+.pz-auto.stopped .pz-timer, #pz-acc-toggle.stopped { visibility: hidden }
+#pz-acc-toggle { display: block; width: min(420px, 100%) }
+#pz-acc-toggle .pz-timer { margin: 0 }
+.pz-iso .pz-auto { position: absolute; top: 0; left: 0 }
+.pz-trips { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 22px; font-size: 14px; color: var(--text); padding-top: 4px }
+.pz-trips-k { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: var(--muted) }
+.pz-trip { display: inline-flex; gap: 8px; align-items: baseline }
+.pz-trip-n { color: #fff; font-weight: 500 }
+.pz-trip-t s { color: #ff9b80; text-decoration-thickness: 1.5px }
+.pz-trip-t b { color: var(--pz-green); font-family: var(--display); font-size: 18px }
+.pz-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; padding-top: 8px; border-top: 1px solid var(--pz-line) }
+.pz-facts > div { display: flex; flex-direction: column; gap: 2px }
+.pz-facts b { font-family: var(--display); font-size: 22px; color: #fff; font-weight: 600 }
+.pz-facts span { font-size: 13px; color: var(--muted) }
+.pz-grid2.small .pz-stat { padding: 12px 14px; gap: 4px }
+.pz-grid2.small .pz-stat b { font-size: clamp(22px, 2.2vw, 28px) }
+.pz-cases .pz-case { padding: 16px 18px; gap: 6px }
+.pz-cases .pz-case h3 { font-size: 18px }
+.pz-cases .pz-case p { font-size: 14px }
+.pz-bar > b small { font-size: 12px; font-weight: 500; color: var(--pz-green); margin-left: 4px }
+.pz-bar { grid-template-columns: 9.5em minmax(0, 1fr) 7.6em }
+.pz-claim { font-size: clamp(16px, 1.6vw, 19px); color: var(--text); max-width: 70ch }
+.pz-claim b { font-family: var(--display); font-size: 1.5em; color: var(--pz-cyan); font-weight: 600 }
+
+/* the parks against the Buttes-Chaumont */
+.pz-bc { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border-radius: 18px; background: linear-gradient(160deg, rgba(63,224,165,.16), rgba(255,255,255,.02)); border: 1px solid rgba(63,224,165,.3) }
+.pz-bc > b { font-family: var(--display); font-weight: 600; font-size: clamp(54px, 7vw, 84px); line-height: .95; color: var(--pz-green) }
+.pz-bc > span { font-size: 18px; color: #fff }
+.pz-bc-row { display: flex; gap: 6px; align-items: center; margin-top: 6px; min-height: 48px }
+.pz-bc-i { height: 48px; flex: none; transform: scale(.2); opacity: 0; transition: transform .6s cubic-bezier(.3,1.5,.5,1) var(--d), opacity .4s ease var(--d) }
+.pz-in.on .pz-bc-i { transform: none; opacity: 1 }
+
+/* the hour: the timetable's own parts, laid out for this page */
+.pz-tt { display: flex; flex-direction: column; gap: 12px; min-width: 0 }
+.pz-tt-head { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between }
+.pz-tt-legend { flex: 1 1 380px; min-width: 0 }
+#pz-hour-host .pz-tt-legend .legend { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px 16px }
+.pz-tt-ctl { display: flex; flex-wrap: wrap; gap: 10px; align-items: center }
+#pz-hour-host .pz-tt-ctl .field > span { display: none }
+#pz-hour-host .pz-tt-ctl .controls, #pz-hour-host .pz-tt-ctl .tt-speed { margin: 0 }
+#pz-hour-host .pz-tt-ctl .btn { min-width: 0; width: 44px; height: 44px; padding: 0; border-radius: 50%; font-size: 0; display: grid; place-items: center; background: linear-gradient(90deg, #5aa2ff, #44d7ff); border: 0; color: #06101f; cursor: pointer }
+#pz-hour-host .pz-tt-ctl .btn::before { content: ""; width: 0; height: 0; border-style: solid; border-width: 8px 0 8px 13px; border-color: transparent transparent transparent #06101f; margin-left: 3px }
+#pz-hour-host.is-playing .pz-tt-ctl .btn::before { width: 4px; height: 15px; border: 0; border-left: 4px solid #06101f; border-right: 4px solid #06101f; margin-left: 0 }
+#pz-hour-host .pz-tt-scrub .slider label { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted) }
+#pz-hour-host .pz-tt-scrub .slider output { font-family: var(--display); font-size: 22px; color: #fff }
+#pz-hour-host .pz-tt-scrub .slider input[type=range] { accent-color: #44d7ff }
+.pz-tt-body { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 18px; align-items: start }
+#pz-hour-host .pz-tt-clocks .tt-clocks { grid-template-columns: minmax(0, 1fr); gap: 10px }
+#pz-hour-host .pz-tt-clocks .tt-clock { max-width: 200px }
+#pz-hour-host .pz-tt-clocks .tt-clockbox h4::before { content: "TGV " }
+#pz-hour-host .pz-tt-clocks .tt-clockbox .tt-pre { display: none }
+@media (max-width: 860px) {
+  .pz-tt-body { grid-template-columns: minmax(0, 1fr) }
+  #pz-hour-host .pz-tt-clocks .tt-clocks { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+  .pz-facts { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .pz-iso .pz-auto { position: static; margin-bottom: 8px }
+}
+@media (max-width: 520px) { .pz-auto .steps button { font-size: 13px; padding: 7px 11px } .pz-bar { grid-template-columns: 7.4em minmax(0, 1fr) 6.6em } }
+
+/* the name: Hexagone, cubed */
+.pz-title sup { font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }

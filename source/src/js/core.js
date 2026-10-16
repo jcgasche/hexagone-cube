@@ -4,20 +4,22 @@
   'use strict';
   const PTS = window.PTS = window.PTS || {};
   PTS.data = window.PTS_DATA || {};
+  PTS.lang = window.PTS_LANG || 'en';                                   // the French page is the same page with its own text and window.PTS_I18N
+  const FR = PTS.lang === 'fr';
   const inits = {}, started = {};
   PTS.section = function (id, fn) { inits[id] = fn; };
 
   // ---------------------------------------------------------------- formatting (English, comma thousands)
   const nf = {};
-  function n(x, d) { d = d || 0; if (!isFinite(x)) return 'n/a'; const k = d; nf[k] = nf[k] || new Intl.NumberFormat('en-GB', { minimumFractionDigits: d, maximumFractionDigits: d }); const s = nf[k].format(x); return /^-0(\.0+)?$/.test(s) ? s.slice(1) : s; }
+  function n(x, d) { d = d || 0; if (!isFinite(x)) return FR ? 'n.d.' : 'n/a'; const k = d; nf[k] = nf[k] || new Intl.NumberFormat(FR ? 'fr-FR' : 'en-GB', { minimumFractionDigits: d, maximumFractionDigits: d }); const s = nf[k].format(x); return /^[-−]0([.,]0+)?$/.test(s) ? s.slice(1) : s; }
   PTS.fmt = {
     n: n,
-    bn: function (x, d) { return '€' + n(x, d == null ? 1 : d) + 'bn'; },            // input in bn euros
-    m: function (x) { return (x < 0 ? '-' : '') + '€' + n(Math.abs(x) * 1000, 0) + 'm'; },   // input in bn euros, shown in millions
+    bn: function (x, d) { return FR ? n(x, d == null ? 1 : d) + '\u00a0Md€' : '€' + n(x, d == null ? 1 : d) + 'bn'; },            // input in bn euros
+    m: function (x) { return FR ? n(x * 1000, 0) + '\u00a0M€' : (x < 0 ? '-' : '') + '€' + n(Math.abs(x) * 1000, 0) + 'm'; },   // input in bn euros, shown in millions
     money: function (x) { return Math.abs(x) >= 1 ? PTS.fmt.bn(x, 2) : PTS.fmt.m(x); },
-    pct: function (x, d) { return n(x * 100, d || 0) + '%'; },
-    eur: function (x, d) { return '€' + n(x, d == null ? 2 : d); },
-    M: function (x, d) { return n(x, d == null ? 1 : d) + ' million'; },
+    pct: function (x, d) { return n(x * 100, d || 0) + (FR ? '\u00a0%' : '%'); },
+    eur: function (x, d) { return FR ? n(x, d == null ? 2 : d) + '\u00a0€' : '€' + n(x, d == null ? 2 : d); },
+    M: function (x, d) { return n(x, d == null ? 1 : d) + (FR ? (Math.abs(x) >= 2 ? '\u00a0millions' : '\u00a0million') : ' million'); },
     min: function (x, d) { return n(x, d == null ? 1 : d) + ' min'; },
     signed: function (x, d) { return (x > 0 ? '+' : '') + n(x, d == null ? 1 : d); }
   };
@@ -121,7 +123,7 @@
   PTS.stackTables = function (root) {
     PTS.$$('table.tbl', root).forEach(function (t) {
       if (t.classList.contains('stack-sm') || t.classList.contains('no-stack') || t.querySelector('[data-l]')) return;
-      const heads = PTS.$$('thead th', t).map(function (th) { const c = th.cloneNode(true); PTS.$$('sup', c).forEach(function (x) { x.remove(); }); return c.textContent.trim(); });
+      const heads = PTS.$$('thead th', t).map(function (th) { const c = th.cloneNode(true); PTS.$$('sup', c).forEach(function (x) { x.remove(); }); return PTS.tr ? PTS.tr(c.textContent.trim()) : c.textContent.trim(); });
       if (heads.length < 4) return;
       PTS.$$('tbody tr', t).forEach(function (tr) {
         let col = 0;
@@ -130,6 +132,61 @@
       t.classList.add('stack-sm');
     });
   };
+
+  // ---------------------------------------------------------------- French: the words the scripts write
+  /* Each section writes its labels, tooltips and read-outs in English. On the French page window.PTS_I18N holds, for those strings,
+     exact translations ({"exact": {"English": "Français"}}) and patterns with blanks ({"patterns": [["From {0} to {1}", "De {0} à {1}"]]}),
+     the blanks being translated again in turn. Every text and label the scripts add is translated as it appears. */
+  const I18N = window.PTS_I18N || { exact: {}, patterns: [] }, seen = new Map(), made = new Set();     // made: texts this translator wrote, never translated again
+  const PATS = (I18N.patterns || []).map(function (p) {
+    const lit = p[0].split(/\{\d\}/)[0];
+    const order = []; const re = new RegExp('^' + p[0].replace(/[.*+?^$()|[\]\\]/g, '\\$&').replace(/\\?\{(\d)\\?\}/g, function (m, d) { order.push(+d); return '(.+?)'; }) + '$');
+    return { lit: lit, re: re, order: order, to: p[1], size: p[0].replace(/\{\d\}/g, '').length };
+  }).sort(function (a, b) { return b.size - a.size; });              // the most specific pattern first, so that a short one never takes another's text
+  const tr = PTS.tr = function (txt) {
+    if (!FR || !txt) return txt;
+    if (seen.has(txt)) return seen.get(txt);
+    if (made.has(txt)) return txt;
+    const lead = txt.match(/^\s*/)[0], tail = txt.match(/\s*$/)[0], core = txt.trim();
+    let out = null;
+    if (core === ':' || core === ';') out = '\u00a0' + core + (tail ? ' ' : '');            // French puts a space before a colon
+    else if (!core || /^[\d\s.,:%€+−\-–×/()]*$/.test(core)) out = txt;                    // numbers and signs only
+    else if (Object.prototype.hasOwnProperty.call(I18N.exact, core)) out = lead + I18N.exact[core] + tail;
+    else {
+      for (let i = 0; i < PATS.length && out == null; i++) {
+        const p = PATS[i]; if (p.lit && core.indexOf(p.lit) !== 0) continue;
+        const mo = core.match(p.re); if (!mo) continue;
+        const vals = {}; p.order.forEach(function (d, j) { vals[d] = mo[j + 1]; });
+        out = lead + p.to.replace(/\{(\d)\}/g, function (m, d) { const v = vals[d] == null ? '' : vals[d]; const t = tr(v); return t; }) + tail;
+      }
+    }
+    if (out == null) out = txt;
+    else out = out.replace(/(^|[^\d\u202f,])([+\-−]?[01](?:,\d+)?)([\s\u00a0]+)(million|milliard)s\b/g, '$1$2$3$4');   // un million, 1,5 million: singular below two
+    if (seen.size < 20000) seen.set(txt, out);
+    if (out !== txt && made.size < 20000) made.add(out);
+    return out;
+  };
+  const ATTRS = ['title', 'aria-label', 'placeholder'];
+  const trNode = function (node) {
+    if (node.nodeType === 3) { const t = tr(node.data); if (t !== node.data) node.data = t; return; }
+    if (node.nodeType !== 1 || node.tagName === 'SCRIPT' || node.tagName === 'STYLE') return;
+    ATTRS.forEach(function (a) { const v = node.getAttribute(a); if (v) { const t = tr(v); if (t !== v) node.setAttribute(a, t); } });
+    const w = document.createTreeWalker(node, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
+    let x; while ((x = w.nextNode())) {
+      if (x.nodeType === 3) { const t = tr(x.data); if (t !== x.data) x.data = t; }
+      else ATTRS.forEach(function (a) { const v = x.getAttribute(a); if (v) { const t = tr(v); if (t !== v) x.setAttribute(a, t); } });
+    }
+  };
+  function watchLanguage() {
+    if (!FR || !window.MutationObserver) return;
+    new MutationObserver(function (list) {
+      list.forEach(function (m) {
+        if (m.type === 'characterData') trNode(m.target);
+        else if (m.type === 'attributes') { const v = m.target.getAttribute(m.attributeName); if (v) { const t = tr(v); if (t !== v) m.target.setAttribute(m.attributeName, t); } }
+        else m.addedNodes.forEach(trNode);
+      });
+    }).observe(document.body, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ATTRS });
+  }
 
   // ---------------------------------------------------------------- borrowing: one section shows a figure of another
   /* The presentation shows some figures of the report as they are, with no copy: the nodes move into the presentation
@@ -184,13 +241,16 @@
   PTS.current = function () { return current && current.id; };
 
   function start() {
+    watchLanguage();
     pages = PTS.$$('main > .page');
+    const lang = PTS.$('.topbar .lang');                                // the other language opens at the same place
+    if (lang) { const base = lang.getAttribute('href').split('#')[0]; lang.addEventListener('click', function () { lang.setAttribute('href', base + location.hash); }); }
     const links = PTS.$$('.contents a');
     pages.forEach(function (p, i) {                                   // previous / next at the foot of each section
       const prev = pages[i - 1], next = pages[i + 1];
       p.appendChild(PTS.h('nav', { class: 'pager', 'aria-label': 'Previous and next section' },
-        prev ? PTS.h('a', { href: '#' + prev.id, class: 'prev' }, PTS.h('span', { text: 'Previous' }), PTS.h('b', { text: prev.dataset.title })) : null,
-        next ? PTS.h('a', { href: '#' + next.id, class: 'next' }, PTS.h('span', { text: 'Next' }), PTS.h('b', { text: next.dataset.title })) : null));
+        prev ? PTS.h('a', { href: '#' + prev.id, class: 'prev' }, PTS.h('span', { text: FR ? 'Précédent' : 'Previous' }), PTS.h('b', { text: prev.dataset.title })) : null,
+        next ? PTS.h('a', { href: '#' + next.id, class: 'next' }, PTS.h('span', { text: FR ? 'Suivant' : 'Next' }), PTS.h('b', { text: next.dataset.title })) : null));
     });
     PTS.stackTables(document);
     document.addEventListener('click', function (e) {
