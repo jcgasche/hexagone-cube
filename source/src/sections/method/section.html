@@ -1,4 +1,4 @@
-<p class="lede">Enough detail to check the figures or to redo them with better data. Everything is computed by a small open model: Python scripts whose results feed every number in this document, and the same arithmetic in the browser for the calculators. The model was rebuilt for the triangle on 13 October 2026 and updated on 15 October 2026 for the plan, which gives each suburban line its own tunnel, and again that evening for version 4.1, which runs the regional express trains in the TGV tunnels; what changed is listed at the end.</p>
+<p class="lede">Enough detail to check the figures or to redo them with better data. Everything is computed by a small open model: Python scripts whose results feed every number in this document, and the same arithmetic in the browser for the calculators.</p>
 
 <div class="block" id="method.access">
   <h2>The access model</h2>
@@ -32,7 +32,7 @@
       <tr><th>Passengers crossing Paris who get a direct train</th><td>{{ m.connecting.central.direct_share | pct }}</td><td>Half of the trains of each served pair run through, by the standard hour; the pair Montparnasse to Gare de Lyon is direct by the link in {{ m.TH.LM | 0 }} minutes</td></tr>
       <tr><th>Average high-speed fare; share paid in track charges</th><td>€{{ b.fare | 2 }}; {{ b.track_share | pct }}</td><td>Derived[[art_eu, art24]]</td></tr>
       <tr><th>Growth of traffic on joined suburban lines</th><td>{{ m.params.reg_uplift | pct }}; {{ m.params.reg_uplift_low | pct }} and {{ m.params.reg_uplift_high | pct }} tested</td><td>Eight cases, see <a class="xref" href="#traffic.evidence">the evidence</a></td></tr>
-      <tr><th>Regional pairings</th><td>Suburban lines H and K run on to Saint-Lazare and line L joins them as line H; P runs on to Montparnasse and N on to Nord-Est as line N; R does not run through. Regional express trains, in the TGV tunnels: those of the north run on to Montparnasse, those of the east to Gare de Lyon, and those of Montparnasse and Gare de Lyon (Bercy's included) to Nord-Est; none turns back</td><td>The plan, version 4.1. Each line gains on the share of its riders whose trip ends nearer the second station, from the access points; line R stays on the surface, running it through is a later option (study point I21)</td></tr>
+      <tr><th>Regional pairings</th><td>Suburban lines H and K run on to Saint-Lazare and line L joins them as line H; P runs on to Montparnasse and N on to Nord-Est as line N; R does not run through. Regional express trains, in the TGV tunnels: those of the north run on to Montparnasse, those of the east to Gare de Lyon, and those of Montparnasse and Gare de Lyon (Bercy's included) to Nord-Est; none turns back</td><td>Each line gains on the share of its riders whose trip ends nearer the second station, from the access points; line R stays on the surface, running it through is a later option (study point I21)</td></tr>
       <tr><th>Line L</th><td>About 297,000 trips a weekday (unverified); {{ m.params.through_trains.L | pct }} of its trains run through; {{ m.params.term_share.L | pct }} of its riders start or end at Saint-Lazare</td><td>Assumptions of the plan (study point I23)</td></tr>
       <tr><th>Suburb-to-suburb trips across Paris</th><td>{{ m.regional.cross.today | 1 }} million a year today, {{ m.regional.cross.project | 1 }} million with the project, for the pairs of northern and eastern lines H, K and P with southern and western lines N, L and R. H to L, K to L and P to N become direct; H to N, K to N and P to L need one easy change at Nord-Est; pairs with R are unchanged. Each change of train costs {{ m.params.change_loss | pct }} of the traffic, a change across one platform half as much</td><td>{{ m.params.transit_share | pct }} of the trips through the Paris stations only pass through between two suburbs;[[survey]] {{ m.params.cross_share | pct }} of them on these lines bound across Paris, shared by residents and jobs <span class="tag assume">assumption</span>; today's change between terminals 35 minutes on the clock to Montparnasse, 18 to Saint-Lazare and 28 to Gare de Lyon (the plan's figures); the cost of a change from British ticket data[[ww]]</td></tr>
       <tr><th>Employment corridors</th><td>Not counted</td><td>The regional benefit counts only minutes saved to Paris destinations near the second station. What lies beyond, the jobs of the south-west on line N and of La Défense on line H, needs a method of its own (study point I26)</td></tr>
@@ -108,68 +108,10 @@
     </tbody></table></div>
   <h3>What has been checked, and what has not</h3>
   <ul>
-    <li><strong>Checked twice by an independent reviewer, for the earlier layouts:</strong> the access model, the traffic estimates and the construction cost.</li>
-    <li><strong>Checked once, on 12 October 2026, and corrected, for the earlier layouts:</strong> the two accounts, the passenger charge, the Navigo estimate, what public budgets get back and the comparison with other projects. The reviewer's main corrections were to the running cost of tunnels, now set between two French records where the first version used the higher one; to the tax estimate, now given as three readings; and to the comparison with other projects, whose bases differ.</li>
-    <li><strong>Not yet reviewed:</strong> the rebuild of the model and of this document for the triangle on 13 October 2026. The two earlier reviews covered the previous layouts; the direct link, the platform rule by direction, the regional express charge, the trainset saving, the parks, the second access measure and the shorter approach tunnels, with portals at the ring road, have not been checked by anyone but their authors. Nor has the plan of 15 October 2026: the tunnels by kind of train, the station under Saint-Lazare, the regional pairings, the derived Saint-Lazare times and the platform rules for regional and suburban trains; nor version 4.1: the regional express trains in the TGV tunnels, their paths and loads, the links into the tunnels and the fourth track each way at Gare de Lyon. The study points I1 to I27 listed in <a class="xref" href="#risks.verify">risks and next steps</a> are open.</li>
+    <li><strong>Checked by an independent reviewer, on an earlier layout of the project:</strong> the access model, the traffic estimates, the construction cost, the two accounts, the passenger charge, the Navigo estimate, what public budgets get back and the comparison with other projects. The figures of the present layout have not been checked again.</li>
+    <li><strong>Not yet reviewed by anyone but their authors:</strong> the layout as it stands, with the triangle and its direct link, the tunnels by kind of train, the station under Saint-Lazare, the regional express trains in the TGV tunnels with their paths, loads and links, and the fourth track each way at Gare de Lyon; the platform rules, the regional express charge, the trainset saving, the parks, the second access measure and the derived Saint-Lazare times; and the full count of benefits in <a class="xref" href="#economy.benefits">the economic return</a>. The study points I1 to I27 listed in <a class="xref" href="#risks.verify">risks and next steps</a> are open.</li>
     <li><strong>Not checked against outside sources by anyone but their authors:</strong> the three annexes on Zürich, the Elizabeth line and the Swiss timetable, and the drawings of stations and works, which are sketches.</li>
     <li><strong>Access times</strong> are times to the entrance of a station for TGV passengers, plus the ride between stops for regional and suburban passengers. No minutes are added for the depth of platforms; time inside the station is treated separately.</li>
   </ul>
 </div>
 
-<div class="block" id="method.changes">
-  <h2>What changed in this version</h2>
-  <h3>15 October 2026, evening: version 4.1, regional express trains in the TGV tunnels</h3>
-  <p>The plan's separate tunnel for regional express trains is dropped: they run in the TGV tunnels, in the paths between the TGVs. The TGV service, its public times, the platform rule and the charges are unchanged.</p>
-  <ul>
-    <li><strong>Layout.</strong> No regional express tunnel, and none of its portals or its junction north and east of Nord-Est: {{ m.cost.tunnel_km | 1 }} km of twin-track tunnel, {{ m.cost.junctions | 0 }} junctions and {{ m.cost.portals | 0 }} portals. Between Nord-Est and Montparnasse two tunnels run side by side, not three. Gare de Lyon gets two more {{ m.len.hs | 0 }} m tracks, one each way, for the south-east line's sixteenth TGV and the regional express trains: {{ m.cost.tracks['Gare de Lyon'] | 0 }} tracks there, {{ m.cost.tracks_total | 0 }} in all. Nord-Est keeps its {{ m.cost.tracks['Paris Nord-Est'] | 0 }} tracks side by side in one box, the regional express tracks on the west side, built in the open on the freed track field.</li>
-    <li><strong>Service.</strong> Paths in the tunnels {{ 60 / m.ter_paths.paths_per_hour | 0 }} minutes apart; TGVs keep their places in the beat, whose {{ m.reserve_min | 0 }}-minute reserve becomes the window between the doors closing, the public departure, and the train leaving, so TGV public times do not change. The condition is signalling for trains about {{ m.ter_paths.signal_min[0] | 1 }} minutes apart (study point I27).</li>
-    <li><strong>Regional pairings.</strong> The {{ m.ter_paths.ter_hour.Nord | 0 }} trains an hour from the north run through to Montparnasse and the Atlantic lines, which go from {{ m.ter_paths.ter_hour.atlantic_today | 0 }} to {{ m.ter_paths.ter_hour.Nord | 0 }} an hour; those from the east, with one new regional link an hour, run through to Gare de Lyon and Burgundy; Gare de Lyon's and Bercy's run underground through to Nord-Est, which frees the Bercy station. No regional express train turns back. Gare de Lyon's regional express trains are no longer an open item; line R stays on the surface, and running it through, about €{{ m.ter_paths.r_option.cost | 1 }}bn, is left for later.</li>
-    <li><strong>Cost.</strong> A new item for the links of the regional express trains into the TGV tunnels, €{{ m.rates.ter_links | 2 }}bn before add-ons; the authority's fee counted on {{ m.tunnels.fee_km | 1 }} km, the suburban tunnels and the TGV tunnels the regional express trains use.</li>
-    <li><strong>Benefits</strong> recomputed by the existing methods for the new pairings; the employment corridors are still not counted.</li>
-  </ul>
-  <div class="tbl-wrap"><table class="tbl no-stack">
-    <thead><tr><th>Headline figure</th><th class="num">The plan</th><th class="num">Version 4.1</th></tr></thead>
-    <tbody>
-      <tr><th>Cost, central (range)</th><td class="num">€44.1bn (29.8 to 65.7)</td><td class="num">€{{ m.cost.total | 1 }}bn ({{ m.cost_low | 1 }} to {{ m.cost_high | 1 }})</td></tr>
-      <tr><th>Twin-track tunnel</th><td class="num">58.4 km</td><td class="num">{{ m.cost.tunnel_km | 1 }} km</td></tr>
-      <tr><th>Platform tracks; platform length</th><td class="num">46; 14,500 m</td><td class="num">{{ m.cost.tracks_total | 0 }}; {{ m.cost.platform_total | 0 }} m</td></tr>
-      <tr><th>Junctions; portals</th><td class="num">5; 11</td><td class="num">{{ m.cost.junctions | 0 }}; {{ m.cost.portals | 0 }}</td></tr>
-      <tr><th>Stage 1; stage 2, all-in</th><td class="num">€20.5bn; €23.7bn</td><td class="num">€{{ m.stages.first.total | 1 }}bn; €{{ m.stages.second.total | 1 }}bn</td></tr>
-      <tr><th>Benefits a year, with the charges</th><td class="num">€1,401m</td><td class="num">€{{ f.central.benefit_total | m }}m</td></tr>
-      <tr><th>Share of the yearly cost returned in benefits</th><td class="num">60%</td><td class="num">{{ f.central.econ_cover_all | pct }}</td></tr>
-      <tr><th>Rate of return, benefits flat</th><td class="num">0.8%</td><td class="num">{{ d.finance.irr.central * 100 | 1 }}%</td></tr>
-      <tr><th>Grant; share of the cost</th><td class="num">€15.4bn; 35%</td><td class="num">€{{ f.central.grant_bn | 1 }}bn; {{ f.central.grant_share | pct }}</td></tr>
-      <tr><th>Running costs covered by income</th><td class="num">172%</td><td class="num">{{ f.central.ops_cover | pct }}</td></tr>
-    </tbody></table></div>
-  <p class="note">The figures of the plan are typed here because the model no longer computes them.</p>
-  <h3>15 October 2026: the plan</h3>
-  <p>Charles's plan replaces the two pairs of tunnels with one twin-track tunnel for each kind of train. The TGV triangle, its service, pairings, platform rule and charges are unchanged.</p>
-  <ul>
-    <li><strong>Layout.</strong> Regional express trains get their own tunnel from the north and east approaches through Nord-Est to Montparnasse and the Atlantic side; lines P and N become one line N in a tunnel from the east through Nord-Est to Montparnasse; lines H, K and L become one line H in a tunnel from the north through Nord-Est to a new deep station under Saint-Lazare, back up on the Batignolles tracks. Only TGVs run between Nord-Est and Gare de Lyon, and only TGVs go underground at Gare de Lyon; its regional trains stay on the surface, not costed (open item).</li>
-    <li><strong>Cost.</strong> Tunnels priced by kind of train; regional express and suburban platform tracks at Nord-Est, Montparnasse and Saint-Lazare, none at Gare de Lyon; the authority's fee counted on the regional and suburban tunnels.</li>
-    <li><strong>Access.</strong> The measure that counts the ride between Paris stops counts the {{ m.TH_ACCESS.L | 0 }}-minute run, no longer {{ m.TH.L | 0 }} minutes; crossing Paris keeps {{ m.TH.L | 0 }}. Times to Saint-Lazare are derived.</li>
-    <li><strong>Regional benefits.</strong> The new pairings, line L added, suburb-to-suburb pairs (H, K, P) with (N, L, R), and extra regional train-km at 77% of the earlier figure.</li>
-  </ul>
-  <div class="tbl-wrap"><table class="tbl no-stack">
-    <thead><tr><th>Headline figure</th><th class="num">Before the plan</th><th class="num">The plan</th></tr></thead>
-    <tbody>
-      <tr><th>Cost, central (range)</th><td class="num">€40.5bn (27.3 to 60.1)</td><td class="num">€44.1bn (29.8 to 65.7)</td></tr>
-      <tr><th>Works before add-ons</th><td class="num">€27.7bn</td><td class="num">€30.2bn</td></tr>
-      <tr><th>Twin-track tunnel</th><td class="num">48.6 km</td><td class="num">58.4 km</td></tr>
-      <tr><th>Platform tracks; platform length</th><td class="num">40; 13,900 m</td><td class="num">46; 14,500 m</td></tr>
-      <tr><th>Junctions; portals</th><td class="num">6; 8</td><td class="num">5; 11</td></tr>
-      <tr><th>Yearly cost (repayment and running)</th><td class="num">€2,148m</td><td class="num">€2,333m</td></tr>
-      <tr><th>Stage 1; stage 2, all-in</th><td class="num">€26.3bn; €14.2bn</td><td class="num">€20.5bn; €23.7bn</td></tr>
-      <tr><th>Paris access, counting the ride between stops</th><td class="num">25.9 min</td><td class="num">23.2 min</td></tr>
-      <tr><th>New regional journeys a year</th><td class="num">23.6 million</td><td class="num">31.0 million</td></tr>
-      <tr><th>Regional benefit a year</th><td class="num">€172m</td><td class="num">€164m</td></tr>
-      <tr><th>Benefits a year, with the charges</th><td class="num">€1,427m</td><td class="num">€1,401m</td></tr>
-      <tr><th>Share of the yearly cost returned in benefits</th><td class="num">66%</td><td class="num">60%</td></tr>
-      <tr><th>Running costs covered by income</th><td class="num">185%</td><td class="num">172%</td></tr>
-      <tr><th>Grant, share of the cost; public money in all</th><td class="num">27%; 81%</td><td class="num">35%; 84%</td></tr>
-      <tr><th>Rate of return, benefits flat</th><td class="num">1.2%</td><td class="num">0.8%</td></tr>
-    </tbody></table></div>
-  <p class="note">The figures before the plan are those of the triangle model of 13 October 2026 as updated to the 12-minute beat, and those of the plan are as it was published on 15 October 2026, before version 4.1; both are typed here because the model no longer computes them.</p>
-  <h3>13 October 2026: the triangle</h3>
-  <p>The model and this document were rebuilt for three deep through stations joined in a triangle with a direct TGV link between Montparnasse and Gare de Lyon, replacing the earlier layouts.</p>
-</div>
