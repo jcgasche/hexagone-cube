@@ -375,7 +375,7 @@
   "56 minutes: leaves Zürich at :02, arrives at :58": "56 minutes : départ de Zurich à :02, arrivée à :58",
   "about 55 minutes (1986)": "environ 55 minutes (1986)",
   "69 minutes (72 in one source)": "69 minutes (72 selon une source)",
-  "The new line between Mattstetten and Rothrist. 58 minutes in December 2004, 56 since trains run at 200 km/h on it (unverified).": "La ligne nouvelle entre Mattstetten et Rothrist. 58 minutes en décembre 2004, 56 depuis que les trains y roulent à 200 km/h (non vérifié).",
+  "The new line between Mattstetten and Rothrist. 58 minutes in December 2004, 56 since trains run at 200 km/h on it (unverified).": "La ligne nouvelle entre Mattstetten et Rothrist. 58 minutes en décembre 2004, 56 depuis que les trains y roulent à 200 km/h (non vérifié).",
   "56 minutes: leaves Bern at :04, arrives at :00": "56 minutes : départ de Berne à :04, arrivée à :00",
   "67 minutes (unverified)": "67 minutes (non vérifié)",
   "The same new line, and the Adler tunnel of 2000 near Basel.": "La même ligne nouvelle, et le tunnel de l’Adler, ouvert en 2000 près de Bâle.",
@@ -413,14 +413,14 @@
   "2 h 41 in 2016 (unverified)": "2 h 41 en 2016 (non vérifié)",
   "The Gotthard base tunnel of 2016 and the Ceneri base tunnel of 2020.": "Le tunnel de base du Saint-Gothard, ouvert en 2016, et celui du Ceneri, ouvert en 2020.",
   "52 to 54": "52 à 54",
-  "52 to 54 min": "52 à 54 min",
+  "52 to 54 min": "52 à 54 min",
   "58 to 60": "58 à 60",
-  "58 to 60 min": "58 à 60 min",
+  "58 to 60 min": "58 à 60 min",
   "54 to 55": "54 à 55",
-  "54 to 55 min": "54 à 55 min",
-  "Before 2004: 69 min": "Avant 2004 : 69 min",
-  "December 2004: 58 min": "Décembre 2004 : 58 min",
-  "Since 2007: 56 min": "Depuis 2007 : 56 min",
+  "54 to 55 min": "54 à 55 min",
+  "Before 2004: 69 min": "Avant 2004 : 69 min",
+  "December 2004: 58 min": "Décembre 2004 : 58 min",
+  "Since 2007: 56 min": "Depuis 2007 : 56 min",
   "+30% to 40%": "+30 % à 40 %",
   "+30% to 40% passengers": "+30 % à 40 % de voyageurs",
   "+12% passengers": "+12 % de voyageurs",
@@ -503,11 +503,11 @@
   ],
   [
    "{0} min after the hour",
-   "{0} min après l’heure pleine"
+   "{0} min après l’heure pleine"
   ],
   [
    "{0} min before the hour",
-   "{0} min avant l’heure pleine"
+   "{0} min avant l’heure pleine"
   ],
   [
    "{0} from train to train between two terminals",
@@ -519,15 +519,15 @@
   ],
   [
    "{0} at Nord-Est, then {1} to Gare de Lyon or {2} to Montparnasse",
-   "{0} à Nord-Est, puis {1} jusqu’à Gare de Lyon ou {2} jusqu’à Montparnasse"
+   "{0} à Nord-Est, puis {1} jusqu’à la gare de Lyon ou {2} jusqu’à Montparnasse"
   ],
   [
    "{0} Montparnasse to Gare de Lyon by the link, {1} Nord-Est to Gare de Lyon, {2} Nord-Est to Montparnasse",
-   "{0} de Montparnasse à Gare de Lyon par la liaison directe, {1} de Nord-Est à Gare de Lyon, {2} de Nord-Est à Montparnasse"
+   "{0} de Montparnasse à la gare de Lyon par la liaison directe, {1} de Nord-Est à la gare de Lyon, {2} de Nord-Est à Montparnasse"
   ],
   [
    "{0} to {1} min",
-   "{0} à {1} min"
+   "{0} à {1} min"
   ]
  ]
 }

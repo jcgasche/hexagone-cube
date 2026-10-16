@@ -7,18 +7,18 @@
   <div class="pz-in">
     <p class="pz-kicker">Le connecteur ferroviaire de toute la France, sous Paris</p>
     <h1 class="pz-title" aria-label="Hexagone cube">Hexagone<sup>3</sup></h1>
-    <p class="pz-sub">Un connecteur pour toutes les régions de France. Trois gares traversantes sous Paris, jointes par trois tunnels, relient chaque ligne à toutes les autres, avec l’horaire cadencé et fiable qui a fait le succès du rail suisse. Et la capitale y gagne une occasion rare : quatre grands parcs, des terrains libérés et des trajets plus rapides.</p>
+    <p class="pz-sub">Un connecteur pour toutes les régions de France. Trois gares traversantes sous Paris, jointes par trois tunnels, relient chaque ligne à toutes les autres, avec l’horaire cadencé et fiable qui a fait le succès du rail suisse. Et la capitale y gagne une occasion rare&nbsp;: quatre grands parcs, des terrains libérés et des trajets plus rapides.</p>
     <div class="pz-money">
       <div class="pz-big"><b data-count="{{ m.cost.total | 1 }}" data-post="&nbsp;Md€" data-d="1">{{ m.cost.total | 1 }}&nbsp;Md€</b><span>pour le construire, dont {{ m.rates.risk | pct }} pour les risques</span></div>
       <div class="pz-big good"><b data-count="{{ d.french.study.central.benefit_total | 2 }}" data-post="&nbsp;Md€" data-d="2">{{ d.french.study.central.benefit_total | 2 }}&nbsp;Md€</b><span>d’avantages chaque année, {{ d.french.study.central.cover | pct }} de sa facture annuelle de {{ d.french.study.central.yearly_cost | 2 }}&nbsp;Md€</span></div>
-      <div class="pz-big good"><b data-count="{{ d.french.cases.central.npv | 1 }}" data-pre="+" data-post="&nbsp;Md€" data-d="1">+{{ d.french.cases.central.npv | 1 }}&nbsp;Md€</b><span>de gain net pour le pays en euros d’aujourd’hui ; remboursé en {{ d.french.timeline.break_even | str }}</span></div>
-      <div class="pz-big"><b data-count="{{ f.central.ops_cover * 100 | 0 }}" data-post="&nbsp;%" data-d="0">{{ f.central.ops_cover | pct }}</b><span>de ses coûts d’exploitation payés par ses propres recettes ; le plan de construction est bouclé avec une subvention de {{ f.central.grant_bn | 1 }}&nbsp;Md€</span></div>
+      <div class="pz-big good"><b data-count="{{ d.french.cases.central.npv | 1 }}" data-pre="+" data-post="&nbsp;Md€" data-d="1">+{{ d.french.cases.central.npv | 1 }}&nbsp;Md€</b><span>de gain net pour le pays en euros d’aujourd’hui&nbsp;; remboursé en {{ d.french.timeline.break_even | str }}</span></div>
+      <div class="pz-big"><b data-count="{{ f.central.ops_cover * 100 | 0 }}" data-post="&nbsp;%" data-d="0">{{ f.central.ops_cover | pct }}</b><span>de ses coûts d’exploitation payés par ses propres recettes&nbsp;; le plan de construction est bouclé avec une subvention de {{ f.central.grant_bn | 1 }}&nbsp;Md€</span></div>
     </div>
     <div class="pz-flash">
-      <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post="&nbsp;min" data-d="0">{{ m.run_min | 0 }}&nbsp;min</b><span>entre deux quelconques des trois gares</span></div>
+      <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post="&nbsp;min" data-d="0">{{ m.run_min | 0 }}&nbsp;min</b><span>entre deux des trois gares, quelles qu’elles soient</span></div>
       <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post="&nbsp;min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }}&nbsp;min</b><span>en moyenne pour rejoindre son TGV depuis n’importe où dans Paris, jusqu’à {{ pts.max_gain.station | 1 }}&nbsp;min de moins</span></div>
-      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites en profondeur : la surface est libérée</span></div>
-      <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>les Buttes-Chaumont en nouveaux parcs, répartis en quatre grands parcs</span></div>
+      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites en profondeur&nbsp;: la surface est libérée</span></div>
+      <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>les Buttes-Chaumont en nouveaux espaces verts, répartis en quatre grands parcs</span></div>
       <div class="pz-chip"><b data-count="{{ m.conn.central | 1 }}" data-post="&nbsp;M" data-d="1">{{ m.conn.central | 1 }}&nbsp;M</b><span>de voyageurs par an qui ne traversent plus Paris en métro entre deux trains</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour de banlieue à banlieue, de part et d’autre de Paris, sur une ligne traversante, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
     </div>
@@ -32,23 +32,23 @@
     <p class="pz-kicker">L’idée</p>
     <h2 class="pz-h">De quatre culs-de-sac à un seul triangle</h2>
     <div class="pz-split">
-      <div class="pz-stage"><svg id="pz-idea-svg" viewBox="0 0 520 400" role="img" aria-label="Schéma de Paris : aujourd’hui, quatre gares terminus où les trains s’arrêtent ; avec le projet, trois gares traversantes reliées en triangle"></svg></div>
+      <div class="pz-stage"><svg id="pz-idea-svg" viewBox="0 0 520 400" role="img" aria-label="Schéma de Paris&nbsp;: aujourd’hui, quatre gares terminus où les trains s’arrêtent&nbsp;; avec le projet, trois gares traversantes reliées en triangle"></svg></div>
       <div class="pz-story">
         <div class="pz-auto" id="pz-idea-steps"></div>
         <div class="pz-step" data-step="0">
-          <h3>Aujourd’hui : chaque train s’arrête en bout de ligne</h3>
+          <h3>Aujourd’hui&nbsp;: chaque train s’arrête en bout de ligne</h3>
           <p>Quatre gares terminus pour la grande vitesse, une par direction. Les trains entrent, attendent et repartent par où ils sont venus. Pour aller plus loin, on prend le métro à travers Paris jusqu’à une autre gare.</p>
           <ul><li>118 voies à quai dans les quatre gares terminus, et pourtant saturées aux heures de pointe</li><li>Des faisceaux de voies qui coupent le nord, l’est et le sud de Paris</li></ul>
         </div>
         <div class="pz-step" data-step="1" hidden>
           <h3>Le triangle TGV</h3>
           <p>La gare du Nord et la gare de l’Est fusionnent en une seule gare profonde, Paris Nord-Est. Avec la gare de Lyon et Montparnasse, trois gares traversantes sont reliées par un tunnel à double voie sur chaque côté du triangle.</p>
-          <ul><li>{{ m.run_min | 0 }}&nbsp;minutes entre deux quelconques des gares</li><li>Chaque gare a des trains directs vers toutes les directions : Nord, Est, Sud-Est et Atlantique</li><li>Aucun train ne rebrousse chemin : chacun marque deux arrêts et continue</li></ul>
+          <ul><li>{{ m.run_min | 0 }}&nbsp;minutes entre deux gares, quelles qu’elles soient</li><li>Chaque gare a des trains directs vers toutes les directions&nbsp;: Nord, Est, Sud-Est et Atlantique</li><li>Aucun train ne rebrousse chemin&nbsp;: chacun marque deux arrêts et continue</li></ul>
         </div>
         <div class="pz-step" data-step="2" hidden>
           <h3>Avec TER et Transilien</h3>
           <p>Les TER circulent dans les tunnels TGV, dans les intervalles entre les TGV, et poursuivent vers l’autre côté du pays. Les lignes Transilien deviennent de nouvelles lignes de RER, qui traversent Paris au lieu de s’y arrêter.</p>
-          <ul><li><b class="pz-ln g">G</b> RER G : les lignes P et N d’aujourd’hui fusionnent en une seule ligne, du nord et de l’est via Nord-Est jusqu’à Montparnasse</li><li><b class="pz-ln f">F</b> RER F : les lignes L, H et K d’aujourd’hui fusionnent en une seule ligne, via Nord-Est et un Saint-Lazare profond jusqu’à La Défense</li><li>Les gares terminus de surface ferment ; leurs voies deviennent des parcs</li></ul>
+          <ul><li><b class="pz-ln g">G</b> RER G&nbsp;: les lignes P et N d’aujourd’hui fusionnent en une seule ligne, du nord et de l’est via Nord-Est jusqu’à Montparnasse</li><li><b class="pz-ln f">F</b> RER F&nbsp;: les lignes L, H et K d’aujourd’hui fusionnent en une seule ligne, via Nord-Est et un Saint-Lazare profond jusqu’à La Défense</li><li>Les gares terminus de surface ferment&nbsp;; leurs voies deviennent des parcs</li></ul>
         </div>
         <p class="pz-more"><a href="#project">Le projet en détail</a><a href="#why">Pourquoi Paris arrête tous les trains</a></p>
       </div>
@@ -64,17 +64,17 @@
     <div class="pz-split wide">
       <div class="pz-stage pz-iso">
         <div class="pz-auto" id="pz-nord-toggle"></div>
-        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="La gare du Nord vue d’en haut, en perspective : aujourd’hui, les trains entrent dans la halle et repartent sur un faisceau de voies ; avec le projet, la halle est ouverte aux voyageurs, des escaliers descendent vers les quais profonds où les trains passent sans s’arrêter en bout de ligne, et un parc recouvre les anciennes voies"></svg>
+        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="La gare du Nord vue d’en haut, en perspective&nbsp;: aujourd’hui, les trains entrent dans la halle et repartent sur un faisceau de voies&nbsp;; avec le projet, la halle est ouverte aux voyageurs, des escaliers descendent vers les quais profonds où les trains passent sans s’arrêter en bout de ligne, et un parc recouvre les anciennes voies"></svg>
       </div>
       <div class="pz-story" id="pz-nord-text">
         <div class="pz-step" data-step="0">
-          <h3>Aujourd’hui : la gare du Nord</h3>
+          <h3>Aujourd’hui&nbsp;: la gare du Nord</h3>
           <p>Les voies entrent jusque dans la halle. Les trains arrivent, attendent et repartent par où ils sont venus. Les voyageurs attendent sur une bande d’environ {{ d.stations.halls.wait_len | 0 }}&nbsp;m côté rue, et derrière la halle un faisceau de voies s’étend sur des kilomètres.</p>
           <div class="pz-mini"><b>{{ round(d.stations.halls.wait_len * d.stations.halls.under.nord * d.stations.halls.pitch, -2) | 0 }}&nbsp;m²</b><span>pour les voyageurs dans la halle</span></div>
         </div>
         <div class="pz-step" data-step="1" hidden>
           <h3>Avec le projet</h3>
-          <p>Toute la halle est pour les voyageurs : un espace d’accueil d’où l’on descend vers les quais profonds de Paris Nord-Est, où chaque TGV, TER et RER s’arrête puis poursuit sa route. Dehors, un parc remplace les voies.</p>
+          <p>Toute la halle est rendue aux voyageurs&nbsp;: un espace d’accueil d’où l’on descend vers les quais profonds de Paris Nord-Est, où chaque TGV, TER et RER s’arrête puis poursuit sa route. Dehors, un parc remplace les voies.</p>
           <div class="pz-mini good"><b>{{ round(d.stations.halls.hall_len * d.stations.halls.under.nord * d.stations.halls.pitch, -2) | 0 }}&nbsp;m²</b><span>pour les voyageurs dans la même halle, {{ d.stations.halls.hall_len / d.stations.halls.wait_len | 0 }}&nbsp;fois plus</span></div>
         </div>
         <p class="pz-note">Dans les trois halles de la gare du Nord, de la gare de Lyon et de Montparnasse, environ {{ round(d.stations.halls.wait_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }}&nbsp;m² pour les voyageurs aujourd’hui, {{ round(d.stations.halls.hall_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }}&nbsp;m² avec le projet. Une illustration, pas un plan.</p>
@@ -83,9 +83,9 @@
     </div>
     <h3 class="pz-h2">Deux tunnels côte à côte, deux voies dans chacun</h3>
     <div class="pz-split wide">
-      <div class="pz-stage"><svg id="pz-tube-svg" viewBox="0 0 760 420" role="img" aria-label="Deux tunnels côte à côte sous la ville, vus en coupe : l’un pour les TGV et les TER, l’autre pour le RER G, chacun avec une voie par sens et des trains qui circulent dans les deux sens"></svg></div>
+      <div class="pz-stage"><svg id="pz-tube-svg" viewBox="0 0 760 420" role="img" aria-label="Deux tunnels côte à côte sous la ville, vus en coupe&nbsp;: l’un pour les TGV et les TER, l’autre pour le RER G, chacun avec une voie par sens et des trains qui circulent dans les deux sens"></svg></div>
       <div class="pz-story">
-        <p>Entre Nord-Est et Montparnasse, deux tunnels courent côte à côte : l’un pour les TGV et les TER qui le partagent, l’autre pour le RER G. Chacun compte deux voies, une par sens. Les autres côtés du triangle n’ont besoin que du tunnel TGV.</p>
+        <p>Entre Nord-Est et Montparnasse, deux tunnels courent côte à côte&nbsp;: l’un pour les TGV et les TER qui le partagent, l’autre pour le RER G. Chacun compte deux voies, une par sens. Les autres côtés du triangle n’ont besoin que du tunnel TGV.</p>
         <div class="pz-grid2 small">
           <div class="pz-stat"><b data-count="{{ m.cost.tunnel_km | 1 }}" data-post="&nbsp;km" data-d="1">{{ m.cost.tunnel_km | 1 }}&nbsp;km</b><span>de tunnel à double voie au total</span></div>
           <div class="pz-stat"><b data-count="{{ m.cost.tunnel_by_type.tgv | 1 }}" data-post="&nbsp;km" data-d="1">{{ m.cost.tunnel_by_type.tgv | 1 }}&nbsp;km</b><span>pour les TGV et les TER, accès compris</span></div>
@@ -98,12 +98,12 @@
       <div><b>3</b><span>tunnels TGV, un sur chaque côté du triangle</span></div>
       <div><b>{{ m.cost.tracks_total | 0 }}</b><span>voies à quai dans quatre gares profondes</span></div>
       <div><b>Nord + Est</b><span>ne forment plus qu’une gare, Paris Nord-Est, accessible depuis les deux halles</span></div>
-      <div><b>{{ m.run_min | 0 }}&nbsp;min</b><span>entre deux quelconques des trois gares TGV</span></div>
+      <div><b>{{ m.run_min | 0 }}&nbsp;min</b><span>entre deux des trois gares TGV, quelles qu’elles soient</span></div>
     </div>
     <div class="pz-cases">
       <a class="pz-case" href="#zurich"><span class="pz-flag">Zurich</span><h3>Une gare terminus devenue traversante</h3><p>Deux fois, en 1990 et en 2014, une gare traversante à quatre voies a été creusée sous la gare terminus, qui a continué de fonctionner.</p><i>Lire le cas</i></a>
-      <a class="pz-case" href="#elizabeth"><span class="pz-flag">Londres</span><h3>La ligne Elizabeth</h3><p>Un tunnel profond aux grandes gares qui relie les deux côtés de la capitale, ouvert depuis 2022.</p><i>Lire le cas</i></a>
-      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Quatre gares profondes</h3><p>Paris Nord-Est, la gare de Lyon et Montparnasse pour le triangle ; un Saint-Lazare profond pour le RER F.</p><i>L’organisation des gares</i></a>
+      <a class="pz-case" href="#elizabeth"><span class="pz-flag">Londres</span><h3>L’Elizabeth line</h3><p>Un tunnel profond, avec de grandes gares, qui relie les deux côtés de la capitale depuis 2022.</p><i>Lire le cas</i></a>
+      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Quatre gares profondes</h3><p>Paris Nord-Est, la gare de Lyon et Montparnasse pour le triangle&nbsp;; un Saint-Lazare profond pour le RER F.</p><i>L’organisation des gares</i></a>
     </div>
   </div>
 </section>
@@ -118,7 +118,7 @@
       <div class="pz-tt-head"><div class="pz-tt-legend" id="pz-tt-legend"></div><div class="pz-tt-ctl" id="pz-tt-ctl"></div></div>
       <div class="pz-tt-body"><div class="pz-tt-map" id="pz-tt-map"></div><div class="pz-tt-clocks" id="pz-tt-clocks"></div></div>
     </div>
-    <p class="pz-claim"><b>{{ m.ter_paths.paths_per_hour | 0 }} trains par heure</b> au plus dans chaque tunnel et dans chaque sens, un toutes les {{ m.ter_paths.signal_min[1] | 0 }}&nbsp;minutes : les TGV sur la cadence, les TER entre eux.</p>
+    <p class="pz-claim"><b>{{ m.ter_paths.paths_per_hour | 0 }} trains par heure</b> au plus dans chaque tunnel et dans chaque sens, un toutes les {{ m.ter_paths.signal_min[1] | 0 }}&nbsp;minutes&nbsp;: les TGV sur la cadence, les TER entre eux.</p>
     <p class="pz-more"><a href="#timetable">L’horaire</a><a href="#pulse">Le cadencement à la suisse</a><a href="#service">Quels trains circulent où</a></p>
   </div>
 </section>
@@ -126,7 +126,7 @@
 <section class="pz-slide" id="presentation.parks" data-dot="Quatre parcs">
   <div class="pz-in">
     <p class="pz-kicker">Là où passaient les voies</p>
-    <h2 class="pz-h">Quatre grands parcs : Nord, Est, Lyon, Montparnasse</h2>
+    <h2 class="pz-h">Quatre grands parcs&nbsp;: Nord, Est, Lyon, Montparnasse</h2>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-parks-svg" role="img" aria-label="Carte de Paris avec les quatre parcs sur les anciens faisceaux de voies, au nord de la gare du Nord et de la gare de l’Est, à l’est de la gare de Lyon et au sud-ouest de Montparnasse"></svg></div>
       <div class="pz-story">
@@ -135,7 +135,7 @@
           <span>le parc des Buttes-Chaumont, en nouveaux espaces verts[[buttes_chaumont]]</span>
           <div class="pz-bc-row" id="pz-bc-row" data-n="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 2 }}"></div>
         </div>
-        <p>Plus aucun train n’a besoin des voies de surface : les faisceaux de voies derrière les gares sont libérés, du bout de chaque halle jusqu’à l’endroit où les tunnels refont surface.</p>
+        <p>Plus aucun train n’a besoin des voies de surface&nbsp;: les faisceaux de voies derrière les gares sont libérés, du bout de chaque halle jusqu’à l’endroit où les tunnels refont surface.</p>
         <div class="pz-grid2">
           <div class="pz-stat good"><b data-count="{{ d.french.parks.central.ha | 0 }}" data-post="&nbsp;ha" data-d="0">{{ d.french.parks.central.ha | 0 }}&nbsp;ha</b><span>de parcs, et {{ d.french.parks.central.plots_ha | 0 }}&nbsp;ha de terrains à bâtir</span></div>
           <div class="pz-stat good"><b data-count="{{ d.french.parks.central.visits / 1e6 | 1 }}" data-post="&nbsp;M" data-d="1">{{ d.french.parks.central.visits / 1e6 | 1 }}&nbsp;M</b><span>de visites par an</span></div>
@@ -155,7 +155,7 @@
     <div class="pz-auto" id="pz-fr-toggle"></div>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Schéma des villes françaises reliées via Paris, avec la durée de chaque trajet"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">La durée d’aujourd’hui compte le changement de gare à Paris pour {{ d.french.params.x_today | 0 }}&nbsp;minutes de train à train, comme le fait le modèle. Quelques-unes de ces paires ont aussi des trains directs qui contournent Paris, une poignée par jour ; avec le projet, chaque paire a {{ d.french.params.proj_per_day | 0 }}&nbsp;trains directs par jour, un par heure.</p></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">La durée d’aujourd’hui compte le changement de gare à Paris pour {{ d.french.params.x_today | 0 }}&nbsp;minutes de train à train, comme le fait le modèle. Quelques-unes de ces paires ont aussi des trains directs qui contournent Paris, une poignée par jour&nbsp;; avec le projet, chaque paire a {{ d.french.params.proj_per_day | 0 }}&nbsp;trains directs par jour, un par heure.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Trajets à travers la France</a><a href="#crossing.tgv">Traverser Paris en TGV</a></p>
   </div>
@@ -167,9 +167,9 @@
     <h2 class="pz-h">Les banlieues reliées à travers Paris</h2>
     <p class="pz-lead">Les emplois sont de l’autre côté de Paris. Deux nouvelles lignes de RER y conduisent sans changement.</p>
     <div class="pz-lines">
-      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G : les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est, jusqu’à Montparnasse, puis vers Massy, Saclay, Versailles et Saint-Quentin.</p></div></div>
-      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F : les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à un Saint-Lazare profond, puis vers Clichy-Levallois, Courbevoie et La Défense.</p></div></div>
-      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV : depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris.</p></div></div>
+      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est, jusqu’à Montparnasse, puis vers Massy, Saclay, Versailles et Saint-Quentin.</p></div></div>
+      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à un Saint-Lazare profond, puis vers Clichy-Levallois, Courbevoie et La Défense.</p></div></div>
+      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV&nbsp;: depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris.</p></div></div>
     </div>
     <div class="pz-grid3">
       <div class="pz-stat good"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour de banlieue à banlieue à travers Paris, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
@@ -185,7 +185,7 @@
   <div class="pz-in">
     <p class="pz-kicker">Rejoindre la gare</p>
     <h2 class="pz-h">Deux gares pour chaque train, donc une plus proche</h2>
-    <p class="pz-lead">Chaque train s’arrête dans deux des trois gares. Si vous habitez le sud de Paris, votre train pour Lille s’arrête désormais à Montparnasse ou à la gare de Lyon : plus besoin de traverser la ville jusqu’à la gare du Nord. Chaque adresse de Paris est aussi proche de son train qu’aujourd’hui, ou plus proche, jusqu’à {{ pts.max_gain.station | 1 }}&nbsp;minutes de moins ; en moyenne, {{ pts.avg.today | 1 }}&nbsp;minutes deviennent {{ pts.avg.station | 1 }}.</p>
+    <p class="pz-lead">Chaque train s’arrête dans deux des trois gares. Si vous habitez le sud de Paris, votre train pour Lille s’arrête désormais à Montparnasse ou à la gare de Lyon&nbsp;: plus besoin de traverser la ville jusqu’à la gare du Nord. Chaque adresse de Paris est aussi proche de son train qu’aujourd’hui, ou plus proche, jusqu’à {{ pts.max_gain.station | 1 }}&nbsp;minutes de moins&nbsp;; en moyenne, {{ pts.avg.today | 1 }}&nbsp;minutes deviennent {{ pts.avg.station | 1 }}.</p>
     <div class="pz-auto" id="pz-acc-toggle"></div>
     <div class="pz-panel borrow-access" id="pz-access-host"></div>
     <div class="pz-panel borrow-access" id="pz-access-host-2"></div>
@@ -197,7 +197,7 @@
   <div class="pz-in">
     <p class="pz-kicker">Le construire</p>
     <h2 class="pz-h">{{ m.params.build_years | 0 }}&nbsp;ans, en deux étapes</h2>
-    <p class="pz-lead">Les halles restent ; les quais et les voies d’accès passent sous terre. Le rapport détaille les méthodes, le calendrier année par année et les précédents.</p>
+    <p class="pz-lead">Les halles restent&nbsp;; les quais et les voies d’accès passent sous terre. Le rapport détaille les méthodes, le calendrier année par année et les précédents.</p>
     <div class="pz-panel borrow-works" id="pz-works-host"></div>
     <p class="pz-more"><a href="#works">Travaux et étapes</a><a href="#cost">Le coût</a></p>
   </div>
@@ -211,17 +211,17 @@
       <div class="pz-story">
         <div class="pz-vs">
           <div><span>Chaque année, il coûte</span><b>{{ d.french.study.central.yearly_cost | 2 }}&nbsp;Md€</b><i style="--w: {{ d.french.study.central.yearly_cost / d.french.study.central.benefit_total * 100 | 0 }}%"></i><small>le remboursement des {{ m.cost.total | 1 }}&nbsp;Md€ de construction, et l’exploitation</small></div>
-          <div class="good"><span>Chaque année, il rapporte</span><b>{{ d.french.study.central.benefit_total | 2 }}&nbsp;Md€</b><i style="--w: 100%"></i><small>temps gagné, confort, emploi, parcs, air plus pur : {{ d.french.study.central.cover | pct }} du coût</small></div>
+          <div class="good"><span>Chaque année, il rapporte</span><b>{{ d.french.study.central.benefit_total | 2 }}&nbsp;Md€</b><i style="--w: 100%"></i><small>temps gagné, confort, emploi, parcs, air plus pur&nbsp;: {{ d.french.study.central.cover | pct }} du coût</small></div>
         </div>
         <ul class="pz-ticks">
-          <li><b>Entièrement financé.</b> Ses propres recettes couvrent {{ f.central.ops_cover | pct }} des coûts d’exploitation ; la construction est payée par un bouquet de taxes régionales sur les entreprises et une subvention de {{ f.central.grant_bn | 1 }}&nbsp;Md€, soit {{ f.central.grant_share | pct }} du coût.</li>
-          <li><b>Un rendement pour le pays.</b> +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui selon les règles françaises d’évaluation, au taux de l’État de {{ d.french.params.rate | pct1 }} : {{ d.french.cases.central.ratio | 2 }}&nbsp;euros rendus pour chaque euro.</li>
+          <li><b>Entièrement financé.</b> Ses propres recettes couvrent {{ f.central.ops_cover | pct }} des coûts d’exploitation&nbsp;; la construction est payée par un bouquet de taxes régionales sur les entreprises et une subvention de {{ f.central.grant_bn | 1 }}&nbsp;Md€, soit {{ f.central.grant_share | pct }} du coût.</li>
+          <li><b>Un rendement pour le pays.</b> +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui selon les règles françaises d’évaluation, au taux de l’État de {{ d.french.params.rate | pct1 }}&nbsp;: {{ d.french.cases.central.ratio | 2 }}&nbsp;euros rendus pour chaque euro.</li>
           <li><b>Remboursé en {{ d.french.timeline.break_even | str }}.</b> Les budgets publics récupèrent aussi environ {{ f.central.tax_total | m }}&nbsp;M€ par an en impôts.</li>
         </ul>
       </div>
       <figure class="pz-stage pz-curve"><figcaption>Cumul en euros d’aujourd’hui, en milliards d’euros</figcaption><svg id="pz-curve-svg" role="img" aria-label="Le cumul des avantages moins les coûts, en euros d’aujourd’hui, baisse pendant les travaux puis repasse au-dessus de zéro"></svg></figure>
     </div>
-    <p class="pz-more"><a href="#financing">Le financement</a><a href="#economy">Le rendement économique</a><a href="#risks">Risques et points à vérifier</a></p>
+    <p class="pz-more"><a href="#financing">Le financement</a><a href="#economy">Le bilan socio-économique</a><a href="#risks">Risques et points à vérifier</a></p>
   </div>
 </section>
 

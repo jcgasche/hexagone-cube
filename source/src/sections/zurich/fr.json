@@ -90,12 +90,12 @@
   "unverified stand-in": "substitut non vérifié",
   "460 trains a day over 4 tracks": "460 trains par jour sur 4 voies",
   "Hall and SZU terminus": "Halle et terminus du SZU",
-  "derived as the remainder": "calculé par différence",
-  "2018 (derived)": "2018 (calculé)",
+  "derived as the remainder": "déduit par différence",
+  "2018 (derived)": "2018 (déduit)",
   "2025 (unverified)": "2025 (non vérifié)",
   "count by the canton": "comptage du canton",
   "count by the canton; first through trains at Löwenstrasse in June": "comptage du canton ; premiers trains traversants à Löwenstrasse en juin",
-  "derived: the 2023 figure is reported as 11% below 2018": "calculé : le chiffre de 2023 est donné comme inférieur de 11 % à celui de 2018",
+  "derived: the 2023 figure is reported as 11% below 2018": "déduit : le chiffre de 2023 est donné comme inférieur de 11 % à celui de 2018",
   "pandemic": "pandémie",
   "unverified: Wikipedia quoting SBB": "non vérifié : Wikipédia citant les CFF",
   "Cross-city line": "Ligne diamétrale",
@@ -111,7 +111,7 @@
   "Paris Gare de Lyon, lines full": "Paris Gare de Lyon, lignes pleines",
   "Paris Montparnasse, lines full": "Paris Montparnasse, lignes pleines",
   "Paris Nord-Est, lines full": "Paris Nord-Est, lignes pleines",
-  "460 trains a day on 4 tracks, over 19 to 20 hours of service (derived)": "460 trains par jour sur 4 voies, sur 19 à 20 heures de service (calculé)",
+  "460 trains a day on 4 tracks, over 19 to 20 hours of service (derived)": "460 trains par jour sur 4 voies, sur 19 à 20 heures de service (déduit)",
   "Zürich, Museumstrasse (1990)": "Zurich, Museumstrasse (1990)",
   "Zürich, Löwenstrasse (2014)": "Zurich, Löwenstrasse (2014)",
   "In at :49, out at :52:": "Arrivée à :49, départ à :52 :",
@@ -254,7 +254,7 @@
   ],
   [
    "{0} stops an hour on {1} tracks, the new link to the east included",
-   "{0} arrêts par heure sur {1} voies, nouvelle liaison vers l’Est comprise"
+   "{0} arrêts par heure sur {1} voies, nouvelle relation vers l’Est comprise"
   ],
   [
    "{0} stops an hour on {1} tracks",

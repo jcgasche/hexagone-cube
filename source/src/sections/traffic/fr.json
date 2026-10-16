@@ -50,7 +50,7 @@
   "Growth in long-distance passengers in the few cases where a change of train or of station was removed": "Hausse du nombre de voyageurs grandes lignes dans les rares cas où une correspondance ou un changement de gare a été supprimé",
   "Measured": "Mesuré",
   "Measured, with a new line or new stations in the figure": "Mesuré, avec une ligne nouvelle ou des gares nouvelles dans le chiffre",
-  "Derived from a measured loss": "Calculé à partir d’une perte mesurée",
+  "Derived from a measured loss": "Déduit d’une perte mesurée",
   "This study": "Cette étude",
   "Taken in this study": "Retenu dans cette étude",
   "Passengers who get a direct train across Paris:": "Voyageurs qui ont un train direct à travers Paris :",
@@ -60,7 +60,7 @@
   "British data, change removed": "Données britanniques, correspondance supprimée",
   "Paris bypass line, 1994 to 1996": "Interconnexion autour de Paris, 1994 à 1996",
   ", by 2000": ", en 2000",
-  "Against the same services without the line (derived from the official review). Includes three new stations and large time savings": "Par rapport aux mêmes services sans la ligne (calculé à partir du bilan officiel). Comprend trois gares nouvelles et d’importants gains de temps",
+  "Against the same services without the line (derived from the official review). Includes three new stations and large time savings": "Par rapport aux mêmes services sans la ligne (déduit du bilan officiel). Comprend trois gares nouvelles et d’importants gains de temps",
   "Paris bypass line, by 2000": "Interconnexion, en 2000",
   "Japan, Osaka to Kumamoto, 2011": "Japon, d’Osaka à Kumamoto, 2011",
   ", in seven years": ", en sept ans",
@@ -85,7 +85,7 @@
   "Traffic": "Trafic",
   "today’s": "celui d’aujourd’hui",
   "From": "De",
-  "To": "Vers",
+  "To": "À",
   "Changes today": "Correspondances aujourd’hui",
   "Today": "Aujourd’hui",
   "Direct train": "Train direct",
@@ -172,7 +172,7 @@
   ],
   [
    "Not a project: across many routes of about 100 miles, an added change of train loses {0}% of passengers in the long run. Read the other way, removing one gains about {1}% (derived)",
-   "Pas un projet : sur de nombreux trajets d’environ 100 miles (160 km), une correspondance de plus fait perdre {0} % des voyageurs à long terme. Lu dans l’autre sens, en supprimer une fait gagner environ {1} % (calculé)"
+   "Pas un projet : sur de nombreux trajets d’environ 100 miles (160 km), une correspondance de plus fait perdre {0} % des voyageurs à long terme. Lu dans l’autre sens, en supprimer une fait gagner environ {1} % (déduit)"
   ],
   [
    "This study, direct train: +{0}%, two or three changes removed",
@@ -220,11 +220,11 @@
   ],
   [
    "{0} of these passengers choose a station their line did not serve and pay €{1}; the others pay nothing more",
-   "{0} de ces voyageurs choisissent une gare que leur ligne ne desservait pas et paient {1} € ; les autres ne paient rien de plus"
+   "{0} de ces voyageurs choisissent une gare que leur ligne ne desservait pas et paient {1} € ; les autres ne paient rien de plus"
   ],
   [
    "€{0} on a direct train or with a change in one station",
-   "{0} € en train direct ou avec une correspondance dans une même gare"
+   "{0} € en train direct ou avec une correspondance dans une même gare"
   ],
   [
    "{0} held back by the charge; none lost against today",

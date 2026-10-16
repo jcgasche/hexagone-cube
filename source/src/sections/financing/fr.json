@@ -155,15 +155,15 @@
   ],
   [
    "Charge of €{0}",
-   "Redevance de {0} €"
+   "Redevance de {0} €"
   ],
   [
    "€{0}m a year",
-   "{0} M€ par an"
+   "{0} M€ par an"
   ],
   [
    "€{0}m",
-   "{0} M€"
+   "{0} M€"
   ],
   [
    "{0}, used here",
@@ -207,7 +207,7 @@
   ],
   [
    "The time gained is counted at about €{0}; {1} million passengers a year pay it",
-   "Le temps gagné est valorisé à environ {0} € ; {1} millions de voyageurs par an la paient"
+   "Le temps gagné est valorisé à environ {0} € ; {1} millions de voyageurs par an la paient"
   ],
   [
    "{0} million passengers a year; no loss of traffic modelled",

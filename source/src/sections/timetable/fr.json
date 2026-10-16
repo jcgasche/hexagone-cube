@@ -161,7 +161,7 @@
   ],
   [
    "from Gare de Lyon {0}",
-   "venu de Gare de Lyon, parti à {0}"
+   "venu de la gare de Lyon, parti à {0}"
   ],
   [
    "from Montparnasse {0}",
@@ -209,7 +209,7 @@
   ],
   [
    "{0} million hours a year",
-   "{0} M d’heures par an"
+   "{0} millions d’heures par an"
   ]
  ]
 }

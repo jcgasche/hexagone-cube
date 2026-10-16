@@ -78,12 +78,12 @@
   "Two caverns where the line divides underground.": "Deux cavernes où la ligne se divise sous terre.",
   "The place east of Whitechapel where the line divides underground": "L’endroit, à l’est de Whitechapel, où la ligne se divise sous terre",
   "Two caverns about 120 m long, lined with sprayed concrete": "Deux cavernes d’environ 120 m de long, revêtues de béton projeté",
-  "At the busiest times, 12 trains an hour take each branch (derived)": "Aux heures les plus chargées, 12 trains par heure empruntent chaque branche (calculé)",
+  "At the busiest times, 12 trains an hour take each branch (derived)": "Aux heures les plus chargées, 12 trains par heure empruntent chaque branche (déduit)",
   "Shenfield branch": "Branche de Shenfield",
   "Existing main line to the north-east. Its stopping trains used to end at the Liverpool Street terminal.": "Ligne principale existante vers le nord-est. Ses trains omnibus s’arrêtaient au terminus de Liverpool Street.",
   "The main line to the north-east, joined to the tunnel near Stratford": "La ligne principale vers le nord-est, raccordée au tunnel près de Stratford",
   "15 to 16 trains an hour ended at the Liverpool Street terminal, 43 minutes from Shenfield": "15 à 16 trains par heure s’arrêtaient au terminus de Liverpool Street, à 43 minutes de Shenfield",
-  "12 an hour through the tunnel at the busiest times (derived); 2 still end at the terminal": "12 par heure dans le tunnel aux heures les plus chargées (calculé) ; 2 s’arrêtent encore au terminus",
+  "12 an hour through the tunnel at the busiest times (derived); 2 still end at the terminal": "12 par heure dans le tunnel aux heures les plus chargées (déduit) ; 2 s’arrêtent encore au terminus",
   "From": "De",
   "To": "À",
   "no time saved": "aucun gain de temps",
@@ -142,7 +142,7 @@
   "At approval, 2011": "À l’approbation, 2011",
   "1.97; 3.09 to 3.53": "1,97 ; 3,09 à 3,53",
   "Transport benefits only:": "Avantages de transport seuls :",
-  "With wider benefits:": "Avec les avantages élargis :",
+  "With wider benefits:": "Avec les effets élargis :",
   "3.09 to 3.53": "3,09 à 3,53",
   "After the cost rise": "Après la hausse du coût",
   "After the cost rise, 2020": "Après la hausse du coût, 2020",
@@ -150,8 +150,8 @@
   "With the traffic measured since 2022": "Avec le trafic mesuré depuis 2022",
   "not published": "non publié",
   "Elizabeth line on gross cost, as in this study": "Elizabeth line sur le coût brut, comme dans cette étude",
-  "2011 values, derived": "valeurs de 2011, calculé",
-  "Elizabeth line on gross cost, as in this study, 2011 values, derived": "Elizabeth line sur le coût brut, comme dans cette étude, valeurs de 2011, calculé",
+  "2011 values, derived": "valeurs de 2011, déduit",
+  "Elizabeth line on gross cost, as in this study, 2011 values, derived": "Elizabeth line sur le coût brut, comme dans cette étude, valeurs de 2011, déduit",
   "This project, simple reading": "Ce projet, lecture simple",
   "benefits of the opening year, held flat": "avantages de l’année de mise en service, maintenus constants",
   "This project, simple reading, benefits of the opening year, held flat": "Ce projet, lecture simple, avantages de l’année de mise en service, maintenus constants",
@@ -176,8 +176,8 @@
   "Timetable at opening.": "Horaire à l’ouverture.",
   "Journey planner, 2022": "Calculateur d’itinéraire, 2022",
   "Journey planner, 2022.": "Calculateur d’itinéraire, 2022.",
-  "Measured after opening": "Mesuré après l’ouverture",
-  "Measured after opening.": "Mesuré après l’ouverture.",
+  "Measured after opening": "Mesuré après la mise en service",
+  "Measured after opening.": "Mesuré après la mise en service.",
   "Paddington to Liverpool Street": "De Paddington à Liverpool Street",
   "Paddington to Liverpool Street: 9 minutes saved": "De Paddington à Liverpool Street : 9 minutes gagnées",
   "Liverpool Street to Paddington": "De Liverpool Street à Paddington",
@@ -353,7 +353,7 @@
   "13 of 14": "13 sur 14",
   "14 of 14": "14 sur 14",
   "about €152": "environ 152 €",
-  "about €32bn over 210 million journeys in 2023/24 (derived)": "environ 32 Md€ pour 210 millions de trajets en 2023/24 (calculé)",
+  "about €32bn over 210 million journeys in 2023/24 (derived)": "environ 32 Md€ pour 210 millions de trajets en 2023/24 (déduit)",
   "2 tracks of about 240 m, for trains of 205 m": "2 voies d’environ 240 m, pour des trains de 205 m",
   "0,8 to 1,2": "0,8 à 1,2",
   "about €150": "environ 150 €"
@@ -469,7 +469,7 @@
   ],
   [
    "about €{0}bn over {1} million journeys in {2} (derived)",
-   "environ {0} Md€ pour {1} millions de trajets en {2} (calculé)"
+   "environ {0} Md€ pour {1} millions de trajets en {2} (déduit)"
   ],
   [
    "about €{0}bn",
@@ -485,11 +485,11 @@
   ],
   [
    "{0} central; {1} with low prices and 10% risk, {2} with high prices and 30% risk",
-   "{0} en scénario central ; {1} avec les prix bas et 10 % de risque, {2} avec les prix hauts et 30 % de risque"
+   "{0} dans le cas central ; {1} avec les prix bas et 10 % de risque, {2} avec les prix hauts et 30 % de risque"
   ],
   [
    "{0} over {1} million journeys a year using the new stations (derived from the model)",
-   "{0} pour {1} millions de trajets par an qui utilisent les nouvelles gares (calculé à partir du modèle)"
+   "{0} pour {1} millions de trajets par an qui utilisent les nouvelles gares (déduit du modèle)"
   ],
   [
    "{0} m of platform track",

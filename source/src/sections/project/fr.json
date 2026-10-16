@@ -7,7 +7,7 @@
   "Today’s surface tracks": "Voies de surface actuelles",
   "Layers": "Couches",
   "Layers shown on the map": "Couches affichées sur la carte",
-  "Schematic map of Paris with the four deep stations, the tunnel corridors of the TGV, RER G and RER F tunnels, the regional express trains running in the TGV tunnels, the direct link between Montparnasse and Gare de Lyon, the five portal sites and the four junction sites": "Carte schématique de Paris avec les quatre gares profondes, les corridors des tunnels TGV, RER G et RER F, les TER circulant dans les tunnels TGV, la liaison directe entre Montparnasse et Gare de Lyon, les cinq sites de têtes de tunnel et les quatre sites de bifurcation",
+  "Schematic map of Paris with the four deep stations, the tunnel corridors of the TGV, RER G and RER F tunnels, the regional express trains running in the TGV tunnels, the direct link between Montparnasse and Gare de Lyon, the five portal sites and the four junction sites": "Carte schématique de Paris avec les quatre gares profondes, les corridors des tunnels TGV, RER G et RER F, les TER circulant dans les tunnels TGV, la liaison directe entre Montparnasse et la gare de Lyon, les cinq sites de têtes de tunnel et les quatre sites de bifurcation",
   "TGV tunnel (two tracks)": "Tunnel TGV (deux voies)",
   "RER G tunnel (today’s lines P and N)": "Tunnel du RER G (les lignes P et N d’aujourd’hui)",
   "RER F tunnel (today’s lines H, K and L)": "Tunnel du RER F (les lignes H, K et L d’aujourd’hui)",
@@ -30,25 +30,25 @@
   "RER F tunnel": "Tunnel du RER F",
   "Left as it is": "Laissée en l’état",
   "Austerlitz station: left as it is": "Gare d’Austerlitz : laissée en l’état",
-  "Freed: its regional express trains run through below from Gare de Lyon": "Libérée : ses TER passent en souterrain depuis Gare de Lyon et y deviennent traversants",
-  "Bercy station: freed: its regional express trains run through below from Gare de Lyon": "Gare de Bercy : libérée, ses TER passent en souterrain depuis Gare de Lyon et y deviennent traversants",
-  "under Gare du Nord and Gare de l’Est": "sous Gare du Nord et Gare de l’Est",
+  "Freed: its regional express trains run through below from Gare de Lyon": "Libérée : ses TER passent en souterrain depuis la gare de Lyon et y deviennent traversants",
+  "Bercy station: freed: its regional express trains run through below from Gare de Lyon": "Gare de Bercy : libérée, ses TER passent en souterrain depuis la gare de Lyon et y deviennent traversants",
+  "under Gare du Nord and Gare de l’Est": "sous la gare du Nord et la gare de l’Est",
   "RER F only": "RER F seulement",
   "Station Paris Nord-Est": "Gare Paris Nord-Est",
   "Station Gare de Lyon": "Gare de Lyon",
   "Station Montparnasse": "Gare Montparnasse",
   "Station Saint-Lazare": "Gare Saint-Lazare",
-  "Under and between Gare du Nord and Gare de l’Est, which are 500 m apart.": "Sous et entre Gare du Nord et Gare de l’Est, distantes de 500 m.",
-  "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains run through in the TGV tunnels: those from the north on to Montparnasse and the Atlantic lines, those from the east on to Gare de Lyon and Burgundy. Their four platforms lie on the west side of the box, beside the TGV platforms. RER G from the east runs through to Montparnasse, and RER F from the north runs on to Saint-Lazare. Every train of Gare du Nord and Gare de l’Est goes underground, so all the surface tracks of both stations are freed: both halls become entrances, and the platforms and approach tracks become one park. TGV and RER F platforms in stage 1; regional express and RER G platforms in stage 2.": "Les TGV des quatre lignes s’arrêtent ici, venant du Nord, de l’Est, du Sud-Est et de l’Atlantique ; une des six voies TGV peut être isolée pour chaque départ vers Londres. Les TER traversent la gare dans les tunnels des TGV : ceux du Nord continuent vers Montparnasse et les lignes de l’Atlantique, ceux de l’Est vers Gare de Lyon et la Bourgogne. Leurs quatre voies à quai sont du côté ouest de la boîte, à côté des quais TGV. Le RER G venant de l’Est continue jusqu’à Montparnasse, et le RER F venant du Nord continue jusqu’à Saint-Lazare. Tous les trains de Gare du Nord et de Gare de l’Est passent en souterrain : toutes les voies de surface des deux gares sont donc libérées, les deux halles deviennent des entrées, et les quais et les voies d’approche deviennent un seul parc. Quais TGV et RER F à l’étape 1 ; quais TER et RER G à l’étape 2.",
+  "Under and between Gare du Nord and Gare de l’Est, which are 500 m apart.": "Sous la gare du Nord et la gare de l’Est, et entre les deux, distantes de 500 m.",
+  "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains run through in the TGV tunnels: those from the north on to Montparnasse and the Atlantic lines, those from the east on to Gare de Lyon and Burgundy. Their four platforms lie on the west side of the box, beside the TGV platforms. RER G from the east runs through to Montparnasse, and RER F from the north runs on to Saint-Lazare. Every train of Gare du Nord and Gare de l’Est goes underground, so all the surface tracks of both stations are freed: both halls become entrances, and the platforms and approach tracks become one park. TGV and RER F platforms in stage 1; regional express and RER G platforms in stage 2.": "Les TGV des quatre lignes s’arrêtent ici, venant du Nord, de l’Est, du Sud-Est et de l’Atlantique ; une des six voies TGV peut être isolée pour chaque départ vers Londres. Les TER traversent la gare dans les tunnels des TGV : ceux du Nord continuent vers Montparnasse et les lignes de l’Atlantique, ceux de l’Est vers la gare de Lyon et la Bourgogne. Leurs quatre voies à quai sont du côté ouest de la boîte, à côté des quais TGV. Le RER G venant de l’Est continue jusqu’à Montparnasse, et le RER F venant du Nord continue jusqu’à Saint-Lazare. Tous les trains de la gare du Nord et de la gare de l’Est passent en souterrain : toutes les voies de surface des deux gares sont donc libérées, les deux halles deviennent des entrées, et les quais et les voies d’accès deviennent un seul parc. Quais TGV et RER F à l’étape 1 ; quais TER et RER G à l’étape 2.",
   "Under the present station.": "Sous la gare actuelle.",
   "TGVs of the south-east, and the half of the northern, eastern and Atlantic TGVs that pair with them; regional express trains of Burgundy, running through in the TGV tunnel to Nord-Est and the east. Two of the eight tracks, one each way, take the planned sixteenth south-eastern TGV an hour and the regional express trains. A junction at the city end leads to the direct link to Montparnasse. The hall is kept as the entrance. The TGVs and the regional express trains go underground and the Bercy station is freed. Line R keeps a small terminal of a few surface tracks; running it through as well is left as a later option.": "Les TGV du Sud-Est, et la moitié des TGV du Nord, de l’Est et de l’Atlantique qui leur sont associés ; les TER de Bourgogne, qui continuent dans le tunnel TGV vers Nord-Est et l’Est. Deux des huit voies, une par sens, accueillent le seizième TGV par heure du Sud-Est, désormais prévu, et les TER. Une bifurcation à l’extrémité côté centre mène à la liaison directe vers Montparnasse. La halle est conservée comme entrée. Les TGV et les TER passent en souterrain et la gare de Bercy est libérée. La ligne R garde un petit terminus de quelques voies en surface ; la faire traverser elle aussi reste une option ultérieure.",
-  "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains of the Chartres, Le Mans and Granville lines, running through in the TGV tunnel to Nord-Est and the north; RER G running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon. Every train goes underground. The hall is kept as the entrance; the surface tracks towards the ring road become a park.": "Les TGV de l’Atlantique, et la moitié des TGV du Nord, de l’Est et du Sud-Est qui leur sont associés ; les TER des lignes de Chartres, du Mans et de Granville, qui continuent dans le tunnel TGV vers Nord-Est et le Nord ; le RER G, qui continue jusqu’à Nord-Est. Une bifurcation à l’extrémité côté centre mène à la liaison directe vers Gare de Lyon. Tous les trains passent en souterrain. La halle est conservée comme entrée ; les voies de surface vers le périphérique deviennent un parc.",
+  "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains of the Chartres, Le Mans and Granville lines, running through in the TGV tunnel to Nord-Est and the north; RER G running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon. Every train goes underground. The hall is kept as the entrance; the surface tracks towards the ring road become a park.": "Les TGV de l’Atlantique, et la moitié des TGV du Nord, de l’Est et du Sud-Est qui leur sont associés ; les TER des lignes de Chartres, du Mans et de Granville, qui continuent dans le tunnel TGV vers Nord-Est et le Nord ; le RER G, qui continue jusqu’à Nord-Est. Une bifurcation à l’extrémité côté centre mène à la liaison directe vers la gare de Lyon. Tous les trains passent en souterrain. La halle est conservée comme entrée ; les voies de surface vers le périphérique deviennent un parc.",
   "Deep under the present station, a new through station for RER F only.": "En profondeur sous la gare actuelle, une nouvelle gare traversante pour le seul RER F.",
   "Platform tracks": "Voies à quai",
   "All platform tracks": "Toutes les voies à quai",
   "Platform track, metres": "Voies à quai, en mètres",
   "Cost": "Coût",
-  "With design, land and 15% risk": "Avec études, foncier et 15 % de provision pour risques",
+  "With design, land and 15% risk": "Avec études, foncier et 15 % de provision pour risques",
   "North": "Nord",
   "North corridor": "Corridor Nord",
   "Porte de la Chapelle to Paris Nord-Est": "De la Porte de la Chapelle à Paris Nord-Est",
@@ -62,14 +62,14 @@
   "Rosa Parks to Paris Nord-Est.": "De Rosa Parks à Paris Nord-Est.",
   "high-speed trains to Reims and Strasbourg": "trains à grande vitesse vers Reims et Strasbourg",
   "suburban trains of today’s line P, running through to Montparnasse": "trains de banlieue de la ligne P d’aujourd’hui, qui continuent jusqu’à Montparnasse",
-  "regional express trains from the east, running through to Gare de Lyon and Burgundy": "TER de l’Est, qui continuent jusqu’à Gare de Lyon et vers la Bourgogne",
+  "regional express trains from the east, running through to Gare de Lyon and Burgundy": "TER de l’Est, qui continuent jusqu’à la gare de Lyon et vers la Bourgogne",
   "Nord-Est to Lyon": "Nord-Est à Lyon",
   "Nord-Est to Lyon corridor": "Corridor de Nord-Est à Lyon",
-  "Paris Nord-Est to Gare de Lyon": "De Paris Nord-Est à Gare de Lyon",
-  "Paris Nord-Est to Gare de Lyon.": "De Paris Nord-Est à Gare de Lyon.",
+  "Paris Nord-Est to Gare de Lyon": "De Paris Nord-Est à la gare de Lyon",
+  "Paris Nord-Est to Gare de Lyon.": "De Paris Nord-Est à la gare de Lyon.",
   "TGVs between Paris Nord-Est and the south-east": "TGV entre Paris Nord-Est et le Sud-Est",
-  "regional express trains between the east and Burgundy, through Nord-Est and Gare de Lyon": "TER entre l’Est et la Bourgogne, par Nord-Est et Gare de Lyon",
-  "One TGV tunnel, which the regional express trains between the east and Burgundy share. No suburban train runs to Gare de Lyon underground.": "Un seul tunnel TGV, que partagent les TER entre l’Est et la Bourgogne. Aucun train de banlieue ne rejoint Gare de Lyon en souterrain.",
+  "regional express trains between the east and Burgundy, through Nord-Est and Gare de Lyon": "TER entre l’Est et la Bourgogne, par Nord-Est et la gare de Lyon",
+  "One TGV tunnel, which the regional express trains between the east and Burgundy share. No suburban train runs to Gare de Lyon underground.": "Un seul tunnel TGV, que partagent les TER entre l’Est et la Bourgogne. Aucun train de banlieue ne rejoint la gare de Lyon en souterrain.",
   "Nord-Est to Montparnasse": "Nord-Est à Montparnasse",
   "Nord-Est to Montparnasse corridor": "Corridor de Nord-Est à Montparnasse",
   "Paris Nord-Est to Montparnasse, under the Seine": "De Paris Nord-Est à Montparnasse, sous la Seine",
@@ -80,11 +80,11 @@
   "Two twin-track tunnels side by side: the TGV tunnel, which the regional express trains share, and RER G.": "Deux tunnels à double voie côte à côte : le tunnel TGV, que partagent les TER, et celui du RER G.",
   "South-east": "Sud-Est",
   "South-east corridor": "Corridor Sud-Est",
-  "Gare de Lyon to Porte de Charenton": "De Gare de Lyon à la Porte de Charenton",
-  "Gare de Lyon to Porte de Charenton.": "De Gare de Lyon à la Porte de Charenton.",
+  "Gare de Lyon to Porte de Charenton": "De la gare de Lyon à la Porte de Charenton",
+  "Gare de Lyon to Porte de Charenton.": "De la gare de Lyon à la Porte de Charenton.",
   "high-speed trains to Lyon and Marseille": "trains à grande vitesse vers Lyon et Marseille",
   "regional express trains to Burgundy, running through to Nord-Est and the east": "TER vers la Bourgogne, qui continuent jusqu’à Nord-Est et vers l’Est",
-  "One TGV tunnel, shared with the regional express trains of Burgundy. Line R stays on the surface at Gare de Lyon, on a small terminal.": "Un seul tunnel TGV, partagé avec les TER de Bourgogne. La ligne R reste en surface à Gare de Lyon, sur un petit terminus.",
+  "One TGV tunnel, shared with the regional express trains of Burgundy. Line R stays on the surface at Gare de Lyon, on a small terminal.": "Un seul tunnel TGV, partagé avec les TER de Bourgogne. La ligne R reste en surface à la gare de Lyon, sur un petit terminus.",
   "Atlantic": "Atlantique",
   "Atlantic corridor": "Corridor Atlantique",
   "Montparnasse to Porte de Vanves": "De Montparnasse à la Porte de Vanves",
@@ -92,9 +92,9 @@
   "high-speed trains to Bordeaux, Rennes and Nantes": "trains à grande vitesse vers Bordeaux, Rennes et Nantes",
   "suburban trains of today’s line N, running through to Nord-Est": "trains de banlieue de la ligne N d’aujourd’hui, qui continuent jusqu’à Nord-Est",
   "regional express trains to Chartres, Le Mans and Granville, running through to Nord-Est and the north": "TER vers Chartres, Le Mans et Granville, qui continuent jusqu’à Nord-Est et vers le Nord",
-  "Montparnasse to Gare de Lyon link": "Liaison directe de Montparnasse à Gare de Lyon",
-  "Montparnasse to Gare de Lyon, under the Seine": "De Montparnasse à Gare de Lyon, sous la Seine",
-  "Montparnasse to Gare de Lyon, under the Seine.": "De Montparnasse à Gare de Lyon, sous la Seine.",
+  "Montparnasse to Gare de Lyon link": "Liaison directe de Montparnasse à la gare de Lyon",
+  "Montparnasse to Gare de Lyon, under the Seine": "De Montparnasse à la gare de Lyon, sous la Seine",
+  "Montparnasse to Gare de Lyon, under the Seine.": "De Montparnasse à la gare de Lyon, sous la Seine.",
   "TGVs between the Atlantic and the south-east, direct": "TGV directs entre l’Atlantique et le Sud-Est",
   "No regional or suburban train uses the link.": "Aucun TER ni train de banlieue n’emprunte la liaison directe.",
   "Nord-Est to Saint-Lazare": "Nord-Est à Saint-Lazare",
@@ -111,20 +111,20 @@
   "Route, planning estimate": "Tracé, estimation de planification",
   "Tunnels side by side": "Tunnels côte à côte",
   "Two-track tunnel": "Tunnel à double voie",
-  "Tunnels and rail systems, works": "Tunnels et équipements ferroviaires, travaux",
+  "Tunnels and rail systems, works": "Tunnels et systèmes ferroviaires, travaux",
   "One tunnel, for": "Un seul tunnel, pour",
   "Northern junction": "Bifurcation nord",
   "Where the TGV tunnels from the north and from the east become one, just before the station. The regional express trains of both lines ride in these TGV tunnels and need no cavern of their own. RER F comes from the north only and RER G from the east only, so they need no junction.": "Là où les tunnels TGV venant du Nord et de l’Est n’en forment plus qu’un, juste avant la gare. Les TER des deux lignes circulent dans ces tunnels TGV et n’ont pas besoin de caverne à eux. Le RER F ne vient que du Nord et le RER G que de l’Est : ils n’ont donc pas besoin de bifurcation.",
   "Where the TGV tunnels from the north and from the east become one, just before the station. The regional express trains of both lines ride in these TGV tunnels and need no cavern of their own. RER F comes from the north only and RER G from the east only, so they need no junction. Each tunnel that splits needs its own cavern.": "Là où les tunnels TGV venant du Nord et de l’Est n’en forment plus qu’un, juste avant la gare. Les TER des deux lignes circulent dans ces tunnels TGV et n’ont pas besoin de caverne à eux. Le RER F ne vient que du Nord et le RER G que de l’Est : ils n’ont donc pas besoin de bifurcation. Chaque tunnel qui se divise a besoin de sa propre caverne.",
   "Southern junction": "Bifurcation sud",
-  "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. RER G runs on to Montparnasse only, and RER F turns west to Saint-Lazare, so they need no junction.": "Là où les tunnels TGV vers Gare de Lyon et vers Montparnasse se séparent, juste après la gare ; les TER du Nord prennent le côté Montparnasse, ceux de l’Est le côté Gare de Lyon. Le RER G ne continue que vers Montparnasse, et le RER F tourne vers l’ouest jusqu’à Saint-Lazare : ils n’ont donc pas besoin de bifurcation.",
-  "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. RER G runs on to Montparnasse only, and RER F turns west to Saint-Lazare, so they need no junction. Each tunnel that splits needs its own cavern.": "Là où les tunnels TGV vers Gare de Lyon et vers Montparnasse se séparent, juste après la gare ; les TER du Nord prennent le côté Montparnasse, ceux de l’Est le côté Gare de Lyon. Le RER G ne continue que vers Montparnasse, et le RER F tourne vers l’ouest jusqu’à Saint-Lazare : ils n’ont donc pas besoin de bifurcation. Chaque tunnel qui se divise a besoin de sa propre caverne.",
+  "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. RER G runs on to Montparnasse only, and RER F turns west to Saint-Lazare, so they need no junction.": "Là où les tunnels TGV vers la gare de Lyon et vers Montparnasse se séparent, juste après la gare ; les TER du Nord prennent le côté Montparnasse, ceux de l’Est le côté gare de Lyon. Le RER G ne continue que vers Montparnasse, et le RER F tourne vers l’ouest jusqu’à Saint-Lazare : ils n’ont donc pas besoin de bifurcation.",
+  "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. RER G runs on to Montparnasse only, and RER F turns west to Saint-Lazare, so they need no junction. Each tunnel that splits needs its own cavern.": "Là où les tunnels TGV vers la gare de Lyon et vers Montparnasse se séparent, juste après la gare ; les TER du Nord prennent le côté Montparnasse, ceux de l’Est le côté gare de Lyon. Le RER G ne continue que vers Montparnasse, et le RER F tourne vers l’ouest jusqu’à Saint-Lazare : ils n’ont donc pas besoin de bifurcation. Chaque tunnel qui se divise a besoin de sa propre caverne.",
   "Montparnasse junction": "Bifurcation de Montparnasse",
-  "Where the direct link to Gare de Lyon leaves the TGV tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed.": "Là où la liaison directe vers Gare de Lyon quitte le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de Montparnasse. Sa géométrie n’a pas été conçue.",
-  "Where the direct link to Gare de Lyon leaves the TGV tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed. Each tunnel that splits needs its own cavern.": "Là où la liaison directe vers Gare de Lyon quitte le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de Montparnasse. Sa géométrie n’a pas été conçue. Chaque tunnel qui se divise a besoin de sa propre caverne.",
-  "Gare de Lyon junction": "Bifurcation de Gare de Lyon",
-  "Where the direct link from Montparnasse joins the TGV tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed.": "Là où la liaison directe venant de Montparnasse rejoint le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de Gare de Lyon. Sa géométrie n’a pas été conçue.",
-  "Where the direct link from Montparnasse joins the TGV tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed. Each tunnel that splits needs its own cavern.": "Là où la liaison directe venant de Montparnasse rejoint le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de Gare de Lyon. Sa géométrie n’a pas été conçue. Chaque tunnel qui se divise a besoin de sa propre caverne.",
+  "Where the direct link to Gare de Lyon leaves the TGV tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed.": "Là où la liaison directe vers la gare de Lyon quitte le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de Montparnasse. Sa géométrie n’a pas été conçue.",
+  "Where the direct link to Gare de Lyon leaves the TGV tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed. Each tunnel that splits needs its own cavern.": "Là où la liaison directe vers la gare de Lyon quitte le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de Montparnasse. Sa géométrie n’a pas été conçue. Chaque tunnel qui se divise a besoin de sa propre caverne.",
+  "Gare de Lyon junction": "Bifurcation de la gare de Lyon",
+  "Where the direct link from Montparnasse joins the TGV tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed.": "Là où la liaison directe venant de Montparnasse rejoint le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de la gare de Lyon. Sa géométrie n’a pas été conçue.",
+  "Where the direct link from Montparnasse joins the TGV tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed. Each tunnel that splits needs its own cavern.": "Là où la liaison directe venant de Montparnasse rejoint le tunnel TGV venant de Nord-Est, à l’extrémité côté centre de la gare de Lyon. Sa géométrie n’a pas été conçue. Chaque tunnel qui se divise a besoin de sa propre caverne.",
   "Caverns here, one for each tunnel": "Cavernes ici, une par tunnel",
   "Junction caverns in all": "Cavernes de bifurcation au total",
   "Price used for each, works": "Prix retenu pour chacune, travaux",
@@ -178,19 +178,19 @@
   ],
   [
    "{0} platform tracks drawn as lines, {1}, {2} or {3} m long",
-   "{0} voies à quai dessinées comme des traits, de {1}, {2} ou {3} m de long"
+   "{0} voies à quai dessinées comme des traits, de {1}, {2} ou {3} m de long"
   ],
   [
    "{0}, {1} m ({2} can be closed off for London departures)",
-   "{0}, {1} m (dont {2} peut être isolée pour les départs vers Londres)"
+   "{0}, {1} m (dont {2} peut être isolée pour les départs vers Londres)"
   ],
   [
    "{0}, {1} m (two of them, one each way, also take the regional express trains)",
-   "{0}, {1} m (dont deux, une par sens, accueillent aussi les TER)"
+   "{0}, {1} m (dont deux, une par sens, accueillent aussi les TER)"
   ],
   [
    "Regional express, {0} m",
-   "TER, {0} m"
+   "TER, {0} m"
   ],
   [
    "Works at €{0}m per metre",
@@ -198,27 +198,27 @@
   ],
   [
    "Corridor Montparnasse to Gare de Lyon link, {0} km",
-   "Liaison directe de Montparnasse à Gare de Lyon, {0} km"
+   "Liaison directe de Montparnasse à la gare de Lyon, {0} km"
   ],
   [
    "Corridor {0}, {1} km",
-   "Corridor {0}, {1} km"
+   "Corridor {0}, {1} km"
   ],
   [
    "{0} km of route: the {1} tunnels, side by side",
-   "{0} km de tracé : les tunnels {1}, côte à côte"
+   "{0} km de tracé : les tunnels {1}, côte à côte"
   ],
   [
    "{0} km of route: the {1} tunnel",
-   "{0} km de tracé : le tunnel {1}"
+   "{0} km de tracé : le tunnel {1}"
   ],
   [
    "Regional express trains share the TGV tunnel: {0} TGVs and {1} regional express trains an hour each way, {2} of the tunnel’s capacity with trains {3} minutes apart ({4} at {5} minutes)",
-   "Les TER partagent le tunnel TGV : {0} TGV et {1} TER par heure et par sens, {2} de la capacité du tunnel avec des trains espacés de {3} min ({4} à {5} min)"
+   "Les TER partagent le tunnel TGV : {0} TGV et {1} TER par heure et par sens, {2} de la capacité du tunnel avec des trains espacés de {3} min ({4} à {5} min)"
   ],
   [
    "At the peak: {0} TGVs and {1} regional express trains an hour each way, {2} of the tunnel’s capacity with trains {3} minutes apart ({4} at {5} minutes). Planners keep the peak under {6}.",
-   "À la pointe : {0} TGV et {1} TER par heure et par sens, {2} de la capacité du tunnel avec des trains espacés de {3} min ({4} à {5} min). Les planificateurs maintiennent la pointe sous {6}."
+   "À la pointe : {0} TGV et {1} TER par heure et par sens, {2} de la capacité du tunnel avec des trains espacés de {3} min ({4} à {5} min). Les planificateurs maintiennent la pointe sous {6}."
   ],
   [
    "Corridor, stages {0} and {1}",
@@ -270,7 +270,7 @@
   ],
   [
    "The link leaves each station at its city end, so that a train from the Atlantic enters Gare de Lyon facing the south-east. Its length is taken as {0} km (4.5 to 6 km); its geometry is a study point.",
-   "La liaison directe part de chaque gare par son extrémité côté centre, pour qu’un train venant de l’Atlantique entre à Gare de Lyon déjà orienté vers le Sud-Est. Sa longueur est comptée pour {0} km (4,5 à 6 km) ; sa géométrie est un point à étudier."
+   "La liaison directe part de chaque gare par son extrémité côté centre, pour qu’un train venant de l’Atlantique entre à la gare de Lyon déjà orienté vers le Sud-Est. Sa longueur est comptée pour {0} km (4,5 à 6 km) ; sa géométrie est un point à étudier."
   ],
   [
    "{0} cavern: {1}",
