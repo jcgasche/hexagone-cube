@@ -41,14 +41,15 @@ Numbers are never typed into the text. They come from the model:
 ```
 python3 model/nordest.py         # access, traffic, cost                 -> model/outputs/nordest.json
 python3 model/finance.py         # the two accounts, return, taxes       -> model/outputs/finance.json
-python3 model/export.py          # data the site reads                   -> src/data/model.json, finance.json, points.json
+python3 model/french.py          # the French appraisal, every benefit     -> model/outputs/french.json (about 25 seconds)
+python3 model/export.py          # data the site reads                   -> src/data/model.json, finance.json, french.json, points.json
 python3 model/timetable.py       # the hour of trains (about 20 minutes)  -> src/sections/timetable/data.json
 node tools/check_model.js        # the browser model must give the same numbers as the Python one
 python3 build.py
 ```
 
-Change an assumption in `model/nordest.py` or `model/finance.py` (every assumption is a named constant with a comment), run the
-six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
+Change an assumption in `model/nordest.py`, `model/finance.py` or `model/french.py` (every assumption is a named constant with a comment), run the
+seven commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
 
 ## What is where
 
@@ -93,9 +94,10 @@ six commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` 
 | `model/estimate.py` | Shared constants (values of time, traffic by station, elasticities). Earlier material in it that this document no longer uses is not read by the site |
 | `model/nordest.py` | The plan: access with a choice of boarding station (Saint-Lazare times derived from the other terminals), passengers crossing Paris, regional trains, service plan (pairings, the direct link, platform rule), bottom-up cost with 15% risk, yearly cost, sensitivity tests, stages |
 | `model/finance.py` | Operations and capital accounts, the passenger charge and its effect on traffic, Navigo, taxes, rate of return |
+| `model/french.py` | The official French appraisal (DGITM rules: growth, 4.5% rate, horizon 2140, cost of public funds, producers' balances) of the complete list of benefits, the items the first count left out (job access measured on the census, crowding, departure margin, land, air, works), the sensitivity cases, and the study's simple reading of the same list |
 | `model/export.py` | Writes the JSON files of `src/data/` and the two measures of the access map |
 | `model/timetable.py` | The hour of high-speed trains: searches the minutes of every train at full capacity, under stated rules, for an evenly spaced hour (the one shown) and for one timed for changes (the comparison) |
-| `model/inputs/` | Access times by point and by commune, three weightings |
+| `model/inputs/` | Access times by point and by commune, three weightings; `job_access.json`, the results of the job-access demand model fitted on the census (code and data in the project files) |
 | `src/js/model.js` | The accounts and the cost build-up again, in the browser, for the calculators |
 
 ## Publishing

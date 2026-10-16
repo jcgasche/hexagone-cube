@@ -143,5 +143,175 @@
   "publisher": "Bernard, Moxnes and Saito, NBER working paper 21082, 2015",
   "about": "Japanese firms found new suppliers after a new Shinkansen line opened",
   "url": "https://www.nber.org/papers/w21082"
+ },
+ "fr_instruction": {
+  "publisher": "Ministry of Transport, Instruction of 16 June 2014 on the evaluation of transport projects",
+  "about": "The French appraisal framework: one method for every transport project, a net present value as the main indicator",
+  "url": "https://aida.ineris.fr/reglementation/instruction-gouvernement-160614-relative-a-levaluation-projets-transport"
+ },
+ "fr_v1": {
+  "publisher": "DGITM, fiche-outil V.1, valuing effects and indicators, 3 August 2018",
+  "about": "What the net present value contains: users, environment, producers; rule of a half for new traffic; explicit years to 2070 and residual value to 2140; wider effects reported apart",
+  "url": "https://www.ecologie.gouv.fr/sites/default/files/V.1.pdf"
+ },
+ "fr_v2": {
+  "publisher": "DGITM, fiche-outil V.2, prescribed reference values, 3 May 2019",
+  "about": "Official values of time by distance and purpose, growth with income, carbon value path (246 euros a tonne in 2030, 491 in 2040, 763 in 2050), car pollution, noise and accident values",
+  "url": "https://www.ecologique-solidaire.gouv.fr/sites/default/files/V.2.pdf"
+ },
+ "fr_v4": {
+  "publisher": "DGITM, fiche-outil V.4, risk in the monetised analysis, 3 May 2019",
+  "about": "The 4.5% discount rate used in practice; the stress test with no growth at 4%, under which a project is vulnerable if its value turns negative",
+  "url": "https://www.ecologie.gouv.fr/sites/default/files/V.4.pdf"
+ },
+ "fr_v5": {
+  "publisher": "DGITM, fiche-outil V.5, cost of public funds, 1 October 2014",
+  "about": "Each euro of net public money counts 1.2 in the appraisal",
+  "url": "https://www.ecologique-solidaire.gouv.fr/sites/default/files/V.5.pdf"
+ },
+ "fr_v8": {
+  "publisher": "DGITM, fiche-outil V.8, effects on public finances, 3 May 2019",
+  "about": "Lost fuel duty and VAT on diverted traffic count as public money; transfers between public bodies cancel",
+  "url": "https://www.ecologie.gouv.fr/sites/default/files/V.8.pdf"
+ },
+ "fr_ref": {
+  "publisher": "DGITM, reference scenario fiche, 3 May 2019",
+  "about": "Long-distance demand +1.2% a year and short-distance +0.3% to 2070; GDP per head +1.2% a year; road transport carbon-free by 2050 in the central scenario",
+  "url": "https://www.ecologique-solidaire.gouv.fr/sites/default/files/II%20-%20Sc%C3%A9nario%20de%20r%C3%A9f%C3%A9rence.pdf"
+ },
+ "fr_lnmp": {
+  "publisher": "Secrétariat général pour l’investissement, counter-expertise of the Montpellier to Perpignan new line, October 2021",
+  "about": "A recent rail dossier reviewed at 4.5% with the May 2019 fiches; net present value per euro invested as the ranking indicator",
+  "url": "https://www.info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2022_11_rapport_cei_lnmp.pdf"
+ },
+ "insee_sncfr": {
+  "publisher": "INSEE, 6 September 2018",
+  "about": "SNCF Réseau classed as a public administration from 2016, so its net flows count as public money",
+  "url": "https://www.insee.fr/fr/information/3607979"
+ },
+ "mobpro": {
+  "publisher": "INSEE, census 2022, commuting flows by commune and mode (MOBPRO detail file)",
+  "about": "Home to work flows of the Paris region by public transport, the data the job-access model is fitted on",
+  "url": "https://www.insee.fr/fr/statistiques/8589904"
+ },
+ "idfm_gtfs": {
+  "publisher": "Île-de-France Mobilités, open data, network timetable (GTFS), November 2026",
+  "about": "Every rail, RER, metro and tram trip of the region, used to compute door to door times with and without the project",
+  "url": "https://data.iledefrance-mobilites.fr/explore/dataset/offre-horaires-tc-gtfs-idfm/"
+ },
+ "yap24": {
+  "publisher": "Yap, Wong and Cats, Transportation Research Part A, 2024",
+  "about": "Passengers value a change of train at about 5 minutes of riding in London, up to 10 at an out of station change; the literature ranges from 4 to 20",
+  "url": "https://research.tudelft.nl/files/187269156/1-s2.0-S1077291X24000092-main.pdf"
+ },
+ "wong23": {
+  "publisher": "Wong and Yap, TU Delft, 2023, review of public transport demand elasticities",
+  "about": "Demand falls about 0.8% for each 1% of extra generalised journey time in the long run",
+  "url": "https://repository.tudelft.nl/file/File_4937016f-1aeb-4f5d-b7f7-40c3064b0c31"
+ },
+ "johnson17": {
+  "publisher": "Johnson, Ercolani and Mackie, Buses and the economy II, 2017",
+  "about": "Employment of residents rises 0.02% to 0.03% for each 1% of better access to jobs",
+  "url": "https://www.cpt-uk.org/media/3v4haf5s/10.pdf"
+ },
+ "tag24": {
+  "publisher": "UK Department for Transport, TAG unit A2.4, productivity impacts",
+  "about": "Output in imperfectly competitive markets: 10% on top of business users’ time savings",
+  "url": "https://assets.publishing.service.gov.uk/media/5a804ff5e5274a2e87db9176/webtag-productivity-impacts-tag-unit-a24.pdf"
+ },
+ "haywood15": {
+  "publisher": "Haywood and Koning, Metropolitics, 2015",
+  "about": "Paris metro passengers count a minute in a crowded train at 1.34 minutes at 3 standing passengers per square metre",
+  "url": "https://metropolitics.org/In-the-Paris-metro-hell-is-other.html"
+ },
+ "interco_eco": {
+  "publisher": "Réseau ferré de France, southern bypass line, traffic and economic studies, 2010",
+  "about": "Île-de-France practice: one point of punctuality is worth one minute per trip; a change of station in Paris counts 30 to 45 minutes",
+  "url": "https://cpdp.debatpublic.fr/cpdp-interconnexionsudlgv/docs/etudes-complementaires/Etudes_de_trafic_et_socio_economie.pdf"
+ },
+ "munich_sbahn": {
+  "publisher": "Abendzeitung München, S-Bahn disruptions",
+  "about": "About 60% of the delays on the Munich trunk line come from the trunk running at capacity (unverified)",
+  "url": "https://www.abendzeitung-muenchen.de/muenchen/stoerungen-bei-der-s-bahn-woran-es-wirklich-hakt-art-164616"
+ },
+ "dgac25": {
+  "publisher": "DGAC, statistical bulletin of commercial air traffic 2025, May 2026",
+  "about": "Air passengers between French cities in 2025: 8.2 million between the regions, by city pair",
+  "url": "https://www.ecologie.gouv.fr/sites/default/files/documents/Bulletin_Statistiques_transport_aerien_2025.pdf"
+ },
+ "caa24": {
+  "publisher": "UK Civil Aviation Authority, airport data 2024",
+  "about": "Air passengers between London and Lyon, Marseille and Nice in 2024",
+  "url": "https://www.caa.co.uk/Documents/Download/11911/0af1d44e-1648-4fd7-94e3-0b9697934148/17026"
+ },
+ "hotrails24": {
+  "publisher": "Hotrails, rail’s market share against air, 2024",
+  "about": "Rail takes about 90% of a city pair at 2 hours, 70% at 3 hours; the switch happens between 3 and 5 hours",
+  "url": "https://hotrails.net/2024/04/rails-market-share-against-air-a-global-review/"
+ },
+ "ademe_air": {
+  "publisher": "ADEME, Base Empreinte, through Nos Gestes Climat",
+  "about": "Short-haul flights: about 0.3 kg of CO2 equivalent per passenger-km with contrails",
+  "url": "https://nosgestesclimat.fr/documentation/transport/avion/court-courrier/empreinte-par-km"
+ },
+ "bercy18": {
+  "publisher": "Conseil de Paris, 2018 DU 71, Bercy-Charenton financial balance",
+  "about": "SNCF land at Bercy-Charenton sold for 314 million euros for 580,000 m2 of floor space; covering the tracks was dropped as too dear",
+  "url": "https://petiteceinture-info.fr/IMG/pdf/2018_du_71-2.pdf"
+ },
+ "mines24": {
+  "publisher": "City of Paris, Gare des Mines-Fillettes development zone, 2024",
+  "about": "SNCF land at Gare des Mines: 42.5 million euros for 58,500 m2",
+  "url": "https://cdn.paris.fr/paris/2025/12/04/2024-du-53-gdmf_mpf-annexe_2_delibere_1-ZDB7.pdf"
+ },
+ "cerna_parks": {
+  "publisher": "CERNA, Mines Paris, study of Paris apartment prices and green space",
+  "about": "Paris flat prices fall 0.7% for every 100 m further from the nearest park",
+  "url": "https://www.cerna.minesparis.psl.eu/Donnees/data05/553-BB-MG-RapportQuartiersVerts.pdf"
+ },
+ "ppbe75": {
+  "publisher": "Prefecture of Paris, noise action plan, fourth round",
+  "about": "About 48,000 people in Paris exposed to rail noise above 55 dB from SNCF lines",
+  "url": "https://www.prefectures-regions.gouv.fr/ile-de-france/irecontenu/telechargement/123970/918190/file/PPBE%2075%20Etat%20E4_vfinale.pdf"
+ },
+ "ey_noise": {
+  "publisher": "EY for ADEME and the national noise council, social cost of noise, 2016",
+  "about": "Damage per person exposed to rail noise, by noise band",
+  "url": "https://www.bruitparif.fr/pages/Actualites/2016-06-17%20Co%C3%BBt%20social%20du%20bruit%20en%20%C3%8Ele-de-France/2016-05-01%20-%20Le%20co%C3%BBt%20social%20des%20pollutions%20sonores%20-%20EY%20pour%20ADEME%20et%20CNB.pdf"
+ },
+ "sgp_carbon": {
+  "publisher": "Société des grands projets, carbon report 2024",
+  "about": "Grand Paris Express: 2.2 million tonnes of CO2 emitted by the works to end 2024, 3.3 million expected at completion",
+  "url": "https://www.societedesgrandsprojets.fr/sites/default/files/2025-07/Rapport%20Bilan%20Carbone%202024-v2_1.pdf"
+ },
+ "pritchard_tunnels": {
+  "publisher": "Pritchard, University of Southampton, carbon and energy of rail tunnels",
+  "about": "Crossrail tunnels: about 24,000 tonnes of CO2 per route-km; Channel Tunnel Rail Link 14,000",
+  "url": "https://eprints.soton.ac.uk/425923/1/JAPritchardTunnelsCarbonEnergy.pdf"
+ },
+ "nexteo_ce": {
+  "publisher": "Secrétariat général pour l’investissement, counter-expertise of NExTEO, April 2021",
+  "about": "French appraisals leave the disruption of works out of the net present value",
+  "url": "https://www.info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2021_04_rapport_ce_nexteo_version_finale.pdf"
+ },
+ "vrt_switches": {
+  "publisher": "Ville, Rail et Transports, August 2026",
+  "about": "40 switches renewed in the RER tunnel under central Paris for about 60 million euros",
+  "url": "https://www.ville-rail-transports.com/industrie/40-aiguillages-remplaces-cet-ete-au-coeur-de-paris/"
+ },
+ "art23": {
+  "publisher": "Autorité de régulation des transports, French rail market 2023",
+  "about": "SNCF Réseau spends about 59,200 euros a year per track-km on maintenance",
+  "url": "https://www.vie-publique.fr/files/rapport/pdf/296819.pdf"
+ },
+ "orr24": {
+  "publisher": "Office of Rail and Road, cost benchmarking of Network Rail 2023-24",
+  "about": "Maintenance per track-km around the London terminals is 2.3 times the network average",
+  "url": "https://www.orr.gov.uk/sites/default/files/2024-12/cost-benchmarking-of-network-rail-annual-report-2023-2024.pdf"
+ },
+ "tfl_el": {
+  "publisher": "Transport for London, Elizabeth line passenger usage, July 2023",
+  "about": "Journeys between branches multiplied by 2 to 6 where the Elizabeth line removed changes; about 30% of its journeys new",
+  "url": "https://board.tfl.gov.uk/documents/s20504/elc-20230725-part-1-item10-elizabeth-line-passenger-usage-insight.pdf"
  }
 }

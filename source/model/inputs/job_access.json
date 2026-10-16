@@ -1,0 +1,326 @@
+{
+ "_about": "Results of the job-access demand model of the deep benefits study (16 October 2026): a destination-choice model fitted on the public-transport commuters of the INSEE census (RP2022, MOBPRO) and the IDFM timetable of November 2026, with Grand Paris Express lines 15 to 18 in the 2040 reference. Code and data in the project files, benefits-deep-study/code and data. Money in billions of 2026 euros a year; trips a weekday.",
+ "beta": 0.03841226734127432,
+ "pen": 10.0,
+ "branch": 4.0,
+ "easy": 16.0,
+ "commuters_pt_suburb_pairs": 770771.6743610749,
+ "users_low": 0.10894415045218418,
+ "users_central": 0.14959727570887818,
+ "users_high": 0.1832289712571985,
+ "trips_day": {
+  "ref": 145865.02834192777,
+  "low": 161300.08737774793,
+  "central": 228968.8693449065,
+  "high": 270714.12818432006
+ },
+ "today_obs_day": 150679.09958517787,
+ "improved_pairs": 493619,
+ "hubs": {
+  "Saclay plateau and Massy (CA Paris-Saclay)": {
+   "jobs": 190216.94252692227,
+   "trips_day_ref": 1198.442888260745,
+   "trips_day_proj_central": 1267.029443386235,
+   "users_low": 0.0004262663170000746,
+   "users_high": 0.0005205549962147085,
+   "avg_saving_eqmin": 6.744386750701169
+  },
+  "Saint-Quentin-en-Yvelines": {
+   "jobs": 137735.69949363076,
+   "trips_day_ref": 4423.140368004102,
+   "trips_day_proj_central": 8617.61574982552,
+   "users_low": 0.00446465650497812,
+   "users_high": 0.009354689289900079,
+   "avg_saving_eqmin": 18.01390370462606
+  },
+  "Versailles and Velizy": {
+   "jobs": 96154.68799791126,
+   "trips_day_ref": 4966.385317478644,
+   "trips_day_proj_central": 8867.562312102185,
+   "users_low": 0.004609875361284511,
+   "users_high": 0.009433923769317057,
+   "avg_saving_eqmin": 16.54784921324229
+  },
+  "La Defense and Nanterre-Courbevoie-Puteaux": {
+   "jobs": 311293.25439389586,
+   "trips_day_ref": 41593.66712161179,
+   "trips_day_proj_central": 61202.83969364883,
+   "users_low": 0.031773798375817855,
+   "users_high": 0.05309302599899389,
+   "avg_saving_eqmin": 13.492884890062642
+  },
+  "Clichy-Levallois and north-west 92": {
+   "jobs": 178666.20192910382,
+   "trips_day_ref": 28481.537190300594,
+   "trips_day_proj_central": 44936.76713933193,
+   "users_low": 0.023027719507812898,
+   "users_high": 0.03771178431155117,
+   "avg_saving_eqmin": 14.370733200786374
+  },
+  "Roissy-CDG, Tremblay, Paris Nord 2": {
+   "jobs": 150942.08407397606,
+   "trips_day_ref": 4257.676267308731,
+   "trips_day_proj_central": 5758.5129820352395,
+   "users_low": 0.0021957593043075104,
+   "users_high": 0.002994223023719623,
+   "avg_saving_eqmin": 9.567006738397557
+  },
+  "Plaine Commune (Saint-Denis)": {
+   "jobs": 192051.703069054,
+   "trips_day_ref": 5181.306930520267,
+   "trips_day_proj_central": 6147.344197750907,
+   "users_low": 0.0027430831007028674,
+   "users_high": 0.0036691987069949806,
+   "avg_saving_eqmin": 9.820693067848378
+  }
+ },
+ "agglomeration": {
+  "low": 0.023105392143541844,
+  "central": 0.02772647057225021,
+  "high": 0.04621078428708369
+ },
+ "labour": {
+  "low": 0.0018646835331310456,
+  "central": 0.007085797425897974,
+  "high": 0.01790096191805804
+ },
+ "induced_jobs_net": {
+  "low": 186.46835331310456,
+  "central": 372.9367066262091,
+  "high": 745.8734132524182
+ },
+ "better_jobs": {
+  "low": 0.0,
+  "central": 0.014959727570887819,
+  "high": 0.026927509627598073
+ },
+ "top_pairs": [
+  [
+   "Épinay-sur-Seine",
+   "Courbevoie",
+   106,
+   44,
+   603,
+   2126,
+   3.06
+  ],
+  [
+   "Épinay-sur-Seine",
+   "Levallois-Perret",
+   93,
+   33,
+   538,
+   1249,
+   1.51
+  ],
+  [
+   "Sarcelles",
+   "Courbevoie",
+   97,
+   25,
+   716,
+   1397,
+   1.33
+  ],
+  [
+   "Deuil-la-Barre",
+   "Courbevoie",
+   107,
+   44,
+   250,
+   886,
+   1.27
+  ],
+  [
+   "Meaux",
+   "Courbevoie",
+   133,
+   30,
+   545,
+   1075,
+   1.23
+  ],
+  [
+   "Épinay-sur-Seine",
+   "Puteaux",
+   97,
+   27,
+   612,
+   1120,
+   1.18
+  ],
+  [
+   "Sarcelles",
+   "Levallois-Perret",
+   113,
+   43,
+   204,
+   820,
+   1.14
+  ],
+  [
+   "Épinay-sur-Seine",
+   "Nanterre",
+   96,
+   24,
+   527,
+   874,
+   0.87
+  ],
+  [
+   "Aulnay-sous-Bois",
+   "Levallois-Perret",
+   107,
+   27,
+   318,
+   846,
+   0.82
+  ],
+  [
+   "Montmorency",
+   "Courbevoie",
+   111,
+   40,
+   176,
+   536,
+   0.73
+  ],
+  [
+   "Villiers-le-Bel",
+   "Courbevoie",
+   100,
+   24,
+   382,
+   736,
+   0.68
+  ],
+  [
+   "Meaux",
+   "Levallois-Perret",
+   125,
+   25,
+   387,
+   632,
+   0.65
+  ],
+  [
+   "Deuil-la-Barre",
+   "Levallois-Perret",
+   94,
+   33,
+   223,
+   521,
+   0.63
+  ],
+  [
+   "Villiers-le-Bel",
+   "Levallois-Perret",
+   117,
+   43,
+   106,
+   432,
+   0.6
+  ],
+  [
+   "Domont",
+   "Courbevoie",
+   125,
+   44,
+   113,
+   398,
+   0.58
+  ],
+  [
+   "Taverny",
+   "Courbevoie",
+   108,
+   22,
+   333,
+   655,
+   0.57
+  ],
+  [
+   "Ermont",
+   "Courbevoie",
+   84,
+   11,
+   753,
+   1033,
+   0.52
+  ],
+  [
+   "Meaux",
+   "Puteaux",
+   132,
+   21,
+   401,
+   566,
+   0.52
+  ],
+  [
+   "Sarcelles",
+   "Puteaux",
+   96,
+   16,
+   528,
+   736,
+   0.51
+  ],
+  [
+   "Saint-Brice-sous-Forêt",
+   "Courbevoie",
+   118,
+   44,
+   95,
+   349,
+   0.5
+  ],
+  [
+   "Deuil-la-Barre",
+   "Puteaux",
+   98,
+   27,
+   253,
+   467,
+   0.49
+  ],
+  [
+   "Meaux",
+   "Versailles",
+   153,
+   47,
+   76,
+   293,
+   0.45
+  ],
+  [
+   "Persan",
+   "Courbevoie",
+   140,
+   40,
+   102,
+   331,
+   0.44
+  ],
+  [
+   "Montmagny",
+   "Courbevoie",
+   107,
+   32,
+   147,
+   394,
+   0.44
+  ],
+  [
+   "Eaubonne",
+   "Courbevoie",
+   85,
+   12,
+   560,
+   791,
+   0.43
+  ]
+ ],
+ "obs_over_fit_improved": 1.0504510228218582,
+ "keep_per_change": 0.5408592082905587
+}

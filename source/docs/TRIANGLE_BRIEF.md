@@ -236,6 +236,16 @@ Old keys with A or B no longer exist. `{{ ... }}` expressions see `m` (src/data/
 - `fp`: charge_end, charge_through, rex_second, rex_through, fare_response_low, navigo_new, om_low, om_high (numbers), station_low,
   shop_net, growth, fleet_capture, park_ha. Gone: charge_alt, reg_supp.
 - `d.finance.irr{central, growth, low_cost, best}`.
+- `d.french` (src/data/french.json, from `model/french.py`; scripts read `PTS.data.french`): the official French appraisal of the complete list of
+  benefits. `params` (rate 0.045, rate_public 0.032, vot_growth, ld_growth, sd_growth, cofp 1.2, carbon{year}, build_start, open, last, resid_end,
+  paths{today, ref, project}, cap_value, fleet{TGV, TER, Suburban}{sets, cost, saving}, items{name}{low, central, high}, vot{...}, crowding, departures...);
+  `names{official, added, borrowed, families}`; `cases{baseline, low, central, high, rate32, high_cost, low_cost, no_growth_4, no_capacity, capacity_40,
+  no_producers, vot_ld_085, cofp_125, fares_14, running_075, ame}` each with `npv, per_euro, irr, npv_wider, per_euro_wider, irr_wider, pv_benefits,
+  pv_costs, ratio, ratio_wider, pv{item}, pv_families{family}, pv_capex, capex, first_year{item}`; `each_alone{item}`, `all_but{item}` (NPV effects);
+  `study{low, central, high}` the study's simple reading of the same list (`benefits{item}, benefit_total, families{family}, bridge[[label, value]],
+  wider{}, wider_total, borrowed{}, once{}, yearly_cost, annuity, running, renewal, cover, cover_wider, irr, first_count, first_count_cover`);
+  `model{capex, annuity, running, yearly_cost, ops_rev, first_count}`; `jobs{hubs{name}{jobs, trips_day_ref, trips_day_proj_central, avg_saving_eqmin},
+  trips_day{ref, central, low, high}, users_low/central/high, top_pairs, commuters_pt_suburb_pairs...}`.
 - Browser: `PTS.model.cost(rates)` (optional second argument: a layout like `b.cost_def.layout`), `PTS.model.accounts(options)`
   (options may set cost, traffic, charge_end, charge_through, rex_second, rex_through, fare_response, navigo_new, om_scale ('low',
   'high' or a number), rate, growth, fleet_capture, shop_net, levy, payroll_pts, eu_grant, tax_wider, capex, systems),

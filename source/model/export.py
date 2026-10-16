@@ -1,6 +1,6 @@
 """Writes the data files the site reads (src/data/*.json) from the model outputs. Run after nordest.py and finance.py:
 
-    python3 model/nordest.py && python3 model/finance.py && python3 model/export.py && python3 build.py
+    python3 model/nordest.py && python3 model/finance.py && python3 model/french.py && python3 model/export.py && python3 build.py
 """
 import csv, json, os, statistics as S
 import nordest as N
@@ -31,6 +31,9 @@ def main():
         assert abs(c['km'] - want) < 1e-9, f"project/data.json: corridor {c['id']} is {c['km']} km, the model says {want}"
     json.dump(m, open(f'{OUT}/model.json', 'w'), separators=(',', ':'))
     json.dump(fin, open(f'{OUT}/finance.json', 'w'), separators=(',', ':'))
+    # ---- french.json: the French appraisal (DGITM rules) and the benefits the first count left out, from model/french.py
+    fr = json.load(open(f'{HERE}/outputs/french.json'))
+    json.dump(fr, open(f'{OUT}/french.json', 'w'), separators=(',', ':'))
     # ---- points.json: the 1,000 points of the access map
     rows = []; pure = []; best = []; today = []
     for r in csv.DictReader(open(f'{HERE}/inputs/points.csv')):
