@@ -90,12 +90,6 @@ PTS.section('economy', function (root) {
       slices: Object.keys(st.families).map(function (k) { return { label: k, value: st.families[k], color: FAM[k] }; }) });
   })();
 
-  // ---- the bridge from the first count to the complete count
-  C.bars($('#eco-bridge-chart'), { fmt: mEur, rows: st.bridge.map(function (b, i) {
-    const last = i === st.bridge.length - 1, first = i === 0;
-    return { label: b[0], value: b[1], color: first || last ? 'var(--neutral-mark)' : b[1] < 0 ? 'var(--s8)' : (FAM[b[0]] || 'var(--s1)'), hl: first || last, text: first || last ? mEur(b[1]) : (b[1] < 0 ? '-' : '+') + mEur(Math.abs(b[1])) };
-  }) });
-
   // ---- every item in today's money, with its range from the low to the high case
   (function () {
     const lo = FR.cases.low.pv, hi = FR.cases.high.pv, pv = fc.pv;
@@ -109,7 +103,7 @@ PTS.section('economy', function (root) {
         const a = Math.min(lo[k] == null ? pv[k] : lo[k], hi[k] == null ? pv[k] : hi[k]), b = Math.max(lo[k] == null ? pv[k] : lo[k], hi[k] == null ? pv[k] : hi[k]);
         const ranged = Math.abs(b - a) > 1e-6;
         rows.push({ label: short(k), value: pv[k], color: FAM[f[0]], lo: ranged ? a : null, hi: ranged ? b : null,
-                    tip: '<b>' + short(k) + '</b><br>' + bn2(pv[k]) + ' in today’s money' + (ranged ? '<br><small>' + bnS(a) + ' to ' + bnS(b) + ' from the low to the high value</small>' : '<br><small>one value, from the first count</small>') });
+                    tip: '<b>' + short(k) + '</b><br>' + bn2(pv[k]) + ' in today’s money' + (ranged ? '<br><small>' + bnS(a) + ' to ' + bnS(b) + ' from the low to the high value</small>' : '<br><small>one value</small>') });
       });
     });
     C.bars($('#eco-pv-items-chart'), { rows: rows, fmt: bnS });
@@ -166,17 +160,17 @@ PTS.section('economy', function (root) {
   C.bars($('#eco-tax-chart'), { fmt: mEur, rows: [reading('low', 'Nothing is new for the country'), reading('central', 'As the appraisal counts it'), reading('high', 'Every job is new and fully taxed'),
     { sep: true }, { label: 'Yearly repayment of construction', value: cen.annuity, color: 'var(--s8)', hl: true }] });
 
-  // ---- comparison with other projects: this project under the French rules, then the first count on the study's basis
+  // ---- comparison with other projects: this project under the French rules, then the study's simple reading of the same benefits
   const f2 = function (v) { return F.n(v, 2); };
   const mine = (function () {
     const lo = FR.cases.low, hi = FR.cases.high;
-    const tipFr = function (what, v) { return '<b>This project, French rules</b><br>' + what + ': <b>' + f2(v) + '</b><br><small>' + F.pct(FR.params.rate, 1) + ' rate to ' + FR.params.resid_end + '; benefits ' + bn1(fc.pv_benefits) + ' against costs ' + bn1(fc.pv_costs) + ' in today’s money. Range ' + f2(lo.ratio) + ' to ' + f2(hi.ratio) + ' from the low to the high value of the added items</small>'; };
-    const g = K.growth, flat = K.central;
-    const tipOld = function (what, v, vFlat) { return '<b>This project, first count, simple reading</b><br>' + what + ': <b>' + f2(v) + '</b> with benefits growing ' + F.pct(P.growth, 1) + ' a year, ' + f2(vFlat) + ' flat<br><small>' + F.pct(flat.r || 0.03, 0) + ' rate, 60 years, nothing left at the end</small>'; };
+    const tipFr = function (what, v) { return '<b>This project, French rules</b><br>' + what + ': <b>' + f2(v) + '</b><br><small>' + F.pct(FR.params.rate, 1) + ' rate to ' + FR.params.resid_end + '; benefits ' + bn1(fc.pv_benefits) + ' against costs ' + bn1(fc.pv_costs) + ' in today’s money. Range ' + f2(lo.ratio) + ' to ' + f2(hi.ratio) + ' from the low to the high value of the uncertain items</small>'; };
+    const sl = FR.study.low, sh = FR.study.high;
+    const tipSimple = function (what, v, a, b) { return '<b>This project, simple reading</b><br>' + what + ': <b>' + f2(v) + '</b><br><small>One year’s benefits at today’s traffic over one year’s bill (' + F.pct(FIN.base.r, 0) + ' rate, ' + FIN.base.n + ' years). Range ' + f2(a) + ' to ' + f2(b) + '</small>'; };
     return [{ label: 'This project, French rules', sub: '€' + F.n(fc.capex, 0) + 'bn', hl: true, lo: lo.ratio, hi: hi.ratio,
               marks: [{ value: fc.ratio, kind: 'conv', tip: tipFr('Benefits counted', fc.ratio) }, { value: fc.ratio_wider, kind: 'wider', tip: tipFr('With the wider effects', fc.ratio_wider) }] },
-            { label: 'This project, first count, simple reading', sub: '3% rate', lo: flat.econ_cover_all, hi: g.econ_cover_all,
-              marks: [{ value: g.econ_cover_transport, kind: 'conv', tip: tipOld('Time and comfort', g.econ_cover_transport, flat.econ_cover_transport) }, { value: g.econ_cover_all, kind: 'wider', tip: tipOld('With the borrowed wider effects', g.econ_cover_all, flat.econ_cover_all) }] }];
+            { label: 'This project, simple reading', sub: F.pct(FIN.base.r, 0) + ' rate, flat', lo: sl.cover, hi: sh.cover,
+              marks: [{ value: st.cover, kind: 'conv', tip: tipSimple('Benefits counted', st.cover, sl.cover, sh.cover) }, { value: st.cover_wider, kind: 'wider', tip: tipSimple('With the wider effects', st.cover_wider, sl.cover_wider, sh.cover_wider) }] }];
   })();
   const others = own.projects.map(function (p) {
     const head = '<b>' + p.name + '</b><br>' + p.sub + '<br>';
@@ -215,9 +209,9 @@ PTS.section('economy', function (root) {
       step('Fares on journeys across Paris 40% higher', 'fares_14', 'assumed', 'var(--s8)'),
       step('Running costs 25% lower', 'running_075', 'sourced'),
       step('Cars not carbon-free by 2050', 'ame', 'assumed'),
-      { group: 'The added items together' },
-      step('Every added item at its low value', 'low', 'assumed', 'var(--s8)'),
-      step('Every added item at its high value', 'high', 'assumed', 'var(--s3)')
+      { group: 'The uncertain items together' },
+      step('Every item with a range at its low value', 'low', 'assumed', 'var(--s8)'),
+      step('Every item with a range at its high value', 'high', 'assumed', 'var(--s3)')
     ];
     C.bars($('#eco-sens-chart'), { rows: rows, fmt: bnS });
   })();

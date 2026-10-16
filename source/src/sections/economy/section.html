@@ -13,7 +13,7 @@
   <figure class="fig">
     <div class="fig-head"><strong>Each year the project costs €{{ f.central.yearly_cost | 2 }}bn, the project itself pays €{{ f.central.ops_rev_total | m }}m of it, and the country gets back €{{ d.french.study.central.benefit_total | 2 }}bn</strong><span>€ billion a year once open, central case, at today's traffic. The same scale on the three bars</span></div>
     <div id="eco-year-chart"></div>
-    <figcaption>The yearly bill is the repayment of construction plus the running costs. It is paid by the project's own income and by public money: a regional business tax package, a European grant and a State grant (see <a class="xref" href="#financing.capital">the capital plan</a>). What comes back is the complete count of benefits below; it does not pass through any budget, it is time, comfort, jobs and a cleaner air that go to passengers, the railway and everyone else.</figcaption>
+    <figcaption>The yearly bill is the repayment of construction plus the running costs. It is paid by the project's own income and by public money: a regional business tax package, a European grant and a State grant (see <a class="xref" href="#financing.capital">the capital plan</a>). What comes back is the sum of the benefits below; it does not pass through any budget, it is time, comfort, jobs and a cleaner air that go to passengers, the railway and everyone else.</figcaption>
   </figure>
   <p><strong>How to read this.</strong> The project pays for its own running with a surplus, but not for its construction: public money carries {{ f.central.public_share | pct }} of the capital, as it does for every new line in France. The question of this chapter is whether what the country gets back is worth that money. On the study's simple reading, the benefits of a single year just cover the yearly bill ({{ d.french.study.central.cover | pct }}). On the official reading, which lets traffic and the value of time grow over the life of the project, the country ends up €{{ d.french.cases.central.npv | 1 }}bn ahead in today's money.</p>
 </div>
@@ -43,12 +43,7 @@
 
 <div class="block" id="economy.benefits">
   <h2>The benefits, one family at a time</h2>
-  <p>The first count of this study, made in October 2026, found €{{ d.french.study.central.first_count | 2 }}bn a year: time saved by passengers, measured in the models of this study, plus comfort and wider effects taken as ratios of another appraisal, that of the Grand Paris Express. A deeper study then valued every benefit that had been left out, with data of its own, and dropped the borrowed ratios. The result is €{{ d.french.study.central.benefit_total | 2 }}bn a year in five families, each explained below in two sentences, then in detail further down.</p>
-  <figure class="fig">
-    <div class="fig-head"><strong>From the first count to the complete count: €{{ d.french.study.central.first_count | 2 }}bn to €{{ d.french.study.central.benefit_total | 2 }}bn a year</strong><span>€ million a year, central case, at today's traffic and official values</span></div>
-    <div id="eco-bridge-chart"></div>
-    <figcaption>The borrowed ratios were worth €{{ d.french.study.central.first_borrowed | m }}m; what replaces them is measured. Passengers' time is re-measured under the official rules: regional express trains crossing Paris are added (€{{ d.french.study.central.benefits['TER time: crossing Paris'] | m }}m), the TGV lines are taken before the small effect of the charges, which the first count had deducted, and the first estimate of suburb to suburb trips moves to the job-access family, where it is measured.</figcaption>
-  </figure>
+  <p>Nine families make up what the project gives back. The first five come back every year and add up to €{{ d.french.study.central.benefit_total | 2 }}bn at today's traffic. Two happen once: the land and savings the project frees, and the harm the works themselves do. One grows with traffic: room for more trains in the busy hours. The last, wider economic effects, is reported apart, as the French method requires. Each card gives the value, how it is obtained in two sentences, and the official rules applied.</p>
   <div class="eco-fams">
     <div class="card eco-fam" style="--tc: var(--s1)">
       <h4>1. Passengers' time</h4>
@@ -110,14 +105,14 @@
       <h4>9. Wider economic effects, reported apart</h4>
       <div class="eco-n">€{{ d.french.study.central.wider_total | m }}<small>m a year</small></div>
       <div class="eco-pv">€{{ d.french.cases.central.pv_families['Wider effects, measured'] | 1 }}bn in today's money, not in the headline <span class="tag assume">evidence from elsewhere</span></div>
-      <p>Denser job markets make firms more productive, better access brings a few hundred people into work and lets others take better jobs, and TGV links widen the market of the cities joined. Each is measured here with a published elasticity applied to this project's own figures, in place of the ratios borrowed before, which were worth €{{ (d.french.study.central.borrowed['Wider: suburban job markets (study ratio)'] + d.french.study.central.borrowed['Wider: TGV links'] + d.french.study.central.borrowed['Wider: agglomeration, French elasticity']) | m }}m a year.</p>
+      <p>Denser job markets make firms more productive, better access brings a few hundred people into work and lets others take better jobs, and TGV links widen the market of the cities joined. Each is measured with a published elasticity applied to this project's own traffic and journey times.</p>
       <p class="note">The French method reports wider effects beside the net value, not inside it.[[fr_v1]] Elasticities from the British guidance and the literature on high-speed lines.[[tag24, johnson17, eco_ahlfeldt, tfl_el]] €{{ (d.french.cases.low.pv_families['Wider effects, measured']) | 1 }}bn to €{{ (d.french.cases.high.pv_families['Wider effects, measured']) | 1 }}bn.</p>
     </div>
   </div>
   <figure class="fig">
     <div class="fig-head"><strong>Each benefit in today's money under the French rules, with its range</strong><span>€ billion, central case; the line is the range from the low to the high value of each item</span></div>
     <div id="eco-pv-items-chart"></div>
-    <figcaption>Items of the first count keep one value: their range is in <a class="xref" href="#risks.sensitivity">risks and next steps</a>. Wider effects are shown in grey because they are reported apart.</figcaption>
+    <figcaption>Items drawn without a line have one value here; how the largest of them move the result is in <a class="xref" href="#economy.mustbetrue">what could change the answer</a>. Wider effects are shown in grey because they are reported apart.</figcaption>
   </figure>
   <h3 id="economy.notcounted">Still not counted</h3>
   <ul>
@@ -129,7 +124,7 @@
   <details>
     <summary><strong>Every item as a table</strong>: yearly value, value in today's money, range and confidence</summary>
     <div class="tbl-wrap" style="margin-top:10px"><table class="tbl" id="eco-items-table"></table></div>
-    <p class="note" style="margin-top:8px">Yearly values are those of the opening year at today's traffic and today's values, the study's simple reading. Values in today's money follow the official rules: growth, {{ d.french.params.rate | pct1 }} rate, horizon {{ d.french.params.resid_end | str }}. The first four items of the yearly column are the first count re-measured; the items numbered 1 to 11 are those of the deeper study.</p>
+    <p class="note" style="margin-top:8px">Yearly values are those of the opening year at today's traffic and today's values, the study's simple reading. Values in today's money follow the official rules: growth, {{ d.french.params.rate | pct1 }} rate, horizon {{ d.french.params.resid_end | str }}.</p>
   </details>
 </div>
 
@@ -190,11 +185,11 @@
     <figcaption>Construction is €{{ d.french.cases.central.pv_capex | 1 }}bn in today's money against €{{ m.cost.total | 1 }}bn spent, because the works spread over twelve years and the discounting starts in {{ d.french.params.base_year | str }}. The cost of public funds is the {{ (d.french.params.cofp - 1) | pct }} on net public money. Wider effects, in grey, are not in the net figure.</figcaption>
   </figure>
   <div class="tiles eco-glance">
-    <div class="tile" style="--tc: var(--s3)"><span class="n">+€{{ d.french.cases.central.npv | 1 }}<small>bn</small></span><span class="k">Net present value</span><span class="d">+€{{ d.french.cases.central.npv_wider | 1 }}bn with the wider effects. The first count alone gave {{ d.french.cases.baseline.npv | 1 }}bn</span></div>
+    <div class="tile" style="--tc: var(--s3)"><span class="n">+€{{ d.french.cases.central.npv | 1 }}<small>bn</small></span><span class="k">Net present value</span><span class="d">+€{{ d.french.cases.central.npv_wider | 1 }}bn with the wider effects; €{{ d.french.cases.low.npv | 1 }}bn to +€{{ d.french.cases.high.npv | 1 }}bn from the low to the high value of the uncertain items</span></div>
     <div class="tile" style="--tc: var(--s3)"><span class="n">€{{ d.french.cases.central.per_euro | 2 }}</span><span class="k">Net gain per euro invested</span><span class="d">€{{ d.french.cases.central.per_euro_wider | 2 }} with the wider effects. The State's reviewers rank projects on this figure</span></div>
     <div class="tile" style="--tc: var(--s3)"><span class="n">{{ d.french.cases.central.irr | pct1 }}</span><span class="k">Rate of return for society</span><span class="d">{{ d.french.cases.central.irr_wider | pct1 }} with the wider effects; above the {{ d.french.params.rate | pct1 }} the method requires</span></div>
     <div class="tile" style="--tc: var(--s3)"><span class="n">{{ d.french.cases.central.ratio | 2 }}</span><span class="k">Benefits divided by costs</span><span class="d">{{ d.french.cases.central.ratio_wider | 2 }} with the wider effects, the figure to compare with other projects below</span></div>
-    <div class="tile" style="--tc: var(--today)"><span class="n">{{ d.french.study.central.cover | pct }}</span><span class="k">Simple reading: one year's benefits over one year's bill</span><span class="d">{{ d.french.study.central.cover_wider | pct }} with the wider effects; a return of {{ d.french.study.central.irr | pct1 }} at flat benefits, against {{ d.french.study.central.first_count_cover | pct }} and {{ d.finance.irr.central | pct1 }} on the first count</span></div>
+    <div class="tile" style="--tc: var(--today)"><span class="n">{{ d.french.study.central.cover | pct }}</span><span class="k">Simple reading: one year's benefits over one year's bill</span><span class="d">{{ d.french.study.central.cover_wider | pct }} with the wider effects; a return of {{ d.french.study.central.irr | pct1 }} with benefits held flat at today's traffic</span></div>
     <div class="tile" style="--tc: var(--today)"><span class="n">{{ d.french.cases.no_growth_4.npv | 1 }}<small>bn</small></span><span class="k">The official stress test</span><span class="d">No growth, 4% rate: negative, so the project is "vulnerable" in the sense of the fiche, as most lines are. At the 3.2% public rate of 2021: +€{{ d.french.cases.rate32.npv | 1 }}bn</span></div>
   </div>
 </div>
@@ -234,14 +229,14 @@
   <h2>Against comparable projects in France and abroad</h2>
   <p>The measure used everywhere is the ratio of benefits to costs over the life of the project, both brought to today's money. Above 1, the country gets back more than it spends. Under the French rules this project stands at {{ d.french.cases.central.ratio | 2 }} on the benefits counted and {{ d.french.cases.central.ratio_wider | 2 }} with the wider effects, directly comparable with the French appraisals of the Grand Paris Express and the Marseille tunnel, which use the same rate and horizon. The others are not strictly comparable, and the differences cut both ways:</p>
   <ul>
-    <li><strong>French appraisals</strong> use {{ d.french.params.rate | pct1 }}, count effects to {{ d.french.params.resid_end | str }} and weigh public money at {{ d.french.params.cofp | 1 }}: the basis of this project's {{ d.french.cases.central.ratio | 2 }}. The study's simple reading, at {{ b.r | pct }} with benefits held flat, gives {{ d.french.study.central.cover | 2 }} on the complete count and {{ f.central.econ_cover_all | 2 }} on the first count.</li>
+    <li><strong>French appraisals</strong> use {{ d.french.params.rate | pct1 }}, count effects to {{ d.french.params.resid_end | str }} and weigh public money at {{ d.french.params.cofp | 1 }}: the basis of this project's {{ d.french.cases.central.ratio | 2 }}. The study's simple reading, at {{ b.r | pct }} with benefits held flat, gives {{ d.french.study.central.cover | 2 }}, and {{ d.french.study.central.cover_wider | 2 }} with the wider effects.</li>
     <li><strong>British appraisals</strong> deduct ticket revenue from the cost, which raises the ratio. The Elizabeth line's 1.97 becomes about 0.8 to 1.2 on gross cost, derived from its published present values.[[eco_cr11]]</li>
     <li><strong>Australian appraisals</strong> use a 7% rate, which lowers theirs.[[eco_ia17]]</li>
   </ul>
   <figure class="fig">
     <div class="fig-head"><strong>Comparable tunnels: 0.5 to 2 on transport benefits at approval. This project under the French rules: {{ d.french.cases.central.ratio | 2 }}, and {{ d.french.cases.central.ratio_wider | 2 }} with wider effects</strong><span>Benefits divided by costs. Cost in € billion of 2026 after each name (conversions made for this study, approximate)</span></div>
     <div id="eco-compare-chart"></div>
-    <figcaption>A filled dot counts the benefits inside each appraisal's headline (time, comfort, running costs saved, producers where the method counts them). A ring adds wider economic effects where the appraisal gives them. A diamond is a measurement made after opening. Grey bands are published ranges; two dots on a band are two separate forecasts. This project is drawn under the French rules, the band from the low to the high value of the added items; the first count of the study is kept as a second row. "Derived" means the ratio was computed for this study from published totals. Sources are in the table below.</figcaption>
+    <figcaption>A filled dot counts the benefits inside each appraisal's headline (time, comfort, running costs saved, producers where the method counts them). A ring adds wider economic effects where the appraisal gives them. A diamond is a measurement made after opening. Grey bands are published ranges; two dots on a band are two separate forecasts. This project is drawn under the French rules, the band from the low to the high value of its uncertain items; the second row is the study's simple reading, benefits held flat at {{ b.r | pct }}. "Derived" means the ratio was computed for this study from published totals. Sources are in the table below.</figcaption>
   </figure>
   <details>
     <summary><strong>The figures as a table</strong>, with sources</summary>
@@ -262,7 +257,7 @@
         <tr><th>Gothenburg, West Link, 2030</th><td>4.4</td><td>0.53 for the tunnel alone, 0.88 with its junction (derived)</td><td>Listed, not valued</td><td>Not open</td><td>[[eco_vastlanken]]</td></tr>
         <tr><th>Lucerne, through station, after 2040</th><td>7.4</td><td>0.6 to 0.7</td><td>None stated</td><td>Not open</td><td>About €210 of capital per yearly journey (derived).[[eco_bav26]]</td></tr>
         <tr class="hl"><th>This project, the triangle, French rules</th><td>{{ m.cost.total | 0 }}</td><td>{{ d.french.cases.central.ratio | 2 }} ({{ d.french.cases.low.ratio | 2 }} to {{ d.french.cases.high.ratio | 2 }})</td><td>{{ d.french.cases.central.ratio_wider | 2 }} ({{ d.french.cases.low.ratio_wider | 2 }} to {{ d.french.cases.high.ratio_wider | 2 }})</td><td></td><td>{{ d.french.params.rate | pct1 }} rate, costs include running, the cost of public funds and the works' own harms. Net €{{ d.french.cases.central.per_euro | 2 }} per euro invested. About €{{ m.cost.total / (f.central.tgv.paris + f.central.tgv.cross + m.yearly.reg_users) * 1000 | 0 }} of capital per yearly journey, for {{ (f.central.tgv.paris + f.central.tgv.cross + m.yearly.reg_users) | 0 }} million journeys a year (TGV passengers at the Paris stations and regional passengers reaching them; derived)</td></tr>
-        <tr class="hl"><th>This project, first count, simple reading</th><td>{{ m.cost.total | 0 }}</td><td>{{ f.central.econ_cover_transport | 2 }} flat; {{ f.growth.econ_cover_transport | 2 }} with growth</td><td>{{ f.central.econ_cover_all | 2 }} flat; {{ f.growth.econ_cover_all | 2 }} with growth</td><td></td><td>{{ b.r | pct }} rate, {{ b.n | 0 }} years, nothing left at the end; {{ f.rate45_flat.econ_cover_all | 2 }} flat and {{ f.rate45.econ_cover_all | 2 }} with growth at 4.5%. On cost net of income, the British basis, {{ f.central.econ_cover_net | 2 }} flat and {{ f.growth.econ_cover_net | 2 }} with growth</td></tr>
+        <tr class="hl"><th>This project, simple reading</th><td>{{ m.cost.total | 0 }}</td><td>{{ d.french.study.central.cover | 2 }} ({{ d.french.study.low.cover | 2 }} to {{ d.french.study.high.cover | 2 }})</td><td>{{ d.french.study.central.cover_wider | 2 }} ({{ d.french.study.low.cover_wider | 2 }} to {{ d.french.study.high.cover_wider | 2 }})</td><td></td><td>Benefits of one year at today's traffic over one year's bill: {{ b.r | pct }} rate, {{ b.n | 0 }} years, nothing left at the end. On cost net of the project's income, the British basis, {{ d.french.study.central.benefit_total / (f.central.yearly_cost - f.central.ops_rev_total) | 2 }}</td></tr>
       </tbody></table></div>
   </details>
   <div class="cols">
@@ -277,11 +272,9 @@
           <tr><th>Grand Paris Express, line 15 West[[eco_sgpi_op]]</th><td class="num">8.3%</td><td class="num"></td></tr>
           <tr><th>Grand Paris Express, line 15 East[[eco_sgpi_op]]</th><td class="num">6.7%</td><td class="num"></td></tr>
           <tr><th>Copenhagen City Ring, 2019[[eco_cph]]</th><td class="num">about 3%</td><td class="num"></td></tr>
-          <tr class="hl"><th>This project, French rules, complete count</th><td class="num">{{ d.french.cases.central.irr | pct1 }}</td><td class="num"></td></tr>
+          <tr class="hl"><th>This project, French rules</th><td class="num">{{ d.french.cases.central.irr | pct1 }}</td><td class="num"></td></tr>
           <tr class="hl"><th>This project, French rules, with wider effects</th><td class="num">{{ d.french.cases.central.irr_wider | pct1 }}</td><td class="num"></td></tr>
-          <tr class="hl"><th>This project, French rules, first count only</th><td class="num">{{ d.french.cases.baseline.irr | pct1 }}</td><td class="num"></td></tr>
-          <tr class="hl"><th>This project, simple reading, complete count held flat</th><td class="num">{{ d.french.study.central.irr | pct1 }}</td><td class="num"></td></tr>
-          <tr class="hl"><th>This project, simple reading, first count held flat</th><td class="num">{{ d.finance.irr.central | pct1 }}</td><td class="num"></td></tr>
+          <tr class="hl"><th>This project, simple reading, benefits held flat</th><td class="num">{{ d.french.study.central.irr | pct1 }}</td><td class="num"></td></tr>
         </tbody></table></div>
       <p class="note">The simple reading has no growth, so its rates are lower by construction. A negative rate would mean that the benefits, less the running costs, never add up to the construction cost.</p>
     </div>
@@ -292,7 +285,7 @@
         <li><strong>Wider effects decide the largest projects.</strong> They are a fifth to a third of the benefits in London, Sydney and Melbourne, and about 60% for the Grand Paris Express. Here they are {{ d.french.cases.central.pv_families['Wider effects, measured'] / (d.french.cases.central.pv_benefits + d.french.cases.central.pv_families['Wider effects, measured']) | pct }} of the benefits, because they are measured on this project's own flows rather than taken as a ratio.</li>
         <li><strong>Measured returns are usually lower than forecast.</strong> High Speed 1 went from 1.5 to 0.64, Stockholm from 0.86 to 0.51, RER E from 21% to about 10%.</li>
         <li><strong>Per passenger, the cost is in the range of the others.</strong> About €{{ m.cost.total / (f.central.tgv.paris + f.central.tgv.cross + m.yearly.reg_users) * 1000 | 0 }} of capital for each yearly journey, against about €150 for the Elizabeth line and about €210 for Lucerne (derived). Paris already has five RER lines through its centre, so the project does not open a crossing that did not exist: it joins the long-distance network to it.</li>
-        <li><strong>Where this project stands.</strong> At {{ d.french.cases.central.ratio | 2 }} under the French rules it is level with Munich, Melbourne and Frankfurt at approval and above the Grand Paris Express on transport benefits; with wider effects, at {{ d.french.cases.central.ratio_wider | 2 }}, it is below the Grand Paris Express, Sydney and London, whose wider effects are larger ratios. The first count had placed it at the bottom of the range; what moved it is measured, not assumed, except the departure margin and the busy-hour room, which the next section tests.</li>
+        <li><strong>Where this project stands.</strong> At {{ d.french.cases.central.ratio | 2 }} under the French rules it is level with Munich, Melbourne and Frankfurt at approval and above the Grand Paris Express on transport benefits; with wider effects, at {{ d.french.cases.central.ratio_wider | 2 }}, it is below the Grand Paris Express, Sydney and London, whose wider effects are larger ratios. Most of its benefits are measured on its own traffic; the least firm, the departure margin and the room in the busy hours, are tested in the next section.</li>
       </ul>
     </div>
   </div>
@@ -302,9 +295,9 @@
   <h2>What could change the answer</h2>
   <p>Each bar changes one thing in the official reading and shows the net present value that results; the tick is the central case. Three questions matter more than all the others: the construction price, whether traffic grows, and whether the railway's own gains and the room for more trains are counted as the method says.</p>
   <figure class="fig">
-    <div class="fig-head"><strong>The construction price and the growth of traffic move the result most; the added items move it by €{{ (d.french.cases.central.npv - d.french.cases.low.npv) | 1 }}bn down or €{{ (d.french.cases.high.npv - d.french.cases.central.npv) | 1 }}bn up</strong><span>Net present value, € billion at {{ d.french.params.rate | pct1 }} unless stated; the tick marks the central case</span></div>
+    <div class="fig-head"><strong>The construction price and the growth of traffic move the result most; the uncertain items together move it by €{{ (d.french.cases.central.npv - d.french.cases.low.npv) | 1 }}bn down or €{{ (d.french.cases.high.npv - d.french.cases.central.npv) | 1 }}bn up</strong><span>Net present value, € billion at {{ d.french.params.rate | pct1 }} unless stated; the tick marks the central case</span></div>
     <div id="eco-sens-chart"></div>
-    <figcaption>Low and high prices are those of <a class="xref" href="#cost.units">the cost chapter</a>. The stress test and the 3.2% rate are the official tests of the fiche on risk.[[fr_v4]] Each line of the added items is at its low or high value in the two last bars; one at a time they are in the table above.</figcaption>
+    <figcaption>Low and high prices are those of <a class="xref" href="#cost.units">the cost chapter</a>. The stress test and the 3.2% rate are the official tests of the fiche on risk.[[fr_v4]] In the last two bars every item with a range is at its low or its high value; one by one they are in the table of every item above.</figcaption>
   </figure>
   <div class="callout warn"><b>Growth and room overlap</b>
     <p>Benefits can only grow {{ d.french.params.ld_growth | pct1 }} a year for thirty years if the trains can carry the passengers. The growth in the official reading therefore needs the room that the project is meant to unlock: the busy-hour room of family 8 is the condition of the growth, not a benefit on top of it, which is why it is valued only on the journeys the terminals would turn away.</p>
@@ -315,5 +308,5 @@
     <li><strong>The regional network (I14).</strong> The job-access count is measured on the census and the timetable; a run of the region's own travel model would confirm it, show the relief of the RER and give a figure of its own for the wider effects.</li>
     <li><strong>The parks and the land (I19).</strong> About {{ m.params.park_ha | 0 }} hectares of tracks become parks and some building plots; the sale value counted, €{{ d.french.params.items.land.central | 1 }}bn, needs a decision on what is built and a valuation.</li>
   </ol>
-  <p>The same levers can be moved by hand in <a class="xref" href="#financing.calculator">the financing calculator</a>; the first count's own tests are in <a class="xref" href="#risks.sensitivity">risks and next steps</a>.</p>
+  <p>The construction price, traffic and running costs can also be moved by hand in <a class="xref" href="#financing.calculator">the financing calculator</a>.</p>
 </div>
