@@ -131,6 +131,30 @@
     });
   };
 
+  // ---------------------------------------------------------------- borrowing: one section shows a figure of another
+  /* The presentation shows some figures of the report as they are, with no copy: the nodes move into the presentation
+     while it is shown and go back to their section when that section is shown. The lender's own lookups by id still
+     find them, because its root falls back to the whole document for what it no longer holds. */
+  const borrowed = [];
+  PTS.ensure = function (id) {
+    const page = document.getElementById(id);
+    if (!page || started[id] || !inits[id]) return page;
+    started[id] = true;
+    const q1 = page.querySelector;
+    page.querySelector = function (sel) { return q1.call(this, sel) || (/^#[\w-]+$/.test(sel) ? document.querySelector(sel) : null); };
+    try { inits[id](page); } catch (e) { console.error('Section ' + id + ' failed to start', e); }
+    return page;
+  };
+  PTS.borrow = function (hostPage, host, nodes) {
+    nodes.forEach(function (el) { if (el) borrowed.push({ el: el, page: hostPage, host: host, home: el.parentNode, next: el.nextSibling }); });
+    place();
+  };
+  function place() {
+    const id = current && current.id;
+    borrowed.forEach(function (b) { if (id === b.page) { if (b.el.parentNode !== b.host) b.host.appendChild(b.el); } });
+    borrowed.slice().reverse().forEach(function (b) { if (id !== b.page && b.el.parentNode !== b.home) b.home.insertBefore(b.el, b.next && b.next.parentNode === b.home ? b.next : null); });
+  }
+
   // ---------------------------------------------------------------- router: #section or #section.anchor
   let pages = [], current = null;
   function parse(hash) { const h = (hash || '').replace(/^#/, ''); const i = h.indexOf('.'); return { id: i < 0 ? h : h.slice(0, i), anchor: i < 0 ? null : h }; }
@@ -143,9 +167,11 @@
     if (page !== current) {
       pages.forEach(function (p) { p.hidden = p !== page; });
       current = page;
+      document.body.setAttribute('data-page', page.id);
+      place();
       PTS.$$('.contents a').forEach(function (a) { if (a.getAttribute('href') === '#' + page.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       const here = PTS.$('.topbar .here'); if (here) here.textContent = page.dataset.title || '';
-      if (inits[page.id] && !started[page.id]) { started[page.id] = true; try { inits[page.id](page); } catch (e) { console.error('Section ' + page.id + ' failed to start', e); } }
+      PTS.ensure(page.id);
       PTS.stackTables(page);
     }
     closeMenu();

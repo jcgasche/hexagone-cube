@@ -264,6 +264,221 @@ details { border: 1px solid var(--rule); border-radius: 6px; background: var(--s
 details > summary { cursor: pointer; color: var(--ink) }
 details[open] > summary { margin-bottom: 4px }
 
+/* ---- presentation */
+/* The presentation: a night-blue landing page with its own look. Its tokens redefine the site's, so the report's
+   figures it borrows draw in the same night palette. */
+.page.presentation {
+  --bg: #070d1a; --surface: #0f1829; --surface-2: #17233a; --ink: #f3f6fb; --text: #c4cfdf; --muted: #8796ad; --rule: #24324b;
+  --accent: #5aa2ff; --accent-ink: #06101f; --accent-soft: #15284a; --alt: #ff8a5c; --today: #a3adba;
+  --good: #3fe0a5; --warn: #ffbf47; --bad: #ff7468;
+  --land: #111c30; --land-edge: #34445f; --park: #143327; --arr-edge: #22314a; --dot-edge: rgba(0,0,0,.4); --m14: #b48ae0;
+  --seq-0: #dce9f7; --seq-1: #a9c8ea; --seq-2: #78a6dc; --seq-3: #4f86cc; --seq-4: #3567ad; --seq-5: #294a80;
+  --div-0: #3f86e6; --div-1: #86b4ea; --div-2: #5b6f8a; --div-3: #8a6a68; --div-4: #e9a399; --div-5: #e2695f; --div-6: #b5292d;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
+  --neutral-mark: #6b7686;
+  --ground: #2a2c2b; --ground-edge: #5b5e58; --deep: #1c2633; --struct: #1a2538; --struct-edge: #9fb0c6; --new: #5aa2ff; --new-soft: #1f3552; --old: #77818f;
+  --pz-blue: #5aa2ff; --pz-cyan: #44d7ff; --pz-green: #3fe0a5; --pz-coral: #ff7a59; --pz-violet: #a48bff; --pz-amber: #ffc24b; --pz-pink: #ff6fb1;
+  --pz-glass: rgba(255,255,255,.045); --pz-line: rgba(255,255,255,.09);
+  color-scheme: dark;
+  max-width: none; margin: 0; padding: 0; gap: 0; background: var(--bg); color: var(--text); overflow: hidden;
+}
+body[data-page="presentation"] { background: #070d1a }
+body[data-page="presentation"] .topbar { background: rgba(7,13,26,.82); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom-color: rgba(255,255,255,.08); color-scheme: dark }
+body[data-page="presentation"] .brand b { color: #f3f6fb }
+body[data-page="presentation"] .brand span, body[data-page="presentation"] .topbar .here { color: #8796ad }
+body[data-page="presentation"] .topbar .here { display: none }
+body[data-page="presentation"] .menu-btn { background: transparent; color: #8fc0ff; border-color: rgba(143,192,255,.5) }
+
+/* the two views, in the top bar */
+.views { display: flex; gap: 4px; margin-left: auto; background: var(--surface-2); border-radius: 999px; padding: 3px }
+.views a { font-size: 13px; font-weight: 600; text-decoration: none; color: var(--muted); padding: 5px 12px; border-radius: 999px; white-space: nowrap }
+.views a:hover { color: var(--ink) }
+body[data-page="presentation"] .views { background: rgba(255,255,255,.07) }
+body[data-page="presentation"] .views a[data-view="presentation"], body:not([data-page="presentation"]) .views a[data-view="report"] { background: var(--accent); color: var(--accent-ink) }
+body[data-page="presentation"] .views a[data-view="presentation"] { background: linear-gradient(90deg, #5aa2ff, #44d7ff); color: #06101f }
+body[data-page="presentation"] .views a[data-view="report"] { color: #c4cfdf }
+.topbar .views + .menu-btn { margin-left: 0 }
+@media (min-width: 981px) {
+  .topbar .here { margin-left: auto }
+  .topbar .here + .views { margin-left: 16px }
+  /* on the presentation the contents are a drawer opened from the top bar */
+  body[data-page="presentation"] .shell { grid-template-columns: minmax(0, 1fr) }
+  body[data-page="presentation"] .menu-btn { display: inline-block }
+  body[data-page="presentation"] .contents { position: fixed; top: calc(var(--bar-h) + env(safe-area-inset-top, 0px)); right: 0; bottom: 0; left: auto; width: 300px; max-height: none; z-index: 25; background: var(--surface); border-left: 1px solid var(--rule); display: none; box-shadow: -20px 0 60px rgba(0,0,0,.35) }
+  body[data-page="presentation"].menu-open .contents { display: flex }
+}
+@media (max-width: 520px) { .views a { padding: 5px 9px; font-size: 12px } .topbar { gap: 8px } }
+
+/* ---- slides */
+.pz { position: relative; font-size: 16px }
+.pz-slide { position: relative; min-height: min(100vh, 980px); display: flex; align-items: center; padding: 72px 28px; border-top: 1px solid var(--pz-line); scroll-margin-top: var(--bar-h) }
+.pz-slide:nth-child(odd) { background: radial-gradient(1200px 600px at 85% 0%, rgba(90,162,255,.08), transparent 60%) }
+.pz-slide:nth-child(even) { background: radial-gradient(1000px 600px at 10% 100%, rgba(63,224,165,.06), transparent 60%) }
+.pz-in { position: relative; z-index: 1; width: 100%; max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; min-width: 0 }
+.pz-kicker { font-size: 13px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; color: var(--pz-cyan) }
+.pz-h { font-family: var(--display); font-size: clamp(32px, 5vw, 58px); line-height: 1.02; color: #fff; letter-spacing: -.01em; max-width: 20ch }
+.pz-lead { font-size: clamp(16px, 1.6vw, 19px); max-width: 62ch; color: var(--text) }
+.pz h3 { color: #fff; font-size: 24px }
+.pz p { max-width: 64ch }
+.pz-note { font-size: 13px; color: var(--muted) }
+.pz-more { display: flex; flex-wrap: wrap; gap: 10px }
+.pz-more a { font-size: 14px; font-weight: 600; text-decoration: none; color: #bcd8ff; border: 1px solid rgba(143,192,255,.35); border-radius: 999px; padding: 7px 14px; transition: background .2s, border-color .2s }
+.pz-more a::after { content: " →" }
+.pz-more a:hover { background: rgba(90,162,255,.14); border-color: rgba(143,192,255,.7) }
+
+/* hero */
+.pz-hero { min-height: calc(100vh - var(--bar-h)); background: radial-gradient(900px 600px at 70% 30%, rgba(90,162,255,.18), transparent 60%), radial-gradient(800px 500px at 15% 90%, rgba(63,224,165,.12), transparent 60%), #070d1a !important; border-top: 0; padding-top: 56px }
+.pz-hero-bg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; opacity: .9; pointer-events: none }
+.pz-title { font-family: var(--display); font-weight: 600; font-size: clamp(48px, 9vw, 116px); line-height: .92; color: #fff; letter-spacing: -.02em; margin: 0 }
+.pz-title span { background: linear-gradient(90deg, #5aa2ff, #44d7ff 45%, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+.pz-sub { font-size: clamp(17px, 2vw, 22px); color: #d6e0ee; max-width: 48ch }
+.pz-money { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 8px }
+.pz-big { display: flex; flex-direction: column; gap: 6px; padding: 18px 18px 16px; border-radius: 16px; background: var(--pz-glass); border: 1px solid var(--pz-line); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px) }
+.pz-big b, .pz-stat b, .pz-chip b, .pz-mini b { font-family: var(--display); font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; line-height: 1 }
+.pz-big b { font-size: clamp(30px, 3.4vw, 44px) }
+.pz-big span, .pz-stat span, .pz-chip span, .pz-mini span { font-size: 14px; color: var(--text); line-height: 1.35 }
+.pz-big.good b, .pz-stat.good b, .pz-mini.good b { color: var(--pz-green) }
+.pz-flash { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px }
+.pz-chip { display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 14px; border: 1px solid var(--pz-line); background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.01)) }
+.pz-chip b { font-size: 28px; color: var(--pz-cyan) }
+.pz-chip span { font-size: 13px }
+.pz-chip i { font-style: normal; white-space: nowrap }
+.pz-scroll { align-self: flex-start; margin-top: 6px; font-weight: 600; color: #06101f; text-decoration: none; background: linear-gradient(90deg, #5aa2ff, #44d7ff); padding: 11px 20px; border-radius: 999px; box-shadow: 0 10px 30px rgba(68,215,255,.25) }
+.pz-scroll::after { content: " ↓" }
+
+/* layout helpers */
+.pz-split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 36px; align-items: center }
+.pz-split.wide { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) }
+.pz-stage { position: relative; min-width: 0; margin: 0 }
+.pz-stage svg { width: 100%; height: auto }
+.pz-story { display: flex; flex-direction: column; gap: 16px; min-width: 0 }
+.pz-story ul, .pz-ticks { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px }
+.pz-story ul li, .pz-ticks li { position: relative; padding-left: 22px; max-width: 60ch }
+.pz-story ul li::before, .pz-ticks li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 9px; height: 9px; border-radius: 50%; background: var(--pz-cyan); box-shadow: 0 0 12px var(--pz-cyan) }
+.pz-story .pz-ticks li::before, .pz-ticks li::before { background: var(--pz-green); box-shadow: 0 0 12px var(--pz-green) }
+.pz-grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px }
+.pz-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px }
+.pz-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px }
+.pz-stat { display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 16px; background: var(--pz-glass); border: 1px solid var(--pz-line) }
+.pz-stat b { font-size: clamp(28px, 3vw, 40px) }
+.pz-mini { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-left: 3px solid var(--pz-coral); background: var(--pz-glass); border-radius: 0 12px 12px 0 }
+.pz-mini.good { border-left-color: var(--pz-green) }
+.pz-mini b { font-size: 34px; color: var(--pz-coral) }
+
+/* steps and toggles */
+.pz-steps, .pz-toggle { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.06); border: 1px solid var(--pz-line); align-self: flex-start; flex-wrap: wrap }
+.pz-steps button, .pz-toggle button { appearance: none; font: inherit; font-size: 14px; font-weight: 600; border: 0; background: transparent; color: var(--text); padding: 7px 14px; border-radius: 999px; cursor: pointer }
+.pz-steps button[aria-pressed="true"], .pz-toggle button[aria-pressed="true"] { background: linear-gradient(90deg, #5aa2ff, #44d7ff); color: #06101f }
+.pz-step { display: flex; flex-direction: column; gap: 12px; animation: pz-fade .5s ease both }
+.pz-iso .pz-toggle { position: absolute; top: 0; left: 0; z-index: 2 }
+@keyframes pz-fade { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+
+/* line badges */
+.pz-ln { display: inline-grid; place-items: center; min-width: 28px; height: 28px; padding: 0 7px; border-radius: 8px; font-family: var(--display); font-size: 17px; color: #06101f; margin-right: 6px; vertical-align: middle }
+.pz-ln.n { background: var(--pz-amber) } .pz-ln.h { background: var(--pz-pink) } .pz-ln.t { background: var(--pz-violet); font-size: 14px }
+.pz-lines { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px }
+.pz-line { display: flex; gap: 12px; padding: 18px; border-radius: 16px; background: var(--pz-glass); border: 1px solid var(--pz-line); align-items: flex-start }
+.pz-line .pz-ln { flex: none; height: 40px; min-width: 40px; font-size: 22px; border-radius: 12px }
+.pz-line .pz-ln.t { font-size: 15px }
+.pz-line h3 { font-size: 20px; margin-bottom: 6px }
+.pz-line p { font-size: 15px }
+
+/* cases */
+.pz-cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px }
+.pz-case { display: flex; flex-direction: column; gap: 10px; padding: 22px; border-radius: 18px; text-decoration: none; color: var(--text); background: linear-gradient(160deg, rgba(90,162,255,.12), rgba(255,255,255,.02)); border: 1px solid var(--pz-line); transition: transform .25s, border-color .25s }
+.pz-case:hover { transform: translateY(-3px); border-color: rgba(143,192,255,.5) }
+.pz-case.paris { background: linear-gradient(160deg, rgba(63,224,165,.14), rgba(255,255,255,.02)) }
+.pz-case h3 { font-size: 22px }
+.pz-case i { font-style: normal; font-weight: 600; color: #bcd8ff; margin-top: auto }
+.pz-case i::after { content: " →" }
+.pz-flag { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700; color: var(--pz-cyan) }
+
+/* borrowed figures sit on a glass panel */
+.pz-panel { display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 20px; background: rgba(15,24,41,.75); border: 1px solid var(--pz-line); min-width: 0 }
+.pz-panel:empty { display: none }
+.pz-panel .fig { margin: 0 }
+
+/* money */
+.pz-vs { display: flex; flex-direction: column; gap: 18px }
+.pz-vs > div { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; align-items: baseline }
+.pz-vs span { grid-column: 1 / -1; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600 }
+.pz-vs b { font-family: var(--display); font-size: clamp(36px, 4vw, 52px); color: #fff; line-height: 1 }
+.pz-vs i { display: block; height: 14px; border-radius: 999px; background: linear-gradient(90deg, #ff7a59, #ffc24b); width: 0; transition: width 1.4s cubic-bezier(.2,.7,.2,1) }
+.pz-vs .good b { color: var(--pz-green) }
+.pz-vs .good i { background: linear-gradient(90deg, #44d7ff, #3fe0a5) }
+.pz-vs small { grid-column: 1 / -1; font-size: 14px; color: var(--text) }
+.pz-in.on .pz-vs i { width: var(--w) }
+.pz-curve figcaption { font-size: 13px; color: var(--muted); margin-bottom: 6px }
+
+/* cross-France bars */
+.pz-bars { display: flex; flex-direction: column; gap: 9px }
+.pz-bar { display: grid; grid-template-columns: 9.5em minmax(0, 1fr) 4.2em; gap: 10px; align-items: center; font-size: 14px; cursor: default; border-radius: 8px; padding: 2px 4px }
+.pz-bar:hover, .pz-bar.hi { background: rgba(255,255,255,.05) }
+.pz-bar > span { color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+.pz-bar > b { font-variant-numeric: tabular-nums; text-align: right; color: #fff; font-weight: 600 }
+.pz-track { position: relative; height: 12px; border-radius: 999px; background: rgba(255,255,255,.06) }
+.pz-track i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px; transition: width .9s cubic-bezier(.2,.7,.2,1) }
+.pz-track i.t { background: rgba(255,122,89,.75) }
+.pz-track i.p { background: linear-gradient(90deg, #44d7ff, #3fe0a5); height: 6px; top: 3px }
+.pz-bars .pz-key { font-size: 13px; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap }
+.pz-key i { display: inline-block; width: 18px; height: 8px; border-radius: 4px; margin-right: 6px; vertical-align: middle }
+
+/* svg drawings */
+.pz svg text { font-family: var(--body); fill: #c4cfdf; font-size: 13px }
+.pz svg text.big { font-family: var(--display); fill: #fff; font-size: 17px; font-weight: 600 }
+.pz svg text.dim { fill: #8796ad; font-size: 12px }
+.pz-glow { filter: url(#pz-glow) }
+
+/* the side dots */
+.pz-dots { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); z-index: 20; display: flex; flex-direction: column; gap: 10px }
+.pz-dots a { position: relative; display: block; width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.22); transition: background .2s, transform .2s }
+.pz-dots a.on { background: var(--pz-cyan); transform: scale(1.35); box-shadow: 0 0 12px var(--pz-cyan) }
+.pz-dots a span { position: absolute; right: 18px; top: 50%; transform: translateY(-50%); white-space: nowrap; font-size: 12px; color: #fff; background: rgba(15,24,41,.95); padding: 3px 8px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .2s }
+.pz-dots a:hover span { opacity: 1 }
+
+/* the end */
+.pz-end { min-height: 60vh; text-align: left }
+.pz-cta { align-self: flex-start; font-size: 18px; font-weight: 600; color: #06101f; text-decoration: none; background: linear-gradient(90deg, #5aa2ff, #44d7ff 50%, #3fe0a5); padding: 14px 26px; border-radius: 999px; box-shadow: 0 14px 40px rgba(68,215,255,.25) }
+.pz-cta::after { content: " →" }
+.page.presentation > .pager { max-width: 1180px; width: calc(100% - 56px); margin: 0 auto 40px; border-top-color: var(--pz-line) }
+
+/* reveal on scroll */
+.pz-in > * { transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1) }
+.pz-js .pz-in:not(.on) > * { opacity: 0; transform: translateY(26px) }
+.pz-in.on > *:nth-child(2) { transition-delay: .08s } .pz-in.on > *:nth-child(3) { transition-delay: .16s } .pz-in.on > *:nth-child(4) { transition-delay: .24s } .pz-in.on > *:nth-child(5) { transition-delay: .32s } .pz-in.on > *:nth-child(n+6) { transition-delay: .4s }
+@media (prefers-reduced-motion: reduce) { .pz-js .pz-in:not(.on) > * { opacity: 1; transform: none } .pz-in > *, .pz-vs i, .pz-track i { transition: none } .pz-step { animation: none } }
+
+@media (max-width: 1100px) {
+  .pz-flash { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+  .pz-money { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+}
+@media (max-width: 860px) {
+  .pz-split, .pz-split.wide { grid-template-columns: minmax(0, 1fr) }
+  .pz-grid4 { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .pz-cases, .pz-lines, .pz-grid3 { grid-template-columns: minmax(0, 1fr) }
+  .pz-dots { display: none }
+  .pz-slide { min-height: 0; padding: 56px 16px }
+  .pz-iso .pz-toggle { position: static; margin-bottom: 8px }
+}
+@media (max-width: 520px) {
+  .pz-flash { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+  .pz-money { grid-template-columns: minmax(0, 1fr) }
+  .pz-chip b { font-size: 24px }
+  .pz-bar { grid-template-columns: 7.4em minmax(0, 1fr) 3.8em; font-size: 13px }
+  .pz-panel { padding: 12px; border-radius: 14px }
+  .page.presentation > .pager { width: calc(100% - 32px) }
+}
+
+/* the Gare du Nord drawing */
+@keyframes pz-train { from { transform: translate(0, 0) } to { transform: translate(var(--dx), var(--dy)) } }
+.pz-tree { transform-box: fill-box; transform-origin: 50% 100%; transform: scale(.1); transition: transform .8s cubic-bezier(.3,1.4,.5,1) var(--d) }
+.is-after .pz-tree { transform: none }
+@keyframes pz-walk { 0%, 100% { transform: translate(0, 0) } 50% { transform: translate(3px, 1.5px) } }
+.is-after .pz-person { animation: pz-walk 3.2s ease-in-out var(--d) infinite }
+@media (prefers-reduced-motion: reduce) { .pz-tree { transition: none } .is-after .pz-person { animation: none } }
+
+@media (max-width: 860px) { .pz-hero-bg { opacity: .28 } }
+
 /* ---- summary */
 #summary .sum-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px }
 #summary .sum-list a.card { text-decoration: none; color: var(--text); gap: 6px }
@@ -411,93 +626,93 @@ details[open] > summary { margin-bottom: 4px }
 
 /* ---- works */
 /* Works and stages: method pictures, one terminal before and after, the timeline. */
-#works .works-pic { width: 100%; max-width: 320px; height: auto; align-self: center }
-#works .draw text { font-size: 12px }
-#works .works-street, #works .wk-street { stroke: var(--ink); stroke-width: 1.6 }
-#works .works-mark { fill: var(--new) }
-#works .works-train { fill: var(--old) }
-#works .works-wall { fill: var(--struct-edge) }
-#works .works-dig { fill: none; stroke: var(--alt); stroke-width: 1.6; stroke-dasharray: 5 4 }
-#works .works-pile { fill: none; stroke: var(--struct-edge); stroke-width: 2.2 }
-#works .works-ring { fill: none; stroke: var(--new); stroke-width: 1 }
-#works .works-tbm { fill: var(--alt) }
-#works .works-head { fill: var(--ink) }
-#works .works-draw { min-width: 0; display: flex; justify-content: center }
-#works .works-draw svg { flex: none }
-#works .draw .wk-b { font-weight: 600; fill: var(--ink) }
-#works .draw .wk-under { fill: var(--ink); font-size: 12px }
-#works .draw .wk-halo { paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; stroke-linejoin: round }
-#works .wk-ring { fill: none; stroke: var(--muted); stroke-width: 2 }
-#works .wk-canopy { fill: none; stroke: var(--old); stroke-width: 1.6 }
-#works .wk-train { fill: var(--old) }
-#works .wk-freed { fill: var(--park); stroke: var(--good); stroke-width: 1.2 }
-#works .wk-tree { fill: var(--park); stroke: var(--good); stroke-width: 1.2 }
-#works .wk-site { fill: var(--surface); stroke: var(--s2); stroke-width: 1.6 }
-#works .wk-closed { fill: var(--s2); fill-opacity: .25; stroke: var(--s2); stroke-width: 1.4; stroke-dasharray: 4 3 }
-#works .wk-doing { fill: var(--surface); fill-opacity: .6; stroke: var(--s2); stroke-width: 2; stroke-dasharray: 6 4 }
-#works .wk-doing.line { fill: none; stroke-width: 3.5 }
-#works .wk-tbm { fill: var(--s2) }
-#works .wk-newtrain { fill: var(--new) }
-#works .wk-way { fill: none; stroke: var(--new); stroke-width: 2.2; stroke-linecap: round }
-#works .wk-node { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round }
-#works .wk-node.none { stroke: var(--neutral-mark) }
-#works .wk-line { fill: none; stroke-linecap: round }
-#works .wk-line.none { stroke: var(--neutral-mark); stroke-width: 2; stroke-dasharray: 1 6 }
-#works .wk-line.works { stroke: var(--s2); stroke-width: 4; stroke-dasharray: 8 6; stroke-linecap: butt }
-#works .wk-line.open { stroke: var(--new); stroke-width: 4 }
-#works .wk-line.single.works { stroke-width: 2.5 }
-#works .wk-line.single.open { stroke-width: 2.5 }
-#works .wk-hit { stroke: var(--ink); stroke-opacity: 0; stroke-width: 18 }
-#works .wk-st { stroke-width: 2 }
-#works .wk-st.none { fill: var(--surface); stroke: var(--neutral-mark); stroke-dasharray: 2 4 }
-#works .wk-st.works { fill: var(--surface); stroke: var(--s2); stroke-width: 2.4; stroke-dasharray: 8 5 }
-#works .wk-st.open { fill: var(--new-soft); stroke: var(--new) }
-#works .draw .hot { cursor: default; outline: none }
-#works .draw .hot:hover, #works .draw .hot.sel { filter: none }
-#works .draw .hot:focus-visible .wk-st, #works .draw .hot:hover .wk-st { stroke: var(--ink) }
-#works .draw .hot:focus-visible .wk-hit, #works .draw .hot:hover .wk-hit { stroke: var(--accent); stroke-opacity: .16 }
-#works .works-ba-text { font-size: 14px; max-width: 80ch; min-height: 3.2em }
-#works #works-ba-controls .seg { align-self: flex-start }
-#works .works-tl-slider { flex: 1 1 260px; max-width: 380px }
-#works .works-tl-cols { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px 24px; align-items: start }
-#works figure h4 { margin: 6px 0 0 }
-#works .works-gantt { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 4px 12px; align-items: center; font-size: 13px }
-#works .wg-grp { grid-column: 1 / -1; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 8px }
-#works .wg-lab { color: var(--text); min-width: 0 }
-#works .wg-lab.now, #works .wg-lab.strong { color: var(--ink); font-weight: 600 }
-#works .wg-lab.head { color: var(--muted) }
-#works .wg-track { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); height: 18px; min-width: 0 }
-#works .wg-cell { border-left: 1px solid var(--rule); background: var(--surface-2); font-size: 11px; color: var(--muted); text-align: center; line-height: 18px; font-variant-numeric: tabular-nums }
-#works .wg-cell:first-child { border-left: 0 }
-#works .wg-cell.cur { background: var(--accent-soft); color: var(--ink); font-weight: 600 }
-#works .wg-track.head .wg-cell { background: transparent; border-left-color: transparent }
-#works .wg-track.head .wg-cell.cur { background: var(--accent-soft); border-radius: 4px }
-#works .wg-bar { position: absolute; top: 4px; bottom: 4px; border-radius: 3px; background: var(--c) }
-#works .wg-bar.civil, #works .wg-key.civil { --c: var(--s2) }
-#works .wg-bar.fit, #works .wg-key.fit { --c: var(--s7) }
-#works .wg-bar.test, #works .wg-key.test { --c: var(--s4) }
-#works .wg-bar.surface, #works .wg-key.surface { --c: var(--s3) }
-#works .wg-key { width: 12px; height: 12px; border-radius: 3px; background: var(--c); flex: none }
-#works .wg-open { position: absolute; top: 3px; width: 12px; height: 12px; margin-left: -6px; background: var(--new); transform: rotate(45deg); border: 1.5px solid var(--surface) }
-#works .wg-bar:focus-visible, #works .wg-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
-#works #works-tl-legend svg { flex: none }
-#works .works-seen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
-#works .works-seen .card { gap: 6px; background: var(--surface-2); border-color: transparent }
-#works .works-seen p { font-size: 14px }
-#works .works-chip { align-self: flex-start; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; padding: 1px 8px; border-radius: 10px; border: 1px solid var(--muted); color: var(--muted); background: var(--surface) }
-#works .works-chip.doing { color: var(--warn); border-color: currentColor }
-#works .works-chip.open { color: var(--accent); border-color: currentColor }
-@media (max-width: 980px) { #works .works-tl-cols { grid-template-columns: minmax(0, 1fr) } }
-@media (max-width: 760px) { #works .works-seen { grid-template-columns: minmax(0, 1fr) } }
+:is(#works, .borrow-works) .works-pic { width: 100%; max-width: 320px; height: auto; align-self: center }
+:is(#works, .borrow-works) .draw text { font-size: 12px }
+:is(#works, .borrow-works) .works-street, :is(#works, .borrow-works) .wk-street { stroke: var(--ink); stroke-width: 1.6 }
+:is(#works, .borrow-works) .works-mark { fill: var(--new) }
+:is(#works, .borrow-works) .works-train { fill: var(--old) }
+:is(#works, .borrow-works) .works-wall { fill: var(--struct-edge) }
+:is(#works, .borrow-works) .works-dig { fill: none; stroke: var(--alt); stroke-width: 1.6; stroke-dasharray: 5 4 }
+:is(#works, .borrow-works) .works-pile { fill: none; stroke: var(--struct-edge); stroke-width: 2.2 }
+:is(#works, .borrow-works) .works-ring { fill: none; stroke: var(--new); stroke-width: 1 }
+:is(#works, .borrow-works) .works-tbm { fill: var(--alt) }
+:is(#works, .borrow-works) .works-head { fill: var(--ink) }
+:is(#works, .borrow-works) .works-draw { min-width: 0; display: flex; justify-content: center }
+:is(#works, .borrow-works) .works-draw svg { flex: none }
+:is(#works, .borrow-works) .draw .wk-b { font-weight: 600; fill: var(--ink) }
+:is(#works, .borrow-works) .draw .wk-under { fill: var(--ink); font-size: 12px }
+:is(#works, .borrow-works) .draw .wk-halo { paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; stroke-linejoin: round }
+:is(#works, .borrow-works) .wk-ring { fill: none; stroke: var(--muted); stroke-width: 2 }
+:is(#works, .borrow-works) .wk-canopy { fill: none; stroke: var(--old); stroke-width: 1.6 }
+:is(#works, .borrow-works) .wk-train { fill: var(--old) }
+:is(#works, .borrow-works) .wk-freed { fill: var(--park); stroke: var(--good); stroke-width: 1.2 }
+:is(#works, .borrow-works) .wk-tree { fill: var(--park); stroke: var(--good); stroke-width: 1.2 }
+:is(#works, .borrow-works) .wk-site { fill: var(--surface); stroke: var(--s2); stroke-width: 1.6 }
+:is(#works, .borrow-works) .wk-closed { fill: var(--s2); fill-opacity: .25; stroke: var(--s2); stroke-width: 1.4; stroke-dasharray: 4 3 }
+:is(#works, .borrow-works) .wk-doing { fill: var(--surface); fill-opacity: .6; stroke: var(--s2); stroke-width: 2; stroke-dasharray: 6 4 }
+:is(#works, .borrow-works) .wk-doing.line { fill: none; stroke-width: 3.5 }
+:is(#works, .borrow-works) .wk-tbm { fill: var(--s2) }
+:is(#works, .borrow-works) .wk-newtrain { fill: var(--new) }
+:is(#works, .borrow-works) .wk-way { fill: none; stroke: var(--new); stroke-width: 2.2; stroke-linecap: round }
+:is(#works, .borrow-works) .wk-node { fill: var(--surface); stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round }
+:is(#works, .borrow-works) .wk-node.none { stroke: var(--neutral-mark) }
+:is(#works, .borrow-works) .wk-line { fill: none; stroke-linecap: round }
+:is(#works, .borrow-works) .wk-line.none { stroke: var(--neutral-mark); stroke-width: 2; stroke-dasharray: 1 6 }
+:is(#works, .borrow-works) .wk-line.works { stroke: var(--s2); stroke-width: 4; stroke-dasharray: 8 6; stroke-linecap: butt }
+:is(#works, .borrow-works) .wk-line.open { stroke: var(--new); stroke-width: 4 }
+:is(#works, .borrow-works) .wk-line.single.works { stroke-width: 2.5 }
+:is(#works, .borrow-works) .wk-line.single.open { stroke-width: 2.5 }
+:is(#works, .borrow-works) .wk-hit { stroke: var(--ink); stroke-opacity: 0; stroke-width: 18 }
+:is(#works, .borrow-works) .wk-st { stroke-width: 2 }
+:is(#works, .borrow-works) .wk-st.none { fill: var(--surface); stroke: var(--neutral-mark); stroke-dasharray: 2 4 }
+:is(#works, .borrow-works) .wk-st.works { fill: var(--surface); stroke: var(--s2); stroke-width: 2.4; stroke-dasharray: 8 5 }
+:is(#works, .borrow-works) .wk-st.open { fill: var(--new-soft); stroke: var(--new) }
+:is(#works, .borrow-works) .draw .hot { cursor: default; outline: none }
+:is(#works, .borrow-works) .draw .hot:hover, :is(#works, .borrow-works) .draw .hot.sel { filter: none }
+:is(#works, .borrow-works) .draw .hot:focus-visible .wk-st, :is(#works, .borrow-works) .draw .hot:hover .wk-st { stroke: var(--ink) }
+:is(#works, .borrow-works) .draw .hot:focus-visible .wk-hit, :is(#works, .borrow-works) .draw .hot:hover .wk-hit { stroke: var(--accent); stroke-opacity: .16 }
+:is(#works, .borrow-works) .works-ba-text { font-size: 14px; max-width: 80ch; min-height: 3.2em }
+:is(#works, .borrow-works) #works-ba-controls .seg { align-self: flex-start }
+:is(#works, .borrow-works) .works-tl-slider { flex: 1 1 260px; max-width: 380px }
+:is(#works, .borrow-works) .works-tl-cols { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 14px 24px; align-items: start }
+:is(#works, .borrow-works) figure h4 { margin: 6px 0 0 }
+:is(#works, .borrow-works) .works-gantt { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 4px 12px; align-items: center; font-size: 13px }
+:is(#works, .borrow-works) .wg-grp { grid-column: 1 / -1; font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 8px }
+:is(#works, .borrow-works) .wg-lab { color: var(--text); min-width: 0 }
+:is(#works, .borrow-works) .wg-lab.now, :is(#works, .borrow-works) .wg-lab.strong { color: var(--ink); font-weight: 600 }
+:is(#works, .borrow-works) .wg-lab.head { color: var(--muted) }
+:is(#works, .borrow-works) .wg-track { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); height: 18px; min-width: 0 }
+:is(#works, .borrow-works) .wg-cell { border-left: 1px solid var(--rule); background: var(--surface-2); font-size: 11px; color: var(--muted); text-align: center; line-height: 18px; font-variant-numeric: tabular-nums }
+:is(#works, .borrow-works) .wg-cell:first-child { border-left: 0 }
+:is(#works, .borrow-works) .wg-cell.cur { background: var(--accent-soft); color: var(--ink); font-weight: 600 }
+:is(#works, .borrow-works) .wg-track.head .wg-cell { background: transparent; border-left-color: transparent }
+:is(#works, .borrow-works) .wg-track.head .wg-cell.cur { background: var(--accent-soft); border-radius: 4px }
+:is(#works, .borrow-works) .wg-bar { position: absolute; top: 4px; bottom: 4px; border-radius: 3px; background: var(--c) }
+:is(#works, .borrow-works) .wg-bar.civil, :is(#works, .borrow-works) .wg-key.civil { --c: var(--s2) }
+:is(#works, .borrow-works) .wg-bar.fit, :is(#works, .borrow-works) .wg-key.fit { --c: var(--s7) }
+:is(#works, .borrow-works) .wg-bar.test, :is(#works, .borrow-works) .wg-key.test { --c: var(--s4) }
+:is(#works, .borrow-works) .wg-bar.surface, :is(#works, .borrow-works) .wg-key.surface { --c: var(--s3) }
+:is(#works, .borrow-works) .wg-key { width: 12px; height: 12px; border-radius: 3px; background: var(--c); flex: none }
+:is(#works, .borrow-works) .wg-open { position: absolute; top: 3px; width: 12px; height: 12px; margin-left: -6px; background: var(--new); transform: rotate(45deg); border: 1.5px solid var(--surface) }
+:is(#works, .borrow-works) .wg-bar:focus-visible, :is(#works, .borrow-works) .wg-open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+:is(#works, .borrow-works) #works-tl-legend svg { flex: none }
+:is(#works, .borrow-works) .works-seen { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
+:is(#works, .borrow-works) .works-seen .card { gap: 6px; background: var(--surface-2); border-color: transparent }
+:is(#works, .borrow-works) .works-seen p { font-size: 14px }
+:is(#works, .borrow-works) .works-chip { align-self: flex-start; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600; padding: 1px 8px; border-radius: 10px; border: 1px solid var(--muted); color: var(--muted); background: var(--surface) }
+:is(#works, .borrow-works) .works-chip.doing { color: var(--warn); border-color: currentColor }
+:is(#works, .borrow-works) .works-chip.open { color: var(--accent); border-color: currentColor }
+@media (max-width: 980px) { :is(#works, .borrow-works) .works-tl-cols { grid-template-columns: minmax(0, 1fr) } }
+@media (max-width: 760px) { :is(#works, .borrow-works) .works-seen { grid-template-columns: minmax(0, 1fr) } }
 @media (max-width: 620px) {
-  #works .works-gantt { grid-template-columns: minmax(0, 1fr); gap: 2px }
-  #works .wg-lab { margin-top: 5px }
-  #works .wg-lab.head { display: none }
+  :is(#works, .borrow-works) .works-gantt { grid-template-columns: minmax(0, 1fr); gap: 2px }
+  :is(#works, .borrow-works) .wg-lab { margin-top: 5px }
+  :is(#works, .borrow-works) .wg-lab.head { display: none }
 }
-#works .works-read { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: 14px }
-#works .works-read dt { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 6px }
-#works .works-read dd { margin: 0; color: var(--ink); font-weight: 600 }
-#works .wk-ter { stroke: var(--surface); stroke-width: 1; stroke-dasharray: 3 2; fill: none }
+:is(#works, .borrow-works) .works-read { margin: 0; display: flex; flex-direction: column; gap: 2px; font-size: 14px }
+:is(#works, .borrow-works) .works-read dt { font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-top: 6px }
+:is(#works, .borrow-works) .works-read dd { margin: 0; color: var(--ink); font-weight: 600 }
+:is(#works, .borrow-works) .wk-ter { stroke: var(--surface); stroke-width: 1; stroke-dasharray: 3 2; fill: none }
 
 /* ---- service */
 /* flow diagram of one hour: the triangle */
@@ -547,100 +762,100 @@ details[open] > summary { margin-bottom: 4px }
 /* Access map. Layout: three tiles switch the view; the map sits beside the legend, the statistics and the read-out of one point.
    Colours: minutes use the shared --seq ramp; minutes saved use a ramp mixed from --good and the land colour, so that
    "no change" stays empty and a larger saving is stronger in both themes. No class for "slower" exists. */
-#access {
+:is(#access, .borrow-access) {
   --acc-g1: color-mix(in oklab, var(--good) 20%, var(--land));
   --acc-g2: color-mix(in oklab, var(--good) 42%, var(--land));
   --acc-g3: color-mix(in oklab, var(--good) 68%, var(--land));
   --acc-g4: var(--good);
   --acc-g5: color-mix(in oklab, var(--good) 58%, var(--ink));
 }
-#access .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)) }
-#access .acc-stage { display: grid; grid-template-columns: minmax(0, 1fr) 310px; grid-template-areas: "map side" "read side"; gap: 16px 18px; align-items: start }
-#access .acc-mapfig { grid-area: map }
-#access .acc-side { grid-area: side }
-#access .acc-read-card { grid-area: read }
-#access .acc-mapfig { padding: 12px; gap: 8px }
-#access .acc-map { border-radius: 4px; min-width: 0 }
-#access .acc-map:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
-#access .acc-map svg { width: 100%; height: auto; touch-action: manipulation }
-#access .acc-pick { font-size: 14px; color: var(--text) }
-#access .acc-pick b { font-variant-numeric: tabular-nums }
-#access .acc-side { display: flex; flex-direction: column; gap: 14px; min-width: 0 }
-#access .acc-hint { color: var(--muted); font-size: 13px }
+:is(#access, .borrow-access) .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)) }
+:is(#access, .borrow-access) .acc-stage { display: grid; grid-template-columns: minmax(0, 1fr) 310px; grid-template-areas: "map side" "read side"; gap: 16px 18px; align-items: start }
+:is(#access, .borrow-access) .acc-mapfig { grid-area: map }
+:is(#access, .borrow-access) .acc-side { grid-area: side }
+:is(#access, .borrow-access) .acc-read-card { grid-area: read }
+:is(#access, .borrow-access) .acc-mapfig { padding: 12px; gap: 8px }
+:is(#access, .borrow-access) .acc-map { border-radius: 4px; min-width: 0 }
+:is(#access, .borrow-access) .acc-map:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px }
+:is(#access, .borrow-access) .acc-map svg { width: 100%; height: auto; touch-action: manipulation }
+:is(#access, .borrow-access) .acc-pick { font-size: 14px; color: var(--text) }
+:is(#access, .borrow-access) .acc-pick b { font-variant-numeric: tabular-nums }
+:is(#access, .borrow-access) .acc-side { display: flex; flex-direction: column; gap: 14px; min-width: 0 }
+:is(#access, .borrow-access) .acc-hint { color: var(--muted); font-size: 13px }
 
 /* base map */
-#access .acc-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1.4 }
-#access .acc-park { fill: var(--park); stroke: var(--land-edge); stroke-width: 1 }
-#access .acc-arr { fill: none; stroke: var(--arr-edge); stroke-width: 1 }
-#access .acc-arrn { font-size: 13px; fill: var(--muted); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--land); stroke-width: 3px; opacity: .9 }
+:is(#access, .borrow-access) .acc-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1.4 }
+:is(#access, .borrow-access) .acc-park { fill: var(--park); stroke: var(--land-edge); stroke-width: 1 }
+:is(#access, .borrow-access) .acc-arr { fill: none; stroke: var(--arr-edge); stroke-width: 1 }
+:is(#access, .borrow-access) .acc-arrn { font-size: 13px; fill: var(--muted); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--land); stroke-width: 3px; opacity: .9 }
 
 /* dots */
-#access .acc-dot { stroke: var(--dot-edge); stroke-width: .8; cursor: pointer }
-#access .acc-mark circle { fill: none }
-#access .acc-mark .halo { stroke: var(--surface); stroke-width: 6 }
-#access .acc-mark .ring { stroke: var(--ink); stroke-width: 2.6 }
-#access .acc-min .b0 { fill: var(--seq-0) } #access .acc-min .b1 { fill: var(--seq-1) } #access .acc-min .b2 { fill: var(--seq-2) }
-#access .acc-min .b3 { fill: var(--seq-3) } #access .acc-min .b4 { fill: var(--seq-4) } #access .acc-min .b5 { fill: var(--seq-5) }
-#access .acc-sav .b0 { fill: var(--land); stroke: var(--neutral-mark); stroke-width: 1.3 }
-#access .acc-sav .b1 { fill: var(--acc-g1) } #access .acc-sav .b2 { fill: var(--acc-g2) } #access .acc-sav .b3 { fill: var(--acc-g3) }
-#access .acc-sav .b4 { fill: var(--acc-g4) } #access .acc-sav .b5 { fill: var(--acc-g5) }
+:is(#access, .borrow-access) .acc-dot { stroke: var(--dot-edge); stroke-width: .8; cursor: pointer }
+:is(#access, .borrow-access) .acc-mark circle { fill: none }
+:is(#access, .borrow-access) .acc-mark .halo { stroke: var(--surface); stroke-width: 6 }
+:is(#access, .borrow-access) .acc-mark .ring { stroke: var(--ink); stroke-width: 2.6 }
+:is(#access, .borrow-access) .acc-min .b0 { fill: var(--seq-0) } :is(#access, .borrow-access) .acc-min .b1 { fill: var(--seq-1) } :is(#access, .borrow-access) .acc-min .b2 { fill: var(--seq-2) }
+:is(#access, .borrow-access) .acc-min .b3 { fill: var(--seq-3) } :is(#access, .borrow-access) .acc-min .b4 { fill: var(--seq-4) } :is(#access, .borrow-access) .acc-min .b5 { fill: var(--seq-5) }
+:is(#access, .borrow-access) .acc-sav .b0 { fill: var(--land); stroke: var(--neutral-mark); stroke-width: 1.3 }
+:is(#access, .borrow-access) .acc-sav .b1 { fill: var(--acc-g1) } :is(#access, .borrow-access) .acc-sav .b2 { fill: var(--acc-g2) } :is(#access, .borrow-access) .acc-sav .b3 { fill: var(--acc-g3) }
+:is(#access, .borrow-access) .acc-sav .b4 { fill: var(--acc-g4) } :is(#access, .borrow-access) .acc-sav .b5 { fill: var(--acc-g5) }
 
 /* stations: a filled square is a hall where every train for the chosen direction stops, an outlined one where half of them stop */
-#access .acc-stn rect { fill: var(--surface); stroke: var(--ink); stroke-width: 2.4; transform-box: fill-box; transform-origin: center }
-#access .acc-stn.on rect { fill: var(--ink) }
-#access .acc-stn.off rect { stroke: var(--muted); stroke-width: 1.6 }
-#access .acc-stn text { font-size: 19px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; pointer-events: none }
-#access .acc-stn.off text { fill: var(--muted); font-weight: 500 }
-#access .acc-stn text.acc-hall { font-size: 16px; font-weight: 500 }
-#access .acc-ne-out { fill: none; stroke: var(--ink); stroke-width: 27; stroke-linecap: round }
-#access .acc-ne-in { fill: none; stroke: var(--surface); stroke-width: 22; stroke-linecap: round }
-#access svg.acc-today .acc-ne-proj, #access svg:not(.acc-today) .acc-ne-today { display: none }
+:is(#access, .borrow-access) .acc-stn rect { fill: var(--surface); stroke: var(--ink); stroke-width: 2.4; transform-box: fill-box; transform-origin: center }
+:is(#access, .borrow-access) .acc-stn.on rect { fill: var(--ink) }
+:is(#access, .borrow-access) .acc-stn.off rect { stroke: var(--muted); stroke-width: 1.6 }
+:is(#access, .borrow-access) .acc-stn text { font-size: 19px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; pointer-events: none }
+:is(#access, .borrow-access) .acc-stn.off text { fill: var(--muted); font-weight: 500 }
+:is(#access, .borrow-access) .acc-stn text.acc-hall { font-size: 16px; font-weight: 500 }
+:is(#access, .borrow-access) .acc-ne-out { fill: none; stroke: var(--ink); stroke-width: 27; stroke-linecap: round }
+:is(#access, .borrow-access) .acc-ne-in { fill: none; stroke: var(--surface); stroke-width: 22; stroke-linecap: round }
+:is(#access, .borrow-access) svg.acc-today .acc-ne-proj, :is(#access, .borrow-access) svg:not(.acc-today) .acc-ne-today { display: none }
 
 /* legend with the number of points in each class */
-#access .acc-legend { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px }
-#access .acc-legend li { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 8px; align-items: center }
-#access .acc-legend i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--dot-edge); background: var(--c) }
-#access .acc-legend i.none { background: var(--land); border: 1.5px solid var(--neutral-mark) }
-#access .acc-legend b { font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums }
-#access .acc-legend li.acc-legend-note { display: block; color: var(--muted); font-size: 13px; margin-top: 2px }
+:is(#access, .borrow-access) .acc-legend { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; font-size: 14px }
+:is(#access, .borrow-access) .acc-legend li { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 8px; align-items: center }
+:is(#access, .borrow-access) .acc-legend i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--dot-edge); background: var(--c) }
+:is(#access, .borrow-access) .acc-legend i.none { background: var(--land); border: 1.5px solid var(--neutral-mark) }
+:is(#access, .borrow-access) .acc-legend b { font-weight: 500; color: var(--muted); font-variant-numeric: tabular-nums }
+:is(#access, .borrow-access) .acc-legend li.acc-legend-note { display: block; color: var(--muted); font-size: 13px; margin-top: 2px }
 
 /* read-out of one point */
-#access .acc-read { display: flex; flex-direction: column; gap: 10px; font-size: 14px }
-#access .acc-dirs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px }
-#access .acc-dir { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid var(--rule); min-width: 0 }
-#access .acc-dir.cur { border-top: 3px solid var(--accent); padding-top: 6px }
-#access .acc-dir-h { display: flex; justify-content: space-between; gap: 10px; align-items: baseline }
-#access .acc-dir-h b { font-family: var(--display); font-size: 17px }
-#access .acc-dir-h span { font-size: 13px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums }
-#access .acc-dir-h span.gain { color: var(--ink); font-weight: 600 }
-#access .acc-dir p b { font-variant-numeric: tabular-nums }
-#access .acc-dir ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; color: var(--text) }
-#access .acc-sum { border-top: 2px solid var(--rule); padding-top: 8px; font-weight: 500; color: var(--ink) }
+:is(#access, .borrow-access) .acc-read { display: flex; flex-direction: column; gap: 10px; font-size: 14px }
+:is(#access, .borrow-access) .acc-dirs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px 24px }
+:is(#access, .borrow-access) .acc-dir { display: flex; flex-direction: column; gap: 2px; padding-top: 8px; border-top: 1px solid var(--rule); min-width: 0 }
+:is(#access, .borrow-access) .acc-dir.cur { border-top: 3px solid var(--accent); padding-top: 6px }
+:is(#access, .borrow-access) .acc-dir-h { display: flex; justify-content: space-between; gap: 10px; align-items: baseline }
+:is(#access, .borrow-access) .acc-dir-h b { font-family: var(--display); font-size: 17px }
+:is(#access, .borrow-access) .acc-dir-h span { font-size: 13px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums }
+:is(#access, .borrow-access) .acc-dir-h span.gain { color: var(--ink); font-weight: 600 }
+:is(#access, .borrow-access) .acc-dir p b { font-variant-numeric: tabular-nums }
+:is(#access, .borrow-access) .acc-dir ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 2px; color: var(--text) }
+:is(#access, .borrow-access) .acc-sum { border-top: 2px solid var(--rule); padding-top: 8px; font-weight: 500; color: var(--ink) }
 
 /* tick in the legend of the arrondissement chart */
-#access .legend i.acc-tick { width: 2px; height: 16px; border-radius: 0; background: var(--ink); margin: 0 5px }
+:is(#access, .borrow-access) .legend i.acc-tick { width: 2px; height: 16px; border-radius: 0; background: var(--ink); margin: 0 5px }
 
 @media (max-width: 1140px) {
-  #access .acc-stage { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "map map" "legend stats" "read read" }
-  #access .acc-side { display: contents }
-  #access .acc-legend-card { grid-area: legend } #access .acc-stats-card { grid-area: stats }
+  :is(#access, .borrow-access) .acc-stage { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "map map" "legend stats" "read read" }
+  :is(#access, .borrow-access) .acc-side { display: contents }
+  :is(#access, .borrow-access) .acc-legend-card { grid-area: legend } :is(#access, .borrow-access) .acc-stats-card { grid-area: stats }
 }
 @media (max-width: 620px) {
-  #access .acc-stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "map" "legend" "read" "stats" }
-  #access .tiles { grid-template-columns: minmax(0, 1fr) }
-  #access .tile { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 10px }
-  #access .tile .d { flex-basis: 100% }
-  #access .acc-mapfig { padding: 8px }
+  :is(#access, .borrow-access) .acc-stage { grid-template-columns: minmax(0, 1fr); grid-template-areas: "map" "legend" "read" "stats" }
+  :is(#access, .borrow-access) .tiles { grid-template-columns: minmax(0, 1fr) }
+  :is(#access, .borrow-access) .tile { flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 2px 10px }
+  :is(#access, .borrow-access) .tile .d { flex-basis: 100% }
+  :is(#access, .borrow-access) .acc-mapfig { padding: 8px }
 }
 /* narrow map (class set by the script from the width of the map itself) */
-#access svg.acc-narrow .acc-stn text { font-size: 24px; stroke-width: 6px }
-#access svg.acc-narrow .acc-stn text.acc-hall, #access svg.acc-narrow .acc-arrn { display: none }
-#access svg.acc-narrow .acc-stn rect { transform: scale(1.25) }
-#access svg.acc-narrow .acc-ne-out { stroke-width: 31 } #access svg.acc-narrow .acc-ne-in { stroke-width: 25 }
-#access svg.acc-narrow .acc-mark .halo { stroke-width: 7 } #access svg.acc-narrow .acc-mark .ring { stroke-width: 3.2 }
+:is(#access, .borrow-access) svg.acc-narrow .acc-stn text { font-size: 24px; stroke-width: 6px }
+:is(#access, .borrow-access) svg.acc-narrow .acc-stn text.acc-hall, :is(#access, .borrow-access) svg.acc-narrow .acc-arrn { display: none }
+:is(#access, .borrow-access) svg.acc-narrow .acc-stn rect { transform: scale(1.25) }
+:is(#access, .borrow-access) svg.acc-narrow .acc-ne-out { stroke-width: 31 } :is(#access, .borrow-access) svg.acc-narrow .acc-ne-in { stroke-width: 25 }
+:is(#access, .borrow-access) svg.acc-narrow .acc-mark .halo { stroke-width: 7 } :is(#access, .borrow-access) svg.acc-narrow .acc-mark .ring { stroke-width: 3.2 }
 
 /* the three ways of counting, side by side */
-#access .acc-measures { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 12px 0 }
+:is(#access, .borrow-access) .acc-measures { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 12px 0 }
 
 /* ---- crossing */
 /* pair selector */
@@ -998,90 +1213,93 @@ details[open] > summary { margin-bottom: 4px }
 
 /* ---- timetable */
 /* A pulse timetable for Paris: three station clocks, the pattern boards, the animated map. */
-#timetable .tt-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center }
-#timetable .tt-bar > div { flex: 1 1 200px; min-width: 0 }
-#timetable .tt-bar > div.tt-speed { flex: 0 1 auto }
-#timetable .tt-bar .btn { min-width: 108px }
+:is(#timetable, .borrow-timetable) .tt-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center }
+:is(#timetable, .borrow-timetable) .tt-bar > div { flex: 1 1 200px; min-width: 0 }
+:is(#timetable, .borrow-timetable) .tt-bar > div.tt-speed { flex: 0 1 auto }
+:is(#timetable, .borrow-timetable) .tt-bar .btn { min-width: 108px }
 
 /* clocks */
-#timetable .tt-clocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 18px }
-#timetable .tt-clockbox { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0 }
-#timetable .tt-clockbox h4 { color: var(--ink) }
-#timetable .tt-cap { font-size: 13px; color: var(--muted) }
-#timetable .tt-clock { width: 100%; max-width: 330px; height: auto }
-#timetable .tt-face { fill: var(--surface-2); stroke: var(--struct-edge); stroke-width: 1.4 }
-#timetable .tt-tick { stroke: var(--muted); stroke-width: 1 }
-#timetable .tt-tick.five { stroke: var(--ink); stroke-width: 1.6 }
-#timetable .tt-clock .tt-num { font-size: 13px; fill: var(--muted); font-variant-numeric: tabular-nums }
-#timetable .tt-clock .tt-inside { font-size: 12.5px; fill: var(--muted) }
-#timetable .tt-handline { stroke: var(--ink); stroke-width: 3; stroke-linecap: round }
-#timetable .tt-hub { fill: var(--ink) }
-#timetable .tt-ring { fill: none; stroke: var(--rule); stroke-width: 1 }
-#timetable .tt-arc { fill: none; stroke: var(--c); stroke-width: 8; stroke-linecap: butt; opacity: .45 }
-#timetable .tt-stay.on .tt-arc { opacity: 1 }
-#timetable .tt-stay:focus { outline: none }
-#timetable .tt-stay:focus-visible .tt-arc { opacity: 1; stroke-width: 11 }
-#timetable .tt-cap { display: flex; flex-direction: column; align-items: center; line-height: 1.35 }
-#timetable .tt-cap-now { color: var(--ink); font-variant-numeric: tabular-nums }
-#timetable .legend i.tt-pair { display: inline-flex; width: auto; height: auto; background: none; gap: 2px; border: 0 }
-#timetable .legend i.tt-pair b { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--c) }
+:is(#timetable, .borrow-timetable) .tt-clocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px 18px }
+:is(#timetable, .borrow-timetable) .tt-clockbox { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 0 }
+:is(#timetable, .borrow-timetable) .tt-clockbox h4 { color: var(--ink) }
+:is(#timetable, .borrow-timetable) .tt-cap { font-size: 13px; color: var(--muted) }
+:is(#timetable, .borrow-timetable) .tt-clock { width: 100%; max-width: 330px; height: auto }
+:is(#timetable, .borrow-timetable) .tt-face { fill: var(--surface-2); stroke: var(--struct-edge); stroke-width: 1.4 }
+:is(#timetable, .borrow-timetable) .tt-tick { stroke: var(--muted); stroke-width: 1 }
+:is(#timetable, .borrow-timetable) .tt-tick.five { stroke: var(--ink); stroke-width: 1.6 }
+:is(#timetable, .borrow-timetable) .tt-clock .tt-num { font-size: 13px; fill: var(--muted); font-variant-numeric: tabular-nums }
+:is(#timetable, .borrow-timetable) .tt-clock .tt-inside { font-size: 12.5px; fill: var(--muted) }
+:is(#timetable, .borrow-timetable) .tt-handline { stroke: var(--ink); stroke-width: 3; stroke-linecap: round }
+:is(#timetable, .borrow-timetable) .tt-hub { fill: var(--ink) }
+:is(#timetable, .borrow-timetable) .tt-ring { fill: none; stroke: var(--rule); stroke-width: 1 }
+:is(#timetable, .borrow-timetable) .tt-arc { fill: none; stroke: var(--c); stroke-width: 8; stroke-linecap: butt; opacity: .45 }
+:is(#timetable, .borrow-timetable) .tt-stay.on .tt-arc { opacity: 1 }
+:is(#timetable, .borrow-timetable) .tt-stay:focus { outline: none }
+:is(#timetable, .borrow-timetable) .tt-stay:focus-visible .tt-arc { opacity: 1; stroke-width: 11 }
+:is(#timetable, .borrow-timetable) .tt-cap { display: flex; flex-direction: column; align-items: center; line-height: 1.35 }
+:is(#timetable, .borrow-timetable) .tt-cap-now { color: var(--ink); font-variant-numeric: tabular-nums }
+:is(#timetable, .borrow-timetable) .legend i.tt-pair { display: inline-flex; width: auto; height: auto; background: none; gap: 2px; border: 0 }
+:is(#timetable, .borrow-timetable) .legend i.tt-pair b { display: block; width: 11px; height: 11px; border-radius: 50%; background: var(--c) }
 @media (max-width: 760px) {
-  #timetable .tt-clocks { grid-template-columns: minmax(0, 1fr) }
-  #timetable .tt-clock { max-width: 300px }
+  :is(#timetable, .borrow-timetable) .tt-clocks { grid-template-columns: minmax(0, 1fr) }
+  :is(#timetable, .borrow-timetable) .tt-clock { max-width: 300px }
 }
 
 /* boards */
-#timetable .tt-boards { display: flex; flex-direction: column; gap: 8px }
-#timetable .tt-board table { font-size: 13.5px }
-#timetable .tt-board td:nth-child(4) { white-space: nowrap }
-#timetable .tt-sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: -1px }
-#timetable .tt-board .note { margin-top: 6px }
+:is(#timetable, .borrow-timetable) .tt-boards { display: flex; flex-direction: column; gap: 8px }
+:is(#timetable, .borrow-timetable) .tt-board table { font-size: 13.5px }
+:is(#timetable, .borrow-timetable) .tt-board td:nth-child(4) { white-space: nowrap }
+:is(#timetable, .borrow-timetable) .tt-sw { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-right: 6px; vertical-align: -1px }
+:is(#timetable, .borrow-timetable) .tt-board .note { margin-top: 6px }
 
 /* map */
-#timetable .tt-mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 14px; align-items: start }
-#timetable #tt-map svg { margin: 0 auto }
-#timetable .tt-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1 }
-#timetable .tt-seine { fill: none; stroke: var(--div-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .8 }
-#timetable .tt-ln { fill: none; stroke: var(--struct-edge); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55 }
-#timetable .tt-ln.link { stroke-dasharray: 6 3 }
-#timetable .tt-box { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.2 }
-#timetable .tt-track { stroke: var(--rule); stroke-width: 1.4 }
-#timetable .tt-sname { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round }
-#timetable .tt-edge { font-size: 11.5px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round }
-#timetable .tt-dot { fill: var(--c); stroke: var(--surface); stroke-width: 1 }
-#timetable .tt-dot.stopped { stroke: var(--ink); stroke-width: .9 }
-#timetable .tt-dot:focus-visible { outline: none; stroke: var(--accent); stroke-width: 2.5 }
-#timetable .tt-now { display: flex; flex-direction: column; gap: 6px }
-#timetable #tt-now { font-family: var(--display); font-size: 42px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1 }
-#timetable #tt-now-read { font-size: 13.5px; min-height: 2.8em }
-#timetable .tt-now .legend { flex-direction: column; align-items: flex-start }
+:is(#timetable, .borrow-timetable) .tt-mapwrap { display: grid; grid-template-columns: minmax(0, 1fr) 210px; gap: 14px; align-items: start }
+:is(#timetable, .borrow-timetable) #tt-map svg { margin: 0 auto }
+:is(#timetable, .borrow-timetable) .tt-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1 }
+:is(#timetable, .borrow-timetable) .tt-seine { fill: none; stroke: var(--div-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .8 }
+:is(#timetable, .borrow-timetable) .tt-ln { fill: none; stroke: var(--struct-edge); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55 }
+:is(#timetable, .borrow-timetable) .tt-ln.link { stroke-dasharray: 6 3 }
+:is(#timetable, .borrow-timetable) .tt-box { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.2 }
+:is(#timetable, .borrow-timetable) .tt-track { stroke: var(--rule); stroke-width: 1.4 }
+:is(#timetable, .borrow-timetable) .tt-sname { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round }
+:is(#timetable, .borrow-timetable) .tt-edge { font-size: 11.5px; fill: var(--muted); paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round }
+:is(#timetable, .borrow-timetable) .tt-dot { fill: var(--c); stroke: var(--surface); stroke-width: 1 }
+:is(#timetable, .borrow-timetable) .tt-dot.stopped { stroke: var(--ink); stroke-width: .9 }
+:is(#timetable, .borrow-timetable) .tt-dot:focus-visible { outline: none; stroke: var(--accent); stroke-width: 2.5 }
+:is(#timetable, .borrow-timetable) .tt-now { display: flex; flex-direction: column; gap: 6px }
+:is(#timetable, .borrow-timetable) #tt-now { font-family: var(--display); font-size: 42px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; line-height: 1 }
+:is(#timetable, .borrow-timetable) #tt-now-read { font-size: 13.5px; min-height: 2.8em }
+:is(#timetable, .borrow-timetable) .tt-now .legend { flex-direction: column; align-items: flex-start }
 @media (max-width: 760px) {
-  #timetable .tt-mapwrap { grid-template-columns: minmax(0, 1fr) }
+  :is(#timetable, .borrow-timetable) .tt-mapwrap { grid-template-columns: minmax(0, 1fr) }
 }
 
 /* comparison */
-#timetable .tt-vs { color: var(--muted); font-weight: 400 }
+:is(#timetable, .borrow-timetable) .tt-vs { color: var(--muted); font-weight: 400 }
 
 /* all trains: squares for TGVs, dots for suburban lines, ringed dots for regional express */
-#timetable .tt-dot .tt-halo { fill: none; stroke: var(--c); stroke-width: 1.4 }
-#timetable .tt-dot.stopped .tt-halo { stroke: var(--ink); stroke-width: 1 }
-#timetable .tt-ln.sub { stroke: var(--c); stroke-width: 2; opacity: .45 }
-#timetable .tt-box.reg { fill: var(--struct) }
-#timetable .legend i.tt-pair.sq b { border-radius: 2px }
-#timetable .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
-#timetable .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }
+:is(#timetable, .borrow-timetable) .tt-dot .tt-halo { fill: none; stroke: var(--c); stroke-width: 1.4 }
+:is(#timetable, .borrow-timetable) .tt-dot.stopped .tt-halo { stroke: var(--ink); stroke-width: 1 }
+:is(#timetable, .borrow-timetable) .tt-ln.sub { stroke: var(--c); stroke-width: 2; opacity: .45 }
+:is(#timetable, .borrow-timetable) .tt-box.reg { fill: var(--struct) }
+:is(#timetable, .borrow-timetable) .legend i.tt-pair.sq b { border-radius: 2px }
+:is(#timetable, .borrow-timetable) .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
+:is(#timetable, .borrow-timetable) .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }
 
 </style>
 </head>
 <body>
 <div class="topbar">
-  <a class="brand" href="#summary"><b>Paris Through Stations</b><span>Pre-feasibility case, October 2026</span></a>
+  <a class="brand" href="#presentation"><b>Paris Through Stations</b><span>Pre-feasibility case, October 2026</span></a>
   <span class="here"></span>
+  <nav class="views" aria-label="Views"><a href="#presentation" data-view="presentation">Presentation</a><a href="#summary" data-view="report">Full report</a></nav>
   <button class="menu-btn" type="button">Contents</button>
 </div>
 <div class="shell">
   <nav class="contents" aria-label="Contents">
-    <h4>Report</h4>
+
+    <a href="#presentation"><i></i><span>Presentation</span></a>
+    <h4>Full report</h4>
     <a href="#summary"><i></i><span>Summary</span></a>
     <a href="#why"><i>1</i><span>The problem</span></a>
     <a href="#project"><i>2</i><span>The project</span></a>
@@ -1104,6 +1322,227 @@ details[open] > summary { margin-bottom: 4px }
     <a href="#sources"><i>F</i><span>Sources</span></a>
   </nav>
   <main>
+<section class="page presentation" id="presentation" data-title="Presentation" hidden>
+<div class="pz">
+<nav class="pz-dots" id="pz-dots" aria-label="Parts of the presentation"></nav>
+
+<section class="pz-slide pz-hero" id="presentation.hero" data-dot="The project">
+  <svg class="pz-hero-bg" id="pz-hero-svg" aria-hidden="true"></svg>
+  <div class="pz-in">
+    <p class="pz-kicker">Paris · heavy rail · a pre-feasibility case</p>
+    <h1 class="pz-title">The <span>Triangle</span> Project</h1>
+    <p class="pz-sub">Three through stations under Paris, joined by three tunnels. No main-line train ends in Paris any more: every train runs through, stops twice and goes on.</p>
+    <div class="pz-money">
+      <div class="pz-big"><b data-count="41.7" data-pre="€" data-post="bn" data-d="1">€41.7bn</b><span>to build, 15% for risk included</span></div>
+      <div class="pz-big good"><b data-count="2.55" data-pre="€" data-post="bn" data-d="2">€2.55bn</b><span>back every year in benefits, 116% of its yearly bill of €2.19bn</span></div>
+      <div class="pz-big good"><b data-count="13.1" data-pre="+€" data-post="bn" data-d="1">+€13.1bn</b><span>net for the country in today's money; paid back by 2073</span></div>
+      <div class="pz-big"><b data-count="189" data-post="%" data-d="0">189%</b><span>of its running costs paid by its own income; the building plan closes with a €12.0bn grant</span></div>
+    </div>
+    <div class="pz-flash">
+      <div class="pz-chip"><b data-count="6" data-post=" min" data-d="0">6 min</b><span>from any of the three stations to any other</span></div>
+      <div class="pz-chip"><b data-count="4.6" data-pre="-" data-post=" min" data-d="1">-4.6 min</b><span>on average to reach your TGV from anywhere in Paris, up to 9.4</span></div>
+      <div class="pz-chip"><b data-count="87" data-post=" ha" data-d="0">87 ha</b><span>of new parks where the tracks were, in four big parks</span></div>
+      <div class="pz-chip"><b data-count="5.2" data-post="M" data-d="1">5.2M</b><span>passengers a year who no longer cross Paris by metro between two trains</span></div>
+      <div class="pz-chip"><b data-count="229" data-post="k" data-d="0">229k</b><span>trips a day between suburbs on two sides of Paris on a through line, from 146k</span></div>
+      <div class="pz-chip"><b data-pair="Lille,Bordeaux" data-what="project"></b><span>Lille to Bordeaux with no change, every hour, instead of <i data-pair="Lille,Bordeaux" data-what="today"></i></span></div>
+    </div>
+    <a class="pz-scroll" href="#presentation.idea">See how it works</a>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.idea" data-dot="The idea">
+  <div class="pz-in">
+    <p class="pz-kicker">The idea</p>
+    <h2 class="pz-h">From four dead ends to one triangle</h2>
+    <div class="pz-split">
+      <div class="pz-stage"><svg id="pz-idea-svg" viewBox="0 0 520 400" role="img" aria-label="Schematic of Paris: today four terminals where trains end; with the project three through stations joined in a triangle"></svg></div>
+      <div class="pz-story">
+        <div class="pz-steps" id="pz-idea-steps" role="group" aria-label="Steps"></div>
+        <div class="pz-step" data-step="0">
+          <h3>Today: every train stops at the end of the line</h3>
+          <p>Four high-speed terminals, one for each direction. Trains come in, wait, and go back out the way they came. To go on, you take the metro across Paris to another station.</p>
+          <ul><li>118 platform tracks at the four terminals, and still full in the busy hours</li><li>Track fields that cut the north, the east and the south of Paris</li></ul>
+        </div>
+        <div class="pz-step" data-step="1" hidden>
+          <h3>The TGV triangle</h3>
+          <p>Gare du Nord and Gare de l'Est merge into one deep station, Paris Nord-Est. With Gare de Lyon and Montparnasse, three through stations are joined by one twin-track tunnel on each side of the triangle.</p>
+          <ul><li>6 minutes from any station to any other</li><li>Every station has direct trains to every direction: north, east, south-east and Atlantic</li><li>No train reverses: each one stops twice and goes on</li></ul>
+        </div>
+        <div class="pz-step" data-step="2" hidden>
+          <h3>Regional and suburban trains too</h3>
+          <p>Regional express trains run in the TGV tunnels, in the gaps between the TGVs, and on to the far side of France's regions. Two suburban tunnels join the suburbs across Paris.</p>
+          <ul><li><b class="pz-ln n">N</b> lines P and N merged, from the north and the east through Nord-Est to Montparnasse</li><li><b class="pz-ln h">H</b> lines H, K and L, through Nord-Est to a deep station under Saint-Lazare</li><li>The surface terminals close; their tracks become parks</li></ul>
+        </div>
+        <p class="pz-more"><a href="#project">The project in detail</a><a href="#why">Why Paris stops every train</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.underground" data-dot="Underground">
+  <div class="pz-in">
+    <p class="pz-kicker">How</p>
+    <h2 class="pz-h">The terminals go underground, as in Zürich and London</h2>
+    <p class="pz-lead">The surface stations disappear: their platforms move to deep through stations right under the old halls, and the tunnels come up at the ring road, on today's tracks.</p>
+    <div class="pz-grid4">
+      <div class="pz-stat"><b data-count="3" data-d="0">3</b><span>twin-track TGV tunnels, one on each side of the triangle</span></div>
+      <div class="pz-stat"><b data-count="44.5" data-post=" km" data-d="1">44.5 km</b><span>of twin-track tunnel in all, approaches and suburban lines included</span></div>
+      <div class="pz-stat"><b data-count="48" data-d="0">48</b><span>platform tracks in four deep stations</span></div>
+      <div class="pz-stat"><b>Nord + Est</b><span>become one station, Paris Nord-Est, entered from both halls</span></div>
+    </div>
+    <div class="pz-cases">
+      <a class="pz-case" href="#zurich"><span class="pz-flag">Zürich</span><h3>A terminus that became a through station</h3><p>Twice, in 1990 and 2014, a four-track through station was dug under the terminus while it kept running.</p><i>Read the case</i></a>
+      <a class="pz-case" href="#elizabeth"><span class="pz-flag">London</span><h3>The Elizabeth line</h3><p>A deep tunnel with large stations joining the two sides of the capital, open since 2022.</p><i>Read the case</i></a>
+      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Four deep stations</h3><p>Paris Nord-Est, Gare de Lyon and Montparnasse for the triangle; a deep Saint-Lazare for line H.</p><i>How the stations are laid out</i></a>
+    </div>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.nord" data-dot="Gare du Nord">
+  <div class="pz-in">
+    <p class="pz-kicker">Gare du Nord, before and after</p>
+    <h2 class="pz-h">The hall becomes a place to welcome passengers</h2>
+    <div class="pz-split wide">
+      <div class="pz-stage pz-iso">
+        <div class="pz-toggle" id="pz-nord-toggle" role="group" aria-label="Before or after"></div>
+        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="Gare du Nord seen from above at an angle: today, tracks fill the hall and the land behind it; with the project, the hall is open to passengers, stairs lead down to the deep platforms, and a park covers the old tracks"></svg>
+      </div>
+      <div class="pz-story" id="pz-nord-text">
+        <div class="pz-step" data-step="0">
+          <h3>Today</h3>
+          <p>The tracks run right into the hall. Passengers wait in a strip of about 30 m at the street end, and behind the hall a field of tracks runs for kilometres.</p>
+          <div class="pz-mini"><b>3,300 m²</b><span>for passengers in the hall</span></div>
+        </div>
+        <div class="pz-step" data-step="1" hidden>
+          <h3>With the project</h3>
+          <p>The whole hall is for people: a welcome area with ways down to the deep platforms of Paris Nord-Est, where every TGV, regional and suburban train now stops. Outside, a park takes the place of the tracks.</p>
+          <div class="pz-mini good"><b>16,600 m²</b><span>for passengers in the same hall, 5 times as much</span></div>
+        </div>
+        <p class="pz-note">In the three halls of Gare du Nord, Gare de Lyon and Montparnasse, about 10,300 m² for passengers today, 51,700 m² with the project. An illustration, not a design.</p>
+        <p class="pz-more"><a href="#stations.halls">The halls</a><a href="#stations.nordest">Paris Nord-Est</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.hour" data-dot="The hour">
+  <div class="pz-in">
+    <p class="pz-kicker">The timetable</p>
+    <h2 class="pz-h">One beat of 12 minutes, the Swiss way</h2>
+    <p class="pz-lead">Every train stops 7 minutes, at the same minutes every hour, at all three stations: 15 trains an hour on each side of each station. Press play and watch an hour of TGVs run through Paris.</p>
+    <div class="pz-panel borrow-timetable" id="pz-hour-host"></div>
+    <p class="pz-more"><a href="#timetable">The timetable</a><a href="#pulse">The Swiss pulse</a><a href="#service">Which trains run where</a></p>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.parks" data-dot="Four parks">
+  <div class="pz-in">
+    <p class="pz-kicker">Where the tracks were</p>
+    <h2 class="pz-h">Four great parks: Nord, Est, Lyon, Montparnasse</h2>
+    <div class="pz-split">
+      <div class="pz-stage"><svg id="pz-parks-svg" role="img" aria-label="Map of Paris with the four parks on the old track fields north of Gare du Nord and Gare de l'Est, east of Gare de Lyon and south-west of Montparnasse"></svg></div>
+      <div class="pz-story">
+        <p>No train needs the surface tracks any more, so the fans of tracks behind the stations are freed, from the end of each hall out to where the tunnels come up.</p>
+        <div class="pz-grid2">
+          <div class="pz-stat"><b data-count="160" data-post=" ha" data-d="0">160 ha</b><span>of track fields</span></div>
+          <div class="pz-stat"><b data-count="109" data-post=" ha" data-d="0">109 ha</b><span>freed, once the tracks the RER and freight keep are left</span></div>
+          <div class="pz-stat good"><b data-count="87" data-post=" ha" data-d="0">87 ha</b><span>of parks, and 16 ha of building plots</span></div>
+          <div class="pz-stat good"><b data-count="8.7" data-post="M" data-d="1">8.7M</b><span>visits a year</span></div>
+        </div>
+        <p class="pz-note">Areas read from maps, never officially measured.</p>
+        <p class="pz-more"><a href="#project.parks">Parks where the tracks were</a><a href="#economy.benefits">What they are worth</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.france" data-dot="Across France">
+  <div class="pz-in">
+    <p class="pz-kicker">For all of France</p>
+    <h2 class="pz-h">Across France with no change in Paris</h2>
+    <p class="pz-lead">Today a trip from Lille to Bordeaux means a metro ride across Paris or one of the rare trains that loop round it. With the triangle, the train runs through, every hour.</p>
+    <div class="pz-toggle" id="pz-fr-toggle" role="group" aria-label="Today or with the project"></div>
+    <div class="pz-split">
+      <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Diagram of French cities joined through Paris, with the time of each journey"></svg></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div></div>
+    </div>
+    <p class="pz-more"><a href="#economy.france">Cross-France journeys</a><a href="#crossing.tgv">Crossing Paris by TGV</a></p>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.regional" data-dot="Regional trains">
+  <div class="pz-in">
+    <p class="pz-kicker">Regional and suburban trains</p>
+    <h2 class="pz-h">The suburbs joined across Paris</h2>
+    <p class="pz-lead">The jobs are on the far side of Paris. Through lines take commuters there without a change.</p>
+    <div class="pz-lines">
+      <div class="pz-line n"><b class="pz-ln n">N</b><div><h3>Lines P and N, merged</h3><p>From the north-east and east through Nord-Est to Montparnasse, and on to Massy, Saclay, Versailles and Saint-Quentin.</p></div></div>
+      <div class="pz-line h"><b class="pz-ln h">H</b><div><h3>Lines H, K and L</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense.</p></div></div>
+      <div class="pz-line t"><b class="pz-ln t">TER</b><div><h3>Regional express trains</h3><p>In the TGV tunnels: from the north on to Montparnasse, from the east on to Gare de Lyon. None ends in Paris.</p></div></div>
+    </div>
+    <div class="pz-grid3">
+      <div class="pz-stat good"><b data-count="229" data-post="k" data-d="0">229k</b><span>suburb-to-suburb trips a day across Paris, from 146k</span></div>
+      <div class="pz-stat"><b data-count="31" data-pre="+" data-post="M" data-d="0">+31M</b><span>regional journeys a year</span></div>
+      <div class="pz-stat"><b data-count="13" data-pre="+" data-post="M" data-d="0">+13M</b><span>high-speed journeys a year</span></div>
+    </div>
+    <p class="pz-note">Fares stay as they are at the original stations.</p>
+    <p class="pz-more"><a href="#crossing.regional">Crossing Paris by regional train</a><a href="#economy.jobs">Jobs across Paris</a><a href="#project.networks">The networks in the tunnels</a></p>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.access" data-dot="Reaching a train">
+  <div class="pz-in">
+    <p class="pz-kicker">Reaching the station</p>
+    <h2 class="pz-h">Two stations for every train, so one is nearer</h2>
+    <p class="pz-lead">Each train stops at two of the three stations. If you live in the south of Paris, your train to Lille now stops at Montparnasse or Gare de Lyon: no more trek to Gare du Nord. From the average address in Paris, 27.4 minutes become 22.8, and no address is further than today.</p>
+    <div class="pz-panel borrow-access" id="pz-access-host"></div>
+    <div class="pz-panel borrow-access" id="pz-access-host-2"></div>
+    <p class="pz-more"><a href="#access">Reaching the station</a></p>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.works" data-dot="Works">
+  <div class="pz-in">
+    <p class="pz-kicker">Building it</p>
+    <h2 class="pz-h">12 years, in two stages</h2>
+    <p class="pz-lead">The halls stay; the platforms and the approach tracks go underground. The report holds the methods, the year-by-year schedule and the precedents.</p>
+    <div class="pz-panel borrow-works" id="pz-works-host"></div>
+    <p class="pz-more"><a href="#works">Works and stages</a><a href="#cost">The cost</a></p>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.money" data-dot="The return">
+  <div class="pz-in">
+    <p class="pz-kicker">The return</p>
+    <h2 class="pz-h">It pays for itself, and more</h2>
+    <div class="pz-split">
+      <div class="pz-story">
+        <div class="pz-vs">
+          <div><span>Each year it costs</span><b>€2.19bn</b><i style="--w: 86%"></i><small>repaying the €41.7bn of building, and running it</small></div>
+          <div class="good"><span>Each year it gives back</span><b>€2.55bn</b><i style="--w: 100%"></i><small>time saved, comfort, jobs, parks, cleaner air: 116% of the cost</small></div>
+        </div>
+        <ul class="pz-ticks">
+          <li><b>Fully financed.</b> Its own income covers 189% of the running costs; building is paid by a regional business tax package and a grant of €12.0bn, 29% of the cost.</li>
+          <li><b>A return for the country.</b> +€13.1bn net in today's money under the French rules, at the State's 4.5% rate: 1.33 euros back for each euro.</li>
+          <li><b>Paid back by 2073.</b> Public budgets also get about €416 million a year back in taxes.</li>
+        </ul>
+      </div>
+      <figure class="pz-stage pz-curve"><figcaption>Running total in today's money, € billion</figcaption><svg id="pz-curve-svg" role="img" aria-label="The running total of benefits minus costs, in today's money, falls during the works and climbs back above zero"></svg></figure>
+    </div>
+    <p class="pz-more"><a href="#financing">Financing</a><a href="#economy">The economic return</a><a href="#risks">Risks and what to verify</a></p>
+  </div>
+</section>
+
+<section class="pz-slide pz-end" id="presentation.report" data-dot="Full report">
+  <div class="pz-in">
+    <h2 class="pz-h">All the figures, sources and assumptions</h2>
+    <p class="pz-lead">Every number on this page comes from the study's model. The full report sets out how each one is made, what it rests on and what is still to verify.</p>
+    <a class="pz-cta" href="#summary">Read the full report</a>
+  </div>
+</section>
+</div>
+
+</section>
 <section class="page" id="summary" data-title="Summary" hidden>
 <header><span class="eyebrow">Summary</span><h1>Through stations under Paris</h1><p class="lede">Every long-distance train to Paris ends in a dead-end station. This study tests replacing the four terminals used by high-speed trains by three deep through stations, Paris Nord-Est, Gare de Lyon and Montparnasse, joined in a triangle of high-speed tunnels. Regional express trains share the TGV tunnels, in the paths between the TGVs; suburban line N runs in its own tunnel from the north and east through Nord-Est to Montparnasse, and suburban line H from Nord-Est to a new deep station under Saint-Lazare. No train reverses, every station has direct trains to every direction, and nobody is further from a train than today. It would cost about €42 billion (€28 to 62 billion across unit prices and risk), and on the benefits counted it gives back more than it costs: 116% of its yearly cost each year, +€13.1bn in today's money under the French rules.</p></header>
 
@@ -5019,6 +5458,30 @@ window.PTS_DATA = {"finance":{"base":{"cost_def":{"rates":{"low":{"tunnel_civil"
     });
   };
 
+  // ---------------------------------------------------------------- borrowing: one section shows a figure of another
+  /* The presentation shows some figures of the report as they are, with no copy: the nodes move into the presentation
+     while it is shown and go back to their section when that section is shown. The lender's own lookups by id still
+     find them, because its root falls back to the whole document for what it no longer holds. */
+  const borrowed = [];
+  PTS.ensure = function (id) {
+    const page = document.getElementById(id);
+    if (!page || started[id] || !inits[id]) return page;
+    started[id] = true;
+    const q1 = page.querySelector;
+    page.querySelector = function (sel) { return q1.call(this, sel) || (/^#[\w-]+$/.test(sel) ? document.querySelector(sel) : null); };
+    try { inits[id](page); } catch (e) { console.error('Section ' + id + ' failed to start', e); }
+    return page;
+  };
+  PTS.borrow = function (hostPage, host, nodes) {
+    nodes.forEach(function (el) { if (el) borrowed.push({ el: el, page: hostPage, host: host, home: el.parentNode, next: el.nextSibling }); });
+    place();
+  };
+  function place() {
+    const id = current && current.id;
+    borrowed.forEach(function (b) { if (id === b.page) { if (b.el.parentNode !== b.host) b.host.appendChild(b.el); } });
+    borrowed.slice().reverse().forEach(function (b) { if (id !== b.page && b.el.parentNode !== b.home) b.home.insertBefore(b.el, b.next && b.next.parentNode === b.home ? b.next : null); });
+  }
+
   // ---------------------------------------------------------------- router: #section or #section.anchor
   let pages = [], current = null;
   function parse(hash) { const h = (hash || '').replace(/^#/, ''); const i = h.indexOf('.'); return { id: i < 0 ? h : h.slice(0, i), anchor: i < 0 ? null : h }; }
@@ -5031,9 +5494,11 @@ window.PTS_DATA = {"finance":{"base":{"cost_def":{"rates":{"low":{"tunnel_civil"
     if (page !== current) {
       pages.forEach(function (p) { p.hidden = p !== page; });
       current = page;
+      document.body.setAttribute('data-page', page.id);
+      place();
       PTS.$$('.contents a').forEach(function (a) { if (a.getAttribute('href') === '#' + page.id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
       const here = PTS.$('.topbar .here'); if (here) here.textContent = page.dataset.title || '';
-      if (inits[page.id] && !started[page.id]) { started[page.id] = true; try { inits[page.id](page); } catch (e) { console.error('Section ' + page.id + ' failed to start', e); } }
+      PTS.ensure(page.id);
       PTS.stackTables(page);
     }
     closeMenu();
@@ -5390,6 +5855,413 @@ window.PTS_DATA = {"finance":{"base":{"cost_def":{"rates":{"low":{"tunnel_civil"
     return null;
   };
 })();
+
+/* ---- presentation */
+PTS.section('presentation', function (root) {
+  'use strict';
+  const D = PTS.data, F = PTS.fmt, h = PTS.h, s = PTS.s;
+  const $ = function (sel) { return root.querySelector(sel); };
+  const calm = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const add = function (g, tag, attrs) { const e = s(tag, attrs); g.appendChild(e); return e; };
+  const pz = $('.pz'); pz.classList.add('pz-js');
+  const hm = function (m) { m = Math.round(m); return Math.floor(m / 60) + 'h' + String(m % 60).padStart(2, '0'); };
+  const SHOW = D.french.france.show;
+  const pairOf = function (a, b) { return SHOW.filter(function (p) { return (p.pair[0] === a && p.pair[1] === b) || (p.pair[0] === b && p.pair[1] === a); })[0]; };
+
+  // ---------------------------------------------------------------- journey times written into the text
+  PTS.$$('[data-pair]', root).forEach(function (el) {
+    const q = el.getAttribute('data-pair').split(','), p = pairOf(q[0], q[1]); if (!p) return;
+    el.textContent = hm(el.getAttribute('data-what') === 'today' ? p.today_min : p.project_min);
+  });
+
+  // ---------------------------------------------------------------- counters and reveal on scroll
+  const count = function (el) {
+    const to = parseFloat(el.getAttribute('data-count')), d = +el.getAttribute('data-d') || 0, pre = el.getAttribute('data-pre') || '', post = el.getAttribute('data-post') || '';
+    if (!isFinite(to)) return;
+    if (calm) { el.textContent = pre + F.n(to, d) + post; return; }
+    const t0 = performance.now(), dur = 1400;
+    const step = function (now) { const f = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - f, 3); el.textContent = pre + F.n(to * e, d) + post; if (f < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  const onShow = [];
+  const reveal = function (box) {
+    if (box.classList.contains('on')) return;
+    box.classList.add('on');
+    PTS.$$('[data-count]', box).forEach(count);
+    onShow.forEach(function (o) { if (box.contains(o.el)) o.fn(); });
+  };
+  const slides = PTS.$$('.pz-slide', root);
+  const dots = $('#pz-dots');
+  slides.forEach(function (sl) { dots.appendChild(h('a', { href: '#' + sl.id, 'aria-label': sl.getAttribute('data-dot') }, h('span', { text: sl.getAttribute('data-dot') }))); });
+  const dotLinks = PTS.$$('a', dots);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) reveal(e.target); }); }, { threshold: 0.12 });
+    PTS.$$('.pz-in', root).forEach(function (b) { io.observe(b); });
+    const io2 = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { const i = slides.indexOf(e.target); dotLinks.forEach(function (a, k) { a.classList.toggle('on', k === i); }); } });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    slides.forEach(function (sl) { io2.observe(sl); });
+  } else PTS.$$('.pz-in', root).forEach(reveal);
+  const whenShown = function (el, fn) { onShow.push({ el: el, fn: fn }); if (el.closest('.pz-in.on')) fn(); };
+
+  const defs = function (svg) {
+    const d = add(svg, 'defs', {});
+    const f = add(d, 'filter', { id: svg.id + '-glow', x: '-50%', y: '-50%', width: '200%', height: '200%' });
+    add(f, 'feGaussianBlur', { stdDeviation: 3, result: 'b' });
+    const m = add(f, 'feMerge', {}); add(m, 'feMergeNode', { in: 'b' }); add(m, 'feMergeNode', { in: 'SourceGraphic' });
+    return 'url(#' + svg.id + '-glow)';
+  };
+  const ride = function (g, d, o) {                                     // a dot that runs along a path, forever
+    const c = add(g, 'circle', { r: o.r || 4, fill: o.c, filter: o.glow, opacity: calm ? 0 : 1 });
+    if (calm) return c;
+    const am = add(c, 'animateMotion', { dur: o.dur + 's', repeatCount: 'indefinite', begin: (o.begin || 0) + 's', path: d, rotate: 'auto' });
+    if (o.back) { am.setAttribute('keyPoints', '0;1;1;0;0'); am.setAttribute('keyTimes', '0;0.4;0.5;0.9;1'); am.setAttribute('calcMode', 'linear'); }
+    return c;
+  };
+
+  // ---------------------------------------------------------------- hero: the triangle with trains running through
+  (function () {
+    const svg = $('#pz-hero-svg'); svg.setAttribute('viewBox', '0 0 1200 800'); svg.setAttribute('preserveAspectRatio', 'xMaxYMid slice');
+    const glow = defs(svg), g = add(svg, 'g', { transform: 'translate(520 40)' });
+    const NE = [470, 110], LY = [590, 300], MP = [330, 320];
+    const pt = function (p) { return p[0] + ' ' + p[1]; };
+    const ends = { N: [420, -60], E: [760, -20], S: [760, 560], A: [80, 620] };
+    // the lines coming in, and the triangle
+    [[ends.N, NE], [ends.E, NE], [ends.S, LY], [ends.A, MP]].forEach(function (q) { add(g, 'path', { d: 'M' + pt(q[0]) + ' L' + pt(q[1]), stroke: 'rgba(143,192,255,.22)', 'stroke-width': 2, fill: 'none' }); });
+    [[NE, LY], [LY, MP], [MP, NE]].forEach(function (q) { add(g, 'path', { d: 'M' + pt(q[0]) + ' L' + pt(q[1]), stroke: 'url(#pz-hero-grad)', 'stroke-width': 5, fill: 'none', filter: glow, opacity: .85 }); });
+    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', x1: 0, y1: 0, x2: 1, y2: 1 });
+    add(lg, 'stop', { offset: '0', 'stop-color': '#5aa2ff' }); add(lg, 'stop', { offset: '1', 'stop-color': '#3fe0a5' });
+    // trains: in from one line, two stops, out on another
+    const routes = [
+      [ends.N, NE, LY, ends.S, '#ff7a59'], [ends.S, LY, NE, ends.N, '#ffb199'], [ends.A, MP, NE, ends.E, '#a48bff'], [ends.E, NE, MP, ends.A, '#cbbcff'],
+      [ends.A, MP, LY, ends.S, '#3fe0a5'], [ends.S, LY, MP, ends.A, '#9cf0d0'], [ends.N, NE, MP, ends.A, '#5aa2ff'], [ends.E, NE, LY, ends.S, '#ffc24b']
+    ];
+    routes.forEach(function (r, i) { ride(g, 'M' + pt(r[0]) + ' L' + pt(r[1]) + ' L' + pt(r[2]) + ' L' + pt(r[3]), { c: r[4], glow: glow, r: 5, dur: 9, begin: -i * 1.1 }); });
+    [NE, LY, MP].forEach(function (q) {
+      add(g, 'circle', { cx: q[0], cy: q[1], r: 24, fill: 'rgba(68,215,255,.12)', stroke: 'rgba(68,215,255,.6)', 'stroke-width': 1.5 });
+      add(g, 'circle', { cx: q[0], cy: q[1], r: 8, fill: '#fff', filter: glow });
+    });
+  })();
+
+  // ---------------------------------------------------------------- the idea, in three steps
+  (function () {
+    const svg = $('#pz-idea-svg'), glow = defs(svg);
+    add(svg, 'ellipse', { cx: 260, cy: 205, rx: 175, ry: 135, fill: 'rgba(255,255,255,.035)', stroke: 'rgba(255,255,255,.14)', 'stroke-dasharray': '4 6' });
+    add(svg, 'text', { x: 260, y: 345, 'text-anchor': 'middle', class: 'dim', text: 'Paris, inside the ring road' });
+    const P = { NO: [246, 100], ES: [292, 112], NE: [270, 112], LY: [345, 268], MP: [182, 275], SL: [196, 130] };
+    const E = { N: [215, -10], E: [530, 40], S: [530, 410], A: [-10, 410], W: [-10, 95], SW: [60, 410], NW: [150, -10] };
+    const L = function (pts) { return 'M' + pts.map(function (p) { return p[0] + ' ' + p[1]; }).join(' L'); };
+    const layer = function (cls) { return add(svg, 'g', { class: 'pz-l ' + cls }); };
+    const today = layer('l0'), tri = layer('l1'), reg = layer('l2');
+    // today: four lines that end
+    [[E.N, P.NO, '#ff7a59'], [E.E, P.ES, '#a48bff'], [E.S, P.LY, '#ffc24b'], [E.A, P.MP, '#3fe0a5']].forEach(function (q, i) {
+      add(today, 'path', { d: L([q[0], q[1]]), stroke: 'rgba(255,255,255,.3)', 'stroke-width': 3, fill: 'none' });
+      ride(today, L([q[0], q[1]]), { c: q[2], glow: glow, r: 5, dur: 5, begin: -i * 1.3, back: true });
+    });
+    [['Gare du Nord', P.NO, -10, -10, 'end'], ["Gare de l'Est", P.ES, 12, -8, 'start'], ['Gare de Lyon', P.LY, 14, 4, 'start'], ['Montparnasse', P.MP, -14, 4, 'end']].forEach(function (q) {
+      add(today, 'rect', { x: q[1][0] - 7, y: q[1][1] - 7, width: 14, height: 14, rx: 3, fill: '#ff7a59' });
+      add(today, 'text', { x: q[1][0] + q[2], y: q[1][1] + q[3], 'text-anchor': q[4], class: 'big', text: q[0] });
+    });
+    add(today, 'text', { x: 260, y: 210, 'text-anchor': 'middle', class: 'dim', text: 'Trains go in, wait, and come back out' });
+    // the triangle: lines that go through
+    const tlines = [[E.N, P.NE, P.LY, E.S], [E.E, P.NE, P.MP, E.A], [E.A, P.MP, P.LY, E.S]];
+    tlines.forEach(function (r) { add(tri, 'path', { d: L(r), stroke: 'rgba(143,192,255,.25)', 'stroke-width': 3, fill: 'none' }); });
+    [[P.NE, P.LY], [P.LY, P.MP], [P.MP, P.NE]].forEach(function (q) { add(tri, 'path', { d: L(q), stroke: '#44d7ff', 'stroke-width': 6, fill: 'none', filter: glow }); });
+    const trips = [[E.N, P.NE, P.LY, E.S, '#ff7a59'], [E.S, P.LY, P.NE, E.N, '#ffb199'], [E.E, P.NE, P.MP, E.A, '#a48bff'], [E.A, P.MP, P.NE, E.E, '#cbbcff'], [E.A, P.MP, P.LY, E.S, '#3fe0a5'], [E.S, P.LY, P.MP, E.A, '#9cf0d0']];
+    trips.forEach(function (r, i) { ride(tri, L(r.slice(0, 4)), { c: r[4], glow: glow, r: 5, dur: 7, begin: -i * 1.15 }); });
+    [['Paris Nord-Est', P.NE, 0, -18, 'middle'], ['Gare de Lyon', P.LY, 16, 4, 'start'], ['Montparnasse', P.MP, -16, 4, 'end']].forEach(function (q) {
+      add(tri, 'circle', { cx: q[1][0], cy: q[1][1], r: 10, fill: '#fff', filter: glow });
+      add(tri, 'text', { x: q[1][0] + q[2], y: q[1][1] + q[3], 'text-anchor': q[4], class: 'big', text: q[0] });
+    });
+    add(tri, 'text', { x: 262, y: 222, 'text-anchor': 'middle', class: 'big', text: D.model.run_min + ' min', style: 'fill: #44d7ff' });
+    add(tri, 'text', { x: 262, y: 238, 'text-anchor': 'middle', class: 'dim', text: 'between any two stations' });
+    // regional: line N, line H, regional express trains in the TGV tunnels
+    const off = function (pts, dx, dy) { return pts.map(function (p) { return [p[0] + dx, p[1] + dy]; }); };
+    const lnN = [E.E, [300, 128], off([P.NE], 4, 10)[0], off([P.MP], 8, 8)[0], E.SW], lnH = [E.NW, [262, 120], [214, 136], P.SL, E.W];
+    add(reg, 'path', { d: L(lnN), stroke: '#ffc24b', 'stroke-width': 4, fill: 'none', 'stroke-linejoin': 'round' });
+    add(reg, 'path', { d: L(lnH), stroke: '#ff6fb1', 'stroke-width': 4, fill: 'none', 'stroke-linejoin': 'round' });
+    add(reg, 'path', { d: L(off([E.N, P.NE, P.MP, E.A], -7, 0)), stroke: '#a48bff', 'stroke-width': 2, 'stroke-dasharray': '6 5', fill: 'none' });
+    ride(reg, L(lnN), { c: '#ffc24b', glow: glow, r: 4, dur: 8 }); ride(reg, L(lnN), { c: '#ffc24b', glow: glow, r: 4, dur: 8, begin: -4 });
+    ride(reg, L(lnH), { c: '#ff6fb1', glow: glow, r: 4, dur: 7 }); ride(reg, L(lnH), { c: '#ff6fb1', glow: glow, r: 4, dur: 7, begin: -3.5 });
+    add(reg, 'rect', { x: P.SL[0] - 6, y: P.SL[1] - 6, width: 12, height: 12, rx: 3, fill: '#ff6fb1' });
+    add(reg, 'text', { x: P.SL[0] - 12, y: P.SL[1] - 10, 'text-anchor': 'end', class: 'big', text: 'Saint-Lazare' });
+    [['N', 70, 380, '#ffc24b'], ['H', 30, 84, '#ff6fb1'], ['TER', 30, 330, '#a48bff']].forEach(function (q) {
+      add(reg, 'rect', { x: q[1] - 4, y: q[2] - 14, width: q[0].length * 10 + 10, height: 20, rx: 5, fill: q[3] });
+      add(reg, 'text', { x: q[1] + 1, y: q[2] + 1, class: 'big', text: q[0], style: 'fill: #06101f; font-size: 14px' });
+    });
+    const steps = PTS.$$('.pz-step', $('#presentation\\.idea'));
+    let cur = 0, timer = null;
+    const set = function (v) {
+      cur = +v; svg.setAttribute('data-step', cur);
+      today.style.opacity = cur === 0 ? 1 : 0; tri.style.opacity = cur >= 1 ? 1 : 0; reg.style.opacity = cur >= 2 ? 1 : 0;
+      steps.forEach(function (st) { st.hidden = +st.getAttribute('data-step') !== cur; });
+    };
+    [today, tri, reg].forEach(function (g) { g.style.transition = 'opacity .7s ease'; });
+    const ctl = PTS.steps($('#pz-idea-steps'), [['0', 'Today'], ['1', 'The TGV triangle'], ['2', 'Regional trains too']], '0', function (v) { clearInterval(timer); set(v); });
+    set(0);
+    whenShown(svg, function () { if (calm || timer) return; timer = setInterval(function () { const v = (cur + 1) % 3; ctl.set(String(v), true); set(v); if (v === 2) clearInterval(timer); }, 5000); });
+  })();
+
+  // ---------------------------------------------------------------- Gare du Nord, before and after, seen from above at an angle
+  (function () {
+    const svg = $('#pz-nord-svg'), glow = defs(svg);
+    const C = Math.cos(Math.PI / 6), S = 0.5;
+    let k = 8.6, ox = 0, oy = 0;
+    const P = function (x, y, z) { return [ox + (x - y) * C * k, oy + (x + y) * S * k - (z || 0) * k]; };
+    const pts = function (a) { return a.map(function (p) { const q = P(p[0], p[1], p[2]); return q[0].toFixed(1) + ',' + q[1].toFixed(1); }).join(' '); };
+    // fit the ground block to the drawing
+    const G = { x0: -8, x1: 22, y0: -6, y1: 50, d: 10 };
+    (function () {
+      const c = [[G.x0, G.y0, 7], [G.x1, G.y0, 0], [G.x0, G.y1, 0], [G.x1, G.y1, -G.d], [G.x0, G.y1, -G.d], [G.x1, G.y0, -G.d]].map(function (p) { return P(p[0], p[1], p[2]); });
+      const xs = c.map(function (p) { return p[0]; }), ys = c.map(function (p) { return p[1]; });
+      const sc = Math.min(740 / (Math.max.apply(0, xs) - Math.min.apply(0, xs)), 500 / (Math.max.apply(0, ys) - Math.min.apply(0, ys)));
+      k = k * sc; const c2 = c.map(function (p) { return [p[0] * sc, p[1] * sc]; });
+      ox = 10 - Math.min.apply(0, c2.map(function (p) { return p[0]; })); oy = 10 - Math.min.apply(0, c2.map(function (p) { return p[1]; }));
+    })();
+    const poly = function (g, a, attrs) { attrs.points = pts(a); return add(g, 'polygon', attrs); };
+    const box = function (g, x0, x1, y0, y1, z0, z1, col) {             // the three faces one sees: top, +x side, +y side
+      poly(g, [[x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1]], { fill: col[1] });
+      poly(g, [[x0, y1, z0], [x1, y1, z0], [x1, y1, z1], [x0, y1, z1]], { fill: col[2] });
+      poly(g, [[x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1]], { fill: col[0] });
+    };
+    const lab = function (g, x, y, z, txt, cls, dx, dy) { const p = P(x, y, z); const t = add(g, 'text', { x: p[0] + (dx || 0), y: p[1] + (dy || 0), class: cls || 'big', 'text-anchor': 'middle', text: txt }); return t; };
+    const line = function (g, a, b, attrs) { const p = P(a[0], a[1], a[2]), q = P(b[0], b[1], b[2]); attrs.x1 = p[0]; attrs.y1 = p[1]; attrs.x2 = q[0]; attrs.y2 = q[1]; return add(g, 'line', attrs); };
+    let seed = 7; const rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+
+    const HX0 = 0, HX1 = 11, HY0 = 30, HY1 = 45;                       // the hall: 17 tracks wide, 150 m deep, the front on the street
+    const fanX = function (y, t) { const f = Math.max(0, Math.min(1, (HY0 - y) / (HY0 - G.y0))); return HX0 - 5 * f + (HX1 - HX0 + 12 * f) * t; };   // the fan of tracks widens away from the hall
+
+    // the ground, cut open on the two near sides
+    const soil = add(svg, 'g', {});
+    poly(soil, [[G.x1, G.y0, 0], [G.x1, G.y1, 0], [G.x1, G.y1, -G.d], [G.x1, G.y0, -G.d]], { fill: '#2a2620' });
+    poly(soil, [[G.x0, G.y1, 0], [G.x1, G.y1, 0], [G.x1, G.y1, -G.d], [G.x0, G.y1, -G.d]], { fill: '#352f27' });
+    [-3, -6].forEach(function (z) { line(soil, [G.x1, G.y0, z], [G.x1, G.y1, z], { stroke: 'rgba(255,255,255,.06)' }); line(soil, [G.x0, G.y1, z], [G.x1, G.y1, z], { stroke: 'rgba(255,255,255,.06)' }); });
+
+    // after: the deep station and its tunnel, seen through the ground
+    const deep = add(svg, 'g', { class: 'pz-after' });
+    const DZ0 = -8.5, DZ1 = -5.5, DX0 = 8, DX1 = 18, DY0 = 12, DY1 = 42;
+    add(deep, 'path', { d: 'M' + P(11, G.y0, -7)[0] + ' ' + P(11, G.y0, -7)[1] + ' L' + P(11, DY0, -7)[0] + ' ' + P(11, DY0, -7)[1], stroke: 'rgba(68,215,255,.55)', 'stroke-width': 14 * k / 8.6, 'stroke-linecap': 'round', fill: 'none' });
+    add(deep, 'path', { d: 'M' + P(15, G.y0, -7)[0] + ' ' + P(15, G.y0, -7)[1] + ' L' + P(15, DY0, -7)[0] + ' ' + P(15, DY0, -7)[1], stroke: 'rgba(68,215,255,.55)', 'stroke-width': 14 * k / 8.6, 'stroke-linecap': 'round', fill: 'none' });
+    box(deep, DX0, DX1, DY0, DY1, DZ0, DZ1, ['rgba(68,215,255,.10)', 'rgba(68,215,255,.22)', 'rgba(68,215,255,.30)']);
+    for (let i = 0; i < 6; i++) {                                        // six TGV tracks, a train on four of them
+      const x = DX0 + 0.9 + i * 1.45;
+      line(deep, [x, DY0 + 1, DZ0], [x, DY1 - 1, DZ0], { stroke: 'rgba(255,255,255,.35)', 'stroke-width': 1 });
+      if (i % 3 === 2) continue;
+      const tg = add(deep, 'g', { class: 'pz-deeptrain' });
+      box(tg, x - 0.45, x + 0.45, DY0 + 3 + (i % 2) * 4, DY0 + 21 + (i % 2) * 4, DZ0, DZ0 + 1.2, ['#e9f6ff', '#7cc8f0', '#a9dcf5']);
+      if (!calm) { const v = P(0, -8, 0), o = P(0, 0, 0); tg.style.setProperty('--dx', (v[0] - o[0]) + 'px'); tg.style.setProperty('--dy', (v[1] - o[1]) + 'px'); tg.style.animation = 'pz-train ' + (7 + i) + 's ease-in-out ' + (-i * 1.7) + 's infinite alternate'; }
+    }
+    [[8.6, 33], [9.6, 38], [8.6, 42]].forEach(function (q) {             // the ways down from the hall
+      line(deep, [q[0], q[1], 0], [q[0] + 2, q[1] - 3, DZ1], { stroke: '#44d7ff', 'stroke-width': 3, filter: glow, 'stroke-dasharray': '3 3' });
+    });
+
+    // the ground's top: town and ballast today, see-through with the project
+    const top = add(svg, 'g', {});
+    const groundTop = poly(top, [[G.x0, G.y0, 0], [G.x1, G.y0, 0], [G.x1, G.y1, 0], [G.x0, G.y1, 0]], { fill: '#1b2333' });
+    poly(top, [[G.x0, HY1 + 0.5, 0.01], [G.x1, HY1 + 0.5, 0.01], [G.x1, G.y1, 0.01], [G.x0, G.y1, 0.01]], { fill: '#2b3447' });   // the street in front
+    lab(top, 18, 48, 0, 'Rue de Dunkerque', 'dim', 0, 4);
+
+    // the track field: before
+    const before = add(svg, 'g', { class: 'pz-before' });
+    poly(before, [[fanX(G.y0, 0), G.y0, 0.02], [fanX(G.y0, 1), G.y0, 0.02], [HX1, HY0, 0.02], [HX1, HY1 - 3, 0.02], [HX0, HY1 - 3, 0.02], [HX0, HY0, 0.02]], { fill: '#3a3530' });
+    for (let t = 0; t < 17; t++) {
+      const f = (t + 0.5) / 17, a = [fanX(G.y0, f), G.y0, 0.03], b = [fanX(HY0, f), HY0, 0.03], c = [HX0 + (HX1 - HX0) * f, HY1 - 3, 0.03];
+      add(before, 'polyline', { points: pts([a, b, c]), stroke: 'rgba(200,190,170,.55)', 'stroke-width': 1.1, fill: 'none' });
+    }
+    [[2, 18], [5, 22], [7.5, 16], [10, 20]].forEach(function (q, i) {   // trains standing in the hall and on the approach
+      const x = HX0 + (HX1 - HX0) * (([1, 5, 9, 14][i] + 0.5) / 17);
+      const tg = add(before, 'g', {});
+      box(tg, x - 0.3, x + 0.3, q[1], q[1] + 20, 0.03, 1.1, ['#f0e7da', '#a2958a', '#c9bcae']);
+    });
+    for (let i = 0; i < 70; i++) { const p = P(HX0 + rnd() * (HX1 - HX0), HY1 - 2.6 + rnd() * 2.4, 0.05); add(before, 'circle', { cx: p[0], cy: p[1], r: 1.6, fill: '#ffd2b8' }); }
+
+    // the park and the open hall: after
+    const after = add(svg, 'g', { class: 'pz-after' });
+    poly(after, [[fanX(G.y0, 0), G.y0, 0.02], [fanX(G.y0, 1), G.y0, 0.02], [HX1, HY0, 0.02], [HX0, HY0, 0.02]], { fill: 'rgba(31,92,64,.82)' });
+    add(after, 'path', { d: (function () { let d = ''; for (let i = 0; i <= 20; i++) { const y = HY0 - i * (HY0 - G.y0) / 20, x = fanX(y, 0.5 + 0.28 * Math.sin(i / 2.6)); const p = P(x, y, 0.03); d += (i ? ' L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1); } return d; })(), stroke: '#d9c9a3', 'stroke-width': 2.4, fill: 'none', opacity: .8 });
+    poly(after, [[fanX(4, 0.15), 4, 0.03], [fanX(4, 0.4), 4, 0.03], [fanX(12, 0.4), 12, 0.03], [fanX(12, 0.15), 12, 0.03]], { fill: '#3e8fd8', opacity: .75 });   // a pond
+    const trees = [];
+    for (let i = 0; i < 46; i++) { const y = G.y0 + 1 + rnd() * (HY0 - G.y0 - 2), x = fanX(y, 0.04 + rnd() * 0.92); trees.push([x, y]); }
+    trees.sort(function (a, b) { return (a[0] + a[1]) - (b[0] + b[1]); }).forEach(function (q, i) {
+      const tg = add(after, 'g', { class: 'pz-tree', style: '--d: ' + (i * 18) + 'ms' });
+      const b = P(q[0], q[1], 0), t = P(q[0], q[1], 1.6);
+      add(tg, 'line', { x1: b[0], y1: b[1], x2: t[0], y2: t[1], stroke: '#5b4630', 'stroke-width': 2 });
+      add(tg, 'circle', { cx: t[0], cy: t[1] - 4, r: 6 + (i % 3) * 2, fill: ['#3fe0a5', '#2fbf87', '#7fe8b8'][i % 3], opacity: .92 });
+    });
+    poly(after, [[HX0, HY0, 0.04], [HX1, HY0, 0.04], [HX1, HY1, 0.04], [HX0, HY1, 0.04]], { fill: 'rgba(42,53,80,.85)' });      // the hall floor, free for people
+    [[8.6, 33], [9.6, 38], [8.6, 42]].forEach(function (q) { poly(after, [[q[0] - 0.8, q[1] - 2.5, 0.05], [q[0] + 0.8, q[1] - 2.5, 0.05], [q[0] + 0.8, q[1], 0.05], [q[0] - 0.8, q[1], 0.05]], { fill: '#0a1222', stroke: '#44d7ff', 'stroke-width': 1.2 }); });
+    for (let i = 0; i < 120; i++) { const p = P(HX0 + 0.4 + rnd() * (HX1 - HX0 - 0.8), HY0 + 0.4 + rnd() * (HY1 - HY0 - 0.8), 0.06); add(after, 'circle', { cx: p[0], cy: p[1], r: 1.6, fill: ['#ffd2b8', '#bcd8ff', '#ffe08a', '#f5f5f5'][i % 4], class: 'pz-person', style: '--d: ' + (i % 9) * 0.4 + 's' }); }
+
+    // a few town blocks for scale, then the hall itself: side wall, a glazed front with its arch, a glass roof
+    [[-7, -2, 33, 44, 5], [-7, -2, 20, 31, 6]].forEach(function (q) { box(svg, q[0], q[1], q[2], q[3], 0, q[4], ['#3a4660', '#2b3549', '#323d54']); });
+    const hall = add(svg, 'g', {});
+    poly(hall, [[HX1, HY0, 0], [HX1, HY1, 0], [HX1, HY1, 3.2], [HX1, HY0, 3.2]], { fill: 'rgba(215,205,185,.32)', stroke: 'rgba(240,230,210,.5)' });
+    const front = [[HX0, HY1, 0], [HX1, HY1, 0], [HX1, HY1, 3.2]];
+    for (let i = 0; i <= 16; i++) { const a = Math.PI * i / 16; front.push([HX0 + (HX1 - HX0) * (0.5 + 0.5 * Math.cos(a)), HY1, 3.2 + 3.2 * Math.sin(a)]); }
+    front.push([HX0, HY1, 3.2]);
+    poly(hall, front, { fill: 'rgba(225,214,192,.88)', stroke: '#f3e9d6' });
+    const arch = []; for (let i = 0; i <= 16; i++) { const a = Math.PI * i / 16; arch.push([HX0 + (HX1 - HX0) * (0.5 + 0.38 * Math.cos(a)), HY1, 2.4 + 2.9 * Math.sin(a)]); }
+    poly(hall, arch, { fill: 'rgba(120,180,230,.45)', stroke: '#f3e9d6' });
+    for (let i = 0; i <= 8; i++) {                                     // the arched roof, rib by rib, along the hall
+      const y = HY0 + (HY1 - HY0) * i / 8, rib = [];
+      for (let j = 0; j <= 12; j++) { const a = Math.PI * j / 12; rib.push([HX0 + (HX1 - HX0) * (0.5 + 0.5 * Math.cos(a)), y, 3.2 + 3.2 * Math.sin(a)]); }
+      add(hall, 'polyline', { points: pts(rib), fill: 'none', stroke: 'rgba(200,225,255,.45)', 'stroke-width': 1 });
+    }
+    const ridge = function (t) { const a = Math.PI * t; return [HX0 + (HX1 - HX0) * (0.5 + 0.5 * Math.cos(a)), 3.2 + 3.2 * Math.sin(a)]; };
+    for (let j = 0; j <= 12; j += 3) { const r = ridge(j / 12); line(hall, [r[0], HY0, r[1]], [r[0], HY1, r[1]], { stroke: 'rgba(200,225,255,.35)' }); }
+    const glass = []; for (let j = 0; j <= 12; j++) { const r = ridge(j / 12); glass.push([r[0], HY0, r[1]]); } for (let j = 12; j >= 0; j--) { const r = ridge(j / 12); glass.push([r[0], HY1, r[1]]); }
+    poly(hall, glass, { fill: 'rgba(160,200,240,.12)' });
+    // a few town blocks for scale
+
+    // labels
+    const lb = add(svg, 'g', { class: 'pz-before' }), la = add(svg, 'g', { class: 'pz-after' });
+    lab(lb, 5.5, HY1, 7.6, 'Tracks run into the hall', 'big', 0, -6);
+    lab(lb, fanX(5, 0.5), 5, 0, 'Kilometres of tracks', 'big', 0, -10);
+    lab(la, 5.5, HY1, 7.6, 'A welcome hall', 'big', 0, -6);
+    lab(la, fanX(2, 0.5), 2, 2, 'Parc du Nord', 'big', 0, -18);
+    const dl = P(DX1, (DY0 + DY1) / 2, DZ0); add(la, 'text', { x: dl[0] + 12, y: dl[1] + 24, class: 'big', text: 'Deep platforms, Paris Nord-Est', style: 'fill: #9fe6ff' });
+    const tl = P(5.5, -6, -7); add(la, 'text', { x: tl[0] + 24, y: tl[1] + 28, class: 'dim', text: 'Tunnels to the ring road', style: 'fill: #9fe6ff' });
+
+    const textSteps = PTS.$$('.pz-step', $('#pz-nord-text'));
+    let timer = null;
+    const set = function (v) {
+      const a = v === 'after';
+      PTS.$$('.pz-before', svg).forEach(function (g) { g.style.opacity = a ? 0 : 1; });
+      PTS.$$('.pz-after', svg).forEach(function (g) { g.style.opacity = a ? 1 : 0; });
+      groundTop.setAttribute('fill', a ? 'rgba(27,35,51,.4)' : '#1b2333');
+      svg.classList.toggle('is-after', a);
+      textSteps.forEach(function (st) { st.hidden = (st.getAttribute('data-step') === '1') !== a; });
+    };
+    PTS.$$('.pz-before, .pz-after', svg).forEach(function (g) { g.style.transition = 'opacity .9s ease'; });
+    const tg = PTS.steps($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 'before', function (v) { clearTimeout(timer); set(v); });
+    set('before');
+    whenShown(svg, function () { if (calm || timer) return; timer = setTimeout(function () { tg.set('after'); }, 2600); });
+  })();
+
+  // ---------------------------------------------------------------- the four parks on the map
+  (function () {
+    const svg = $('#pz-parks-svg'), glow = defs(svg), G = D.paris_geo, PJ = D.project, V = PJ.view.wide;
+    const W = 600, kx = Math.cos(48.86 * Math.PI / 180), sc = W / ((V.lon[1] - V.lon[0]) * kx), H = (V.lat[1] - V.lat[0]) * sc;
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H.toFixed(0));
+    const pr = function (ll) { return [(ll[0] - V.lon[0]) * kx * sc, (V.lat[1] - ll[1]) * sc]; };
+    const dp = function (a, close) { return a.map(function (p, i) { const q = pr(p); return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' ') + (close ? 'Z' : ''); };
+    add(svg, 'path', { d: G.outline.map(function (r) { return dp(r, true); }).join(''), fill: 'rgba(255,255,255,.04)', stroke: 'rgba(255,255,255,.25)', 'stroke-width': 1.2 });
+    G.bois.forEach(function (b) { add(svg, 'path', { d: b.r.map(function (r) { return dp(r, true); }).join(''), fill: 'rgba(63,224,165,.10)' }); });
+    add(svg, 'path', { d: dp(PJ.seine), fill: 'none', stroke: 'rgba(90,162,255,.45)', 'stroke-width': 5, 'stroke-linecap': 'round' });
+    const portal = { 'Gare du Nord': 'Porte de la Chapelle', 'Gare de l’Est': 'Rosa Parks', 'Gare de Lyon': 'Porte de Charenton', 'Montparnasse': 'Porte de Vanves' };
+    const NAMES = { 'Gare du Nord': ['Parc du Nord', -1], 'Gare de l’Est': ["Parc de l'Est", 1], 'Gare de Lyon': ['Parc de Lyon', 1], 'Montparnasse': ['Parc Montparnasse', -1] };
+    const parks = [];
+    PJ.lines.forEach(function (l) {
+      if (!portal[l.name]) { add(svg, 'path', { d: dp(l.path), fill: 'none', stroke: 'rgba(255,255,255,.18)', 'stroke-width': 2 }); return; }
+      const po = PJ.portals.filter(function (p) { return p.name === portal[l.name]; })[0];
+      let best = 0, bd = 1e9; l.path.forEach(function (p, i) { const d = Math.hypot(p[0] - po.at[0], p[1] - po.at[1]); if (d < bd) { bd = d; best = i; } });
+      const freed = l.path.slice(0, best).concat([po.at]), rest = [po.at].concat(l.path.slice(best + 1));
+      add(svg, 'path', { d: dp(rest), fill: 'none', stroke: 'rgba(255,255,255,.18)', 'stroke-width': 2 });
+      const glowp = add(svg, 'path', { d: dp(freed), fill: 'none', stroke: '#3fe0a5', 'stroke-width': 16, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: .35, filter: glow });
+      const core = add(svg, 'path', { d: dp(freed), fill: 'none', stroke: '#3fe0a5', 'stroke-width': 7, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+      parks.push(glowp, core);
+      const mid = pr(freed[Math.floor(freed.length / 2)] || freed[0]), side = NAMES[l.name][1];
+      add(svg, 'text', { x: mid[0] + side * 18, y: mid[1] - (l.name === 'Gare du Nord' ? 22 : -4), 'text-anchor': side > 0 ? 'start' : 'end', class: 'big', text: NAMES[l.name][0], style: 'fill: #9cf0d0' });
+    });
+    PJ.stations.forEach(function (st) { const p = pr(st.at), w = st.name === 'Saint-Lazare'; add(svg, 'circle', { cx: p[0], cy: p[1], r: 6, fill: '#fff', filter: glow }); add(svg, 'text', { x: p[0] + (w ? -10 : 10), y: p[1] + (w ? 16 : -8), 'text-anchor': w ? 'end' : 'start', class: 'dim', text: st.short || st.name, style: 'fill: #fff' }); });
+    parks.forEach(function (p) { const L = p.getTotalLength ? p.getTotalLength() : 0; if (!L || calm) return; p.style.strokeDasharray = L + ' ' + L; p.style.strokeDashoffset = L; p.style.transition = 'stroke-dashoffset 2.2s cubic-bezier(.2,.7,.2,1)'; });
+    whenShown(svg, function () { parks.forEach(function (p) { p.style.strokeDashoffset = 0; }); });
+  })();
+
+  // ---------------------------------------------------------------- across France
+  (function () {
+    const CITY = { Lille: [3.06, 50.63], Bordeaux: [-0.58, 44.84], Strasbourg: [7.75, 48.58], Lyon: [4.84, 45.76], Marseille: [5.37, 43.3], Rennes: [-1.68, 48.11], Nantes: [-1.55, 47.22], Dijon: [5.04, 47.32], Paris: [2.35, 48.86] };
+    const svg = $('#pz-fr-map'), glow = defs(svg), kx = Math.cos(47 * Math.PI / 180);
+    const pr = function (c) { return [40 + (c[0] + 2.2) * kx * 46, 30 + (51.2 - c[1]) * 58]; };
+    const P0 = pr(CITY.Paris);
+    const pairs = SHOW.filter(function (p) { return CITY[p.pair[0]] && CITY[p.pair[1]]; }).map(function (p) { return Object.assign({ gain: p.today_min - p.project_min }, p); }).sort(function (a, b) { return b.gain - a.gain; });
+    const g = add(svg, 'g', {});
+    const arcs = pairs.map(function (p) {
+      const a = pr(CITY[p.pair[0]]), b = pr(CITY[p.pair[1]]);
+      const bend = function (u, v, sg) { return [(u[0] + v[0]) / 2 + sg * (v[1] - u[1]) * 0.12, (u[1] + v[1]) / 2 - sg * (v[0] - u[0]) * 0.12]; };
+      const c1 = bend(a, P0, 1), c2 = bend(P0, b, 1);
+      const d = 'M' + a[0] + ' ' + a[1] + ' Q' + c1[0] + ' ' + c1[1] + ' ' + P0[0] + ' ' + P0[1] + ' Q' + c2[0] + ' ' + c2[1] + ' ' + b[0] + ' ' + b[1];
+      return { p: p, el: add(g, 'path', { d: d, fill: 'none', 'stroke-width': 2.5, 'stroke-linecap': 'round' }) };
+    });
+    add(svg, 'circle', { cx: P0[0], cy: P0[1], r: 12, fill: 'rgba(68,215,255,.2)', stroke: '#44d7ff' });
+    add(svg, 'text', { x: P0[0] + 16, y: P0[1] - 10, class: 'big', text: 'Paris' });
+    Object.keys(CITY).forEach(function (c) { if (c === 'Paris') return; const q = pr(CITY[c]); add(svg, 'circle', { cx: q[0], cy: q[1], r: 5, fill: '#fff' }); add(svg, 'text', { x: q[0] + (q[0] < P0[0] ? -9 : 9), y: q[1] + 4, 'text-anchor': q[0] < P0[0] ? 'end' : 'start', text: c, style: 'fill: #fff' }); });
+    const host = $('#pz-fr-bars'), max = Math.max.apply(0, pairs.map(function (p) { return Math.max(p.today_min, p.project_min); }));
+    host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, best way'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train, every hour')));
+    const rows = pairs.map(function (p, i) {
+      const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b');
+      const row = h('div', { class: 'pz-bar', title: 'Today: ' + p.today + ' (' + hm(p.today_min) + ')' }, h('span', { text: p.pair[0] + ' to ' + p.pair[1] }), h('div', { class: 'pz-track' }, t, q), b);
+      row.addEventListener('pointerenter', function () { hi(i); }); row.addEventListener('pointerleave', function () { hi(-1); });
+      host.appendChild(row);
+      return { row: row, t: t, q: q, b: b, p: p };
+    });
+    const hi = function (i) { arcs.forEach(function (a, k) { a.el.style.opacity = i < 0 || k === i ? 1 : 0.15; }); rows.forEach(function (r, k) { r.row.classList.toggle('hi', k === i); }); };
+    let mode = 'today';
+    const set = function (v) {
+      mode = v;
+      arcs.forEach(function (a) { a.el.setAttribute('stroke', v === 'today' ? (a.p.today.indexOf('change') >= 0 ? '#ff7a59' : 'rgba(255,170,140,.55)') : '#44d7ff'); a.el.setAttribute('filter', v === 'today' ? '' : glow); a.el.setAttribute('stroke-dasharray', v === 'today' && a.p.today.indexOf('change') >= 0 ? '5 6' : ''); });
+      rows.forEach(function (r) {
+        r.t.style.width = (r.p.today_min / max * 100) + '%';
+        r.q.style.width = v === 'today' ? '0%' : (r.p.project_min / max * 100) + '%';
+        r.b.textContent = hm(v === 'today' ? r.p.today_min : r.p.project_min);
+        r.b.style.color = v === 'today' ? '#fff' : (r.p.project_min < r.p.today_min ? '#3fe0a5' : '#fff');
+      });
+    };
+    let timer = null;
+    const tg = PTS.steps($('#pz-fr-toggle'), [['today', 'Today'], ['project', 'With the project']], 'today', function (v) { clearTimeout(timer); set(v); });
+    set('today');
+    whenShown(svg, function () { if (timer) return; timer = setTimeout(function () { tg.set('project'); }, calm ? 0 : 1800); });
+  })();
+
+  // ---------------------------------------------------------------- the running total, in today's money
+  (function () {
+    const svg = $('#pz-curve-svg'), T = D.french.timeline, W = 520, H = 300, m = { l: 44, r: 14, t: 40, b: 28 };
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    const yrs = T.years, v = T.cum_npv, last = yrs.length - 1;
+    const lo = Math.min.apply(0, v), hi = Math.max.apply(0, v);
+    const X = function (y) { return m.l + (y - yrs[0]) / (yrs[last] - yrs[0]) * (W - m.l - m.r); }, Y = function (x) { return m.t + (hi - x) / (hi - lo) * (H - m.t - m.b); };
+    const glow = defs(svg);
+    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-curve-grad', x1: 0, y1: 0, x2: 1, y2: 0 });
+    add(lg, 'stop', { offset: '0', 'stop-color': '#ff7a59' }); add(lg, 'stop', { offset: ((T.break_even - yrs[0]) / (yrs[last] - yrs[0])).toFixed(3), 'stop-color': '#ffc24b' }); add(lg, 'stop', { offset: '1', 'stop-color': '#3fe0a5' });
+    const step = Math.ceil((hi - lo) / 4 / 10) * 10;
+    for (let t = Math.ceil(lo / step) * step; t <= hi; t += step) { add(svg, 'line', { x1: m.l, x2: W - m.r, y1: Y(t), y2: Y(t), stroke: t === 0 ? 'rgba(255,255,255,.45)' : 'rgba(255,255,255,.08)' }); add(svg, 'text', { x: m.l - 6, y: Y(t) + 4, 'text-anchor': 'end', class: 'dim', text: (t > 0 ? '+' : '') + t }); }
+    [yrs[0], 2050, 2075, 2100, 2125, yrs[last]].filter(function (y, i, a) { return a.indexOf(y) === i && y <= yrs[last]; }).forEach(function (y) { add(svg, 'text', { x: X(y), y: H - 8, 'text-anchor': 'middle', class: 'dim', text: y }); });
+    const d = yrs.map(function (y, i) { return (i ? 'L' : 'M') + X(y).toFixed(1) + ' ' + Y(v[i]).toFixed(1); }).join(' ');
+    add(svg, 'path', { d: d + ' L' + X(yrs[last]) + ' ' + Y(0) + ' L' + X(yrs[0]) + ' ' + Y(0) + 'Z', fill: 'rgba(68,215,255,.07)' });
+    const line = add(svg, 'path', { d: d, fill: 'none', stroke: 'url(#pz-curve-grad)', 'stroke-width': 3.5, filter: glow, 'stroke-linejoin': 'round' });
+    const be = add(svg, 'g', { opacity: calm ? 1 : 0, style: 'transition: opacity .6s ease 1.6s' });
+    add(be, 'circle', { cx: X(T.break_even), cy: Y(0), r: 6, fill: '#ffc24b', filter: glow });
+    add(be, 'text', { x: X(T.break_even), y: Y(0) - 14, 'text-anchor': 'middle', class: 'big', text: 'Paid back, ' + T.break_even });
+    add(be, 'text', { x: X(yrs[last]) - 4, y: Y(v[last]) - 12, 'text-anchor': 'end', class: 'big', text: '+€' + F.n(D.french.cases.central.npv, 1) + 'bn', style: 'fill: #3fe0a5' });
+    if (!calm) { const L = line.getTotalLength(); line.style.strokeDasharray = L + ' ' + L; line.style.strokeDashoffset = L; line.style.transition = 'stroke-dashoffset 2s cubic-bezier(.3,.6,.2,1)'; }
+    whenShown(svg, function () { line.style.strokeDashoffset = 0; be.setAttribute('opacity', 1); });
+  })();
+
+  // ---------------------------------------------------------------- figures of the report, shown here as they are
+  const lend = function (section, host, pick) {
+    const page = PTS.ensure(section); if (!page) return [];
+    const nodes = pick(page).filter(Boolean);
+    PTS.borrow('presentation', host, nodes);
+    return nodes;
+  };
+  const kids = function (id, skip) { const b = document.getElementById(id); return b ? Array.prototype.filter.call(b.children, function (c) { return !c.matches(skip); }) : []; };
+  lend('timetable', $('#pz-hour-host'), function () { return kids('timetable.map', 'h2, h3, p, .tt-boards'); });
+  lend('access', $('#pz-access-host'), function () { return kids('access.map', 'h2, h3, p'); });
+  lend('access', $('#pz-access-host-2'), function () { const c = document.getElementById('access-arr-chart'); return [c && c.closest('figure')]; });
+  lend('works', $('#pz-works-host'), function () { const c = document.getElementById('works-ba'); return [c && c.closest('figure')]; });
+  // the hour plays by itself the first time it comes into view
+  whenShown($('#pz-hour-host'), function () {
+    if (calm) return;
+    const b = PTS.$$('button', $('#pz-hour-host')).filter(function (x) { return x.textContent.trim() === 'Play'; })[0];
+    if (b) b.click();
+  });
+  // the works step through today, the works and after, once
+  whenShown($('#pz-works-host'), function () {
+    const bs = PTS.$$('#works-ba-controls button', root.ownerDocument);
+    if (calm || bs.length < 2) return;
+    bs.slice(1).forEach(function (b, i) { setTimeout(function () { if (PTS.current() === 'presentation') b.click(); }, 2200 * (i + 1)); });
+  });
+});
 
 /* ---- summary */
 PTS.section('summary', function (root) {

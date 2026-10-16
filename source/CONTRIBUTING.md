@@ -25,6 +25,12 @@ tools/shot.js            screenshot of a section, prints console errors and hori
 tools/check_model.js     checks that src/js/model.js gives the same numbers as the Python model
 ```
 
+**The presentation** (`src/sections/presentation`) is the landing view, with its own night-blue look. It is `"bare"` in the
+manifest (no standard header) and lists in `"borrows"` the sections whose figures it shows as they are: the timetable map and
+clocks, the reaching-the-station map and chart, the works before/after. It does not copy them: `PTS.borrow` moves the figure's
+nodes into the presentation while it is shown and back when its own section is shown, and the build makes the lending
+section's `#<id>` styles also apply under `.borrow-<id>`. A fix to one of those figures therefore shows in both places.
+
 Build and look at one section while working on it:
 
 ```

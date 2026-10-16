@@ -21,6 +21,9 @@ SRC = os.path.join(ROOT, 'src')
 FONTS = 'https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap'
 
 
+GROUP_TITLES = {'Report': 'Full report'}       # how a group of the manifest is headed in the contents
+
+
 def read(*p):
     with open(os.path.join(*p), encoding='utf-8') as f: return f.read()
 def jload(*p): return json.loads(read(*p))
@@ -131,9 +134,11 @@ def main():
     by_url = {}
     numbers, parts, css, js = {}, [], [read(SRC, 'css', 'base.css'), read(SRC, 'css', 'components.css')], [read(SRC, 'js', f) for f in ('core.js', 'charts.js', 'model.js')]
     chapter = 0; annex = 0
+    lent = {x for sec in man['sections'] for x in sec.get('borrows', [])}
     for s in secs:
         d = os.path.join(SRC, 'sections', s['id'])
-        if s['id'] == 'summary': s['label'], s['eyebrow'] = '', 'Summary'
+        if s['group'] == 'Presentation': s['label'], s['eyebrow'] = '', ''
+        elif s['id'] == 'summary': s['label'], s['eyebrow'] = '', 'Summary'
         elif s['group'] == 'Report': chapter += 1; s['label'], s['eyebrow'] = str(chapter), f'Chapter {chapter}'
         else: annex += 1; s['label'] = 'ABCDEFGH'[annex - 1]; s['eyebrow'] = f"Annex {s['label']}"
         if not exists(d, 'section.html'):
@@ -146,19 +151,25 @@ def main():
             if url not in by_url: by_url[url] = len(by_url) + 1          # two keys that point to the same document share a number
             numbers[k] = by_url[url]
         s['body'] = body
-        if exists(d, 'section.css'): css.append(f"/* ---- {s['id']} */\n" + read(d, 'section.css'))
+        if exists(d, 'section.css'):
+            style = read(d, 'section.css')
+            if s['id'] in lent:                        # its figures are also shown in another section: its styles follow them there
+                style = re.sub(r'#' + s['id'] + r'(?=[\s,.:>{\[)~+])', f":is(#{s['id']}, .borrow-{s['id']})", style)
+            css.append(f"/* ---- {s['id']} */\n" + style)
         if exists(d, 'section.js'): js.append(f"/* ---- {s['id']} */\n" + read(d, 'section.js'))
 
     # pass 2: render
     nav, group = [], None
     for s in secs:
-        if s['group'] != group: group = s['group']; nav.append(f'    <h4>{group}</h4>')
+        if s['group'] != group: group = s['group']; nav.append(f'    <h4>{GROUP_TITLES.get(group, group)}</h4>' if group != 'Presentation' else '')
         nav.append(f'    <a href="#{s["id"]}"><i>{s["label"]}</i><span>{html.escape(s["nav"])}</span></a>')
         body = s['body'].replace('<!--SOURCES-->', sources_table(numbers, sources))
         body = render_cites(body, numbers, sources, s['id'], problems)
         lede = ''
         mo = re.match(r'\s*(<p class="lede">.*?</p>)', body, re.S)
         if mo: lede = mo.group(1); body = body[mo.end():]
+        if s.get('bare'):                              # a page that draws its own opening (the presentation)
+            parts.append(f'<section class="page {s["id"]}" id="{s["id"]}" data-title="{html.escape(s["nav"], quote=True)}" hidden>\n{lede}{body}\n</section>'); continue
         parts.append(f'<section class="page" id="{s["id"]}" data-title="{html.escape(s["nav"], quote=True)}" hidden>\n<header><span class="eyebrow">{s["eyebrow"]}</span><h1>{html.escape(s["heading"])}</h1>{lede}</header>\n{body}\n</section>')
     page = read(SRC, 'shell.html').replace('<!--NAV-->', '\n'.join(nav)).replace('<!--SECTIONS-->', '\n'.join(parts))
 
