@@ -57,7 +57,7 @@
   "Munich, Marienhof, under construction": "Munich, Marienhof, en construction",
   "About 40 m": "Environ 40 m",
   "Terminal today": "Gare terminus aujourd’hui",
-  "Deep through station": "Gare traversante profonde",
+  "Deep through station": "Gare traversante souterraine",
   "Passage: not counted": "Passage : non compté",
   "Passage to the other way down: not counted": "Passage vers l’autre descente : non compté",
   "Ticket gates": "Portiques",
@@ -65,10 +65,10 @@
   "none": "aucun",
   "Along the platform": "Le long du quai",
   "Minutes": "Minutes",
-  "Deep station": "Gare profonde",
+  "Deep station": "Gare souterraine",
   "So far": "Jusqu’ici",
   "From hall to coach": "De la halle à la voiture",
-  "Reaching a deep platform takes about as long as walking down a terminal platform": "Rejoindre un quai profond prend à peu près autant de temps que longer un quai de gare terminus",
+  "Reaching a deep platform takes about as long as walking down a terminal platform": "Rejoindre un quai souterrain prend à peu près autant de temps que longer un quai de gare terminus",
   "1. In the hall": "1. Dans la halle",
   "2. Through the gates": "2. Les portiques",
   "3. Down": "3. La descente",
@@ -222,7 +222,7 @@
   ],
   [
    "Two side views: a terminal today, where the passenger walks {0} m along the platform, and a deep through station, where the passenger goes down {1} m and walks {2} m",
-   "Deux vues de côté : une gare terminus aujourd’hui, où le voyageur marche {0} m le long du quai, et une gare traversante profonde, où il descend de {1} m puis marche {2} m"
+   "Deux vues de côté : une gare terminus aujourd’hui, où le voyageur marche {0} m le long du quai, et une gare traversante souterraine, où il descend de {1} m puis marche {2} m"
   ],
   [
    "Average coach: {0} m from the gates",
@@ -246,27 +246,27 @@
   ],
   [
    "With platforms {0} m down, the deep station takes the same time as the terminal. Each 10 m of depth adds about {1} seconds of escalator.",
-   "Avec des quais à {0} m de profondeur, la gare profonde prend autant de temps que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {1} secondes d’escalier mécanique."
+   "Avec des quais à {0} m de profondeur, la gare souterraine prend autant de temps que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {1} secondes d’escalier mécanique."
   ],
   [
    "With platforms {0} m down, the deep station takes the same time as the terminal. Each 10 m of depth adds about {1} seconds of escalator. The model uses {2} m.",
-   "Avec des quais à {0} m de profondeur, la gare profonde prend autant de temps que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {1} secondes d’escalier mécanique. Le modèle retient {2} m."
+   "Avec des quais à {0} m de profondeur, la gare souterraine prend autant de temps que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {1} secondes d’escalier mécanique. Le modèle retient {2} m."
   ],
   [
    "With platforms {0} m down, the deep station takes {1} minutes more than the terminal. Each 10 m of depth adds about {2} seconds of escalator.",
-   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de plus que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique."
+   "Avec des quais à {0} m de profondeur, la gare souterraine prend {1} min de plus que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique."
   ],
   [
    "With platforms {0} m down, the deep station takes {1} minutes more than the terminal. Each 10 m of depth adds about {2} seconds of escalator. The model uses {3} m.",
-   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de plus que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique. Le modèle retient {3} m."
+   "Avec des quais à {0} m de profondeur, la gare souterraine prend {1} min de plus que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique. Le modèle retient {3} m."
   ],
   [
    "With platforms {0} m down, the deep station takes {1} minutes less than the terminal. Each 10 m of depth adds about {2} seconds of escalator.",
-   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de moins que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique."
+   "Avec des quais à {0} m de profondeur, la gare souterraine prend {1} min de moins que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique."
   ],
   [
    "With platforms {0} m down, the deep station takes {1} minutes less than the terminal. Each 10 m of depth adds about {2} seconds of escalator. The model uses {3} m.",
-   "Avec des quais à {0} m de profondeur, la gare profonde prend {1} min de moins que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique. Le modèle retient {3} m."
+   "Avec des quais à {0} m de profondeur, la gare souterraine prend {1} min de moins que la gare terminus. Chaque tranche de 10 m de profondeur ajoute environ {2} secondes d’escalier mécanique. Le modèle retient {3} m."
   ],
   [
    "The model’s illustration uses {0} m",

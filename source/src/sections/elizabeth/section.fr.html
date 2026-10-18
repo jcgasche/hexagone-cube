@@ -243,7 +243,7 @@
     <div class="fig-head"><strong>Paris : {{ m.cost.tunnel_km / d.elizabeth.london.tunnel_km | 1 }} fois le tunnel de Londres et {{ m.cost.platform_total / d.elizabeth.london.platform_m | 1 }} fois ses voies à quai, pour {{ m.cost.total / d.elizabeth.london.cost_eur | 1 }} fois son coût et {{ m.cost.total / (b.traffic.central.paris_base + b.traffic.central.paris_new + b.traffic.central.cross_base + b.traffic.central.cross_new + m.regional.users + m.regional.through_ter) / (d.elizabeth.london.cost_eur / d.elizabeth.opacc[0].journeys) | 1 }} fois son investissement par trajet annuel</strong><span>L’Elizabeth line face aux gares de cette étude : les trois gares TGV et la nouvelle gare de banlieue sous Saint-Lazare</span></div>
     <div class="el-three">
       <div><h4>Tunnel à double voie, km</h4><div id="el-scale-tunnel"></div></div>
-      <div><h4>Voies à quai profondes, mètres</h4><div id="el-scale-platform"></div></div>
+      <div><h4>Voies à quai souterraines, mètres</h4><div id="el-scale-platform"></div></div>
       <div><h4>Coût, Md€ de 2026</h4><div id="el-scale-cost"></div></div>
       <div><h4>Investissement par trajet annuel, €</h4><div id="el-scale-journey"></div></div>
     </div>
@@ -270,7 +270,7 @@
       <h4>Où la comparaison s’arrête</h4>
       <ul>
         <li><strong>Londres a construit un grand métro.</strong> Un seul type de train, de 205 m. Ses 24 trains par heure n’ont besoin que de deux voies à quai par gare. Aucun train grandes lignes n’emprunte le tunnel.</li>
-        <li><strong>Paris recevrait des TGV de 400 m.</strong> Ils restent plus longtemps à quai qu’un métro, si bien que Paris Nord-Est a besoin de {{ m.cost.tracks['Paris Nord-Est'] | 0 }} voies, dont {{ m.cost.detail['Paris Nord-Est'].hs | 0 }} pour les TGV : voir <a class="xref" href="#service.platforms">combien de quais</a>. Personne n’a construit de gare profonde de cette taille.</li>
+        <li><strong>Paris recevrait des TGV de 400 m.</strong> Ils restent plus longtemps à quai qu’un métro, si bien que Paris Nord-Est a besoin de {{ m.cost.tracks['Paris Nord-Est'] | 0 }} voies, dont {{ m.cost.detail['Paris Nord-Est'].hs | 0 }} pour les TGV : voir <a class="xref" href="#service.platforms">combien de quais</a>. Personne n’a construit de gare souterraine de cette taille.</li>
         <li><strong>Londres a relié deux réseaux de banlieue.</strong> Paris relierait quatre LGV, les TER du Nord, de l’Est et de l’Atlantique, et cinq lignes de banlieue fusionnées en deux nouvelles lignes de RER (les lignes H, K et L dans le RER F, les lignes P et N dans le RER G), les TGV et les TER dans un même tunnel et chaque ligne de banlieue dans le sien, à travers quatre gares au lieu d’une seule ligne.</li>
         <li><strong>Londres n’avait aucune ligne rapide à travers son centre ; Paris en a cinq.</strong> Les lignes de RER traversent déjà Paris, si bien que le gain pour chaque voyageur régional est un second arrêt, pas une nouvelle ligne. C’est pourquoi le modèle compte {{ m.regional.new | 1 }} millions de nouveaux trajets régionaux par an pour {{ m.regional.users | 0 }} millions d’usagers, là où Londres a multiplié son trafic par quatre.</li>
         <li><strong>Le coût est plus élevé :</strong> {{ m.cost.total | 0 }} Md€ ({{ m.cost_low | 0 }} à {{ m.cost_high | 0 }} Md€ avec les prix bas et hauts) contre environ 32 Md€, pour {{ m.cost.tunnel_km / d.elizabeth.london.tunnel_km | 1 }} fois le tunnel.</li>

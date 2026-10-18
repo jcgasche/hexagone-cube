@@ -17,7 +17,7 @@
     <div class="pz-flash">
       <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post="&nbsp;min" data-d="0">{{ m.run_min | 0 }}&nbsp;min</b><span>entre deux des trois gares, quelles qu’elles soient</span></div>
       <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post="&nbsp;min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }}&nbsp;min</b><span>en moyenne pour rejoindre son TGV depuis n’importe où dans Paris, jusqu’à {{ pts.max_gain.station | 1 }}&nbsp;min de moins</span></div>
-      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites en profondeur&nbsp;: la surface est libérée</span></div>
+      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites entièrement sous terre&nbsp;: la surface est libérée</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>les Buttes-Chaumont en nouveaux espaces verts, répartis en quatre grands parcs</span></div>
       <div class="pz-chip"><b data-count="{{ m.conn.central | 1 }}" data-post="&nbsp;M" data-d="1">{{ m.conn.central | 1 }}&nbsp;M</b><span>de voyageurs par an qui ne traversent plus Paris en métro entre deux trains</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour de banlieue à banlieue, de part et d’autre de Paris, sur une ligne traversante, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
@@ -42,13 +42,13 @@
         </div>
         <div class="pz-step" data-step="1" hidden>
           <h3>Le triangle TGV</h3>
-          <p>La gare du Nord et la gare de l’Est fusionnent en une seule gare profonde, Paris Nord-Est. Avec la gare de Lyon et Montparnasse, trois gares traversantes sont reliées par un tunnel à double voie sur chaque côté du triangle.</p>
+          <p>La gare du Nord et la gare de l’Est fusionnent en une <strong>nouvelle gare entièrement souterraine</strong>, Paris Nord-Est. Avec la gare de Lyon et Montparnasse, trois gares traversantes sont reliées par un tunnel à double voie sur chaque côté du triangle.</p>
           <ul><li>{{ m.run_min | 0 }}&nbsp;minutes entre deux gares, quelles qu’elles soient</li><li>Chaque gare a des trains directs vers toutes les directions&nbsp;: Nord, Est, Sud-Est et Atlantique</li><li>Aucun train ne rebrousse chemin&nbsp;: chacun marque deux arrêts et continue</li></ul>
         </div>
         <div class="pz-step" data-step="2" hidden>
           <h3>Avec TER et Transilien</h3>
           <p>Les TER circulent dans les tunnels TGV, dans les intervalles entre les TGV, et poursuivent vers l’autre côté du pays. Les lignes Transilien deviennent de nouvelles lignes de RER, qui traversent Paris au lieu de s’y arrêter.</p>
-          <ul><li><b class="pz-ln g">G</b> RER G&nbsp;: les lignes P et N d’aujourd’hui fusionnent en une seule ligne, du nord et de l’est via Nord-Est jusqu’à Montparnasse</li><li><b class="pz-ln f">F</b> RER F&nbsp;: les lignes L, H et K d’aujourd’hui fusionnent en une seule ligne, via Nord-Est et un Saint-Lazare profond jusqu’à La Défense</li><li>Les gares terminus de surface ferment&nbsp;; leurs voies deviennent des parcs</li></ul>
+          <ul><li><b class="pz-ln g">G</b> RER G&nbsp;: les lignes P et N d’aujourd’hui fusionnent en une seule ligne, du nord et de l’est via Nord-Est jusqu’à Montparnasse</li><li><b class="pz-ln f">F</b> RER F&nbsp;: les lignes L, H et K d’aujourd’hui fusionnent en une seule ligne, via Nord-Est et une nouvelle gare souterraine à Saint-Lazare jusqu’à La Défense</li><li>Les gares terminus de surface ferment&nbsp;; leurs voies deviennent des parcs</li></ul>
         </div>
         <p class="pz-more"><a href="#project">Le projet en détail</a><a href="#why">Pourquoi Paris arrête tous les trains</a></p>
       </div>
@@ -64,7 +64,7 @@
     <div class="pz-split wide">
       <div class="pz-stage pz-iso">
         <div class="pz-auto" id="pz-nord-toggle"></div>
-        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="La gare du Nord vue d’en haut, en perspective&nbsp;: aujourd’hui, les trains entrent dans la halle et repartent sur un faisceau de voies&nbsp;; avec le projet, la halle est ouverte aux voyageurs, des escaliers descendent vers les quais profonds où les trains passent sans s’arrêter en bout de ligne, et un parc recouvre les anciennes voies"></svg>
+        <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="La gare du Nord vue d’en haut, en perspective&nbsp;: aujourd’hui, les trains entrent dans la halle et repartent sur un faisceau de voies&nbsp;; avec le projet, la halle est ouverte aux voyageurs, des escaliers descendent vers les quais souterrains où les trains passent sans s’arrêter en bout de ligne, et un parc recouvre les anciennes voies"></svg>
       </div>
       <div class="pz-story" id="pz-nord-text">
         <div class="pz-step" data-step="0">
@@ -74,7 +74,7 @@
         </div>
         <div class="pz-step" data-step="1" hidden>
           <h3>Avec le projet</h3>
-          <p>Toute la halle est rendue aux voyageurs&nbsp;: un espace d’accueil d’où l’on descend vers les quais profonds de Paris Nord-Est, où chaque TGV, TER et RER s’arrête puis poursuit sa route. Dehors, un parc remplace les voies.</p>
+          <p>Toute la halle est rendue aux voyageurs&nbsp;: un espace d’accueil d’où l’on descend vers les quais souterrains de Paris Nord-Est, où chaque TGV, TER et RER s’arrête puis poursuit sa route. Dehors, un parc remplace les voies.</p>
           <div class="pz-mini good"><b>{{ round(d.stations.halls.hall_len * d.stations.halls.under.nord * d.stations.halls.pitch, -2) | 0 }}&nbsp;m²</b><span>pour les voyageurs dans la même halle, {{ d.stations.halls.hall_len / d.stations.halls.wait_len | 0 }}&nbsp;fois plus</span></div>
         </div>
         <p class="pz-note">Dans les trois halles de la gare du Nord, de la gare de Lyon et de Montparnasse, environ {{ round(d.stations.halls.wait_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }}&nbsp;m² pour les voyageurs aujourd’hui, {{ round(d.stations.halls.hall_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }}&nbsp;m² avec le projet. Une illustration, pas un plan.</p>
@@ -96,14 +96,14 @@
     </div>
     <div class="pz-facts">
       <div><b>3</b><span>tunnels TGV, un sur chaque côté du triangle</span></div>
-      <div><b>{{ m.cost.tracks_total | 0 }}</b><span>voies à quai dans quatre gares profondes</span></div>
+      <div><b>{{ m.cost.tracks_total | 0 }}</b><span>voies à quai dans quatre gares souterraines</span></div>
       <div><b>Nord + Est</b><span>ne forment plus qu’une gare, Paris Nord-Est, accessible depuis les deux halles</span></div>
       <div><b>{{ m.run_min | 0 }}&nbsp;min</b><span>entre deux des trois gares TGV, quelles qu’elles soient</span></div>
     </div>
     <div class="pz-cases">
       <a class="pz-case" href="#zurich"><span class="pz-flag">Zurich</span><h3>Une gare terminus devenue traversante</h3><p>Deux fois, en 1990 et en 2014, une gare traversante à quatre voies a été creusée sous la gare terminus, qui a continué de fonctionner.</p><i>Lire le cas</i></a>
       <a class="pz-case" href="#elizabeth"><span class="pz-flag">Londres</span><h3>L’Elizabeth line</h3><p>Un tunnel profond, avec de grandes gares, qui relie les deux côtés de la capitale depuis 2022.</p><i>Lire le cas</i></a>
-      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Quatre gares profondes</h3><p>Paris Nord-Est, la gare de Lyon et Montparnasse pour le triangle&nbsp;; un Saint-Lazare profond pour le RER F.</p><i>L’organisation des gares</i></a>
+      <a class="pz-case paris" href="#stations"><span class="pz-flag">Paris</span><h3>Quatre gares entièrement souterraines</h3><p>Paris Nord-Est, la gare de Lyon et Montparnasse pour le triangle&nbsp;; une nouvelle gare souterraine à Saint-Lazare pour le RER F.</p><i>L’organisation des gares</i></a>
     </div>
   </div>
 </section>
@@ -168,7 +168,7 @@
     <p class="pz-lead">Les emplois sont de l’autre côté de Paris. Deux nouvelles lignes de RER y conduisent sans changement.</p>
     <div class="pz-lines">
       <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est, jusqu’à Montparnasse, puis vers Massy, Saclay, Versailles et Saint-Quentin.</p></div></div>
-      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à un Saint-Lazare profond, puis vers Clichy-Levallois, Courbevoie et La Défense.</p></div></div>
+      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à une nouvelle gare souterraine à Saint-Lazare, puis vers Clichy-Levallois, Courbevoie et La Défense.</p></div></div>
       <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV&nbsp;: depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris.</p></div></div>
     </div>
     <div class="pz-grid3">
