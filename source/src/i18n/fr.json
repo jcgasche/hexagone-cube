@@ -12,6 +12,7 @@
   "Sidings and depot links": "Voies de garage et accès aux dépôts",
   "Control hall for London trains": "Salle de contrôle des trains pour Londres",
   "TER links into the TGV tunnels": "Raccordements des TER aux tunnels TGV",
+  "Links into Châtelet-Les Halles": "Correspondances vers Châtelet-Les Halles",
   "Running and maintaining tunnels and stations": "Exploitation et entretien des tunnels et des gares",
   "Extra running of regional trains": "Circulation supplémentaire des trains régionaux",
   "Renewal of rail systems, set aside each year": "Renouvellement des systèmes ferroviaires, provisionné chaque année",
@@ -119,7 +120,6 @@
   "The construction cost, spent evenly over the twelve years of works.": "Le coût de construction, réparti à parts égales sur les douze ans de travaux.",
   "Track, power and signalling of the tunnels replaced in 2070, 2100 and 2130.": "Voie, alimentation électrique et signalisation des tunnels remplacées en 2070, 2100 et 2130.",
   "Upkeep, power, staff and safety of the tunnels and the four stations, every year.": "Entretien, énergie, personnel et sécurité des tunnels et des quatre gares, chaque année.",
-  "Regional express trains run through Paris instead of ending at a terminal, which costs more train-km.": "Les TER traversent Paris au lieu de s’arrêter dans une gare terminus, ce qui coûte davantage de trains-km.",
   "Passengers who start or end in the Paris region board at the station nearest to them, since every direction is served from three stations.": "Les voyageurs qui partent d’Île-de-France ou y arrivent montent à la gare la plus proche de chez eux, puisque chaque direction est desservie depuis trois gares.",
   "The passengers who today change station in Paris, by metro, RER or taxi, stay on their train; the time and the change saved, and the journeys this makes possible.": "Les voyageurs qui changent aujourd’hui de gare à Paris, en métro, en RER ou en taxi, restent dans leur train : le temps et le changement économisés, et les trajets que cela rend possibles.",
   "As traffic grows, today’s terminals would turn journeys away in the busy hours; the through stations carry them. Nothing in the opening year.": "Avec la croissance du trafic, les gares terminus actuelles devraient refuser des trajets aux heures de pointe ; les gares traversantes les absorbent. Rien l’année de mise en service.",
@@ -136,7 +136,6 @@
   "Commuters between the suburbs on both sides of Paris who gain a through suburban line, measured on the census and the timetable.": "Les navetteurs entre les banlieues des deux côtés de Paris qui gagnent une ligne de banlieue traversante, mesurés sur le recensement et les horaires.",
   "The small plots kept for building at the edge of the freed tracks, sold at the price SNCF got at Bercy-Charenton and Gare des Mines.": "Les petites parcelles constructibles conservées en bordure des voies libérées, vendues au prix obtenu par la SNCF à Bercy-Charenton et à la Gare des Mines.",
   "Three large parks on the freed tracks: the visits they draw and the health they bring, less what they cost to make and keep.": "Trois grands parcs sur les voies libérées : les visites qu’ils attirent et leurs bienfaits pour la santé, moins ce qu’ils coûtent à aménager et à entretenir.",
-  "Passengers who reach the far side of Paris on their train no longer ride a crowded metro or RER leg; the riders left on board gain room too.": "Les voyageurs qui atteignent l’autre côté de Paris dans leur train n’empruntent plus un tronçon de métro ou de RER bondé ; ceux qui restent à bord gagnent aussi de la place.",
   "The signal boxes of the surface approaches are due for renewal; with the lines underground they are not renewed.": "Les postes d’aiguillage des avant-gares en surface arrivent en fin de vie ; avec les lignes en souterrain, ils ne sont pas renouvelés.",
   "Rail noise disappears along the surface approaches that close, for the homes beside them.": "Le bruit ferroviaire disparaît le long des avant-gares en surface qui ferment, pour les logements riverains.",
   "Passengers between the west and the other regions ride a few slow bypass trains a day today; the project gives them an hourly through train by Paris, shorter by up to an hour.": "Les voyageurs entre l’Ouest et les autres régions n’ont aujourd’hui que quelques trains lents par jour qui contournent Paris ; le projet leur donne toutes les heures un train traversant par Paris, avec un trajet jusqu’à une heure plus court.",
@@ -210,7 +209,13 @@
   "Forecast 10.9bn including future inflation; three stations about 40 m deep": "Prévision de 10,9 Md€, inflation future comprise ; trois gares à environ 40 m de profondeur",
   "Suburb-to-suburb trips across Paris, rough estimate": "Trajets de banlieue à banlieue à travers Paris, estimation grossière",
   "Comfort on relieved lines, ratio of another appraisal": "Confort sur les lignes soulagées, ratio d’une autre évaluation",
-  "Wider: suburban job markets": "Effets élargis : marchés de l’emploi de banlieue"
+  "Wider: suburban job markets": "Effets élargis : marchés de l’emploi de banlieue",
+  "RER G stops at Châtelet-Les Halles: easier changes to RER A, B, D and five metro lines": "Le RER G s’arrête à Châtelet-Les Halles : correspondances plus simples avec les RER A, B, D et cinq lignes de métro",
+  "Less crowding on line 4 and the metro and RER in Paris, relieved by RER G": "Moins d’encombrement sur la ligne 4 et dans le métro et le RER parisiens, soulagés par le RER G",
+  "Regional express trains run through Paris instead of ending at a terminal, which costs more train-km, and RER G trains take 2 minutes more for the Châtelet stop.": "Les TER traversent Paris au lieu de s’arrêter dans une gare terminus, ce qui coûte davantage de trains-km, et les trains du RER G mettent 2 minutes de plus pour l’arrêt à Châtelet.",
+  "Passengers who reach the far side of Paris on their train no longer ride a crowded metro or RER leg; the riders left on board gain room too. RER G is counted on its own.": "Les voyageurs qui atteignent l’autre côté de Paris dans leur train n’empruntent plus un tronçon de métro ou de RER bondé ; ceux qui restent à bord gagnent aussi de la place. Le RER G est compté à part.",
+  "RER G stops at Châtelet-Les Halles between Nord-Est and Montparnasse: its riders change there to RER A, B and D and metro lines 1, 4, 7, 11 and 14, less the 2 minutes the stop adds for those who ride through.": "Le RER G s’arrête à Châtelet-Les Halles entre Nord-Est et Montparnasse : ses voyageurs y prennent la correspondance avec les RER A, B et D et les lignes de métro 1, 4, 7, 11 et 14, moins les 2 minutes que l’arrêt ajoute pour ceux qui restent à bord.",
+  "Riders who take RER G across Paris leave line 4 and the other crowded metro and RER lines, valued as line 1 at the peak; the riders left on board gain room too.": "Les voyageurs qui traversent Paris en RER G quittent la ligne 4 et les autres lignes de métro et de RER bondées, valorisées comme la ligne 1 à l’heure de pointe ; ceux qui restent à bord gagnent aussi de la place."
  },
  "patterns": [
   [

@@ -221,6 +221,33 @@
     "end"
    ],
    "under": "RER F only"
+  },
+  {
+   "name": "Châtelet-Les Halles",
+   "short": "Châtelet",
+   "at": [
+    2.347,
+    48.8617
+   ],
+   "stage": 2,
+   "where": "Under the Forum des Halles, beside the station of RER A, B and D.",
+   "calls": "RER G only, a stop in passing between Nord-Est and Montparnasse: its riders change here to RER A, B and D and metro lines 1, 4, 7, 11 and 14. One platform track each way: RER A takes up to 30 trains an hour on one track each way at Auber and Châtelet.",
+   "surface": "Nothing changes on the surface but new exits into the Forum des Halles.",
+   "axis": [
+    [
+     2.3503,
+     48.8647
+    ],
+    [
+     2.3437,
+     48.8587
+    ]
+   ],
+   "lbl": [
+    14,
+    4,
+    "start"
+   ]
   }
  ],
  "junctions": [
@@ -445,8 +472,8 @@
      48.8718
     ],
     [
-     2.349,
-     48.863
+     2.347,
+     48.8617
     ],
     [
      2.335,

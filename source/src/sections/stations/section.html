@@ -146,6 +146,11 @@
   </figure>
 </div>
 
+<div class="block" id="stations.chatelet">
+  <h2>Châtelet-Les Halles: a stop for RER G beside RER A, B and D</h2>
+  <p>RER G stops once between Paris Nord-Est and Montparnasse, at Châtelet-Les Halles, where RER A, B and D and metro lines 1, 4, 7, 11 and 14 meet. Its tunnel passes under the Forum des Halles and widens there into {{ m.cost.tracks['Châtelet-Les Halles'] | 0 }} platform tracks of {{ m.len.sub | 0 }} m, one each way. A stop in passing needs fewer tracks than the ends of a line: RER A runs up to 30 trains an hour on one track each way at Auber and Châtelet, and RER G's {{ m.params.g_trains_h | 0 }} fit on one. The stop adds {{ m.G_STOP | 0 }} minutes, so Nord-Est to Montparnasse takes {{ m.TR_G | 0 }}. The platforms and the passages into the existing station come to €{{ (m.cost.station_cost['Châtelet-Les Halles'] + m.cost.items['Links into Châtelet-Les Halles']) * m.gross_up | 2 }} billion all-in <span class="tag assume">assumption</span>; where the platforms lie and how passengers reach RER A, B and D have not been designed. Nothing changes on the surface but new exits into the Forum des Halles.</p>
+</div>
+
 <div class="block" id="stations.halls">
   <h2>Room for passengers: the halls once the trains are underground</h2>
   <p>Three of today's stations have a large covered hall at the street end: the historic halls of Gare du Nord and Gare de Lyon, and the covered platform level of Montparnasse. Each is about {{ d.stations.halls.hall_len | 0 }} m long. Passengers have about the first {{ d.stations.halls.wait_len | 0 }} m of it; the rest is taken by the ends of the tracks and their platforms (estimated from the SNCF station plans <span class="tag assume">assumption</span>). The waiting areas are crowded: Gare du Nord was designed for 500,000 passengers a day and takes more than 700,000;[[st_inquiry_nord]] at Montparnasse the concourse across the platforms is largely taken up by people waiting.[[st_apur_montp]]</p>

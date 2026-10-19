@@ -158,7 +158,12 @@
   "TGV + TER and RER G": "TGV + TER et RER G",
   "TGV + TER, RER G and RER F": "TGV + TER, RER G et RER F",
   "open to regional express trains, as every TGV + TER tunnel, the TGVs having priority; the peak timetable sends none this way": "ouvert aux TER, comme tout tunnel TGV + TER, les TGV ayant la priorité ; l’horaire de pointe n’en fait passer aucun par ici",
-  "A TGV + TER tunnel, like the other two sides of the triangle. No suburban train uses the link.": "Un tunnel TGV + TER, comme les deux autres côtés du triangle. Aucun train de banlieue n’emprunte la liaison directe."
+  "A TGV + TER tunnel, like the other two sides of the triangle. No suburban train uses the link.": "Un tunnel TGV + TER, comme les deux autres côtés du triangle. Aucun train de banlieue n’emprunte la liaison directe.",
+  "Under the Forum des Halles, beside the station of RER A, B and D.": "Sous le Forum des Halles, à côté de la gare des RER A, B et D.",
+  "RER G only, a stop in passing between Nord-Est and Montparnasse: its riders change here to RER A, B and D and metro lines 1, 4, 7, 11 and 14. One platform track each way: RER A takes up to 30 trains an hour on one track each way at Auber and Châtelet.": "Le seul RER G, un arrêt au passage entre Nord-Est et Montparnasse : ses voyageurs y changent pour les RER A, B et D et les lignes de métro 1, 4, 7, 11 et 14. Une voie à quai par sens : le RER A fait passer jusqu’à 30 trains par heure sur une voie par sens à Auber et à Châtelet.",
+  "Nothing changes on the surface but new exits into the Forum des Halles.": "Rien ne change en surface, sinon de nouvelles sorties dans le Forum des Halles.",
+  "RER G only": "RER G seulement",
+  "Links into the existing station and new exits, works": "Accès à la gare existante et nouvelles sorties, travaux"
  },
  "patterns": [
   [
@@ -332,6 +337,10 @@
   [
    "In the same tunnel: {0}",
    "Dans le même tunnel : {0}"
+  ],
+  [
+   "RER G only, a stop in passing between Nord-Est and Montparnasse: its riders change here to RER A, B and D and metro lines 1, 4, 7, 11 and 14. One platform track each way: RER A takes up to 30 trains an hour on one track each way at Auber and Châtelet. Nord-Est to Montparnasse takes {0} minutes with the stop. Nothing changes on the surface but new exits into the Forum des Halles.",
+   "Le seul RER G, un arrêt au passage entre Nord-Est et Montparnasse : ses voyageurs y changent pour les RER A, B et D et les lignes de métro 1, 4, 7, 11 et 14. Une voie à quai par sens : le RER A fait passer jusqu’à 30 trains par heure sur une voie par sens à Auber et à Châtelet. De Nord-Est à Montparnasse, le trajet prend {0} minutes avec l’arrêt. Rien ne change en surface, sinon de nouvelles sorties dans le Forum des Halles."
   ]
  ]
 }

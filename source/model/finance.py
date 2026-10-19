@@ -102,7 +102,7 @@ def make_base():
     cost_def = {'rates': {'low': N.RATE_LOW, 'central': N.RATE, 'high': N.RATE_HIGH}, 'link_km': N.LINK_KM, 'len': N.LEN, 'layout': N.LAYOUT,
                 'corridor_km': N.CORRIDOR_KM, 'tunnels': N.TUNNELS, 'tunnel_km': N.TUNNEL_KM, 'fee_km': N.FEE_KM}
     return {'cost_def': cost_def, 'r': N.r_, 'n': N.n_, 'build_years': N.BUILD_YEARS, 'renew_year': N.RENEW_YEAR, 'fare': FARE, 'track_share': N.TRACK_SHARE, 'fare_response': N.FARE_RESPONSE,
-            'layout': lay, 'om': {'tunnel': N.OM_TUNNEL, 'station': N.OM_STATION, 'trains': N.REG_TRAINKM * N.REG_TRAINKM_COST / 1000},
+            'layout': lay, 'om': {'tunnel': N.OM_TUNNEL, 'station': N.OM_STATION, 'trains': N.REG_TRAINKM * N.REG_TRAINKM_COST / 1000 + N.G_STOP_RUN},
             'traffic': tr, 'access_curve': curves, 'park_ha': PARK_HA, 'rex_second': REX_SECOND, 'rex_through': REX_THROUGH,
             'navigo_pass': NAVIGO_PASS, 'pass_trips': PASS_TRIPS, 'ter_yield': TER_YIELD, 'shop_fee': SHOP_FEE, 'shop_net': SHOP_NET, 'auth_fee': AUTH_FEE,
             'set_year': SET_YEAR, 'sets': SETS, 'tax': TAX, 'vot_ld': VOT_LD, 'levy': LEVY, 'payroll_01': PAYROLL_01, 'eu_grant': EU_GRANT, 'growth': GROWTH,

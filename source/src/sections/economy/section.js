@@ -68,7 +68,7 @@ PTS.section('economy', function (root) {
       { label: 'Stations and historic halls', value: it['Stations'] + it['Historic halls'], color: 'var(--s1)' },
       { label: 'Tunnels, civil works', value: it['Tunnels, civil works'], color: 'var(--s2)' },
       { label: 'Tunnels, rail systems', value: it['Tunnels, rail systems'], color: 'var(--s2)', alpha: .55 },
-      { label: 'Junctions, portals, sidings, links', value: it['Underground junctions'] + it['Portals and links to existing lines'] + it['Sidings and depot links'] + it['Control hall for London trains'] + it['TER links into the TGV tunnels'], color: 'var(--s3)' },
+      { label: 'Junctions, portals, sidings, links', value: it['Underground junctions'] + it['Portals and links to existing lines'] + it['Sidings and depot links'] + it['Control hall for London trains'] + it['TER links into the TGV tunnels'] + it['Links into Châtelet-Les Halles'], color: 'var(--s3)' },
       { label: 'Design and client costs', value: cost.soft, color: 'var(--s4)' },
       { label: 'Land', value: cost.land, color: 'var(--s5)' },
       { label: 'Risk margin', value: cost.risk, color: 'var(--neutral-mark)' }] });

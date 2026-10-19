@@ -17,6 +17,7 @@
      "sidings": 0.6,
      "london_hall": 0.2,
      "ter_links": 0.65,
+     "chatelet_links": 0.1,
      "design": 0.12,
      "client": 0.08,
      "land": 0.07,
@@ -37,6 +38,7 @@
      "sidings": 0.6,
      "london_hall": 0.2,
      "ter_links": 0.65,
+     "chatelet_links": 0.2,
      "design": 0.12,
      "client": 0.08,
      "land": 0.07,
@@ -57,6 +59,7 @@
      "sidings": 0.6,
      "london_hall": 0.2,
      "ter_links": 0.65,
+     "chatelet_links": 0.4,
      "design": 0.12,
      "client": 0.08,
      "land": 0.07,
@@ -113,6 +116,11 @@
       "hs": 0,
       "ter": 0,
       "sub": 6
+     },
+     "Ch\u00e2telet-Les Halles": {
+      "hs": 0,
+      "ter": 0,
+      "sub": 2
      }
     }
    },
@@ -163,9 +171,9 @@
   "fare_response": -0.7,
   "layout": {
    "capex": {
-    "low": 27.761882500000002,
-    "central": 41.679018750000004,
-    "high": 61.99505
+    "low": 28.24734,
+    "central": 42.62834375,
+    "high": 63.69558
    },
    "systems": {
     "low": 2.0559000000000007,
@@ -173,25 +181,26 @@
     "high": 4.859400000000001
    },
    "tunnel_km": 44.5,
-   "platform_m": 15300,
+   "platform_m": 15750,
    "fee_km": 39.5,
-   "om_low": 0.6152970190509294,
-   "om_high": 1.1841369151066752,
+   "om_low": 0.6169304439574709,
+   "om_high": 1.1805859913968024,
    "items": {
     "Tunnels, civil works": 5.785,
     "Tunnels, rail systems": 2.0025,
-    "Stations": 15.3,
+    "Stations": 15.75,
     "Historic halls": 1.8,
     "Underground junctions": 1.0,
     "Portals and links to existing lines": 1.2,
     "Sidings and depot links": 0.6,
     "Control hall for London trains": 0.2,
-    "TER links into the TGV tunnels": 0.65
+    "TER links into the TGV tunnels": 0.65,
+    "Links into Ch\u00e2telet-Les Halles": 0.2
    },
-   "hard": 28.5375,
-   "soft": 5.7075000000000005,
-   "land": 1.9976250000000002,
-   "risk": 5.436393750000001,
+   "hard": 29.1875,
+   "soft": 5.8375,
+   "land": 2.0431250000000003,
+   "risk": 5.56021875,
    "stations": {
     "Paris Nord-Est": {
      "hs": 6,
@@ -212,25 +221,32 @@
      "hs": 0,
      "ter": 0,
      "sub": 6
+    },
+    "Ch\u00e2telet-Les Halles": {
+     "hs": 0,
+     "ter": 0,
+     "sub": 2
     }
    },
    "station_m": {
     "Paris Nord-Est": 6050,
     "Gare de Lyon": 3200,
     "Montparnasse": 4700,
-    "Saint-Lazare": 1350
+    "Saint-Lazare": 1350,
+    "Ch\u00e2telet-Les Halles": 450
    },
    "tracks": {
     "Paris Nord-Est": 20,
     "Gare de Lyon": 8,
     "Montparnasse": 14,
-    "Saint-Lazare": 6
+    "Saint-Lazare": 6,
+    "Ch\u00e2telet-Les Halles": 2
    }
   },
   "om": {
    "tunnel": 0.0022500000000000003,
    "station": 1.32e-05,
-   "trains": 0.04235
+   "trains": 0.043875
   },
   "traffic": {
    "central": {
@@ -6262,18 +6278,18 @@
  },
  "cases": {
   "central": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -6307,27 +6323,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.34502437993268725,
-   "ops_cover": 1.89483647710258,
-   "ops_cover_before_renewal": 2.121146013838872,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.33755937993268725,
+   "ops_cover": 1.8588476653537778,
+   "ops_cover_before_renewal": 2.076149267623165,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.34502437993268725,
+    "Surplus of the operations account": 0.33755937993268725,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2883939781235552,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5192083180535911,
-   "grant_bn": 11.971711514793766,
-   "grant_share": 0.2872359252650055,
+   "cap_sources_total": 1.280928978123555,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5678451618561364,
+   "grant_bn": 13.093161697211793,
+   "grant_share": 0.30714685454350527,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 33.723575436593016,
-   "public_share": 0.8091259450918098,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 34.84502561901104,
+   "public_share": 0.817414484207143,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -6340,11 +6356,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9661731317170036,
-   "econ_cover_transport_net": 0.7185592117516051,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9350778744869364,
+   "econ_cover_transport_net": 0.6954331458417169,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -6353,28 +6369,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "no_charge": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.96601531182168,
     "cross": 15.471696829439384,
@@ -6407,27 +6423,27 @@
     "Share of the operators\u2019 saving on trainsets": 0.02635
    },
    "ops_rev_total": 0.5172172996873872,
-   "ops_balance": 0.13164475234348266,
-   "ops_cover": 1.3414266737877074,
-   "ops_cover_before_renewal": 1.501639785989772,
+   "ops_balance": 0.12417975234348266,
+   "ops_cover": 1.3159488277460332,
+   "ops_cover_before_renewal": 1.4697848811804126,
    "charge_cover": 0.0,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.13164475234348266,
+    "Surplus of the operations account": 0.12417975234348266,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.0750143505343506,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.7325879456427957,
-   "grant_bn": 16.891739287477517,
-   "grant_share": 0.4052815971699793,
+   "cap_sources_total": 1.0675493505343505,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.781224789445341,
+   "grant_bn": 18.013189469895543,
+   "grant_share": 0.42256367208485657,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 38.64360320927676,
-   "public_share": 0.9271716169967835,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 39.76505339169479,
+   "public_share": 0.9328313017484944,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.35381969598165924,
     "Time saved by TGV passengers crossing Paris": 0.5124365398120534,
@@ -6440,11 +6456,11 @@
    "benefit_total": 1.4425528660479883,
    "benefit_time": 1.0342571255200048,
    "benefit_transport": 1.0803982149518738,
-   "econ_cover_capital": 0.7980477061236356,
-   "econ_cover_all": 0.6577464037167369,
-   "econ_cover_transport": 0.49261836927572067,
-   "econ_cover_net": 0.8607335378843938,
-   "econ_cover_transport_net": 0.6446453365880144,
+   "econ_cover_capital": 0.7802753375076062,
+   "econ_cover_all": 0.643476378593686,
+   "econ_cover_transport": 0.48193085131147456,
+   "econ_cover_net": 0.8364592140562415,
+   "econ_cover_transport_net": 0.6264651112733276,
    "tax": {
     "VAT inside the new ticket money": 0.10629852019506063,
     "Fuel duty lost on car trips moved to rail": -0.024557624278422036,
@@ -6453,28 +6469,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.42374430288267023,
-   "tax_share_of_annuity": 0.23442341480691667,
+   "tax_share_of_annuity": 0.22920285053712672,
    "tax_pv": 9.77053790117651,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.253734373733231
   },
   "tgv_charge_only": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -6506,27 +6522,27 @@
     "Shops in the new station halls": 0.027823891840582114
    },
    "ops_rev_total": 0.6337528147765918,
-   "ops_balance": 0.24818026743268734,
-   "ops_cover": 1.6436668511343142,
-   "ops_cover_before_renewal": 1.8399779777798186,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.24071526743268734,
+   "ops_cover": 1.6124485282879693,
+   "ops_cover_before_renewal": 1.8009457652077063,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.24818026743268734,
+    "Surplus of the operations account": 0.24071526743268734,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.1915498656235552,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.616052430553591,
-   "grant_bn": 14.204706897268673,
-   "grant_share": 0.34081193183725494,
+   "cap_sources_total": 1.1840848656235552,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.6646892743561363,
+   "grant_bn": 15.3261570796867,
+   "grant_share": 0.3595297337745312,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 35.95657081906792,
-   "public_share": 0.8627019516640592,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 37.07802100148595,
+   "public_share": 0.869797363438169,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -6539,11 +6555,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9061712991548372,
-   "econ_cover_transport_net": 0.6739348394790065,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.8787635265367019,
+   "econ_cover_transport_net": 0.6535512179086614,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -6552,28 +6568,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "low_running": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.18587199999999998,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.19002999999999995,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.2693595473439045,
+   "ops_cost_total": 0.27504254734390443,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -6607,27 +6623,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.46123737993268726,
-   "ops_cover": 2.712348362925495,
-   "ops_cover_before_renewal": 3.2012554761442447,
-   "charge_cover": 0.6590781112286319,
+   "ops_balance": 0.4555543799326873,
+   "ops_cover": 2.6563051219965494,
+   "ops_cover_before_renewal": 3.123477169263556,
+   "charge_cover": 0.64546006943007,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.46123737993268726,
+    "Surplus of the operations account": 0.4555543799326873,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.404606978123555,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.40299531805359123,
-   "grant_bn": 9.29211555707815,
-   "grant_share": 0.2229446814190689,
+   "cap_sources_total": 1.3989239781235552,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.44985016185613635,
+   "grant_bn": 10.37247704893101,
+   "grant_share": 0.24332348237036563,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 31.043979478877397,
-   "public_share": 0.7448347012458731,
-   "yearly_cost": 2.0769618435210506,
+   "public_bn": 32.12434097073026,
+   "public_share": 0.7535911120340034,
+   "yearly_cost": 2.123816687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -6640,11 +6656,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6803704604040387,
-   "econ_cover_transport": 0.5060029571078983,
-   "econ_cover_net": 1.0495694507992228,
-   "econ_cover_transport_net": 0.780582457208877,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.6653603835737874,
+   "econ_cover_transport": 0.49483971045839864,
+   "econ_cover_net": 1.0142717798306013,
+   "econ_cover_transport_net": 0.7543309855054502,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -6653,28 +6669,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "high_running": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.35771,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.3636500000000001,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.4411975473439045,
+   "ops_cost_total": 0.4486625473439046,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -6708,27 +6724,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.2893993799326873,
-   "ops_cover": 1.655940590955068,
-   "ops_cover_before_renewal": 1.8262183854336644,
-   "charge_cover": 0.40237980191317707,
+   "ops_balance": 0.28193437993268716,
+   "ops_cover": 1.628388488412387,
+   "ops_cover_before_renewal": 1.7927659095186592,
+   "charge_cover": 0.3956848699669643,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.2893993799326873,
+    "Surplus of the operations account": 0.28193437993268716,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2327689781235551,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5748333180535912,
-   "grant_bn": 13.254291993293858,
-   "grant_share": 0.31800873414981384,
+   "cap_sources_total": 1.225303978123555,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.6234701618561365,
+   "grant_bn": 14.375742175711887,
+   "grant_share": 0.3372343589049689,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 35.0061559150931,
-   "public_share": 0.8398987539766181,
-   "yearly_cost": 2.248799843521051,
+   "public_bn": 36.12760609751113,
+   "public_share": 0.8475019885686066,
+   "yearly_cost": 2.297436687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -6741,11 +6757,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6283811739801067,
-   "econ_cover_transport": 0.46733765019140344,
-   "econ_cover_net": 0.9307737922237677,
-   "econ_cover_transport_net": 0.692232127456078,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.6150783146778405,
+   "econ_cover_transport": 0.4574440899375681,
+   "econ_cover_net": 0.9018813038518029,
+   "econ_cover_transport_net": 0.6707442978026009,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -6754,28 +6770,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "shops_full": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -6809,27 +6825,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.758420819117174,
-   "ops_balance": 0.37284827177326946,
-   "ops_cover": 1.9669990105408468,
-   "ops_cover_before_renewal": 2.2019272696362853,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.36538327177326946,
+   "ops_cover": 1.9296396088426693,
+   "ops_cover_before_renewal": 2.155216877286655,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.37284827177326946,
+    "Surplus of the operations account": 0.36538327177326946,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.3162178699641374,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.49138442621300893,
-   "grant_bn": 11.330158606737518,
-   "grant_share": 0.2718432186395347,
+   "cap_sources_total": 1.3087528699641373,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5400212700155542,
+   "grant_bn": 12.451608789155546,
+   "grant_share": 0.29209694052810925,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 33.08202252853677,
-   "public_share": 0.793733238466339,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 34.2034727109548,
+   "public_share": 0.8023645701917471,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -6842,11 +6858,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9849099299827132,
-   "econ_cover_transport_net": 0.7324940838263759,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9526170856280323,
+   "econ_cover_transport_net": 0.708477352225198,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -6855,28 +6871,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "no_fleet": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -6909,27 +6925,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7042469272765918,
-   "ops_balance": 0.31867437993268727,
-   "ops_cover": 1.8264965494248515,
-   "ops_cover_before_renewal": 2.0446439162007106,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.31120937993268727,
+   "ops_cover": 1.7918057245059635,
+   "ops_cover_before_renewal": 2.001270040570025,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.31867437993268727,
+    "Surplus of the operations account": 0.31120937993268727,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.262043978123555,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5455583180535912,
-   "grant_bn": 12.57927997517089,
-   "grant_share": 0.30181324686706756,
+   "cap_sources_total": 1.254578978123555,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5941951618561365,
+   "grant_bn": 13.700730157588918,
+   "grant_share": 0.3213995420028234,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 34.33114389697014,
-   "public_share": 0.8237032666938718,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 35.45259407938816,
+   "public_share": 0.8316671716664611,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -6942,11 +6958,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9490744785565755,
-   "econ_cover_transport_net": 0.7058426557497456,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9190529871891958,
+   "econ_cover_transport_net": 0.6835151675756379,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -6955,28 +6971,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "package_low_running": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.18587199999999998,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.19002999999999995,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.2693595473439045,
+   "ops_cost_total": 0.27504254734390443,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -7010,27 +7026,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.758420819117174,
-   "ops_balance": 0.48906127177326947,
-   "ops_cover": 2.8156448382683874,
-   "ops_cover_before_renewal": 3.3231713818876973,
-   "charge_cover": 0.6590781112286319,
+   "ops_balance": 0.48337827177326953,
+   "ops_cover": 2.7574672589432816,
+   "ops_cover_before_renewal": 3.24243098316485,
+   "charge_cover": 0.64546006943007,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.48906127177326947,
+    "Surplus of the operations account": 0.48337827177326953,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.4324308699641373,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.37517142621300903,
-   "grant_bn": 8.650562649021904,
-   "grant_share": 0.2075519747935981,
+   "cap_sources_total": 1.4267478699641374,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.42202627001555415,
+   "grant_bn": 9.730924140874764,
+   "grant_share": 0.22827356835496956,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 30.402426570821152,
-   "public_share": 0.7294419946204024,
-   "yearly_cost": 2.0769618435210506,
+   "public_bn": 31.48278806267401,
+   "public_share": 0.7385411980186073,
+   "yearly_cost": 2.123816687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -7043,11 +7059,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6803704604040387,
-   "econ_cover_transport": 0.5060029571078983,
-   "econ_cover_net": 1.0717174965086234,
-   "econ_cover_transport_net": 0.7970543313941,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.6653603835737874,
+   "econ_cover_transport": 0.49483971045839864,
+   "econ_cover_net": 1.0349405023279328,
+   "econ_cover_transport_net": 0.7697026621315658,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -7056,28 +7072,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.23019632674729426,
+   "tax_share_of_annuity": 0.22506989891394985,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "growth": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.4099195110510503,
    "grow_traffic": 1.2206738176011227,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 126.97904697945492,
     "cross": 18.220478190531374,
@@ -7111,27 +7127,27 @@
     "Charge on regional express passengers": 0.08605031742377803
    },
    "ops_rev_total": 0.879032492616382,
-   "ops_balance": 0.49345994527247755,
-   "ops_cover": 2.2798108907695256,
-   "ops_cover_before_renewal": 2.552099794203208,
-   "charge_cover": 0.5620342561348804,
+   "ops_balance": 0.48599494527247755,
+   "ops_cover": 2.2365102228954123,
+   "ops_cover_before_renewal": 2.497961047503217,
+   "charge_cover": 0.5513594853645047,
    "pass_holders": 25700.50081598959,
    "cap_sources": {
-    "Surplus of the operations account": 0.49345994527247755,
+    "Surplus of the operations account": 0.48599494527247755,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.4368295434633453,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.37077275271380095,
-   "grant_bn": 8.549139678030802,
-   "grant_share": 0.2051185448801095,
+   "cap_sources_total": 1.4293645434633453,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.41940959651634624,
+   "grant_bn": 9.670589860448828,
+   "grant_share": 0.22685821239416154,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 30.30100359983005,
-   "public_share": 0.7270085647069138,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 31.422453782248077,
+   "public_share": 0.7371258420577993,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.4759509093904922,
     "Time saved by TGV passengers crossing Paris": 0.7038794031091428,
@@ -7144,11 +7160,11 @@
    "benefit_total": 1.9923621756481114,
    "benefit_time": 1.4166980447986701,
    "benefit_transport": 1.4817532670498137,
-   "econ_cover_capital": 1.1022126824366782,
-   "econ_cover_all": 0.9084374561079029,
-   "econ_cover_transport": 0.6756202185280041,
-   "econ_cover_net": 1.5160931190418978,
-   "econ_cover_transport_net": 1.127543957494224,
+   "econ_cover_capital": 1.0776666184166754,
+   "econ_cover_all": 0.8887286059368832,
+   "econ_cover_transport": 0.6609624150986634,
+   "econ_cover_net": 1.4619845851669022,
+   "econ_cover_transport_net": 1.0873025305967932,
    "tax": {
     "VAT inside the new ticket money": 0.11881662898099235,
     "Fuel duty lost on car trips moved to rail": -0.026578719851013663,
@@ -7157,28 +7173,28 @@
     "Public money saved or raised by extra employment": 0.260691185426586
    },
    "tax_total": 0.5723723216583987,
-   "tax_share_of_annuity": 0.31664726409614263,
+   "tax_share_of_annuity": 0.30959559054881963,
    "tax_pv": 13.197547257399332,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.3530137051624511
   },
   "low_cost": {
-   "capex": 27.761882500000002,
+   "capex": 28.24734,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.2040216890470852,
+   "annuity": 1.225075785760828,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.030604745366962786
    },
-   "ops_cost_total": 0.3750397453669628,
+   "ops_cost_total": 0.3825047453669628,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -7212,27 +7228,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.355557181909629,
-   "ops_cover": 1.9480520032929556,
-   "ops_cover_before_renewal": 2.121146013838872,
-   "charge_cover": 0.47336044752033996,
+   "ops_balance": 0.348092181909629,
+   "ops_cover": 1.9100336299767484,
+   "ops_cover_before_renewal": 2.076149267623165,
+   "charge_cover": 0.46412229875606964,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.355557181909629,
+    "Surplus of the operations account": 0.348092181909629,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.298926780100497,
-   "cap_need": 1.2040216890470852,
-   "cap_gap": -0.09490509105341172,
-   "grant_bn": -2.188286150029297,
-   "grant_share": -0.07882340651896703,
+   "cap_sources_total": 1.2914617801004968,
+   "cap_need": 1.225075785760828,
+   "cap_gap": -0.06638599433966874,
+   "grant_bn": -1.5307034676112679,
+   "grant_share": -0.05418929596950608,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
    "public_bn": 21.75186392179925,
-   "public_share": 0.7835154522320036,
-   "yearly_cost": 1.579061434414048,
+   "public_share": 0.77004999131951,
+   "yearly_cost": 1.6075805311277909,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -7245,11 +7261,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 1.1736528490914724,
-   "econ_cover_all": 0.8949008917074891,
-   "econ_cover_transport": 0.6655528478611129,
-   "econ_cover_net": 1.6654833217308727,
-   "econ_cover_transport_net": 1.2386479643887611,
+   "econ_cover_capital": 1.1534825046276107,
+   "econ_cover_all": 0.8790250058121081,
+   "econ_cover_transport": 0.6537456844445828,
+   "econ_cover_net": 1.611322582899514,
+   "econ_cover_transport_net": 1.1983677117870515,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -7258,28 +7274,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.3455946122775213,
+   "tax_share_of_annuity": 0.33965523899530387,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    11.104753000000002,
-    16.6571295
+    11.298936000000001,
+    16.948404
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "high_cost": {
-   "capex": 61.99505,
+   "capex": 63.69558,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 2.68870040832276,
+   "annuity": 2.7624517111342763,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.07233848904918476
    },
-   "ops_cost_total": 0.41677348904918476,
+   "ops_cost_total": 0.42423848904918476,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -7313,27 +7329,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.313823438227407,
-   "ops_cover": 1.752983206641466,
-   "ops_cover_before_renewal": 2.121146013838872,
-   "charge_cover": 0.4259603510526292,
+   "ops_balance": 0.306358438227407,
+   "ops_cover": 1.7221373028034919,
+   "ops_cover_before_renewal": 2.076149267623165,
+   "charge_cover": 0.4184650527647852,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.313823438227407,
+    "Surplus of the operations account": 0.306358438227407,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2571930364182748,
-   "cap_need": 2.68870040832276,
-   "cap_gap": 1.431507371904485,
-   "grant_bn": 33.007162427571494,
-   "grant_share": 0.5324160949555085,
+   "cap_sources_total": 1.2497280364182748,
+   "cap_need": 2.7624517111342763,
+   "cap_gap": 1.5127236747160016,
+   "grant_bn": 34.87981760998953,
+   "grant_share": 0.547601852593061,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 54.75902634937074,
-   "public_share": 0.8832806223943805,
-   "yearly_cost": 3.1054738973719447,
+   "public_bn": 56.63168153178878,
+   "public_share": 0.8890990792734563,
+   "yearly_cost": 3.186690200183461,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -7346,11 +7362,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.5255711946722793,
-   "econ_cover_all": 0.4550363430566584,
-   "econ_cover_transport": 0.33841818329605194,
-   "econ_cover_net": 0.5950217647111636,
-   "econ_cover_transport_net": 0.4425276963209287,
+   "econ_cover_capital": 0.511539615343289,
+   "econ_cover_all": 0.4434392416422169,
+   "econ_cover_transport": 0.3297932238789385,
+   "econ_cover_net": 0.575346018535193,
+   "econ_cover_transport_net": 0.4278945128896063,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -7359,28 +7375,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.15476004969238039,
+   "tax_share_of_annuity": 0.15062830134652366,
    "tax_pv": 9.594357018681606,
    "works_return": [
-    24.79802,
-    37.19703
+    25.478232000000002,
+    38.217348
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "high_traffic": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 16.734626643947045,
@@ -7414,27 +7430,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.81559651771925,
-   "ops_balance": 0.4300239703753455,
-   "ops_cover": 2.115286794502497,
-   "ops_cover_before_renewal": 2.3679257848919244,
-   "charge_cover": 0.4843447775643538,
+   "ops_balance": 0.4225589703753455,
+   "ops_cover": 2.0751109486382227,
+   "ops_cover_before_renewal": 2.3176939974971584,
+   "charge_cover": 0.4751455705446889,
    "pass_holders": 34222.47004022405,
    "cap_sources": {
-    "Surplus of the operations account": 0.4300239703753455,
+    "Surplus of the operations account": 0.4225589703753455,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.3733935685662133,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.434208727610933,
-   "grant_bn": 10.011822698932976,
-   "grant_share": 0.24021253376875565,
+   "cap_sources_total": 1.3659285685662133,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.4828455714134783,
+   "grant_bn": 11.133272881351004,
+   "grant_share": 0.26117066491355306,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 31.763686620732223,
-   "public_share": 0.7621025535955599,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 32.88513680315025,
+   "public_share": 0.7714382945771909,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.5954836262422691,
@@ -7447,11 +7463,11 @@
    "benefit_total": 1.53093392211814,
    "benefit_time": 1.1073487457903717,
    "benefit_transport": 1.1552176789261412,
-   "econ_cover_capital": 0.8469417887750389,
-   "econ_cover_all": 0.6980446299759163,
-   "econ_cover_transport": 0.526733052013075,
-   "econ_cover_net": 1.1113225966495086,
-   "econ_cover_transport_net": 0.8385858410292296,
+   "econ_cover_capital": 0.8280805583612052,
+   "econ_cover_all": 0.6829003215456768,
+   "econ_cover_transport": 0.5153054047573936,
+   "econ_cover_net": 1.0734242313120568,
+   "econ_cover_transport_net": 0.8099883548753841,
    "tax": {
     "VAT inside the new ticket money": 0.11447632023165717,
     "Fuel duty lost on car trips moved to rail": -0.02515774476524392,
@@ -7460,28 +7476,28 @@
     "Public money saved or raised by extra employment": 0.19182178605270064
    },
    "tax_total": 0.4459485690216244,
-   "tax_share_of_annuity": 0.24670723751831367,
+   "tax_share_of_annuity": 0.24121311488407288,
    "tax_pv": 10.282515578286501,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 19182.178605270063,
    "work_output": 0.2674093441683158
   },
   "low_traffic": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 6.465422547471638,
@@ -7515,10 +7531,10 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.3851617761315802,
-   "ops_balance": -0.00041077121232430125,
-   "ops_cover": 0.9989346461122454,
-   "ops_cover_before_renewal": 1.1182422696055285,
-   "charge_cover": 0.3485131649331996,
+   "ops_balance": -0.0078757712123243,
+   "ops_cover": 0.9799617841462025,
+   "ops_cover_before_renewal": 1.0945205346165963,
+   "charge_cover": 0.3418938208175854,
    "pass_holders": 7886.241468795479,
    "cap_sources": {
     "Surplus of the operations account": 0.0,
@@ -7527,15 +7543,15 @@
     "European grant": 0.043369598190867824
    },
    "cap_sources_total": 0.9433695981908679,
-   "cap_need": 1.8080130673894705,
-   "cap_gap": 0.8646434691986027,
-   "grant_bn": 19.93662623742425,
-   "grant_share": 0.47833722662734823,
-   "shortfall_bn": 0.009471409223496007,
+   "cap_need": 1.8566499111920158,
+   "cap_gap": 0.913280313001148,
+   "grant_bn": 21.058076419842276,
+   "grant_share": 0.49399236675345326,
+   "shortfall_bn": 0.1815965916415309,
    "levy_bn": 20.75186392179925,
-   "public_bn": 41.6884901592235,
-   "public_share": 1.0002272464541526,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 42.80994034164152,
+   "public_share": 1.004259996417091,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.28379286989617575,
@@ -7548,11 +7564,11 @@
    "benefit_total": 1.1760820477133038,
    "benefit_time": 0.783075742985105,
    "benefit_transport": 0.8274889887130734,
-   "econ_cover_capital": 0.65063097684738,
-   "econ_cover_all": 0.536246369589555,
-   "econ_cover_transport": 0.3773018786703637,
-   "econ_cover_net": 0.6504831568564984,
-   "econ_cover_transport_net": 0.45767865489371545,
+   "econ_cover_capital": 0.6361415503822565,
+   "econ_cover_all": 0.5246123277719987,
+   "econ_cover_transport": 0.3691161899958589,
+   "econ_cover_net": 0.6334430851092598,
+   "econ_cover_transport_net": 0.44568929431709864,
    "tax": {
     "VAT inside the new ticket money": 0.02152928182663379,
     "Fuel duty lost on car trips moved to rail": -0.005937995734681426,
@@ -7561,28 +7577,28 @@
     "Public money saved or raised by extra employment": 0.1779740546080885
    },
    "tax_total": 0.3294670938327618,
-   "tax_share_of_annuity": 0.1822674680871692,
+   "tax_share_of_annuity": 0.17820840669936075,
    "tax_pv": 7.596729219920154,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 17797.405460808848,
    "work_output": 0.2090937779861215
   },
   "ride": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 103.90744959079178,
     "cross": 14.926574100146095,
@@ -7616,27 +7632,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7295007349182204,
-   "ops_balance": 0.3439281875743159,
-   "ops_cover": 1.8919934521882735,
-   "ops_cover_before_renewal": 2.1179634326308894,
-   "charge_cover": 0.46273455964816673,
+   "ops_balance": 0.3364631875743159,
+   "ops_cover": 1.8560586382855517,
+   "ops_cover_before_renewal": 2.07303419982444,
+   "charge_cover": 0.4539457975792057,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.3439281875743159,
+    "Surplus of the operations account": 0.3364631875743159,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2872977857651837,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5203045104119626,
-   "grant_bn": 11.996987108852698,
-   "grant_share": 0.28784235974491834,
+   "cap_sources_total": 1.2798327857651837,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5689413542145079,
+   "grant_bn": 13.118437291270727,
+   "grant_share": 0.30773978384442224,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 33.74885103065195,
-   "public_share": 0.8097323795717226,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 34.87030121306998,
+   "public_share": 0.81800741350806,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.32401962611458285,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -7649,11 +7665,11 @@
    "benefit_total": 1.3995500052403973,
    "benefit_time": 0.9912542647124136,
    "benefit_transport": 1.0373953541442826,
-   "econ_cover_capital": 0.774257704916768,
-   "econ_cover_all": 0.6381388193352967,
-   "econ_cover_transport": 0.47301078489428033,
-   "econ_cover_net": 0.956189630611391,
-   "econ_cover_transport_net": 0.7087611566310633,
+   "econ_cover_capital": 0.7570151350428188,
+   "econ_cover_all": 0.6242941872210778,
+   "econ_cover_transport": 0.4627486599388662,
+   "econ_cover_net": 0.9254379881428295,
+   "econ_cover_transport_net": 0.6859669649910783,
    "tax": {
     "VAT inside the new ticket money": 0.09682421635766074,
     "Fuel duty lost on car trips moved to rail": -0.02155617555378309,
@@ -7662,28 +7678,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4088643169916267,
-   "tax_share_of_annuity": 0.22619152335462495,
+   "tax_share_of_annuity": 0.22115428172103163,
    "tax_pv": 9.427440742988479,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.23445196369129834
   },
   "best": {
-   "capex": 27.761882500000002,
+   "capex": 28.24734,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.4099195110510503,
    "grow_traffic": 1.2206738176011227,
-   "annuity": 1.2040216890470852,
+   "annuity": 1.225075785760828,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.030604745366962786
    },
-   "ops_cost_total": 0.3750397453669628,
+   "ops_cost_total": 0.3825047453669628,
    "tgv": {
     "paris": 126.97904697945492,
     "cross": 20.427520591596302,
@@ -7717,27 +7733,27 @@
     "Charge on regional express passengers": 0.08605031742377803
    },
    "ops_rev_total": 0.9827892671765536,
-   "ops_balance": 0.6077495218095907,
-   "ops_cover": 2.6204936391873077,
-   "ops_cover_before_renewal": 2.853337399441269,
-   "charge_cover": 0.6078313002661678,
+   "ops_balance": 0.6002845218095908,
+   "ops_cover": 2.569351829174556,
+   "ops_cover_before_renewal": 2.7928083750399364,
+   "charge_cover": 0.5959688051953319,
    "pass_holders": 41774.473151740334,
    "cap_sources": {
-    "Surplus of the operations account": 0.6077495218095907,
+    "Surplus of the operations account": 0.6002845218095908,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.5511191200004586,
-   "cap_need": 1.2040216890470852,
-   "cap_gap": -0.3470974309533734,
-   "grant_bn": -8.003242949722797,
-   "grant_share": -0.2882817096327238,
+   "cap_sources_total": 1.5436541200004585,
+   "cap_need": 1.225075785760828,
+   "cap_gap": -0.31857833423963045,
+   "grant_bn": -7.345660267304766,
+   "grant_share": -0.26004785821619897,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
    "public_bn": 21.75186392179925,
-   "public_share": 0.7835154522320036,
-   "yearly_cost": 1.579061434414048,
+   "public_share": 0.77004999131951,
+   "yearly_cost": 1.6075805311277909,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.4759509093904922,
     "Time saved by TGV passengers crossing Paris": 0.8395839831504064,
@@ -7750,11 +7766,11 @@
    "benefit_total": 2.1584936069242744,
    "benefit_time": 1.5612726022277543,
    "benefit_transport": 1.6287639450290738,
-   "econ_cover_capital": 1.7927364818756708,
-   "econ_cover_all": 1.3669472003318477,
-   "econ_cover_transport": 1.0314759828413322,
-   "econ_cover_net": 3.6199804812699727,
-   "econ_cover_transport_net": 2.731578018432545,
+   "econ_cover_capital": 1.7619265942667792,
+   "econ_cover_all": 1.342697031426471,
+   "econ_cover_transport": 1.0131772023180834,
+   "econ_cover_net": 3.454743578317281,
+   "econ_cover_transport_net": 2.606892956102845,
    "tax": {
     "VAT inside the new ticket money": 0.13973824684210562,
     "Fuel duty lost on car trips moved to rail": -0.030709400344824958,
@@ -7763,28 +7779,28 @@
     "Public money saved or raised by extra employment": 0.27045327880036285
    },
    "tax_total": 0.6118484326367831,
-   "tax_share_of_annuity": 0.5081706070602652,
+   "tax_share_of_annuity": 0.4994372101288389,
    "tax_pv": 14.107772683160755,
    "works_return": [
-    11.104753000000002,
-    16.6571295
+    11.298936000000001,
+    16.948404
    ],
    "jobs": 19182.178605270063,
    "work_output": 0.37702565178027386
   },
   "navigo_all": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -7818,27 +7834,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7796648051743352,
-   "ops_balance": 0.3940922578304307,
-   "ops_cover": 2.0220962580069974,
-   "ops_cover_before_renewal": 2.263605049354262,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.3866272578304307,
+   "ops_cover": 1.9836903889798987,
+   "ops_cover_before_renewal": 2.2155862607966332,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 70181.18584836587,
    "cap_sources": {
-    "Surplus of the operations account": 0.3940922578304307,
+    "Surplus of the operations account": 0.3866272578304307,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.3374618560212985,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.47014044015584777,
-   "grant_bn": 10.840322709165507,
-   "grant_share": 0.2600906411494034,
+   "cap_sources_total": 1.3299968560212985,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5187772839583931,
+   "grant_bn": 11.961772891583536,
+   "grant_share": 0.28060609067373243,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 32.592186630964754,
-   "public_share": 0.7819806609762077,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 33.713636813382784,
+   "public_share": 0.7908737203373702,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -7851,11 +7867,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9997123807984039,
-   "econ_cover_transport_net": 0.7435029155160053,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9664579550591168,
+   "econ_cover_transport_net": 0.718771039662648,
    "tax": {
     "VAT inside the new ticket money": 0.10179763555897353,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -7864,28 +7880,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.42056412497247586,
-   "tax_share_of_annuity": 0.23266407984871262,
+   "tax_share_of_annuity": 0.22748269562938375,
    "tax_pv": 9.697210546465993,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "navigo_low": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -7919,27 +7935,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7158765639072687,
-   "ops_balance": 0.3303040165633642,
-   "ops_cover": 1.8566585428312548,
-   "ops_cover_before_renewal": 2.0784083031842546,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.3228390165633642,
+   "ops_cover": 1.8213948482659414,
+   "ops_cover_before_renewal": 2.0343181696711246,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 6316.306726352928,
    "cap_sources": {
-    "Surplus of the operations account": 0.3303040165633642,
+    "Surplus of the operations account": 0.3228390165633642,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.273673614754232,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5339286814229143,
-   "grant_bn": 12.311128156482246,
-   "grant_share": 0.29537951049968625,
+   "cap_sources_total": 1.266208614754232,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5825655252254596,
+   "grant_bn": 13.432578338900273,
+   "grant_share": 0.3151090837044372,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 34.062992078281496,
-   "public_share": 0.8172695303264905,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 35.18444226069952,
+   "public_share": 0.8253767133680749,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -7952,11 +7968,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.956545814219369,
-   "econ_cover_transport_net": 0.7113992137706129,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9260573821476257,
+   "econ_cover_transport_net": 0.6887244539394409,
    "tax": {
     "VAT inside the new ticket money": 0.09599870453469475,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -7965,28 +7981,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.41476519394819705,
-   "tax_share_of_annuity": 0.22945600081686873,
+   "tax_share_of_annuity": 0.22434605989931966,
    "tax_pv": 9.563500960346289,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "tax_high": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -8020,27 +8036,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.34502437993268725,
-   "ops_cover": 1.89483647710258,
-   "ops_cover_before_renewal": 2.121146013838872,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.33755937993268725,
+   "ops_cover": 1.8588476653537778,
+   "ops_cover_before_renewal": 2.076149267623165,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.34502437993268725,
+    "Surplus of the operations account": 0.33755937993268725,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2883939781235552,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5192083180535911,
-   "grant_bn": 11.971711514793766,
-   "grant_share": 0.2872359252650055,
+   "cap_sources_total": 1.280928978123555,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5678451618561364,
+   "grant_bn": 13.093161697211793,
+   "grant_share": 0.30714685454350527,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 33.723575436593016,
-   "public_share": 0.8091259450918098,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 34.84502561901104,
+   "public_share": 0.817414484207143,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -8053,11 +8069,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9661731317170036,
-   "econ_cover_transport_net": 0.7185592117516051,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9350778744869364,
+   "econ_cover_transport_net": 0.6954331458417169,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -8066,28 +8082,28 @@
     "Public money saved or raised by extra employment": 0.993344107999649
    },
    "tax_total": 1.2245495964692081,
-   "tax_share_of_annuity": 0.6774441474537723,
+   "tax_share_of_annuity": 0.6623575968466648,
    "tax_pv": 28.235207323803547,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "tax_low": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -8121,27 +8137,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.34502437993268725,
-   "ops_cover": 1.89483647710258,
-   "ops_cover_before_renewal": 2.121146013838872,
-   "charge_cover": 0.46042951690353634,
+   "ops_balance": 0.33755937993268725,
+   "ops_cover": 1.8588476653537778,
+   "ops_cover_before_renewal": 2.076149267623165,
+   "charge_cover": 0.4516845347334806,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.34502437993268725,
+    "Surplus of the operations account": 0.33755937993268725,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2883939781235552,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.5192083180535911,
-   "grant_bn": 11.971711514793766,
-   "grant_share": 0.2872359252650055,
+   "cap_sources_total": 1.280928978123555,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5678451618561364,
+   "grant_bn": 13.093161697211793,
+   "grant_share": 0.30714685454350527,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 33.723575436593016,
-   "public_share": 0.8091259450918098,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 34.84502561901104,
+   "public_share": 0.817414484207143,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -8154,11 +8170,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.7817557483228341,
-   "econ_cover_all": 0.6443186642836736,
-   "econ_cover_transport": 0.47919062984265726,
-   "econ_cover_net": 0.9661731317170036,
-   "econ_cover_transport_net": 0.7185592117516051,
+   "econ_cover_capital": 0.7643461984672508,
+   "econ_cover_all": 0.630339958395472,
+   "econ_cover_transport": 0.46879443111326036,
+   "econ_cover_net": 0.9350778744869364,
+   "econ_cover_transport_net": 0.6954331458417169,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -8167,28 +8183,28 @@
     "Public money saved or raised by extra employment": 0.0
    },
    "tax_total": 0.075563109325344,
-   "tax_share_of_annuity": 0.04180295050805732,
+   "tax_share_of_annuity": 0.04087200685648602,
    "tax_pv": 1.7423059580306433,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "rate45": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.3173453244623865,
    "af": 0.04845425584626119,
    "grow": 1.333824988412798,
    "grow_traffic": 1.1816952743700149,
-   "annuity": 2.6604129202328344,
+   "annuity": 2.7210092723362536,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.03575154593240139
    },
-   "ops_cost_total": 0.38018654593240137,
+   "ops_cost_total": 0.38765154593240136,
    "tgv": {
     "paris": 122.9243534153214,
     "cross": 17.638662076676496,
@@ -8222,27 +8238,27 @@
     "Charge on regional express passengers": 0.0833025596121582
    },
    "ops_rev_total": 0.8528136952822596,
-   "ops_balance": 0.4726271493498582,
-   "ops_cover": 2.2431453832506034,
-   "ops_cover_before_renewal": 2.4759786179751178,
-   "charge_cover": 0.5517953251865126,
+   "ops_balance": 0.4651621493498582,
+   "ops_cover": 2.1999491662828894,
+   "ops_cover_before_renewal": 2.4234546612169923,
+   "charge_cover": 0.5411694108937947,
    "pass_holders": 24879.832700009316,
    "cap_sources": {
-    "Surplus of the operations account": 0.4726271493498582,
+    "Surplus of the operations account": 0.4651621493498582,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.06383098738937643
    },
-   "cap_sources_total": 1.4364581367392346,
-   "cap_need": 2.6604129202328344,
-   "cap_gap": 1.2239547834935998,
-   "grant_bn": 19.174931072698808,
-   "grant_share": 0.4600619603766177,
+   "cap_sources_total": 1.4289931367392348,
+   "cap_need": 2.7210092723362536,
+   "cap_gap": 1.2920161355970188,
+   "grant_bn": 20.24120554043086,
+   "grant_share": 0.47482974377654213,
    "shortfall_bn": 0.0,
    "levy_bn": 14.099734890671446,
-   "public_bn": 34.27466596337025,
-   "public_share": 0.8223481979975896,
-   "yearly_cost": 3.0405994661652356,
+   "public_bn": 35.34094043110231,
+   "public_share": 0.8290479367053127,
+   "yearly_cost": 3.108660818268655,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.4502634449888451,
     "Time saved by TGV passengers crossing Paris": 0.6658904493038579,
@@ -8255,11 +8271,11 @@
    "benefit_total": 1.8848327404639467,
    "benefit_time": 1.3402376790852142,
    "benefit_transport": 1.4017818171620307,
-   "econ_cover_capital": 0.7084737583889759,
-   "econ_cover_all": 0.6198885323232242,
-   "econ_cover_transport": 0.4610215297215518,
-   "econ_cover_net": 0.8615252761714601,
-   "econ_cover_transport_net": 0.6407308411171724,
+   "econ_cover_capital": 0.692696184326352,
+   "econ_cover_all": 0.6063166265638752,
+   "econ_cover_transport": 0.45092787509148147,
+   "econ_cover_net": 0.8355321250531895,
+   "econ_cover_transport_net": 0.6213992973541074,
    "tax": {
     "VAT inside the new ticket money": 0.1150225776607047,
     "Fuel duty lost on car trips moved to rail": -0.02573000845424086,
@@ -8268,28 +8284,28 @@
     "Public money saved or raised by extra employment": 0.24662146644223898
    },
    "tax_total": 0.5435137302072759,
-   "tax_share_of_annuity": 0.20429675636957462,
+   "tax_share_of_annuity": 0.19974710697719011,
    "tax_pv": 8.514888339291684,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.3339612633964156
   },
   "rate45_flat": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.3173453244623865,
    "af": 0.04845425584626119,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 2.6604129202328344,
+   "annuity": 2.7210092723362536,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.03575154593240139
    },
-   "ops_cost_total": 0.38018654593240137,
+   "ops_cost_total": 0.38765154593240136,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 14.926574100146095,
@@ -8323,27 +8339,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.7305969272765918,
-   "ops_balance": 0.3504103813441904,
-   "ops_cover": 1.92168012017578,
-   "ops_cover_before_renewal": 2.121146013838872,
-   "charge_cover": 0.46695229908631536,
+   "ops_balance": 0.3429453813441904,
+   "ops_cover": 1.8846743549527678,
+   "ops_cover_before_renewal": 2.076149267623165,
+   "charge_cover": 0.4579602056734151,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.3504103813441904,
+    "Surplus of the operations account": 0.3429453813441904,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.06383098738937643
    },
-   "cap_sources_total": 1.3142413687335668,
-   "cap_need": 2.6604129202328344,
-   "cap_gap": 1.3461715514992676,
-   "grant_bn": 21.089624437226153,
-   "grant_share": 0.5060009825021649,
+   "cap_sources_total": 1.306776368733567,
+   "cap_need": 2.7210092723362536,
+   "cap_gap": 1.4142329036026866,
+   "grant_bn": 22.15589890495821,
+   "grant_share": 0.5197457127326982,
    "shortfall_bn": 0.0,
    "levy_bn": 14.099734890671446,
-   "public_bn": 36.1893593278976,
-   "public_share": 0.8682872201231367,
-   "yearly_cost": 3.0405994661652356,
+   "public_bn": 37.255633795629656,
+   "public_share": 0.8739639056614686,
+   "yearly_cost": 3.108660818268655,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.49923374887153876,
@@ -8356,11 +8372,11 @@
    "benefit_total": 1.4131034857180382,
    "benefit_time": 1.0048077451900546,
    "benefit_transport": 1.0509488346219236,
-   "econ_cover_capital": 0.5311594583574515,
-   "econ_cover_all": 0.4647450285519605,
-   "econ_cover_transport": 0.34563869602574343,
-   "econ_cover_net": 0.611732438353895,
-   "econ_cover_transport_net": 0.4549557054285929,
+   "econ_cover_capital": 0.519330639584609,
+   "econ_cover_all": 0.4545698512406559,
+   "econ_cover_transport": 0.3380712454848135,
+   "econ_cover_net": 0.5942243566586977,
+   "econ_cover_transport_net": 0.44193465053770964,
    "tax": {
     "VAT inside the new ticket money": 0.09733691938645138,
     "Fuel duty lost on car trips moved to rail": -0.02177381006110737,
@@ -8369,28 +8385,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.4161034087999537,
-   "tax_share_of_annuity": 0.15640557359928065,
+   "tax_share_of_annuity": 0.15292245161762646,
    "tax_pv": 6.518830834648924,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.25037862260611643
   },
   "resp05": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 104.0237327519608,
     "cross": 15.080333389572925,
@@ -8424,27 +8440,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.736615834661205,
-   "ops_balance": 0.35104328731730045,
-   "ops_cover": 1.9104467881220644,
-   "ops_cover_before_renewal": 2.1386207402302464,
-   "charge_cover": 0.46246330375241534,
+   "ops_balance": 0.34357828731730045,
+   "ops_cover": 1.8741614882322486,
+   "ops_cover_before_renewal": 2.0932532954282608,
+   "charge_cover": 0.4536796936728138,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.35104328731730045,
+    "Surplus of the operations account": 0.34357828731730045,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.2944128855081682,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.513189410668978,
-   "grant_bn": 11.832929795901094,
-   "grant_share": 0.2839061511231258,
+   "cap_sources_total": 1.2869478855081682,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.5618262544715233,
+   "grant_bn": 12.954379978319123,
+   "grant_share": 0.3038912338300529,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 33.58479371770034,
-   "public_share": 0.8057961709499301,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 34.70624390011837,
+   "public_share": 0.8141588634936907,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.3375731065922238,
     "Time saved by TGV passengers crossing Paris": 0.5029577758555105,
@@ -8457,11 +8473,11 @@
    "benefit_total": 1.41682751270201,
    "benefit_time": 1.0085317721740263,
    "benefit_transport": 1.0546728616058954,
-   "econ_cover_capital": 0.7838159509414343,
-   "econ_cover_all": 0.6460166716244805,
-   "econ_cover_transport": 0.48088863718346414,
-   "econ_cover_net": 0.9727223573393458,
-   "econ_cover_transport_net": 0.724085227711759,
+   "econ_cover_capital": 0.7663605207705759,
+   "econ_cover_all": 0.6320011269070955,
+   "econ_cover_transport": 0.470455599624884,
+   "econ_cover_net": 0.9412911351010734,
+   "econ_cover_transport_net": 0.7006881262264905,
    "tax": {
     "VAT inside the new ticket money": 0.09869279675685161,
     "Fuel duty lost on car trips moved to rail": -0.022061584549386896,
@@ -8470,28 +8486,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.41749861807573013,
-   "tax_share_of_annuity": 0.23096818307804085,
+   "tax_share_of_annuity": 0.22582456615296245,
    "tax_pv": 9.626527233163099,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.2511288666282626
   },
   "charge_double": {
-   "capex": 41.679018750000004,
+   "capex": 42.62834375,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.0,
    "grow_traffic": 1.0,
-   "annuity": 1.8076022961771463,
+   "annuity": 1.8487741399796915,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.302085,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.308025,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.04113754734390451
    },
-   "ops_cost_total": 0.3855725473439045,
+   "ops_cost_total": 0.3930375473439045,
    "tgv": {
     "paris": 103.3551276390525,
     "cross": 14.4258632501906,
@@ -8525,27 +8541,27 @@
     "Charge on regional express passengers": 0.0704941125
    },
    "ops_rev_total": 0.8065025393756818,
-   "ops_balance": 0.42092999203177733,
-   "ops_cover": 2.0917011465972872,
-   "ops_cover_before_renewal": 2.341523188339402,
-   "charge_cover": 0.731105951162438,
+   "ops_balance": 0.41346499203177733,
+   "ops_cover": 2.051973265215801,
+   "ops_cover_before_renewal": 2.291851490126973,
+   "charge_cover": 0.7172199854008714,
    "pass_holders": 21054.35575450976,
    "cap_sources": {
-    "Surplus of the operations account": 0.42092999203177733,
+    "Surplus of the operations account": 0.41346499203177733,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.3642995902226451,
-   "cap_need": 1.8076022961771463,
-   "cap_gap": 0.44330270595450116,
-   "grant_bn": 10.221508255703549,
-   "grant_share": 0.2452434957025841,
+   "cap_sources_total": 1.356834590222645,
+   "cap_need": 1.8487741399796915,
+   "cap_gap": 0.49193954975704646,
+   "grant_bn": 11.342958438121578,
+   "grant_share": 0.2660895882946796,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
-   "public_bn": 31.973372177502796,
-   "public_share": 0.7671335155293884,
-   "yearly_cost": 2.1931748435210507,
+   "public_bn": 33.094822359920826,
+   "public_share": 0.7763572179583174,
+   "yearly_cost": 2.241811687323596,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.28765938484235243,
     "Time saved by TGV passengers crossing Paris": 0.4871066070035412,
@@ -8558,11 +8574,11 @@
    "benefit_total": 1.3510626221001694,
    "benefit_time": 0.9427668815721857,
    "benefit_transport": 0.9889079710040547,
-   "econ_cover_capital": 0.747433561551398,
-   "econ_cover_all": 0.6160305121551981,
-   "econ_cover_transport": 0.4509024777141818,
-   "econ_cover_net": 0.974320045234374,
-   "econ_cover_transport_net": 0.7131518874702965,
+   "econ_cover_capital": 0.7307883601806603,
+   "econ_cover_all": 0.6026655270555511,
+   "econ_cover_transport": 0.4411199997733396,
+   "econ_cover_net": 0.9413042646817981,
+   "econ_cover_transport_net": 0.6889860434721768,
    "tax": {
     "VAT inside the new ticket money": 0.08997361934811178,
     "Fuel duty lost on car trips moved to rail": -0.019585328935156594,
@@ -8571,28 +8587,28 @@
     "Public money saved or raised by extra employment": 0.18489792033039457
    },
    "tax_total": 0.40964808873396935,
-   "tax_share_of_annuity": 0.22662512080247077,
+   "tax_share_of_annuity": 0.22157822303727662,
    "tax_pv": 9.445512659147196,
    "works_return": [
-    16.671607500000004,
-    25.00741125
+    17.0513375,
+    25.57700625
    ],
    "jobs": 18489.792033039455,
    "work_output": 0.24744169335475052
   },
   "all_levers": {
-   "capex": 27.761882500000002,
+   "capex": 28.24734,
    "idc": 1.2002780759053804,
    "af": 0.03613295873804389,
    "grow": 1.4099195110510503,
    "grow_traffic": 1.2206738176011227,
-   "annuity": 1.2040216890470852,
+   "annuity": 1.225075785760828,
    "ops_cost": {
-    "Running and maintaining tunnels and stations": 0.18587199999999998,
-    "Extra running of regional trains": 0.04235,
+    "Running and maintaining tunnels and stations": 0.19002999999999995,
+    "Extra running of regional trains": 0.043875,
     "Renewal of rail systems, set aside each year": 0.030604745366962786
    },
-   "ops_cost_total": 0.25882674536696276,
+   "ops_cost_total": 0.26450974536696276,
    "tgv": {
     "paris": 126.97904697945492,
     "cross": 20.427520591596302,
@@ -8626,27 +8642,27 @@
     "Charge on regional express passengers": 0.08605031742377803
    },
    "ops_rev_total": 1.018270248679756,
-   "ops_balance": 0.7594435033127931,
-   "ops_cover": 3.9341770775506966,
-   "ops_cover_before_renewal": 4.461753243244543,
-   "charge_cover": 0.8807470640435249,
+   "ops_balance": 0.7537605033127932,
+   "ops_cover": 3.8496511622552028,
+   "ops_cover_before_renewal": 4.353349644854775,
+   "charge_cover": 0.8618241863324774,
    "pass_holders": 41774.473151740334,
    "cap_sources": {
-    "Surplus of the operations account": 0.7594435033127931,
+    "Surplus of the operations account": 0.7537605033127932,
     "Regional business tax package": 0.9,
     "Payroll transport levy": 0.0,
     "European grant": 0.043369598190867824
    },
-   "cap_sources_total": 1.702813101503661,
-   "cap_need": 1.2040216890470852,
-   "cap_gap": -0.49879141245657577,
-   "grant_bn": -11.500946129623227,
-   "grant_share": -0.41427111902887803,
+   "cap_sources_total": 1.697130101503661,
+   "cap_need": 1.225075785760828,
+   "cap_gap": -0.47205431574283296,
+   "grant_bn": -10.884452137770365,
+   "grant_share": -0.3853266232420598,
    "shortfall_bn": 0.0,
    "levy_bn": 20.75186392179925,
    "public_bn": 21.75186392179925,
-   "public_share": 0.7835154522320036,
-   "yearly_cost": 1.462848434414048,
+   "public_share": 0.77004999131951,
+   "yearly_cost": 1.4895855311277908,
    "benefits": {
     "Time saved by TGV passengers from the Paris region": 0.4759509093904922,
     "Time saved by TGV passengers crossing Paris": 0.8395839831504064,
@@ -8659,11 +8675,11 @@
    "benefit_total": 2.1584936069242744,
    "benefit_time": 1.5612726022277543,
    "benefit_transport": 1.6287639450290738,
-   "econ_cover_capital": 1.7927364818756708,
-   "econ_cover_all": 1.4755415230620736,
-   "econ_cover_transport": 1.1134194812748897,
-   "econ_cover_net": 4.855149614143071,
-   "econ_cover_transport_net": 3.6636164285454296,
+   "econ_cover_capital": 1.7619265942667792,
+   "econ_cover_all": 1.449056507208446,
+   "econ_cover_transport": 1.093434321825017,
+   "econ_cover_net": 4.579723355697171,
+   "econ_cover_transport_net": 3.4557842821671163,
    "tax": {
     "VAT inside the new ticket money": 0.13973824684210562,
     "Fuel duty lost on car trips moved to rail": -0.030709400344824958,
@@ -8672,11 +8688,11 @@
     "Public money saved or raised by extra employment": 0.27045327880036285
    },
    "tax_total": 0.6118484326367831,
-   "tax_share_of_annuity": 0.5081706070602652,
+   "tax_share_of_annuity": 0.4994372101288389,
    "tax_pv": 14.107772683160755,
    "works_return": [
-    11.104753000000002,
-    16.6571295
+    11.298936000000001,
+    16.948404
    ],
    "jobs": 19182.178605270063,
    "work_output": 0.37702565178027386
@@ -8687,10 +8703,10 @@
   "breakeven_charge_tgv_only": 0.0
  },
  "irr": {
-  "central": 0.01115591442388586,
-  "growth": 0.026416195825587407,
-  "low_cost": 0.024717617870963493,
-  "best": 0.04292573268350852
+  "central": 0.010251071861322791,
+  "growth": 0.02560859431851037,
+  "low_cost": 0.023868400665080114,
+  "best": 0.04216743380134391
  },
  "charge_curve": [
   {
@@ -8701,7 +8717,7 @@
    "new_paris": 2.833103919416612,
    "new_cross": 10.288152525641916,
    "pay_share": 0.5069620773471255,
-   "ops_cover": 1.524256372078245
+   "ops_cover": 1.495306023964028
   },
   {
    "charge": 0.25,
@@ -8711,7 +8727,7 @@
    "new_paris": 2.7271720542476623,
    "new_cross": 10.232570283271649,
    "pay_share": 0.491937363589632,
-   "ops_cover": 1.5680967628923286
+   "ops_cover": 1.5383137500120128
   },
   {
    "charge": 0.5,
@@ -8721,7 +8737,7 @@
    "new_paris": 2.6237285576830645,
    "new_cross": 10.177470501861489,
    "pay_share": 0.48317317388198283,
-   "ops_cover": 1.610690448403927
+   "ops_cover": 1.580098449551424
   },
   {
    "charge": 0.75,
@@ -8731,7 +8747,7 @@
    "new_paris": 2.523796355072156,
    "new_cross": 10.122846563947764,
    "pay_share": 0.45881834599119026,
-   "ops_cover": 1.6489169014719387
+   "ops_cover": 1.6175988639137673
   },
   {
    "charge": 1.0,
@@ -8741,7 +8757,7 @@
    "new_paris": 2.428111295159749,
    "new_cross": 10.068691975820606,
    "pay_share": 0.44533833320742056,
-   "ops_cover": 1.6868321208924826
+   "ops_cover": 1.6547939559192917
   },
   {
    "charge": 1.25,
@@ -8751,7 +8767,7 @@
    "new_paris": 2.335539265801005,
    "new_cross": 10.015000364598908,
    "pay_share": 0.4332760181376313,
-   "ops_cover": 1.723396744344743
+   "ops_cover": 1.6906641039558679
   },
   {
    "charge": 1.5,
@@ -8761,7 +8777,7 @@
    "new_paris": 2.245240090090018,
    "new_cross": 9.961765475388699,
    "pay_share": 0.42500324198949313,
-   "ops_cover": 1.7598302645407289
+   "ops_cover": 1.726405638792946
   },
   {
    "charge": 1.75,
@@ -8771,7 +8787,7 @@
    "new_paris": 2.1572215295016477,
    "new_cross": 9.908981168522178,
    "pay_share": 0.4123126050480448,
-   "ops_cover": 1.7930199998136933
+   "ops_cover": 1.7589649982265356
   },
   {
    "charge": 2.0,
@@ -8781,7 +8797,7 @@
    "new_paris": 2.0714853569941014,
    "new_cross": 9.856641416874712,
    "pay_share": 0.40367140070644736,
-   "ops_cover": 1.826658056841762
+   "ops_cover": 1.791964164396946
   },
   {
    "charge": 2.25,
@@ -8791,7 +8807,7 @@
    "new_paris": 1.988063754718807,
    "new_cross": 9.804740303257198,
    "pay_share": 0.393062706061027,
-   "ops_cover": 1.857911709979842
+   "ops_cover": 1.8226242138901516
   },
   {
    "charge": 2.5,
@@ -8801,7 +8817,7 @@
    "new_paris": 1.9068075526731698,
    "new_cross": 9.753272017881393,
    "pay_share": 0.38366039314431255,
-   "ops_cover": 1.8885250301858831
+   "ops_cover": 1.8526560923563833
   },
   {
    "charge": 2.75,
@@ -8811,7 +8827,7 @@
    "new_paris": 1.8274130297596523,
    "new_cross": 9.702230855895714,
    "pay_share": 0.37551372238645964,
-   "ops_cover": 1.918768042592561
+   "ops_cover": 1.8823246963149587
   },
   {
    "charge": 3.0,
@@ -8821,7 +8837,7 @@
    "new_paris": 1.7504146713968243,
    "new_cross": 9.651611214989316,
    "pay_share": 0.3604229667481577,
-   "ops_cover": 1.942294921671442
+   "ops_cover": 1.905404727113031
   },
   {
    "charge": 3.25,
@@ -8831,7 +8847,7 @@
    "new_paris": 1.676489759027367,
    "new_cross": 9.601407593062174,
    "pay_share": 0.34906854452283315,
-   "ops_cover": 1.9670977839043113
+   "ops_cover": 1.929736506194126
   },
   {
    "charge": 3.5,
@@ -8841,7 +8857,7 @@
    "new_paris": 1.6046293559945606,
    "new_cross": 9.551614585959054,
    "pay_share": 0.3400240821609164,
-   "ops_cover": 1.992539282241587
+   "ops_cover": 1.9546947917025737
   },
   {
    "charge": 3.75,
@@ -8851,7 +8867,7 @@
    "new_paris": 1.5361749943728231,
    "new_cross": 9.502226885265348,
    "pay_share": 0.3170870817011241,
-   "ops_cover": 2.0028131320335762
+   "ops_cover": 1.9647735092757315
   },
   {
    "charge": 4.0,
@@ -8861,7 +8877,7 @@
    "new_paris": 1.4720311866202591,
    "new_cross": 9.453239276162765,
    "pay_share": 0.298743039984136,
-   "ops_cover": 2.015061951546276
+   "ops_cover": 1.9767896857794358
   },
   {
    "charge": 4.25,
@@ -8871,7 +8887,7 @@
    "new_paris": 1.4111631470465071,
    "new_cross": 9.404646635342981,
    "pay_share": 0.2874906863078486,
-   "ops_cover": 2.0330113516206345
+   "ops_cover": 1.9943981711690255
   },
   {
    "charge": 4.5,
@@ -8881,7 +8897,7 @@
    "new_paris": 1.352979679548138,
    "new_cross": 9.356443928977466,
    "pay_share": 0.27114891214515247,
-   "ops_cover": 2.043340383803427
+   "ops_cover": 2.0045310230485223
   },
   {
    "charge": 4.75,
@@ -8891,7 +8907,7 @@
    "new_paris": 1.2976090912762719,
    "new_cross": 9.308626210741629,
    "pay_share": 0.26500003488851687,
-   "ops_cover": 2.0645176951816606
+   "ops_cover": 2.025306111711631
   },
   {
    "charge": 5.0,
@@ -8901,7 +8917,7 @@
    "new_paris": 1.2434721775042898,
    "new_cross": 9.26118861989164,
    "pay_share": 0.2590625107246221,
-   "ops_cover": 2.0851211382737413
+   "ops_cover": 2.0455182316242304
   },
   {
    "charge": 5.25,
@@ -8911,7 +8927,7 @@
    "new_paris": 1.1911659359238354,
    "new_cross": 9.214126379392312,
    "pay_share": 0.24695328013869236,
-   "ops_cover": 2.0962436574451964
+   "ops_cover": 2.056429499717573
   },
   {
    "charge": 5.5,
@@ -8921,7 +8937,7 @@
    "new_paris": 1.1409112409040103,
    "new_cross": 9.167434794094365,
    "pay_share": 0.2398507257040201,
-   "ops_cover": 2.113138709850325
+   "ops_cover": 2.073003662764785
   },
   {
    "charge": 5.75,
@@ -8931,7 +8947,7 @@
    "new_paris": 1.0923061091107833,
    "new_cross": 9.121109248959645,
    "pay_share": 0.23178871044448923,
-   "ops_cover": 2.127601036449041
+   "ops_cover": 2.0871913050011828
   },
   {
    "charge": 6.0,
@@ -8941,7 +8957,7 @@
    "new_paris": 1.045614689433279,
    "new_cross": 9.075145207332742,
    "pay_share": 0.22119348925240315,
-   "ops_cover": 2.1369283832289296
+   "ops_cover": 2.09634149658513
   },
   {
    "charge": 6.25,
@@ -8951,7 +8967,7 @@
    "new_paris": 1.0016455996757692,
    "new_cross": 9.029538209257673,
    "pay_share": 0.21059886303058828,
-   "ops_cover": 2.144894804204661
+   "ops_cover": 2.1041566105598237
   },
   {
    "charge": 6.5,
@@ -8961,7 +8977,7 @@
    "new_paris": 0.9593334177887967,
    "new_cross": 8.984283869838166,
    "pay_share": 0.19651013196336292,
-   "ops_cover": 2.1453785348611656
+   "ops_cover": 2.104631153673369
   },
   {
    "charge": 6.75,
@@ -8971,7 +8987,7 @@
    "new_paris": 0.9198395873452003,
    "new_cross": 8.939377877640272,
    "pay_share": 0.18781468274251428,
-   "ops_cover": 2.1537774032462753
+   "ops_cover": 2.1128705015421354
   },
   {
    "charge": 7.0,
@@ -8981,7 +8997,7 @@
    "new_paris": 0.8823496365232866,
    "new_cross": 8.894815993136032,
    "pay_share": 0.1794902922908807,
-   "ops_cover": 2.161732258729512
+   "ops_cover": 2.120674269688847
   },
   {
    "charge": 7.25,
@@ -8991,7 +9007,7 @@
    "new_paris": 0.8461581080699221,
    "new_cross": 8.850594047186956,
    "pay_share": 0.17232389915670876,
-   "ops_cover": 2.1708088474030984
+   "ops_cover": 2.129578465839362
   },
   {
    "charge": 7.5,
@@ -9001,7 +9017,7 @@
    "new_paris": 0.8115785360220311,
    "new_cross": 8.806707939566085,
    "pay_share": 0.161966341240608,
-   "ops_cover": 2.1725445710936597
+   "ops_cover": 2.131281222762658
   },
   {
    "charge": 7.75,
@@ -9011,7 +9027,7 @@
    "new_paris": 0.779090383445395,
    "new_cross": 8.763153637517561,
    "pay_share": 0.15356466192758525,
-   "ops_cover": 2.176977848274093
+   "ops_cover": 2.135630298282523
   },
   {
    "charge": 8.0,
@@ -9021,7 +9037,7 @@
    "new_paris": 0.7482423862109332,
    "new_cross": 8.71992717435252,
    "pay_share": 0.14738981147264477,
-   "ops_cover": 2.185054963225936
+   "ops_cover": 2.143554003811976
   },
   {
    "charge": 8.25,
@@ -9031,7 +9047,7 @@
    "new_paris": 0.7185048611479778,
    "new_cross": 8.677024648080284,
    "pay_share": 0.1428387656327505,
-   "ops_cover": 2.1958666359282617
+   "ops_cover": 2.1541603293731235
   },
   {
    "charge": 8.5,
@@ -9041,7 +9057,7 @@
    "new_paris": 0.6898465254223458,
    "new_cross": 8.634442220073776,
    "pay_share": 0.1375767186117785,
-   "ops_cover": 2.2044421153941465
+   "ops_cover": 2.1625729339313935
   },
   {
    "charge": 8.75,
@@ -9051,7 +9067,7 @@
    "new_paris": 0.6625699189489476,
    "new_cross": 8.592176113768208,
    "pay_share": 0.1304092693395178,
-   "ops_cover": 2.2078697630563457
+   "ops_cover": 2.165935479951342
   },
   {
    "charge": 9.0,
@@ -9061,7 +9077,7 @@
    "new_paris": 0.6364708680656879,
    "new_cross": 8.550222613392002,
    "pay_share": 0.12526798918279974,
-   "ops_cover": 2.215194772862868
+   "ops_cover": 2.1731213651409536
   },
   {
    "charge": 9.25,
@@ -9071,7 +9087,7 @@
    "new_paris": 0.6112955967711763,
    "new_cross": 8.508578062729072,
    "pay_share": 0.12142268078729246,
-   "ops_cover": 2.225007884805197
+   "ops_cover": 2.182748095702815
   },
   {
    "charge": 9.5,
@@ -9081,7 +9097,7 @@
    "new_paris": 0.5867505997257468,
    "new_cross": 8.467238863911529,
    "pay_share": 0.11911425943596571,
-   "ops_cover": 2.2381627477918205
+   "ops_cover": 2.195653107109459
   },
   {
    "charge": 9.75,
@@ -9091,7 +9107,7 @@
    "new_paris": 0.5626975173451438,
    "new_cross": 8.426201476241946,
    "pay_share": 0.1164350153526319,
-   "ops_cover": 2.250004070348712
+   "ops_cover": 2.207269526286293
   },
   {
    "charge": 10.0,
@@ -9101,7 +9117,7 @@
    "new_paris": 0.539263686351588,
    "new_cross": 8.385462415044309,
    "pay_share": 0.11370548388582734,
-   "ops_cover": 2.2613189358687236
+   "ops_cover": 2.218369487475465
   }
  ],
  "params": {
@@ -9111,8 +9127,8 @@
   "rex_through": 5.1,
   "fare_response_low": -0.5,
   "navigo_new": 0.3,
-  "om_low": 0.6152970190509294,
-  "om_high": 1.1841369151066752,
+  "om_low": 0.6169304439574709,
+  "om_high": 1.1805859913968024,
   "station_low": 0.7,
   "shop_net": 0.5,
   "growth": 0.015,

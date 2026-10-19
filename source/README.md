@@ -3,10 +3,10 @@
 A pre-feasibility case, written as an interactive document, for one project: replacing the four Paris terminals used by high-speed
 trains by three deep through stations (Paris Nord-Est under Gare du Nord and Gare de l'Est, Gare de Lyon, Montparnasse) on a triangle
 of TGV tunnels ("the plan", 15 October 2026, version 4.1). Regional express trains run through Paris in the TGV tunnels, on the
-2-minute paths between the TGVs of the 12-minute beat (condition: signalling for trains about 1.5 minutes apart). Suburban line N
-(formerly P and N) has its own tunnel from the east through Nord-Est to Montparnasse and the Atlantic side; suburban line H (formerly
-H, K and L) runs under Nord-Est to a new deep through station under Saint-Lazare. Line R stays on a small surface terminal at Gare de
-Lyon. 44.5 km of twin-track tunnel and 48 platform tracks in all. The tunnels come up on the existing tracks at the ring road (on the
+2-minute paths between the TGVs of the 12-minute beat (condition: signalling for trains about 1.5 minutes apart). RER G
+(formerly suburban lines P and N) has its own tunnel from the east through Nord-Est and a stop at Châtelet-Les Halles to Montparnasse
+and the Atlantic side; RER F (formerly H, K and L) runs under Nord-Est to a new deep through station under Saint-Lazare. Line R stays
+on a small surface terminal at Gare de Lyon. 44.5 km of twin-track tunnel and 50 platform tracks in all. The tunnels come up on the existing tracks at the ring road (on the
 eastern line at Rosa Parks). No train reverses in Paris. The concept, the central figures and the model keys are in
 `docs/TRIANGLE_BRIEF.md`.
 

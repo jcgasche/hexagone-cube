@@ -31,6 +31,7 @@ with contextlib.redirect_stdout(io.StringIO()):
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, 'outputs')
 JOBS = json.load(open(os.path.join(HERE, 'inputs', 'job_access.json')))
+G_STOP = json.load(open(os.path.join(HERE, 'inputs', 'chatelet_stop.json')))      # RER G and its Chatelet stop on the network model (see _about)
 
 # ------------------------------------------------------------------ timing
 BASE_YEAR, BUILD_START, OPEN, LAST, RESID_END = 2026, 2028, 2040, 2070, 2140      # 12 years of works (model), open 2040 (ASSUMPTION)
@@ -55,7 +56,8 @@ CAP_LOST = 0.5               # share of those journeys lost rather than moved to
 OPERATOR_MARGIN = 0.10       # operator margin on the fare of a new TGV journey, after track charges (ASSUMPTION)
 WEAR = 0.15                  # share of track charges that pays for the extra wear (ASSUMPTION)
 PRODUCER = N.TRACK_SHARE * (1 - WEAR) + OPERATOR_MARGIN      # what the railway keeps of a euro of new fare
-FLEET = {'TGV': (17, 3.1e-3), 'TER': (4.5, 2.0e-3), 'Suburban': (11.0, 2.0e-3)}      # trainsets freed by through running and their yearly cost (derived)
+FLEET = {'TGV': (17, 3.1e-3), 'TER': (4.5, 2.0e-3), 'Suburban': (11.0 - N.G_STOP_SETS, 2.0e-3)}      # trainsets freed by through running and their yearly cost (derived);
+                                                                                                 # suburban: 11 freed, less the 1.5 that RER G's Chatelet stop takes
 TERMINAL_UPKEEP = 0.030      # bn a year: surface throats and track fields that close, about 150 track-km plus switches (derived, 0.02 to 0.05)
 
 # ------------------------------------------------------------------ car trips avoided (the model's carbon assumption) and road externalities
@@ -76,6 +78,8 @@ P = {
  'jobs_agglo': tuple(JOBS['agglomeration'][k] for k in ('low', 'central', 'high')),                  # bn a year, denser job markets
  'jobs_labour': tuple(JOBS['labour'][k] for k in ('low', 'central', 'high')),                        # bn a year, people into work
  'jobs_better': tuple(JOBS['better_jobs'][k] for k in ('low', 'central', 'high')),                   # bn a year, moves to better jobs
+ 'g_stop_time': tuple(G_STOP['time'][k] for k in ('low', 'central', 'high')),                       # bn a year, RER G's Chatelet stop: changes saved, net of riders going through
+ 'g_crowd': tuple(G_STOP['crowd_own'][k] for k in ('low', 'central', 'high')),                      # bn a year, crowded metro and RER minutes RER G's own riders no longer ride
  'landuse': (0.0, 0.5, 1.0),                                   # homes and jobs move towards the better access: rise of the job-access gains after 20 years (ASSUMPTION; Grand Paris appraisal: effects rise to 2035 then grow)
  'freed_ha': (82.0, 109.0, 136.0),                             # hectares of track freed inside Paris once the lines are underground, net of the RER, line R and freight tracks kept (research note on land)
  'plot_density': (15000.0, 25000.0, 32000.0), 'plot_price': (400.0, 650.0, 1000.0),    # m2 of floor space a hectare of building plot; euros a m2 net to the landowner (Bercy-Charenton, Gare des Mines)
@@ -102,6 +106,7 @@ AIR_KG_PKM, LON_KM, AIR_KM_RATIO = 0.3, 850.0, 0.8     # kg CO2e a passenger-km 
 CROWD_PEN = 0.40             # extra equivalent minute per minute ridden in a crowded metro or RER leg: 60% standing at 1.52, 40% seated at 1.08 (DGITM comfort factors; derived)
 PEAK = 0.5                   # share of the relieved trips made in the crowded hours (ASSUMPTION)
 EXTERNAL = 0.7               # relief to the riders left on board, as a share of a rider's own crowding (derived)
+G_CROSS_SHARE = 0.12         # share of the suburb-to-suburb trips across Paris that RER G improves (job model: Versailles, Saint-Quentin and Saclay, 10,600 of the 90,100 trips to the hubs)
 TGV_CROSS_TODAY = 5.2        # million TGV journeys across Paris today (the model's CONN, rounded)
 PARIS_GDP = 800.0            # Ile-de-France output, bn (ASSUMPTION, rounded)
 # minutes between arriving in Paris and leaving it for another region: today with a change of station, the same figure as the traffic
@@ -169,6 +174,7 @@ CONSTRUCTION, RENEWAL, RUNNING, EXTRA_TRAINS = COSTS
 TGV_REGION, TGV_CROSS, CAPACITY, REG_PARIS, CORRIDOR, TER_CROSS, COMFORT, PRODUCERS, TRAINSETS, TERMINALS, CARBON_CAR, ROADS, COFP_ITEM = OFFICIAL[4:17]
 JOB_USERS = 'Commuters who gain a through suburban line across Paris'
 PLOTS, PARKS = 'Building plots at the edge of the freed tracks, sold', 'Three new parks on the freed tracks'
+G_STOP_ITEM, G_CROWD = 'RER G stops at Châtelet-Les Halles: easier changes to RER A, B, D and five metro lines', 'Less crowding on line 4 and the metro and RER in Paris, relieved by RER G'
 CROWD, RESIGNAL, NOISE = 'Less crowding on the metro and RER legs no longer ridden', 'Signal boxes of the surface approaches not renewed', 'Less rail noise along the approaches that close'
 BYPASS_ITEM, AIR_USERS, FRANCE_FARES = 'Travellers of the western bypass trains: more trains, shorter routes', 'Travellers who leave the plane for a through train', 'Fares of the new cross-France journeys kept by the railway'
 AIR_CO2, CAR_FRANCE = 'Carbon: flights replaced by through trains', 'Carbon and roads: car trips replaced on cross-France journeys'
@@ -176,14 +182,14 @@ TIMETABLE, MARGIN, BUILD_CO2 = 'A regular timetable: easy to read, easy to repai
 COFP_ADDED = 'Cost of raising the public money for these items'
 WIDER_ADDED = ['Wider: denser job markets, more productive firms', 'Wider: people brought into work', 'Wider: workers moving to better jobs', 'Wider: cities joined, wider markets', 'Wider: business time, imperfect competition rule']
 W_AGGLO, W_LABOUR, W_BETTER, W_MARKET, W_BUSINESS = WIDER_ADDED
-ADDED = [JOB_USERS, PLOTS, PARKS, CROWD, RESIGNAL, NOISE, BYPASS_ITEM, AIR_USERS, FRANCE_FARES, AIR_CO2, CAR_FRANCE, TIMETABLE, MARGIN, BUILD_CO2, COFP_ADDED] + WIDER_ADDED
+ADDED = [JOB_USERS, G_STOP_ITEM, PLOTS, PARKS, CROWD, G_CROWD, RESIGNAL, NOISE, BYPASS_ITEM, AIR_USERS, FRANCE_FARES, AIR_CO2, CAR_FRANCE, TIMETABLE, MARGIN, BUILD_CO2, COFP_ADDED] + WIDER_ADDED
 ONCE = [PLOTS, RESIGNAL, BUILD_CO2]      # items with no yearly value
 FRANCE_ITEMS = [BYPASS_ITEM, AIR_USERS, FRANCE_FARES, AIR_CO2, CAR_FRANCE]
 EXPLAIN = {
  CONSTRUCTION: 'The construction cost, spent evenly over the twelve years of works.',
  RENEWAL: 'Track, power and signalling of the tunnels replaced in 2070, 2100 and 2130.',
  RUNNING: 'Upkeep, power, staff and safety of the tunnels and the four stations, every year.',
- EXTRA_TRAINS: 'Regional express trains run through Paris instead of ending at a terminal, which costs more train-km.',
+ EXTRA_TRAINS: 'Regional express trains run through Paris instead of ending at a terminal, which costs more train-km, and RER G trains take 2 minutes more for the Châtelet stop.',
  TGV_REGION: 'Passengers who start or end in the Paris region board at the station nearest to them, since every direction is served from three stations.',
  TGV_CROSS: 'The passengers who today change station in Paris, by metro, RER or taxi, stay on their train; the time and the change saved, and the journeys this makes possible.',
  CAPACITY: 'As traffic grows, today’s terminals would turn journeys away in the busy hours; the through stations carry them. Nothing in the opening year.',
@@ -200,7 +206,9 @@ EXPLAIN = {
  JOB_USERS: 'Commuters between the suburbs on both sides of Paris who gain a through suburban line, measured on the census and the timetable.',
  PLOTS: 'The small plots kept for building at the edge of the freed tracks, sold at the price SNCF got at Bercy-Charenton and Gare des Mines.',
  PARKS: 'Three large parks on the freed tracks: the visits they draw and the health they bring, less what they cost to make and keep.',
- CROWD: 'Passengers who reach the far side of Paris on their train no longer ride a crowded metro or RER leg; the riders left on board gain room too.',
+ CROWD: 'Passengers who reach the far side of Paris on their train no longer ride a crowded metro or RER leg; the riders left on board gain room too. RER G is counted on its own.',
+ G_STOP_ITEM: 'RER G stops at Châtelet-Les Halles between Nord-Est and Montparnasse: its riders change there to RER A, B and D and metro lines 1, 4, 7, 11 and 14, less the 2 minutes the stop adds for those who ride through.',
+ G_CROWD: 'Riders who take RER G across Paris leave line 4 and the other crowded metro and RER lines, valued as line 1 at the peak; the riders left on board gain room too.',
  RESIGNAL: 'The signal boxes of the surface approaches are due for renewal; with the lines underground they are not renewed.',
  NOISE: 'Rail noise disappears along the surface approaches that close, for the homes beside them.',
  BYPASS_ITEM: 'Passengers between the west and the other regions ride a few slow bypass trains a day today; the project gives them an hourly through train by Paris, shorter by up to an hour.',
@@ -219,16 +227,16 @@ EXPLAIN = {
  W_BUSINESS: 'Business time saved counts 1.1 in the French sensitivity rule for imperfect competition.',
 }
 CONFIDENCE = {TGV_REGION: 'Medium', TGV_CROSS: 'Medium', REG_PARIS: 'Medium', TER_CROSS: 'Medium', CAPACITY: 'Low', PRODUCERS: 'Official rule, debated', TRAINSETS: 'Medium', TERMINALS: 'Medium',
-              CARBON_CAR: 'High', ROADS: 'High', JOB_USERS: 'Medium, measured', PLOTS: 'Low', PARKS: 'Low', CROWD: 'Medium', RESIGNAL: 'Medium', NOISE: 'Medium', BYPASS_ITEM: 'Medium',
+              CARBON_CAR: 'High', ROADS: 'High', JOB_USERS: 'Medium, measured', G_STOP_ITEM: 'Medium, measured', G_CROWD: 'Medium, measured', PLOTS: 'Low', PARKS: 'Low', CROWD: 'Medium', RESIGNAL: 'Medium', NOISE: 'Medium', BYPASS_ITEM: 'Medium',
               AIR_USERS: 'Medium', FRANCE_FARES: 'Medium', AIR_CO2: 'Medium', CAR_FRANCE: 'Medium', TIMETABLE: 'Low', MARGIN: 'Low', BUILD_CO2: 'Medium',
               W_AGGLO: 'Low', W_LABOUR: 'Low', W_BETTER: 'Low', W_MARKET: 'Low', W_BUSINESS: 'Low'}
 
 # Families used by the site to show the benefits at a glance (every item above belongs to exactly one)
 FAMILIES = [
-    ('Passengers’ time', [TGV_REGION, TGV_CROSS, REG_PARIS, CORRIDOR, TER_CROSS, BYPASS_ITEM, AIR_USERS]),
+    ('Passengers’ time', [TGV_REGION, TGV_CROSS, REG_PARIS, CORRIDOR, TER_CROSS, G_STOP_ITEM, BYPASS_ITEM, AIR_USERS]),
     ('Room for more trains in the busy hours', [CAPACITY]),
     ('The railway’s own gains', [PRODUCERS, FRANCE_FARES, TRAINSETS, TERMINALS]),
-    ('Comfort and ease', [COMFORT, CROWD, TIMETABLE, MARGIN]),
+    ('Comfort and ease', [COMFORT, CROWD, G_CROWD, TIMETABLE, MARGIN]),
     ('Job access across Paris', [JOB_USERS]),
     ('Environment', [CARBON_CAR, ROADS, NOISE, AIR_CO2, CAR_FRANCE]),
     ('Parks, land and one-off savings', [PARKS, PLOTS, RESIGNAL]),
@@ -268,7 +276,7 @@ def model_figures():
             'reg_paris': reg['paris_benefit'], 'reg_cross_model': reg['cross_benefit'], 'comfort': Y['comfort'], 'wider_model': Y['wider'],
             'ter_cross': (ter_cross_today * ter_saving / 60 + ter_cross_new * ter_saving / 120) * N.VOT_TER / 1000,
             'new_reg': Y['reg_journeys'], 'ops_rev': A['ops_rev_total'], 'ops_rev_items': A['ops_rev'], 'tax': A['tax'],
-            'second_station': reg['second_station_sub'] + reg['second_station_ter'],
+            'second_station': reg['second_station_sub'] + reg['second_station_ter'], 'second_station_by_line': reg['second_station_by_line'],
             'benefit_model': Y['benefit_total'], 'cost_yearly_model': Y['cost'], 'annuity': A['annuity'], 'renewal_year': A['ops_cost']['Renewal of rail systems, set aside each year'],
             'yearly_cost': A['yearly_cost'], 'ops_cost_items': A['ops_cost']}
 
@@ -390,12 +398,14 @@ def official_streams(m, o):
 
 
 def crowding(m):
-    """Crowding relief, bn a year at today's traffic: riders who no longer take a crowded metro or RER leg, and those left on board."""
-    second = m['second_station']                                            # M journeys a year now reaching the second station on their train
-    cross_sub = JOBS['trips_day']['ref'] * 0.6 * 365 / 1e6 * 0.75            # suburb-to-suburb trips on improved pairs riding a metro or RER leg today (60%, ASSUMPTION)
+    """Crowding relief, bn a year at today's traffic: riders who no longer take a crowded metro or RER leg, and those left on board.
+    RER G's riders are left out: their relief is measured on the network model (G_CROWD)."""
+    g_second = sum(m['second_station_by_line'][l] for l in ('P', 'N'))     # RER G riders reaching the second station
+    second = m['second_station'] - g_second                                 # M journeys a year now reaching the second station on their train
+    cross_sub = JOBS['trips_day']['ref'] * 0.6 * 365 / 1e6 * 0.75 * (1 - G_CROSS_SHARE)      # suburb-to-suburb trips on pairs RER F improves, riding a metro or RER leg today (60%, ASSUMPTION)
     legs = [(second, 10.0, N.VOT_IDF), (cross_sub, 15.0, N.VOT_IDF), (TGV_CROSS_TODAY, 20.0, N.VOT_LD)]      # minutes of crowded leg avoided (ASSUMPTION)
     own = sum(n * mn * PEAK * CROWD_PEN * v / 60 / 1000 for n, mn, v in legs)
-    return own * (1 + EXTERNAL), {'second_station_M': second, 'cross_sub_M': cross_sub, 'own': own}
+    return own * (1 + EXTERNAL), {'second_station_M': second, 'second_station_g_M': g_second, 'cross_sub_M': cross_sub, 'own': own}
 
 
 def tgv_agglo(elast):
@@ -533,6 +543,8 @@ def added_streams(m, L, o):
             flu = 1 + lu * min(1.0, (t - OPEN) / lu_years)                   # homes and jobs move towards the better access over twenty years
             z[JOB_USERS] = P['jobs_users'][L] * fsd * vot * flu
             z[CROWD] = (crowd * [0.6, 1.0, 1.4][L]) * fsd * vot
+            z[G_STOP_ITEM] = P['g_stop_time'][L] * fsd * vot
+            z[G_CROWD] = P['g_crowd'][L] * (1 + EXTERNAL) * fsd * vot
             z[NOISE] = P['noise'][L] * vot
             z[BYPASS_ITEM] = fr['users_bypass'] * fld * vot
             z[AIR_USERS] = fr['users_air'] * fld
@@ -720,7 +732,7 @@ def main():
                       'vot': {'long_distance': N.VOT_LD, 'regional_express': N.VOT_TER, 'paris_region': N.VOT_IDF},
                       'crowding': crowding(m)[1], 'departures': (N.HS_TERMINALS - 2 * N.CONN) / 2, 'tgv_agglo_first_year': {str(e): tgv_agglo(e) for e in P['tgv_elast']}},
            'names': {'official': OFFICIAL, 'added': ADDED, 'borrowed': list(BORROWED), 'wider': WIDER_ADDED, 'once': ONCE, 'costs': COSTS, 'france': FRANCE_ITEMS,
-                     'key': {'job_users': JOB_USERS, 'plots': PLOTS, 'parks': PARKS, 'crowd': CROWD, 'resignal': RESIGNAL, 'noise': NOISE, 'bypass': BYPASS_ITEM, 'air_users': AIR_USERS,
+                     'key': {'job_users': JOB_USERS, 'g_stop': G_STOP_ITEM, 'g_crowd': G_CROWD, 'plots': PLOTS, 'parks': PARKS, 'crowd': CROWD, 'resignal': RESIGNAL, 'noise': NOISE, 'bypass': BYPASS_ITEM, 'air_users': AIR_USERS,
                               'france_fares': FRANCE_FARES, 'air_co2': AIR_CO2, 'car_france': CAR_FRANCE, 'timetable': TIMETABLE, 'margin': MARGIN, 'build_co2': BUILD_CO2, 'cofp_added': COFP_ADDED,
                               'tgv_region': TGV_REGION, 'tgv_cross': TGV_CROSS, 'capacity': CAPACITY, 'reg_paris': REG_PARIS, 'ter_cross': TER_CROSS, 'producers': PRODUCERS,
                               'trainsets': TRAINSETS, 'terminals': TERMINALS, 'carbon_car': CARBON_CAR, 'roads': ROADS, 'cofp': COFP_ITEM, 'construction': CONSTRUCTION},

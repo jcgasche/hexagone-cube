@@ -158,7 +158,6 @@
   "paid back": "remboursé",
   "Parks, land and one-off savings": "Parcs, foncier et économies ponctuelles",
   "Passengers between the west and the other regions ride a few slow bypass trains a day today; the project gives them an hourly through train by Paris, shorter by up to an hour.": "Les voyageurs entre l’Ouest et les autres régions n’ont aujourd’hui que quelques trains lents par jour qui contournent Paris ; le projet leur donne toutes les heures un train traversant par Paris, avec un trajet jusqu’à une heure plus court.",
-  "Passengers who reach the far side of Paris on their train no longer ride a crowded metro or RER leg; the riders left on board gain room too.": "Les voyageurs qui atteignent l’autre côté de Paris dans leur train n’empruntent plus un tronçon de métro ou de RER bondé ; ceux qui restent à bord gagnent aussi de la place.",
   "Passengers who start or end in the Paris region board at the station nearest to them, since every direction is served from three stations.": "Les voyageurs qui partent d’Île-de-France ou y arrivent montent à la gare la plus proche de chez eux, puisque chaque direction est desservie depuis trois gares.",
   "Passengers’ time": "Temps des voyageurs",
   "Price and rate": "Prix et taux",
@@ -169,7 +168,6 @@
   "Regional business tax package": "Bouquet de taxes régionales sur les entreprises",
   "Regional business tax package:": "Bouquet de taxes régionales sur les entreprises :",
   "Regional express passengers from the north and the east run on to the south and the west instead of changing terminal.": "Les voyageurs TER venus du Nord et de l’Est continuent vers le Sud et l’Ouest au lieu de changer de gare terminus.",
-  "Regional express trains run through Paris instead of ending at a terminal, which costs more train-km.": "Les TER traversent Paris au lieu de s’arrêter dans une gare terminus, ce qui coûte davantage de trains-km.",
   "Regional express travellers crossing Paris: no change": "Voyageurs TER qui traversent Paris : plus de correspondance",
   "Regional travellers: the Paris side of their trip": "Voyageurs régionaux : la partie parisienne de leur trajet",
   "Renewal set aside": "Provision pour renouvellement",
@@ -298,7 +296,13 @@
   "no direct train": "aucun train direct",
   "1 direct train a day": "1 train direct par jour",
   "Direct trains today": "Trains directs aujourd’hui",
-  "Today, with a change in Paris": "Aujourd’hui, avec un changement à Paris"
+  "Today, with a change in Paris": "Aujourd’hui, avec un changement à Paris",
+  "RER G stops at Châtelet-Les Halles: easier changes to RER A, B, D and five metro lines": "Le RER G s’arrête à Châtelet-Les Halles : correspondances plus simples avec les RER A, B, D et cinq lignes de métro",
+  "Less crowding on line 4 and the metro and RER in Paris, relieved by RER G": "Moins d’encombrement sur la ligne 4 et dans le métro et le RER parisiens, soulagés par le RER G",
+  "Regional express trains run through Paris instead of ending at a terminal, which costs more train-km, and RER G trains take 2 minutes more for the Châtelet stop.": "Les TER traversent Paris au lieu de s’arrêter dans une gare terminus, ce qui coûte davantage de trains-km, et les trains du RER G mettent 2 minutes de plus pour l’arrêt à Châtelet.",
+  "Passengers who reach the far side of Paris on their train no longer ride a crowded metro or RER leg; the riders left on board gain room too. RER G is counted on its own.": "Les voyageurs qui atteignent l’autre côté de Paris dans leur train n’empruntent plus un tronçon de métro ou de RER bondé ; ceux qui restent à bord gagnent aussi de la place. Le RER G est compté à part.",
+  "RER G stops at Châtelet-Les Halles between Nord-Est and Montparnasse: its riders change there to RER A, B and D and metro lines 1, 4, 7, 11 and 14, less the 2 minutes the stop adds for those who ride through.": "Le RER G s’arrête à Châtelet-Les Halles entre Nord-Est et Montparnasse : ses voyageurs y prennent la correspondance avec les RER A, B et D et les lignes de métro 1, 4, 7, 11 et 14, moins les 2 minutes que l’arrêt ajoute pour ceux qui restent à bord.",
+  "Riders who take RER G across Paris leave line 4 and the other crowded metro and RER lines, valued as line 1 at the peak; the riders left on board gain room too.": "Les voyageurs qui traversent Paris en RER G quittent la ligne 4 et les autres lignes de métro et de RER bondées, valorisées comme la ligne 1 à l’heure de pointe ; ceux qui restent à bord gagnent aussi de la place."
  },
  "patterns": [
   [

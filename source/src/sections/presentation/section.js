@@ -147,7 +147,7 @@ PTS.section('presentation', function (root) {
     const svg = $('#pz-idea-svg'), glow = defs(svg);
     add(svg, 'ellipse', { cx: 260, cy: 205, rx: 175, ry: 135, fill: 'rgba(255,255,255,.035)', stroke: 'rgba(255,255,255,.14)', 'stroke-dasharray': '4 6' });
     add(svg, 'text', { x: 260, y: 352, 'text-anchor': 'middle', class: 'dim', text: 'Paris, inside the ring road' });
-    const P = { NO: [246, 100], ES: [292, 112], NE: [270, 112], LY: [345, 268], MP: [182, 275], SL: [196, 136], LD: [44, 150] };
+    const P = { NO: [246, 100], ES: [292, 112], NE: [270, 112], LY: [345, 268], MP: [182, 275], SL: [196, 136], LD: [44, 150], CH: [222, 224] };
     const E = { N: [215, -10], E: [530, 40], S: [530, 410], A: [-10, 410], W: [-10, 120], SW: [60, 410], NW: [160, -10] };
     const L = function (pts) { return 'M' + pts.map(function (p) { return p[0] + ' ' + p[1]; }).join(' L'); };
     const layer = function (cls) { return add(svg, 'g', { class: 'pz-l ' + cls }); };
@@ -164,7 +164,7 @@ PTS.section('presentation', function (root) {
     add(today, 'text', { x: 260, y: 210, 'text-anchor': 'middle', class: 'dim', text: 'Trains go in, wait, and come back out' });
     // regional: RER G, RER F to La Défense, TER in the TGV tunnels (drawn under the triangle)
     const off = function (pts, dx, dy) { return pts.map(function (p) { return [p[0] + dx, p[1] + dy]; }); };
-    const lnG = [E.E, [300, 128], [274, 124], [190, 285], E.SW];
+    const lnG = [E.E, [300, 128], [274, 124], P.CH, [190, 285], E.SW];
     const lnF = [E.NW, [262, 122], [214, 140], P.SL, [150, 112], [96, 108], P.LD, E.W];
     add(reg, 'path', { d: L(lnG), stroke: '#ffc24b', 'stroke-width': 4, fill: 'none', 'stroke-linejoin': 'round' });
     add(reg, 'path', { d: L(lnF), stroke: '#ff6fb1', 'stroke-width': 4, fill: 'none', 'stroke-linejoin': 'round' });
@@ -173,8 +173,8 @@ PTS.section('presentation', function (root) {
     ride(reg, L(lnG), { c: '#ffc24b', glow: glow, r: 4, dur: 8 }); ride(reg, L(lnG), { c: '#ffc24b', glow: glow, r: 4, dur: 8, begin: -4 });
     ride(reg, L(lnF), { c: '#ff6fb1', glow: glow, r: 4, dur: 8 }); ride(reg, L(lnF), { c: '#ff6fb1', glow: glow, r: 4, dur: 8, begin: -4 });
     ride(reg, L(off([E.N, P.NE, P.MP, E.A], -8, 0)), { c: '#a48bff', glow: glow, r: 3.5, dur: 7, begin: -2 });
-    [[P.SL, 'Saint-Lazare', -10, -12, 'end'], [P.LD, 'La Défense', 0, 22, 'middle']].forEach(function (q) {
-      add(reg, 'rect', { x: q[0][0] - 6, y: q[0][1] - 6, width: 12, height: 12, rx: 3, fill: '#ff6fb1' });
+    [[P.SL, 'Saint-Lazare', -10, -12, 'end', '#ff6fb1'], [P.LD, 'La Défense', 0, 22, 'middle', '#ff6fb1'], [P.CH, 'Châtelet', 12, 5, 'start', '#ffc24b']].forEach(function (q) {
+      add(reg, 'rect', { x: q[0][0] - 6, y: q[0][1] - 6, width: 12, height: 12, rx: 3, fill: q[5] });
       add(reg, 'text', { x: q[0][0] + q[2], y: q[0][1] + q[3], 'text-anchor': q[4], class: 'big', text: q[1] });
     });
     const badge = function (x, y, txt, c) {

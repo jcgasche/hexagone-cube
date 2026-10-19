@@ -1,4 +1,4 @@
-<!-- en: 315a7dccac -->
+<!-- en: ded4bbc7fb -->
 <p class="lede">Personne n’a conçu ces gares : trois gares TGV, à Paris Nord-Est, à la gare de Lyon et à Montparnasse, et une gare de banlieue à Saint-Lazare. Ce chapitre esquisse où chacune se placerait sous la gare actuelle, ce qui existe déjà en sous-sol à cet endroit, et comment un voyageur irait de la rue jusqu’au train. Dans l’illustration utilisée par le modèle, rejoindre un quai souterrain prend {{ m.extras.hall_deep | 1 }} minutes depuis la halle, contre {{ m.extras.hall_today | 1 }} minutes aujourd’hui pour longer à pied un quai de gare terminus. Cette quasi-égalité repose sur des hypothèses qu’une étude préliminaire devra vérifier.</p>
 
 <div class="block" id="stations.nordest">
@@ -145,6 +145,11 @@
     </div>
     <figcaption>Les travaux se feraient sous une gare qui reste ouverte, comme pour Haussmann-Saint-Lazare dans les années 1990. La gare est comptée pour {{ m.station_total['Saint-Lazare'] | 1 }}&nbsp;Md€ avec études, foncier et 15 % de provision pour risques.</figcaption>
   </figure>
+</div>
+
+<div class="block" id="stations.chatelet">
+  <h2>Châtelet-Les Halles : un arrêt du RER G à côté des RER A, B et D</h2>
+  <p>Le RER G s’arrête une fois entre Paris Nord-Est et Montparnasse, à Châtelet-Les Halles, où se croisent les RER A, B et D et les lignes de métro 1, 4, 7, 11 et 14. Son tunnel passe sous le Forum des Halles et s’y élargit en {{ m.cost.tracks['Châtelet-Les Halles'] | 0 }} voies à quai de {{ m.len.sub | 0 }}&nbsp;m, une par sens. Un arrêt au passage demande moins de voies que les extrémités d’une ligne : le RER A fait passer jusqu’à 30 trains par heure sur une voie par sens à Auber et à Châtelet, et les {{ m.params.g_trains_h | 0 }} trains du RER G tiennent sur une seule. L’arrêt ajoute {{ m.G_STOP | 0 }} minutes : le trajet de Nord-Est à Montparnasse prend {{ m.TR_G | 0 }} minutes. Les quais et les correspondances avec la gare existante reviennent à {{ (m.cost.station_cost['Châtelet-Les Halles'] + m.cost.items['Links into Châtelet-Les Halles']) * m.gross_up | 2 }}&nbsp;Md€ en coût complet <span class="tag assume">hypothèse</span> ; l’emplacement des quais et les cheminements vers les RER A, B et D ne sont pas dessinés. Rien ne change en surface, sauf de nouvelles sorties dans le Forum des Halles.</p>
 </div>
 
 <div class="block" id="stations.halls">

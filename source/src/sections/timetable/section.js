@@ -166,8 +166,9 @@ PTS.section('timetable', function (root) {
     svg.appendChild(s('path', { class: 'tt-seine', d: dp(P.seine.map(pr)) }));
     // routes, in screen points
     const C = {}; P.corridors.forEach(function (c) { C[c.id] = c.path.map(pr); });
-    const SID = { 'Paris Nord-Est': 'NE', 'Gare de Lyon': 'LY', 'Montparnasse': 'MP' }, stn = {}, sl = {};
-    P.stations.forEach(function (x) { if (SID[x.name]) stn[SID[x.name]] = { at: pr(x.at), axis: x.axis.map(pr) }; else if (x.name === 'Saint-Lazare') { sl.at = pr(x.at); sl.axis = (x.axis || [x.at, x.at]).map(pr); } });
+    const SID = { 'Paris Nord-Est': 'NE', 'Gare de Lyon': 'LY', 'Montparnasse': 'MP' }, stn = {}, sl = {}, ch = {};
+    P.stations.forEach(function (x) { if (SID[x.name]) stn[SID[x.name]] = { at: pr(x.at), axis: x.axis.map(pr) }; else if (x.name === 'Saint-Lazare') { sl.at = pr(x.at); sl.axis = (x.axis || [x.at, x.at]).map(pr); }
+      else if (x.name === 'Châtelet-Les Halles') { ch.at = pr(x.at); ch.axis = x.axis.map(pr); } });
     const tpath = function (t) { return (t.path || t).map(pr); };
     const trunk1 = tpath(P.trunks[0]), trunk2 = tpath(P.trunks[1]);
     const rev = function (a) { return a.slice().reverse(); };
@@ -251,7 +252,7 @@ PTS.section('timetable', function (root) {
       el.style.setProperty('--c', t.col); PTS.tip.bind(el, tipOf(t)); g.appendChild(el);
       return { t: t, legs: legs, el: el };
     });
-    if (state.layer === 'all') regional({ svg: svg, g: g, pr: pr, dp: dp, stn: stn, sl: sl, C: C, outer: outer, between: between, trunk1: trunk1, trunk2: trunk2, rev: rev, ext: ext, far: far,
+    if (state.layer === 'all') regional({ svg: svg, g: g, pr: pr, dp: dp, stn: stn, sl: sl, ch: ch, C: C, outer: outer, between: between, trunk1: trunk1, trunk2: trunk2, rev: rev, ext: ext, far: far,
       poly: poly, ease: ease, slot: slot, GAP: GAP, LEN: LEN, narrow: narrow, APPROACH: APPROACH, W: W, H: H, edge: edge });
     mapHost.appendChild(svg);
     placeDots(state.v);
@@ -274,7 +275,8 @@ PTS.section('timetable', function (root) {
     N: { c: 'color-mix(in srgb, #00a092 85%, var(--ink))', name: 'RER G (today’s lines P and N)', shape: 'sub' },          // Île-de-France colours of lines N and H
     H: { c: 'color-mix(in srgb, #8d5e2a 72%, var(--ink))', name: 'RER F (today’s lines H, K and L)', shape: 'sub' }
   };
-  const SUB_STOP = 1, SUB_RUN = { MP: M.TR.M - 1, SL: M.TR.SL - 1 };
+  const SUB_STOP = 1, SUB_RUN = { MP: M.TR_G - 1, SL: M.TR.SL - 1 };
+  const CH_RUN = 3;                                                         // RER G: minutes from Nord-Est to its stop at Châtelet-Les Halles, 2.1 of the 5.2 km
   const REGT = T.table && T.table.grid && T.table.grid.regional;            // the regional express hour of each scenario
   const regionalTrains = function () {
     const out = [];
@@ -283,14 +285,16 @@ PTS.section('timetable', function (root) {
       out.push({ kind: 'TER', from: t.from, to: t.to, fwd: t.from === 'N' || t.from === 'E',
         stops: t.stops.map(function (x) { return { st: x.st, arr_abs: x.arr_abs, dep_abs: x.dep_abs, track: x.track }; }) });
     });
-    const sub = function (line, n, from, to, a, b, run, off) {
+    const sub = function (line, n, from, to, a, b, run, off, via) {      // via: a stop on the way, [station, minutes after leaving a]
       for (let i = 0; i < n; i++) {
-        const d1 = off + i * 60 / n, a2 = d1 + run;
-        out.push({ kind: line, from: from, to: to, stops: [{ st: a, arr_abs: d1 - SUB_STOP, dep_abs: d1 }, { st: b, arr_abs: a2, dep_abs: a2 + SUB_STOP }], track: i, fwd: from === 'N' || from === 'E' });
+        const d1 = off + i * 60 / n, a2 = d1 + run, stops = [{ st: a, arr_abs: d1 - SUB_STOP, dep_abs: d1 }];
+        if (via) stops.push({ st: via[0], arr_abs: d1 + via[1], dep_abs: d1 + via[1] + SUB_STOP });
+        stops.push({ st: b, arr_abs: a2, dep_abs: a2 + SUB_STOP });
+        out.push({ kind: line, from: from, to: to, stops: stops, track: i, fwd: from === 'N' || from === 'E' });
       }
     };
     const nN = Math.max(M.reg_platforms.n.peak.P, M.reg_platforms.n.peak.N), nH = M.reg_platforms.h.peak.H + M.reg_platforms.h.peak.K;
-    sub('N', nN, 'E', 'A', 'NE', 'MP', SUB_RUN.MP, 1.5); sub('N', nN, 'A', 'E', 'MP', 'NE', SUB_RUN.MP, 4);
+    sub('N', nN, 'E', 'A', 'NE', 'MP', SUB_RUN.MP, 1.5, ['CH', CH_RUN]); sub('N', nN, 'A', 'E', 'MP', 'NE', SUB_RUN.MP, 4, ['CH', SUB_RUN.MP - CH_RUN - SUB_STOP]);
     sub('H', nH, 'N', 'W', 'NE', 'SL', SUB_RUN.SL, 0.5); sub('H', nH, 'W', 'N', 'SL', 'NE', SUB_RUN.SL, 1.75);
     return out;
   };
@@ -323,7 +327,7 @@ PTS.section('timetable', function (root) {
       svg.insertBefore(gg, o.g);
       (tracksAt[st] = tracksAt[st] || {})[kind] = pts;
       (boxAt[st] = boxAt[st] || {})[kind] = { c: c(0, (lo + hi) / 2), ends: [c(-hl, (lo + hi) / 2), c(hl, (lo + hi) / 2)] };
-      if (REG[kind] && kind !== 'TER') {                                    // the name of the RER line, just outside its box
+      if (REG[kind] && kind !== 'TER' && st !== 'CH') {                     // the name of the RER line, just outside its box
         const p = c(hl + 9, (lo + hi) / 2);                                  // beyond the end of the box, clear of the station's name
         const t = s('text', { class: 'tt-rername', x: p[0], y: p[1] + 4, 'text-anchor': 'middle', text: kind === 'N' ? 'RER G' : 'RER F', style: 'fill: ' + REG[kind].c });
         labels.push(t);
@@ -341,6 +345,15 @@ PTS.section('timetable', function (root) {
       const ex = Math.abs(o.sl.u[0]) * hl + Math.abs(o.sl.n[0]) * n * g2 / 2;      // half the box's width on screen
       svg.insertBefore(s('text', { class: 'tt-sname', x: o.sl.at[0] - ex - 6, y: o.sl.at[1] + 4, 'text-anchor': 'end', text: 'Saint-Lazare' }), o.g);
     }
+    if (o.ch.at) {                                                          // RER G's stop at Châtelet-Les Halles, one track each way, beside the TGV tunnel on the side of its own
+      const a = o.ch.axis[0], b = o.ch.axis[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1; o.ch.u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L]; o.ch.n = [-o.ch.u[1], o.ch.u[0]];
+      const n = SUBT['Châtelet-Les Halles'].n, cr = o.C.nemont, dx = cr[cr.length - 1][0] - cr[0][0], dy = cr[cr.length - 1][1] - cr[0][1], cl = Math.hypot(dx, dy) || 1;
+      const d = -(OFF + n * g2 / 2 + 3), sh = [-dy / cl * d, dx / cl * d];            // the same side as offsetLine(..., -OFF) puts the RER G line
+      o.ch.at = [o.ch.at[0] + sh[0], o.ch.at[1] + sh[1]];
+      drawGroup('CH', o.ch, 'N', n, -n * g2 / 2);
+      const ex = Math.abs(o.ch.u[0]) * hl + Math.abs(o.ch.n[0]) * n * g2 / 2, right = sh[0] >= 0;
+      svg.insertBefore(s('text', { class: 'tt-sname', x: o.ch.at[0] + (right ? ex + 6 : -ex - 6), y: o.ch.at[1] + 4, 'text-anchor': right ? 'start' : 'end', text: 'Châtelet' }), o.g);
+    }
     // the suburban tunnels, drawn beside the TGV ones; regional express trains use the TGV tunnels themselves.
     // Near each of its stations a tunnel leaves its course and runs straight into the middle of the near end of its box, and out of the far end
     const toNE = o.trunk1.concat(o.trunk2.slice(1));
@@ -349,7 +362,7 @@ PTS.section('timetable', function (root) {
     const into = function (pts, sts, kind) {                                // pts: the tunnel; sts: its stations in order along it
       sts.forEach(function (st) {
         const bx = boxAt[st] && boxAt[st][kind]; if (!bx) return;
-        const ctr = st === 'SL' ? o.sl.at : o.stn[st].at, R = dist(ctr, bx.ends[0]) + o.LEN * 0.6;
+        const ctr = st === 'SL' ? o.sl.at : st === 'CH' ? o.ch.at : o.stn[st].at, R = dist(ctr, bx.ends[0]) + o.LEN * (st === 'CH' ? 0.35 : 0.6);
         const cross = function (a, b) { let lo = 0, hi = 1; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2, p = [a[0] + (b[0] - a[0]) * m, a[1] + (b[1] - a[1]) * m]; if ((dist(p, ctr) < R) === (dist(a, ctr) < R)) lo = m; else hi = m; } return [a[0] + (b[0] - a[0]) * lo, a[1] + (b[1] - a[1]) * lo]; };
         let i0 = -1, i1 = -1;
         for (let i = 1; i < pts.length; i++) { const ina = dist(pts[i - 1], ctr) < R, inb = dist(pts[i], ctr) < R; if (!ina && inb && i0 < 0) i0 = i; if (ina && !inb) i1 = i; }
@@ -361,7 +374,7 @@ PTS.section('timetable', function (root) {
       });
       return pts;
     };
-    const lineN = into(both(offsetLine(o.C.east.concat(toNE.slice(1), o.C.nemont.slice(1), o.C.atlantic.slice(1)), -OFF)), ['NE', 'MP'], 'N');
+    const lineN = into(both(offsetLine(o.C.east.concat(toNE.slice(1), o.C.nemont.slice(1), o.C.atlantic.slice(1)), -OFF)), ['NE', 'CH', 'MP'], 'N');
     const lineH = into(both(offsetLine(o.C.north.concat(toNE.slice(1), o.C.nesl.slice(1), o.C.slwest.slice(1)), OFF)), ['NE', 'SL'], 'H');
     [[lineN, REG.N.c], [lineH, REG.H.c]].forEach(function (q) { under.appendChild(s('path', { class: 'tt-ln sub', d: dp(q[0]), style: '--c: ' + q[1] })); });
     o.edge(lineH, 'RER F: west', 'start', 6, -6);
@@ -370,33 +383,33 @@ PTS.section('timetable', function (root) {
       return pts[pts.length === 1 ? 0 : (t.fwd ? 0 : half) + (k % half)];
     };
     const near = function (pts, q) { let best = 0, bd = 1e9; pts.forEach(function (p, i) { const dd = Math.hypot(p[0] - q[0], p[1] - q[1]); if (dd < bd) { bd = dd; best = i; } }); return best; };
-    const st2pt = function (st, kind) { return boxAt[st] && boxAt[st][kind] ? boxAt[st][kind].c : st === 'SL' ? o.sl.at : o.stn[st].at; };
-    const route = function (t) {                                            // from the map edge, between the two stops, out to the edge
-      const a = t.stops[0].st, b = t.stops[1].st;
+    const st2pt = function (st, kind) { return boxAt[st] && boxAt[st][kind] ? boxAt[st][kind].c : st === 'SL' ? o.sl.at : st === 'CH' ? o.ch.at : o.stn[st].at; };
+    const route = function (t) {                                            // from the map edge, between the stops, out to the edge
+      const a = t.stops[0].st, b = t.stops[t.stops.length - 1].st;
       if (t.kind === 'TER') {                                               // at Nord-Est the TER leave the TGV tracks at the ends of the station, for their own platforms
         const mid = o.between[a + '-' + b] || rev(o.between[b + '-' + a]);
         return { inn: a === 'NE' ? rev(o.outer[t.from]).slice(0, -1) : rev(o.outer[t.from]), mid: a === 'NE' ? mid.slice(1) : b === 'NE' ? mid.slice(0, -1) : mid,
           out: b === 'NE' ? o.outer[t.to].slice(1) : o.outer[t.to] };
       }
       const full = t.kind === 'N' ? lineN : lineH, pl = (t.from === 'E' || t.from === 'N') ? full : rev(full);
-      const ia = near(pl, st2pt(a, t.kind)), ib = near(pl, st2pt(b, t.kind));
-      return { inn: pl.slice(0, ia + 1), mid: pl.slice(ia, ib + 1), out: pl.slice(ib) };
+      const ix = t.stops.map(function (x) { return near(pl, st2pt(x.st, t.kind)); }), mids = [];
+      for (let j = 1; j < ix.length; j++) mids.push(pl.slice(ix[j - 1], ix[j] + 1));
+      return { inn: pl.slice(0, ix[0] + 1), mid: mids[0], mids: mids, out: pl.slice(ix[ix.length - 1]) };
     };
     regionalTrains().forEach(function (t, k) {
-      const a = t.stops[0], b = t.stops[1], R = REG[t.kind];
-      const pa = spot(t, 0), pb = spot(t, 1);
-      const rt = route(t), inn = rt.inn, out = rt.out, mid = rt.mid;
-      const legs = [
-        { t0: a.arr_abs - o.APPROACH, t1: a.arr_abs, pl: o.poly(inn.slice(0, -1).concat([pa])), e: function (f) { return 1 - (1 - f) * (1 - f); } },
-        { t0: a.arr_abs, t1: a.dep_abs, still: pa },
-        { t0: a.dep_abs, t1: b.arr_abs, pl: o.poly([pa].concat(mid.slice(1, -1), [pb])), e: o.ease },
-        { t0: b.arr_abs, t1: b.dep_abs, still: pb },
-        { t0: b.dep_abs, t1: b.dep_abs + o.APPROACH, pl: o.poly([pb].concat(out.slice(1))), e: function (f) { return f * f; } }
-      ];
-      const nm = { NE: 'Nord-Est', LY: 'Gare de Lyon', MP: 'Montparnasse', SL: 'Saint-Lazare' };
+      const a = t.stops[0], b = t.stops[t.stops.length - 1], R = REG[t.kind];
+      const ps = t.stops.map(function (x, j) { return spot(t, j); }), pa = ps[0], pb = ps[ps.length - 1];
+      const rt = route(t), inn = rt.inn, out = rt.out, mids = t.kind === 'TER' ? [rt.mid] : rt.mids;
+      const legs = [{ t0: a.arr_abs - o.APPROACH, t1: a.arr_abs, pl: o.poly(inn.slice(0, -1).concat([pa])), e: function (f) { return 1 - (1 - f) * (1 - f); } }];
+      t.stops.forEach(function (x, j) {
+        legs.push({ t0: x.arr_abs, t1: x.dep_abs, still: ps[j] });
+        if (j < t.stops.length - 1) legs.push({ t0: x.dep_abs, t1: t.stops[j + 1].arr_abs, pl: o.poly([ps[j]].concat(mids[j].slice(1, -1), [ps[j + 1]])), e: o.ease });
+      });
+      legs.push({ t0: b.dep_abs, t1: b.dep_abs + o.APPROACH, pl: o.poly([pb].concat(out.slice(1))), e: function (f) { return f * f; } });
+      const nm = { NE: 'Nord-Est', LY: 'Gare de Lyon', MP: 'Montparnasse', SL: 'Saint-Lazare', CH: 'Châtelet-Les Halles' };
       const el = mark(R.shape, o.narrow, R.name + ', ' + nm[a.st] + ' to ' + nm[b.st]);
       el.style.setProperty('--c', R.c);
-      PTS.tip.bind(el, '<b>' + R.name + '</b><br>' + nm[a.st] + ' ' + padh(a.arr_abs) + ' to ' + padh(a.dep_abs) + '<br>' + nm[b.st] + ' ' + padh(b.arr_abs) + ' to ' + padh(b.dep_abs) +
+      PTS.tip.bind(el, '<b>' + R.name + '</b>' + t.stops.map(function (x) { return '<br>' + nm[x.st] + ' ' + padh(x.arr_abs) + ' to ' + padh(x.dep_abs); }).join('') +
         (t.kind === 'TER' ? '' : '<br><small>Evenly spaced at the trains an hour of the model</small>'));
       o.g.appendChild(el); dots.push({ t: t, legs: legs, el: el, reg: t.kind });
     });

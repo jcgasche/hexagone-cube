@@ -199,12 +199,13 @@ PTS.section('project', function (root) {
       list.push(['All platform tracks', C.tracks[st.name], 'sum'], ['Platform track, metres', F.n(C.platform_m[st.name], 0)]);
       list.push(
         ['Cost'], ['Works at €' + F.n(R.platform_m * 1000, 1) + 'm per metre', F.bn(C.station_cost[st.name])], ['With design, land and 15% risk', F.bn(D.station_total[st.name])]);
+      if (st.name === 'Châtelet-Les Halles') list.push(['Links into the existing station and new exits, works', F.bn(C.items['Links into Châtelet-Les Halles'])], ['With design, land and 15% risk', F.bn(C.items['Links into Châtelet-Les Halles'] * D.gross_up)]);
       box.appendChild(h('h4', { text: 'Station, stage ' + st.stage }));
       box.appendChild(h('h3', { text: st.name }));
       box.appendChild(h('p', { text: st.where }));
       box.appendChild(strip(st));
       box.appendChild(rows(h('dl', { class: 'read' }), list));
-      box.appendChild(h('p', { class: 'note', text: st.calls + (st.name === 'Saint-Lazare' ? ' The ride from Nord-Est takes ' + F.n(D.TR.SL, 0) + ' minutes.' : '') + ' ' + st.surface + (st.stage_note ? ' ' + st.stage_note : '') }));
+      box.appendChild(h('p', { class: 'note', text: st.calls + (st.name === 'Saint-Lazare' ? ' The ride from Nord-Est takes ' + F.n(D.TR.SL, 0) + ' minutes.' : st.name === 'Châtelet-Les Halles' ? ' Nord-Est to Montparnasse takes ' + F.n(D.TR_G, 0) + ' minutes with the stop.' : '') + ' ' + st.surface + (st.stage_note ? ' ' + st.stage_note : '') }));
     } else if (sel.kind === 'corridor') {
       const co = P.corridors.filter(function (x) { return x.id === sel.id; })[0], nets = netsOf(co), count = nets.length, km = co.km * count, works = km * (R.tunnel_civil + R.tunnel_systems);
       const stages = nets.map(function (n) { return stageOf(co, n); }).filter(function (v, i, a) { return a.indexOf(v) === i; }).sort();

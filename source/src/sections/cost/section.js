@@ -4,7 +4,8 @@ PTS.section('cost', function (root) {
   const $ = function (sel) { return root.querySelector(sel); };
   const ITEMS = [['Tunnels, civil works', 'var(--s1)'], ['Tunnels, rail systems', 'var(--s7)'], ['Stations', 'var(--s2)'], ['Historic halls', 'var(--s4)'],
                  ['Underground junctions', 'var(--s3)'], ['Portals and links to existing lines', 'var(--s5)'], ['Sidings and depot links', 'var(--s6)'],
-                 ['Control hall for London trains', 'var(--today)'], ['TER links into the TGV tunnels', 'var(--new)']];
+                 ['Control hall for London trains', 'var(--today)'], ['TER links into the TGV tunnels', 'var(--new)'],
+                 ['Links into Châtelet-Les Halles', 'color-mix(in srgb, var(--s2) 55%, transparent)']];
   const pctRisk = function (R) { return F.pct(R.risk); };
   const parts = function (c, R) {
     const p = ITEMS.map(function (it) { return { label: it[0], value: c.items[it[0]], color: it[1] }; });

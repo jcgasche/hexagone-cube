@@ -66,6 +66,9 @@ TH_ACCESS = {'L': 6.0, 'M': 6.0, 'LM': 6.0}   # the same ride in the access meas
 REVERSE = 8.0                           # minutes a train would need to turn back at Nord-Est (none does since version 4.1) (ASSUMPTION; 3 to 12 in French practice)
 TR = {'L': 7.0, 'M': 7.0, 'SL': 4.0}   # regional train ride between the same stations: the same 6-minute run, plus a 1-minute stop (ASSUMPTION);
                                       # SL: line H from Nord-Est to Saint-Lazare, 2.6 km, 4 minutes stop included (ASSUMPTION; RER E Magenta to Haussmann is 2.46 km)
+G_STOP = 2.0                          # RER G stops at Chatelet-Les Halles on its way: a 1-minute stop and 1 minute to slow down and pick up speed (ASSUMPTION; RATP aims at 50 s at Chatelet)
+TR_G = TR['M'] + G_STOP               # RER G, Nord-Est to Montparnasse with the Chatelet stop. The access and job models keep TR['M']: what the stop
+                                      # costs riders who go through is netted in the Chatelet item of the French appraisal (model/inputs/chatelet_stop.json)
 ring = lambda d: 'Paris' if d == '75' else ('Petite couronne' if d in ('92', '93', '94') else 'Grande couronne')
 DATA = {}
 for tag, pf, rf in (('clock', 'points.csv', 'regional.json'), ('eq', 'points_weighted.csv', 'regional_weighted.json'), ('comfort', 'points_comfort.csv', 'regional_comfort.json')):
@@ -325,6 +328,9 @@ NEW_MONEY = 0.30                        # share of extra suburban journeys paid 
 YIELD = {'transilien': 1.22, 'ter': 8.0}        # euros per journey (Ile-de-France average; regional express ASSUMPTION)
 REG_TRAINKM = 2.0 * 0.77                # million extra train-km a year for regional trains running through (ASSUMPTION: 77% of the 2.0 M of the earlier layout, version 4)
 REG_TRAINKM_COST = 27.5                 # euros per extra train-km: half the average cost per train-km paid by the region (ASSUMPTION)
+G_TRAINS_H = 23                         # RER G trains an hour each way at the peak: today's P (11) and N (12)
+G_STOP_SETS = G_TRAINS_H * 2 * G_STOP / 60      # trainsets the Chatelet stop takes: each round trip 2 x 2 minutes longer at 23 trains an hour (1.5)
+G_STOP_RUN = 6100 * 250 / 1e9           # bn a year: crew and power for 2 more minutes on about 560 RER G trains a weekday, 6,100 train-hours at 250 euros (ASSUMPTION)
 SECOND_MIN = 1.0                        # a passenger uses the second station when it saves more than this, on the clock (ASSUMPTION)
 TER_THROUGH_SHARE = 0.05                # share of regional express passengers who cross Paris today (ASSUMPTION; study point I15)
 # version 4 (the plan): which line runs on to which station. Suburban: H and K (Gare du Nord) run under Nord-Est to Saint-Lazare and
@@ -489,7 +495,7 @@ def second_station(hall='both', thr=SECOND_MIN):
     share = lambda fn: sum(1 for t in pts if fn(t) > thr) / len(pts)
     sub = {l: q * TERM_SHARE[l] * THROUGH_TRAINS.get(l, 1.0) * share(alt[l]) for l, q in LINES.items()}
     ter = {k: q * share(alt_ter[k]) for k, q in TER.items()}
-    return {'second_station_sub': sum(sub.values()), 'second_station_ter': sum(ter.values()), 'second_station_share': {**{l: share(alt[l]) for l in LINES}, **{'TER ' + k: share(alt_ter[k]) for k in TER}}}
+    return {'second_station_sub': sum(sub.values()), 'second_station_ter': sum(ter.values()), 'second_station_by_line': sub, 'second_station_share': {**{l: share(alt[l]) for l in LINES}, **{'TER ' + k: share(alt_ter[k]) for k in TER}}}
 
 
 # ------------------------------------------------------------------ 4. service plan and station sizes
@@ -538,10 +544,11 @@ RATE = {'tunnel_civil': 0.130,      # per km of twin-track tunnel, with shafts (
         'london_hall': 0.2,         # control hall and waiting room for London trains above a switchable platform at Nord-Est (ASSUMPTION)
         'ter_links': 0.65,          # regional express trains into the TGV tunnels (version 4.1, ASSUMPTION): 6 throat tie-ins at 0.05 (Nord-Est 4, Montparnasse 2),
                                     # 2 dive-unders in the Nord-Est throats at 0.10, links at 3 TGV portal ramps (north, east, Atlantic) at 0.05
+        'chatelet_links': 0.20,     # the RER G station at Chatelet-Les Halles: corridors and escalators into the existing station and new exits (ASSUMPTION; 0.10 low, 0.40 high)
         'design': 0.12, 'client': 0.08, 'land': 0.07,
         'risk': 0.15}               # the unit prices are final costs or contracts and already hold past overruns (ASSUMPTION: 15%; 10% low, 30% high)
-RATE_LOW = dict(RATE, tunnel_civil=0.100, tunnel_systems=0.035, platform_m=0.00055, risk=0.10)
-RATE_HIGH = dict(RATE, tunnel_civil=0.170, tunnel_systems=0.070, platform_m=0.0014, risk=0.30)
+RATE_LOW = dict(RATE, tunnel_civil=0.100, tunnel_systems=0.035, platform_m=0.00055, chatelet_links=0.10, risk=0.10)
+RATE_HIGH = dict(RATE, tunnel_civil=0.170, tunnel_systems=0.070, platform_m=0.0014, chatelet_links=0.40, risk=0.30)
 # route km of the six corridors of the Y, read from maps (ASSUMPTION). The four approach corridors end where the tunnels come up on
 # the existing surface tracks: at the ring road for the north, south-east and Atlantic lines, at Rosa Parks just inside it for the
 # east. At 35 mm per metre a tunnel 35 to 40 m deep reaches the surface in 1.0 to 1.2 km, so it need not stay underground any further.
@@ -564,8 +571,11 @@ JUNCTIONS = {'tgv': 4, 'ter': 0, 'n': 0, 'h': 0}      # version 4.1: no regional
 PORTALS = {'tgv': 4, 'ter': 0, 'n': 2, 'h': 2}
 LAYOUT = {'tunnels': TUNNEL_KM, 'junctions': JUNCTIONS, 'portals': PORTALS, 'halls': ['Nord', 'Est', 'Lyon', 'Montparnasse'],
           'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 4, 'sub': 10}, 'Gare de Lyon': {'hs': 8, 'ter': 0, 'sub': 0},
-                       'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 4}, 'Saint-Lazare': {'hs': 0, 'ter': 0, 'sub': 6}}}
-SUB_TRACKS = {'Paris Nord-Est': {'n': 4, 'h': 6}, 'Montparnasse': {'n': 4}, 'Saint-Lazare': {'h': 6}}     # suburban tracks by line
+                       'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 4}, 'Saint-Lazare': {'hs': 0, 'ter': 0, 'sub': 6},
+                       'Châtelet-Les Halles': {'hs': 0, 'ter': 0, 'sub': 2}}}
+# Chatelet-Les Halles: one track each way for RER G, a stop in passing that most riders stay on through, as RER A takes up to 30 trains an hour
+# on one track each way at Auber and Chatelet (ASSUMPTION; the 10 trains an hour a track of REG_PLATFORMS is the rule where most riders get on or off)
+SUB_TRACKS = {'Paris Nord-Est': {'n': 4, 'h': 6}, 'Montparnasse': {'n': 4}, 'Saint-Lazare': {'h': 6}, 'Châtelet-Les Halles': {'n': 2}}     # suburban tracks by line
 LEN = {'hs': 400, 'ter': 350, 'sub': 225}   # platform lengths: a double TGV; regional express trains of 270 to 330 m; suburban as on RER E
 STAGE_CORRIDORS = {'first': ('north', 'east', 'nelyon', 'southeast'), 'second': ('nemont', 'atlantic')}
 
@@ -577,7 +587,8 @@ def cost(R=RATE, L=LAYOUT):
     items = {'Tunnels, civil works': km * R['tunnel_civil'], 'Tunnels, rail systems': km * R['tunnel_systems'],
              'Stations': sum(plat.values()) * R['platform_m'], 'Historic halls': sum(R['hall'][h] for h in L['halls']),
              'Underground junctions': junctions * R['junction'], 'Portals and links to existing lines': portals * R['portal'], 'Sidings and depot links': R['sidings'],
-             'Control hall for London trains': R['london_hall'], 'TER links into the TGV tunnels': R['ter_links']}
+             'Control hall for London trains': R['london_hall'], 'TER links into the TGV tunnels': R['ter_links'],
+             'Links into Châtelet-Les Halles': R['chatelet_links']}
     hard = sum(items.values())
     soft = hard * (R['design'] + R['client']); land = hard * R['land']
     risk = (hard + soft + land) * R['risk']
@@ -628,7 +639,7 @@ def yearly_cost(R=RATE, years=BUILD_YEARS, om_tunnel=None):
     C = cost(R); k = idc(years); om_tunnel = OM_TUNNEL if om_tunnel is None else om_tunnel
     renew = C['items']['Tunnels, rail systems'] * (1 + R['design'] + R['client']) * (1 + R['risk']) / (1 + r_) ** RENEW_YEAR * AF
     out = {'capex': C['total'], 'idc': k, 'capex_open': C['total'] * k, 'annuity': C['total'] * k * AF, 'renewal': renew,
-           'om_infra': C['tunnel_km'] * om_tunnel + C['platform_total'] * OM_STATION, 'om_trains': REG_TRAINKM * REG_TRAINKM_COST / 1000}
+           'om_infra': C['tunnel_km'] * om_tunnel + C['platform_total'] * OM_STATION, 'om_trains': REG_TRAINKM * REG_TRAINKM_COST / 1000 + G_STOP_RUN}
     out['om'] = out['om_infra'] + out['om_trains']
     out['cost'] = out['annuity'] + out['renewal'] + out['om']
     return out
@@ -670,7 +681,7 @@ def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=R
 
 
 if __name__ == '__main__':
-    out = {'TH': TH, 'TH_ACCESS': TH_ACCESS, 'TR': TR, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
+    out = {'TH': TH, 'TH_ACCESS': TH_ACCESS, 'TR': TR, 'TR_G': TR_G, 'G_STOP': G_STOP, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
     # access
     acc = {}
     for name, kw in {'central': dict(), 'ride': dict(measure='ride'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items():
@@ -713,7 +724,7 @@ if __name__ == '__main__':
     out['rates'] = {k: v for k, v in RATE.items()}; out['rates_low'] = {k: v for k, v in RATE_LOW.items()}; out['rates_high'] = {k: v for k, v in RATE_HIGH.items()}; out['backtest'] = backtest()
     out['AF'] = AF; out['idc'] = idc(); out['ratios'] = {'comfort': R_COMFORT, 'wider': R_WIDER}
     out['params'] = {'uplift_direct': UPLIFT_DIRECT, 'uplift_direct_high': UPLIFT_DIRECT_HIGH, 'reg_uplift': REG_UPLIFT, 'reg_uplift_high': REG_UPLIFT_HIGH, 'reg_uplift_low': REG_UPLIFT_LOW, 'new_money': NEW_MONEY,
-                     'build_years': BUILD_YEARS, 'om_tunnel': OM_TUNNEL, 'om_tunnel_low': OM_TUNNEL_LOW, 'om_tunnel_high': OM_TUNNEL_HIGH, 'om_station': OM_STATION, 'reg_trainkm': REG_TRAINKM, 'reg_trainkm_cost': REG_TRAINKM_COST, 'ter_trip': TER_TRIP, 'old_ne': 30.0,
+                     'build_years': BUILD_YEARS, 'om_tunnel': OM_TUNNEL, 'om_tunnel_low': OM_TUNNEL_LOW, 'om_tunnel_high': OM_TUNNEL_HIGH, 'om_station': OM_STATION, 'reg_trainkm': REG_TRAINKM, 'reg_trainkm_cost': REG_TRAINKM_COST, 'g_trains_h': G_TRAINS_H, 'g_stop_sets': G_STOP_SETS, 'g_stop_run': G_STOP_RUN, 'ter_trip': TER_TRIP, 'old_ne': 30.0,
                      'stop_min': STOP_MIN, 'clear_min': CLEAR_MIN, 'util': UTIL, 'per_track': PER_TRACK, 'tracks_per_direction': TRACKS_PER_DIRECTION, 'second_min': SECOND_MIN, 'ter_through_share': TER_THROUGH_SHARE, 'park_ha': PARK_HA, 'direct_share': DIRECT_SHARE,
                      'transit_share': TRANSIT_SHARE, 'cross_share': CROSS_SHARE, 'change_loss': CHANGE_LOSS, 'easy_change': EASY_CHANGE, 'cross_today': CROSS_TODAY, 'cross_out': CROSS_OUT, 'cross_change_eq': CROSS_CHANGE_EQ, 'cross_decay': CROSS_DECAY,
                      'corridor': CORRIDOR, 'sub_pair': SUB_PAIR, 'ter_run': TER_RUN, 'south_line': SOUTH_LINE, 'through_trains': THROUGH_TRAINS, 'term_share': TERM_SHARE, 'lines': LINES, 'ter': TER,
@@ -762,7 +773,7 @@ if __name__ == '__main__':
     pm1 = 6 * LEN['hs'] + 8 * LEN['hs'] + 2 * 6 * LEN['sub']; pm2 = cost()['platform_total'] - pm1     # stage 1: Nord-Est TGV and H, Gare de Lyon (8), Saint-Lazare
     tl1 = 0.5                       # TER links in stage 1: the Nord-Est throats and the north and east portal ramps; the rest (0.15) with Montparnasse
     out['stages'] = {'first': stage(km1, pm1, ['Nord', 'Est', 'Lyon'], JUNCTIONS['tgv'] - 2, PORTALS['tgv'] - 1 + PORTALS['h'], 0.4 + tl1, RATE['london_hall']),
-                     'second': stage(km2, pm2, ['Montparnasse'], 2 + JUNCTIONS['ter'], 1 + PORTALS['ter'] + PORTALS['n'], 0.2 + RATE['ter_links'] - tl1, 0.0)}
+                     'second': stage(km2, pm2, ['Montparnasse'], 2 + JUNCTIONS['ter'], 1 + PORTALS['ter'] + PORTALS['n'], 0.2 + RATE['ter_links'] - tl1 + RATE['chatelet_links'], 0.0)}
     out['stages']['first']['route_km'] = skm['first'] + TUNNEL_KM['h']; out['stages']['second']['route_km'] = km2
     assert abs(out['stages']['first']['total'] + out['stages']['second']['total'] - cost()['total']) < 1e-9
     # things not in the central estimate
