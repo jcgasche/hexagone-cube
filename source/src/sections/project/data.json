@@ -1,5 +1,5 @@
 {
- "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the four approach corridors end where the tunnels come up on the existing tracks, at the ring road (east: at Rosa Parks, just inside it); RER F comes up near Pont-Cardinet; the link is 5 km (4.5 to 6). Each corridor lists the tunnels that run in it (tgv, n, h), as model.tunnels.corridors. There is no regional express tunnel (version 4.1): the corridors whose TGV tunnel also carries regional express trains have a 'ter' key (the load key in model.ter_paths.loads) and a 'carries.ter' text. The Seine and the existing lines are sketched by hand for orientation.",
+ "_note": "Geometry for the schematic map of the project. Tunnel routes are drawn smoothly from point to point: no alignment has been studied. Corridor lengths are planning estimates read from maps; the four approach corridors end where the tunnels come up on the existing tracks, at the ring road (east: at Rosa Parks, just inside it); RER F comes up near Pont-Cardinet; the link is 5 km (4.5 to 6). Each corridor lists the tunnels that run in it (tgv, n, h), as model.tunnels.corridors. There is no regional express tunnel (version 4.1): every TGV tunnel is a TGV + TER tunnel, open to the regional express trains, the TGVs having priority. The corridors where the peak timetable runs regional express trains have a 'ter' key (the load key in model.ter_paths.loads, as model.ter_corridors); the link has none in the timetable but a 'carries.ter' text all the same. The Seine and the existing lines are sketched by hand for orientation. 'today' lists today's suburban lines that the RER tunnels take over (net: n for RER G, h for RER F), from their portal outwards: the main paths follow the existing lines above; the branches marked 'schematic' are approximate, drawn by hand for orientation; 'lbl' places the line's letter: share of the way along the path, and side (1 or -1).",
  "view": {
   "wide": {
    "lon": [
@@ -118,7 +118,7 @@
    ],
    "stage": 1,
    "where": "Under and between Gare du Nord and Gare de l’Est, which are 500 m apart.",
-   "calls": "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains run through in the TGV tunnels: those from the north on to Montparnasse and the Atlantic lines, those from the east on to Gare de Lyon and Burgundy. Their four platforms lie on the west side of the box, beside the TGV platforms. RER G from the east runs through to Montparnasse, and RER F from the north runs on to Saint-Lazare.",
+   "calls": "TGVs of all four lines stop here, from the north, the east, the south-east and the Atlantic; one of the six TGV tracks can be closed off for each London departure. Regional express trains run through in the TGV + TER tunnels: those from the north on to Montparnasse and the Atlantic lines, those from the east on to Gare de Lyon and Burgundy. Their four platforms lie on the west side of the box, beside the TGV platforms. RER G from the east runs through to Montparnasse, and RER F from the north runs on to Saint-Lazare.",
    "surface": "Every train of Gare du Nord and Gare de l’Est goes underground, so all the surface tracks of both stations are freed: both halls become entrances, and the platforms and approach tracks become one park.",
    "axis": [
     [
@@ -148,7 +148,7 @@
    ],
    "stage": 1,
    "where": "Under the present station.",
-   "calls": "TGVs of the south-east, and the half of the northern, eastern and Atlantic TGVs that pair with them; regional express trains of Burgundy, running through in the TGV tunnel to Nord-Est and the east. Two of the eight tracks, one each way, take the planned sixteenth south-eastern TGV an hour and the regional express trains. A junction at the city end leads to the direct link to Montparnasse.",
+   "calls": "TGVs of the south-east, and the half of the northern, eastern and Atlantic TGVs that pair with them; regional express trains of Burgundy, running through in the TGV + TER tunnel to Nord-Est and the east. Two of the eight tracks, one each way, take the planned sixteenth south-eastern TGV an hour and the regional express trains. A junction at the city end leads to the direct link to Montparnasse.",
    "surface": "The hall is kept as the entrance. The TGVs and the regional express trains go underground and the Bercy station is freed. Line R keeps a small terminal of a few surface tracks; running it through as well is left as a later option.",
    "axis": [
     [
@@ -176,7 +176,7 @@
    ],
    "stage": 2,
    "where": "Under the present station.",
-   "calls": "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains of the Chartres, Le Mans and Granville lines, running through in the TGV tunnel to Nord-Est and the north; RER G running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon.",
+   "calls": "TGVs of the Atlantic, and the half of the northern, eastern and south-eastern TGVs that pair with them; regional express trains of the Chartres, Le Mans and Granville lines, running through in the TGV + TER tunnel to Nord-Est and the north; RER G running through to Nord-Est. A junction at the city end leads to the direct link to Gare de Lyon.",
    "surface": "Every train goes underground. The hall is kept as the entrance; the surface tracks towards the ring road become a park.",
    "axis": [
     [
@@ -234,7 +234,7 @@
    "tunnels": [
     "tgv"
    ],
-   "what": "Where the TGV tunnels from the north and from the east become one, just before the station. The regional express trains of both lines ride in these TGV tunnels and need no cavern of their own. RER F comes from the north only and RER G from the east only, so they need no junction."
+   "what": "Where the TGV + TER tunnels from the north and from the east become one, just before the station. The regional express trains of both lines ride in these TGV + TER tunnels and need no cavern of their own. RER F comes from the north only and RER G from the east only, so they need no junction."
   },
   {
    "id": "j2",
@@ -246,7 +246,7 @@
    "tunnels": [
     "tgv"
    ],
-   "what": "Where the TGV tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. RER G runs on to Montparnasse only, and RER F turns west to Saint-Lazare, so they need no junction."
+   "what": "Where the TGV + TER tunnels to Gare de Lyon and to Montparnasse part, just after the station; the regional express trains from the north take the Montparnasse side, those from the east the Gare de Lyon side. RER G runs on to Montparnasse only, and RER F turns west to Saint-Lazare, so they need no junction."
   },
   {
    "id": "j3",
@@ -258,7 +258,7 @@
    "tunnels": [
     "tgv"
    ],
-   "what": "Where the direct link to Gare de Lyon leaves the TGV tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed."
+   "what": "Where the direct link to Gare de Lyon leaves the TGV + TER tunnel from Nord-Est, at the city end of Montparnasse. Its geometry has not been designed."
   },
   {
    "id": "j4",
@@ -270,7 +270,7 @@
    "tunnels": [
     "tgv"
    ],
-   "what": "Where the direct link from Montparnasse joins the TGV tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed."
+   "what": "Where the direct link from Montparnasse joins the TGV + TER tunnel from Nord-Est, at the city end of Gare de Lyon. Its geometry has not been designed."
   }
  ],
  "trunks": [
@@ -377,9 +377,9 @@
     ]
    ],
    "lbl": [
-    2,
-    19,
-    "middle"
+    10,
+    12,
+    "start"
    ],
    "tunnels": [
     "tgv",
@@ -429,7 +429,7 @@
     "tgv": "TGVs between Paris Nord-Est and the south-east",
     "ter": "Regional express trains between the east and Burgundy, through Nord-Est and Gare de Lyon"
    },
-   "note": "One TGV tunnel, which the regional express trains between the east and Burgundy share. No suburban train runs to Gare de Lyon underground.",
+   "note": "One TGV + TER tunnel, which the regional express trains between the east and Burgundy share. No suburban train runs to Gare de Lyon underground.",
    "ter": "nelyon"
   },
   {
@@ -471,7 +471,7 @@
     "n": "Suburban trains between the eastern and the south-western suburbs",
     "ter": "Regional express trains between the north and the Atlantic lines, through Nord-Est and Montparnasse"
    },
-   "note": "Two twin-track tunnels side by side: the TGV tunnel, which the regional express trains share, and RER G.",
+   "note": "Two twin-track tunnels side by side: the TGV + TER tunnel, which the regional express trains share, and RER G.",
    "ter": "nemont"
   },
   {
@@ -496,8 +496,8 @@
     ]
    ],
    "lbl": [
-    13,
-    -2,
+    10,
+    12,
     "start"
    ],
    "tunnels": [
@@ -507,7 +507,7 @@
     "tgv": "High-speed trains to Lyon and Marseille",
     "ter": "Regional express trains to Burgundy, running through to Nord-Est and the east"
    },
-   "note": "One TGV tunnel, shared with the regional express trains of Burgundy. Line R stays on the surface at Gare de Lyon, on a small terminal.",
+   "note": "One TGV + TER tunnel, shared with the regional express trains of Burgundy. Line R stays on the surface at Gare de Lyon, on a small terminal.",
    "ter": "southeast"
   },
   {
@@ -585,9 +585,10 @@
     "tgv"
    ],
    "carries": {
-    "tgv": "TGVs between the Atlantic and the south-east, direct"
+    "tgv": "TGVs between the Atlantic and the south-east, direct",
+    "ter": "Open to regional express trains, as every TGV + TER tunnel, the TGVs having priority; the peak timetable sends none this way"
    },
-   "note": "No regional or suburban train uses the link."
+   "note": "A TGV + TER tunnel, like the other two sides of the triangle. No suburban train uses the link."
   },
   {
    "id": "nesl",
@@ -654,9 +655,9 @@
     ]
    ],
    "lbl": [
-    9,
+    -8,
     2,
-    "start"
+    "end"
    ]
   }
  ],
@@ -674,7 +675,7 @@
     4,
     "end"
    ],
-   "ter": "The regional express trains from the north join the TGV tunnel on its ramp here."
+   "ter": "The regional express trains from the north join the TGV + TER tunnel on its ramp here."
   },
   {
    "name": "Rosa Parks",
@@ -689,7 +690,7 @@
     4,
     "start"
    ],
-   "ter": "The regional express trains from the east join the TGV tunnel on its ramp here."
+   "ter": "The regional express trains from the east join the TGV + TER tunnel on its ramp here."
   },
   {
    "name": "Porte de Charenton",
@@ -704,7 +705,7 @@
     18,
     "end"
    ],
-   "ter": "The regional express trains of Burgundy use the TGV tunnel from here."
+   "ter": "The regional express trains of Burgundy use the TGV + TER tunnel from here."
   },
   {
    "name": "Porte de Vanves",
@@ -719,7 +720,7 @@
     18,
     "start"
    ],
-   "ter": "The regional express trains of the Atlantic lines join the TGV tunnel on its ramp here."
+   "ter": "The regional express trains of the Atlantic lines join the TGV + TER tunnel on its ramp here."
   },
   {
    "name": "Pont-Cardinet",
@@ -1059,9 +1060,9 @@
     48.8423
    ],
    "lbl": [
-    7,
-    16,
-    "start"
+    -7,
+    4,
+    "end"
    ],
    "tip": "Left as it is"
   },
@@ -1083,5 +1084,239 @@
  "seine_label": [
   2.273,
   48.8585
+ ],
+ "today": [
+  {
+   "id": "H",
+   "net": "h",
+   "name": "Line H",
+   "path": [
+    [
+     2.3606,
+     48.899
+    ],
+    [
+     2.36,
+     48.91
+    ],
+    [
+     2.3558,
+     48.9218
+    ],
+    [
+     2.348,
+     48.933
+    ],
+    [
+     2.344,
+     48.94
+    ]
+   ],
+   "lbl": [
+    0.75,
+    1
+   ]
+  },
+  {
+   "id": "K",
+   "net": "h",
+   "name": "Line K",
+   "schematic": true,
+   "path": [
+    [
+     2.36,
+     48.91
+    ],
+    [
+     2.372,
+     48.9155
+    ],
+    [
+     2.392,
+     48.9235
+    ],
+    [
+     2.415,
+     48.931
+    ],
+    [
+     2.44,
+     48.938
+    ]
+   ],
+   "lbl": [
+    0.8,
+    -1
+   ]
+  },
+  {
+   "id": "L",
+   "net": "h",
+   "name": "Line L, north-west branches",
+   "path": [
+    [
+     2.3145,
+     48.8865
+    ],
+    [
+     2.3075,
+     48.8925
+    ],
+    [
+     2.2985,
+     48.8975
+    ],
+    [
+     2.287,
+     48.905
+    ],
+    [
+     2.272,
+     48.913
+    ],
+    [
+     2.25,
+     48.922
+    ]
+   ],
+   "lbl": [
+    0.8,
+    1
+   ]
+  },
+  {
+   "id": "L2",
+   "net": "h",
+   "name": "Line L, La Défense and Saint-Cloud branches",
+   "schematic": true,
+   "path": [
+    [
+     2.287,
+     48.905
+    ],
+    [
+     2.27,
+     48.9035
+    ],
+    [
+     2.256,
+     48.8975
+    ],
+    [
+     2.243,
+     48.8905
+    ],
+    [
+     2.232,
+     48.877
+    ],
+    [
+     2.222,
+     48.858
+    ]
+   ],
+   "lbl": [
+    0.75,
+    -1
+   ]
+  },
+  {
+   "id": "P",
+   "net": "n",
+   "name": "Line P",
+   "path": [
+    [
+     2.3745,
+     48.896
+    ],
+    [
+     2.389,
+     48.8974
+    ],
+    [
+     2.4035,
+     48.8974
+    ],
+    [
+     2.43,
+     48.8958
+    ],
+    [
+     2.46,
+     48.8945
+    ],
+    [
+     2.485,
+     48.894
+    ]
+   ],
+   "lbl": [
+    0.55,
+    -1
+   ]
+  },
+  {
+   "id": "P2",
+   "net": "n",
+   "name": "Line P, Provins and Coulommiers branches",
+   "schematic": true,
+   "path": [
+    [
+     2.447,
+     48.8952
+    ],
+    [
+     2.458,
+     48.887
+    ],
+    [
+     2.47,
+     48.876
+    ],
+    [
+     2.485,
+     48.866
+    ]
+   ],
+   "lbl": [
+    0.7,
+    1
+   ]
+  },
+  {
+   "id": "N",
+   "net": "n",
+   "name": "Line N",
+   "path": [
+    [
+     2.302,
+     48.827
+    ],
+    [
+     2.2985,
+     48.8255
+    ],
+    [
+     2.286,
+     48.8195
+    ],
+    [
+     2.274,
+     48.814
+    ],
+    [
+     2.252,
+     48.805
+    ],
+    [
+     2.23,
+     48.799
+    ]
+   ],
+   "lbl": [
+    0.6,
+    -1
+   ]
+  }
  ]
 }

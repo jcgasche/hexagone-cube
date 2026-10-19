@@ -2,11 +2,12 @@ PTS.section('project', function (root) {
   'use strict';
   const D = PTS.data.model, G = PTS.data.paris_geo, P = PTS.data.project, F = PTS.fmt, h = PTS.h, s = PTS.s;
   const $ = function (sel) { return root.querySelector(sel); };
-  // one twin-track tunnel for each kind of train: TGV, line N, line H (c.tunnels, as model.tunnels.corridors). The regional express trains
-  // have no tunnel of their own (version 4.1): they ride in the TGV tunnel of the corridors marked c.ter (as model.ter_corridors), drawn as a thin line inside it
-  const NET = { tgv: { k: 'tgv', label: 'TGV', long: 'TGV', color: 'var(--s1)', plat: 'hs' },
-    n: { k: 'n', label: 'RER G', long: 'RER G', color: 'var(--s3)', plat: 'sub' },
-    h: { k: 'h', label: 'RER F', long: 'RER F', color: 'var(--s4)', plat: 'sub' } };
+  // two kinds of twin-track tunnel: TGV + TER, and RER (line N becomes RER G, line H RER F) (c.tunnels, as model.tunnels.corridors). The regional
+  // express trains have no tunnel of their own (version 4.1): every TGV tunnel is open to them, the TGVs having priority; the corridors marked c.ter
+  // (as model.ter_corridors) are those where the peak timetable runs them. label and long name the platform tracks, tun the tunnel
+  const NET = { tgv: { k: 'tgv', label: 'TGV', long: 'TGV', tun: 'TGV + TER', color: 'var(--s1)', plat: 'hs' },
+    n: { k: 'n', label: 'RER G', long: 'RER G', tun: 'RER G', color: 'var(--s3)', plat: 'sub' },
+    h: { k: 'h', label: 'RER F', long: 'RER F', tun: 'RER F', color: 'var(--s4)', plat: 'sub' } };
   const NETS = [NET.tgv, NET.n, NET.h];
   const TER = { k: 'ter', label: 'Regional express', long: 'regional express', color: 'var(--s2)', plat: 'ter' };   // platforms of their own, no tunnel
   const TP = D.ter_paths, LOADS = TP.loads;
@@ -15,7 +16,7 @@ PTS.section('project', function (root) {
   const netsOf = function (c) { return NETS.filter(function (n) { return c.tunnels.indexOf(n.k) >= 0; }); };
   const shown = function (c) { return netsOf(c).filter(function (n) { return on(n.k); }); };
   const words = function (list) { return list.length < 2 ? list.join('') : list.slice(0, -1).join(', ') + ' and ' + list[list.length - 1]; };
-  const tunnelWords = function (nets) { return words(nets.map(function (n) { return n.long; })) + (nets.length === 1 ? ' tunnel' : ' tunnels'); };
+  const tunnelWords = function (nets) { return words(nets.map(function (n) { return n.tun; })) + (nets.length === 1 ? ' tunnel' : ' tunnels'); };
   const stageOf = function (c, n) { return n.k === 'n' ? 2 : c.stage; };     // the line N tunnel is all stage 2
   // the tunnels of each corridor must be the model's
   P.corridors.forEach(function (c) { const want = Object.keys(TC).filter(function (t) { return TC[t].indexOf(c.id) >= 0; }); if (want.sort().join() !== c.tunnels.slice().sort().join()) console.warn('project: corridor ' + c.id + ' tunnels differ from the model', want, c.tunnels); });
@@ -23,13 +24,14 @@ PTS.section('project', function (root) {
   if (terWant !== terHave) console.warn('project: corridors with regional express trains differ from the model', terWant, terHave);
   P.corridors.forEach(function (c) { if (c.ter && !LOADS[c.ter]) console.warn('project: no tunnel load in the model for ' + c.id); });
   P.portals.forEach(function (po) { po.tunnels = P.corridors.filter(function (c) { return c.id === po.corridor; })[0].tunnels; });
-  const LAYERS = [['tgv', 'TGV tunnels'], ['ter', 'Regional express, in the TGV tunnels'], ['n', 'RER G'], ['h', 'RER F'], ['stations', 'Stations'], ['nodes', 'Portals and junctions'], ['surface', 'Today’s surface tracks']];
+  const loadKey = function (c) { return c.tunnels.indexOf('tgv') < 0 ? null : c.ter || (LOADS[c.id] ? c.id : null); };   // peak load of a TGV + TER tunnel
+  const LAYERS = [['tgv', 'TGV + TER tunnels'], ['n', 'RER G'], ['h', 'RER F'], ['stations', 'Stations'], ['nodes', 'Portals and junctions'], ['surface', 'Today’s surface tracks']];
   // the stations stand where today's terminals are (positions from paris_geo); Paris Nord-Est lies between Gare du Nord and Gare de l'Est
   const T = G.term, mid = [(T.Nord[0] + T.Est[0]) / 2, (T.Nord[1] + T.Est[1]) / 2];
   const AT = { 'Paris Nord-Est': mid, 'Gare de Lyon': T.Lyon, 'Montparnasse': T.Montparnasse, 'Gare du Nord': T.Nord, 'Gare de l’Est': T.Est };
   P.stations.forEach(function (st) { if (AT[st.name]) st.at = AT[st.name]; });       // Saint-Lazare keeps its own position from data.json
   P.lines.forEach(function (l) { if (AT[l.name]) l.path[0] = AT[l.name]; });
-  const state = { layers: { tgv: true, ter: true, n: true, h: true, stations: true, nodes: true, surface: true }, sel: { kind: 'station', id: 'Paris Nord-Est' }, width: 0 };
+  const state = { layers: { tgv: true, n: true, h: true, stations: true, nodes: true, surface: true }, sel: { kind: 'station', id: 'Paris Nord-Est' }, width: 0 };
 
   // ---------------------------------------------------------------- geometry helpers
   function spline(pts, n) {                                  // Catmull-Rom through the points, n samples per span
@@ -70,7 +72,7 @@ PTS.section('project', function (root) {
     const line = function (pts, n) { return spline(pts.map(pr), n || 10); };
     const gap = narrow ? 3.4 : 3.8, on = state.layers, anyNet = NETS.some(function (n) { return on[n.k]; });
     const svg = s('svg', { class: 'draw', viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img',
-      'aria-label': 'Schematic map of Paris with the four deep stations, the tunnel corridors of the TGV, RER G and RER F tunnels, the regional express trains running in the TGV tunnels, the direct link between Montparnasse and Gare de Lyon, the five portal sites and the four junction sites' });
+      'aria-label': 'Schematic map of Paris with the four deep stations, the corridors of the TGV + TER tunnels and of the RER G and RER F tunnels, the direct link between Montparnasse and Gare de Lyon, today’s suburban lines that become RER F and RER G, the five portal sites and the four junction sites' });
     const clipId = 'project-clip-paris';
     svg.appendChild(s('defs', null, s('clipPath', { id: clipId }, s('path', { d: G.outline.map(function (r) { return dpath(r.map(pr), true); }).join('') }))));
 
@@ -98,21 +100,29 @@ PTS.section('project', function (root) {
       });
     }
 
+    // today's suburban lines that the RER tunnels take over, in a pale shade of their RER, beside the existing line, from the portal outwards
+    P.today.forEach(function (l) {
+      if (!on[l.net]) return;
+      const poly = offset(line(l.path, 8), gap * 0.9), p = offset(poly, l.lbl[1] * 11)[Math.round(l.lbl[0] * (poly.length - 1))];   // letter beside the line, lbl = [share of the way along, side]
+      svg.appendChild(s('path', { class: 'pm-today' + (l.schematic ? ' schematic' : ''), d: dpath(poly), stroke: NET[l.net].color }));
+      const t = s('text', { class: 'pm-line', x: p[0], y: p[1] + 4, 'text-anchor': 'middle', style: { fill: NET[l.net].color }, text: l.id.charAt(0) });
+      PTS.tip.bind(t, '<b>' + l.name + '</b><br>' + (l.net === 'h' ? 'Part of RER F in the plan' : 'Part of RER G in the plan') + (l.schematic ? '<br>Drawn schematically' : ''));
+      svg.appendChild(t);
+    });
+
     // tunnels: one line for each twin-track tunnel, side by side, only those of the layers switched on
     if (anyNet) {
-      const band = function (poly, g, nets, ter) { nets.forEach(function (n, i) {
-        const d = dpath(offset(poly, (i - (nets.length - 1) / 2) * gap));
-        g.appendChild(s('path', { class: 'pm-net', d: d, stroke: n.color }));
-        if (n.k === 'tgv' && ter && on.ter) g.appendChild(s('path', { class: 'pm-ter', d: d, stroke: TER.color }));      // regional express trains inside the TGV tunnel
+      const band = function (poly, g, nets) { nets.forEach(function (n, i) {
+        g.appendChild(s('path', { class: 'pm-net', d: dpath(offset(poly, (i - (nets.length - 1) / 2) * gap)), stroke: n.color }));
       }); };
-      const trunks = s('g'); P.trunks.forEach(function (t) { band(line(t.path, 8), trunks, shown(t), true); }); svg.appendChild(trunks);
+      const trunks = s('g'); P.trunks.forEach(function (t) { band(line(t.path, 8), trunks, shown(t)); }); svg.appendChild(trunks);
       P.corridors.forEach(function (c) {
         const nets = shown(c); if (!nets.length) return;
         const poly = line(c.path, 12), g = s('g', { class: isSel('corridor', c.id) ? 'sel' : null }), all = netsOf(c);
         g.appendChild(s('path', { class: 'pm-halo', d: dpath(poly) }));
-        band(poly, g, nets, !!c.ter);
+        band(poly, g, nets);
         g.appendChild(s('path', { class: 'pm-hit', d: dpath(poly) }));
-        hot(g, 'Corridor ' + c.name + ', ' + F.n(c.km, 1) + ' km', '<b>' + c.name + (c.id === 'link' ? '' : ' corridor') + '</b><br>' + c.from + ' to ' + c.to + '<br>' + F.n(c.km, 1) + ' km of route: ' + 'the ' + tunnelWords(all) + (all.length > 1 ? ', side by side' : '') + (c.ter ? '<br>Regional express trains share the TGV tunnel: ' + loadWords(c.ter) : '') + '<br><small>Select for details</small>', function () { select('corridor', c.id); });
+        hot(g, 'Corridor ' + c.name + ', ' + F.n(c.km, 1) + ' km', '<b>' + c.name + (c.id === 'link' ? '' : ' corridor') + '</b><br>' + c.from + ' to ' + c.to + '<br>' + F.n(c.km, 1) + ' km of route: ' + 'the ' + tunnelWords(all) + (all.length > 1 ? ', side by side' : '') + (loadKey(c) ? '<br>At the peak: ' + loadWords(loadKey(c)) : '') + '<br><small>Select for details</small>', function () { select('corridor', c.id); });
         svg.appendChild(g);
         if (!narrow) { const mid = poly[Math.round(poly.length / 2)]; svg.appendChild(s('text', { class: 'pm-sub', x: mid[0] + c.lbl[0], y: mid[1] + c.lbl[1], 'text-anchor': c.lbl[2], text: F.n(c.km, 1) + ' km' })); }
       });
@@ -122,7 +132,7 @@ PTS.section('project', function (root) {
     if (on.nodes) {
       P.junctions.forEach(function (j) {
         const p = pr(j.at), r = 6.5, g = s('g', { class: isSel('junction', j.id) ? 'sel' : null }, s('path', { class: 'pm-node', d: 'M' + p[0] + ',' + (p[1] - r) + 'L' + (p[0] + r) + ',' + p[1] + 'L' + p[0] + ',' + (p[1] + r) + 'L' + (p[0] - r) + ',' + p[1] + 'Z' }));
-        hot(g, j.name, '<b>' + j.name + '</b><br>' + j.what + '<br>' + j.tunnels.length + (j.tunnels.length === 1 ? ' cavern: ' : ' caverns: ') + words(j.tunnels.map(function (k) { return NET[k].long; })), function () { select('junction', j.id); });
+        hot(g, j.name, '<b>' + j.name + '</b><br>' + j.what + '<br>' + j.tunnels.length + (j.tunnels.length === 1 ? ' cavern: ' : ' caverns: ') + words(j.tunnels.map(function (k) { return NET[k].tun; })), function () { select('junction', j.id); });
         svg.appendChild(g);
       });
       P.portals.forEach(function (o) {
@@ -164,7 +174,7 @@ PTS.section('project', function (root) {
   const PLATS = [NET.tgv, TER, NET.n, NET.h];                 // kinds of platform track: the regional express trains have their own, but no tunnel
   function loadWords(key) {                                   // trains an hour each way in a TGV tunnel at the peak, and the share of its paths they take
     const l = LOADS[key];
-    return F.n(l.tgv, 0) + ' TGVs and ' + F.n(l.ter, 0) + ' regional express trains an hour each way, ' + F.pct(l.occ_15) + ' of the tunnel’s capacity with trains ' + F.n(TP.signal_min[0], 1) + ' minutes apart (' + F.pct(l.occ_20) + ' at ' + F.n(TP.signal_min[1], 0) + ' minutes)';
+    return F.n(l.tgv, 0) + (l.ter ? ' TGVs and ' + F.n(l.ter, 0) + ' regional express trains an hour each way, ' : ' TGVs an hour each way and no regional express train, ') + F.pct(l.occ_15) + ' of the tunnel’s capacity with trains ' + F.n(TP.signal_min[0], 1) + ' minutes apart (' + F.pct(l.occ_20) + ' at ' + F.n(TP.signal_min[1], 0) + ' minutes)';
   }
   function trackWords(name) {
     const t = tracksOf(name);
@@ -206,12 +216,12 @@ PTS.section('project', function (root) {
       const ul = h('ul', { class: 'project-carries' });
       const lc = function (t) { return /^.[a-z]/.test(t) ? t.charAt(0).toLowerCase() + t.slice(1) : t; };
       nets.forEach(function (n) {
-        ul.appendChild(h('li', null, h('i', { style: { '--c': n.color } }), n.label + ' tunnel: ' + lc(co.carries[n.k]) + (stages.length > 1 ? ' (stage ' + stageOf(co, n) + ')' : '')));
-        if (n.k === 'tgv' && co.ter) ul.appendChild(h('li', { class: 'project-in' }, h('i', { style: { '--c': TER.color } }), 'In the same TGV tunnel: ' + lc(co.carries.ter)));
+        ul.appendChild(h('li', null, h('i', { style: { '--c': n.color } }), n.tun + ' tunnel: ' + lc(co.carries[n.k]) + (stages.length > 1 ? ' (stage ' + stageOf(co, n) + ')' : '')));
+        if (n.k === 'tgv' && co.carries.ter) ul.appendChild(h('li', { class: 'project-in' }, h('i', { style: { '--c': TER.color } }), 'In the same tunnel: ' + lc(co.carries.ter)));
       });
       box.appendChild(h('h4', { text: count === 1 ? 'One tunnel, for' : count + ' tunnels side by side' }));
       box.appendChild(ul);
-      if (co.ter) box.appendChild(h('p', { class: 'note', text: 'At the peak: ' + loadWords(co.ter) + '. Planners keep the peak under ' + F.pct(TP.uic_peak) + '.' }));
+      if (loadKey(co)) box.appendChild(h('p', { class: 'note', text: 'At the peak: ' + loadWords(loadKey(co)) + '. Planners keep the peak under ' + F.pct(TP.uic_peak) + '. The TGVs have priority; with a path every ' + F.n(TP.signal_min[0], 1) + ' to ' + F.n(TP.signal_min[1], 0) + ' minutes, a regional express train and a TGV that swap places lose less than 3 minutes.' }));
       if (co.note) box.appendChild(h('p', { class: 'note', text: co.note }));
       if (co.id === 'link') box.appendChild(h('p', { class: 'note', text: 'The link leaves each station at its city end, so that a train from the Atlantic enters Gare de Lyon facing the south-east. Its length is taken as ' + F.n(co.km, 0) + ' km (4.5 to 6 km); its geometry is a study point.' }));
     } else if (sel.kind === 'portal') {
@@ -221,7 +231,7 @@ PTS.section('project', function (root) {
       box.appendChild(h('h3', { text: po.name }));
       box.appendChild(h('p', { text: 'Where the ' + tunnelWords(pn) + ' come' + (pn.length === 1 ? 's' : '') + ' up on the existing tracks to join ' + po.line + '. The place is a planning assumption.' + (po.ter ? ' ' + po.ter : '') }));
       const ul = h('ul', { class: 'project-carries' });
-      pn.forEach(function (n) { ul.appendChild(h('li', null, h('i', { style: { '--c': n.color } }), n.label)); });
+      pn.forEach(function (n) { ul.appendChild(h('li', null, h('i', { style: { '--c': n.color } }), n.tun + ' tunnel')); });
       box.appendChild(ul);
       box.appendChild(rows(h('dl', { class: 'read' }), [['Portals here, one for each tunnel', pn.length], ['Portals in all', C.portals], ['Price used for each, works', F.m(R.portal)]]));
       box.appendChild(h('p', { class: 'note', text: 'The price is an assumption: no built project publishes the cost of a portal and its link to the existing line.' }));
@@ -231,7 +241,7 @@ PTS.section('project', function (root) {
       box.appendChild(h('h3', { text: j.name }));
       box.appendChild(h('p', { text: j.what + ' Each tunnel that splits needs its own cavern.' }));
       const ul = h('ul', { class: 'project-carries' });
-      j.tunnels.forEach(function (k) { ul.appendChild(h('li', null, h('i', { style: { '--c': NET[k].color } }), NET[k].label + ' tunnel')); });
+      j.tunnels.forEach(function (k) { ul.appendChild(h('li', null, h('i', { style: { '--c': NET[k].color } }), NET[k].tun + ' tunnel')); });
       box.appendChild(ul);
       box.appendChild(rows(h('dl', { class: 'read' }), [['Caverns here, one for each tunnel', j.tunnels.length], ['Junction caverns in all', C.junctions], ['Price used for each, works', F.m(R.junction)]]));
       box.appendChild(h('p', { class: 'note', text: 'The price is an assumption: no project publishes the cost of a junction cavern.' }));
@@ -242,7 +252,8 @@ PTS.section('project', function (root) {
   function sample(kind, color) {
     const g = s('svg', { viewBox: '0 0 24 12', width: 24, height: 12, 'aria-hidden': 'true', class: 'draw' });
     if (kind === 'net') g.appendChild(s('line', { x1: 1, x2: 23, y1: 6, y2: 6, stroke: color, 'stroke-width': 2.6 }));
-    if (kind === 'ter') { g.appendChild(s('line', { x1: 1, x2: 23, y1: 6, y2: 6, stroke: NET.tgv.color, 'stroke-width': 2.6 })); g.appendChild(s('line', { class: 'pm-ter', x1: 1, x2: 23, y1: 6, y2: 6, stroke: color })); }
+    if (kind === 'sketch') g.appendChild(s('line', { class: 'pm-today schematic', x1: 1, x2: 23, y1: 6, y2: 6, stroke: color }));
+    if (kind === 'today') g.appendChild(s('line', { class: 'pm-today', x1: 1, x2: 23, y1: 6, y2: 6, stroke: color }));
     if (kind === 'freed') g.appendChild(s('line', { class: 'pm-freed', x1: 2, x2: 23, y1: 6, y2: 6 }));
     if (kind === 'kept') g.appendChild(s('line', { class: 'pm-kept', x1: 1, x2: 23, y1: 6, y2: 6 }));
     if (kind === 'few') g.appendChild(s('line', { class: 'pm-kept few', x1: 1, x2: 23, y1: 6, y2: 6 }));
@@ -255,9 +266,11 @@ PTS.section('project', function (root) {
   function drawLegend() {
     const ul = PTS.clear($('#project-legend')), on = state.layers;
     const add = function (kind, text, color) { ul.appendChild(h('li', null, sample(kind, color), text)); };
-    const legendText = { tgv: 'TGV tunnel (two tracks)', n: 'RER G tunnel (today’s lines P and N)', h: 'RER F tunnel (today’s lines H, K and L)' };
+    const legendText = { tgv: 'TGV + TER tunnel, two tracks, TGVs first', n: 'RER G tunnel', h: 'RER F tunnel' };
+    const todayText = { n: 'Today’s lines P and N, which become RER G', h: 'Today’s lines H, K and L, which become RER F' };
     NETS.forEach(function (n) { if (on[n.k]) add('net', legendText[n.k], n.color); });
-    if (on.ter && on.tgv) add('ter', 'TGV tunnel also used by regional express trains', TER.color);
+    [NET.h, NET.n].forEach(function (n) { if (on[n.k]) add('today', todayText[n.k], n.color); });
+    if (on.h || on.n) add('sketch', 'Their branches, drawn schematically', (on.h ? NET.h : NET.n).color);
     if (on.stations) add('station', 'Deep through station');
     if (on.nodes) { add('portal', 'Portals'); add('junction', 'Underground junction'); }
     if (on.surface) { add('freed', 'Surface tracks no longer needed: parks'); add('kept', 'Surface tracks kept in use'); add('few', 'A few tracks kept, for line R'); add('other', 'Other terminals: Austerlitz left as it is, Bercy freed'); }

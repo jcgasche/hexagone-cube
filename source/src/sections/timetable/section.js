@@ -302,22 +302,17 @@ PTS.section('timetable', function (root) {
   };
   const regional = function (o) {
     const svg = o.svg, dp = o.dp, rev = o.rev, OFF = o.narrow ? 5 : 7;
-    // the suburban tunnels, drawn beside the TGV ones; regional express trains use the TGV tunnels themselves
-    const toNE = o.trunk1.concat(o.trunk2.slice(1)), ne = o.stn.NE.at;
-    const subN = offsetLine(o.C.east.concat(toNE.slice(1), o.C.nemont.slice(1), o.C.atlantic.slice(1)), -OFF);
-    const subH = offsetLine(o.C.north.concat(toNE.slice(1), o.C.nesl.slice(1), o.C.slwest.slice(1)), OFF);
-    const both = function (pts) { return rev(o.ext(rev(o.ext(pts, o.far)), o.far)); };      // carried on beyond the map at both ends
-    const lineN = both(subN), lineH = both(subH);
-    [[lineN, REG.N.c], [lineH, REG.H.c]].forEach(function (q) { svg.insertBefore(s('path', { class: 'tt-ln sub', d: dp(q[0]), style: '--c: ' + q[1] }), o.g); });
-    // platforms of the other trains: a small box of tracks beside each TGV box (regional express on one side, suburban on the other), and Saint-Lazare
+    const under = s('g'); svg.insertBefore(under, o.g);                     // the suburban tunnels go under the platform boxes
+    // platforms of the other trains: a small box of tracks beside each TGV box, on the side where each line's tunnel runs
+    // (regional express beside the TGV box; RER G beyond it, on the side of its tunnel), and Saint-Lazare
     const D = M.cost.detail, SUBT = M.sub_tracks, g2 = o.GAP * 0.55, hl = o.LEN * 0.38;
     const GROUPS = {
-      NE: [['TER', D['Paris Nord-Est'].ter, -1], ['N', SUBT['Paris Nord-Est'].n, 1], ['H', SUBT['Paris Nord-Est'].h, 1]],
-      MP: [['TER', D['Montparnasse'].ter, -1], ['N', SUBT['Montparnasse'].n, 1]],
+      NE: [['TER', D['Paris Nord-Est'].ter, -1], ['N', SUBT['Paris Nord-Est'].n, -1], ['H', SUBT['Paris Nord-Est'].h, 1]],
+      MP: [['N', SUBT['Montparnasse'].n, -1], ['TER', D['Montparnasse'].ter, 1]],
       LY: [['TER', D['Gare de Lyon'].hs - 2 * NTR, -1]]                   // the fourth track each way, shared with the sixteenth south-east TGV
     };
     if (o.sl.at) { const a = o.sl.axis[0], b = o.sl.axis[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1; o.sl.u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L]; o.sl.n = [-o.sl.u[1], o.sl.u[0]]; }
-    const tracksAt = {};                                                    // centre of each track: tracksAt[st][kind] = [points]
+    const tracksAt = {}, boxAt = {};                                        // centre of each track: tracksAt[st][kind] = [points]; boxAt[st][kind] = the box's centre and the middles of its two ends
     const drawGroup = function (st, x, kind, n, from) {                     // n tracks from offset `from` along the station's normal
       const c = function (p, q) { return [x.at[0] + x.u[0] * p + x.n[0] * q, x.at[1] + x.u[1] * p + x.n[1] * q]; };
       const lo = from, hi = from + n * g2, gg = s('g', { class: 'tt-stn' });
@@ -327,6 +322,7 @@ PTS.section('timetable', function (root) {
       for (let k = 0; k < n; k++) { const q = lo + (k + 0.5) * g2; gg.appendChild(s('line', { class: 'tt-track', x1: c(-hl + 3, q)[0], y1: c(-hl + 3, q)[1], x2: c(hl - 3, q)[0], y2: c(hl - 3, q)[1] })); pts.push(c((k % 2 ? 1 : -1) * hl * 0.3, q)); }
       svg.insertBefore(gg, o.g);
       (tracksAt[st] = tracksAt[st] || {})[kind] = pts;
+      (boxAt[st] = boxAt[st] || {})[kind] = { c: c(0, (lo + hi) / 2), ends: [c(-hl, (lo + hi) / 2), c(hl, (lo + hi) / 2)] };
     };
     Object.keys(GROUPS).forEach(function (st) {
       const x = o.stn[st], edgeOff = NTR * o.GAP + 4 + 3, used = { '-1': edgeOff, '1': edgeOff };
@@ -340,13 +336,36 @@ PTS.section('timetable', function (root) {
       const ex = Math.abs(o.sl.u[0]) * hl + Math.abs(o.sl.n[0]) * n * g2 / 2;      // half the box's width on screen
       svg.insertBefore(s('text', { class: 'tt-sname', x: o.sl.at[0] - ex - 6, y: o.sl.at[1] + 4, 'text-anchor': 'end', text: 'Saint-Lazare' }), o.g);
     }
+    // the suburban tunnels, drawn beside the TGV ones; regional express trains use the TGV tunnels themselves.
+    // Near each of its stations a tunnel leaves its course and runs straight into the middle of the near end of its box, and out of the far end
+    const toNE = o.trunk1.concat(o.trunk2.slice(1));
+    const both = function (pts) { return rev(o.ext(rev(o.ext(pts, o.far)), o.far)); };      // carried on beyond the map at both ends
+    const dist = function (p, q) { return Math.hypot(p[0] - q[0], p[1] - q[1]); };
+    const into = function (pts, sts, kind) {                                // pts: the tunnel; sts: its stations in order along it
+      sts.forEach(function (st) {
+        const bx = boxAt[st] && boxAt[st][kind]; if (!bx) return;
+        const ctr = st === 'SL' ? o.sl.at : o.stn[st].at, R = dist(ctr, bx.ends[0]) + o.LEN * 0.6;
+        const cross = function (a, b) { let lo = 0, hi = 1; for (let i = 0; i < 30; i++) { const m = (lo + hi) / 2, p = [a[0] + (b[0] - a[0]) * m, a[1] + (b[1] - a[1]) * m]; if ((dist(p, ctr) < R) === (dist(a, ctr) < R)) lo = m; else hi = m; } return [a[0] + (b[0] - a[0]) * lo, a[1] + (b[1] - a[1]) * lo]; };
+        let i0 = -1, i1 = -1;
+        for (let i = 1; i < pts.length; i++) { const ina = dist(pts[i - 1], ctr) < R, inb = dist(pts[i], ctr) < R; if (!ina && inb && i0 < 0) i0 = i; if (ina && !inb) i1 = i; }
+        if (i0 < 0 || i1 < i0) return;
+        const pin = cross(pts[i0 - 1], pts[i0]), pout = cross(pts[i1 - 1], pts[i1]);
+        const e = dist(pin, bx.ends[0]) <= dist(pin, bx.ends[1]) ? bx.ends : rev(bx.ends);
+        const lead = function (q) { const L = dist(q, bx.c) || 1, d = o.LEN * 0.22; return [q[0] + (q[0] - bx.c[0]) / L * d, q[1] + (q[1] - bx.c[1]) / L * d]; };   // a short straight run in line with the tracks
+        pts = pts.slice(0, i0).concat([pin, lead(e[0]), e[0], bx.c, e[1], lead(e[1]), pout], pts.slice(i1));
+      });
+      return pts;
+    };
+    const lineN = into(both(offsetLine(o.C.east.concat(toNE.slice(1), o.C.nemont.slice(1), o.C.atlantic.slice(1)), -OFF)), ['NE', 'MP'], 'N');
+    const lineH = into(both(offsetLine(o.C.north.concat(toNE.slice(1), o.C.nesl.slice(1), o.C.slwest.slice(1)), OFF)), ['NE', 'SL'], 'H');
+    [[lineN, REG.N.c], [lineH, REG.H.c]].forEach(function (q) { under.appendChild(s('path', { class: 'tt-ln sub', d: dp(q[0]), style: '--c: ' + q[1] })); });
     o.edge(lineH, 'RER F: west', 'start', 6, -6);
     const spot = function (t, j) {                                          // half the tracks for each direction: the timetable's track, or trains in turn
       const pts = tracksAt[t.stops[j].st][t.kind], half = Math.max(1, Math.floor(pts.length / 2)), k = t.stops[j].track === undefined ? t.track : t.stops[j].track;
       return pts[pts.length === 1 ? 0 : (t.fwd ? 0 : half) + (k % half)];
     };
     const near = function (pts, q) { let best = 0, bd = 1e9; pts.forEach(function (p, i) { const dd = Math.hypot(p[0] - q[0], p[1] - q[1]); if (dd < bd) { bd = dd; best = i; } }); return best; };
-    const st2pt = function (st) { return st === 'SL' ? o.sl.at : o.stn[st].at; };
+    const st2pt = function (st, kind) { return boxAt[st] && boxAt[st][kind] ? boxAt[st][kind].c : st === 'SL' ? o.sl.at : o.stn[st].at; };
     const route = function (t) {                                            // from the map edge, between the two stops, out to the edge
       const a = t.stops[0].st, b = t.stops[1].st;
       if (t.kind === 'TER') {                                               // at Nord-Est the TER leave the TGV tracks at the ends of the station, for their own platforms
@@ -355,7 +374,7 @@ PTS.section('timetable', function (root) {
           out: b === 'NE' ? o.outer[t.to].slice(1) : o.outer[t.to] };
       }
       const full = t.kind === 'N' ? lineN : lineH, pl = (t.from === 'E' || t.from === 'N') ? full : rev(full);
-      const ia = near(pl, st2pt(a)), ib = near(pl, st2pt(b));
+      const ia = near(pl, st2pt(a, t.kind)), ib = near(pl, st2pt(b, t.kind));
       return { inn: pl.slice(0, ia + 1), mid: pl.slice(ia, ib + 1), out: pl.slice(ib) };
     };
     regionalTrains().forEach(function (t, k) {

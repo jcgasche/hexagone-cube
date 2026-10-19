@@ -38,7 +38,9 @@
 #project .project-xs text { font-size: 13px }
 #project h3 { margin-top: 4px }
 #project .project-nowrap tbody th { white-space: nowrap }
-#project .pm-ter { fill: none; stroke-width: 1.2; stroke-linejoin: round; stroke-dasharray: 4 2 }
+#project .pm-today { fill: none; stroke-width: 3; stroke-opacity: .42; stroke-linecap: round; stroke-linejoin: round }
+#project .pm-today.schematic { stroke-dasharray: 7 3 }
+#project .pm-line { font-size: 12px; font-weight: 700; paint-order: stroke; stroke: var(--surface-2); stroke-width: 3px; stroke-linejoin: round }
 #project .pm-kept.few { stroke-width: 1 }
 #project .pm-other.freed { stroke-dasharray: 2.5 1.5 }
 #project .project-carries li.project-in { padding-left: 20px }

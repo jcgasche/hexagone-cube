@@ -316,3 +316,37 @@ body[data-page="presentation"] .menu-btn { display: none }
 .pz-frq { grid-template-columns: repeat(2, minmax(0, 1fr)) }
 .pz-frq > div.more b { color: #3fe0a5 }
 .pz-bar > em b.today { color: #fff }
+
+/* steps that change by themselves keep the height of the tallest, so the page never jumps */
+.pz .pz-stepbox { display: grid }
+.pz .pz-stepbox > .pz-step { grid-area: 1 / 1 }
+.pz .pz-stepbox > .pz-step[hidden] { display: flex !important; visibility: hidden }
+.borrow-works .works-ba-text { min-height: 5.2em }
+#pz-access-host .fig-head { min-height: 3.4em }
+/* France: the lead and the figures side by side, the switch above the times it changes */
+.pz-fr-top { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: start }
+.pz-fr-top .pz-frq { display: block; margin: 0 }
+.pz-frq-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px }
+.pz-frq-in > div { display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 12px; background: var(--pz-glass); border: 1px solid var(--pz-line) }
+.pz-frq-in b { font-family: var(--display); font-size: 26px; color: var(--pz-green); line-height: 1 }
+.pz-frq-in span { font-size: 13px; color: var(--text) }
+.pz-fr-split { align-items: start }
+.pz-fr-split .pz-auto { margin-bottom: 6px }
+@media (max-width: 860px) { .pz-fr-top { grid-template-columns: minmax(0, 1fr) } }
+@media (max-width: 560px) {
+  .pz-auto { align-self: stretch; width: 100% }
+  .pz-auto .steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); border-radius: 14px }
+  .pz-auto .steps button { white-space: normal; line-height: 1.2; padding: 7px 6px; font-size: 12.5px; border-radius: 10px }
+  .pz-frq-in { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) }
+}
+@media (max-width: 560px) { .pz-bar:not(.pz-bar-h) { min-height: 2.9em } .pz-bar > b small, .pz-bar > em small { display: block } }
+/* the access map's titles and legend change with the view: they keep room for their longest text */
+#pz-access-host #access-title { display: block; min-height: 3.6em }
+#pz-access-host #access-legend-title { min-height: 2.6em }
+#pz-access-host #access-legend { min-height: 15.5em }
+.pz-fr-top .pz-frq > .pz-frq-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 0; background: none; border: 0 }
+@media (max-width: 560px) {
+  .pz-bar { grid-template-columns: minmax(0, 1fr) 4.6em 6.6em; row-gap: 2px }
+  .pz-bar > span:first-child { grid-column: 1 / -1; white-space: normal }
+  .pz-bar-h > span:first-child { display: none }
+}

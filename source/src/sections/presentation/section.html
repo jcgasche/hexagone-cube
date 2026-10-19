@@ -34,6 +34,7 @@
       <div class="pz-stage"><svg id="pz-idea-svg" viewBox="0 0 520 400" role="img" aria-label="Schematic of Paris: today four terminals where trains end; with the project three through stations joined in a triangle"></svg></div>
       <div class="pz-story">
         <div class="pz-auto" id="pz-idea-steps"></div>
+        <div class="pz-stepbox">
         <div class="pz-step" data-step="0">
           <h3>Today: every train stops at the end of the line</h3>
           <p>Four high-speed terminals, one for each direction. Trains come in, wait, and go back out the way they came. To go on, you take the metro across Paris to another station.</p>
@@ -48,6 +49,7 @@
           <h3>With TER and Transilien</h3>
           <p>Regional express trains (TER) run in the TGV tunnels, in the gaps between the TGVs, and on to the other side of the country. The suburban Transilien lines become new RER lines, crossing Paris instead of ending there.</p>
           <ul><li><b class="pz-ln g">G</b> RER G: today's lines P and N merge into one line, from the north and the east through Nord-Est to Montparnasse</li><li><b class="pz-ln f">F</b> RER F: today's lines L, H and K merge into one line, through Nord-Est and a deep Saint-Lazare to La Défense</li><li>The surface terminals close; their tracks become parks</li></ul>
+        </div>
         </div>
         <p class="pz-more"><a href="#project">The project in detail</a><a href="#why">Why Paris stops every train</a></p>
       </div>
@@ -66,6 +68,7 @@
         <svg id="pz-nord-svg" viewBox="0 0 760 520" role="img" aria-label="Gare du Nord seen from above at an angle: today, trains run into the hall and back out over a field of tracks; with the project, the hall is open to passengers, stairs lead down to the deep platforms where trains run through, and a park covers the old tracks"></svg>
       </div>
       <div class="pz-story" id="pz-nord-text">
+        <div class="pz-stepbox">
         <div class="pz-step" data-step="0">
           <h3>Today: Gare du Nord</h3>
           <p>The tracks run right into the hall. Trains come in, wait and leave the way they came. Passengers wait in a strip of about {{ d.stations.halls.wait_len | 0 }} m at the street end, and behind the hall a field of tracks runs for kilometres.</p>
@@ -75,6 +78,7 @@
           <h3>With the project</h3>
           <p>The whole hall is for people: a welcome area with ways down to the deep platforms of Paris Nord-Est, where every TGV, TER and RER now stops and runs on. Outside, a park takes the place of the tracks.</p>
           <div class="pz-mini good"><b>{{ round(d.stations.halls.hall_len * d.stations.halls.under.nord * d.stations.halls.pitch, -2) | 0 }} m²</b><span>for passengers in the same hall, {{ d.stations.halls.hall_len / d.stations.halls.wait_len | 0 }} times as much</span></div>
+        </div>
         </div>
         <p class="pz-note">In the three halls of Gare du Nord, Gare de Lyon and Montparnasse, about {{ round(d.stations.halls.wait_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }} m² for passengers today, {{ round(d.stations.halls.hall_len * (d.stations.halls.under.nord + d.stations.halls.under.lyon + d.stations.halls.under.montparnasse) * d.stations.halls.pitch, -2) | 0 }} m² with the project. An illustration, not a design.</p>
         <p class="pz-more"><a href="#stations.halls">The halls</a><a href="#stations.nordest">Paris Nord-Est</a></p>
@@ -116,7 +120,7 @@
       <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }} min at the platform</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} reserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} to clear</span></div>
       <div class="pz-grid3">
         <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }} min</b><span>Each platform track takes a train every {{ d.timetable.table.grid.params.slot | 0 }} minutes: {{ d.timetable.table.grid.params.stop | 0 }} at the platform, then {{ d.timetable.table.grid.params.reserve | 0 }} kept free for a late train and {{ d.timetable.table.grid.params.b | 0 }} to clear the track. That makes {{ d.timetable.table.grid.params.places | 0 }} trains an hour on each side of each station.</span></div>
-        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.run | 0 }} min</b><span>Between any two of the stations the run is set at {{ d.timetable.table.grid.params.run | 0 }} minutes, half a beat, though {{ min(d.timetable.table.grid.params.technical.values()) | 1 }} to {{ max(d.timetable.table.grid.params.technical.values()) | 1 }} would do: trains run a little slower in the tunnels. A train that leaves one station on the beat reaches the next on the beat, so the three stations keep one clock.</span></div>
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.run | 0 }} min</b><span>Between each of the stations, the speed in the connecting tunnels is set (slowed) so that every run takes the same time. This gives a metronome beat that makes the timetable simpler to plan and every delay handled the same way.</span></div>
         <div class="pz-stat"><b>Same minutes every hour</b><span>A late train uses its {{ d.timetable.table.grid.params.reserve | 0 }} minutes of reserve or takes the next place of the beat. Everyone learns one pattern, and a small delay stays small instead of spreading through the station.</span></div>
       </div>
     </div>
@@ -158,11 +162,10 @@
   <div class="pz-in">
     <p class="pz-kicker">For all of France</p>
     <h2 class="pz-h">Across France with no change in Paris</h2>
-    <p class="pz-lead">Today, crossing France by Paris means two changes: off the train, across the city by metro, onto another train, about {{ d.french.params.x_today | 0 }} minutes in Paris. Only a few pairs of cities have direct trains, which go round Paris a few times a day. With the triangle every train runs through Paris: with the same number of trains as today, the direct links between the regions multiply, and every journey is shorter.</p>
-    <div class="pz-auto" id="pz-fr-toggle"></div>
-    <div class="pz-split">
+    <div class="pz-fr-top"><p class="pz-lead">Each change of train makes about {{ m.params.change_loss | pct }} of travellers give up. Today, crossing France by Paris means two changes: off the train, across the city by metro, onto another train, about {{ d.french.params.x_today | 0 }} minutes in Paris. Only a few pairs of cities have direct trains, which go round Paris a few times a day. With the triangle every train runs through Paris: with the same number of trains as today, the direct links between the regions multiply, and every journey is shorter.</p><div class="pz-frq" id="pz-fr-cards"></div></div>
+    <div class="pz-split pz-fr-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Diagram of French cities joined through Paris, with the time of each journey"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Times from SNCF's timetable for a weekday of March 2026, the connections a traveller would choose; the through train spends {{ d.french.params.x_proj | 0 }} minutes in Paris.[[sncf_crossing]] Direct trains with the project: today's high-speed trains, each line keeping its count, run through and are shared between the other lines as in the timetable's hour; the trains round Paris keep running. With more trains: at least one direct train an hour, all day, between every two of the six directions (Lille, Strasbourg, the south-east, Bordeaux, Rennes, Nantes; Dijon every other hour), {{ d.french.more_trains.runs_day | 0 }} more runs a day each way. They need {{ d.french.more_trains.sets_low | 0 }} to {{ d.french.more_trains.sets_high | 0 }} more trainsets, depending on how fast a train turns round at the end of its run ({{ d.french.more_trains.turn_min[0] | 0 }} minutes as in Switzerland, {{ d.french.more_trains.turn_min[1] | 0 }} as in France), about €{{ d.french.more_trains.cost_low | m }}m to €{{ d.french.more_trains.cost_high | m }}m a year for the trainsets alone <span class="tag assume">assumption</span>. Each change of train loses about {{ m.params.change_loss | pct }} of travellers and today's journey by Paris has two, so direct trains bring many of them back. Only north to east keeps a change, on the same platforms at Paris Nord-Est.</p></div>
+      <div class="pz-story"><div class="pz-auto" id="pz-fr-toggle"></div><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Times from SNCF's timetable for a weekday of March 2026, the connections a traveller would choose; the through train spends {{ d.french.params.x_proj | 0 }} minutes in Paris.[[sncf_crossing]] Direct trains with the project: today's high-speed trains, each line keeping its count, run through and are shared between the other lines as in the timetable's hour; the trains round Paris keep running. With more trains: at least one direct train an hour, all day, between every two of the six directions (Lille, Strasbourg, the south-east, Bordeaux, Rennes, Nantes; Dijon every other hour), {{ d.french.more_trains.runs_day | 0 }} more runs a day each way. They need {{ d.french.more_trains.sets_low | 0 }} to {{ d.french.more_trains.sets_high | 0 }} more trainsets, depending on how fast a train turns round at the end of its run ({{ d.french.more_trains.turn_min[0] | 0 }} minutes as in Switzerland, {{ d.french.more_trains.turn_min[1] | 0 }} as in France), about €{{ d.french.more_trains.cost_low | m }}m to €{{ d.french.more_trains.cost_high | m }}m a year for the trainsets alone.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Cross-France journeys</a><a href="#crossing.tgv">Crossing Paris by TGV</a></p>
   </div>
@@ -173,6 +176,7 @@
     <p class="pz-kicker">TER and Transilien</p>
     <h2 class="pz-h">The suburbs joined across Paris</h2>
     <p class="pz-lead">The jobs are on the far side of Paris. Two new RER lines take commuters there without a change.</p>
+    <p class="pz-lead">The regional lines (TER) on either side are joined too, so the neighbouring regions work as one whole. People in the outer areas gain what Parisians gain: more direct links to the rest of France and to the other outer areas, so more choice of where to work and where to live.</p>
     <div class="pz-lines">
       <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G: lines P and N, merged</h3><p>From the north-east and east through Nord-Est to Montparnasse, and on to Massy, Saclay, Versailles and Saint-Quentin.</p></div></div>
       <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F: lines L, H and K, merged</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense.</p></div></div>

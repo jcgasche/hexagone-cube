@@ -64,6 +64,26 @@ PTS.section('presentation', function (root) {
     return { stop: stop, set: function (v) { i = options.map(function (o) { return o[0]; }).indexOf(v); ctl.set(v, true); set(v); } };
   };
 
+  /* A block whose content changes by itself keeps the height of its tallest state, so the page never moves: draw each state once,
+     measure, keep the largest as the minimum height, and draw the first state again. Measured again when the width changes. */
+  const lockHeight = function (el, states) {
+    if (!el) return;
+    let w = 0, hmax = 0;
+    const grow = function () { const hh = el.offsetHeight; if (hh > hmax) { hmax = hh; el.style.minHeight = hmax + 'px'; } };
+    const measure = function () {                         // on a new width, start again from the content's own heights
+      el.style.minHeight = ''; hmax = 0;
+      states.forEach(function (fn) { fn(); grow(); });
+      states[0](); grow();
+    };
+    const again = function () { if (el.offsetWidth && window.innerWidth !== w) { w = window.innerWidth; measure(); } };     // the window's width, not the block's, which its own content may nudge
+    if (window.ResizeObserver) {
+      window.addEventListener('resize', function () { clearTimeout(el._lk); el._lk = setTimeout(again, 150); });
+      new ResizeObserver(grow).observe(el);              // a state drawn later and taller raises the floor; nothing lowers it
+    }
+    again(); setTimeout(function () { w = 0; again(); }, 1500);       // measured early, while the block is still off screen
+    whenShown(el, function () { if (!w) again(); });
+  };
+
   const defs = function (svg) {
     const d = add(svg, 'defs', {});
     const f = add(d, 'filter', { id: svg.id + '-glow', filterUnits: 'userSpaceOnUse', x: '-10%', y: '-10%', width: '120%', height: '120%' });     // the drawing's own space, so that a level line keeps its glow
@@ -474,10 +494,10 @@ PTS.section('presentation', function (root) {
     const MT = D.french.more_trains;
     const fresh = pairs.filter(function (p) { return p.direct_day < 0.5 && p.project_direct_day >= 0.5; }).length;
     const saved = pairs.map(function (p) { return p.via - p.project_min; });
-    host.appendChild(h('div', { class: 'pz-frq' },
+    $('#pz-fr-cards').append(h('div', { class: 'pz-frq-in' },
       h('div', null, h('b', { text: '×' + F.n(mid, 1) }), h('span', { text: 'direct trains between these cities, with the same number of trains as today' })),
       h('div', null, h('b', { text: F.n(fresh, 0) }), h('span', { text: 'new direct links, with no more trains' })),
-      h('div', { class: 'more' }, h('b', { text: '1 / h' }), h('span', { text: 'a direct train every hour between every two of the six directions, with ' + F.n(MT.sets_low, 0) + ' to ' + F.n(MT.sets_high, 0) + ' more trainsets' })),
+      h('div', { class: 'more' }, h('b', { text: '1 direct an hour' }), h('span', { text: 'possible between every TGV city in France, by buying more trainsets. The limit is no longer the infrastructure.' })),
       h('div', null, h('b', { text: F.n(Math.min.apply(0, saved), 0) + ' to ' + F.n(Math.max.apply(0, saved), 0) + ' min' }), h('span', { text: 'less on each journey, no change in Paris' }))));
     host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, with a change of station in Paris'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train')));
     const head = h('b', { text: 'Today, with a change' });
@@ -490,7 +510,7 @@ PTS.section('presentation', function (root) {
       return { row: row, t: t, q: q, b: b, f: f, p: p };
     });
     const hi = function (i) { arcs.forEach(function (a, k) { a.el.style.opacity = i < 0 || k === i ? 1 : 0.15; }); rows.forEach(function (r, k) { r.row.classList.toggle('hi', k === i); }); };
-    auto($('#pz-fr-toggle'), [['today', 'Today'], ['project', 'With the project'], ['more', 'With the project and more trains']], 5000, function (v) {
+    const frSet = function (v) {
       const now = v === 'today', more = v === 'more';
       arcs.forEach(function (a) { a.el.setAttribute('stroke', now ? '#ff7a59' : more ? '#3fe0a5' : '#44d7ff'); a.el.setAttribute('stroke-width', more ? 4 : 2.5); a.el.setAttribute('filter', now ? '' : glow); a.el.setAttribute('stroke-dasharray', now ? '5 6' : ''); });
       hub.setAttribute('fill', now ? 'rgba(255,122,89,.25)' : 'rgba(68,215,255,.2)'); hub.setAttribute('stroke', now ? '#ff7a59' : '#44d7ff'); hubX.style.opacity = now ? 1 : 0;
@@ -503,7 +523,9 @@ PTS.section('presentation', function (root) {
         r.f.innerHTML = now ? '<b class="today">' + F.n(r.p.direct_day, 0) + '</b>' : '<s>' + F.n(r.p.direct_day, 0) + '</s> <b>' + F.n(n, 0) + '</b> <small>(+' + F.n(n - r.p.direct_day, 0) + ')</small>';
         head.textContent = now ? 'Today, with a change' : 'With the project';
       });
-    });
+    };
+    auto($('#pz-fr-toggle'), [['today', 'Today'], ['project', 'With the project'], ['more', 'With the project and more trains']], 5000, frSet);
+    lockHeight($('#pz-fr-bars'), [function () { frSet('today'); }, function () { frSet('project'); }, function () { frSet('more'); }]);
   })();
 
   // ---------------------------------------------------------------- the running total, in today's money
@@ -578,11 +600,13 @@ PTS.section('presentation', function (root) {
       bar.style.transition = 'none'; bar.style.width = '0%'; void bar.offsetWidth; bar.style.transition = 'width 4000ms linear'; bar.style.width = '100%';
       timer = setTimeout(function () { if (PTS.current() === 'presentation' && !document.hidden) { i = (i + 1) % tiles.length; tiles[i].click(); } arm(); }, 4000);
     };
+    lockHeight($('#pz-access-host'), tiles.map(function (t) { return function () { t.click(); }; }));
     whenShown(host, function () { tiles[0].click(); arm(); });
   })();
 
   // the works: the timeline's first figure, today, during the works and after
   lend('works', $('#pz-works-host'), [(function () { const c = byId('works-ba'); return c && c.closest('figure'); })()]);
+  lockHeight($('#pz-works-host'), PTS.$$('#works-ba-controls button', document).map(function (b) { return function () { b.click(); }; }));
   whenShown($('#pz-works-host'), function () {
     const bs = PTS.$$('#works-ba-controls button', document);
     if (calm || bs.length < 2) return;
