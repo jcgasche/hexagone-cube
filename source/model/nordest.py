@@ -328,9 +328,9 @@ NEW_MONEY = 0.30                        # share of extra suburban journeys paid 
 YIELD = {'transilien': 1.22, 'ter': 8.0}        # euros per journey (Ile-de-France average; regional express ASSUMPTION)
 REG_TRAINKM = 2.0 * 0.77                # million extra train-km a year for regional trains running through (ASSUMPTION: 77% of the 2.0 M of the earlier layout, version 4)
 REG_TRAINKM_COST = 27.5                 # euros per extra train-km: half the average cost per train-km paid by the region (ASSUMPTION)
-G_TRAINS_H = 23                         # RER G trains an hour each way at the peak: today's P (11) and N (12)
-G_STOP_SETS = G_TRAINS_H * 2 * G_STOP / 60      # trainsets the Chatelet stop takes: each round trip 2 x 2 minutes longer at 23 trains an hour (1.5)
-G_STOP_RUN = 6100 * 250 / 1e9           # bn a year: crew and power for 2 more minutes on about 560 RER G trains a weekday, 6,100 train-hours at 250 euros (ASSUMPTION)
+G_TRAINS_H = 12                         # RER G trains an hour each way at the peak: each P train runs on as an N train, so the larger of P (11) and N (12)
+G_STOP_SETS = G_TRAINS_H * 2 * G_STOP / 60      # trainsets the Chatelet stop takes: each round trip 2 x 2 minutes longer at 12 trains an hour (0.8)
+G_STOP_RUN = 3200 * 250 / 1e9           # bn a year: crew and power for 2 more minutes on about 290 RER G trains a weekday, 3,200 train-hours at 250 euros (ASSUMPTION)
 SECOND_MIN = 1.0                        # a passenger uses the second station when it saves more than this, on the clock (ASSUMPTION)
 TER_THROUGH_SHARE = 0.05                # share of regional express passengers who cross Paris today (ASSUMPTION; study point I15)
 # version 4 (the plan): which line runs on to which station. Suburban: H and K (Gare du Nord) run under Nord-Est to Saint-Lazare and
@@ -345,8 +345,11 @@ REG_PLATFORMS = {                       # platform rule for regional and suburba
     # TER: the track stays empty 2 minutes after a departure (2.5 in the rule of 15 October): with 2.5, Nord-Est's two TER tracks each way
     # leave no hour in which every TER keeps 1.5 minutes from the TGVs in the tunnels; with 2, every TER keeps 2 (model/ter_timetable.py)
     'ter': {'stop': 5.0, 'gap': 2.0, 'per_track': 8, 'tracks': 4, 'peak_today': {'Nord': 11, 'Est': 3}, 'peak_planned': 15},
-    'n': {'per_track': 10, 'tracks': 4, 'peak': {'P': 11, 'N': 12}, 'peak_clamart': 16},
-    'h': {'per_track': 10, 'tracks': 6, 'peak': {'H': 20, 'K': 3}, 'peak_l': (24, 28)}}
+    # suburban: no RER G or RER F train turns back at Nord-Est, Montparnasse or Saint-Lazare, so each is a stop in passing like Chatelet;
+    # a track takes a train every 3 minutes, a 1-minute stop and 2 minutes between trains, below the 30 an hour RER A runs on one
+    # track each way at Auber and Chatelet (Charles chose 2 RER G and 4 RER F tracks, 19 October 2026; was 10 a track on 4 and 6 tracks)
+    'n': {'per_track': 20, 'tracks': 2, 'peak': {'P': 11, 'N': 12}, 'peak_clamart': 16},
+    'h': {'per_track': 20, 'tracks': 4, 'peak': {'H': 20, 'K': 3}, 'peak_l': (24, 28)}}
 
 # version 4.1: regional express trains in the TGV tunnels. Peak trains an hour each way (Charles, 15 October 2026; ASSUMPTION)
 TER_HOUR = {'Nord': 11, 'Est': 3, 'new_east_link': 1, 'atlantic_today': 7, 'lyon_today': 4}
@@ -570,12 +573,11 @@ FEE_KM = sum(v for k, v in TUNNEL_KM.items() if k != 'tgv') + sum(CORRIDOR_KM[c]
 JUNCTIONS = {'tgv': 4, 'ter': 0, 'n': 0, 'h': 0}      # version 4.1: no regional express tunnel, so no junction or portal of its own
 PORTALS = {'tgv': 4, 'ter': 0, 'n': 2, 'h': 2}
 LAYOUT = {'tunnels': TUNNEL_KM, 'junctions': JUNCTIONS, 'portals': PORTALS, 'halls': ['Nord', 'Est', 'Lyon', 'Montparnasse'],
-          'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 4, 'sub': 10}, 'Gare de Lyon': {'hs': 8, 'ter': 0, 'sub': 0},
-                       'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 4}, 'Saint-Lazare': {'hs': 0, 'ter': 0, 'sub': 6},
+          'stations': {'Paris Nord-Est': {'hs': 6, 'ter': 4, 'sub': 6}, 'Gare de Lyon': {'hs': 8, 'ter': 0, 'sub': 0},
+                       'Montparnasse': {'hs': 6, 'ter': 4, 'sub': 2}, 'Saint-Lazare': {'hs': 0, 'ter': 0, 'sub': 4},
                        'Châtelet-Les Halles': {'hs': 0, 'ter': 0, 'sub': 2}}}
-# Chatelet-Les Halles: one track each way for RER G, a stop in passing that most riders stay on through, as RER A takes up to 30 trains an hour
-# on one track each way at Auber and Chatelet (ASSUMPTION; the 10 trains an hour a track of REG_PLATFORMS is the rule where most riders get on or off)
-SUB_TRACKS = {'Paris Nord-Est': {'n': 4, 'h': 6}, 'Montparnasse': {'n': 4}, 'Saint-Lazare': {'h': 6}, 'Châtelet-Les Halles': {'n': 2}}     # suburban tracks by line
+# suburban tracks by line: every suburban stop is a stop in passing, one RER G track each way, two RER F tracks each way (REG_PLATFORMS; ASSUMPTION)
+SUB_TRACKS = {'Paris Nord-Est': {'n': 2, 'h': 4}, 'Montparnasse': {'n': 2}, 'Saint-Lazare': {'h': 4}, 'Châtelet-Les Halles': {'n': 2}}
 LEN = {'hs': 400, 'ter': 350, 'sub': 225}   # platform lengths: a double TGV; regional express trains of 270 to 330 m; suburban as on RER E
 STAGE_CORRIDORS = {'first': ('north', 'east', 'nelyon', 'southeast'), 'second': ('nemont', 'atlantic')}
 
@@ -770,7 +772,7 @@ if __name__ == '__main__':
         return {'hard': hard, 'total': hard * f, 'km': km, 'platform_m': plat_m}
     skm = {k: sum(CORRIDOR_KM[c] for c in v) for k, v in STAGE_CORRIDORS.items()}
     km1 = skm['first'] + TUNNEL_KM['h']; km2 = skm['second'] + LINK_KM + TUNNEL_KM['n']
-    pm1 = 6 * LEN['hs'] + 8 * LEN['hs'] + 2 * 6 * LEN['sub']; pm2 = cost()['platform_total'] - pm1     # stage 1: Nord-Est TGV and H, Gare de Lyon (8), Saint-Lazare
+    pm1 = 6 * LEN['hs'] + 8 * LEN['hs'] + (SUB_TRACKS['Paris Nord-Est']['h'] + SUB_TRACKS['Saint-Lazare']['h']) * LEN['sub']; pm2 = cost()['platform_total'] - pm1     # stage 1: Nord-Est TGV and H, Gare de Lyon (8), Saint-Lazare
     tl1 = 0.5                       # TER links in stage 1: the Nord-Est throats and the north and east portal ramps; the rest (0.15) with Montparnasse
     out['stages'] = {'first': stage(km1, pm1, ['Nord', 'Est', 'Lyon'], JUNCTIONS['tgv'] - 2, PORTALS['tgv'] - 1 + PORTALS['h'], 0.4 + tl1, RATE['london_hall']),
                      'second': stage(km2, pm2, ['Montparnasse'], 2 + JUNCTIONS['ter'], 1 + PORTALS['ter'] + PORTALS['n'], 0.2 + RATE['ter_links'] - tl1 + RATE['chatelet_links'], 0.0)}

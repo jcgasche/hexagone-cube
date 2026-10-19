@@ -1,32 +1,32 @@
 {
  "_about": "RER G with a stop at Chatelet-Les Halles, measured on the network model of the RER G study (project files rer-g-line4-chatelet, code stops_model.py, sens.py, crowd_runs.py): IDFM timetable of Tuesday 3 November 2026, 07:00 to 09:00, with Grand Paris Express lines 15 to 18 (the 2040 reference); INSEE census 2022 commuters by public transport on their quickest route (wait x1.5, walk x2, change 10 equivalent minutes); rule of a half with elasticity -0.8; 15 euros an hour, 205 days, commuting 55% of trips; bn a year at today's values. time: what the stop adds against RER G without stops, net of the 2 minutes lost by riders going through (low: a 3-minute stop; high: a change weighing 20 equivalent minutes). crowd_own: crowded metro and RER minutes avoided by RER G with the stop, against no RER G, own riders only, at the peak (55% of trips): low, only line 4 and RER B and D full at 4 standing per m2 (weight 1.49); central, every metro and RER line in Paris as line 1 at the peak (2.9 standing per m2 measured, Haywood and Koning 2013; weight 1.40, the study's crowding weight); high, every line at 4 per m2 and line 4 and RER B and D packed at 6 per m2 (1.79). The riders left on board are added in french.py (EXTERNAL).",
  "time": {
-  "low": 0.030384982332782175,
-  "central": 0.03642767124753143,
-  "high": 0.04898640355343839
+  "low": 0.026150664992806473,
+  "central": 0.03190787048180705,
+  "high": 0.04504109889912598
  },
  "crowd_own": {
-  "low": 0.00785998530035209,
-  "central": 0.0354220542882831,
-  "high": 0.05059510730202532
+  "low": 0.007875450801692913,
+  "central": 0.034522819827266266,
+  "high": 0.04938483959383658
  },
  "crowd_own_stop": {
-  "low": 0.0004117259375402346,
-  "central": 0.004972335726937276,
-  "high": 0.007055610355313935
+  "low": 0.00045183842776437555,
+  "central": 0.0044080880433116434,
+  "high": 0.006396801629136244
  },
  "crowd_own_no_stop": {
-  "central": 0.03060410665882546
+  "central": 0.030273286247900405
  },
  "riders_chatelet_morning": {
-  "uncrowded": 27973.546399917792,
-  "central": 36049.47620252396
+  "uncrowded": 25162.373974397837,
+  "central": 32328.37912149218
  },
  "line4_south_est": {
   "none": {
    "ref": 31287.3579082333,
-   "g0": 22755.50520515144,
-   "gC": 20893.32376563292
+   "g0": 22758.253760098996,
+   "gC": 21033.385265554953
   },
   "all metro and RER in Paris as line 1 at the peak (3 per m2)": {
    "ref": 27625.557662335712,
@@ -35,9 +35,9 @@
   }
  },
  "commuters_stop": {
-  "gain": 25500,
-  "lose": 21900,
-  "gain_eqmin": 8.9,
+  "gain": 23700,
+  "lose": 21200,
+  "gain_eqmin": 8.5,
   "lose_eqmin": 1.9
  }
 }

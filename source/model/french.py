@@ -57,7 +57,7 @@ OPERATOR_MARGIN = 0.10       # operator margin on the fare of a new TGV journey,
 WEAR = 0.15                  # share of track charges that pays for the extra wear (ASSUMPTION)
 PRODUCER = N.TRACK_SHARE * (1 - WEAR) + OPERATOR_MARGIN      # what the railway keeps of a euro of new fare
 FLEET = {'TGV': (17, 3.1e-3), 'TER': (4.5, 2.0e-3), 'Suburban': (11.0 - N.G_STOP_SETS, 2.0e-3)}      # trainsets freed by through running and their yearly cost (derived);
-                                                                                                 # suburban: 11 freed, less the 1.5 that RER G's Chatelet stop takes
+                                                                                                 # suburban: 11 freed, less the 0.8 that RER G's Chatelet stop takes
 TERMINAL_UPKEEP = 0.030      # bn a year: surface throats and track fields that close, about 150 track-km plus switches (derived, 0.02 to 0.05)
 
 # ------------------------------------------------------------------ car trips avoided (the model's carbon assumption) and road externalities
