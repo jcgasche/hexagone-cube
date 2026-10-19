@@ -1,4 +1,4 @@
-<!-- en: 8ffc6a22a5 -->
+<!-- en: 82a3fefe0b -->
 <div class="pz">
 <nav class="pz-dots" id="pz-dots" aria-label="Parties de la présentation"></nav>
 
@@ -151,11 +151,11 @@
   <div class="pz-in">
     <p class="pz-kicker">Pour toute la France</p>
     <h2 class="pz-h">Traverser la France sans changer à Paris</h2>
-    <p class="pz-lead">Aujourd’hui, traverser la France par Paris, c’est descendre du train, prendre le métro jusqu’à une autre gare et attendre le train suivant. Avec le triangle, le train traverse, et chaque paire de villes a un train toutes les heures au lieu de quelques-uns par jour.</p>
+    <p class="pz-lead">Aujourd’hui, traverser la France par Paris, c’est deux changements&nbsp;: descendre du train, traverser la ville en métro, monter dans un autre train, soit environ {{ d.french.params.x_today | 0 }}&nbsp;minutes dans Paris. Seules quelques paires de villes ont des trains directs, qui contournent Paris quelques fois par jour. Avec le triangle, chaque paire de lignes a un train direct au moins toutes les heures, {{ d.french.params.proj_per_day | 0 }} par jour, et chaque trajet est plus court.</p>
     <div class="pz-auto" id="pz-fr-toggle"></div>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Schéma des villes françaises reliées via Paris, avec la durée de chaque trajet"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">La durée d’aujourd’hui compte le changement de gare à Paris pour {{ d.french.params.x_today | 0 }}&nbsp;minutes de train à train, comme le fait le modèle. Quelques-unes de ces paires ont aussi des trains directs qui contournent Paris, une poignée par jour&nbsp;; avec le projet, chaque paire a {{ d.french.params.proj_per_day | 0 }}&nbsp;trains directs par jour, un par heure.</p></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Temps tirés des horaires SNCF d’un jour de semaine de mars 2026, les correspondances qu’un voyageur choisirait&nbsp;; le train traversant passe {{ d.french.params.x_proj | 0 }}&nbsp;minutes dans Paris.[[sncf_crossing]] Chaque changement de train fait perdre environ {{ m.params.change_loss | pct }} des voyageurs, et le trajet actuel par Paris en compte deux&nbsp;: des trains directs toutes les heures en ramènent beaucoup. Seul le trajet du Nord vers l’Est garde un changement, sur les mêmes quais de Paris Nord-Est.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Trajets à travers la France</a><a href="#crossing.tgv">Traverser Paris en TGV</a></p>
   </div>
@@ -227,7 +227,9 @@
 
 <section class="pz-slide pz-end" id="presentation.report" data-dot="Rapport complet">
   <div class="pz-in">
-    <h2 class="pz-h">Tous les chiffres, les sources et les hypothèses</h2>
+    <h2 class="pz-h">Paris au centre, pour tout le pays</h2>
+    <p class="pz-lead">Toutes les grandes lignes de France mènent à Paris, et aujourd’hui c’est à Paris qu’elles s’arrêtent&nbsp;: un mur entre les régions. Hexagone³ prend acte de la place centrale de Paris dans le réseau et en fait un atout. Des gares traversantes changent les culs-de-sac en carrefour&nbsp;: les régions sont reliées entre elles sans dépendre d’un changement dans la capitale, et Paris y gagne en même temps des parcs, de l’espace et des trajets plus rapides.</p>
+    <h3 class="pz-h2">Tous les chiffres, les sources et les hypothèses</h3>
     <p class="pz-lead">Chaque nombre de cette page vient du modèle de l’étude. Le rapport complet explique comment chacun est obtenu, sur quoi il repose et ce qui reste à vérifier.</p>
     <a class="pz-cta" href="#summary">Lire le rapport complet</a>
   </div>

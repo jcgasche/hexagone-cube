@@ -135,7 +135,7 @@ PTS.section('economy', function (root) {
     rows.forEach(function (r) { byPair[r.pair.join(',')] = r; byPair[r.pair.slice().reverse().join(',')] = r; });
     root.querySelectorAll('[data-pair]').forEach(function (el) { const r = byPair[el.getAttribute('data-pair')]; if (r) el.textContent = hm(el.getAttribute('data-what') === 'today' ? r.today_min : r.project_min); });
     const t = $('#eco-france-table');
-    t.appendChild(h('thead', null, h('tr', null, h('th', { text: 'Between' }), h('th', { text: 'Today, by train' }), h('th', { class: 'num', text: 'Time today' }), h('th', { class: 'num', text: 'With the project, every hour' }), h('th', { class: 'num', text: 'By air, door to door' }), h('th', { class: 'num', text: 'Air passengers 2025' }), h('th', { class: 'num', text: 'Rail’s share, today to project' }))));
+    t.appendChild(h('thead', null, h('tr', null, h('th', { text: 'Between' }), h('th', { text: 'Direct trains today' }), h('th', { class: 'num', text: 'Today, with a change in Paris' }), h('th', { class: 'num', text: 'With the project, every hour' }), h('th', { class: 'num', text: 'By air, door to door' }), h('th', { class: 'num', text: 'Air passengers 2025' }), h('th', { class: 'num', text: 'Rail’s share, today to project' }))));
     const tb = h('tbody'); t.appendChild(tb);
     rows.forEach(function (r) {
       const gain = r.today_min - r.project_min;

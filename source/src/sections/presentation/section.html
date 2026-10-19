@@ -150,11 +150,11 @@
   <div class="pz-in">
     <p class="pz-kicker">For all of France</p>
     <h2 class="pz-h">Across France with no change in Paris</h2>
-    <p class="pz-lead">Today, crossing France by Paris means getting off, taking the metro to another station and waiting for the next train. With the triangle, the train runs through, and every pair of cities gets a train every hour instead of a few a day.</p>
+    <p class="pz-lead">Today, crossing France by Paris means two changes: off the train, across the city by metro, onto another train, about {{ d.french.params.x_today | 0 }} minutes in Paris. Only a few pairs of cities have direct trains, which go round Paris a few times a day. With the triangle, every pair of lines gets a direct train at least every hour, {{ d.french.params.proj_per_day | 0 }} a day, and every journey is shorter.</p>
     <div class="pz-auto" id="pz-fr-toggle"></div>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Diagram of French cities joined through Paris, with the time of each journey"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Today's time counts the change of station in Paris as {{ d.french.params.x_today | 0 }} minutes from train to train, as the model does. A few of these pairs also have direct trains that go round Paris, a handful a day; with the project every pair has {{ d.french.params.proj_per_day | 0 }} through trains a day, one an hour.</p></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Times from SNCF's timetable for a weekday of March 2026, the connections a traveller would choose; the through train spends {{ d.french.params.x_proj | 0 }} minutes in Paris.[[sncf_crossing]] Each change of train loses about {{ m.params.change_loss | pct }} of travellers and today's journey by Paris has two, so direct trains every hour bring many of them back. Only north to east keeps a change, on the same platforms at Paris Nord-Est.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Cross-France journeys</a><a href="#crossing.tgv">Crossing Paris by TGV</a></p>
   </div>
@@ -226,7 +226,9 @@
 
 <section class="pz-slide pz-end" id="presentation.report" data-dot="Full report">
   <div class="pz-in">
-    <h2 class="pz-h">All the figures, sources and assumptions</h2>
+    <h2 class="pz-h">Paris at the centre, for the whole country</h2>
+    <p class="pz-lead">Every main line of France leads to Paris, and today Paris is where they stop: a wall between the regions. Hexagone³ accepts that Paris is at the centre of the network and makes use of it. Through stations turn the dead ends into a crossroads, so the regions are joined to each other without depending on a change in the capital, and Paris gains parks, space and quicker trips at the same time.</p>
+    <h3 class="pz-h2">All the figures, sources and assumptions</h3>
     <p class="pz-lead">Every number on this page comes from the study's model. The full report sets out how each one is made, what it rests on and what is still to verify.</p>
     <a class="pz-cta" href="#summary">Read the full report</a>
   </div>

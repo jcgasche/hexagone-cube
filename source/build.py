@@ -73,6 +73,7 @@ FORMATS = {
     'm': lambda x: num(x * 1000, 0),                 # billions shown as millions
     'bn': lambda x: num(x, 1), 'bn2': lambda x: num(x, 2),
     'int': lambda x: num(round(x), 0), 'str': str,
+    'hm': lambda x: (lambda m: f"{m // 60}\u00a0h\u00a0{m % 60:02d}" if LANG['v'] == 'fr' else f'{m // 60}h{m % 60:02d}')(int(round(x))),   # minutes as hours and minutes
     'g': lambda x: num(x, 0) if abs(x - round(x)) < 1e-9 else num(x, 1),     # 2, 2.5: one decimal only when there is one
     'money': lambda x: ((num(x, 2) + '\u00a0Md€') if abs(x) >= 1 else (num(abs(x) * 1000, 0) + '\u00a0M€')) if LANG['v'] == 'fr' else
                        (('€' + num(x, 2) + 'bn') if abs(x) >= 1 else ('€' + num(abs(x) * 1000, 0) + 'm')),

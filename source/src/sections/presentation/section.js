@@ -10,7 +10,7 @@ PTS.section('presentation', function (root) {
   /* Today's time with a change of station in Paris: the model's own estimate where today's way is that change, otherwise the
      through train's time with the model's change of station (x_today minutes from train to train) in place of its two stops (x_proj). */
   const num = function (v) { return parseFloat(String(v).replace(/[\s\u202f\u00a0]/g, '').replace(',', '.')); };     // a number the build wrote, in English or French
-  const viaParis = function (p) { return /change of station/.test(p.today) ? p.today_min : p.project_min - FP.x_proj + FP.x_today; };
+  const viaParis = function (p) { return p.today_min; };          // today with a change of station in Paris, from SNCF's timetable (model/paris_crossing.py)
 
   // ---------------------------------------------------------------- counters and reveal on scroll
   const count = function (el) {
@@ -469,13 +469,18 @@ PTS.section('presentation', function (root) {
     add(svg, 'text', { x: P0[0] + 16, y: P0[1] - 12, class: 'big', text: 'Paris' });
     Object.keys(CITY).forEach(function (c) { if (c === 'Paris') return; const q = pr(CITY[c]); add(svg, 'circle', { cx: q[0], cy: q[1], r: 5, fill: '#fff' }); add(svg, 'text', { x: q[0] + (q[0] < P0[0] ? -9 : 9), y: q[1] + 4, 'text-anchor': q[0] < P0[0] ? 'end' : 'start', text: c, style: 'fill: #fff' }); });
     const host = $('#pz-fr-bars'), max = Math.max.apply(0, pairs.map(function (p) { return p.via; }));
-    host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, with a change of station in Paris'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train, every hour')));
+    const noDirect = pairs.filter(function (p) { return p.direct_day < 0.5; }).length, few = pairs.filter(function (p) { return p.direct_day >= 0.5; }).sort(function (a, b) { return a.direct_day - b.direct_day; })[0];
+    host.appendChild(h('div', { class: 'pz-frq' },
+      h('div', null, h('b', { text: F.n(few.direct_day, 0) + ' → ' + F.n(few.project_per_day, 0) }), h('span', { text: 'direct trains a day, ' + few.pair[0] + ' to ' + few.pair[1] })),
+      h('div', null, h('b', { text: F.n(noDirect, 0) + ' / ' + F.n(pairs.length, 0) }), h('span', { text: 'of these pairs have no direct train today' })),
+      h('div', null, h('b', { text: F.n(Math.min.apply(0, pairs.map(function (p) { return p.via - p.project_min; })), 0) + ' to ' + F.n(Math.max.apply(0, pairs.map(function (p) { return p.via - p.project_min; })), 0) + ' min' }), h('span', { text: 'less on each journey, no change' }))));
+    host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, with a change of station in Paris'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train, every hour'), h('span', { class: 'pz-key-r', text: 'Direct trains a day' })));
     const rows = pairs.map(function (p, i) {
-      const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b');
-      const row = h('div', { class: 'pz-bar' }, h('span', { text: p.pair[0] + ' → ' + p.pair[1] }), h('div', { class: 'pz-track' }, t, q), b);
+      const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b'), f = h('em');
+      const row = h('div', { class: 'pz-bar' }, h('span', { text: p.pair[0] + ' → ' + p.pair[1] }), h('div', { class: 'pz-track' }, t, q), b, f);
       row.addEventListener('pointerenter', function () { hi(i); }); row.addEventListener('pointerleave', function () { hi(-1); });
       host.appendChild(row);
-      return { row: row, t: t, q: q, b: b, p: p };
+      return { row: row, t: t, q: q, b: b, f: f, p: p };
     });
     const hi = function (i) { arcs.forEach(function (a, k) { a.el.style.opacity = i < 0 || k === i ? 1 : 0.15; }); rows.forEach(function (r, k) { r.row.classList.toggle('hi', k === i); }); };
     auto($('#pz-fr-toggle'), [['today', 'Today'], ['project', 'With the project']], 4000, function (v) {
@@ -487,6 +492,7 @@ PTS.section('presentation', function (root) {
         r.q.style.width = now ? '0%' : (r.p.project_min / max * 100) + '%';
         r.b.innerHTML = now ? hm(r.p.via) : hm(r.p.project_min) + ' <small>-' + F.n(r.p.via - r.p.project_min, 0) + ' min</small>';
         r.b.style.color = now ? '#fff' : '#3fe0a5';
+        r.f.textContent = now ? F.n(r.p.direct_day, 0) : F.n(r.p.project_per_day, 0); r.f.className = now ? '' : 'up';
       });
     });
   })();

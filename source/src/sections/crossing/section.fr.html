@@ -1,4 +1,4 @@
-<!-- en: d48d2c72df -->
+<!-- en: 66e914e4d8 -->
 <p class="lede">Un voyageur qui traverse Paris aujourd’hui passe environ une heure entre deux trains, avec un trajet en métro au milieu. Une fois les gares reliées, cinq des six paires de lignes ont des trains directs, et aucun train ne change de sens&nbsp;: {{ m.connecting.central.pairs['Montparnasse-Lyon'].direct | 0 }} minutes dans Paris en train direct pour chaque paire, un arrêt de {{ m.stop_min | 0 }} minutes dans chacune de ses deux gares et un trajet de {{ m.run_min | 0 }} minutes entre elles, par la liaison directe de Montparnasse à la gare de Lyon ou par Nord-Est pour les autres&nbsp;; et une correspondance se fait sur les quais d’une seule gare. Les voyageurs des trains de banlieue et des TER gagnent moins à chaque trajet, {{ m.regional.avg_clock_saving | 1 }} minutes réelles en moyenne, mais on compte {{ m.regional.users | 0 }}&nbsp;millions de ces voyages par an.</p>
 
 <div class="block" id="crossing.tgv">
@@ -40,9 +40,9 @@
   <div class="tbl-wrap"><table class="tbl cx-tbl">
     <thead><tr><th>De Bordeaux à Lille</th><th class="num">Temps de trajet</th><th>Comment</th></tr></thead>
     <tbody>
-      <tr><th>Aujourd’hui, train direct qui contourne Paris</th><td class="num">4&nbsp;h&nbsp;47</td><td>Par la ligne d’interconnexion, quelques trains par jour[[bxlille]]</td></tr>
-      <tr><th>Aujourd’hui, avec un changement à Paris</th><td class="num">4&nbsp;h&nbsp;21</td><td>De Montparnasse à la gare du Nord en métro ou en RER, avec la marge pour le train suivant[[bxlille]]</td></tr>
-      <tr class="hl"><th>À travers Paris, avec le projet</th><td class="num">environ 3&nbsp;h&nbsp;25</td><td>Calcul de cette étude à partir des meilleurs trains actuels&nbsp;: 2&nbsp;h&nbsp;04 de Bordeaux à Paris, 1&nbsp;h&nbsp;02 de Paris à Lille, environ 20 minutes pour traverser Paris, les deux arrêts compris&nbsp;; à vérifier <span class="tag assume">hypothèse</span></td></tr>
+      <tr><th>Aujourd’hui, train direct qui contourne Paris</th><td class="num">{{ d.french.france.show[0].direct_min | hm }}</td><td>Par la ligne d’interconnexion, quelques trains par jour[[bxlille]]</td></tr>
+      <tr><th>Aujourd’hui, avec un changement à Paris</th><td class="num">{{ d.french.france.show[0].today_min | hm }}</td><td>De Montparnasse à la gare du Nord en métro ou en RER, et l’attente du train suivant&nbsp;: les correspondances qu’un voyageur choisirait un jour de semaine de mars 2026[[sncf_crossing]]</td></tr>
+      <tr class="hl"><th>À travers Paris, avec le projet</th><td class="num">{{ d.french.france.show[0].project_min | hm }}</td><td>Les trajets des mêmes trains, et {{ d.french.params.x_proj | 0 }}&nbsp;minutes pour traverser Paris, les deux arrêts compris <span class="tag assume">hypothèse</span></td></tr>
     </tbody></table></div>
 </div>
 

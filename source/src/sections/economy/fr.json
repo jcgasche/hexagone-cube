@@ -294,7 +294,11 @@
   "€4.4bn": "4,4 Md€",
   "€4.6bn": "4,6 Md€",
   "€45 to 50bn": "45 à 50 Md€",
-  "€7.4bn": "7,4 Md€"
+  "€7.4bn": "7,4 Md€",
+  "no direct train": "aucun train direct",
+  "1 direct train a day": "1 train direct par jour",
+  "Direct trains today": "Trains directs aujourd’hui",
+  "Today, with a change in Paris": "Aujourd’hui, avec un changement à Paris"
  },
  "patterns": [
   [
@@ -412,6 +416,10 @@
   [
    "{0} with the wider effects; return {1}",
    "{0} avec les effets élargis ; rendement de {1}"
+  ],
+  [
+   "{0} direct trains a day",
+   "{0} trains directs par jour"
   ]
  ]
 }

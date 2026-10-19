@@ -153,7 +153,7 @@
  "sma19": "Gare du Nord : au plus 15 des 19 voies grandes lignes nécessaires à la pointe selon l’horaire",
  "senat02": "Gare du Nord : aucun train de plus ne peut être accepté ; les voies et l’approche sont saturées",
  "cgpc04": "Signalisation des LGV dimensionnée pour 15 trains par heure et par sens ; Gare de Lyon à court de départs à la pointe du soir",
- "sncf_gtfs": "TER et Intercités dans les gares terminus parisiennes, heure la plus chargée, comptés pour le mardi 17 novembre 2026 : Gare du Nord 11, Gare de l’Est 3, Montparnasse 6, Gare de Lyon avec Bercy 3 (comptage propre)",
+ "sncf_crossing": "Jour de semaine du 17 mars 2026 : les trajets qu’un voyageur choisirait entre 13 paires de villes, directs ou avec un changement de gare à Paris (model/paris_crossing.py)",
  "sncf_gtfs_tgv": "Arrêts prévus des TGV et OUIGO le mardi 17 novembre 2026 : Lyon Part-Dieu 6 minutes pour la plupart (médiane 7, 10 pour les trains en unités multiples), Paris-CDG 2, Bordeaux et Rennes 6, Marne-la-Vallée 4 à 5, petites gares 3 (comptage propre)",
  "delfi_gtfs": "Arrêts prévus des ICE le mardi 20 octobre 2026 : Hambourg Hbf et Berlin Hbf 4 minutes, Hanovre et Nuremberg 3, Francfort et Stuttgart Hbf 6 là où les trains rebroussent (comptage propre)",
  "carrez": "Chiffres de planification du Grand Paris Express : exploitation, maintenance et renouvellement environ 650 millions par an hors gares ; gares de 190 à 200 millions par an",

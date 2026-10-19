@@ -39,9 +39,9 @@
   <div class="tbl-wrap"><table class="tbl cx-tbl">
     <thead><tr><th>Bordeaux to Lille</th><th class="num">Journey time</th><th>How</th></tr></thead>
     <tbody>
-      <tr><th>Today, direct train round Paris</th><td class="num">4h47</td><td>On the bypass line, a few trains a day[[bxlille]]</td></tr>
-      <tr><th>Today, with a change in Paris</th><td class="num">4h21</td><td>Montparnasse to Gare du Nord by metro or RER, with the margin for the next train[[bxlille]]</td></tr>
-      <tr class="hl"><th>Through Paris, with the project</th><td class="num">about 3h25</td><td>This study's arithmetic from the best trains today: 2h04 Bordeaux to Paris, 1h02 Paris to Lille, about 20 minutes across Paris including the two stops; to verify <span class="tag assume">assumption</span></td></tr>
+      <tr><th>Today, direct train round Paris</th><td class="num">{{ d.french.france.show[0].direct_min | hm }}</td><td>On the bypass line, a few trains a day[[bxlille]]</td></tr>
+      <tr><th>Today, with a change in Paris</th><td class="num">{{ d.french.france.show[0].today_min | hm }}</td><td>Montparnasse to Gare du Nord by metro or RER, and the wait for the next train: the connections a traveller would choose on a weekday of March 2026[[sncf_crossing]]</td></tr>
+      <tr class="hl"><th>Through Paris, with the project</th><td class="num">{{ d.french.france.show[0].project_min | hm }}</td><td>The same trains' runs, and {{ d.french.params.x_proj | 0 }} minutes across Paris including the two stops <span class="tag assume">assumption</span></td></tr>
     </tbody></table></div>
 </div>
 

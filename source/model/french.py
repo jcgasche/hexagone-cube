@@ -104,7 +104,11 @@ PEAK = 0.5                   # share of the relieved trips made in the crowded h
 EXTERNAL = 0.7               # relief to the riders left on board, as a share of a rider's own crowding (derived)
 TGV_CROSS_TODAY = 5.2        # million TGV journeys across Paris today (the model's CONN, rounded)
 PARIS_GDP = 800.0            # Ile-de-France output, bn (ASSUMPTION, rounded)
-X_TODAY, X_PROJ = 50.0, 25.0 # minutes between arriving in Paris and leaving it for another region: today with a change of station, and on a through train with its two stops (ASSUMPTION)
+# minutes between arriving in Paris and leaving it for another region: today with a change of station, the same figure as the traffic
+# model (estimate.T_OLD), which SNCF's timetable confirms (model/paris_crossing.py: 58.5 minutes, median of the city pairs); on a through
+# train, its two stops and the run between them, as in the timetable
+CROSSING = json.load(open(os.path.join(HERE, 'inputs', 'paris_crossing.json')))
+X_TODAY, X_PROJ = N.T_OLD, N.TH['L'] + N.STOP_MIN
 # the cities: side of Paris, output (bn), minutes to Paris by the fastest trains of 2026, road km from Paris (rounded; ASSUMPTION)
 CITIES = {'Lille': ('N', 60, 62, 225), 'Strasbourg': ('E', 32, 106, 490), 'Reims': ('E', 12, 46, 145), 'Metz': ('E', 13, 84, 330), 'Nancy': ('E', 13, 90, 350),
           'Lyon': ('S', 95, 117, 465), 'Marseille': ('S', 75, 195, 775), 'Nice': ('S', 40, 330, 930), 'Montpellier': ('S', 30, 200, 750), 'Grenoble': ('S', 25, 180, 575),
@@ -468,14 +472,21 @@ def france(L=1):
 
 
 def show_pairs():
-    """The city pairs the page shows: today's time and way, the through train, and the plane door to door."""
+    """The city pairs the page shows, read from SNCF's timetable (model/paris_crossing.py): today with a change of station in Paris
+    (the median of the journeys a passenger would choose) and the trains a day, against the through train every hour; the wait for a
+    convenient train is a quarter of the interval between trains, as for the bypass travellers; and the plane door to door."""
     rows = []
     for a, b in SHOW_PAIRS:
-        k = frozenset((a, b)); t1 = CITIES[a][2] + CITIES[b][2] + X_PROJ
+        k = frozenset((a, b)); m = CROSSING['pairs'][f'{a}-{b}']
+        t0, t1 = m['via_paris_min'], m['legs_min'] + X_PROJ
+        w0, w1 = min(DAY_MIN / m['via_paris_day'] / 4, DISPLACE_CAP), min(DAY_MIN / PROJ_PER_DAY / 4, DISPLACE_CAP)
         air_km = (CITIES[a][3] + CITIES[b][3]) * AIR_KM_RATIO; door = AIR_DOOR[0] + air_km / AIR_DOOR[1]
         ap = [p for p in AIR_PAIRS if frozenset(p[:2]) == k]
-        rows.append({'pair': [a, b], 'today_min': TODAY_MIN[k], 'today': DIRECT_TODAY[k], 'project_min': t1, 'air_door_min': door,
-                     'air_pax': ap[0][2] if ap else None, 'share_today': rail_share(TODAY_MIN[k]), 'share_project': rail_share(t1)})
+        rows.append({'pair': [a, b], 'today_min': t0, 'project_min': t1, 'in_paris_min': m['in_paris_min'],
+                     'per_day': m['via_paris_day'], 'direct_day': m['direct_day'], 'direct_min': m['direct_min'], 'project_per_day': PROJ_PER_DAY,
+                     'wait_today': w0, 'wait_project': w1,
+                     'today': 'no direct train' if m['direct_day'] < 0.5 else f"{round(m['direct_day'])} direct train{'s' if round(m['direct_day']) > 1 else ''} a day", 'air_door_min': door,
+                     'air_pax': ap[0][2] if ap else None, 'share_today': rail_share(t0), 'share_project': rail_share(t1)})
     return rows
 
 

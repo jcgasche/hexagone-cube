@@ -285,3 +285,14 @@ body[data-page="presentation"] .menu-btn { display: none }
 
 /* the name: Hexagone, cubed */
 .pz-title sup { font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+
+/* the France slide: trains a day beside each journey, and three figures above */
+.pz-bar { grid-template-columns: 9.5em minmax(0, 1fr) 7.6em 2.6em }
+.pz-bar > em { font-style: normal; font-variant-numeric: tabular-nums; text-align: right; color: #ff9b80; font-weight: 600 }
+.pz-bar > em.up { color: #3fe0a5 }
+.pz-key .pz-key-r { margin-left: auto }
+.pz-frq { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 8px }
+.pz-frq > div { display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 12px; background: var(--pz-glass); border: 1px solid var(--pz-line) }
+.pz-frq b { font-family: var(--display); font-size: 26px; color: var(--pz-green); line-height: 1 }
+.pz-frq span { font-size: 13px; color: var(--text) }
+@media (max-width: 520px) { .pz-bar { grid-template-columns: 7.4em minmax(0, 1fr) 6.6em 2.2em } .pz-frq { grid-template-columns: minmax(0, 1fr) } }
