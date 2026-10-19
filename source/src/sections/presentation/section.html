@@ -111,7 +111,15 @@
   <div class="pz-in">
     <p class="pz-kicker">The timetable</p>
     <h2 class="pz-h">One beat of {{ d.timetable.table.grid.params.slot | 0 }} minutes, the Swiss way</h2>
-    <p class="pz-lead">Every train stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Here is the busiest hour the stations can take.</p>
+    <p class="pz-lead">Every train stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Here is why the beat is 12 minutes, and below, the busiest hour the stations can take.</p>
+    <div class="pz-beat">
+      <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }} min at the platform</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} reserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} to clear</span></div>
+      <div class="pz-grid3">
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }} min</b><span>Each platform track takes a train every {{ d.timetable.table.grid.params.slot | 0 }} minutes: {{ d.timetable.table.grid.params.stop | 0 }} at the platform, then {{ d.timetable.table.grid.params.reserve | 0 }} kept free for a late train and {{ d.timetable.table.grid.params.b | 0 }} to clear the track. That makes {{ d.timetable.table.grid.params.places | 0 }} trains an hour on each side of each station.</span></div>
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.run | 0 }} min</b><span>Between any two of the stations the run is set at {{ d.timetable.table.grid.params.run | 0 }} minutes, half a beat, though {{ min(d.timetable.table.grid.params.technical.values()) | 1 }} to {{ max(d.timetable.table.grid.params.technical.values()) | 1 }} would do: trains run a little slower in the tunnels. A train that leaves one station on the beat reaches the next on the beat, so the three stations keep one clock.</span></div>
+        <div class="pz-stat"><b>Same minutes every hour</b><span>A late train uses its {{ d.timetable.table.grid.params.reserve | 0 }} minutes of reserve or takes the next place of the beat. Everyone learns one pattern, and a small delay stays small instead of spreading through the station.</span></div>
+      </div>
+    </div>
     <div class="pz-tt borrow-timetable" id="pz-hour-host">
       <div class="pz-tt-scrub" id="pz-tt-scrub"></div>
       <div class="pz-tt-head"><div class="pz-tt-legend" id="pz-tt-legend"></div><div class="pz-tt-ctl" id="pz-tt-ctl"></div></div>
@@ -150,11 +158,11 @@
   <div class="pz-in">
     <p class="pz-kicker">For all of France</p>
     <h2 class="pz-h">Across France with no change in Paris</h2>
-    <p class="pz-lead">Today, crossing France by Paris means two changes: off the train, across the city by metro, onto another train, about {{ d.french.params.x_today | 0 }} minutes in Paris. Only a few pairs of cities have direct trains, which go round Paris a few times a day. With the triangle, every pair of lines gets a direct train at least every hour, {{ d.french.params.proj_per_day | 0 }} a day, and every journey is shorter.</p>
+    <p class="pz-lead">Today, crossing France by Paris means two changes: off the train, across the city by metro, onto another train, about {{ d.french.params.x_today | 0 }} minutes in Paris. Only a few pairs of cities have direct trains, which go round Paris a few times a day. With the triangle every train runs through Paris: with the same number of trains as today, the direct links between the regions multiply, and every journey is shorter.</p>
     <div class="pz-auto" id="pz-fr-toggle"></div>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Diagram of French cities joined through Paris, with the time of each journey"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Times from SNCF's timetable for a weekday of March 2026, the connections a traveller would choose; the through train spends {{ d.french.params.x_proj | 0 }} minutes in Paris.[[sncf_crossing]] Each change of train loses about {{ m.params.change_loss | pct }} of travellers and today's journey by Paris has two, so direct trains every hour bring many of them back. Only north to east keeps a change, on the same platforms at Paris Nord-Est.</p></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Times from SNCF's timetable for a weekday of March 2026, the connections a traveller would choose; the through train spends {{ d.french.params.x_proj | 0 }} minutes in Paris.[[sncf_crossing]] Direct trains with the project: today's high-speed trains, each line keeping its count, run through and are shared between the other lines as in the timetable's hour; the trains round Paris keep running. Each change of train loses about {{ m.params.change_loss | pct }} of travellers and today's journey by Paris has two, so direct trains bring many of them back. Only north to east keeps a change, on the same platforms at Paris Nord-Est.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Cross-France journeys</a><a href="#crossing.tgv">Crossing Paris by TGV</a></p>
   </div>

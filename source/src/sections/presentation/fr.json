@@ -1,6 +1,5 @@
 {
  "exact": {
-  "No change in Paris, every hour": "Sans changement à Paris, toutes les heures",
   "Paris, inside the ring road": "Paris, à l’intérieur du périphérique",
   "Trains go in, wait, and come back out": "Les trains entrent, attendent et repartent par où ils sont venus",
   "Today": "Aujourd’hui",
@@ -17,17 +16,17 @@
   "Through train, every hour": "Train direct, toutes les heures",
   "Parts of the presentation": "Parties de la présentation",
   "Direct trains a day": "Trains directs par jour",
-  "of these pairs have no direct train today": "de ces paires n’ont aucun train direct aujourd’hui",
-  "less on each journey, no change": "de moins sur chaque trajet, sans changement"
+  "direct trains between these cities, with the same number of trains as today": "de trains directs entre ces villes, avec le même nombre de trains qu’aujourd’hui",
+  "new direct links, with no more trains": "nouvelles liaisons directes, sans un train de plus",
+  "less on each journey, no change in Paris": "de moins sur chaque trajet, sans changement à Paris",
+  "Today, with a change": "Temps actuel avec changement",
+  "Through train": "Train traversant",
+  "No change in Paris": "Sans changement à Paris"
  },
  "patterns": [
   [
    "Paid back, {0}",
    "Remboursé en {0}"
-  ],
-  [
-   "direct trains a day, {0} to {1}",
-   "trains directs par jour, de {0} à {1}"
   ],
   [
    "{0} to {1} min",

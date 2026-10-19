@@ -473,20 +473,18 @@ def france(L=1):
 
 def show_pairs():
     """The city pairs the page shows, read from SNCF's timetable (model/paris_crossing.py): today with a change of station in Paris
-    (the median of the journeys a passenger would choose) and the trains a day, against the through train every hour; the wait for a
-    convenient train is a quarter of the interval between trains, as for the bypass travellers; and the plane door to door."""
+    (the median of the journeys a passenger would choose) against the through train; direct trains a day today (round Paris) and with
+    the project, with today's number of high-speed trains; and the plane door to door."""
     rows = []
     for a, b in SHOW_PAIRS:
         k = frozenset((a, b)); m = CROSSING['pairs'][f'{a}-{b}']
         t0, t1 = m['via_paris_min'], m['legs_min'] + X_PROJ
-        w0, w1 = min(DAY_MIN / m['via_paris_day'] / 4, DISPLACE_CAP), min(DAY_MIN / PROJ_PER_DAY / 4, DISPLACE_CAP)
         air_km = (CITIES[a][3] + CITIES[b][3]) * AIR_KM_RATIO; door = AIR_DOOR[0] + air_km / AIR_DOOR[1]
         ap = [p for p in AIR_PAIRS if frozenset(p[:2]) == k]
-        rows.append({'pair': [a, b], 'today_min': t0, 'project_min': t1, 'in_paris_min': m['in_paris_min'],
-                     'per_day': m['via_paris_day'], 'direct_day': m['direct_day'], 'direct_min': m['direct_min'], 'project_per_day': PROJ_PER_DAY,
-                     'wait_today': w0, 'wait_project': w1,
-                     'today': 'no direct train' if m['direct_day'] < 0.5 else f"{round(m['direct_day'])} direct train{'s' if round(m['direct_day']) > 1 else ''} a day", 'air_door_min': door,
-                     'air_pax': ap[0][2] if ap else None, 'share_today': rail_share(t0), 'share_project': rail_share(t1)})
+        rows.append({'pair': [a, b], 'today_min': t0, 'project_min': t1, 'in_paris_min': m['in_paris_min'], 'per_day': m['via_paris_day'],
+                     'direct_day': m['direct_day'], 'direct_min': m['direct_min'], 'project_direct_day': m['project_direct_day'],
+                     'today': 'no direct train' if m['direct_day'] < 0.5 else f"{int(m['direct_day'] + 0.5)} direct train{'s' if m['direct_day'] >= 1.5 else ''} a day",
+                     'air_door_min': door, 'air_pax': ap[0][2] if ap else None, 'share_today': rail_share(t0), 'share_project': rail_share(t1)})
     return rows
 
 

@@ -1,4 +1,4 @@
-<!-- en: 82a3fefe0b -->
+<!-- en: af6e44dfbc -->
 <div class="pz">
 <nav class="pz-dots" id="pz-dots" aria-label="Parties de la présentation"></nav>
 
@@ -112,7 +112,15 @@
   <div class="pz-in">
     <p class="pz-kicker">L’horaire</p>
     <h2 class="pz-h">Une cadence de {{ d.timetable.table.grid.params.slot | 0 }}&nbsp;minutes, à la suisse</h2>
-    <p class="pz-lead">Chaque train s’arrête {{ d.timetable.table.grid.params.stop | 0 }}&nbsp;minutes, aux mêmes minutes chaque heure, dans les trois gares. Voici l’heure la plus chargée que les gares peuvent accueillir.</p>
+    <p class="pz-lead">Chaque train s’arrête {{ d.timetable.table.grid.params.stop | 0 }}&nbsp;minutes, aux mêmes minutes chaque heure, dans les trois gares. Voici pourquoi la cadence est de 12&nbsp;minutes, et plus bas, l’heure la plus chargée que les gares peuvent accueillir.</p>
+    <div class="pz-beat">
+      <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }}&nbsp;min à quai</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} de réserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} pour libérer</span></div>
+      <div class="pz-grid3">
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }}&nbsp;min</b><span>Chaque voie à quai reçoit un train toutes les {{ d.timetable.table.grid.params.slot | 0 }}&nbsp;minutes&nbsp;: {{ d.timetable.table.grid.params.stop | 0 }} à quai, puis {{ d.timetable.table.grid.params.reserve | 0 }} gardées libres pour un train en retard et {{ d.timetable.table.grid.params.b | 0 }} pour libérer la voie. Soit {{ d.timetable.table.grid.params.places | 0 }}&nbsp;trains par heure de chaque côté de chaque gare.</span></div>
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.run | 0 }}&nbsp;min</b><span>Entre deux gares, quelles qu’elles soient, le trajet est fixé à {{ d.timetable.table.grid.params.run | 0 }}&nbsp;minutes, une demi-cadence, alors que {{ min(d.timetable.table.grid.params.technical.values()) | 1 }} à {{ max(d.timetable.table.grid.params.technical.values()) | 1 }} suffiraient&nbsp;: les trains roulent un peu moins vite dans les tunnels. Un train qui part d’une gare sur la cadence arrive à la suivante sur la cadence, et les trois gares vivent à la même horloge.</span></div>
+        <div class="pz-stat"><b>Les mêmes minutes chaque heure</b><span>Un train en retard utilise ses {{ d.timetable.table.grid.params.reserve | 0 }}&nbsp;minutes de réserve ou prend la place suivante de la cadence. Tout le monde apprend un seul schéma, et un petit retard reste petit au lieu de se propager dans la gare.</span></div>
+      </div>
+    </div>
     <div class="pz-tt borrow-timetable" id="pz-hour-host">
       <div class="pz-tt-scrub" id="pz-tt-scrub"></div>
       <div class="pz-tt-head"><div class="pz-tt-legend" id="pz-tt-legend"></div><div class="pz-tt-ctl" id="pz-tt-ctl"></div></div>
@@ -151,11 +159,11 @@
   <div class="pz-in">
     <p class="pz-kicker">Pour toute la France</p>
     <h2 class="pz-h">Traverser la France sans changer à Paris</h2>
-    <p class="pz-lead">Aujourd’hui, traverser la France par Paris, c’est deux changements&nbsp;: descendre du train, traverser la ville en métro, monter dans un autre train, soit environ {{ d.french.params.x_today | 0 }}&nbsp;minutes dans Paris. Seules quelques paires de villes ont des trains directs, qui contournent Paris quelques fois par jour. Avec le triangle, chaque paire de lignes a un train direct au moins toutes les heures, {{ d.french.params.proj_per_day | 0 }} par jour, et chaque trajet est plus court.</p>
+    <p class="pz-lead">Aujourd’hui, traverser la France par Paris, c’est deux changements&nbsp;: descendre du train, traverser la ville en métro, monter dans un autre train, soit environ {{ d.french.params.x_today | 0 }}&nbsp;minutes dans Paris. Seules quelques paires de villes ont des trains directs, qui contournent Paris quelques fois par jour. Avec le triangle, chaque train traverse Paris&nbsp;: avec le même nombre de trains qu’aujourd’hui, les liaisons directes entre les régions se multiplient, et chaque trajet est plus court.</p>
     <div class="pz-auto" id="pz-fr-toggle"></div>
     <div class="pz-split">
       <div class="pz-stage"><svg id="pz-fr-map" viewBox="0 0 520 520" role="img" aria-label="Schéma des villes françaises reliées via Paris, avec la durée de chaque trajet"></svg></div>
-      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Temps tirés des horaires SNCF d’un jour de semaine de mars 2026, les correspondances qu’un voyageur choisirait&nbsp;; le train traversant passe {{ d.french.params.x_proj | 0 }}&nbsp;minutes dans Paris.[[sncf_crossing]] Chaque changement de train fait perdre environ {{ m.params.change_loss | pct }} des voyageurs, et le trajet actuel par Paris en compte deux&nbsp;: des trains directs toutes les heures en ramènent beaucoup. Seul le trajet du Nord vers l’Est garde un changement, sur les mêmes quais de Paris Nord-Est.</p></div>
+      <div class="pz-story"><div id="pz-fr-bars" class="pz-bars"></div><p class="pz-note" id="pz-fr-note">Temps tirés des horaires SNCF d’un jour de semaine de mars 2026, les correspondances qu’un voyageur choisirait&nbsp;; le train traversant passe {{ d.french.params.x_proj | 0 }}&nbsp;minutes dans Paris.[[sncf_crossing]] Trains directs avec le projet&nbsp;: les TGV d’aujourd’hui, chaque ligne gardant leur nombre, traversent Paris et se répartissent entre les autres lignes comme dans l’heure de l’horaire&nbsp;; les trains qui contournent Paris continuent de circuler. Chaque changement de train fait perdre environ {{ m.params.change_loss | pct }} des voyageurs, et le trajet actuel par Paris en compte deux&nbsp;: des trains directs en ramènent beaucoup. Seul le trajet du Nord vers l’Est garde un changement, sur les mêmes quais de Paris Nord-Est.</p></div>
     </div>
     <p class="pz-more"><a href="#economy.france">Trajets à travers la France</a><a href="#crossing.tgv">Traverser Paris en TGV</a></p>
   </div>

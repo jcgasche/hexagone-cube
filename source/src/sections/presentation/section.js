@@ -83,7 +83,7 @@ PTS.section('presentation', function (root) {
   (function () {
     const host = $('#pz-trips');
     const rows = SHOW.map(function (p) { return { p: p, a: viaParis(p), b: p.project_min }; }).sort(function (x, y) { return (y.a - y.b) - (x.a - x.b) || x.b - y.b; }).slice(0, 4);
-    host.appendChild(h('span', { class: 'pz-trips-k', text: 'No change in Paris, every hour' }));
+    host.appendChild(h('span', { class: 'pz-trips-k', text: 'No change in Paris' }));
     rows.forEach(function (r) {
       host.appendChild(h('div', { class: 'pz-trip' }, h('span', { class: 'pz-trip-n', text: r.p.pair[0] + ' → ' + r.p.pair[1] }),
         h('span', { class: 'pz-trip-t' }, h('s', { text: hm(r.a) }), ' ', h('b', { text: hm(r.b) }))));
@@ -469,12 +469,17 @@ PTS.section('presentation', function (root) {
     add(svg, 'text', { x: P0[0] + 16, y: P0[1] - 12, class: 'big', text: 'Paris' });
     Object.keys(CITY).forEach(function (c) { if (c === 'Paris') return; const q = pr(CITY[c]); add(svg, 'circle', { cx: q[0], cy: q[1], r: 5, fill: '#fff' }); add(svg, 'text', { x: q[0] + (q[0] < P0[0] ? -9 : 9), y: q[1] + 4, 'text-anchor': q[0] < P0[0] ? 'end' : 'start', text: c, style: 'fill: #fff' }); });
     const host = $('#pz-fr-bars'), max = Math.max.apply(0, pairs.map(function (p) { return p.via; }));
-    const noDirect = pairs.filter(function (p) { return p.direct_day < 0.5; }).length, few = pairs.filter(function (p) { return p.direct_day >= 0.5; }).sort(function (a, b) { return a.direct_day - b.direct_day; })[0];
+    const withDirect = pairs.filter(function (p) { return p.direct_day >= 0.5; }).map(function (p) { return p.project_direct_day / p.direct_day; }).sort(function (a, b) { return a - b; });
+    const mid = withDirect.length % 2 ? withDirect[(withDirect.length - 1) / 2] : (withDirect[withDirect.length / 2 - 1] + withDirect[withDirect.length / 2]) / 2;
+    const fresh = pairs.filter(function (p) { return p.direct_day < 0.5 && p.project_direct_day >= 0.5; }).length;
+    const saved = pairs.map(function (p) { return p.via - p.project_min; });
     host.appendChild(h('div', { class: 'pz-frq' },
-      h('div', null, h('b', { text: F.n(few.direct_day, 0) + ' → ' + F.n(few.project_per_day, 0) }), h('span', { text: 'direct trains a day, ' + few.pair[0] + ' to ' + few.pair[1] })),
-      h('div', null, h('b', { text: F.n(noDirect, 0) + ' / ' + F.n(pairs.length, 0) }), h('span', { text: 'of these pairs have no direct train today' })),
-      h('div', null, h('b', { text: F.n(Math.min.apply(0, pairs.map(function (p) { return p.via - p.project_min; })), 0) + ' to ' + F.n(Math.max.apply(0, pairs.map(function (p) { return p.via - p.project_min; })), 0) + ' min' }), h('span', { text: 'less on each journey, no change' }))));
-    host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, with a change of station in Paris'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train, every hour'), h('span', { class: 'pz-key-r', text: 'Direct trains a day' })));
+      h('div', null, h('b', { text: '×' + F.n(mid, 1) }), h('span', { text: 'direct trains between these cities, with the same number of trains as today' })),
+      h('div', null, h('b', { text: F.n(fresh, 0) }), h('span', { text: 'new direct links, with no more trains' })),
+      h('div', null, h('b', { text: F.n(Math.min.apply(0, saved), 0) + ' to ' + F.n(Math.max.apply(0, saved), 0) + ' min' }), h('span', { text: 'less on each journey, no change in Paris' }))));
+    host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, with a change of station in Paris'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train')));
+    const head = h('b', { text: 'Today, with a change' });
+    host.appendChild(h('div', { class: 'pz-bar pz-bar-h' }, h('span'), h('span'), head, h('em', { text: 'Direct trains a day' })));
     const rows = pairs.map(function (p, i) {
       const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b'), f = h('em');
       const row = h('div', { class: 'pz-bar' }, h('span', { text: p.pair[0] + ' → ' + p.pair[1] }), h('div', { class: 'pz-track' }, t, q), b, f);
@@ -492,7 +497,8 @@ PTS.section('presentation', function (root) {
         r.q.style.width = now ? '0%' : (r.p.project_min / max * 100) + '%';
         r.b.innerHTML = now ? hm(r.p.via) : hm(r.p.project_min) + ' <small>-' + F.n(r.p.via - r.p.project_min, 0) + ' min</small>';
         r.b.style.color = now ? '#fff' : '#3fe0a5';
-        r.f.textContent = now ? F.n(r.p.direct_day, 0) : F.n(r.p.project_per_day, 0); r.f.className = now ? '' : 'up';
+        r.f.innerHTML = '<s>' + F.n(r.p.direct_day, 0) + '</s> <b>' + F.n(r.p.project_direct_day, 0) + '</b> <small>(+' + F.n(r.p.project_direct_day - r.p.direct_day, 0) + ')</small>';
+        head.textContent = now ? 'Today, with a change' : 'With the project';
       });
     });
   })();

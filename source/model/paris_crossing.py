@@ -8,7 +8,12 @@ The timetable is SNCF's open data, export-opendata-sncf-gtfs.zip from https://eu
 in the repository). A journey is kept only if no other journey of the day leaves later and arrives as early or earlier, so the
 times are those of the best connection for each departure, never a wait chosen on purpose. Departures from 05:00 to 21:00.
 A change in Paris needs the metro or a walk between the two stations (MOVE, minutes, ASSUMPTION from the RATP journey planner's
-usual times) plus a margin of 15 minutes to make the train (ASSUMPTION)."""
+usual times) plus a margin of 15 minutes to make the train (ASSUMPTION).
+
+With the project, the same number of high-speed trains as today: each line keeps today's trains to and from Paris (R), and they run
+through, shared between the other lines as the timetable's hour shares its places (src/sections/timetable/data.json, about today's
+traffic), scaled so that every line keeps its own count. A through train from line X to line Y serves the cities that today's trains
+of each line serve, in the same proportions (P). Today's direct trains round Paris keep running."""
 import csv, json, os, statistics, sys, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +30,9 @@ MOVE = {('Nord', 'Est'): 10, ('Nord', 'Lyon'): 22, ('Nord', 'Montparnasse'): 33,
 PAIRS = [('Lille', 'Bordeaux'), ('Bordeaux', 'Strasbourg'), ('Lille', 'Lyon'), ('Lille', 'Marseille'), ('Rennes', 'Lyon'), ('Rennes', 'Strasbourg'), ('Nantes', 'Strasbourg'),
          ('Rennes', 'Dijon'), ('Bordeaux', 'Lyon'), ('Nantes', 'Lyon'), ('Nantes', 'Marseille'), ('Lille', 'Nantes'), ('Lyon', 'Strasbourg')]
 FIRST, LAST = 5 * 60, 21 * 60
+TERMINAL = {'N': '87271007', 'E': '87113001', 'S': '87686006', 'A': '87391003'}          # today's terminal of each high-speed line
+LINE = {'Lille': 'N', 'Strasbourg': 'E', 'Lyon': 'S', 'Marseille': 'S', 'Dijon': 'S', 'Bordeaux': 'A', 'Rennes': 'A', 'Nantes': 'A'}
+HIGH_SPEED = ('TGV', 'OUIGO', 'ICE', 'Lyria')
 
 
 def load(folder, date):
@@ -36,7 +44,26 @@ def load(folder, date):
         if r['trip_id'] not in run or 'OCECar' in r['stop_id']: continue
         hm = lambda t: int(t.split(':')[0]) * 60 + int(t.split(':')[1])
         trips[r['trip_id']].append((int(r['stop_sequence']), r['stop_id'][-8:], hm(r['arrival_time']), hm(r['departure_time'])))
+        if any(m in r['stop_id'] for m in HIGH_SPEED): FAST.add(r['trip_id'])
     return {k: [x[1:] for x in sorted(v)] for k, v in trips.items()}
+FAST = set()
+
+
+def through_trains(trips):
+    """Direct trains a day each way between two cities, through Paris, with today's number of high-speed trains (see above)."""
+    R, P = {}, {}
+    for L, term in TERMINAL.items():
+        out = [t for t, s in trips.items() if t in FAST and s[0][0] == term]; inn = [t for t, s in trips.items() if t in FAST and s[-1][0] == term]
+        R[L] = (len(out) + len(inn)) / 2
+        for c, l in LINE.items():
+            if l == L: P[c] = sum(1 for t in out if {x[0] for x in trips[t]} & CITY[c]) / len(out)
+    tt = json.load(open(os.path.join(HERE, '..', 'src', 'sections', 'timetable', 'data.json')))['table']['grid']['timetables']['today']['trains']
+    slot = collections.Counter(''.join(sorted((t['from'], t['to']))) for t in tt if not t.get('london'))
+    f = {L: 1.0 for L in R}
+    for _ in range(500):                          # scale the hour's shares so that each line keeps today's count of trains
+        for X in R: f[X] = R[X] / sum(f[k.replace(X, '', 1)] * v for k, v in slot.items() if X in k)
+    T = {k: f[k[0]] * f[k[1]] * v for k, v in slot.items()}
+    return T, R, P
 
 
 def legs(trips, frm, to):
@@ -73,15 +100,19 @@ def pair(trips, a, b):
 def main():
     folder = sys.argv[1]; date = sys.argv[2] if len(sys.argv) > 2 else '20260317'
     trips = load(folder, date)
+    T, R, P = through_trains(trips)
     out = {'_note': f'SNCF timetable (open data, GTFS), {date[:4]}-{date[4:6]}-{date[6:]}, departures 05:00 to 21:00; medians of the journeys a passenger would choose. '
                     'Each figure is the mean of the two directions. model/paris_crossing.py', 'date': date, 'pairs': {}}
     gaps = []
     for a, b in PAIRS:
         both = [pair(trips, a, b), pair(trips, b, a)]
         m = {k: (None if any(x[k] is None for x in both) else round(sum(x[k] for x in both) / 2, 1)) for k in both[0]}
+        m['through_day'] = round(T.get(''.join(sorted(LINE[a] + LINE[b])), 0.0) * P[a] * P[b], 1)
+        m['project_direct_day'] = round(m['direct_day'] + m['through_day'], 1)
         out['pairs'][f'{a}-{b}'] = m; gaps.append(m['in_paris_min'])
         print(f"{a}-{b}: {m}")
     out['in_paris_median_min'] = statistics.median(gaps)
+    out['through_trains_day'] = {k: round(v, 1) for k, v in T.items()}; out['radial_trains_day'] = R; out['city_share'] = {k: round(v, 3) for k, v in P.items()}
     json.dump(out, open(f'{HERE}/inputs/paris_crossing.json', 'w'), indent=1)
     print('time in Paris between the two trains, median of the pairs:', out['in_paris_median_min'])
 
