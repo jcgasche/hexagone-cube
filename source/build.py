@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Assembles the site from src/ into self-contained pages, one in English and one in French. No dependencies beyond Python 3.
 
-    python3 build.py                       # writes '../Paris Through Stations.html' and '../Paris Through Stations - FR.html' (open them in a browser)
+    python3 build.py                       # writes '../index.html' (French, the default) and '../en.html' (English); open either in a browser
     python3 build.py --only cost,sources   # quick build of some sections, for work on one part (use --out with it)
     python3 build.py --out dist/dev.html   # another output path, for trial builds (dist/ is not kept in git)
     python3 build.py --lang fr --only cost --out dist/fr.html   # the French page alone (see docs/TRANSLATING.md)
@@ -17,8 +17,8 @@ import argparse, hashlib, html, json, os, re, sys
 from decimal import Decimal, ROUND_HALF_UP
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-PAGES = {'en': os.path.join(ROOT, '..', 'Paris Through Stations.html'),          # the study: the page a reader opens
-         'fr': os.path.join(ROOT, '..', 'Paris Through Stations - FR.html')}     # the same study in French, linked from the top bar
+PAGES = {'fr': os.path.join(ROOT, '..', 'index.html'),       # the study in French: the page a reader opens first (and GitHub Pages serves)
+         'en': os.path.join(ROOT, '..', 'en.html')}          # the same study in English, linked from the top bar
 PAGE = PAGES['en']
 SRC = os.path.join(ROOT, 'src')
 FONTS = 'https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap'

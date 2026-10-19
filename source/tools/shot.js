@@ -1,9 +1,9 @@
 // Screenshot of one section, with console errors printed. Needs Playwright (npm i playwright; or NODE_PATH to an install).
-//   node tools/shot.js --hash cost --out /tmp/cost.png [--file '../Paris Through Stations.html'] [--width 1280] [--height 900] [--dark] [--full]
+//   node tools/shot.js --hash cost --out /tmp/cost.png [--file '../en.html'] [--width 1280] [--height 900] [--dark] [--full]
 //                      [--click "css selector"]... [--eval "js run in the page before the shot"]
 const path = require('path');
 const { chromium } = require('playwright');
-const args = process.argv.slice(2), opt = { file: '../Paris Through Stations.html', hash: 'summary', out: 'shot.png', width: 1280, height: 900, clicks: [], evals: [] };
+const args = process.argv.slice(2), opt = { file: '../en.html', hash: 'summary', out: 'shot.png', width: 1280, height: 900, clicks: [], evals: [] };
 for (let i = 0; i < args.length; i++) {
   const a = args[i];
   if (a === '--dark') opt.dark = true; else if (a === '--full') opt.full = true;

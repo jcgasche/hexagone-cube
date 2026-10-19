@@ -1,9 +1,9 @@
 // Lists the text still in English on a page of the French study: every visible text, title and label of the chosen sections,
 // after their scripts have run, that looks English (two or more common English words). Needs Playwright, as shot.js.
-//   node tools/i18n_check.js --file '../Paris Through Stations - FR.html' --hash access,crossing [--click "css selector"]...
+//   node tools/i18n_check.js --file '../index.html' --hash access,crossing [--click "css selector"]...
 const path = require('path');
 const { chromium } = require('playwright');
-const args = process.argv.slice(2), opt = { file: '../Paris Through Stations - FR.html', hash: 'summary', clicks: [] };
+const args = process.argv.slice(2), opt = { file: '../index.html', hash: 'summary', clicks: [] };
 for (let i = 0; i < args.length; i++) { const a = args[i]; if (a === '--click') opt.clicks.push(args[++i]); else opt[a.replace(/^--/, '')] = args[++i]; }
 const EN = /\b(the|and|of|to|with|from|for|is|are|at|by|each|every|today|hour|year|years|cost|benefits|line|lines|track|tracks|passengers|which|that|this|not|more|less|than|per|day|between|through|here|there|would|could|will|its|their|saved|built|until|after|before|without)\b/gi;
 (async () => {

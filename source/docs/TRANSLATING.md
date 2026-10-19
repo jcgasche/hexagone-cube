@@ -1,7 +1,7 @@
 # The French page
 
-`python3 build.py` writes two pages from the same source: `Paris Through Stations.html` (English) and
-`Paris Through Stations - FR.html` (French). The button at the right of the top bar opens the other one at the same place.
+`python3 build.py` writes two pages from the same source: `index.html` (French, the default) and
+`en.html` (English). The button at the right of the top bar opens the other one at the same place.
 Everything the reader sees must exist in both languages.
 
 ## Where the French text lives

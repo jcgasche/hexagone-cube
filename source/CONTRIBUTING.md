@@ -5,7 +5,7 @@ The site is a set of independent sections. To work on one, you only need this fi
 ## Layout of the repository
 
 ```
-build.py                 assembles everything into ../Paris Through Stations.html, the one self-contained page
+build.py                 assembles everything into ../index.html (French) and ../en.html (English), self-contained pages
 src/shell.html           top bar and contents list
 src/css/base.css         colours (tokens), type, page shell
 src/css/components.css   tiles, cards, tables, figures, controls, bar charts, drawings
@@ -31,7 +31,7 @@ clocks, the reaching-the-station map and chart, the works before/after. It does 
 nodes into the presentation while it is shown and back when its own section is shown, and the build makes the lending
 section's `#<id>` styles also apply under `.borrow-<id>`. A fix to one of those figures therefore shows in both places.
 
-**Two languages.** The build writes the study in English and in French (`Paris Through Stations - FR.html`). A change to the
+**Two languages.** The build writes the study in French (`index.html`, the default) and in English (`en.html`). A change to the
 English text of a section must be carried into its `section.fr.html`, and a new label written by a script into its `fr.json`;
 the build warns when a French file is older than its English one. How it works and the words to use: `docs/TRANSLATING.md`.
 `node tools/i18n_check.js --hash <ids>` lists what is still in English on the French page.

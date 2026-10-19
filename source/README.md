@@ -15,13 +15,13 @@ its text, its interactive parts, its data and its sources live in one folder.
 
 ## Read it
 
-Open `Paris Through Stations.html`, at the root of the repository, in a browser. Nothing else is needed (the two web fonts load from Google Fonts; without a connection
+Open `index.html` (French) or `en.html` (English), at the root of the repository, in a browser. The site is also published with GitHub Pages from the root of master. Nothing else is needed (the two web fonts load from Google Fonts; without a connection
 the page falls back to system fonts).
 
 ## Rebuild it
 
 ```
-python3 build.py                 # assembles src/ into ../Paris Through Stations.html
+python3 build.py                 # assembles src/ into ../index.html (French) and ../en.html (English)
 ```
 
 Python 3 only, no packages. The build fills in the numbers of the text from the model results, numbers the sources, checks that
@@ -62,7 +62,7 @@ eight commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 | `src/data/` | Model results and shared data; `sources.json` is the shared source list, `paris_geo.json` the outline of Paris |
 | `model/` | The Python model and its inputs |
 | `tools/` | Screenshot and check scripts |
-| `../Paris Through Stations.html` | The built page, the study itself (`dist/` holds trial builds and is not kept) |
+| `../index.html`, `../en.html` | The built pages, the study itself, in French and English (`dist/` holds trial builds and is not kept) |
 | `CONTRIBUTING.md` | How to write a section: components, helpers, rules, agreed anchors |
 | `docs/TRIANGLE_BRIEF.md` | The project as modelled: concept, central figures, model keys, writing rules, open study points |
 
@@ -105,7 +105,7 @@ eight commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 
 ## Publishing
 
-`Paris Through Stations.html` is a complete page for any static host, and opens from disk with no server.
+`index.html` and `en.html` are complete pages for any static host, and opens from disk with no server.
 
 ## Status
 
