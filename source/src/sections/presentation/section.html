@@ -14,10 +14,10 @@
       <div class="pz-big"><b data-count="{{ f.central.ops_cover * 100 | 0 }}" data-post="%" data-d="0">{{ f.central.ops_cover | pct }}</b><span>of its running costs paid by its own income; the building plan closes with a €{{ f.central.grant_bn | 1 }}bn grant</span></div>
     </div>
     <div class="pz-flash">
-      <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post=" min" data-d="0">{{ m.run_min | 0 }} min</b><span>from any of the three stations to any other</span></div>
+      <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post=" min" data-d="0">{{ m.run_min | 0 }} min</b><span>to go from one Paris station to another</span></div>
       <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post=" min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }} min</b><span>on average to reach your TGV from anywhere in Paris, up to {{ pts.max_gain.station | 1 }} min less</span></div>
       <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>terminals rebuilt deep underground: the surface is freed</span></div>
-      <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>the Buttes-Chaumont in new parks, in four great parks</span></div>
+      <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>the area of the Buttes-Chaumont in new parks, in four great parks</span></div>
       <div class="pz-chip"><b data-count="{{ m.conn.central | 1 }}" data-post="M" data-d="1">{{ m.conn.central | 1 }}M</b><span>passengers a year who no longer cross Paris by metro between two trains</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>trips a day between suburbs on two sides of Paris on a through line, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>
     </div>
@@ -131,7 +131,7 @@
       <div class="pz-story">
         <div class="pz-bc">
           <b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b>
-          <span>the Parc des Buttes-Chaumont, in new green space[[buttes_chaumont]]</span>
+          <span>the area of the Parc des Buttes-Chaumont, in new green space[[buttes_chaumont]]</span>
           <div class="pz-bc-row" id="pz-bc-row" data-n="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 2 }}"></div>
         </div>
         <p>No train needs the surface tracks any more, so the fans of tracks behind the stations are freed, from the end of each hall out to where the tunnels come up.</p>

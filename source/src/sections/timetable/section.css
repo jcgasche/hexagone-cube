@@ -55,7 +55,6 @@
 #timetable .tt-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1 }
 #timetable .tt-seine { fill: none; stroke: var(--div-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .8 }
 #timetable .tt-ln { fill: none; stroke: var(--struct-edge); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55 }
-#timetable .tt-ln.link { stroke-dasharray: 6 3 }
 #timetable .tt-box { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.2 }
 #timetable .tt-track { stroke: var(--rule); stroke-width: 1.4 }
 #timetable .tt-sname { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round }

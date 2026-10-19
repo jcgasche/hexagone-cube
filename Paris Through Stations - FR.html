@@ -986,7 +986,6 @@ body[data-page="presentation"] .menu-btn { display: none }
 :is(#timetable, .borrow-timetable) .tt-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1 }
 :is(#timetable, .borrow-timetable) .tt-seine { fill: none; stroke: var(--div-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .8 }
 :is(#timetable, .borrow-timetable) .tt-ln { fill: none; stroke: var(--struct-edge); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55 }
-:is(#timetable, .borrow-timetable) .tt-ln.link { stroke-dasharray: 6 3 }
 :is(#timetable, .borrow-timetable) .tt-box { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.2 }
 :is(#timetable, .borrow-timetable) .tt-track { stroke: var(--rule); stroke-width: 1.4 }
 :is(#timetable, .borrow-timetable) .tt-sname { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round }
@@ -1422,10 +1421,10 @@ body[data-page="presentation"] .menu-btn { display: none }
       <div class="pz-big"><b data-count="189" data-post="&nbsp;%" data-d="0">189 %</b><span>de ses coûts d’exploitation payés par ses propres recettes&nbsp;; le plan de construction est bouclé avec une subvention de 12,0&nbsp;Md€</span></div>
     </div>
     <div class="pz-flash">
-      <div class="pz-chip"><b data-count="6" data-post="&nbsp;min" data-d="0">6&nbsp;min</b><span>entre deux des trois gares, quelles qu’elles soient</span></div>
+      <div class="pz-chip"><b data-count="6" data-post="&nbsp;min" data-d="0">6&nbsp;min</b><span>pour relier une gare de Paris à une autre</span></div>
       <div class="pz-chip"><b data-count="4,6" data-pre="-" data-post="&nbsp;min" data-d="1">-4,6&nbsp;min</b><span>en moyenne pour rejoindre son TGV depuis n’importe où dans Paris, jusqu’à 9,4&nbsp;min de moins</span></div>
       <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites entièrement sous terre&nbsp;: la surface est libérée</span></div>
-      <div class="pz-chip"><b data-count="3,5" data-post="×" data-d="1">3,5×</b><span>les Buttes-Chaumont en nouveaux espaces verts, répartis en quatre grands parcs</span></div>
+      <div class="pz-chip"><b data-count="3,5" data-post="×" data-d="1">3,5×</b><span>la surface des Buttes-Chaumont en nouveaux espaces verts, répartis en quatre grands parcs</span></div>
       <div class="pz-chip"><b data-count="5,2" data-post="&nbsp;M" data-d="1">5,2&nbsp;M</b><span>de voyageurs par an qui ne traversent plus Paris en métro entre deux trains</span></div>
       <div class="pz-chip"><b data-count="229" data-post="&nbsp;k" data-d="0">229&nbsp;k</b><span>trajets par jour de banlieue à banlieue, de part et d’autre de Paris, sur une ligne traversante, contre 146&nbsp;k</span></div>
     </div>
@@ -1539,7 +1538,7 @@ body[data-page="presentation"] .menu-btn { display: none }
       <div class="pz-story">
         <div class="pz-bc">
           <b data-count="3,5" data-post="×" data-d="1">3,5×</b>
-          <span>le parc des Buttes-Chaumont, en nouveaux espaces verts<sup class="cite"><a href="#sources.buttes_chaumont" title="Parc des Buttes-Chaumont : superficie de 24,73 hectares">1</a></sup></span>
+          <span>la surface du parc des Buttes-Chaumont, en nouveaux espaces verts<sup class="cite"><a href="#sources.buttes_chaumont" title="Parc des Buttes-Chaumont : superficie de 24,73 hectares">1</a></sup></span>
           <div class="pz-bc-row" id="pz-bc-row" data-n="3,53"></div>
         </div>
         <p>Plus aucun train n’a besoin des voies de surface&nbsp;: les faisceaux de voies derrière les gares sont libérés, du bout de chaque halle jusqu’à l’endroit où les tunnels refont surface.</p>
@@ -2833,7 +2832,7 @@ body[data-page="presentation"] .menu-btn { display: none }
       </div>
     </div>
     <p class="note" id="tt-ringnote"></p>
-    <figcaption>Minutes du modèle (<code>model/table_timetable.py</code>), selon les règles énoncées plus haut. Les arcs montrent l’arrêt ; les 2 minutes de réserve et les 3 minutes de voie vide qui suivent ne sont pas dessinées. Les horloges ne montrent que les voies TGV : les TER et les trains de banlieue ont leurs propres quais, dessinés sur la carte dans l’onglet « Tous les trains ». Chaque gare est dessinée avec trois voies à quai à grande vitesse dans chaque sens (la quatrième de la gare de Lyon n’est pas dessinée) : d’un côté les trains venus de la ligne propre à la gare (le Nord et l’Est à Nord-Est), de l’autre les trains qui repartent vers elle. Les trains apparaissent cinq minutes avant leur premier arrêt à Paris et quittent la carte cinq minutes après le dernier. La ligne en tirets est la liaison directe. Survolez un point, ou placez le focus dessus, pour voir ses minutes. Dans l’onglet « Tous les trains », de petits cadres à côté de chaque gare portent les quais des autres trains (les TER d’un côté, la banlieue de l’autre ; à la gare de Lyon, la quatrième voie dans chaque sens), et Saint-Lazare est ajoutée. Les TER circulent aux minutes de l’heure que le modèle leur construit, insérée entre les TGV (11 dans chaque sens entre le Nord et l’Atlantique, 4 entre l’Est et le Sud-Est) : partout où deux trains partagent une voie, ils sont espacés d’au moins 2 minutes dans l’heure proche d’aujourd’hui comme avec les lignes du sud pleines ; avec Nord-Est aussi au maximum, 7 fois dans l’heure un TER circule à 1,5 minutes du train qui le précède ou qui le suit, le minimum que permet la signalisation. Le RER G et le RER F circulent à intervalles réguliers, au nombre de trains par heure du modèle (le RER G toutes les 5 minutes, le RER F 23 fois par heure, les trains des lignes H et K d’aujourd’hui), dans leurs propres tunnels.</figcaption>
+    <figcaption>Minutes du modèle (<code>model/table_timetable.py</code>), selon les règles énoncées plus haut. Les arcs montrent l’arrêt ; les 2 minutes de réserve et les 3 minutes de voie vide qui suivent ne sont pas dessinées. Les horloges ne montrent que les voies TGV : les TER et les trains de banlieue ont leurs propres quais, dessinés sur la carte dans l’onglet « Tous les trains ». Chaque gare est dessinée avec trois voies à quai à grande vitesse dans chaque sens (la quatrième de la gare de Lyon n’est pas dessinée) : d’un côté les trains venus de la ligne propre à la gare (le Nord et l’Est à Nord-Est), de l’autre les trains qui repartent vers elle. Les trains apparaissent cinq minutes avant leur premier arrêt à Paris et quittent la carte cinq minutes après le dernier. La ligne entre Montparnasse et la gare de Lyon est la liaison directe. Survolez un point, ou placez le focus dessus, pour voir ses minutes. Dans l’onglet « Tous les trains », de petits cadres à côté de chaque gare portent les quais des autres trains (les TER d’un côté, la banlieue de l’autre ; à la gare de Lyon, la quatrième voie dans chaque sens), et Saint-Lazare est ajoutée. Les TER circulent aux minutes de l’heure que le modèle leur construit, insérée entre les TGV (11 dans chaque sens entre le Nord et l’Atlantique, 4 entre l’Est et le Sud-Est) : partout où deux trains partagent une voie, ils sont espacés d’au moins 2 minutes dans l’heure proche d’aujourd’hui comme avec les lignes du sud pleines ; avec Nord-Est aussi au maximum, 7 fois dans l’heure un TER circule à 1,5 minutes du train qui le précède ou qui le suit, le minimum que permet la signalisation. Le RER G et le RER F circulent à intervalles réguliers, au nombre de trains par heure du modèle (le RER G toutes les 5 minutes, le RER F 23 fois par heure, les trains des lignes H et K d’aujourd’hui), dans leurs propres tunnels.</figcaption>
   </figure>
   <div class="tt-boards" id="tt-boards"></div>
 </div>
@@ -6086,7 +6085,7 @@ PTS.section('presentation', function (root) {
 
   const defs = function (svg) {
     const d = add(svg, 'defs', {});
-    const f = add(d, 'filter', { id: svg.id + '-glow', x: '-50%', y: '-50%', width: '200%', height: '200%' });
+    const f = add(d, 'filter', { id: svg.id + '-glow', filterUnits: 'userSpaceOnUse', x: '-10%', y: '-10%', width: '120%', height: '120%' });     // the drawing's own space, so that a level line keeps its glow
     add(f, 'feGaussianBlur', { stdDeviation: 3, result: 'b' });
     const m = add(f, 'feMerge', {}); add(m, 'feMergeNode', { in: 'b' }); add(m, 'feMergeNode', { in: 'SourceGraphic' });
     return 'url(#' + svg.id + '-glow)';
@@ -6118,7 +6117,7 @@ PTS.section('presentation', function (root) {
     const CITY = { Lille: V[0], Strasbourg: V[1], Marseille: V[2], Bordeaux: V[4], Rennes: V[5] };
     const NE = [905, 216], LY = [952, 298], MP = [858, 298];
     add(g, 'path', { d: 'M' + V.map(pt).join(' L') + ' Z', fill: 'rgba(90,162,255,.035)', stroke: 'rgba(143,192,255,.28)', 'stroke-width': 1.5, 'stroke-dasharray': '6 8' });
-    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', x1: 0, y1: 0, x2: 1, y2: 1 });
+    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', gradientUnits: 'userSpaceOnUse', x1: MP[0], y1: NE[1], x2: LY[0], y2: LY[1] });
     add(lg, 'stop', { offset: '0', 'stop-color': '#5aa2ff' }); add(lg, 'stop', { offset: '1', 'stop-color': '#3fe0a5' });
     // the lines from each corner of the country to its station, and the triangle
     [['Lille', NE], ['Strasbourg', NE], ['Marseille', LY], ['Bordeaux', MP], ['Rennes', MP]].forEach(function (q) { add(g, 'path', { d: 'M' + pt(CITY[q[0]]) + ' L' + pt(q[1]), stroke: 'rgba(143,192,255,.22)', 'stroke-width': 2, fill: 'none' }); });
@@ -6355,7 +6354,7 @@ PTS.section('presentation', function (root) {
       textSteps.forEach(function (st) { st.hidden = (st.getAttribute('data-step') === '1') !== a; });
     };
     PTS.$$('.pz-before, .pz-after', svg).forEach(function (g) { g.style.transition = 'opacity .9s ease'; });
-    auto($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 4000, set);
+    auto($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 10000, set);     // time to read both texts
   })();
   // ---------------------------------------------------------------- two tunnels side by side, cut open, in the same drawing style
   (function () {

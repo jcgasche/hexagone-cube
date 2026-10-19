@@ -986,7 +986,6 @@ body[data-page="presentation"] .menu-btn { display: none }
 :is(#timetable, .borrow-timetable) .tt-land { fill: var(--land); stroke: var(--land-edge); stroke-width: 1 }
 :is(#timetable, .borrow-timetable) .tt-seine { fill: none; stroke: var(--div-2); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; opacity: .8 }
 :is(#timetable, .borrow-timetable) .tt-ln { fill: none; stroke: var(--struct-edge); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; opacity: .55 }
-:is(#timetable, .borrow-timetable) .tt-ln.link { stroke-dasharray: 6 3 }
 :is(#timetable, .borrow-timetable) .tt-box { fill: var(--struct); stroke: var(--struct-edge); stroke-width: 1.2 }
 :is(#timetable, .borrow-timetable) .tt-track { stroke: var(--rule); stroke-width: 1.4 }
 :is(#timetable, .borrow-timetable) .tt-sname { font-size: 13px; font-weight: 600; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round }
@@ -1422,10 +1421,10 @@ body[data-page="presentation"] .menu-btn { display: none }
       <div class="pz-big"><b data-count="189" data-post="%" data-d="0">189%</b><span>of its running costs paid by its own income; the building plan closes with a €12.0bn grant</span></div>
     </div>
     <div class="pz-flash">
-      <div class="pz-chip"><b data-count="6" data-post=" min" data-d="0">6 min</b><span>from any of the three stations to any other</span></div>
+      <div class="pz-chip"><b data-count="6" data-post=" min" data-d="0">6 min</b><span>to go from one Paris station to another</span></div>
       <div class="pz-chip"><b data-count="4.6" data-pre="-" data-post=" min" data-d="1">-4.6 min</b><span>on average to reach your TGV from anywhere in Paris, up to 9.4 min less</span></div>
       <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>terminals rebuilt deep underground: the surface is freed</span></div>
-      <div class="pz-chip"><b data-count="3.5" data-post="×" data-d="1">3.5×</b><span>the Buttes-Chaumont in new parks, in four great parks</span></div>
+      <div class="pz-chip"><b data-count="3.5" data-post="×" data-d="1">3.5×</b><span>the area of the Buttes-Chaumont in new parks, in four great parks</span></div>
       <div class="pz-chip"><b data-count="5.2" data-post="M" data-d="1">5.2M</b><span>passengers a year who no longer cross Paris by metro between two trains</span></div>
       <div class="pz-chip"><b data-count="229" data-post="k" data-d="0">229k</b><span>trips a day between suburbs on two sides of Paris on a through line, from 146k</span></div>
     </div>
@@ -1539,7 +1538,7 @@ body[data-page="presentation"] .menu-btn { display: none }
       <div class="pz-story">
         <div class="pz-bc">
           <b data-count="3.5" data-post="×" data-d="1">3.5×</b>
-          <span>the Parc des Buttes-Chaumont, in new green space<sup class="cite"><a href="#sources.buttes_chaumont" title="Wikipedia (French): Parc des Buttes-Chaumont: area of 24.73 hectares">1</a></sup></span>
+          <span>the area of the Parc des Buttes-Chaumont, in new green space<sup class="cite"><a href="#sources.buttes_chaumont" title="Wikipedia (French): Parc des Buttes-Chaumont: area of 24.73 hectares">1</a></sup></span>
           <div class="pz-bc-row" id="pz-bc-row" data-n="3.53"></div>
         </div>
         <p>No train needs the surface tracks any more, so the fans of tracks behind the stations are freed, from the end of each hall out to where the tunnels come up.</p>
@@ -2833,7 +2832,7 @@ body[data-page="presentation"] .menu-btn { display: none }
       </div>
     </div>
     <p class="note" id="tt-ringnote"></p>
-    <figcaption>Minutes from the model (<code>model/table_timetable.py</code>), at the rules stated above. Arcs show the stop; the 2 minutes of reserve and the 3 minutes of empty track that follow are not drawn. The clocks show the TGV tracks only: regional express and suburban trains have platforms of their own, drawn on the map in the all-trains tab. Each station is drawn with three high-speed platform tracks each way (the fourth at Gare de Lyon is not drawn): on one side the trains coming from the station's own line (the north and east at Nord-Est), on the other the trains going out to it. Trains appear five minutes before their first Paris stop and leave the map five minutes after their last. The dashed line is the direct link. Hover or focus a dot for its minutes. In the all-trains tab small boxes beside each station hold the platforms of the other trains (regional express on one side, suburban on the other; at Gare de Lyon the fourth track each way), and Saint-Lazare is added. Regional express trains run at the minutes of the model's hour for them, fitted between the TGVs (11 each way between the north and the Atlantic, 4 between the east and the south-east): wherever two trains share a track they are at least 2 minutes apart about today and with the southern lines full; with Nord-Est filled too, 7 times in the hour a TER runs 1.5 minutes from the train ahead or behind, the least the signalling allows. RER G and RER F run evenly at the model's trains an hour (RER G every 5 minutes, RER F 23 an hour, the trains of today's lines H and K) in tunnels of their own.</figcaption>
+    <figcaption>Minutes from the model (<code>model/table_timetable.py</code>), at the rules stated above. Arcs show the stop; the 2 minutes of reserve and the 3 minutes of empty track that follow are not drawn. The clocks show the TGV tracks only: regional express and suburban trains have platforms of their own, drawn on the map in the all-trains tab. Each station is drawn with three high-speed platform tracks each way (the fourth at Gare de Lyon is not drawn): on one side the trains coming from the station's own line (the north and east at Nord-Est), on the other the trains going out to it. Trains appear five minutes before their first Paris stop and leave the map five minutes after their last. The line between Montparnasse and Gare de Lyon is the direct link. Hover or focus a dot for its minutes. In the all-trains tab small boxes beside each station hold the platforms of the other trains (regional express on one side, suburban on the other; at Gare de Lyon the fourth track each way), and Saint-Lazare is added. Regional express trains run at the minutes of the model's hour for them, fitted between the TGVs (11 each way between the north and the Atlantic, 4 between the east and the south-east): wherever two trains share a track they are at least 2 minutes apart about today and with the southern lines full; with Nord-Est filled too, 7 times in the hour a TER runs 1.5 minutes from the train ahead or behind, the least the signalling allows. RER G and RER F run evenly at the model's trains an hour (RER G every 5 minutes, RER F 23 an hour, the trains of today's lines H and K) in tunnels of their own.</figcaption>
   </figure>
   <div class="tt-boards" id="tt-boards"></div>
 </div>
@@ -6084,7 +6083,7 @@ PTS.section('presentation', function (root) {
 
   const defs = function (svg) {
     const d = add(svg, 'defs', {});
-    const f = add(d, 'filter', { id: svg.id + '-glow', x: '-50%', y: '-50%', width: '200%', height: '200%' });
+    const f = add(d, 'filter', { id: svg.id + '-glow', filterUnits: 'userSpaceOnUse', x: '-10%', y: '-10%', width: '120%', height: '120%' });     // the drawing's own space, so that a level line keeps its glow
     add(f, 'feGaussianBlur', { stdDeviation: 3, result: 'b' });
     const m = add(f, 'feMerge', {}); add(m, 'feMergeNode', { in: 'b' }); add(m, 'feMergeNode', { in: 'SourceGraphic' });
     return 'url(#' + svg.id + '-glow)';
@@ -6116,7 +6115,7 @@ PTS.section('presentation', function (root) {
     const CITY = { Lille: V[0], Strasbourg: V[1], Marseille: V[2], Bordeaux: V[4], Rennes: V[5] };
     const NE = [905, 216], LY = [952, 298], MP = [858, 298];
     add(g, 'path', { d: 'M' + V.map(pt).join(' L') + ' Z', fill: 'rgba(90,162,255,.035)', stroke: 'rgba(143,192,255,.28)', 'stroke-width': 1.5, 'stroke-dasharray': '6 8' });
-    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', x1: 0, y1: 0, x2: 1, y2: 1 });
+    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', gradientUnits: 'userSpaceOnUse', x1: MP[0], y1: NE[1], x2: LY[0], y2: LY[1] });
     add(lg, 'stop', { offset: '0', 'stop-color': '#5aa2ff' }); add(lg, 'stop', { offset: '1', 'stop-color': '#3fe0a5' });
     // the lines from each corner of the country to its station, and the triangle
     [['Lille', NE], ['Strasbourg', NE], ['Marseille', LY], ['Bordeaux', MP], ['Rennes', MP]].forEach(function (q) { add(g, 'path', { d: 'M' + pt(CITY[q[0]]) + ' L' + pt(q[1]), stroke: 'rgba(143,192,255,.22)', 'stroke-width': 2, fill: 'none' }); });
@@ -6353,7 +6352,7 @@ PTS.section('presentation', function (root) {
       textSteps.forEach(function (st) { st.hidden = (st.getAttribute('data-step') === '1') !== a; });
     };
     PTS.$$('.pz-before, .pz-after', svg).forEach(function (g) { g.style.transition = 'opacity .9s ease'; });
-    auto($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 4000, set);
+    auto($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 10000, set);     // time to read both texts
   })();
   // ---------------------------------------------------------------- two tunnels side by side, cut open, in the same drawing style
   (function () {

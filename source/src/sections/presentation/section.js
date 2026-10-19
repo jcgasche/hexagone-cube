@@ -66,7 +66,7 @@ PTS.section('presentation', function (root) {
 
   const defs = function (svg) {
     const d = add(svg, 'defs', {});
-    const f = add(d, 'filter', { id: svg.id + '-glow', x: '-50%', y: '-50%', width: '200%', height: '200%' });
+    const f = add(d, 'filter', { id: svg.id + '-glow', filterUnits: 'userSpaceOnUse', x: '-10%', y: '-10%', width: '120%', height: '120%' });     // the drawing's own space, so that a level line keeps its glow
     add(f, 'feGaussianBlur', { stdDeviation: 3, result: 'b' });
     const m = add(f, 'feMerge', {}); add(m, 'feMergeNode', { in: 'b' }); add(m, 'feMergeNode', { in: 'SourceGraphic' });
     return 'url(#' + svg.id + '-glow)';
@@ -98,7 +98,7 @@ PTS.section('presentation', function (root) {
     const CITY = { Lille: V[0], Strasbourg: V[1], Marseille: V[2], Bordeaux: V[4], Rennes: V[5] };
     const NE = [905, 216], LY = [952, 298], MP = [858, 298];
     add(g, 'path', { d: 'M' + V.map(pt).join(' L') + ' Z', fill: 'rgba(90,162,255,.035)', stroke: 'rgba(143,192,255,.28)', 'stroke-width': 1.5, 'stroke-dasharray': '6 8' });
-    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', x1: 0, y1: 0, x2: 1, y2: 1 });
+    const lg = add(svg.querySelector('defs'), 'linearGradient', { id: 'pz-hero-grad', gradientUnits: 'userSpaceOnUse', x1: MP[0], y1: NE[1], x2: LY[0], y2: LY[1] });
     add(lg, 'stop', { offset: '0', 'stop-color': '#5aa2ff' }); add(lg, 'stop', { offset: '1', 'stop-color': '#3fe0a5' });
     // the lines from each corner of the country to its station, and the triangle
     [['Lille', NE], ['Strasbourg', NE], ['Marseille', LY], ['Bordeaux', MP], ['Rennes', MP]].forEach(function (q) { add(g, 'path', { d: 'M' + pt(CITY[q[0]]) + ' L' + pt(q[1]), stroke: 'rgba(143,192,255,.22)', 'stroke-width': 2, fill: 'none' }); });
@@ -335,7 +335,7 @@ PTS.section('presentation', function (root) {
       textSteps.forEach(function (st) { st.hidden = (st.getAttribute('data-step') === '1') !== a; });
     };
     PTS.$$('.pz-before, .pz-after', svg).forEach(function (g) { g.style.transition = 'opacity .9s ease'; });
-    auto($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 4000, set);
+    auto($('#pz-nord-toggle'), [['before', 'Today'], ['after', 'With the project']], 10000, set);     // time to read both texts
   })();
   // ---------------------------------------------------------------- two tunnels side by side, cut open, in the same drawing style
   (function () {
