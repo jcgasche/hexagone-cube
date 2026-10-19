@@ -66,6 +66,8 @@ TH_ACCESS = {'L': 6.0, 'M': 6.0, 'LM': 6.0}   # the same ride in the access meas
 REVERSE = 8.0                           # minutes a train would need to turn back at Nord-Est (none does since version 4.1) (ASSUMPTION; 3 to 12 in French practice)
 TR = {'L': 7.0, 'M': 7.0, 'SL': 4.0}   # regional train ride between the same stations: the same 6-minute run, plus a 1-minute stop (ASSUMPTION);
                                       # SL: line H from Nord-Est to Saint-Lazare, 2.6 km, 4 minutes stop included (ASSUMPTION; RER E Magenta to Haussmann is 2.46 km)
+TER_STOP = 5.0                        # a regional express train stops 5 minutes at a through station (the timetable's TER stop, ter_timetable.py)
+TR_TER = {k: TH_ACCESS[k] + TER_STOP for k in ('L', 'M')}     # regional express ride between the same stations: the 6-minute run and its 5-minute stop (11)
 G_STOP = 2.0                          # RER G stops at Chatelet-Les Halles on its way: a 1-minute stop and 1 minute to slow down and pick up speed (ASSUMPTION; RATP aims at 50 s at Chatelet)
 TR_G = TR['M'] + G_STOP               # RER G, Nord-Est to Montparnasse with the Chatelet stop. The access and job models keep TR['M']: what the stop
                                       # costs riders who go through is netted in the Chatelet item of the French appraisal (model/inputs/chatelet_stop.json)
@@ -437,14 +439,16 @@ def _reach(hall):
     """Saving functions of a Paris point t for each service, on the pairing above (minutes from the train to the point)."""
     ne = (lambda t: min(t['Nord'], t['Est'])) if hall == 'both' else (lambda t: t['Nord'])
     on = {'Lyon': lambda t: TR['L'] + t['Lyon'], 'Montparnasse': lambda t: TR['M'] + t['Montparnasse'], 'Saint-Lazare': lambda t: TR['SL'] + t['SL']}
-    def best(dest):                     # the passenger gets off at Nord-Est or at the station the train runs on to, whichever is better
-        return lambda t: min(ne(t), on[dest](t))
+    on_ter = {'Lyon': lambda t: TR_TER['L'] + t['Lyon'], 'Montparnasse': lambda t: TR_TER['M'] + t['Montparnasse']}     # a regional express train stops longer
+    def best(dest, rides=on):           # the passenger gets off at Nord-Est or at the station the train runs on to, whichever is better
+        return lambda t: min(ne(t), rides[dest](t))
     zero = lambda t: 0.0
     alt = {'H': lambda t: t['Nord'] - best(SUB_PAIR['H'])(t), 'K': lambda t: t['Nord'] - best(SUB_PAIR['K'])(t), 'P': lambda t: t['Est'] - best(SUB_PAIR['P'])(t),
            'N': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR['M'] + ne(t)), 'L': lambda t: t['SL'] - min(t['SL'], TR['SL'] + ne(t)),
            'R': zero}                   # line R stays on the surface at Gare de Lyon (open item)
-    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'])(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'])(t),
-               'Lyon': lambda t: t['Lyon'] - min(t['Lyon'], TR['L'] + ne(t)), 'Montparnasse': alt['N']}      # Gare de Lyon and Bercy trains run through to Nord-Est (version 4.1)
+    alt_ter = {'Nord': lambda t: t['Nord'] - best(TER_RUN['Nord'], on_ter)(t), 'Est': lambda t: t['Est'] - best(TER_RUN['Est'], on_ter)(t),
+               'Lyon': lambda t: t['Lyon'] - min(t['Lyon'], TR_TER['L'] + ne(t)),           # Gare de Lyon and Bercy trains run through to Nord-Est (version 4.1)
+               'Montparnasse': lambda t: t['Montparnasse'] - min(t['Montparnasse'], TR_TER['M'] + ne(t))}
     return ne, alt, alt_ter
 
 
@@ -683,7 +687,7 @@ def yearly(R=RATE, deep=0.0, measure='station', evidence=UPLIFT_DIRECT, uplift=R
 
 
 if __name__ == '__main__':
-    out = {'TH': TH, 'TH_ACCESS': TH_ACCESS, 'TR': TR, 'TR_G': TR_G, 'G_STOP': G_STOP, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
+    out = {'TH': TH, 'TH_ACCESS': TH_ACCESS, 'TR': TR, 'TR_TER': TR_TER, 'TER_STOP': TER_STOP, 'TR_G': TR_G, 'G_STOP': G_STOP, 'conn': {'central': CONN, 'high': CONN_HIGH, 'all_13000': E['conn_base']}}
     # access
     acc = {}
     for name, kw in {'central': dict(), 'ride': dict(measure='ride'), 'no_choice': dict(choice=False), 'deep2': dict(deep=2.0), 'nord_hall': dict(hall='nord')}.items():

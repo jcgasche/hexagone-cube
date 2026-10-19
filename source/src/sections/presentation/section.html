@@ -16,10 +16,10 @@
     <div class="pz-flash">
       <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post=" min" data-d="0">{{ m.run_min | 0 }} min</b><span>to go from one Paris station to another</span></div>
       <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post=" min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }} min</b><span>on average to reach your TGV from anywhere in Paris, up to {{ pts.max_gain.station | 1 }} min less</span></div>
-      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>terminals rebuilt deep underground: the surface is freed</span></div>
+      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>terminals rebuilt fully underground, and Saint-Lazare extended underground</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>the area of the Buttes-Chaumont in new parks, in four great parks</span></div>
       <div class="pz-chip"><b data-count="{{ m.conn.central | 1 }}" data-post="M" data-d="1">{{ m.conn.central | 1 }}M</b><span>passengers a year who no longer cross Paris by metro between two trains</span></div>
-      <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>trips a day between suburbs on two sides of Paris on a through line, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>
+      <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>trips a day between suburbs that the new RER lines bring closer, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>
     </div>
     <div class="pz-trips" id="pz-trips" aria-label="Journeys across France, today with a change of station in Paris and with the project"></div>
     <a class="pz-scroll" href="#presentation.idea">See how it works</a>
@@ -47,8 +47,8 @@
         </div>
         <div class="pz-step" data-step="2" hidden>
           <h3>With TER and Transilien</h3>
-          <p>Regional express trains (TER) run in the TGV tunnels, in the gaps between the TGVs, and on to the other side of the country. The suburban Transilien lines become new RER lines, crossing Paris instead of ending there.</p>
-          <ul><li><b class="pz-ln g">G</b> RER G: today's lines P and N merge into one line, from the north and the east through Nord-Est and Châtelet-Les Halles to Montparnasse</li><li><b class="pz-ln f">F</b> RER F: today's lines L, H and K merge into one line, through Nord-Est and a deep Saint-Lazare to La Défense</li><li>The surface terminals close; their tracks become parks</li></ul>
+          <p>Regional express trains (TER) run in the TGV tunnels, in the gaps between the TGVs, and on through Paris to the regions beyond. The suburban Transilien lines become new RER lines, crossing Paris instead of ending there.</p>
+          <ul><li><b class="pz-ln g">G</b> RER G: today's lines P and N merge into one line, from the north-east and the east through Nord-Est and Châtelet-Les Halles to Montparnasse</li><li><b class="pz-ln f">F</b> RER F: today's lines L, H and K merge into one line, through Nord-Est and a deep Saint-Lazare to La Défense</li><li>The surface tracks close, apart from a few for line R at Gare de Lyon and line J at Saint-Lazare, and become parks</li></ul>
         </div>
         </div>
         <p class="pz-more"><a href="#project">The project in detail</a><a href="#why">Why Paris stops every train</a></p>
@@ -115,7 +115,7 @@
   <div class="pz-in">
     <p class="pz-kicker">The timetable</p>
     <h2 class="pz-h">One beat of {{ d.timetable.table.grid.params.slot | 0 }} minutes, the Swiss way</h2>
-    <p class="pz-lead">Every train stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Here is why the beat is 12 minutes, and below, the busiest hour the stations can take.</p>
+    <p class="pz-lead">Every TGV stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Here is why the beat is 12 minutes, and below, the most the stations could take, more than the plan needs.</p>
     <div class="pz-beat">
       <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }} min at the platform</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} reserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} to clear</span></div>
       <div class="pz-grid3">
@@ -178,16 +178,16 @@
     <p class="pz-lead">The jobs are on the far side of Paris. Two new RER lines take commuters there without a change.</p>
     <p class="pz-lead">The regional lines (TER) on either side are joined too, so the neighbouring regions work as one whole. People in the outer areas gain what Parisians gain: more direct links to the rest of France and to the other outer areas, so more choice of where to work and where to live.</p>
     <div class="pz-lines">
-      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G: lines P and N, merged</h3><p>From the north-east and east through Nord-Est and Châtelet-Les Halles to Montparnasse, and on to Massy, Saclay, Versailles and Saint-Quentin.</p></div></div>
+      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G: lines P and N, merged</h3><p>From the north-east and east through Nord-Est and Châtelet-Les Halles to Montparnasse, and on to Versailles and Saint-Quentin-en-Yvelines, with line 18 from Versailles to Saclay.</p></div></div>
       <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F: lines L, H and K, merged</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense.</p></div></div>
       <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Regional express trains</h3><p>In the TGV tunnels: from the north on to Montparnasse, from the east on to Gare de Lyon. None ends in Paris.</p></div></div>
     </div>
     <div class="pz-grid3">
       <div class="pz-stat good"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>suburb-to-suburb trips a day across Paris, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>
       <div class="pz-stat"><b data-count="{{ m.regional.new | 0 }}" data-pre="+" data-post="M" data-d="0">+{{ m.regional.new | 0 }}M</b><span>regional journeys a year</span></div>
-      <div class="pz-stat"><b data-count="{{ m.yearly.tgv_journeys | 0 }}" data-pre="+" data-post="M" data-d="0">+{{ m.yearly.tgv_journeys | 0 }}M</b><span>high-speed journeys a year</span></div>
+      <div class="pz-stat"><b data-count="{{ f.central.tgv.net_new | 1 }}" data-pre="+" data-post="M" data-d="1">+{{ f.central.tgv.net_new | 1 }}M</b><span>high-speed journeys a year, with the charge on new uses</span></div>
     </div>
-    <p class="pz-note">Fares stay as they are at the original stations.</p>
+    <p class="pz-note">Today's fares stay as they are; a small charge applies only to what is new: boarding at a second station, or crossing Paris on the train.</p>
     <p class="pz-more"><a href="#crossing.regional">Crossing Paris by regional train</a><a href="#economy.jobs">Jobs across Paris</a><a href="#project.networks">The networks in the tunnels</a></p>
   </div>
 </section>
@@ -225,8 +225,8 @@
           <div class="good"><span>Each year it gives back</span><b>€{{ d.french.study.central.benefit_total | 2 }}bn</b><i style="--w: 100%"></i><small>time saved, comfort, jobs, parks, cleaner air: {{ d.french.study.central.cover | pct }} of the cost</small></div>
         </div>
         <ul class="pz-ticks">
-          <li><b>Fully financed.</b> Its own income covers {{ f.central.ops_cover | pct }} of the running costs; building is paid by a regional business tax package and a grant of €{{ f.central.grant_bn | 1 }}bn, {{ f.central.grant_share | pct }} of the cost.</li>
-          <li><b>A return for the country.</b> +€{{ d.french.cases.central.npv | 1 }}bn net in today's money under the French rules, at the State's {{ d.french.params.rate | pct1 }} rate: {{ d.french.cases.central.ratio | 2 }} euros back for each euro.</li>
+          <li><b>Running fully financed.</b> Its own income covers {{ f.central.ops_cover | pct }} of the running costs. Building is paid by a regional business tax package and a grant of €{{ f.central.grant_bn | 1 }}bn from the State, the Region and the City, {{ f.central.grant_share | pct }} of the cost, and the benefits give the country back the yearly cost and {{ d.french.study.central.cover - 1 | pct }} more.</li>
+          <li><b>A return for the country.</b> +€{{ d.french.cases.central.npv | 1 }}bn net in today's money under the French rules, at the State's {{ d.french.params.rate | pct1 }} rate: {{ d.french.cases.central.ratio | 2 }} euros of benefits for each euro of cost, running included.</li>
           <li><b>Paid back by {{ d.french.timeline.break_even | str }}.</b> Public budgets also get about €{{ f.central.tax_total | m }} million a year back in taxes.</li>
         </ul>
       </div>

@@ -1,4 +1,4 @@
-<!-- en: 34381d8823 -->
+<!-- en: 8b9439b089 -->
 <div class="pz">
 <nav class="pz-dots" id="pz-dots" aria-label="Parties de la présentation"></nav>
 
@@ -17,10 +17,10 @@
     <div class="pz-flash">
       <div class="pz-chip"><b data-count="{{ m.run_min | 0 }}" data-post="&nbsp;min" data-d="0">{{ m.run_min | 0 }}&nbsp;min</b><span>pour relier une gare de Paris à une autre</span></div>
       <div class="pz-chip"><b data-count="{{ pts.avg.today - pts.avg.station | 1 }}" data-pre="-" data-post="&nbsp;min" data-d="1">-{{ pts.avg.today - pts.avg.station | 1 }}&nbsp;min</b><span>en moyenne pour rejoindre son TGV depuis n’importe où dans Paris, jusqu’à {{ pts.max_gain.station | 1 }}&nbsp;min de moins</span></div>
-      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites entièrement sous terre&nbsp;: la surface est libérée</span></div>
+      <div class="pz-chip"><b data-count="3" data-d="0">3</b><span>gares terminus reconstruites entièrement sous terre, et Saint-Lazare agrandie sous terre</span></div>
       <div class="pz-chip"><b data-count="{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}" data-post="×" data-d="1">{{ d.french.parks.central.ha / d.presentation.buttes_chaumont_ha | 1 }}×</b><span>la surface des Buttes-Chaumont en nouveaux espaces verts, répartis en quatre grands parcs</span></div>
       <div class="pz-chip"><b data-count="{{ m.conn.central | 1 }}" data-post="&nbsp;M" data-d="1">{{ m.conn.central | 1 }}&nbsp;M</b><span>de voyageurs par an qui ne traversent plus Paris en métro entre deux trains</span></div>
-      <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour de banlieue à banlieue, de part et d’autre de Paris, sur une ligne traversante, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
+      <div class="pz-chip"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour entre des banlieues que les nouveaux RER rapprochent, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
     </div>
     <div class="pz-trips" id="pz-trips" aria-label="Trajets à travers la France, aujourd’hui avec un changement de gare à Paris et avec le projet"></div>
     <a class="pz-scroll" href="#presentation.idea">Voir comment ça marche</a>
@@ -48,8 +48,8 @@
         </div>
         <div class="pz-step" data-step="2" hidden>
           <h3>Avec TER et Transilien</h3>
-          <p>Les TER circulent dans les tunnels TGV, dans les intervalles entre les TGV, et poursuivent vers l’autre côté du pays. Les lignes Transilien deviennent de nouvelles lignes de RER, qui traversent Paris au lieu de s’y arrêter.</p>
-          <ul><li><b class="pz-ln g">G</b> RER G&nbsp;: les lignes P et N d’aujourd’hui fusionnent en une seule ligne, du nord et de l’est via Nord-Est et Châtelet-Les Halles jusqu’à Montparnasse</li><li><b class="pz-ln f">F</b> RER F&nbsp;: les lignes L, H et K d’aujourd’hui fusionnent en une seule ligne, via Nord-Est et une nouvelle gare souterraine à Saint-Lazare jusqu’à La Défense</li><li>Les gares terminus de surface ferment&nbsp;; leurs voies deviennent des parcs</li></ul>
+          <p>Les TER circulent dans les tunnels TGV, dans les intervalles entre les TGV, et poursuivent au-delà de Paris vers les régions voisines. Les lignes Transilien deviennent de nouvelles lignes de RER, qui traversent Paris au lieu de s’y arrêter.</p>
+          <ul><li><b class="pz-ln g">G</b> RER G&nbsp;: les lignes P et N d’aujourd’hui fusionnent en une seule ligne, du nord-est et de l’est via Nord-Est et Châtelet-Les Halles jusqu’à Montparnasse</li><li><b class="pz-ln f">F</b> RER F&nbsp;: les lignes L, H et K d’aujourd’hui fusionnent en une seule ligne, via Nord-Est et une nouvelle gare souterraine à Saint-Lazare jusqu’à La Défense</li><li>Les voies de surface ferment, sauf quelques-unes pour la ligne R à la gare de Lyon et la ligne J à Saint-Lazare, et deviennent des parcs</li></ul>
         </div>
         </div>
         <p class="pz-more"><a href="#project">Le projet en détail</a><a href="#why">Pourquoi Paris arrête tous les trains</a></p>
@@ -116,7 +116,7 @@
   <div class="pz-in">
     <p class="pz-kicker">L’horaire</p>
     <h2 class="pz-h">Une cadence de {{ d.timetable.table.grid.params.slot | 0 }}&nbsp;minutes, à la suisse</h2>
-    <p class="pz-lead">Chaque train s’arrête {{ d.timetable.table.grid.params.stop | 0 }}&nbsp;minutes, aux mêmes minutes chaque heure, dans les trois gares. Voici pourquoi la cadence est de 12&nbsp;minutes, et plus bas, l’heure la plus chargée que les gares peuvent accueillir.</p>
+    <p class="pz-lead">Chaque TGV s’arrête {{ d.timetable.table.grid.params.stop | 0 }}&nbsp;minutes, aux mêmes minutes chaque heure, dans les trois gares. Voici pourquoi la cadence est de 12&nbsp;minutes, et plus bas, le maximum que les gares pourraient accueillir, plus que ce que le plan demande.</p>
     <div class="pz-beat">
       <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }}&nbsp;min à quai</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} de réserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} pour libérer</span></div>
       <div class="pz-grid3">
@@ -179,16 +179,16 @@
     <p class="pz-lead">Les emplois sont de l’autre côté de Paris. Deux nouvelles lignes de RER y conduisent sans changement.</p>
     <p class="pz-lead">Les lignes de TER de part et d’autre de l’axe sont connectées afin d’inscrire les régions avoisinantes dans un ensemble. Les habitants de la périphérie gagnent les mêmes avantages que les Parisiens&nbsp;: plus de liaisons directes vers le reste de la France et vers les autres régions périphériques, ce qui se traduit par de meilleures possibilités d’arbitrage entre emplois et logements.</p>
     <div class="pz-lines">
-      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est et Châtelet-Les Halles, jusqu’à Montparnasse, puis vers Massy, Saclay, Versailles et Saint-Quentin.</p></div></div>
+      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est et Châtelet-Les Halles, jusqu’à Montparnasse, puis vers Versailles et Saint-Quentin-en-Yvelines, avec la ligne 18 de Versailles à Saclay.</p></div></div>
       <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à une nouvelle gare souterraine à Saint-Lazare, puis vers Clichy-Levallois, Courbevoie et La Défense.</p></div></div>
       <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV&nbsp;: depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris.</p></div></div>
     </div>
     <div class="pz-grid3">
       <div class="pz-stat good"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour de banlieue à banlieue à travers Paris, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
       <div class="pz-stat"><b data-count="{{ m.regional.new | 0 }}" data-pre="+" data-post="&nbsp;M" data-d="0">+{{ m.regional.new | 0 }}&nbsp;M</b><span>de trajets régionaux par an</span></div>
-      <div class="pz-stat"><b data-count="{{ m.yearly.tgv_journeys | 0 }}" data-pre="+" data-post="&nbsp;M" data-d="0">+{{ m.yearly.tgv_journeys | 0 }}&nbsp;M</b><span>de trajets à grande vitesse par an</span></div>
+      <div class="pz-stat"><b data-count="{{ f.central.tgv.net_new | 1 }}" data-pre="+" data-post="&nbsp;M" data-d="1">+{{ f.central.tgv.net_new | 1 }}&nbsp;M</b><span>de trajets à grande vitesse par an, avec la redevance sur les nouveaux usages</span></div>
     </div>
-    <p class="pz-note">Les tarifs restent les mêmes depuis les gares d’origine.</p>
+    <p class="pz-note">Les tarifs d’aujourd’hui restent les mêmes&nbsp;; une petite redevance ne s’applique qu’à ce qui est nouveau&nbsp;: monter dans une seconde gare, ou traverser Paris en train.</p>
     <p class="pz-more"><a href="#crossing.regional">Traverser Paris en train régional</a><a href="#economy.jobs">L’emploi à travers Paris</a><a href="#project.networks">Les réseaux dans les tunnels</a></p>
   </div>
 </section>
@@ -226,8 +226,8 @@
           <div class="good"><span>Chaque année, il rapporte</span><b>{{ d.french.study.central.benefit_total | 2 }}&nbsp;Md€</b><i style="--w: 100%"></i><small>temps gagné, confort, emploi, parcs, air plus pur&nbsp;: {{ d.french.study.central.cover | pct }} du coût</small></div>
         </div>
         <ul class="pz-ticks">
-          <li><b>Entièrement financé.</b> Ses propres recettes couvrent {{ f.central.ops_cover | pct }} des coûts d’exploitation&nbsp;; la construction est payée par un bouquet de taxes régionales sur les entreprises et une subvention de {{ f.central.grant_bn | 1 }}&nbsp;Md€, soit {{ f.central.grant_share | pct }} du coût.</li>
-          <li><b>Un rendement pour le pays.</b> +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui selon les règles françaises d’évaluation, au taux de l’État de {{ d.french.params.rate | pct1 }}&nbsp;: {{ d.french.cases.central.ratio | 2 }}&nbsp;euros rendus pour chaque euro.</li>
+          <li><b>Exploitation entièrement financée.</b> Ses propres recettes couvrent {{ f.central.ops_cover | pct }} des coûts d’exploitation. La construction est payée par un bouquet de taxes régionales sur les entreprises et une subvention de {{ f.central.grant_bn | 1 }}&nbsp;Md€ de l’État, de la Région et de la Ville, soit {{ f.central.grant_share | pct }} du coût, et les avantages rendent au pays le coût annuel et {{ d.french.study.central.cover - 1 | pct }} de plus.</li>
+          <li><b>Un rendement pour le pays.</b> +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui selon les règles françaises d’évaluation, au taux de l’État de {{ d.french.params.rate | pct1 }}&nbsp;: {{ d.french.cases.central.ratio | 2 }}&nbsp;euros d’avantages pour chaque euro de coût, exploitation comprise.</li>
           <li><b>Remboursé en {{ d.french.timeline.break_even | str }}.</b> Les budgets publics récupèrent aussi environ {{ f.central.tax_total | m }}&nbsp;M€ par an en impôts.</li>
         </ul>
       </div>

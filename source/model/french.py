@@ -47,7 +47,8 @@ EUR2015 = 1.22               # euros of 2026 per euro of 2015 (ASSUMPTION: consu
 CARBON_2015 = {2018: 53, 2030: 246, 2040: 491, 2050: 763, 2060: 1184}      # euros of 2015 a tonne, flat after 2060
 
 # ------------------------------------------------------------------ the full service level and busy-hour capacity
-PATHS_TODAY, PATHS_REF, PATHS_PROJ = 36.0, 39.5, 46.0     # TGV paths each way in the busy hour: today, without the project, with it
+PATHS_TODAY, PATHS_REF, PATHS_PROJ = 34.0, 39.5, 46.0     # TGV paths each way in the busy hour, as the timetable chapter gives them: today (Montparnasse 9, Gare de Lyon 13, Nord and Est 12),
+                                                          # without the project once planned works are done (11, 16, 12 to 13), with it (15, 16, 15)
 PEAK_SHARE = 0.5             # share of TGV journeys in the hours that run full (ASSUMPTION: about 5 to 6 hours a weekday)
 CAP_VALUE = 20.0             # euros a journey the network cannot carry in the busy hours without the project (ASSUMPTION; 15 to 40)
 CAP_LOST = 0.5               # share of those journeys lost rather than moved to another hour (ASSUMPTION)
@@ -97,7 +98,7 @@ P = {
  'build_co2': (1.0, 1.4, 2.3),                                # Mt CO2e of the works
 }
 LEVELS = ('low', 'central', 'high')
-PARK_SHARE, PLOT_SHARE = 0.80, 0.15      # of the freed hectares: parks, and the small plots kept for building; the rest is streets and edges (ASSUMPTION, the plan)
+PARK_SHARE, PLOT_SHARE = 0.85, 0.15      # of the freed hectares: parks, paths included, and the small plots kept for building (ASSUMPTION, the plan; Charles, 19 Oct)
 PARK_OPEN, PARK_MAKE_YEARS = 2043, (2040, 2042)      # the surface tracks are cleared in the three years after opening, the parks open after (ASSUMPTION)
 VISIT_VALUE = 3.3            # euros of welfare a visit to an urban park (ORVal, University of Exeter: about 2.8 pounds; derived)
 FARE_DOM, FARE_LON = 80.0, 130.0      # average rail fare of a cross-France or London journey, euros (ASSUMPTION)
@@ -173,7 +174,7 @@ COSTS = OFFICIAL[:4]
 CONSTRUCTION, RENEWAL, RUNNING, EXTRA_TRAINS = COSTS
 TGV_REGION, TGV_CROSS, CAPACITY, REG_PARIS, CORRIDOR, TER_CROSS, COMFORT, PRODUCERS, TRAINSETS, TERMINALS, CARBON_CAR, ROADS, COFP_ITEM = OFFICIAL[4:17]
 JOB_USERS = 'Commuters who gain a through suburban line across Paris'
-PLOTS, PARKS = 'Building plots at the edge of the freed tracks, sold', 'Three new parks on the freed tracks'
+PLOTS, PARKS = 'Building plots at the edge of the freed tracks, sold', 'Four new parks on the freed tracks'
 G_STOP_ITEM, G_CROWD = 'RER G stops at Châtelet-Les Halles: easier changes to RER A, B, D and five metro lines', 'Less crowding on line 4 and the metro and RER in Paris, relieved by RER G'
 CROWD, RESIGNAL, NOISE = 'Less crowding on the metro and RER legs no longer ridden', 'Signal boxes of the surface approaches not renewed', 'Less rail noise along the approaches that close'
 BYPASS_ITEM, AIR_USERS, FRANCE_FARES = 'Travellers of the western bypass trains: more trains, shorter routes', 'Travellers who leave the plane for a through train', 'Fares of the new cross-France journeys kept by the railway'
@@ -267,12 +268,15 @@ def model_figures():
     sys_cost = C['items']['Tunnels, rail systems'] * (1 + N.RATE['design'] + N.RATE['client']) * (1 + N.RATE['risk'])
     ter_users = sum(N.TER.values()); ter_cross_today = ter_users * N.TER_THROUGH_SHARE
     ter_cross_new = Y['through_ter'] - ter_cross_today
-    ter_saving = 35.0 * 1.5 - N.TR['M']                          # today's change across Paris weighted 1.5, less the 7-minute ride
+    ter_saving = 35.0 * 1.5 - (N.TR_TER['M'] + N.TER_STOP)       # today's change across Paris weighted 1.5, less the through ride: both 5-minute stops and the 6-minute run, as for the TGV
     return {'Y': Y, 'A': A, 'cost': C['total'], 'cost_low': CL['total'], 'cost_high': CH['total'], 'hard': C['hard'], 'items': C['items'],
             'tunnel_km': C['tunnel_km'], 'platform_m': C['platform_total'], 'tracks': C['tracks_total'], 'systems': sys_cost,
             'om_infra': Y['om_infra'], 'om_trains': Y['om_trains'],
-            'tgv_access': Y['tgv_access_benefit'], 'tgv_cross': Y['tgv_conn_benefit'], 'tgv_new': Y['tgv_journeys'], 'tgv_revenue': Y['tgv_revenue'],
-            'rev_paris': Y['tgv_access_journeys'] * N.FARE / 1000, 'rev_cross_one': Y['tgv_conn_journeys'] * N.FARE / 1000,
+            # TGV travellers as they respond to the charge on new uses (finance.py): the time they save, and the new journeys left once
+            # the charge holds some back; the charge itself passes from travellers to the project and is no gain for the country
+            'tgv_access': A['benefits']['Time saved by TGV passengers from the Paris region'], 'tgv_cross': A['benefits']['Time saved by TGV passengers crossing Paris'],
+            'tgv_new': A['tgv']['net_new'], 'tgv_new_before_charge': Y['tgv_journeys'], 'tgv_revenue': Y['tgv_revenue'],
+            'rev_paris': A['tgv']['new_paris'] * N.FARE / 1000, 'rev_cross_one': A['tgv']['new_cross'] * N.FARE / 1000,
             'reg_paris': reg['paris_benefit'], 'reg_cross_model': reg['cross_benefit'], 'comfort': Y['comfort'], 'wider_model': Y['wider'],
             'ter_cross': (ter_cross_today * ter_saving / 60 + ter_cross_new * ter_saving / 120) * N.VOT_TER / 1000,
             'new_reg': Y['reg_journeys'], 'ops_rev': A['ops_rev_total'], 'ops_rev_items': A['ops_rev'], 'tax': A['tax'],
@@ -515,7 +519,7 @@ HOURLY_DAY = 16
 
 
 def parks(L):
-    """The three parks on the freed tracks: hectares, value of the visits and of health a year, cost to make and keep (bn)."""
+    """The four parks on the freed tracks: hectares, value of the visits and of health a year, cost to make and keep (bn)."""
     ha = P['freed_ha'][L] * PARK_SHARE
     visits = ha * P['park_visits_ha'][L]
     value = visits * P['park_new_share'][L] * VISIT_VALUE * (1 + P['park_health'][L]) / 1e9
@@ -551,7 +555,7 @@ def added_streams(m, L, o):
             z[FRANCE_FARES] = fr['fares'] * fld
             z[AIR_CO2] = fr['air_t'] * carbon(t) * air_decarb(t) * fld
             z[CAR_FRANCE] = (fr['car_t'] * car_decarb(t, o.get('ame')) * carbon(t) + fr['car_km'] * ROAD_EXT * EUR2015 / 1e9) * fld
-            z[TIMETABLE] = N.HS_TERMINALS * P['timetable_min'][L] / 60 * N.VOT_LD / 1000 * fld * vot
+            z[TIMETABLE] = (N.HS_TERMINALS - N.CONN) * P['timetable_min'][L] / 60 * N.VOT_LD / 1000 * fld * vot      # each TGV journey once: one who changes station today passes two terminals
             z[MARGIN] = dep * P['margin_min'][L] / 60 * 1.5 * N.VOT_LD / 1000 * fld * vot
             z[W_AGGLO] = P['jobs_agglo'][L] * fsd * gdp * flu
             z[W_LABOUR] = P['jobs_labour'][L] * fsd * vot * flu
@@ -728,7 +732,7 @@ def main():
                       'fare_dom': FARE_DOM, 'fare_lon': FARE_LON, 'user_gain_air': USER_GAIN_AIR, 'air_kg_pkm': AIR_KG_PKM, 'crowd_pen': CROWD_PEN, 'peak': PEAK, 'external': EXTERNAL,
                       'x_today': X_TODAY, 'x_proj': X_PROJ, 'land_years': LAND_YEARS, 'resignal_year': RESIGNAL_YEAR, 'landuse_years': 20,
                       'bypass_2009': BYPASS_2009, 'tgv_2009': TGV_2009, 'tgv_now': TGV_NOW, 'proj_per_day': PROJ_PER_DAY, 'displace_cap': DISPLACE_CAP, 'gc_elast': GC_ELAST,
-                      'air_door': AIR_DOOR, 'share_curve': SHARE_CURVE, 'cities': len(CITIES), 'track_share': N.TRACK_SHARE, 'fare': N.FARE, 'hs_terminals': N.HS_TERMINALS,
+                      'air_door': AIR_DOOR, 'share_curve': SHARE_CURVE, 'cities': len(CITIES), 'track_share': N.TRACK_SHARE, 'fare': N.FARE, 'hs_terminals': N.HS_TERMINALS, 'tgv_journeys': N.HS_TERMINALS - N.CONN,
                       'vot': {'long_distance': N.VOT_LD, 'regional_express': N.VOT_TER, 'paris_region': N.VOT_IDF},
                       'crowding': crowding(m)[1], 'departures': (N.HS_TERMINALS - 2 * N.CONN) / 2, 'tgv_agglo_first_year': {str(e): tgv_agglo(e) for e in P['tgv_elast']}},
            'names': {'official': OFFICIAL, 'added': ADDED, 'borrowed': list(BORROWED), 'wider': WIDER_ADDED, 'once': ONCE, 'costs': COSTS, 'france': FRANCE_ITEMS,
