@@ -21,7 +21,9 @@
   "less on each journey, no change in Paris": "de moins sur chaque trajet, sans changement à Paris",
   "Today, with a change": "Temps actuel avec changement",
   "Through train": "Train traversant",
-  "No change in Paris": "Sans changement à Paris"
+  "No change in Paris": "Sans changement à Paris",
+  "With the project and more trains": "Avec le projet et plus de trains",
+  "1 / h": "1 / h"
  },
  "patterns": [
   [
@@ -31,6 +33,10 @@
   [
    "{0} to {1} min",
    "{0} à {1} min"
+  ],
+  [
+   "a direct train every hour between every two of the six directions, with {0} to {1} more trainsets",
+   "un train direct toutes les heures entre deux quelconques des six directions, avec {0} à {1} rames de plus"
   ]
  ]
 }

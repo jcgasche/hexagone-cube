@@ -13,7 +13,11 @@ usual times) plus a margin of 15 minutes to make the train (ASSUMPTION).
 With the project, the same number of high-speed trains as today: each line keeps today's trains to and from Paris (R), and they run
 through, shared between the other lines as the timetable's hour shares its places (src/sections/timetable/data.json, about today's
 traffic), scaled so that every line keeps its own count. A through train from line X to line Y serves the cities that today's trains
-of each line serve, in the same proportions (P). Today's direct trains round Paris keep running."""
+of each line serve, in the same proportions (P). Today's direct trains round Paris keep running.
+
+With more trains: at least one direct train an hour, all day (16 a day), between every two of the six directions, Lille, Strasbourg,
+the south-east (a train serving Lyon and Marseille), Bordeaux, Rennes and Nantes; Dijon, off the high-speed line, every other hour
+(ASSUMPTION). Pairs that already get more keep them."""
 import csv, json, os, statistics, sys, collections
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -27,12 +31,15 @@ MOVE = {('Nord', 'Est'): 10, ('Nord', 'Lyon'): 22, ('Nord', 'Montparnasse'): 33,
         ('Lyon', 'Montparnasse'): 30, ('Lyon', 'Austerlitz'): 12, ('Lyon', 'Saint-Lazare'): 20, ('Lyon', 'Bercy'): 8,
         ('Montparnasse', 'Austerlitz'): 22, ('Montparnasse', 'Saint-Lazare'): 20, ('Montparnasse', 'Bercy'): 30,
         ('Austerlitz', 'Saint-Lazare'): 25, ('Austerlitz', 'Bercy'): 15, ('Saint-Lazare', 'Bercy'): 25}
-PAIRS = [('Lille', 'Bordeaux'), ('Bordeaux', 'Strasbourg'), ('Lille', 'Lyon'), ('Lille', 'Marseille'), ('Rennes', 'Lyon'), ('Rennes', 'Strasbourg'), ('Nantes', 'Strasbourg'),
+PAIRS = [('Lille', 'Rennes'), ('Lille', 'Bordeaux'), ('Bordeaux', 'Strasbourg'), ('Lille', 'Lyon'), ('Lille', 'Marseille'), ('Rennes', 'Lyon'), ('Rennes', 'Strasbourg'), ('Nantes', 'Strasbourg'),
          ('Rennes', 'Dijon'), ('Bordeaux', 'Lyon'), ('Nantes', 'Lyon'), ('Nantes', 'Marseille'), ('Lille', 'Nantes'), ('Lyon', 'Strasbourg')]
 FIRST, LAST = 5 * 60, 21 * 60
 TERMINAL = {'N': '87271007', 'E': '87113001', 'S': '87686006', 'A': '87391003'}          # today's terminal of each high-speed line
 LINE = {'Lille': 'N', 'Strasbourg': 'E', 'Lyon': 'S', 'Marseille': 'S', 'Dijon': 'S', 'Bordeaux': 'A', 'Rennes': 'A', 'Nantes': 'A'}
 HIGH_SPEED = ('TGV', 'OUIGO', 'ICE', 'Lyria')
+HOURLY = 16                                   # an hourly train over the service day
+DIRECTIONS = {'Lille': 'Lille', 'Strasbourg': 'Strasbourg', 'Lyon': 'South-east', 'Marseille': 'South-east', 'Dijon': 'Dijon',
+              'Bordeaux': 'Bordeaux', 'Rennes': 'Rennes', 'Nantes': 'Nantes'}
 
 
 def load(folder, date):
@@ -57,6 +64,7 @@ def through_trains(trips):
         R[L] = (len(out) + len(inn)) / 2
         for c, l in LINE.items():
             if l == L: P[c] = sum(1 for t in out if {x[0] for x in trips[t]} & CITY[c]) / len(out)
+        if L == 'S': P['South-east'] = sum(1 for t in out if {x[0] for x in trips[t]} & (CITY['Lyon'] | CITY['Marseille'])) / len(out)
     tt = json.load(open(os.path.join(HERE, '..', 'src', 'sections', 'timetable', 'data.json')))['table']['grid']['timetables']['today']['trains']
     slot = collections.Counter(''.join(sorted((t['from'], t['to']))) for t in tt if not t.get('london'))
     f = {L: 1.0 for L in R}
@@ -109,9 +117,24 @@ def main():
         m = {k: (None if any(x[k] is None for x in both) else round(sum(x[k] for x in both) / 2, 1)) for k in both[0]}
         m['through_day'] = round(T.get(''.join(sorted(LINE[a] + LINE[b])), 0.0) * P[a] * P[b], 1)
         m['project_direct_day'] = round(m['direct_day'] + m['through_day'], 1)
+        need = HOURLY / 2 if 'Dijon' in (a, b) else HOURLY
+        m['through_more_day'] = round(max(m['through_day'], need), 1)
+        m['more_direct_day'] = round(m['direct_day'] + m['through_more_day'], 1)
         out['pairs'][f'{a}-{b}'] = m; gaps.append(m['in_paris_min'])
         print(f"{a}-{b}: {m}")
     out['in_paris_median_min'] = statistics.median(gaps)
+    # the extra trains a day each way, by pair of directions: what the hourly train needs beyond today's trains run through
+    LINE['South-east'] = 'S'; extra = {}
+    dirs = ['Lille', 'Strasbourg', 'South-east', 'Bordeaux', 'Rennes', 'Nantes']
+    for i, a in enumerate(dirs):
+        for b in dirs[i + 1:]:
+            k = ''.join(sorted(LINE[a] + LINE[b]))
+            if k not in T: continue                        # north to east: no through train
+            same = T[k] * P[a] * P[b]
+            rep_a, rep_b = ('Lyon' if a == 'South-east' else a), ('Lyon' if b == 'South-east' else b)
+            key = f'{rep_a}-{rep_b}' if f'{rep_a}-{rep_b}' in out['pairs'] else f'{rep_b}-{rep_a}'
+            extra[f'{a}-{b}'] = {'same_day': round(same, 1), 'extra_day': round(max(0.0, HOURLY - same), 1), 'legs_min': out['pairs'][key]['legs_min']}
+    out['more_trains'] = extra
     out['through_trains_day'] = {k: round(v, 1) for k, v in T.items()}; out['radial_trains_day'] = R; out['city_share'] = {k: round(v, 3) for k, v in P.items()}
     json.dump(out, open(f'{HERE}/inputs/paris_crossing.json', 'w'), indent=1)
     print('time in Paris between the two trains, median of the pairs:', out['in_paris_median_min'])

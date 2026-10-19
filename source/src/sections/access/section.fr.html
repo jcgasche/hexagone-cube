@@ -1,4 +1,4 @@
-<!-- en: 2a3582c716 -->
+<!-- en: 020d44cbc5 -->
 <p class="lede">Depuis un point moyen de Paris, une gare où s’arrête votre TGV, le train à grande vitesse français, est aujourd’hui à {{ pts.avg.today | 1 }} minutes en transports en commun. Avec les trois gares traversantes, il faut {{ pts.avg.station | 1 }} minutes jusqu’à l’entrée de la gare la plus proche où le train s’arrête, la mesure retenue pour les avantages des voyageurs du TGV, ou {{ pts.avg.ride | 1 }} minutes si l’on compte les {{ m.TH_ACCESS.L | 0 }} minutes de trajet du train entre ses arrêts parisiens et que le voyageur choisit un train qui dessert sa meilleure gare. Les gares restent où elles sont et le projet ne fait qu’ajouter des lieux où monter à bord&nbsp;: aucun point de Paris n’est plus loin de son train qu’aujourd’hui, quelle que soit la direction.</p>
 
 <div class="block" id="access.map">
@@ -8,7 +8,7 @@
   <div class="tiles" role="group" aria-label="Ce que montre la carte">
     <button class="tile" type="button" id="access-t-today" style="--tc: var(--today)" aria-pressed="false"><span class="n" id="access-n-today"></span><span class="k">Aujourd’hui</span><span class="d">Temps moyen jusqu’à l’unique terminus qui dessert votre direction</span></button>
     <button class="tile" type="button" id="access-t-project" style="--tc: var(--accent)" aria-pressed="false"><span class="n" id="access-n-project"></span><span class="k">Avec le projet</span><span class="d" id="access-d-project">Temps moyen jusqu’à la gare la plus proche où s’arrête votre train</span></button>
-    <button class="tile" type="button" id="access-t-saved" style="--tc: var(--good)" aria-pressed="true"><span class="n" id="access-n-saved"></span><span class="k">Minutes gagnées</span><span class="d">En moyenne sur Paris, toutes directions confondues&nbsp;; aucune adresse n’est plus loin de son train qu’aujourd’hui</span></button>
+    <button class="tile" type="button" id="access-t-saved" style="--tc: var(--good)" aria-pressed="true"><span class="n" id="access-n-saved"></span><span class="k">Minutes gagnées</span><span class="d">Toutes les adresses de Paris réduisent leur temps de trajet jusqu’à la gare</span></button>
   </div>
 
   <div class="controls">

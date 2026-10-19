@@ -312,3 +312,7 @@ body[data-page="presentation"] .menu-btn { display: none }
 .pz-beat-bar span.r { background: #ffc24b } .pz-beat-bar span.c { background: rgba(255,255,255,.18); color: #fff }
 .pz-beat .pz-stat span { font-size: 14px }
 .pz-beat .pz-stat b { font-size: clamp(22px, 2.2vw, 30px) }
+
+.pz-frq { grid-template-columns: repeat(2, minmax(0, 1fr)) }
+.pz-frq > div.more b { color: #3fe0a5 }
+.pz-bar > em b.today { color: #fff }

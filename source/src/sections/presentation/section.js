@@ -471,11 +471,13 @@ PTS.section('presentation', function (root) {
     const host = $('#pz-fr-bars'), max = Math.max.apply(0, pairs.map(function (p) { return p.via; }));
     const withDirect = pairs.filter(function (p) { return p.direct_day >= 0.5; }).map(function (p) { return p.project_direct_day / p.direct_day; }).sort(function (a, b) { return a - b; });
     const mid = withDirect.length % 2 ? withDirect[(withDirect.length - 1) / 2] : (withDirect[withDirect.length / 2 - 1] + withDirect[withDirect.length / 2]) / 2;
+    const MT = D.french.more_trains;
     const fresh = pairs.filter(function (p) { return p.direct_day < 0.5 && p.project_direct_day >= 0.5; }).length;
     const saved = pairs.map(function (p) { return p.via - p.project_min; });
     host.appendChild(h('div', { class: 'pz-frq' },
       h('div', null, h('b', { text: '×' + F.n(mid, 1) }), h('span', { text: 'direct trains between these cities, with the same number of trains as today' })),
       h('div', null, h('b', { text: F.n(fresh, 0) }), h('span', { text: 'new direct links, with no more trains' })),
+      h('div', { class: 'more' }, h('b', { text: '1 / h' }), h('span', { text: 'a direct train every hour between every two of the six directions, with ' + F.n(MT.sets_low, 0) + ' to ' + F.n(MT.sets_high, 0) + ' more trainsets' })),
       h('div', null, h('b', { text: F.n(Math.min.apply(0, saved), 0) + ' to ' + F.n(Math.max.apply(0, saved), 0) + ' min' }), h('span', { text: 'less on each journey, no change in Paris' }))));
     host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, with a change of station in Paris'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'Through train')));
     const head = h('b', { text: 'Today, with a change' });
@@ -488,16 +490,17 @@ PTS.section('presentation', function (root) {
       return { row: row, t: t, q: q, b: b, f: f, p: p };
     });
     const hi = function (i) { arcs.forEach(function (a, k) { a.el.style.opacity = i < 0 || k === i ? 1 : 0.15; }); rows.forEach(function (r, k) { r.row.classList.toggle('hi', k === i); }); };
-    auto($('#pz-fr-toggle'), [['today', 'Today'], ['project', 'With the project']], 4000, function (v) {
-      const now = v === 'today';
-      arcs.forEach(function (a) { a.el.setAttribute('stroke', now ? '#ff7a59' : '#44d7ff'); a.el.setAttribute('filter', now ? '' : glow); a.el.setAttribute('stroke-dasharray', now ? '5 6' : ''); });
+    auto($('#pz-fr-toggle'), [['today', 'Today'], ['project', 'With the project'], ['more', 'With the project and more trains']], 5000, function (v) {
+      const now = v === 'today', more = v === 'more';
+      arcs.forEach(function (a) { a.el.setAttribute('stroke', now ? '#ff7a59' : more ? '#3fe0a5' : '#44d7ff'); a.el.setAttribute('stroke-width', more ? 4 : 2.5); a.el.setAttribute('filter', now ? '' : glow); a.el.setAttribute('stroke-dasharray', now ? '5 6' : ''); });
       hub.setAttribute('fill', now ? 'rgba(255,122,89,.25)' : 'rgba(68,215,255,.2)'); hub.setAttribute('stroke', now ? '#ff7a59' : '#44d7ff'); hubX.style.opacity = now ? 1 : 0;
       rows.forEach(function (r) {
         r.t.style.width = (r.p.via / max * 100) + '%';
         r.q.style.width = now ? '0%' : (r.p.project_min / max * 100) + '%';
         r.b.innerHTML = now ? hm(r.p.via) : hm(r.p.project_min) + ' <small>-' + F.n(r.p.via - r.p.project_min, 0) + ' min</small>';
         r.b.style.color = now ? '#fff' : '#3fe0a5';
-        r.f.innerHTML = '<s>' + F.n(r.p.direct_day, 0) + '</s> <b>' + F.n(r.p.project_direct_day, 0) + '</b> <small>(+' + F.n(r.p.project_direct_day - r.p.direct_day, 0) + ')</small>';
+        const n = more ? r.p.more_direct_day : r.p.project_direct_day;
+        r.f.innerHTML = now ? '<b class="today">' + F.n(r.p.direct_day, 0) + '</b>' : '<s>' + F.n(r.p.direct_day, 0) + '</s> <b>' + F.n(n, 0) + '</b> <small>(+' + F.n(n - r.p.direct_day, 0) + ')</small>';
         head.textContent = now ? 'Today, with a change' : 'With the project';
       });
     });

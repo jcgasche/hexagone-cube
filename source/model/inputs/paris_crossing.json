@@ -2,6 +2,19 @@
  "_note": "SNCF timetable (open data, GTFS), 2026-03-17, departures 05:00 to 21:00; medians of the journeys a passenger would choose. Each figure is the mean of the two directions. model/paris_crossing.py",
  "date": "20260317",
  "pairs": {
+  "Lille-Rennes": {
+   "journeys_day": 11.0,
+   "direct_day": 2.0,
+   "via_paris_day": 10.0,
+   "via_paris_min": 241.8,
+   "in_paris_min": 66.0,
+   "legs_min": 167.0,
+   "direct_min": 228.8,
+   "through_day": 3.5,
+   "project_direct_day": 5.5,
+   "through_more_day": 16,
+   "more_direct_day": 18.0
+  },
   "Lille-Bordeaux": {
    "journeys_day": 12.5,
    "direct_day": 2.5,
@@ -11,7 +24,9 @@
    "legs_min": 199.2,
    "direct_min": 305.2,
    "through_day": 4.4,
-   "project_direct_day": 6.9
+   "project_direct_day": 6.9,
+   "through_more_day": 16,
+   "more_direct_day": 18.5
   },
   "Bordeaux-Strasbourg": {
    "journeys_day": 11.5,
@@ -22,7 +37,9 @@
    "legs_min": 241.2,
    "direct_min": 350.5,
    "through_day": 3.9,
-   "project_direct_day": 4.9
+   "project_direct_day": 4.9,
+   "through_more_day": 16,
+   "more_direct_day": 17.0
   },
   "Lille-Lyon": {
    "journeys_day": 15.0,
@@ -33,7 +50,9 @@
    "legs_min": 186.0,
    "direct_min": 193.5,
    "through_day": 2.9,
-   "project_direct_day": 13.4
+   "project_direct_day": 13.4,
+   "through_more_day": 16,
+   "more_direct_day": 26.5
   },
   "Lille-Marseille": {
    "journeys_day": 14.5,
@@ -44,7 +63,9 @@
    "legs_min": 269.5,
    "direct_min": 296.8,
    "through_day": 1.8,
-   "project_direct_day": 7.8
+   "project_direct_day": 7.8,
+   "through_more_day": 16,
+   "more_direct_day": 22.0
   },
   "Rennes-Lyon": {
    "journeys_day": 12.5,
@@ -55,7 +76,9 @@
    "legs_min": 213.8,
    "direct_min": 241.5,
    "through_day": 5.1,
-   "project_direct_day": 8.1
+   "project_direct_day": 8.1,
+   "through_more_day": 16,
+   "more_direct_day": 19.0
   },
   "Rennes-Strasbourg": {
    "journeys_day": 11.0,
@@ -66,7 +89,9 @@
    "legs_min": 202.2,
    "direct_min": 293.5,
    "through_day": 3.1,
-   "project_direct_day": 4.1
+   "project_direct_day": 4.1,
+   "through_more_day": 16,
+   "more_direct_day": 17.0
   },
   "Nantes-Strasbourg": {
    "journeys_day": 12.0,
@@ -77,7 +102,9 @@
    "legs_min": 243.5,
    "direct_min": 317.8,
    "through_day": 2.1,
-   "project_direct_day": 4.1
+   "project_direct_day": 4.1,
+   "through_more_day": 16,
+   "more_direct_day": 18.0
   },
   "Rennes-Dijon": {
    "journeys_day": 5.5,
@@ -88,7 +115,9 @@
    "legs_min": 189.8,
    "direct_min": null,
    "through_day": 1.5,
-   "project_direct_day": 1.5
+   "project_direct_day": 1.5,
+   "through_more_day": 8.0,
+   "more_direct_day": 8.0
   },
   "Bordeaux-Lyon": {
    "journeys_day": 12.5,
@@ -99,7 +128,9 @@
    "legs_min": 253.5,
    "direct_min": null,
    "through_day": 6.3,
-   "project_direct_day": 6.3
+   "project_direct_day": 6.3,
+   "through_more_day": 16,
+   "more_direct_day": 16.0
   },
   "Nantes-Lyon": {
    "journeys_day": 11.5,
@@ -110,7 +141,9 @@
    "legs_min": 251.2,
    "direct_min": 287.5,
    "through_day": 3.4,
-   "project_direct_day": 6.9
+   "project_direct_day": 6.9,
+   "through_more_day": 16,
+   "more_direct_day": 19.5
   },
   "Nantes-Marseille": {
    "journeys_day": 11.0,
@@ -121,7 +154,9 @@
    "legs_min": 327.5,
    "direct_min": null,
    "through_day": 2.1,
-   "project_direct_day": 2.1
+   "project_direct_day": 2.1,
+   "through_more_day": 16,
+   "more_direct_day": 16.0
   },
   "Lille-Nantes": {
    "journeys_day": 12.5,
@@ -132,7 +167,9 @@
    "legs_min": 202.5,
    "direct_min": 267.2,
    "through_day": 2.4,
-   "project_direct_day": 4.4
+   "project_direct_day": 4.4,
+   "through_more_day": 16,
+   "more_direct_day": 18.0
   },
   "Lyon-Strasbourg": {
    "journeys_day": 12.0,
@@ -143,10 +180,69 @@
    "legs_min": 229.0,
    "direct_min": 242.5,
    "through_day": 3.5,
-   "project_direct_day": 8.5
+   "project_direct_day": 8.5,
+   "through_more_day": 16,
+   "more_direct_day": 21.0
   }
  },
- "in_paris_median_min": 58.5,
+ "in_paris_median_min": 58.65,
+ "more_trains": {
+  "Lille-South-east": {
+   "same_day": 4.6,
+   "extra_day": 11.4,
+   "legs_min": 186.0
+  },
+  "Lille-Bordeaux": {
+   "same_day": 4.4,
+   "extra_day": 11.6,
+   "legs_min": 199.2
+  },
+  "Lille-Rennes": {
+   "same_day": 3.5,
+   "extra_day": 12.5,
+   "legs_min": 167.0
+  },
+  "Lille-Nantes": {
+   "same_day": 2.4,
+   "extra_day": 13.6,
+   "legs_min": 202.5
+  },
+  "Strasbourg-South-east": {
+   "same_day": 5.6,
+   "extra_day": 10.4,
+   "legs_min": 229.0
+  },
+  "Strasbourg-Bordeaux": {
+   "same_day": 3.9,
+   "extra_day": 12.1,
+   "legs_min": 241.2
+  },
+  "Strasbourg-Rennes": {
+   "same_day": 3.1,
+   "extra_day": 12.9,
+   "legs_min": 202.2
+  },
+  "Strasbourg-Nantes": {
+   "same_day": 2.1,
+   "extra_day": 13.9,
+   "legs_min": 243.5
+  },
+  "South-east-Bordeaux": {
+   "same_day": 10.2,
+   "extra_day": 5.8,
+   "legs_min": 253.5
+  },
+  "South-east-Rennes": {
+   "same_day": 8.2,
+   "extra_day": 7.8,
+   "legs_min": 213.8
+  },
+  "South-east-Nantes": {
+   "same_day": 5.6,
+   "extra_day": 10.4,
+   "legs_min": 251.2
+  }
+ },
  "through_trains_day": {
   "AE": 27.0,
   "AS": 55.5,
@@ -166,6 +262,7 @@
   "Lyon": 0.333,
   "Marseille": 0.204,
   "Dijon": 0.097,
+  "South-east": 0.538,
   "Bordeaux": 0.343,
   "Rennes": 0.275,
   "Nantes": 0.186

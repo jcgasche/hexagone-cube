@@ -105,7 +105,7 @@ EXTERNAL = 0.7               # relief to the riders left on board, as a share of
 TGV_CROSS_TODAY = 5.2        # million TGV journeys across Paris today (the model's CONN, rounded)
 PARIS_GDP = 800.0            # Ile-de-France output, bn (ASSUMPTION, rounded)
 # minutes between arriving in Paris and leaving it for another region: today with a change of station, the same figure as the traffic
-# model (estimate.T_OLD), which SNCF's timetable confirms (model/paris_crossing.py: 58.5 minutes, median of the city pairs); on a through
+# model (estimate.T_OLD), which SNCF's timetable confirms (model/paris_crossing.py: in_paris_median_min, the median of the city pairs); on a through
 # train, its two stops and the run between them, as in the timetable
 CROSSING = json.load(open(os.path.join(HERE, 'inputs', 'paris_crossing.json')))
 X_TODAY, X_PROJ = N.T_OLD, N.TH['L'] + N.STOP_MIN
@@ -482,10 +482,26 @@ def show_pairs():
         air_km = (CITIES[a][3] + CITIES[b][3]) * AIR_KM_RATIO; door = AIR_DOOR[0] + air_km / AIR_DOOR[1]
         ap = [p for p in AIR_PAIRS if frozenset(p[:2]) == k]
         rows.append({'pair': [a, b], 'today_min': t0, 'project_min': t1, 'in_paris_min': m['in_paris_min'], 'per_day': m['via_paris_day'],
-                     'direct_day': m['direct_day'], 'direct_min': m['direct_min'], 'project_direct_day': m['project_direct_day'],
+                     'direct_day': m['direct_day'], 'direct_min': m['direct_min'], 'project_direct_day': m['project_direct_day'], 'more_direct_day': m['more_direct_day'],
                      'today': 'no direct train' if m['direct_day'] < 0.5 else f"{int(m['direct_day'] + 0.5)} direct train{'s' if m['direct_day'] >= 1.5 else ''} a day",
                      'air_door_min': door, 'air_pax': ap[0][2] if ap else None, 'share_today': rail_share(t0), 'share_project': rail_share(t1)})
     return rows
+
+
+TURN_MIN = (15.0, 45.0)      # minutes a trainset waits at the end of its run before it goes back: the Swiss practice, and the French one (ASSUMPTION)
+SERVICE_H = 17.0             # hours a trainset is in service in a day (ASSUMPTION)
+
+
+def more_trains():
+    """An hourly direct train between every two of the six directions (model/paris_crossing.py): the runs a day beyond today's trains
+    run through, and the trainsets they need, low with the Swiss turn-round and high with the French one; the yearly cost of a
+    trainset as in FLEET."""
+    ex = CROSSING['more_trains']; runs = sum(v['extra_day'] for v in ex.values())
+    sets = [sum(2 * v['extra_day'] * (v['legs_min'] + X_PROJ + t) for v in ex.values()) / 60 / SERVICE_H for t in TURN_MIN]
+    return {'runs_day': runs, 'pairs': len(ex), 'per_day': HOURLY_DAY, 'sets_low': sets[0], 'sets_high': sets[1],
+            'cost_low': sets[0] * FLEET['TGV'][1], 'cost_high': sets[1] * FLEET['TGV'][1], 'turn_min': list(TURN_MIN), 'service_h': SERVICE_H,
+            'today_through_day': sum(v['same_day'] for v in ex.values())}
+HOURLY_DAY = 16
 
 
 def parks(L):
@@ -732,6 +748,7 @@ def main():
     res['jobs'] = {k: JOBS[k] for k in ('beta', 'pen', 'branch', 'easy', 'commuters_pt_suburb_pairs', 'users_low', 'users_central', 'users_high', 'trips_day', 'today_obs_day',
                                           'improved_pairs', 'hubs', 'induced_jobs_net', 'top_pairs', 'obs_over_fit_improved', 'keep_per_change')}
     res['parks'] = pk
+    res['more_trains'] = more_trains()
     res['france'] = {'levels': {lv: {k: v for k, v in fr[lv].items() if k != 'air'} for lv in LEVELS}, 'air_pairs': fr['central']['air'], 'show': show_pairs(),
                      'bypass_total_2009': BYPASS_2009, 'bypass_helped_2009': sum(c['pax'] for c in BYPASS.values())}
     os.makedirs(OUT, exist_ok=True); json.dump(res, open(f'{OUT}/french.json', 'w'), indent=1, default=float)
