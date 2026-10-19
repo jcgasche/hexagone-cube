@@ -81,3 +81,4 @@
 #timetable .legend i.tt-pair.sq b { border-radius: 2px }
 #timetable .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
 #timetable .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }
+#timetable .tt-rername { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: var(--land); stroke-width: 3px }

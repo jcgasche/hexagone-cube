@@ -1079,6 +1079,7 @@ body[data-page="presentation"] .menu-btn { display: none }
 :is(#timetable, .borrow-timetable) .legend i.tt-pair.sq b { border-radius: 2px }
 :is(#timetable, .borrow-timetable) .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
 :is(#timetable, .borrow-timetable) .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }
+:is(#timetable, .borrow-timetable) .tt-rername { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: var(--land); stroke-width: 3px }
 
 /* ---- crossing */
 /* pair selector */
@@ -4808,6 +4809,9 @@ body[data-page="presentation"] .menu-btn { display: none }
 <header><span class="eyebrow">Annexe C</span><h1>Le cadencement à la suisse : chaque train rencontre tous les autres</h1><p class="lede">En Suisse, on a conçu l’horaire d’abord et les travaux ensuite. Les trains de toutes les directions arrivent dans les grandes gares juste avant l’heure et repartent juste après, si bien que presque toutes les correspondances ne prennent que quelques minutes. On n’a accéléré les lignes que dans la mesure nécessaire pour aller d’un de ces rendez-vous au suivant en moins d’une heure.</p></header>
 
 
+<div class="callout"><b>Ce que cette étude retient du modèle suisse</b><p>Une partie seulement. Elle en retient l’organisation régulière et modulaire&nbsp;: les mêmes minutes chaque heure, une cadence de 12&nbsp;minutes dans les trois gares. Mais le réseau est conçu pour que beaucoup de trajets entre villes françaises se fassent sans aucun changement&nbsp;: le TGV traverse. Quand il n’y a pas de train direct, ou qu’un voyageur veut un autre horaire, la correspondance est très rapide&nbsp;: un train peut arriver dans chaque gare toutes les 4&nbsp;minutes, si bien que personne n’attend longtemps le train suivant vers sa destination. Entre deux villes de France, la fréquence ressentie des liaisons est donc bien plus élevée. En Suisse, changer de train est devenu si simple que cela ne freine presque plus le trafic.</p></div>
+
+
 <div class="block" id="pulse.idea">
   <h2>L’idée : tous les trains sont en gare en même temps</h2>
   <p>Un horaire cadencé se répète toutes les heures : chaque ligne part aux mêmes minutes toute la journée. Le réseau suisse en a un depuis le 23 mai 1982.<sup class="cite"><a href="#sources.ch_nc1982" title="Horaire cadencé sur l’ensemble du réseau des CFF à partir du 23 mai 1982">324</a></sup> Le cadencement à la suisse y ajoute une seconde règle. Dans les grandes gares, appelées nœuds, les trains de toutes les lignes arrivent à peu près en même temps et repartent ensemble quelques minutes plus tard.<sup class="cite"><a href="#sources.ch_fc1994" title="Le principe des nœuds en termes officiels ; les sept nœuds et leurs minutes ; temps de parcours prévus ; budget de la première étape ; pourquoi Lausanne, Bienne et Lucerne sont des nœuds aux minutes 15 et 45">325</a></sup> Selon les CFF, les chemins de fer fédéraux suisses, trains et bus atteignent un nœud juste avant l’heure pleine et la demi-heure, ou aux minutes 15 et 45, et en repartent peu après.<sup class="cite"><a href="#sources.ch_sbb1997" title="Trains et bus arrivent aux nœuds juste avant l’heure pile et la demi-heure, ou aux minutes 15 et 45, et repartent peu après ; Zurich à Berne raccourci de 15 minutes, à moins d’une heure">326</a></sup> Le voyageur n’a pas à chercher sa correspondance : elle l’attend sur un autre quai.</p>
@@ -8451,7 +8455,7 @@ PTS.section('timetable', function (root) {
       LY: [['TER', D['Gare de Lyon'].hs - 2 * NTR, -1]]                   // the fourth track each way, shared with the sixteenth south-east TGV
     };
     if (o.sl.at) { const a = o.sl.axis[0], b = o.sl.axis[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1; o.sl.u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L]; o.sl.n = [-o.sl.u[1], o.sl.u[0]]; }
-    const tracksAt = {}, boxAt = {};                                        // centre of each track: tracksAt[st][kind] = [points]; boxAt[st][kind] = the box's centre and the middles of its two ends
+    const tracksAt = {}, boxAt = {}, labels = [];                                        // centre of each track: tracksAt[st][kind] = [points]; boxAt[st][kind] = the box's centre and the middles of its two ends
     const drawGroup = function (st, x, kind, n, from) {                     // n tracks from offset `from` along the station's normal
       const c = function (p, q) { return [x.at[0] + x.u[0] * p + x.n[0] * q, x.at[1] + x.u[1] * p + x.n[1] * q]; };
       const lo = from, hi = from + n * g2, gg = s('g', { class: 'tt-stn' });
@@ -8462,6 +8466,11 @@ PTS.section('timetable', function (root) {
       svg.insertBefore(gg, o.g);
       (tracksAt[st] = tracksAt[st] || {})[kind] = pts;
       (boxAt[st] = boxAt[st] || {})[kind] = { c: c(0, (lo + hi) / 2), ends: [c(-hl, (lo + hi) / 2), c(hl, (lo + hi) / 2)] };
+      if (REG[kind] && kind !== 'TER') {                                    // the name of the RER line, just outside its box
+        const p = c(hl + 9, (lo + hi) / 2);                                  // beyond the end of the box, clear of the station's name
+        const t = s('text', { class: 'tt-rername', x: p[0], y: p[1] + 4, 'text-anchor': 'middle', text: kind === 'N' ? 'RER G' : 'RER F', style: 'fill: ' + REG[kind].c });
+        labels.push(t);
+      }
     };
     Object.keys(GROUPS).forEach(function (st) {
       const x = o.stn[st], edgeOff = NTR * o.GAP + 4 + 3, used = { '-1': edgeOff, '1': edgeOff };
@@ -8534,6 +8543,7 @@ PTS.section('timetable', function (root) {
         (t.kind === 'TER' ? '' : '<br><small>Evenly spaced at the trains an hour of the model</small>'));
       o.g.appendChild(el); dots.push({ t: t, legs: legs, el: el, reg: t.kind });
     });
+    labels.forEach(function (t) { svg.insertBefore(t, o.g); });            // above the lines and the boxes, under the moving trains
   };
 
   const placeDots = function (v) {

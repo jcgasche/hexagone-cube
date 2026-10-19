@@ -312,7 +312,7 @@ PTS.section('timetable', function (root) {
       LY: [['TER', D['Gare de Lyon'].hs - 2 * NTR, -1]]                   // the fourth track each way, shared with the sixteenth south-east TGV
     };
     if (o.sl.at) { const a = o.sl.axis[0], b = o.sl.axis[1], L = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1; o.sl.u = [(b[0] - a[0]) / L, (b[1] - a[1]) / L]; o.sl.n = [-o.sl.u[1], o.sl.u[0]]; }
-    const tracksAt = {}, boxAt = {};                                        // centre of each track: tracksAt[st][kind] = [points]; boxAt[st][kind] = the box's centre and the middles of its two ends
+    const tracksAt = {}, boxAt = {}, labels = [];                                        // centre of each track: tracksAt[st][kind] = [points]; boxAt[st][kind] = the box's centre and the middles of its two ends
     const drawGroup = function (st, x, kind, n, from) {                     // n tracks from offset `from` along the station's normal
       const c = function (p, q) { return [x.at[0] + x.u[0] * p + x.n[0] * q, x.at[1] + x.u[1] * p + x.n[1] * q]; };
       const lo = from, hi = from + n * g2, gg = s('g', { class: 'tt-stn' });
@@ -323,6 +323,11 @@ PTS.section('timetable', function (root) {
       svg.insertBefore(gg, o.g);
       (tracksAt[st] = tracksAt[st] || {})[kind] = pts;
       (boxAt[st] = boxAt[st] || {})[kind] = { c: c(0, (lo + hi) / 2), ends: [c(-hl, (lo + hi) / 2), c(hl, (lo + hi) / 2)] };
+      if (REG[kind] && kind !== 'TER') {                                    // the name of the RER line, just outside its box
+        const p = c(hl + 9, (lo + hi) / 2);                                  // beyond the end of the box, clear of the station's name
+        const t = s('text', { class: 'tt-rername', x: p[0], y: p[1] + 4, 'text-anchor': 'middle', text: kind === 'N' ? 'RER G' : 'RER F', style: 'fill: ' + REG[kind].c });
+        labels.push(t);
+      }
     };
     Object.keys(GROUPS).forEach(function (st) {
       const x = o.stn[st], edgeOff = NTR * o.GAP + 4 + 3, used = { '-1': edgeOff, '1': edgeOff };
@@ -395,6 +400,7 @@ PTS.section('timetable', function (root) {
         (t.kind === 'TER' ? '' : '<br><small>Evenly spaced at the trains an hour of the model</small>'));
       o.g.appendChild(el); dots.push({ t: t, legs: legs, el: el, reg: t.kind });
     });
+    labels.forEach(function (t) { svg.insertBefore(t, o.g); });            // above the lines and the boxes, under the moving trains
   };
 
   const placeDots = function (v) {
