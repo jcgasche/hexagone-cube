@@ -5293,8 +5293,8 @@
  },
  "connecting": {
   "central": {
-   "new": 10.288152525641916,
-   "ben": 0.5124365398120534,
+   "new": 11.162932227154348,
+   "ben": 0.5314542648464651,
    "saving": 83.03948700641241,
    "direct_share": 0.4709753628079649,
    "pairs": {
@@ -5306,7 +5306,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 3,
-     "growth": 2.9856812629461835
+     "growth": 3.203824151365599
     },
     "Montparnasse-Nord": {
      "share": 0.2128473394082574,
@@ -5316,7 +5316,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.578181827310522
+     "growth": 1.7189243454228336
     },
     "Montparnasse-Est": {
      "share": 0.11879851501856227,
@@ -5326,7 +5326,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5964709494799787
+     "growth": 1.7381121608798114
     },
     "Lyon-Nord": {
      "share": 0.16931038362020476,
@@ -5336,7 +5336,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5249085668842794
+     "growth": 1.663025636189788
     },
     "Lyon-Est": {
      "share": 0.09449881876476543,
@@ -5346,7 +5346,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5376784929175253
+     "growth": 1.6764256264116772
     },
     "Nord-Est": {
      "share": 0.0580492743840702,
@@ -5356,15 +5356,15 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
-   "uplift": 1.9847717937135811,
+   "uplift": 2.153532712930876,
    "base": 5.183544303797468
   },
   "high": {
-   "new": 12.162235662314998,
-   "ben": 0.6117968185900431,
+   "new": 12.213531098673224,
+   "ben": 0.6123204595028666,
    "saving": 91.51704353695577,
    "direct_share": 0.9419507256159299,
    "pairs": {
@@ -5426,10 +5426,10 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
-   "uplift": 2.346316525819011,
+   "uplift": 2.35621234870619,
    "base": 5.183544303797468
   },
   "single": {
@@ -5446,7 +5446,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 3,
-     "growth": 2.9856812629461835
+     "growth": 3.203824151365599
     },
     "Montparnasse-Nord": {
      "share": 0.2128473394082574,
@@ -5456,7 +5456,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.578181827310522
+     "growth": 1.7189243454228336
     },
     "Montparnasse-Est": {
      "share": 0.11879851501856227,
@@ -5466,7 +5466,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5964709494799787
+     "growth": 1.7381121608798114
     },
     "Lyon-Nord": {
      "share": 0.16931038362020476,
@@ -5476,7 +5476,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5249085668842794
+     "growth": 1.663025636189788
     },
     "Lyon-Est": {
      "share": 0.09449881876476543,
@@ -5486,7 +5486,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5376784929175253
+     "growth": 1.6764256264116772
     },
     "Nord-Est": {
      "share": 0.0580492743840702,
@@ -5496,7 +5496,7 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
    "uplift": 0.2928492984833187,
@@ -5516,7 +5516,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 3,
-     "growth": 2.9856812629461835
+     "growth": 3.203824151365599
     },
     "Montparnasse-Nord": {
      "share": 0.2128473394082574,
@@ -5526,7 +5526,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.578181827310522
+     "growth": 1.7189243454228336
     },
     "Montparnasse-Est": {
      "share": 0.11879851501856227,
@@ -5536,7 +5536,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5964709494799787
+     "growth": 1.7381121608798114
     },
     "Lyon-Nord": {
      "share": 0.16931038362020476,
@@ -5546,7 +5546,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5249085668842794
+     "growth": 1.663025636189788
     },
     "Lyon-Est": {
      "share": 0.09449881876476543,
@@ -5556,7 +5556,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5376784929175253
+     "growth": 1.6764256264116772
     },
     "Nord-Est": {
      "share": 0.0580492743840702,
@@ -5566,7 +5566,7 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
    "uplift": 0.38704437104491163,
@@ -5586,7 +5586,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 3,
-     "growth": 2.9856812629461835
+     "growth": 3.203824151365599
     },
     "Montparnasse-Nord": {
      "share": 0.2128473394082574,
@@ -5596,7 +5596,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.578181827310522
+     "growth": 1.7189243454228336
     },
     "Montparnasse-Est": {
      "share": 0.11879851501856227,
@@ -5606,7 +5606,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5964709494799787
+     "growth": 1.7381121608798114
     },
     "Lyon-Nord": {
      "share": 0.16931038362020476,
@@ -5616,7 +5616,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5249085668842794
+     "growth": 1.663025636189788
     },
     "Lyon-Est": {
      "share": 0.09449881876476543,
@@ -5626,7 +5626,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5376784929175253
+     "growth": 1.6764256264116772
     },
     "Nord-Est": {
      "share": 0.0580492743840702,
@@ -5636,15 +5636,15 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
    "uplift": 0.2645954950549613,
    "base": 5.183544303797468
   },
   "all_direct": {
-   "new": 12.162235662314998,
-   "ben": 0.6117968185900431,
+   "new": 12.213531098673224,
+   "ben": 0.6123204595028666,
    "saving": 91.51704353695577,
    "direct_share": 0.9419507256159299,
    "pairs": {
@@ -5706,15 +5706,15 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
-   "uplift": 2.346316525819011,
+   "uplift": 2.35621234870619,
    "base": 5.183544303797468
   },
   "none_direct": {
-   "new": 8.414069388968834,
-   "ben": 0.4130762610340634,
+   "new": 10.112333355635469,
+   "ben": 0.4505880701900634,
    "saving": 74.56193047586903,
    "direct_share": 0.0,
    "pairs": {
@@ -5726,7 +5726,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 3,
-     "growth": 2.493241080034883
+     "growth": 2.9295268568737147
     },
     "Montparnasse-Nord": {
      "share": 0.2128473394082574,
@@ -5736,7 +5736,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.2537867245628735
+     "growth": 1.5352717607874968
     },
     "Montparnasse-Est": {
      "share": 0.11879851501856227,
@@ -5746,7 +5746,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.2681779904577501
+     "growth": 1.5514604132574155
     },
     "Lyon-Nord": {
      "share": 0.16931038362020476,
@@ -5756,7 +5756,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.2117439805068786
+     "growth": 1.4879781191178956
     },
     "Lyon-Est": {
      "share": 0.09449881876476543,
@@ -5766,7 +5766,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.221833542090919
+     "growth": 1.4993278090792228
     },
     "Nord-Est": {
      "share": 0.0580492743840702,
@@ -5776,15 +5776,15 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
-   "uplift": 1.6232270616081512,
+   "uplift": 1.9508530771555608,
    "base": 5.183544303797468
   },
   "metro_weights": {
-   "new": 10.288152525641916,
-   "ben": 0.35274770526984894,
+   "new": 11.162932227154348,
+   "ben": 0.36559254438696087,
    "saving": 57.071506918663516,
    "direct_share": 0.4709753628079649,
    "pairs": {
@@ -5796,7 +5796,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 3,
-     "growth": 2.9856812629461835
+     "growth": 3.203824151365599
     },
     "Montparnasse-Nord": {
      "share": 0.2128473394082574,
@@ -5806,7 +5806,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.578181827310522
+     "growth": 1.7189243454228336
     },
     "Montparnasse-Est": {
      "share": 0.11879851501856227,
@@ -5816,7 +5816,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5964709494799787
+     "growth": 1.7381121608798114
     },
     "Lyon-Nord": {
      "share": 0.16931038362020476,
@@ -5826,7 +5826,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5249085668842794
+     "growth": 1.663025636189788
     },
     "Lyon-Est": {
      "share": 0.09449881876476543,
@@ -5836,7 +5836,7 @@
      "change_clock": 25.5,
      "old_clock": 57.5,
      "transfers": 2,
-     "growth": 1.5376784929175253
+     "growth": 1.6764256264116772
     },
     "Nord-Est": {
      "share": 0.0580492743840702,
@@ -5846,10 +5846,10 @@
      "change_clock": 12.5,
      "old_clock": 30.0,
      "transfers": 1,
-     "growth": 0.3649370490539747
+     "growth": 0.5354098584418312
     }
    },
-   "uplift": 1.9847717937135811,
+   "uplift": 2.153532712930876,
    "base": 5.183544303797468
   },
   "british_change": {
@@ -5928,7 +5928,7 @@
    "today": 297.5,
    "change": 265.5,
    "transfers": 3,
-   "mult_change": 3.5246242310880445,
+   "mult_change": 3.9648295835081706,
    "direct": 260.0,
    "mult_direct": 4.52597109410395,
    "from": "Bordeaux",
@@ -5939,7 +5939,7 @@
    "today": 366.5,
    "change": 334.5,
    "transfers": 3,
-   "mult_change": 3.4623243893001736,
+   "mult_change": 3.894748848776293,
    "direct": 329.0,
    "mult_direct": 4.430893807536254,
    "from": "Bordeaux",
@@ -5950,7 +5950,7 @@
    "today": 381.5,
    "change": 349.5,
    "transfers": 3,
-   "mult_change": 3.4516036586931165,
+   "mult_change": 3.8826891604007865,
    "direct": 344.0,
    "mult_direct": 4.414594717022534,
    "from": "Bordeaux",
@@ -5961,7 +5961,7 @@
    "today": 292.5,
    "change": 260.5,
    "transfers": 3,
-   "mult_change": 3.530202484390746,
+   "mult_change": 3.9711045286565856,
    "direct": 255.0,
    "mult_direct": 4.53451432524458,
    "from": "Nantes",
@@ -5972,7 +5972,7 @@
    "today": 361.5,
    "change": 329.5,
    "transfers": 3,
-   "mult_change": 3.4660845632008592,
+   "mult_change": 3.8989786468322323,
    "direct": 324.0,
    "mult_direct": 4.436614834402929,
    "from": "Nantes",
@@ -5983,7 +5983,7 @@
    "today": 376.5,
    "change": 344.5,
    "transfers": 3,
-   "mult_change": 3.455087452756065,
+   "mult_change": 3.886608060362319,
    "direct": 339.0,
    "mult_direct": 4.419889254080353,
    "from": "Nantes",
@@ -5994,7 +5994,7 @@
    "today": 258.5,
    "change": 226.5,
    "transfers": 3,
-   "mult_change": 3.573416899424061,
+   "mult_change": 4.0197161762889335,
    "direct": 221.0,
    "mult_direct": 4.600866809454917,
    "from": "Rennes",
@@ -6005,7 +6005,7 @@
    "today": 327.5,
    "change": 295.5,
    "transfers": 3,
-   "mult_change": 3.494510785886961,
+   "mult_change": 3.9309551417048376,
    "direct": 290.0,
    "mult_direct": 4.479937245592008,
    "from": "Rennes",
@@ -6016,7 +6016,7 @@
    "today": 342.5,
    "change": 310.5,
    "transfers": 3,
-   "mult_change": 3.4813152555739224,
+   "mult_change": 3.9161115653332756,
    "direct": 305.0,
    "mult_direct": 4.459810925279831,
    "from": "Rennes",
@@ -6027,7 +6027,7 @@
    "today": 243.5,
    "change": 211.5,
    "transfers": 2,
-   "mult_change": 2.2654840564168346,
+   "mult_change": 2.548430022304748,
    "direct": 206.0,
    "mult_direct": 2.920472438658511,
    "from": "Bordeaux",
@@ -6038,7 +6038,7 @@
    "today": 263.5,
    "change": 231.5,
    "transfers": 2,
-   "mult_change": 2.2468416570958847,
+   "mult_change": 2.527459294224479,
    "direct": 226.0,
    "mult_direct": 2.8917605556183172,
    "from": "Bordeaux",
@@ -6049,7 +6049,7 @@
    "today": 317.5,
    "change": 285.5,
    "transfers": 2,
-   "mult_change": 2.207492581381811,
+   "mult_change": 2.48319574462427,
    "direct": 280.0,
    "mult_direct": 2.8314475305695486,
    "from": "Bordeaux",
@@ -6060,7 +6060,7 @@
    "today": 238.5,
    "change": 206.5,
    "transfers": 2,
-   "mult_change": 2.2705926591303522,
+   "mult_change": 2.5541766601988796,
    "direct": 201.0,
    "mult_direct": 2.9283558830205743,
    "from": "Nantes",
@@ -6071,7 +6071,7 @@
    "today": 258.5,
    "change": 226.5,
    "transfers": 2,
-   "mult_change": 2.2512526466371585,
+   "mult_change": 2.5324211910620287,
    "direct": 221.0,
    "mult_direct": 2.8985460899565973,
    "from": "Nantes",
@@ -6082,7 +6082,7 @@
    "today": 312.5,
    "change": 280.5,
    "transfers": 2,
-   "mult_change": 2.2106015827136583,
+   "mult_change": 2.486693042392058,
    "direct": 275.0,
    "mult_direct": 2.836198643614932,
    "from": "Nantes",
@@ -6093,7 +6093,7 @@
    "today": 204.5,
    "change": 172.5,
    "transfers": 2,
-   "mult_change": 2.311323490394633,
+   "mult_change": 2.5999945386930214,
    "direct": 167.0,
    "mult_direct": 2.991449857352543,
    "from": "Rennes",
@@ -6104,7 +6104,7 @@
    "today": 224.5,
    "change": 192.5,
    "transfers": 2,
-   "mult_change": 2.2860011559556686,
+   "mult_change": 2.5715095899085374,
    "direct": 187.0,
    "mult_direct": 2.952174278050079,
    "from": "Rennes",
@@ -6115,7 +6115,7 @@
    "today": 278.5,
    "change": 246.5,
    "transfers": 2,
-   "mult_change": 2.2344906913398623,
+   "mult_change": 2.513565763679449,
    "direct": 241.0,
    "mult_direct": 2.8727870936824287,
    "from": "Rennes",
@@ -6126,7 +6126,7 @@
    "today": 287.5,
    "change": 255.5,
    "transfers": 2,
-   "mult_change": 2.2276555762460513,
+   "mult_change": 2.5058769819104323,
    "direct": 250.0,
    "mult_direct": 2.862303695099159,
    "from": "Bordeaux",
@@ -6137,7 +6137,7 @@
    "today": 263.5,
    "change": 231.5,
    "transfers": 2,
-   "mult_change": 2.2468416570958847,
+   "mult_change": 2.527459294224479,
    "direct": 226.0,
    "mult_direct": 2.8917605556183172,
    "from": "Bordeaux",
@@ -6148,7 +6148,7 @@
    "today": 226.5,
    "change": 194.5,
    "transfers": 2,
-   "mult_change": 2.2836934694641253,
+   "mult_change": 2.568913686608994,
    "direct": 189.0,
    "mult_direct": 2.948603191197003,
    "from": "Bordeaux",
@@ -6159,7 +6159,7 @@
    "today": 282.5,
    "change": 250.5,
    "transfers": 2,
-   "mult_change": 2.2314029077145183,
+   "mult_change": 2.5100923335880214,
    "direct": 245.0,
    "mult_direct": 2.868049719154787,
    "from": "Nantes",
@@ -6170,7 +6170,7 @@
    "today": 258.5,
    "change": 226.5,
    "transfers": 2,
-   "mult_change": 2.2512526466371585,
+   "mult_change": 2.5324211910620287,
    "direct": 221.0,
    "mult_direct": 2.8985460899565973,
    "from": "Nantes",
@@ -6181,7 +6181,7 @@
    "today": 221.5,
    "change": 189.5,
    "transfers": 2,
-   "mult_change": 2.2895338837793235,
+   "mult_change": 2.575483535176849,
    "direct": 184.0,
    "mult_direct": 2.957643732836683,
    "from": "Nantes",
@@ -6192,7 +6192,7 @@
    "today": 248.5,
    "change": 216.5,
    "transfers": 2,
-   "mult_change": 2.260564605742929,
+   "mult_change": 2.542896160455172,
    "direct": 211.0,
    "mult_direct": 2.9128871907405918,
    "from": "Rennes",
@@ -6203,7 +6203,7 @@
    "today": 224.5,
    "change": 192.5,
    "transfers": 2,
-   "mult_change": 2.2860011559556686,
+   "mult_change": 2.5715095899085374,
    "direct": 187.0,
    "mult_direct": 2.952174278050079,
    "from": "Rennes",
@@ -6214,7 +6214,7 @@
    "today": 187.5,
    "change": 155.5,
    "transfers": 2,
-   "mult_change": 2.336656011484093,
+   "mult_change": 2.628490946382226,
    "direct": 150.0,
    "mult_direct": 3.0309067238666483,
    "from": "Rennes",
@@ -6225,7 +6225,7 @@
    "today": 235.5,
    "change": 203.5,
    "transfers": 2,
-   "mult_change": 2.273753203994481,
+   "mult_change": 2.5577319389905235,
    "direct": 198.0,
    "mult_direct": 2.9332364841795298,
    "from": "Lyon",
@@ -6236,7 +6236,7 @@
    "today": 255.5,
    "change": 223.5,
    "transfers": 2,
-   "mult_change": 2.253975656895542,
+   "mult_change": 2.535484289684971,
    "direct": 218.0,
    "mult_direct": 2.902737438305641,
    "from": "Lyon",
@@ -6247,7 +6247,7 @@
    "today": 309.5,
    "change": 277.5,
    "transfers": 2,
-   "mult_change": 2.212512062545214,
+   "mult_change": 2.4888421301977983,
    "direct": 272.0,
    "mult_direct": 2.8391194117281637,
    "from": "Lyon",
@@ -6258,7 +6258,7 @@
    "today": 304.5,
    "change": 272.5,
    "transfers": 2,
-   "mult_change": 2.215774322538329,
+   "mult_change": 2.4925118277546936,
    "direct": 267.0,
    "mult_direct": 2.8441089330608653,
    "from": "Marseille",
@@ -6269,7 +6269,7 @@
    "today": 324.5,
    "change": 292.5,
    "transfers": 2,
-   "mult_change": 2.2032909178415148,
+   "mult_change": 2.4784693174047163,
    "direct": 287.0,
    "mult_direct": 2.825030511139673,
    "from": "Marseille",
@@ -6280,7 +6280,7 @@
    "today": 378.5,
    "change": 346.5,
    "transfers": 2,
-   "mult_change": 2.1758205951479304,
+   "mult_change": 2.4475681089515198,
    "direct": 341.0,
    "mult_direct": 2.7831858552575977,
    "from": "Marseille",
@@ -6291,7 +6291,7 @@
    "today": 319.5,
    "change": 287.5,
    "transfers": 2,
-   "mult_change": 2.2062745060047195,
+   "mult_change": 2.481825538618354,
    "direct": 282.0,
    "mult_direct": 2.829586757925691,
    "from": "Montpellier",
@@ -6302,7 +6302,7 @@
    "today": 339.5,
    "change": 307.5,
    "transfers": 2,
-   "mult_change": 2.1948359857583806,
+   "mult_change": 2.4689584127942084,
    "direct": 302.0,
    "mult_direct": 2.8121311536182017,
    "from": "Montpellier",
@@ -6313,7 +6313,7 @@
    "today": 393.5,
    "change": 361.5,
    "transfers": 2,
-   "mult_change": 2.1694585738357963,
+   "mult_change": 2.440411507664275,
    "direct": 356.0,
    "mult_direct": 2.7735218341397583,
    "from": "Montpellier",
@@ -6324,7 +6324,7 @@
    "today": 279.5,
    "change": 247.5,
    "transfers": 2,
-   "mult_change": 2.233711053144657,
+   "mult_change": 2.5126887531449595,
    "direct": 242.0,
    "mult_direct": 2.871590719908545,
    "from": "Lyon",
@@ -6335,7 +6335,7 @@
    "today": 255.5,
    "change": 223.5,
    "transfers": 2,
-   "mult_change": 2.253975656895542,
+   "mult_change": 2.535484289684971,
    "direct": 218.0,
    "mult_direct": 2.902737438305641,
    "from": "Lyon",
@@ -6346,7 +6346,7 @@
    "today": 218.5,
    "change": 186.5,
    "transfers": 2,
-   "mult_change": 2.293154895467779,
+   "mult_change": 2.579556790458359,
    "direct": 181.0,
    "mult_direct": 2.9632531965653253,
    "from": "Lyon",
@@ -6357,7 +6357,7 @@
    "today": 348.5,
    "change": 316.5,
    "transfers": 2,
-   "mult_change": 2.1900920508622064,
+   "mult_change": 2.463621987636403,
    "direct": 311.0,
    "mult_direct": 2.804901405864878,
    "from": "Marseille",
@@ -6368,7 +6368,7 @@
    "today": 324.5,
    "change": 292.5,
    "transfers": 2,
-   "mult_change": 2.2032909178415148,
+   "mult_change": 2.4784693174047163,
    "direct": 287.0,
    "mult_direct": 2.825030511139673,
    "from": "Marseille",
@@ -6379,7 +6379,7 @@
    "today": 287.5,
    "change": 255.5,
    "transfers": 2,
-   "mult_change": 2.2276555762460513,
+   "mult_change": 2.5058769819104323,
    "direct": 250.0,
    "mult_direct": 2.862303695099159,
    "from": "Marseille",
@@ -6390,7 +6390,7 @@
    "today": 363.5,
    "change": 331.5,
    "transfers": 2,
-   "mult_change": 2.1826783279138473,
+   "mult_change": 2.4552823332101745,
    "direct": 326.0,
    "mult_direct": 2.7936142440805427,
    "from": "Montpellier",
@@ -6401,7 +6401,7 @@
    "today": 339.5,
    "change": 307.5,
    "transfers": 2,
-   "mult_change": 2.1948359857583806,
+   "mult_change": 2.4689584127942084,
    "direct": 302.0,
    "mult_direct": 2.8121311536182017,
    "from": "Montpellier",
@@ -6412,7 +6412,7 @@
    "today": 302.5,
    "change": 270.5,
    "transfers": 2,
-   "mult_change": 2.217107414688292,
+   "mult_change": 2.494011415468781,
    "direct": 265.0,
    "mult_direct": 2.84614862911522,
    "from": "Montpellier",
@@ -6423,7 +6423,7 @@
    "today": 198.0,
    "change": 180.5,
    "transfers": 1,
-   "mult_change": 1.363239922582969,
+   "mult_change": 1.5335007706077726,
    "from": "Lille",
    "to": "Strasbourg",
    "pair": "Nord-Est"
@@ -6432,7 +6432,7 @@
    "today": 174.0,
    "change": 156.5,
    "transfers": 1,
-   "mult_change": 1.375014718428633,
+   "mult_change": 1.5467461709250274,
    "from": "Lille",
    "to": "Metz",
    "pair": "Nord-Est"
@@ -6441,7 +6441,7 @@
    "today": 137.0,
    "change": 119.5,
    "transfers": 1,
-   "mult_change": 1.399542535998009,
+   "mult_change": 1.5743373722395384,
    "from": "Lille",
    "to": "Reims",
    "pair": "Nord-Est"
@@ -6450,7 +6450,7 @@
    "today": 218.0,
    "change": 200.5,
    "transfers": 1,
-   "mult_change": 1.3551227679677011,
+   "mult_change": 1.524369829933683,
    "from": "Brussels",
    "to": "Strasbourg",
    "pair": "Nord-Est"
@@ -6459,7 +6459,7 @@
    "today": 194.0,
    "change": 176.5,
    "transfers": 1,
-   "mult_change": 1.3650322504082661,
+   "mult_change": 1.535516949899285,
    "from": "Brussels",
    "to": "Metz",
    "pair": "Nord-Est"
@@ -6468,7 +6468,7 @@
    "today": 157.0,
    "change": 139.5,
    "transfers": 1,
-   "mult_change": 1.3851206566686705,
+   "mult_change": 1.5581142828927643,
    "from": "Brussels",
    "to": "Reims",
    "pair": "Nord-Est"
@@ -6477,7 +6477,7 @@
    "today": 272.0,
    "change": 254.5,
    "transfers": 1,
-   "mult_change": 1.3384604244460023,
+   "mult_change": 1.5056264552661902,
    "from": "London",
    "to": "Strasbourg",
    "pair": "Nord-Est"
@@ -6486,7 +6486,7 @@
    "today": 248.0,
    "change": 230.5,
    "transfers": 1,
-   "mult_change": 1.3450855054426007,
+   "mult_change": 1.5130789708838175,
    "from": "London",
    "to": "Metz",
    "pair": "Nord-Est"
@@ -6495,7 +6495,7 @@
    "today": 211.0,
    "change": 193.5,
    "transfers": 1,
-   "mult_change": 1.3578146595429204,
+   "mult_change": 1.5273979233284023,
    "from": "London",
    "to": "Reims",
    "pair": "Nord-Est"
@@ -6505,7 +6505,7 @@
   "Montparnasse-Lyon": {
    "today": 333.8333333333333,
    "change": 301.8333333333333,
-   "mult_change": 3.493241080034883,
+   "mult_change": 3.9295268568737147,
    "direct": 296.3333333333333,
    "mult_direct": 4.478121445857484,
    "transfers": 3
@@ -6513,7 +6513,7 @@
   "Montparnasse-Nord": {
    "today": 260.1666666666667,
    "change": 228.16666666666666,
-   "mult_change": 2.2537867245628735,
+   "mult_change": 2.535271760787497,
    "direct": 222.66666666666666,
    "mult_direct": 2.9025769300581703,
    "transfers": 2
@@ -6521,7 +6521,7 @@
   "Montparnasse-Est": {
    "today": 244.5,
    "change": 212.5,
-   "mult_change": 2.26817799045775,
+   "mult_change": 2.5514604132574155,
    "direct": 207.0,
    "mult_direct": 2.9247639085022072,
    "transfers": 2
@@ -6529,7 +6529,7 @@
   "Lyon-Nord": {
    "today": 317.8333333333333,
    "change": 285.8333333333333,
-   "mult_change": 2.2117439805068786,
+   "mult_change": 2.4879781191178956,
    "direct": 280.3333333333333,
    "mult_direct": 2.8380731532616803,
    "transfers": 2
@@ -6537,7 +6537,7 @@
   "Lyon-Est": {
    "today": 302.1666666666667,
    "change": 270.1666666666667,
-   "mult_change": 2.221833542090919,
+   "mult_change": 2.499327809079223,
    "direct": 264.6666666666667,
    "mult_direct": 2.8535234437441317,
    "transfers": 2
@@ -6545,7 +6545,7 @@
   "Nord-Est": {
    "today": 201.0,
    "change": 183.5,
-   "mult_change": 1.3649370490539747,
+   "mult_change": 1.5354098584418312,
    "transfers": 1
   }
  },
@@ -8160,7 +8160,7 @@
    "Est": 2.835
   },
   "change_keep": 0.63,
-  "station_keep": 0.7937253933193772,
+  "station_keep": 0.8928571428571428,
   "acc_egr": 55.0,
   "elast": -1.1
  },
@@ -8177,14 +8177,14 @@
   "tgv_access_min": -5.857568263697755,
   "tgv_access_journeys": 2.833103919416612,
   "tgv_access_benefit": 0.35381969598165924,
-  "tgv_conn_journeys": 10.288152525641916,
-  "tgv_conn_benefit": 0.5124365398120534,
-  "tgv_conn_uplift": 1.9847717937135811,
+  "tgv_conn_journeys": 11.162932227154348,
+  "tgv_conn_benefit": 0.5314542648464651,
+  "tgv_conn_uplift": 2.153532712930876,
   "tgv_conn_saving": 83.03948700641241,
   "tgv_direct_share": 0.4709753628079649,
   "conn_base": 5.183544303797468,
-  "tgv_journeys": 13.121256445058528,
-  "tgv_benefit": 0.8662562357937127,
+  "tgv_journeys": 13.99603614657096,
+  "tgv_benefit": 0.8852739608281244,
   "reg_journeys": 30.589175241350258,
   "reg_benefit": 0.14525021722216677,
   "reg_fares": 0.01969286936890352,
@@ -8198,22 +8198,22 @@
   "reg_cross_benefit": 0.014430966634817308,
   "reg_cross_today": 1.600484973961439,
   "tgv_capacity_journeys": 0.0,
-  "tgv_revenue": 1.1353563350789715,
-  "tgv_charges": 0.39737471727764,
+  "tgv_revenue": 1.2202099661256776,
+  "tgv_charges": 0.4270734881439871,
   "direct": {
-   "Track charges on new TGV journeys": 0.39737471727764,
+   "Track charges on new TGV journeys": 0.4270734881439871,
    "Fares from new regional passengers": 0.01969286936890352
   },
-  "direct_total": 0.41706758664654353,
-  "direct_cover": 0.19829084658762736,
-  "direct_net_of_running": 0.08965258664654352,
-  "time_benefit": 1.0115064530158795,
+  "direct_total": 0.4467663575128906,
+  "direct_cover": 0.21241084681361166,
+  "direct_net_of_running": 0.11935135751289061,
+  "time_benefit": 1.0305241780502912,
   "comfort": 0.039892665293412004,
   "wider": 0.3131116854525582,
-  "benefit_total": 1.3645108037618496,
-  "cover_time": 0.4809111935791549,
-  "cover_comfort": 0.4998777846711915,
-  "cover_all": 0.6487437794709368
+  "benefit_total": 1.3835285287962613,
+  "cover_time": 0.4899529914027774,
+  "cover_comfort": 0.508919582494814,
+  "cover_all": 0.6577855772945592
  },
  "yearly_ride": {
   "capex": 39.99944375,
@@ -8228,14 +8228,14 @@
   "tgv_access_min": -5.691869792538592,
   "tgv_access_journeys": 2.7509024867627097,
   "tgv_access_benefit": 0.34367440482769507,
-  "tgv_conn_journeys": 10.288152525641916,
-  "tgv_conn_benefit": 0.5124365398120534,
-  "tgv_conn_uplift": 1.9847717937135811,
+  "tgv_conn_journeys": 11.162932227154348,
+  "tgv_conn_benefit": 0.5314542648464651,
+  "tgv_conn_uplift": 2.153532712930876,
   "tgv_conn_saving": 83.03948700641241,
   "tgv_direct_share": 0.4709753628079649,
   "conn_base": 5.183544303797468,
-  "tgv_journeys": 13.039055012404626,
-  "tgv_benefit": 0.8561109446397485,
+  "tgv_journeys": 13.913834713917058,
+  "tgv_benefit": 0.8751286696741601,
   "reg_journeys": 30.589175241350258,
   "reg_benefit": 0.14525021722216677,
   "reg_fares": 0.01969286936890352,
@@ -8249,143 +8249,143 @@
   "reg_cross_benefit": 0.014430966634817308,
   "reg_cross_today": 1.600484973961439,
   "tgv_capacity_journeys": 0.0,
-  "tgv_revenue": 1.1313695655952571,
-  "tgv_charges": 0.39597934795834,
+  "tgv_revenue": 1.2162231966419632,
+  "tgv_charges": 0.4256781188246871,
   "direct": {
-   "Track charges on new TGV journeys": 0.39597934795834,
+   "Track charges on new TGV journeys": 0.4256781188246871,
    "Fares from new regional passengers": 0.01969286936890352
   },
-  "direct_total": 0.4156722173272435,
-  "direct_cover": 0.19762743141827524,
-  "direct_net_of_running": 0.08825721732724351,
-  "time_benefit": 1.0013611618619151,
+  "direct_total": 0.4453709881935906,
+  "direct_cover": 0.21174743164425955,
+  "direct_net_of_running": 0.1179559881935906,
+  "time_benefit": 1.0203788868963268,
   "comfort": 0.039892665293412004,
   "wider": 0.3131116854525582,
-  "benefit_total": 1.3543655126078853,
-  "cover_time": 0.4760877106804408,
-  "cover_comfort": 0.4950543017724774,
-  "cover_all": 0.6439202965722226
+  "benefit_total": 1.373383237642297,
+  "cover_time": 0.48512950850406333,
+  "cover_comfort": 0.5040960995960999,
+  "cover_all": 0.6529620943958451
  },
  "sens": {
   "Low unit prices and 10% risk": {
    "capex": 26.86431,
    "cost": 1.5231140757418753,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.41706758664654353,
-   "direct_cover": 0.2738255743867373,
-   "time_benefit": 1.0115064530158795,
-   "cover_time": 0.6641041988422285,
-   "cover_all": 0.8958690786815994,
-   "benefit_total": 1.3645108037618496
+   "direct_total": 0.4467663575128906,
+   "direct_cover": 0.29332429174438596,
+   "time_benefit": 1.0305241780502912,
+   "cover_time": 0.6765902793908234,
+   "cover_all": 0.9083551592301943,
+   "benefit_total": 1.3835285287962613
   },
   "High unit prices and 30% risk": {
    "capex": 59.53506000000001,
    "cost": 2.9817651195183927,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.41706758664654353,
-   "direct_cover": 0.1398727163036595,
-   "time_benefit": 1.0115064530158795,
-   "cover_time": 0.3392307618043555,
-   "cover_all": 0.45761847398035227,
-   "benefit_total": 1.3645108037618496
+   "direct_total": 0.4467663575128906,
+   "direct_cover": 0.14983284719121379,
+   "time_benefit": 1.0305241780502912,
+   "cover_time": 0.345608770893644,
+   "cover_all": 0.46399648306964075,
+   "benefit_total": 1.3835285287962613
   },
   "Works take 15 years, not 12": {
    "capex": 39.99944375,
    "cost": 2.1873000664742186,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.41706758664654353,
-   "direct_cover": 0.19067689570312527,
-   "time_benefit": 1.0115064530158795,
-   "cover_time": 0.46244521660275,
-   "cover_all": 0.6238333846719759,
-   "benefit_total": 1.3645108037618496
+   "direct_total": 0.4467663575128906,
+   "direct_cover": 0.20425471765885697,
+   "time_benefit": 1.0305241780502912,
+   "cover_time": 0.47113982843306323,
+   "cover_all": 0.6325279965022891,
+   "benefit_total": 1.3835285287962613
   },
   "Every passenger takes 2 minutes longer to board than today": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 11.170646138304553,
-   "tgv_benefit": 0.6235839986969202,
+   "tgv_journeys": 12.045425839816986,
+   "tgv_benefit": 0.6426017237313318,
    "reg_journeys": 1.8230580563136694,
    "reg_benefit": -0.04953631280682858,
    "reg_fares": 0.000667239248610803,
-   "direct_total": 0.364930346569102,
-   "direct_cover": 0.17350268801403917,
-   "time_benefit": 0.5740476858900916,
-   "cover_time": 0.27292555274328223,
-   "cover_all": 0.440758138635064,
-   "benefit_total": 0.9270520366360617
+   "direct_total": 0.3946291174354492,
+   "direct_cover": 0.18762268824002354,
+   "time_benefit": 0.5930654109245033,
+   "cover_time": 0.28196735056690475,
+   "cover_all": 0.44979993645868654,
+   "benefit_total": 0.9460697616704734
   },
   "TGV passengers\u2019 ride across Paris counted against them": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.039055012404626,
-   "tgv_benefit": 0.8561109446397485,
+   "tgv_journeys": 13.913834713917058,
+   "tgv_benefit": 0.8751286696741601,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.4156722173272435,
-   "direct_cover": 0.19762743141827524,
-   "time_benefit": 1.0013611618619151,
-   "cover_time": 0.4760877106804408,
-   "cover_all": 0.6439202965722226,
-   "benefit_total": 1.3543655126078853
+   "direct_total": 0.4453709881935906,
+   "direct_cover": 0.21174743164425955,
+   "time_benefit": 1.0203788868963268,
+   "cover_time": 0.48512950850406333,
+   "cover_all": 0.6529620943958451,
+   "benefit_total": 1.373383237642297
   },
   "Nord-Est entered from the Gare du Nord hall only": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 12.879108937354916,
-   "tgv_benefit": 0.836350258335105,
+   "tgv_journeys": 13.753888638867348,
+   "tgv_benefit": 0.8553679833695167,
    "reg_journeys": 30.192661851594416,
    "reg_benefit": 0.10726376661977417,
    "reg_fares": 0.016520762250856785,
-   "direct_total": 0.409785025585228,
-   "direct_cover": 0.19482842168478262,
-   "time_benefit": 0.9436140249548792,
-   "cover_time": 0.4486323796215637,
-   "cover_all": 0.5725726784285106,
-   "benefit_total": 1.204299186177496
+   "direct_total": 0.43948379645157504,
+   "direct_cover": 0.2089484219107669,
+   "time_benefit": 0.9626317499892909,
+   "cover_time": 0.4576741774451862,
+   "cover_all": 0.5816144762521331,
+   "benefit_total": 1.2233169112119078
   },
   "Crowded metro time counted 25% heavier": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.240680454700012,
-   "tgv_benefit": 0.8914260695884657,
+   "tgv_journeys": 14.115460156212444,
+   "tgv_benefit": 0.9104437946228774,
    "reg_journeys": 30.99378773733115,
    "reg_benefit": 0.18579820474871842,
    "reg_fares": 0.022929769336750675,
-   "direct_total": 0.42233170917805485,
-   "direct_cover": 0.20079362394730504,
-   "time_benefit": 1.077224274337184,
-   "cover_time": 0.5121561112925509,
-   "cover_all": 0.6799886971843327,
-   "benefit_total": 1.4302286250831542
+   "direct_total": 0.452030480044402,
+   "direct_cover": 0.21491362417328938,
+   "time_benefit": 1.0962419993715957,
+   "cover_time": 0.5211979091161734,
+   "cover_all": 0.6890304950079552,
+   "benefit_total": 1.4492463501175659
   },
   "Every passenger on a served pair finds a direct train": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 14.99533958173161,
-   "tgv_benefit": 0.9656165145717024,
+   "tgv_journeys": 15.046635018089836,
+   "tgv_benefit": 0.9661401554845259,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.4806927091365947,
-   "direct_cover": 0.2285408103986146,
-   "time_benefit": 1.1108667317938692,
-   "cover_time": 0.5281511000760544,
-   "cover_all": 0.6959836859678362,
-   "benefit_total": 1.4638710825398393
+   "direct_total": 0.48243418920095643,
+   "direct_cover": 0.22936878065411764,
+   "time_benefit": 1.1113903727066927,
+   "cover_time": 0.5284000602044273,
+   "cover_all": 0.696232646096209,
+   "benefit_total": 1.4643947234526629
   },
   "A change inside one station costs as much as a change today": {
    "capex": 39.99944375,
@@ -8402,20 +8402,20 @@
    "cover_all": 0.6338104012960369,
    "benefit_total": 1.3331012450098108
   },
-  "A change inside one station costs 11%, as in a Swiss timed timetable": {
+  "A change inside one station counts as half a change today, 21%": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.99603614657096,
-   "tgv_benefit": 0.8852739608281244,
+   "tgv_journeys": 13.121256445058528,
+   "tgv_benefit": 0.8662562357937127,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.4467663575128906,
-   "direct_cover": 0.21241084681361166,
-   "time_benefit": 1.0305241780502912,
-   "cover_time": 0.4899529914027774,
-   "cover_all": 0.6577855772945592,
-   "benefit_total": 1.3835285287962613
+   "direct_total": 0.41706758664654353,
+   "direct_cover": 0.19829084658762736,
+   "time_benefit": 1.0115064530158795,
+   "cover_time": 0.4809111935791549,
+   "cover_all": 0.6487437794709368,
+   "benefit_total": 1.3645108037618496
   },
   "Cross-Paris gain as on the Paris bypass line, 57% on direct trains": {
    "capex": 39.99944375,
@@ -8465,192 +8465,192 @@
   "Today\u2019s change of station weighted like a metro trip": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.7065674012515082,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.7194122403686201,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.41706758664654353,
-   "direct_cover": 0.19829084658762736,
-   "time_benefit": 0.851817618473675,
-   "cover_time": 0.40498864479858854,
-   "cover_all": 0.5728212306903704,
-   "benefit_total": 1.2048219692196451
+   "direct_total": 0.4467663575128906,
+   "direct_cover": 0.21241084681361166,
+   "time_benefit": 0.8646624575907869,
+   "cover_time": 0.4110956022902829,
+   "cover_all": 0.5789281881820647,
+   "benefit_total": 1.217666808336757
   },
   "Suburban traffic grows 25%": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 49.02453524135026,
    "reg_benefit": 0.15154134045175335,
    "reg_fares": 0.02644021112890352,
-   "direct_total": 0.42381492840654356,
-   "direct_cover": 0.20149880652660082,
-   "time_benefit": 1.017797576245466,
-   "cover_time": 0.48390224872494597,
-   "cover_all": 0.6590040525220642,
-   "benefit_total": 1.386091362791221
+   "direct_total": 0.45351369927289065,
+   "direct_cover": 0.21561880675258513,
+   "time_benefit": 1.0368153012798778,
+   "cover_time": 0.4929440465485685,
+   "cover_all": 0.6680458503456866,
+   "benefit_total": 1.4051090878256325
   },
   "Suburban traffic grows 5%": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 12.153815241350259,
    "reg_benefit": 0.1389590939925802,
    "reg_fares": 0.012945527608903521,
-   "direct_total": 0.4103202448865435,
-   "direct_cover": 0.1950828866486539,
-   "time_benefit": 1.005215329786293,
-   "cover_time": 0.47792013843336384,
-   "cover_all": 0.6384835064198092,
-   "benefit_total": 1.3429302447324782
+   "direct_total": 0.4400190157528906,
+   "direct_cover": 0.2092028868746382,
+   "time_benefit": 1.0242330548207046,
+   "cover_time": 0.4869619362569863,
+   "cover_all": 0.6475253042434317,
+   "benefit_total": 1.36194796976689
   },
   "Tunnel upkeep as on the first RER E section": {
    "capex": 39.99944375,
    "cost": 2.158937350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.41706758664654353,
-   "direct_cover": 0.19318188483930754,
-   "time_benefit": 1.0115064530158795,
-   "cover_time": 0.46852052131860267,
-   "cover_all": 0.6320289022548935,
-   "benefit_total": 1.3645108037618496
+   "direct_total": 0.4467663575128906,
+   "direct_cover": 0.20693808339576322,
+   "time_benefit": 1.0305241780502912,
+   "cover_time": 0.47732935730857584,
+   "cover_all": 0.6408377382448667,
+   "benefit_total": 1.3835285287962613
   },
   "Tunnel upkeep at the average of the RER network": {
    "capex": 39.99944375,
    "cost": 2.047687350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.41706758664654353,
-   "direct_cover": 0.20367737609760916,
-   "time_benefit": 1.0115064530158795,
-   "cover_time": 0.49397504589747127,
-   "cover_all": 0.6663667689970472,
-   "benefit_total": 1.3645108037618496
+   "direct_total": 0.4467663575128906,
+   "direct_cover": 0.21818094318614456,
+   "time_benefit": 1.0305241780502912,
+   "cover_time": 0.5032624622740344,
+   "cover_all": 0.6756541853736103,
+   "benefit_total": 1.3835285287962613
   },
   "Passengers crossing Paris at the top of the survey range": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 17.244870528277268,
-   "tgv_benefit": 1.0627441079375881,
+   "tgv_journeys": 18.48035484697177,
+   "tgv_benefit": 1.0896035572556697,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.5590771578474671,
-   "direct_cover": 0.265807956520319,
-   "time_benefit": 1.207994325159755,
-   "cover_time": 0.5743294973722757,
-   "cover_all": 0.7421620832640575,
-   "benefit_total": 1.560998675905725
+   "direct_total": 0.6010218504671456,
+   "direct_cover": 0.28575016463169295,
+   "time_benefit": 1.2348537744778365,
+   "cover_time": 0.5870995689738205,
+   "cover_all": 0.7549321548656024,
+   "benefit_total": 1.5878581252238066
   },
   "Half as many passengers cross Paris": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 8.120968501627928,
-   "tgv_benefit": 0.6279953514617691,
+   "tgv_journeys": 8.558358352384143,
+   "tgv_benefit": 0.6375042139789748,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.24486700424542332,
-   "direct_cover": 0.11641970540940269,
-   "time_benefit": 0.7732455686839359,
-   "cover_time": 0.3676323055150556,
-   "cover_all": 0.5354648914068374,
-   "benefit_total": 1.126249919429906
+   "direct_total": 0.2597163896785969,
+   "direct_cover": 0.12347970552239487,
+   "time_benefit": 0.7827544312011416,
+   "cover_time": 0.3721532044268668,
+   "cover_all": 0.5399857903186486,
+   "benefit_total": 1.1357587819471118
   },
   "Half as many suburb-to-suburb trips across Paris": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 29.677646213193423,
    "reg_benefit": 0.13803473390475812,
    "reg_fares": 0.019359249744598118,
-   "direct_total": 0.41673396702223814,
-   "direct_cover": 0.19813223028691293,
-   "time_benefit": 1.0042909696984708,
-   "cover_time": 0.47748066015637797,
-   "cover_all": 0.6369759557722531,
-   "benefit_total": 1.3397593948362587
+   "direct_total": 0.44643273788858523,
+   "direct_cover": 0.21225223051289727,
+   "time_benefit": 1.0233086947328824,
+   "cover_time": 0.4865224579800005,
+   "cover_all": 0.6460177535958755,
+   "benefit_total": 1.3587771198706704
   },
   "Half as many more suburb-to-suburb trips across Paris": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 31.500704269507093,
    "reg_benefit": 0.15246570053957545,
    "reg_fares": 0.020026488993208923,
-   "direct_total": 0.4174012062708489,
-   "direct_cover": 0.19844946288834178,
-   "time_benefit": 1.0187219363332882,
-   "cover_time": 0.48434172700193184,
-   "cover_all": 0.6605116031696203,
-   "benefit_total": 1.3892622126874405
+   "direct_total": 0.447099977137196,
+   "direct_cover": 0.2125694631143261,
+   "time_benefit": 1.0377396613677,
+   "cover_time": 0.49338352482555436,
+   "cover_all": 0.6695534009932428,
+   "benefit_total": 1.4082799377218522
   },
   "New traffic reaches 60% of the estimate": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 7.872753867035117,
-   "tgv_benefit": 0.7646491349094768,
+   "tgv_journeys": 8.397621687942575,
+   "tgv_benefit": 0.7751920465505469,
    "reg_journeys": 18.353505144810153,
    "reg_benefit": 0.13887104164333566,
    "reg_fares": 0.011815721621342111,
-   "direct_total": 0.2502405519879261,
-   "direct_cover": 0.11897450795257641,
-   "time_benefit": 0.9035201765528125,
-   "cover_time": 0.42957013791986204,
-   "cover_all": 0.5900317638659156,
-   "benefit_total": 1.2410210962088624
+   "direct_total": 0.26805981450773436,
+   "direct_cover": 0.127446508088167,
+   "time_benefit": 0.9140630881938825,
+   "cover_time": 0.4345826657252847,
+   "cover_all": 0.5950442916713382,
+   "benefit_total": 1.2515640078499324
   },
   "Platforms no longer cap the lines: 10% more TGV traffic": {
    "capex": 39.99944375,
    "cost": 2.103312350639624,
-   "tgv_journeys": 13.121256445058528,
-   "tgv_benefit": 0.8662562357937127,
+   "tgv_journeys": 13.99603614657096,
+   "tgv_benefit": 0.8852739608281244,
    "reg_journeys": 30.589175241350258,
    "reg_benefit": 0.14525021722216677,
    "reg_fares": 0.01969286936890352,
-   "direct_total": 0.6080363366465433,
-   "direct_cover": 0.28908513586279166,
-   "time_benefit": 1.0115064530158795,
-   "cover_time": 0.4809111935791549,
-   "cover_all": 0.6487437794709368,
-   "benefit_total": 1.3645108037618496
+   "direct_total": 0.6377351075128905,
+   "direct_cover": 0.30320513608877603,
+   "time_benefit": 1.0305241780502912,
+   "cover_time": 0.4899529914027774,
+   "cover_all": 0.6577855772945592,
+   "benefit_total": 1.3835285287962613
   }
  },
  "deep2_scaled": {
   "capex": 39.99944375,
   "cost": 2.103312350639624,
-  "tgv_journeys": 11.170646138304553,
-  "tgv_benefit": 0.6235839986969202,
+  "tgv_journeys": 12.045425839816986,
+  "tgv_benefit": 0.6426017237313318,
   "reg_journeys": 1.8230580563136694,
   "reg_benefit": -0.04953631280682858,
   "reg_fares": 0.000667239248610803,
-  "direct_total": 0.364930346569102,
-  "direct_cover": 0.17350268801403917,
-  "time_benefit": 0.5740476858900916,
-  "cover_time": 0.27292555274328223,
-  "cover_all": 0.27292555274328223,
-  "benefit_total": 0.5740476858900916
+  "direct_total": 0.3946291174354492,
+  "direct_cover": 0.18762268824002354,
+  "time_benefit": 0.5930654109245033,
+  "cover_time": 0.28196735056690475,
+  "cover_all": 0.28196735056690475,
+  "benefit_total": 0.5930654109245033
  },
  "rate_tests": {
   "3.6": {
-   "all": 0.5675235990901972,
-   "time": 0.4207029956347066
+   "all": 0.5754333992385593,
+   "time": 0.4286127957830686
   },
   "4.6": {
-   "all": 0.4582172886875566,
-   "time": 0.33967466077446856
+   "all": 0.4646036436935039,
+   "time": 0.3460610157804158
   }
  },
  "gross_up": 1.4605000000000001,
@@ -8680,7 +8680,7 @@
   "south_growth": 0.29166666666666674,
   "hall_today": 3.6666666666666665,
   "hall_deep": 3.9615384615384612,
-  "co2_kt": 147.61413500690844,
+  "co2_kt": 157.45540664892332,
   "park_ha": 160
  },
  "station_total": {

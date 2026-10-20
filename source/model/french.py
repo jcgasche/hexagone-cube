@@ -124,15 +124,19 @@ VIA_PARIS = {frozenset('NS'): 0.5, frozenset('NA'): 0.5, frozenset('ES'): 0.6, f
 LAND_YEARS = (2043, 2055); RESIGNAL_YEAR = 2036
 
 # ------------------------------------------------------------------ cross-France journeys: today's bypass trains, and the through trains of the project
-# Province-to-province TGV passengers who avoid the Paris terminals today: 21.9 million in 2009 (RFF), of which 17.6 million on trains
+# TGV passengers on the trains between regions that avoid the Paris terminals: 21.9 million in 2009 (RFF), of which 17.6 million on trains
 # that stop in the Paris region (the Lille to Lyon trunk through Roissy and Marne-la-Vallee, and the Massy link for the west) and 4.3
-# million between the east and the south through Dijon, which the project does not help. Scaled by the growth of TGV traffic since
-# (117.2 to 122 million). By pair of sides: million passengers in 2009; extra minutes of today's bypass route against the sum of the
-# two radial legs; direct trains a day on a typical pair of cities today (ASSUMPTION, read from the 2026 timetable).
-BYPASS_2009, TGV_2009, TGV_NOW = 21.9, 117.2, 122.0
-BYPASS = {frozenset('NS'): dict(pax=14.2, extra=0.0, per_day=7.0), frozenset('AS'): dict(pax=2.0, extra=25.0, per_day=4.0),
+# million between the east and the south through Dijon, which the project does not help. About 40% of them, 7.5 million, start or end at
+# Roissy (3.5), Marne-la-Vallee or Massy (about 4): they do not travel between two regions and are left out. The west by Massy carried 3.4
+# million between two regions in 2008, so the north to south-east trunk carries 17.6 - 3.4 - 7.5 = 6.7 million. Scaled by the growth of
+# TGV traffic since (117.2 to 122 million). By pair of sides: million passengers in 2009; extra minutes of today's bypass route against
+# the sum of the two radial legs; direct trains a day on a typical pair of cities today (ASSUMPTION, read from the 2026 timetable).
+BYPASS_2009, TGV_2009, TGV_NOW, IDF_STOPS_2009 = 21.9, 117.2, 122.0, 7.5
+BYPASS = {frozenset('NS'): dict(pax=17.6 - 3.4 - IDF_STOPS_2009, extra=0.0, per_day=7.0), frozenset('AS'): dict(pax=2.0, extra=25.0, per_day=4.0),
           frozenset('NA'): dict(pax=0.9, extra=65.0, per_day=2.0), frozenset('EA'): dict(pax=0.5, extra=75.0, per_day=2.0)}
-PROJ_PER_DAY = 16.0          # through trains a day between two large cities once every radial train runs through Paris: hourly (the timetable chapter)
+PROJ_PER_DAY = 16.0          # trains a day between two large cities through Paris: every radial train, hourly, direct or with one change inside one station
+X_CHANGE = N.TH['L'] + 2 * N.T_NEW      # equivalent minutes in Paris with a change inside one station: the run, and the change counted twice, as for the crossing count
+X_CHANGE_CLOCK = N.TH['L'] + N.T_NEW    # the same in clock minutes (Charles: 20 to 30 minutes, all included)
 DAY_MIN = 16 * 60            # minutes of service a day
 DISPLACE_CAP = 120.0         # the wait for the next convenient train is a quarter of the interval between trains, at most two hours (ASSUMPTION)
 GC_ELAST = -1.0              # long-distance rail demand to generalised time (British demand handbook, order of magnitude)
@@ -456,7 +460,8 @@ def france(L=1):
         pax = c['pax'] * scale
         disp0 = min(DAY_MIN / c['per_day'] / 4, DISPLACE_CAP)
         w = P['displace_w'][L]
-        gain = max(0.0, (c['extra'] - X_PROJ) + w * (disp0 - disp1))        # equivalent minutes; nothing if the bypass train stays the better choice
+        via = N.DIRECT_SHARE * X_PROJ + (1 - N.DIRECT_SHARE) * X_CHANGE        # half the trains direct, half with one change inside one station
+        gain = max(0.0, (c['extra'] - via) + w * (disp0 - disp1))           # equivalent minutes; nothing if the bypass train stays the better choice
         gc0 = legs[sp][0] + c['extra'] + w * disp0
         new = pax * ((gc0 - gain) / gc0) ** GC_ELAST - pax if gain > 0 else 0.0
         by[''.join(sorted(sp))] = {'pax': pax, 'extra': c['extra'], 'per_day': c['per_day'], 'wait_today': disp0, 'wait_project': disp1, 'gain_min': gain, 'new': new,
@@ -465,7 +470,7 @@ def france(L=1):
     air = []; air_pax = 0.0; air_pkm = 0.0; pen = 30.0 if L == 2 else 0.0
     for p in AIR_PAIRS:
         a, b, pax, t0 = p[:4]; share = p[4] if len(p) > 4 else 1.0
-        t1 = CITIES[a][2] + CITIES[b][2] + X_PROJ
+        t1 = CITIES[a][2] + CITIES[b][2] + N.DIRECT_SHARE * X_PROJ + (1 - N.DIRECT_SHARE) * X_CHANGE_CLOCK
         s0, s1 = rail_share(t0 + pen), rail_share(t1)
         f = max(0.0, (s1 - s0) / (1 - s0)) * (0.5 if L == 0 else 1.0)
         km = (CITIES[a][3] + CITIES[b][3]) * AIR_KM_RATIO
@@ -731,7 +736,7 @@ def main():
                       'park_share': PARK_SHARE, 'plot_share': PLOT_SHARE, 'park_open': PARK_OPEN, 'visit_value': VISIT_VALUE,
                       'fare_dom': FARE_DOM, 'fare_lon': FARE_LON, 'user_gain_air': USER_GAIN_AIR, 'air_kg_pkm': AIR_KG_PKM, 'crowd_pen': CROWD_PEN, 'peak': PEAK, 'external': EXTERNAL,
                       'x_today': X_TODAY, 'x_proj': X_PROJ, 'land_years': LAND_YEARS, 'resignal_year': RESIGNAL_YEAR, 'landuse_years': 20,
-                      'bypass_2009': BYPASS_2009, 'tgv_2009': TGV_2009, 'tgv_now': TGV_NOW, 'proj_per_day': PROJ_PER_DAY, 'displace_cap': DISPLACE_CAP, 'gc_elast': GC_ELAST,
+                      'bypass_2009': BYPASS_2009, 'idf_stops_2009': IDF_STOPS_2009, 'x_change_clock': X_CHANGE_CLOCK, 'tgv_2009': TGV_2009, 'tgv_now': TGV_NOW, 'proj_per_day': PROJ_PER_DAY, 'displace_cap': DISPLACE_CAP, 'gc_elast': GC_ELAST,
                       'air_door': AIR_DOOR, 'share_curve': SHARE_CURVE, 'cities': len(CITIES), 'track_share': N.TRACK_SHARE, 'fare': N.FARE, 'hs_terminals': N.HS_TERMINALS, 'tgv_journeys': N.HS_TERMINALS - N.CONN,
                       'vot': {'long_distance': N.VOT_LD, 'regional_express': N.VOT_TER, 'paris_region': N.VOT_IDF},
                       'crowding': crowding(m)[1], 'departures': (N.HS_TERMINALS - 2 * N.CONN) / 2, 'tgv_agglo_first_year': {str(e): tgv_agglo(e) for e in P['tgv_elast']}},

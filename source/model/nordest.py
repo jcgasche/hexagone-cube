@@ -176,9 +176,9 @@ UPLIFT_DIRECT_HIGH = 0.57               # Paris bypass line against the no-proje
 DIRECT_SHARE = 0.5                      # share of passengers on a pair served by direct trains who find one for their own trip (ASSUMPTION)
 CHANGE_METRO = (20 + 20 * 2 + 17.5 * 1.5, 5 * 2 + 7.5 * 1.5)       # change weighted like a metro trip: today, and inside one station
 CHANGE_KEEP = 1 - UPLIFT_DIRECT         # share of potential passengers a change of vehicle keeps (British ticket data)
-STATION_KEEP = CHANGE_KEEP ** 0.5       # a change between two TGVs inside one Paris station counts as half a change, as for suburban trips (EASY_CHANGE; ASSUMPTION).
-                                        # No pulse: each direction's trains are spaced evenly over the hour, which shortens the wait when a change is needed
-SWISS_KEEP = 1 / 1.12                   # test only: a timed Swiss change, SBB planning 12% more passengers when a direct train replaces one
+STATION_KEEP = 1 / 1.12                 # a change between two TGVs inside one Paris station, mostly on the same platforms, in a timetable that repeats every hour:
+                                        # what SBB finds for a change against a direct train, 12% fewer passengers (ch_sbbrules; Charles, 20 October 2026)
+HALF_KEEP = CHANGE_KEEP ** 0.5          # test: the same change counted as half a British change, the rule for suburban trips (EASY_CHANGE)
 # changes of vehicle today between two Paris stations, by the route with the fewest: TGV to metro or RER, metro to metro, metro or RER to TGV
 # (ASSUMPTION, read from the network map; Gare du Nord to Gare de l'Est is a walk, so one change). Each costs the share CHANGE_KEEP.
 TRANSFERS = {frozenset(('Lyon', 'Nord')): 2,           # RER D
@@ -745,7 +745,7 @@ if __name__ == '__main__':
              'Crowded metro time counted 25% heavier': dict(tag='comfort'),
              'Every passenger on a served pair finds a direct train': dict(direct_share=1.0),
              'A change inside one station costs as much as a change today': dict(keep=CHANGE_KEEP),
-             'A change inside one station costs 11%, as in a Swiss timed timetable': dict(keep=SWISS_KEEP),
+             'A change inside one station counts as half a change today, 21%': dict(keep=HALF_KEEP),
              'Cross-Paris gain as on the Paris bypass line, 57% on direct trains': dict(method='single', evidence=UPLIFT_DIRECT_HIGH),
              'Cross-Paris gain as first estimated: 37% on direct trains': dict(method='single'),
              'Cross-Paris gain from the time model only': dict(method='single', evidence=0),

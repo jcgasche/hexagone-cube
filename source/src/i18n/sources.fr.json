@@ -104,7 +104,7 @@
  "prg": "Paris Rive Gauche : droits à construire et coût de la couverture des voies",
  "buttes_chaumont": "Parc des Buttes-Chaumont : superficie de 24,73 hectares",
  "tracks118": "Voies à quai aujourd’hui : Gare du Nord 32, Gare de l’Est 30, Gare de Lyon 28 avec le RER, Montparnasse 28 (non vérifié sauf Montparnasse)",
- "interco_sud": "Trains entre régions autour de Paris : 10,2 millions de voyageurs en 1999, 21,9 millions en 2009, dont 17,6 millions dans des trains qui passent par les gares d’Île-de-France et 4,3 millions dans des trains qui évitent la région",
+ "interco_sud": "Trains entre régions autour de Paris : 10,2 millions de voyageurs en 1999, 21,9 millions en 2009, dont 17,6 millions dans des trains qui passent par les gares d’Île-de-France et 4,3 millions dans des trains qui évitent la région ; environ 40 % d’entre eux partent de Roissy, de Marne-la-Vallée ou de Massy, ou y arrivent",
  "bxlille": "Bordeaux à Lille : 4 h 47 par le train direct qui contourne Paris, 4 h 21 avec un changement de gare dans Paris",
  "velvet": "Velvet : 12 trains Avelia Horizon commandés, des services à partir de 2028 entre Paris et Angers, Rennes, Nantes et Bordeaux, 10 millions de places de plus par an ; selon l’opérateur, 15 % des voyageurs qui prendraient le train vont en voiture, en car ou en avion faute de trains",
  "regio2n": "Rames TER : longueur de 81 m à 135 m par rame, en unités multiples jusqu’à trois rames",
@@ -247,7 +247,8 @@
  "villette23": "2,14 millions de visiteurs en 2023 sur les 55 hectares du parc",
  "london_nca": "Parcs de Londres : 5 milliards de livres d’avantages par an, dont 926 millions de loisirs et 950 millions de dépenses de santé évitées",
  "ce_l15": "Grand Paris Express : aucune ligne pour la gêne des travaux ; les effets montent jusqu’en 2035 à mesure que logements et emplois se déplacent, ils ne sont pas complets à l’ouverture",
- "interco_c2": "Voyageurs TGV de province à province : 10,2 millions en 1999, 21,9 millions en 2009, dont 17,6 millions dans des trains qui s’arrêtent en région parisienne ; 3,4 millions par Massy en 2008",
+ "interco_c2": "Voyageurs des TGV entre régions : 10,2 millions en 1999, 21,9 millions en 2009, dont 17,6 millions dans des trains qui s’arrêtent en région parisienne ; environ 40 % partent de Roissy, de Marne-la-Vallée ou de Massy, ou y arrivent ; 3,4 millions entre deux régions par Massy en 2008",
+
  "bdt_tgv23": "122 millions de voyageurs TGV en 2023, un record ; un TGV sur trois roulait plein",
  "zh_tec21": "Ligne diamétrale de Zurich : pourquoi la gare traversante est sous les voies sud ; capacité de la gare centrale accrue d’environ un tiers ; quais de 420 m sur 13,5 m ; deux à trois voies de la halle raccourcies de 100 m à la fois ; 300 000 voyageurs par jour en 2004",
  "zh_rr2000": "Gare traversante de Zurich : raisons du choix, la gare annexe comme solution transitoire, quais de 420 m pour à peine moins de 30 millions de CHF de plus que 300 m, estimation de 1 450 millions de CHF, prévisions de demande",
