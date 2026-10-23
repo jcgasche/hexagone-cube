@@ -1,0 +1,73 @@
+<!-- en: 9737219df2 -->
+<p class="lede">Cette étude est un dossier de préfaisabilité indépendant, écrit par une seule personne, extérieure à toute entreprise ferroviaire et à toute administration. Elle montre que l’idée mérite une étude professionnelle&nbsp;; elle ne montre pas qu’elle peut être construite telle qu’elle est dessinée. Ce chapitre dit ce qui repose sur des données, ce qui est supposé, et ce que seule une étude professionnelle peut trancher.</p>
+
+<div class="block" id="limits.what">
+  <h2>Ce qu’est cette étude, et ce qu’elle n’est pas</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>Ce qu’elle est</h3>
+      <ul>
+        <li>Une première estimation complète&nbsp;: le plan des gares, une heure de trains, le coût tiré de projets construits, le trafic et une évaluation selon les règles françaises.</li>
+        <li>Ouverte&nbsp;: chaque chiffre est calculé par un petit modèle publié avec le site, que chacun peut relancer ou modifier (voir <a class="xref" href="#about.source">le code source</a>).</li>
+        <li>Écrite pour être vérifiée&nbsp;: chaque chapitre donne ses sources, et chaque chiffre qui n’en a pas est signalé comme une hypothèse.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Ce qu’elle n’est pas</h3>
+      <ul>
+        <li>Un projet d’ingénierie&nbsp;: aucun tracé n’a été relevé, aucun sol sondé, aucune gare dessinée selon les référentiels de SNCF Réseau.</li>
+        <li>Un horaire éprouvé&nbsp;: l’heure de trains est construite à la main et par un petit solveur, pas simulée avec la signalisation.</li>
+        <li>Un document officiel&nbsp;: aucun organisme ne l’a commandée, relue ou approuvée, ni la SNCF, ni SNCF Réseau, ni Île-de-France Mobilités, ni l’État, ni la Région, ni la Ville de Paris.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="block" id="limits.data">
+  <h2>Ce qui repose sur des données</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Quoi</th><th>Données</th><th>Où</th></tr></thead>
+    <tbody>
+      <tr><th>Temps de changement de gare à Paris aujourd’hui</th><td>Horaires SNCF (données ouvertes, un jour de semaine de mars 2026), meilleure correspondance réelle pour chaque paire de villes</td><td><a class="xref" href="#crossing">Traverser Paris</a></td></tr>
+      <tr><th>Trains sur chaque ligne aujourd’hui</th><td>Horaires de la SNCF et d’Île-de-France Mobilités</td><td><a class="xref" href="#service">Trains et quais</a></td></tr>
+      <tr><th>Déplacements domicile-travail entre communes</th><td>Recensement de l’INSEE</td><td><a class="xref" href="#economy.jobs">L’emploi de part et d’autre de Paris</a></td></tr>
+      <tr><th>Coûts unitaires</th><td>Coûts finaux et marchés signés de tunnels et de gares construits&nbsp;: Grand Paris Express, Elizabeth line, Zurich, Stuttgart</td><td><a class="xref" href="#cost.units">Les prix retenus</a></td></tr>
+      <tr><th>Valeurs du temps, de l’inconfort, du carbone, taux d’actualisation</th><td>Les règles françaises d’évaluation des projets de transport</td><td><a class="xref" href="#economy.method">La méthode</a></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="block" id="limits.assumed">
+  <h2>Les principales hypothèses qui n’ont pas encore de données</h2>
+  <ul>
+    <li><strong>La signalisation.</strong> Les TER ne partagent les tunnels TGV que si les trains peuvent se suivre à environ {{ m.ter_paths.signal_min[0] | 1 }}&nbsp;minutes.</li>
+    <li><strong>La règle des quais.</strong> Arrêts de {{ m.stop_min | 0 }}&nbsp;minutes, {{ m.reserve_min | 0 }}&nbsp;minutes réservées à un train en retard et {{ m.clear_min | 0 }} pour libérer la voie&nbsp;: {{ m.per_track | 0 }}&nbsp;trains par heure et par voie.</li>
+    <li><strong>Le coût.</strong> {{ m.cost.total | 1 }}&nbsp;Md€, tiré de rares exemples de gares souterraines construites sous des gares en service&nbsp;: de {{ m.cost_low | 0 }} à {{ m.cost_high | 0 }}&nbsp;Md€ selon les prix et les aléas retenus. Le sol sous la gare de Lyon et Montparnasse n’est pas étudié.</li>
+    <li><strong>L’accès aux quais d’une gare souterraine.</strong> Supposé aussi rapide qu’aujourd’hui&nbsp;; deux minutes de plus pour chaque voyageur retireraient {{ 1 - d.french.study.central.tests['Every passenger takes 2 minutes longer to board than today'].benefits / d.french.study.central.benefit_total | pct }} des bénéfices.</li>
+    <li><strong>Qui traverse Paris.</strong> Aucun comptage public récent des trajets d’un côté de Paris à l’autre&nbsp;; les nouveaux voyages sont estimés à partir des changements de train que le projet supprime.</li>
+    <li><strong>Les coûts d’exploitation.</strong> Les rares références françaises varient du simple au triple&nbsp;: les recettes propres du projet couvrent de {{ f.high_running.ops_cover | pct }} à {{ f.low_running.ops_cover | pct }} des coûts d’exploitation sur cette fourchette.</li>
+  </ul>
+  <p>Chaque hypothèse, avec ce qui se passe si elle est fausse, figure dans <a class="xref" href="#method.assumptions">les hypothèses sans données</a>, et chaque question ouverte dans <a class="xref" href="#risks.verify">ce qu’il faut vérifier, point par point</a>.</p>
+</div>
+
+<div class="block" id="limits.range">
+  <h2>Jusqu’où le résultat peut bouger</h2>
+  <p>Dans le cas central, les bénéfices comptés rendent {{ d.french.study.central.cover | pct }} du coût annuel, et la lecture française donne +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui. Les postes incertains, pris ensemble, font varier ce chiffre de +{{ d.french.cases.low.npv | 1 }} à +{{ d.french.cases.high.npv | 1 }}&nbsp;Md€. Le résultat justifie donc une étude professionnelle, pas encore une décision de construire.</p>
+</div>
+
+<div class="block" id="limits.professional">
+  <h2>Ce qu’une étude professionnelle ajouterait</h2>
+  <ul>
+    <li>Des sondages de sol, et les tracés des tunnels, des raccordements et des têtes de tunnel.</li>
+    <li>L’horaire simulé avec la signalisation, selon les règles d’exploitation de SNCF Réseau.</li>
+    <li>Un modèle de trafic construit sur les données de billetterie et les enquêtes de déplacements de la SNCF et d’Île-de-France Mobilités.</li>
+    <li>Les méthodes de construction et les étapes sous des gares qui restent ouvertes, avec la gêne qu’elles causent.</li>
+    <li>Le patrimoine, l’environnement et le bruit pendant les travaux.</li>
+    <li>Qui posséderait, construirait, exploiterait et paierait chaque partie.</li>
+  </ul>
+</div>
+
+<div class="block" id="limits.correct">
+  <h2>Les corrections sont bienvenues</h2>
+  <p>Un chiffre qui semble faux, une meilleure source, une règle que l’étude oublie&nbsp;: ouvrez un ticket sur la <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">page GitHub de l’étude</a>, ou écrivez à l’auteur (voir <a class="xref" href="#about.contact">contact</a>). Chaque correction est reportée dans le modèle et dans les deux langues.</p>
+</div>

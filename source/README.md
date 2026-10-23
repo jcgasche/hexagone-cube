@@ -112,3 +112,8 @@ eight commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 Version of 15 October 2026, evening: the plan with regional express trains in the TGV tunnels (version 4.1), on the 12-minute beat, with 15% risk on the cost, and the approach tunnels ending at the ring road. Nothing here is a design: quantities are planning assumptions and
 the drawings are sketches. The access model, traffic estimates and construction cost were checked twice by an independent
 reviewer for an earlier report of 12 October 2026. See "What changed in this version" in the Method annex.
+
+## Licence
+
+Text, figures, data and model: [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), see `LICENSE` at the root.
+Credit: Jean-Charles Gasche, Hexagone³, https://jcgasche.github.io/hexagone-cube/

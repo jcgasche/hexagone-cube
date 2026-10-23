@@ -16,10 +16,12 @@
     {"id": "financing", "group": "Report",  "nav": "Financing",              "heading": "Paying to run it, paying to build it"},
     {"id": "economy",   "group": "Report",  "nav": "Economic return",        "heading": "What the country gets back"},
     {"id": "risks",     "group": "Report",  "nav": "Risks and next steps",   "heading": "What could change the answer, and what to verify"},
+    {"id": "limits",    "group": "Report",  "nav": "Assumptions and limits", "heading": "What this study can and cannot tell"},
     {"id": "zurich",    "group": "Annexes", "nav": "Zürich main station",    "heading": "Zürich: a terminus that became a through station"},
     {"id": "elizabeth", "group": "Annexes", "nav": "Elizabeth line, London", "heading": "The Elizabeth line: joining two sides of a capital"},
     {"id": "pulse",     "group": "Annexes", "nav": "The Swiss timetable",    "heading": "The Swiss pulse: every train meets every train"},
     {"id": "method",    "group": "Annexes", "nav": "Method and assumptions", "heading": "How the numbers are made"},
+    {"id": "about",     "group": "Annexes", "nav": "About this study",       "heading": "Who wrote it, and how to reuse it"},
     {"id": "sources",   "group": "Annexes", "nav": "Sources",                "heading": "Sources"}
   ]
 }

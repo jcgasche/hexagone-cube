@@ -1464,12 +1464,14 @@ body[data-page="presentation"] .menu-btn { display: none }
     <a href="#financing"><i>11</i><span>Financement</span></a>
     <a href="#economy"><i>12</i><span>Bilan socio-économique</span></a>
     <a href="#risks"><i>13</i><span>Risques et prochaines étapes</span></a>
+    <a href="#limits"><i>14</i><span>Hypothèses et limites</span></a>
     <h4>Annexes</h4>
     <a href="#zurich"><i>A</i><span>Gare centrale de Zurich</span></a>
     <a href="#elizabeth"><i>B</i><span>Elizabeth line, Londres</span></a>
     <a href="#pulse"><i>C</i><span>L’horaire suisse</span></a>
     <a href="#method"><i>D</i><span>Méthode et hypothèses</span></a>
-    <a href="#sources"><i>E</i><span>Sources</span></a>
+    <a href="#about"><i>E</i><span>À propos de l’étude</span></a>
+    <a href="#sources"><i>F</i><span>Sources</span></a>
   </nav>
   <main>
 <section class="page presentation" id="presentation" data-title="Présentation" hidden>
@@ -1718,6 +1720,7 @@ body[data-page="presentation"] .menu-btn { display: none }
     <h3 class="pz-h2">Tous les chiffres, les sources et les hypothèses</h3>
     <p class="pz-lead">Chaque chiffre de cette page vient du modèle de l’étude. Le rapport complet explique comment chacun est obtenu, sur quoi il repose et ce qui reste à vérifier.</p>
     <a class="pz-cta" href="#summary">Lire le rapport complet</a>
+    <p class="pz-more"><a href="#limits">Hypothèses et limites</a><a href="#about">À propos de l’étude</a></p>
   </div>
 </section>
 </div>
@@ -4285,6 +4288,82 @@ body[data-page="presentation"] .menu-btn { display: none }
 </div>
 
 </section>
+<section class="page" id="limits" data-title="Hypothèses et limites" hidden>
+<header><span class="eyebrow">Chapitre 14</span><h1>Ce que cette étude peut dire, et ce qu’elle ne peut pas dire</h1><p class="lede">Cette étude est un dossier de préfaisabilité indépendant, écrit par une seule personne, extérieure à toute entreprise ferroviaire et à toute administration. Elle montre que l’idée mérite une étude professionnelle&nbsp;; elle ne montre pas qu’elle peut être construite telle qu’elle est dessinée. Ce chapitre dit ce qui repose sur des données, ce qui est supposé, et ce que seule une étude professionnelle peut trancher.</p></header>
+
+
+<div class="block" id="limits.what">
+  <h2>Ce qu’est cette étude, et ce qu’elle n’est pas</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>Ce qu’elle est</h3>
+      <ul>
+        <li>Une première estimation complète&nbsp;: le plan des gares, une heure de trains, le coût tiré de projets construits, le trafic et une évaluation selon les règles françaises.</li>
+        <li>Ouverte&nbsp;: chaque chiffre est calculé par un petit modèle publié avec le site, que chacun peut relancer ou modifier (voir <a class="xref" href="#about.source">le code source</a>).</li>
+        <li>Écrite pour être vérifiée&nbsp;: chaque chapitre donne ses sources, et chaque chiffre qui n’en a pas est signalé comme une hypothèse.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Ce qu’elle n’est pas</h3>
+      <ul>
+        <li>Un projet d’ingénierie&nbsp;: aucun tracé n’a été relevé, aucun sol sondé, aucune gare dessinée selon les référentiels de SNCF Réseau.</li>
+        <li>Un horaire éprouvé&nbsp;: l’heure de trains est construite à la main et par un petit solveur, pas simulée avec la signalisation.</li>
+        <li>Un document officiel&nbsp;: aucun organisme ne l’a commandée, relue ou approuvée, ni la SNCF, ni SNCF Réseau, ni Île-de-France Mobilités, ni l’État, ni la Région, ni la Ville de Paris.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="block" id="limits.data">
+  <h2>Ce qui repose sur des données</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Quoi</th><th>Données</th><th>Où</th></tr></thead>
+    <tbody>
+      <tr><th>Temps de changement de gare à Paris aujourd’hui</th><td>Horaires SNCF (données ouvertes, un jour de semaine de mars 2026), meilleure correspondance réelle pour chaque paire de villes</td><td><a class="xref" href="#crossing">Traverser Paris</a></td></tr>
+      <tr><th>Trains sur chaque ligne aujourd’hui</th><td>Horaires de la SNCF et d’Île-de-France Mobilités</td><td><a class="xref" href="#service">Trains et quais</a></td></tr>
+      <tr><th>Déplacements domicile-travail entre communes</th><td>Recensement de l’INSEE</td><td><a class="xref" href="#economy.jobs">L’emploi de part et d’autre de Paris</a></td></tr>
+      <tr><th>Coûts unitaires</th><td>Coûts finaux et marchés signés de tunnels et de gares construits&nbsp;: Grand Paris Express, Elizabeth line, Zurich, Stuttgart</td><td><a class="xref" href="#cost.units">Les prix retenus</a></td></tr>
+      <tr><th>Valeurs du temps, de l’inconfort, du carbone, taux d’actualisation</th><td>Les règles françaises d’évaluation des projets de transport</td><td><a class="xref" href="#economy.method">La méthode</a></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="block" id="limits.assumed">
+  <h2>Les principales hypothèses qui n’ont pas encore de données</h2>
+  <ul>
+    <li><strong>La signalisation.</strong> Les TER ne partagent les tunnels TGV que si les trains peuvent se suivre à environ 1,5&nbsp;minutes.</li>
+    <li><strong>La règle des quais.</strong> Arrêts de 7&nbsp;minutes, 2&nbsp;minutes réservées à un train en retard et 3 pour libérer la voie&nbsp;: 5&nbsp;trains par heure et par voie.</li>
+    <li><strong>Le coût.</strong> 40,0&nbsp;Md€, tiré de rares exemples de gares souterraines construites sous des gares en service&nbsp;: de 27 à 60&nbsp;Md€ selon les prix et les aléas retenus. Le sol sous la gare de Lyon et Montparnasse n’est pas étudié.</li>
+    <li><strong>L’accès aux quais d’une gare souterraine.</strong> Supposé aussi rapide qu’aujourd’hui&nbsp;; deux minutes de plus pour chaque voyageur retireraient 21 % des bénéfices.</li>
+    <li><strong>Qui traverse Paris.</strong> Aucun comptage public récent des trajets d’un côté de Paris à l’autre&nbsp;; les nouveaux voyages sont estimés à partir des changements de train que le projet supprime.</li>
+    <li><strong>Les coûts d’exploitation.</strong> Les rares références françaises varient du simple au triple&nbsp;: les recettes propres du projet couvrent de 178 % à 293 % des coûts d’exploitation sur cette fourchette.</li>
+  </ul>
+  <p>Chaque hypothèse, avec ce qui se passe si elle est fausse, figure dans <a class="xref" href="#method.assumptions">les hypothèses sans données</a>, et chaque question ouverte dans <a class="xref" href="#risks.verify">ce qu’il faut vérifier, point par point</a>.</p>
+</div>
+
+<div class="block" id="limits.range">
+  <h2>Jusqu’où le résultat peut bouger</h2>
+  <p>Dans le cas central, les bénéfices comptés rendent 121 % du coût annuel, et la lecture française donne +15,0&nbsp;Md€ nets en euros d’aujourd’hui. Les postes incertains, pris ensemble, font varier ce chiffre de +5,1 à +27,0&nbsp;Md€. Le résultat justifie donc une étude professionnelle, pas encore une décision de construire.</p>
+</div>
+
+<div class="block" id="limits.professional">
+  <h2>Ce qu’une étude professionnelle ajouterait</h2>
+  <ul>
+    <li>Des sondages de sol, et les tracés des tunnels, des raccordements et des têtes de tunnel.</li>
+    <li>L’horaire simulé avec la signalisation, selon les règles d’exploitation de SNCF Réseau.</li>
+    <li>Un modèle de trafic construit sur les données de billetterie et les enquêtes de déplacements de la SNCF et d’Île-de-France Mobilités.</li>
+    <li>Les méthodes de construction et les étapes sous des gares qui restent ouvertes, avec la gêne qu’elles causent.</li>
+    <li>Le patrimoine, l’environnement et le bruit pendant les travaux.</li>
+    <li>Qui posséderait, construirait, exploiterait et paierait chaque partie.</li>
+  </ul>
+</div>
+
+<div class="block" id="limits.correct">
+  <h2>Les corrections sont bienvenues</h2>
+  <p>Un chiffre qui semble faux, une meilleure source, une règle que l’étude oublie&nbsp;: ouvrez un ticket sur la <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">page GitHub de l’étude</a>, ou écrivez à l’auteur (voir <a class="xref" href="#about.contact">contact</a>). Chaque correction est reportée dans le modèle et dans les deux langues.</p>
+</div>
+
+</section>
 <section class="page" id="zurich" data-title="Gare centrale de Zurich" hidden>
 <header><span class="eyebrow">Annexe A</span><h1>Zurich : un terminus devenu gare traversante</h1><p class="lede">La gare centrale de Zurich était une gare terminus : 16 voies qui s’arrêtaient sur des heurtoirs en plein centre-ville. Plutôt que de l’agrandir, le canton a construit à deux reprises une gare traversante à quatre voies en dessous, en 1990 et en 2014, chacune avec son propre tunnel. Les huit voies traversantes représentent moins d’un tiers des voies à quai de la gare et reçoivent, selon un décompte approximatif, près de la moitié de ses trains.</p></header>
 
@@ -5133,8 +5212,34 @@ body[data-page="presentation"] .menu-btn { display: none }
 
 
 </section>
+<section class="page" id="about" data-title="À propos de l’étude" hidden>
+<header><span class="eyebrow">Annexe E</span><h1>Qui l’a écrite, et comment la réutiliser</h1><p class="lede">Hexagone³ a été écrit par Jean-Charles Gasche, de façon indépendante et bénévole. Il n’a aucun lien avec la SNCF, SNCF Réseau, Île-de-France Mobilités, l’État, la Région ou la Ville de Paris, et personne n’a commandé ni financé l’étude. Son texte, ses figures, ses données et son modèle sont libres de réutilisation, avec mention de l’auteur.</p></header>
+
+
+<div class="block" id="about.author">
+  <h2>L’auteur</h2>
+  <p>Jean-Charles Gasche a écrit cette étude sur son temps libre, pour montrer que des gares traversantes sous Paris méritent une étude professionnelle. Le plan et chacun de ses choix sont les siens. Le modèle, les dessins et le texte ont été réalisés avec l’aide d’un assistant d’intelligence artificielle (Claude, d’Anthropic)&nbsp;; chaque chiffre vient du modèle ouvert, que chacun peut relancer.</p>
+</div>
+
+<div class="block" id="about.contact">
+  <h2>Contact et corrections</h2>
+  <p>Pour signaler une erreur, proposer une meilleure source ou discuter du projet, ouvrez un ticket sur la <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">page GitHub de l’étude</a>. Ce qu’une correction change est reporté dans le modèle et dans les deux langues&nbsp;; voir <a class="xref" href="#limits">hypothèses et limites</a> pour les points qui demandent le plus à être vérifiés.</p>
+</div>
+
+<div class="block" id="about.licence">
+  <h2>Réutiliser l’étude</h2>
+  <p>Le texte, les figures, les données et le modèle d’Hexagone³ sont sous <a href="https://creativecommons.org/licenses/by/4.0/deed.fr" target="_blank" rel="noopener">licence Creative Commons Attribution 4.0</a> (CC BY 4.0)&nbsp;: chacun peut les copier, les diffuser et les adapter, pour tout usage, à condition de citer l’auteur, de donner le lien vers l’étude et d’indiquer ce qui a été modifié.</p>
+  <p>Pour la citer&nbsp;: <em>Jean-Charles Gasche, Hexagone³&nbsp;: des gares traversantes sous Paris, version 4.1, octobre 2026, https://jcgasche.github.io/hexagone-cube/</em>.</p>
+</div>
+
+<div class="block" id="about.source">
+  <h2>Le code source</h2>
+  <p>Le site, le modèle et les données sont publiés sur <a href="https://github.com/jcgasche/hexagone-cube" target="_blank" rel="noopener">GitHub</a>, chaque version datée. Le modèle est un ensemble de scripts Python sans paquet à installer&nbsp;; la page explique comment le relancer et comment chaque chiffre du texte est rempli à partir de ses résultats (voir <a class="xref" href="#method">comment les chiffres sont obtenus</a>).</p>
+</div>
+
+</section>
 <section class="page" id="sources" data-title="Sources" hidden>
-<header><span class="eyebrow">Annexe E</span><h1>Sources</h1><p class="lede">Chaque chiffre de ce document qui n’est pas une hypothèse vient de l’un des documents ci-dessous. Les numéros dans le texte renvoient ici ; le lien de la dernière colonne ouvre le document lui-même.</p></header>
+<header><span class="eyebrow">Annexe F</span><h1>Sources</h1><p class="lede">Chaque chiffre de ce document qui n’est pas une hypothèse vient de l’un des documents ci-dessous. Les numéros dans le texte renvoient ici ; le lien de la dernière colonne ouvre le document lui-même.</p></header>
 
 <div class="block">
 <p class="note">Un chiffre marqué « déduit » a été calculé à partir de la source ; un chiffre marqué « non vérifié » vient d’une source secondaire comme Wikipédia ou la presse et doit être confirmé avant qu’on s’y fie. Les hypothèses faites pour cette étude sont énumérées dans <a class="xref" href="#method">méthode et hypothèses</a>.</p>

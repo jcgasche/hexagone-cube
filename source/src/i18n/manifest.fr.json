@@ -59,6 +59,10 @@
   "nav_fr": "Risques et prochaines étapes",
   "heading_fr": "Ce qui pourrait changer la réponse, et ce qu’il faut vérifier"
  },
+ "limits": {
+  "nav_fr": "Hypothèses et limites",
+  "heading_fr": "Ce que cette étude peut dire, et ce qu’elle ne peut pas dire"
+ },
  "zurich": {
   "nav_fr": "Gare centrale de Zurich",
   "heading_fr": "Zurich : un terminus devenu gare traversante"
@@ -74,6 +78,10 @@
  "method": {
   "nav_fr": "Méthode et hypothèses",
   "heading_fr": "Comment les chiffres sont obtenus"
+ },
+ "about": {
+  "nav_fr": "À propos de l’étude",
+  "heading_fr": "Qui l’a écrite, et comment la réutiliser"
  },
  "sources": {
   "nav_fr": "Sources",

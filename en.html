@@ -1464,12 +1464,14 @@ body[data-page="presentation"] .menu-btn { display: none }
     <a href="#financing"><i>11</i><span>Financing</span></a>
     <a href="#economy"><i>12</i><span>Economic return</span></a>
     <a href="#risks"><i>13</i><span>Risks and next steps</span></a>
+    <a href="#limits"><i>14</i><span>Assumptions and limits</span></a>
     <h4>Annexes</h4>
     <a href="#zurich"><i>A</i><span>Zürich main station</span></a>
     <a href="#elizabeth"><i>B</i><span>Elizabeth line, London</span></a>
     <a href="#pulse"><i>C</i><span>The Swiss timetable</span></a>
     <a href="#method"><i>D</i><span>Method and assumptions</span></a>
-    <a href="#sources"><i>E</i><span>Sources</span></a>
+    <a href="#about"><i>E</i><span>About this study</span></a>
+    <a href="#sources"><i>F</i><span>Sources</span></a>
   </nav>
   <main>
 <section class="page presentation" id="presentation" data-title="Presentation" hidden>
@@ -1718,6 +1720,7 @@ body[data-page="presentation"] .menu-btn { display: none }
     <h3 class="pz-h2">All the figures, sources and assumptions</h3>
     <p class="pz-lead">Every number on this page comes from the study's model. The full report sets out how each one is made, what it rests on and what is still to verify.</p>
     <a class="pz-cta" href="#summary">Read the full report</a>
+    <p class="pz-more"><a href="#limits">Assumptions and limits</a><a href="#about">About this study</a></p>
   </div>
 </section>
 </div>
@@ -4285,6 +4288,82 @@ body[data-page="presentation"] .menu-btn { display: none }
 </div>
 
 </section>
+<section class="page" id="limits" data-title="Assumptions and limits" hidden>
+<header><span class="eyebrow">Chapter 14</span><h1>What this study can and cannot tell</h1><p class="lede">This study is an independent pre-feasibility case, written by one person outside any rail company or public agency. It shows that the idea deserves a professional study; it does not show that it can be built as drawn. This chapter sets out what rests on data, what is assumed, and what only a professional study can settle.</p></header>
+
+
+<div class="block" id="limits.what">
+  <h2>What this study is, and what it is not</h2>
+  <div class="cols">
+    <div class="card">
+      <h3>What it is</h3>
+      <ul>
+        <li>A complete first estimate: the layout, an hour of trains, the cost from built projects, the traffic and an appraisal under the French rules.</li>
+        <li>Open: every figure is computed by a small model published with the site, which anyone can rerun or change (see <a class="xref" href="#about.source">the source</a>).</li>
+        <li>Written to be checked: each chapter states its sources, and each figure that has none is marked as an assumption.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>What it is not</h3>
+      <ul>
+        <li>An engineering design: no alignment has been surveyed, no ground investigated, no station drawn to the standards of SNCF Réseau.</li>
+        <li>A tested timetable: the hour of trains is drawn by hand and by a small solver, not simulated with the signalling.</li>
+        <li>An official document: no agency commissioned, reviewed or endorsed it, whether SNCF, SNCF Réseau, Île-de-France Mobilités, the State, the Region or the City of Paris.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="block" id="limits.data">
+  <h2>What rests on data</h2>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>What</th><th>Data</th><th>Where</th></tr></thead>
+    <tbody>
+      <tr><th>Time to change station across Paris today</th><td>SNCF timetables (open data, a weekday of March 2026), best real connection for each pair of cities</td><td><a class="xref" href="#crossing">Crossing Paris</a></td></tr>
+      <tr><th>Trains on each line today</th><td>SNCF and Île-de-France Mobilités timetables</td><td><a class="xref" href="#service">Trains and platforms</a></td></tr>
+      <tr><th>Commuting between towns</th><td>INSEE census of home to work trips</td><td><a class="xref" href="#economy.jobs">Jobs across Paris</a></td></tr>
+      <tr><th>Unit costs</th><td>Final costs and signed contracts of built tunnels and stations: Grand Paris Express, the Elizabeth line, Zürich, Stuttgart</td><td><a class="xref" href="#cost.units">The prices used</a></td></tr>
+      <tr><th>Values of time, crowding, carbon, the discount rate</th><td>The French rules for appraising transport projects</td><td><a class="xref" href="#economy.method">The method</a></td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="block" id="limits.assumed">
+  <h2>The main assumptions with no data behind them yet</h2>
+  <ul>
+    <li><strong>Signalling.</strong> Regional trains share the TGV tunnels only if trains can follow each other about 1.5 minutes apart.</li>
+    <li><strong>The platform rule.</strong> 7-minute stops, 2 minutes held for a late train and 3 to clear the track: 5 trains an hour per track.</li>
+    <li><strong>Cost.</strong> €40.0bn, from few records of deep stations built under working ones: €27 to 60bn across the range of prices and of risk. The ground under Gare de Lyon and Montparnasse is not investigated.</li>
+    <li><strong>Boarding in a deep station.</strong> Taken as long as today; two minutes more for every passenger would remove 21% of the benefits.</li>
+    <li><strong>Who crosses Paris.</strong> No recent public count of trips from one side of Paris to the other; the new journeys are counted from the changes of train the plan removes.</li>
+    <li><strong>Running costs.</strong> The few French records differ by a factor of three: the project's own income covers 178% to 293% of running costs across that range.</li>
+  </ul>
+  <p>Every assumption, with what happens if it is wrong, is listed in <a class="xref" href="#method.assumptions">assumptions with no data behind them</a>, and every open question in <a class="xref" href="#risks.verify">what to verify, point by point</a>.</p>
+</div>
+
+<div class="block" id="limits.range">
+  <h2>How far the result can move</h2>
+  <p>In the central case, the benefits counted return 121% of the yearly cost, and the French reading gives +€15.0bn net in today's money. The uncertain items together take that from +€5.1bn to +€27.0bn. The result is therefore a case for a professional study, not yet a case for building.</p>
+</div>
+
+<div class="block" id="limits.professional">
+  <h2>What a professional study would add</h2>
+  <ul>
+    <li>Ground surveys, and alignments for the tunnels, the junctions and the portals.</li>
+    <li>The timetable simulated with the signalling, under the operating rules of SNCF Réseau.</li>
+    <li>A traffic model built on ticket data and the trip surveys of SNCF and Île-de-France Mobilités.</li>
+    <li>Construction methods and stages under stations that stay open, with the disruption they cause.</li>
+    <li>Heritage, environment and noise during the works.</li>
+    <li>Who would own, build, run and pay for each part.</li>
+  </ul>
+</div>
+
+<div class="block" id="limits.correct">
+  <h2>Corrections are welcome</h2>
+  <p>A figure that looks wrong, a source that is better, a rule that the study misses: open an issue on the <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">study's GitHub page</a>, or write to the author (see <a class="xref" href="#about.contact">contact</a>). Each correction is carried into the model and into both languages.</p>
+</div>
+
+</section>
 <section class="page" id="zurich" data-title="Zürich main station" hidden>
 <header><span class="eyebrow">Annex A</span><h1>Zürich: a terminus that became a through station</h1><p class="lede">Zürich's main station was a terminus: 16 tracks ending at buffer stops in the middle of the city. Rather than enlarge it, the canton twice built a four-track through station underneath, in 1990 and in 2014, each with its own tunnel. The eight through tracks are under a third of the station's platform tracks and carry, on a rough count, close to half of its trains.</p></header>
 
@@ -5133,8 +5212,34 @@ body[data-page="presentation"] .menu-btn { display: none }
 
 
 </section>
+<section class="page" id="about" data-title="About this study" hidden>
+<header><span class="eyebrow">Annex E</span><h1>Who wrote it, and how to reuse it</h1><p class="lede">Hexagone³ was written by Jean-Charles Gasche, independently and unpaid. He has no link with SNCF, SNCF Réseau, Île-de-France Mobilités, the State, the Region or the City of Paris, and nobody commissioned or funded the study. Its text, figures, data and model are free to reuse with credit.</p></header>
+
+
+<div class="block" id="about.author">
+  <h2>The author</h2>
+  <p>Jean-Charles Gasche wrote the study in his own time, to show that through stations under Paris deserve a professional study. The layout and every choice in it are his. The model, the drawings and the text were built with the help of an AI assistant (Claude, by Anthropic); every figure comes from the open model, which anyone can rerun.</p>
+</div>
+
+<div class="block" id="about.contact">
+  <h2>Contact and corrections</h2>
+  <p>To point out an error, suggest a better source or discuss the plan, open an issue on the <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">study's GitHub page</a>. What a correction changes is carried into the model and into both languages; see <a class="xref" href="#limits">assumptions and limits</a> for the points that most need checking.</p>
+</div>
+
+<div class="block" id="about.licence">
+  <h2>Reusing the study</h2>
+  <p>The text, figures, data and model of Hexagone³ are under the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">Creative Commons Attribution 4.0 licence</a> (CC BY 4.0): anyone may copy, share and adapt them, for any purpose, provided they credit the author, link to the study and say what they changed.</p>
+  <p>To cite it: <em>Jean-Charles Gasche, Hexagone³: through stations under Paris, version 4.1, October 2026, https://jcgasche.github.io/hexagone-cube/</em>.</p>
+</div>
+
+<div class="block" id="about.source">
+  <h2>The source</h2>
+  <p>The site, the model and the data are published on <a href="https://github.com/jcgasche/hexagone-cube" target="_blank" rel="noopener">GitHub</a>, with every version dated. The model is a set of Python scripts with no packages to install; the page explains how to rerun it and how every number in the text is filled in from its results (see <a class="xref" href="#method">how the numbers are made</a>).</p>
+</div>
+
+</section>
 <section class="page" id="sources" data-title="Sources" hidden>
-<header><span class="eyebrow">Annex E</span><h1>Sources</h1><p class="lede">Every figure in this document that is not an assumption comes from one of the documents below. Numbers in the text link here; the link in the last column opens the document itself.</p></header>
+<header><span class="eyebrow">Annex F</span><h1>Sources</h1><p class="lede">Every figure in this document that is not an assumption comes from one of the documents below. Numbers in the text link here; the link in the last column opens the document itself.</p></header>
 
 <div class="block">
 <p class="note">A figure marked "derived" was computed from the source; a figure marked "unverified" comes from a secondary source such as Wikipedia or the press and should be confirmed before it is relied on. Assumptions made for this study are listed in <a class="xref" href="#method">Method and assumptions</a>.</p>
