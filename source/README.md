@@ -117,3 +117,4 @@ reviewer for an earlier report of 12 October 2026. See "What changed in this ver
 
 Text, figures, data and model: [Creative Commons Attribution 4.0](https://creativecommons.org/licenses/by/4.0/) (CC BY 4.0), see `LICENSE` at the root.
 Credit: Jean-Charles Gasche, Hexagone³, https://jcgasche.github.io/hexagone-cube/
+Contact: hexagone.cube.paris@gmail.com
