@@ -17,6 +17,7 @@
   --display: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
   --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --mono: ui-monospace, Menlo, Consolas, monospace;
+  --math: "STIX Two Math", "Cambria Math", "Times New Roman", Georgia, serif;
   --bar-h: 52px; --nav-w: 250px;
 }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
@@ -45,7 +46,7 @@
   color-scheme: dark }
 
 * { box-sizing: border-box }
-body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 15px; line-height: 1.55; margin: 0 }
+body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.62; margin: 0 }
 h1, h2, h3, h4 { font-family: var(--display); color: var(--ink); margin: 0; text-wrap: balance; font-weight: 600 }
 h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.05 }
 h2 { font-size: 24px; line-height: 1.15 }
@@ -79,9 +80,16 @@ main { min-width: 0 }
 .page > header { display: flex; flex-direction: column; gap: 8px }
 .eyebrow { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); font-weight: 600 }
 .lede { max-width: 70ch; font-size: 17px; color: var(--text) }
-.block { display: flex; flex-direction: column; gap: 12px; min-width: 0; scroll-margin-top: calc(var(--bar-h) + 14px) }
-.block > p, .block > ul, .block > ol, .prose > p, .prose > ul, .prose > ol { max-width: 72ch }
-.block > ul, .block > ol, .prose > ul, .prose > ol, details > ul, .callout > ul, .card > ul:not(.legend) { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 5px }
+.block { display: flex; flex-direction: column; gap: 14px; min-width: 0; scroll-margin-top: calc(var(--bar-h) + 14px) }
+.block > p, .block > ul, .block > ol, .prose > p, .prose > ul, .prose > ol { max-width: 68ch }
+.block > ul, .block > ol, .prose > ul, .prose > ol, details > ul, .callout > ul, .card > ul:not(.legend) { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 7px }
+.block > h2 { padding-bottom: 8px; border-bottom: 1px solid var(--rule); margin-top: 4px }
+.block > h3 { margin-top: 6px }
+/* a point: a paragraph or list item that opens with a bold lead-in (set by the build), shown as a small heading over its text */
+.pt > strong:first-child { display: block; font-family: var(--display); font-size: 17px; letter-spacing: .005em; line-height: 1.25; margin-bottom: 3px }
+li.pt { margin-top: 4px }
+li.pt::marker { color: var(--accent) }
+.block > ul > li.pt:first-child { margin-top: 0 }
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 28px; align-items: start }
 .cols.wide-left { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) }
 .cols > * { min-width: 0 }

@@ -1,4 +1,4 @@
-<!-- en: 977a6f3c0d -->
+<!-- en: cbd9d1b2e4 -->
 <p class="lede">Aucune étude de conception n’existe encore&nbsp;: le coût est donc construit à partir des quantités (kilomètres de tunnel, mètres de quai) et de ce qu’ont coûté des gares et des tunnels une fois construits. Le projet revient à environ {{ m.cost.total | 0 }}&nbsp;Md€, entre {{ m.cost_low | 0 }}&nbsp;Md€ et {{ m.cost_high | 0 }}&nbsp;Md€ avec des prix bas et des prix élevés. Les quatre gares souterraines, avec les quais du RER G à Châtelet-Les Halles, sont le poste le plus lourd&nbsp;; les tunnels viennent ensuite&nbsp;: un pour les TGV, partagé avec les TER, et un pour chaque ligne de RER. Les TER n’ont pas de tunnel à eux&nbsp;: circuler dans les tunnels du TGV ne coûte que les raccordements qui les y mènent.</p>
 
 <div class="block" id="cost.total">
@@ -40,6 +40,7 @@
       <tr class="total"><th>Total</th><td class="num">{{ m.cost.total | 1 }}</td></tr>
       <tr><th>Avec des prix bas et {{ m.rates_low.risk | pct }} de risque&nbsp;; avec des prix élevés et {{ m.rates_high.risk | pct }} de risque</th><td class="num">{{ m.cost_low | 1 }}&nbsp;; {{ m.cost_high | 1 }}</td></tr>
     </tbody></table></div>
+  <div class="formula"><span class="f-label">Des travaux au total</span><div class="f-math"><span class="cl"><var>total</var><span class="op">=</span><var>travaux</var><span class="op">×</span>(1 + {{ m.rates.design | pct }} + {{ m.rates.client | pct }} + {{ m.rates.land | pct }})<span class="op">×</span>(1 + {{ m.rates.risk | pct }})<span class="op">=</span>{{ m.cost.hard | 1 }}<span class="op">×</span>{{ m.gross_up | 2 }}<span class="op">=</span><span class="res">{{ m.cost.total | 1 }} Md€</span></span></div><p class="f-note">Les études, la maîtrise d’ouvrage et le foncier sont des parts des travaux ; le risque s’applique à tout, travaux et majorations.</p></div>
   <div class="tbl-wrap"><table class="tbl">
     <thead><tr><th>Gare souterraine</th><th class="num">Voies TGV</th><th class="num">Voies TER</th><th class="num">Voies de banlieue</th><th class="num">Voies à quai, m</th><th class="num">Travaux, Md€</th><th class="num">Coût complet, Md€</th></tr></thead>
     <tbody>
@@ -141,6 +142,7 @@
 <div class="block" id="cost.yearly">
   <h2>Le coût annuel</h2>
   <p>Pour comparer un coût payé une fois avec des recettes et des avantages qui reviennent chaque année, le coût de construction est converti en remboursement annuel, comme un emprunt remboursé sur 60 ans à 3&nbsp;% au-dessus de l’inflation. L’argent est dépensé pendant des années avant que le premier train ne circule&nbsp;: sur {{ m.params.build_years | 0 }} années de dépenses régulières <span class="tag assume">hypothèse</span>, les intérêts pendant les travaux ajoutent {{ m.idc - 1 | pct }}. Chaque milliard d’euros de construction coûte alors {{ m.AF * m.idc * 1000 | 0 }}&nbsp;M€ par an.</p>
+  <div class="formula"><span class="f-label">Annuité de remboursement</span><div class="f-math"><span class="cl"><var>par an</var><span class="op">=</span><var>coût</var><span class="op">×</span>(1 + <var>intérêts pendant les travaux</var>)<span class="op">×</span><span class="frac"><span><var>r</var></span><span>1 − (1 + <var>r</var>)<sup>−60</sup></span></span><span class="op">=</span>{{ m.cost.total | 1 }}<span class="op">×</span>{{ m.idc | 3 }}<span class="op">×</span>{{ m.AF | 3 }}<span class="op">=</span><span class="res">{{ m.yearly.annuity | 2 }} Md€ par an</span></span></div><p class="f-note"><var>r</var> = 3 % au-dessus de l’inflation, 60 ans ; les intérêts pendant les travaux font {{ m.idc - 1 | pct }} pour {{ m.params.build_years | 0 }} années de dépenses régulières.</p></div>
   <div class="tbl-wrap"><table class="tbl">
     <thead><tr><th>Milliards d’euros par an</th><th class="num">Le triangle</th><th>Quel compte</th></tr></thead>
     <tbody>

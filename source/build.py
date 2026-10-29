@@ -323,6 +323,13 @@ def algo_blocks(cat, sec, raw, ctx):
     return res
 
 
+POINT = re.compile(r'<(p|li)>(<strong>(?:(?!</strong>).)*[.:!?]</strong>)')
+def mark_points(body):
+    """A paragraph or list item that opens with a bold phrase ending in a full stop or a colon is a point: it gets the class pt, and the
+    page shows the phrase as a small heading over its text."""
+    return POINT.sub(lambda m: f'<{m.group(1)} class="pt">{m.group(2)}', body)
+
+
 def algo_link(lang, key, algos):
     return (f'<p class="algo-link"><button type="button" class="algo-btn" data-block="{html.escape(key, quote=True)}" data-algos="{" ".join(algos)}">'
             f'{ALGO_WORDS[lang]["link"]}</button></p>\n')
@@ -441,6 +448,7 @@ def build(a, lang, out):
         nav.append(f'    <a href="#{s["id"]}"><i>{s["label"]}</i><span>{html.escape(s["nav"])}</span></a>')
         body = s['body'].replace('<!--SOURCES-->', sources_table(numbers, sources, lang))
         body = render_cites(body, numbers, sources, s['id'], problems)
+        body = mark_points(body)
         if s.get('algo'):                              # a link under every block whose figures come from the model
             blocks = top_blocks(body)
             if len(blocks) != len(s['algo']): problems.append(f"{s['id']}: {len(s['algo'])} blocks in the source, {len(blocks)} once built")

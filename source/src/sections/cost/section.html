@@ -39,6 +39,7 @@
       <tr class="total"><th>Total</th><td class="num">{{ m.cost.total | 1 }}</td></tr>
       <tr><th>With low prices and {{ m.rates_low.risk | pct }} risk; with high prices and {{ m.rates_high.risk | pct }} risk</th><td class="num">{{ m.cost_low | 1 }}; {{ m.cost_high | 1 }}</td></tr>
     </tbody></table></div>
+  <div class="formula"><span class="f-label">From the works to the total</span><div class="f-math"><span class="cl"><var>total</var><span class="op">=</span><var>works</var><span class="op">×</span>(1 + {{ m.rates.design | pct }} + {{ m.rates.client | pct }} + {{ m.rates.land | pct }})<span class="op">×</span>(1 + {{ m.rates.risk | pct }})<span class="op">=</span>{{ m.cost.hard | 1 }}<span class="op">×</span>{{ m.gross_up | 2 }}<span class="op">=</span><span class="res">€{{ m.cost.total | 1 }}bn</span></span></div><p class="f-note">Design, client costs and land are shares of the works; the risk is taken on everything, works and mark-ups.</p></div>
   <div class="tbl-wrap"><table class="tbl">
     <thead><tr><th>Deep station</th><th class="num">TGV tracks</th><th class="num">Regional express tracks</th><th class="num">Suburban tracks</th><th class="num">Platform track, m</th><th class="num">Works, € bn</th><th class="num">All-in, € bn</th></tr></thead>
     <tbody>
@@ -140,6 +141,7 @@
 <div class="block" id="cost.yearly">
   <h2>The cost per year</h2>
   <p>To compare a cost paid once with money and benefits that come every year, the construction cost is turned into a yearly repayment, like a loan repaid over 60 years at 3% above inflation. Money is spent for years before the first train runs: over {{ m.params.build_years | 0 }} years of even spending <span class="tag assume">assumption</span>, interest during the works adds {{ m.idc - 1 | pct }}. Each €1 billion of construction then costs €{{ m.AF * m.idc * 1000 | 0 }} million a year.</p>
+  <div class="formula"><span class="f-label">Yearly repayment</span><div class="f-math"><span class="cl"><var>a year</var><span class="op">=</span><var>cost</var><span class="op">×</span>(1 + <var>interest during the works</var>)<span class="op">×</span><span class="frac"><span><var>r</var></span><span>1 − (1 + <var>r</var>)<sup>−60</sup></span></span><span class="op">=</span>{{ m.cost.total | 1 }}<span class="op">×</span>{{ m.idc | 3 }}<span class="op">×</span>{{ m.AF | 3 }}<span class="op">=</span><span class="res">€{{ m.yearly.annuity | 2 }}bn a year</span></span></div><p class="f-note"><var>r</var> = 3% above inflation, 60 years; the interest during the works is {{ m.idc - 1 | pct }} for {{ m.params.build_years | 0 }} years of even spending.</p></div>
   <div class="tbl-wrap"><table class="tbl">
     <thead><tr><th>€ billion a year</th><th class="num">The triangle</th><th>Which account</th></tr></thead>
     <tbody>

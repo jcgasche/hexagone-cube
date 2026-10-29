@@ -83,6 +83,15 @@ the heading, which comes from the manifest. Then a series of blocks:
 - **Drawings that are not to scale or not from a design** carry `<span class="tag sketch">illustrative sketch</span>` in their
   heading, and show as numbers only dimensions that have a source.
 
+- **Points.** A paragraph or list item that opens with a bold phrase ending in a full stop or a colon (`<p><strong>The rule.</strong> ...`)
+  is shown with that phrase as a small heading over its text (the build adds the class `pt`). A bold phrase that runs into the sentence
+  (`<strong>London had no fast line;</strong> Paris has five`) stays inline.
+- **Formulas.** A rule or a calculation that the text states in words can be set apart, like a displayed equation, in both languages:
+  `<div class="formula"><span class="f-label">The platform rule</span><div class="f-math"><span class="cl">...</span><span class="cl">...</span></div><p class="f-note">What the symbols are.</p></div>`.
+  Inside `.f-math`: `<var>` for a named quantity, `<span class="op">×</span>` for an operator, `<span class="frac"><span>a</span><span>b</span></span>` for a
+  fraction, `<span class="res">` for the result, and one `.cl` per clause (clauses wrap as units). Numbers come from the model as everywhere.
+  Keep the paragraph that states the rule in words: the formula restates it, it does not replace it.
+
 Components (all in components.css): `.tiles > .tile` (`.n` number, `.k` label, `.d` detail), `.card`, `.callout` and
 `.callout.warn`, `.note`, `.tag`, `.cols` (two columns, stacks on a phone), `.tbl-wrap > table.tbl` (`td.num`, `tr.total`, `tr.hl`),
 `figure.fig`, `.controls > .field`, `.seg`, `.slider`, `.steps`, `dl.read`, `.legend`, `.fig-scroll` (horizontal scroll for a wide
