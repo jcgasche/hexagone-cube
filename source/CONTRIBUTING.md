@@ -152,6 +152,14 @@ it. When a function is renamed or an algorithm changes, update `algorithms.json`
 9. **Do not edit shared files** (src/css, src/js, build.py, manifest) for the needs of one section; put the code in the
    section's own files and note what could later be shared.
 
+## Numbering
+
+The build numbers the report on its own: in chapter 9, the blocks that open with an `<h2>` are 9.1, 9.2..., the `<h3>` inside them
+9.1.1, 9.1.2..., and the figures with a `.fig-head` are Figure 9.1, 9.2... (annexes use their letter: A.1). The contents list shows
+the parts of the open chapter. A cross-reference `<a class="xref" href="#cost.units">` to a numbered part or to a chapter carries its
+number automatically, so write the words without it. A block with no `<h2>` (an opening row of tiles) is not numbered. Moving or
+adding a block renumbers everything at the next build.
+
 ## Agreed anchors
 
 ```

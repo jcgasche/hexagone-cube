@@ -46,7 +46,7 @@
   color-scheme: dark }
 
 * { box-sizing: border-box }
-body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.62; margin: 0 }
+body { background: var(--bg); color: var(--text); font-family: var(--body); font-size: 17px; line-height: 1.65; margin: 0 }
 h1, h2, h3, h4 { font-family: var(--display); color: var(--ink); margin: 0; text-wrap: balance; font-weight: 600 }
 h1 { font-size: clamp(28px, 5vw, 40px); line-height: 1.05 }
 h2 { font-size: 24px; line-height: 1.15 }
@@ -75,16 +75,27 @@ svg text { font-family: var(--body) }
 .contents a:hover { background: var(--surface-2) }
 .contents a[aria-current="page"] { background: var(--accent); color: var(--accent-ink); font-weight: 600 }
 .contents a[aria-current="page"] i { color: var(--accent-ink) }
+.contents .subs { display: none; flex-direction: column; gap: 1px; margin: 2px 0 6px 0 }
+.contents a[aria-current="page"] + .subs { display: flex }
+.contents .subs a { font-size: 13px; padding: 3px 8px 3px 14px; grid-template-columns: 32px minmax(0, 1fr); color: var(--text) }
+.contents .subs a i { font-size: 12px }
 main { min-width: 0 }
-.page { scroll-margin-top: var(--bar-h); max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 56px; display: flex; flex-direction: column; gap: 30px }
-.page > header { display: flex; flex-direction: column; gap: 8px }
+.page { scroll-margin-top: var(--bar-h); max-width: 1000px; margin: 0 auto; padding-inline: 28px; padding-block: 36px 64px; display: flex; flex-direction: column; gap: 40px }
+.page > header { display: flex; flex-direction: column; gap: 10px; padding-bottom: 8px }
+/* the report's own hierarchy: numbered parts, their text and figures set in from the heading */
+main .page:not(.presentation) :is(h1, h2, h3) { font-family: var(--body); letter-spacing: -.012em }
+main .page:not(.presentation) h1 { font-size: clamp(30px, 4.6vw, 42px); line-height: 1.1; max-width: 26ch }
+.block > h2 { font-size: 27px; line-height: 1.2; padding-bottom: 10px; border-bottom: 1px solid var(--rule); margin-top: 6px; display: flex; gap: 14px; align-items: baseline }
+.block h3 { font-size: 20px; line-height: 1.25; margin-top: 10px; display: flex; gap: 10px; align-items: baseline }
+h2 > .num, h3 > .num { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); letter-spacing: 0; flex: none }
+h3 > .num { color: var(--muted) }
+@media (min-width: 760px) { .block > :not(h2):not(.algo-link) { margin-left: 28px } .block > .algo-link { margin-left: 28px } }
+a.xref .xnum { font-style: normal; font-weight: 600; font-size: .88em; margin-right: .32em; font-variant-numeric: tabular-nums }
 .eyebrow { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); font-weight: 600 }
-.lede { max-width: 70ch; font-size: 17px; color: var(--text) }
-.block { display: flex; flex-direction: column; gap: 14px; min-width: 0; scroll-margin-top: calc(var(--bar-h) + 14px) }
-.block > p, .block > ul, .block > ol, .prose > p, .prose > ul, .prose > ol { max-width: 68ch }
+.lede { max-width: 66ch; font-size: 19px; line-height: 1.55; color: var(--text) }
+.block { display: flex; flex-direction: column; gap: 16px; min-width: 0; scroll-margin-top: calc(var(--bar-h) + 14px) }
+.block > p, .block > ul, .block > ol, .prose > p, .prose > ul, .prose > ol { max-width: 66ch }
 .block > ul, .block > ol, .prose > ul, .prose > ol, details > ul, .callout > ul, .card > ul:not(.legend) { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 7px }
-.block > h2 { padding-bottom: 8px; border-bottom: 1px solid var(--rule); margin-top: 4px }
-.block > h3 { margin-top: 6px }
 /* a point: a paragraph or list item that opens with a bold lead-in (set by the build), shown as a small heading over its text */
 .pt > strong:first-child { display: block; font-family: var(--display); font-size: 17px; letter-spacing: .005em; line-height: 1.25; margin-bottom: 3px }
 li.pt { margin-top: 4px }
@@ -109,6 +120,7 @@ li.pt::marker { color: var(--accent) }
   body.menu-open .contents { display: flex }
   .cols, .cols.wide-left { grid-template-columns: minmax(0, 1fr) }
 }
+@media (max-width: 760px) { body { font-size: 16px } .block > h2 { font-size: 24px } }
 @media (max-width: 520px) {
   .page { padding-inline: 16px; padding-block: 20px 44px; gap: 24px }
   .brand span { display: none }

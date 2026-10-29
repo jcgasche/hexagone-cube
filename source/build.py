@@ -330,6 +330,43 @@ def mark_points(body):
     return POINT.sub(lambda m: f'<{m.group(1)} class="pt">{m.group(2)}', body)
 
 
+FIG_WORD = {'en': 'Figure', 'fr': 'Figure'}
+H2 = re.compile(r'<h2>'); H3 = re.compile(r'<h3>'); FIG = re.compile(r'<figure class="fig[^"]*"[^>]*>'); FIG_HEAD = re.compile(r'<div class="fig-head">')
+
+
+def number_body(body, label, lang):
+    """Numbers the parts of a chapter: its blocks with an <h2> are L.1, L.2..., their <h3> L.1.1, L.1.2..., its figures Figure L.1...
+    Returns the body, {block id: number} and the list of (id, number, title) for the contents."""
+    nums, entries, out, k = {}, [], [], 0
+    for a, z, bid in top_blocks(body):
+        chunk = body[a:z]
+        mo = H2.search(chunk)
+        if not mo: continue
+        k += 1; n = f'{label}.{k}'
+        title = re.sub(r'<[^>]+>', '', chunk[mo.end():chunk.index('</h2>', mo.end())]).strip()
+        chunk = chunk[:mo.start()] + f'<h2><span class="num">{n}</span>' + chunk[mo.end():]
+        j = [0]
+        def h3(m): j[0] += 1; return f'<h3><span class="num">{n}.{j[0]}</span>'
+        chunk = H3.sub(h3, chunk)
+        out.append((a, z, chunk))
+        if bid: nums[bid] = n; entries.append((bid, n, title))
+    for a, z, chunk in sorted(out, key=lambda x: -x[0]): body = body[:a] + chunk + body[z:]
+    f = [0]
+    def fig(m):
+        head = FIG_HEAD.search(body, m.end()); nxt = FIG.search(body, m.end())
+        if not head or (nxt and nxt.start() < head.start()): return m.group(0)       # a figure with no head is not numbered
+        f[0] += 1; return m.group(0) + f'\x00{FIG_WORD[lang]} {label}.{f[0]}\x00'
+    body = FIG.sub(fig, body)
+    body = re.sub(r'\x00([^\x00]*)\x00(.*?<div class="fig-head">)', lambda m: m.group(2) + f'<span class="fig-num">{m.group(1)}</span>', body, flags=re.S)
+    return body, nums, entries
+
+
+XREF = re.compile(r'<a class="xref" href="#([^"]+)">')
+def number_xrefs(page, nums):
+    """A cross-reference to a numbered part or chapter carries its number."""
+    return XREF.sub(lambda m: m.group(0) + (f'<i class="xnum">{nums[m.group(1)]}</i>' if m.group(1) in nums else ''), page)
+
+
 def algo_link(lang, key, algos):
     return (f'<p class="algo-link"><button type="button" class="algo-btn" data-block="{html.escape(key, quote=True)}" data-algos="{" ".join(algos)}">'
             f'{ALGO_WORDS[lang]["link"]}</button></p>\n')
@@ -442,7 +479,7 @@ def build(a, lang, out):
     if untranslated: warnings.append(f"{lang}: not translated yet, shown in English: {', '.join(untranslated)}")
 
     # pass 2: render
-    nav, group = [], None
+    nav, group, part_nums = [], None, {}
     for s in secs:
         if s['group'] != group: group = s['group']; nav.append(f'    <h4>{GROUP_TITLES[lang].get(group, group)}</h4>' if group != 'Presentation' else '')
         nav.append(f'    <a href="#{s["id"]}"><i>{s["label"]}</i><span>{html.escape(s["nav"])}</span></a>')
@@ -455,6 +492,10 @@ def build(a, lang, out):
             else:
                 for (_, z, _), (key, algos, _) in sorted(zip(blocks, s["algo"]), key=lambda x: -x[0][1]):
                     if algos: body = body[:z] + algo_link(lang, key, algos) + body[z:]
+        if s.get('label'):                             # chapters and annexes: numbered parts, figures, and their list in the contents
+            body, bn, entries = number_body(body, s['label'], lang)
+            part_nums.update(bn); part_nums[s['id']] = s['label']
+            if entries: nav.append('    <div class="subs">' + ''.join(f'<a href="#{i}"><i>{n}</i><span>{html.escape(t)}</span></a>' for i, n, t in entries) + '</div>')
         lede = ''
         mo = re.match(r'\s*(<p class="lede">.*?</p>)', body, re.S)
         if mo: lede = mo.group(1); body = body[mo.end():]
@@ -467,7 +508,7 @@ def build(a, lang, out):
     other = OTHER[lang]
     shell = (shell.replace('<!--LANG-HREF-->', html.escape(os.path.basename(PAGES[other[0]]), quote=True).replace(' ', '%20'))
              .replace('<!--LANG-OTHER-->', other[0]).replace('<!--LANG-TITLE-->', other[2]).replace('<!--LANG-LABEL-->', other[1]))
-    page = shell.replace('<!--NAV-->', '\n'.join(nav)).replace('<!--SECTIONS-->', '\n'.join(parts))
+    page = shell.replace('<!--NAV-->', '\n'.join(nav)).replace('<!--SECTIONS-->', number_xrefs('\n'.join(parts), part_nums))
 
     # checks
     ids = set(re.findall(r'\bid="([^"]+)"', page))
