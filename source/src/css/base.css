@@ -10,6 +10,8 @@
   /* chart series, fixed order, never cycled (validated set, see CONTRIBUTING.md) */
   --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6; --s8: #e34948;
   --neutral-mark: #9aa5b4;
+  /* Python code in the algorithm dialog */
+  --py-k: #8a3fb8; --py-s: #1a7a3e; --py-c: #6b7a8c; --py-n: #b54708; --py-f: #1f5fb0; --py-b: #0f7a8a; --py-u: #8f5400;
   /* drawings: ground, structures, tracks */
   --ground: #e7e2d6; --ground-edge: #b8b09c; --deep: #d3dbe6; --struct: #ffffff; --struct-edge: #55637a; --new: #1f5fb0; --new-soft: #cfe0f4; --old: #8a94a3;
   --display: "Barlow Semi Condensed", "Arial Narrow", Arial, sans-serif;
@@ -26,6 +28,7 @@
   --div-0: #3f86e6; --div-1: #86b4ea; --div-2: #5b6f8a; --div-3: #8a6a68; --div-4: #e9a399; --div-5: #e2695f; --div-6: #b5292d;
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
   --neutral-mark: #6b7686;
+  --py-k: #c89cf0; --py-s: #7fd19b; --py-c: #8e9aaa; --py-n: #f0a868; --py-f: #7fb2f0; --py-b: #6fd0dc; --py-u: #e6c06a;
   --ground: #2a2c2b; --ground-edge: #5b5e58; --deep: #1c2633; --struct: #232d3a; --struct-edge: #9fb0c6; --new: #6aa5ee; --new-soft: #1f3552; --old: #77818f;
   color-scheme: dark } }
 :root[data-theme="dark"] {
@@ -37,6 +40,7 @@
   --div-0: #3f86e6; --div-1: #86b4ea; --div-2: #5b6f8a; --div-3: #8a6a68; --div-4: #e9a399; --div-5: #e2695f; --div-6: #b5292d;
   --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9; --s8: #e66767;
   --neutral-mark: #6b7686;
+  --py-k: #c89cf0; --py-s: #7fd19b; --py-c: #8e9aaa; --py-n: #f0a868; --py-f: #7fb2f0; --py-b: #6fd0dc; --py-u: #e6c06a;
   --ground: #2a2c2b; --ground-edge: #5b5e58; --deep: #1c2633; --struct: #232d3a; --struct-edge: #9fb0c6; --new: #6aa5ee; --new-soft: #1f3552; --old: #77818f;
   color-scheme: dark }
 

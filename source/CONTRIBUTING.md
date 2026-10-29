@@ -23,6 +23,9 @@ src/sections/<id>/       one folder per section:
 model/                   the Python model (see README.md)
 tools/shot.js            screenshot of a section, prints console errors and horizontal overflow
 tools/check_model.js     checks that src/js/model.js gives the same numbers as the Python model
+tools/check_algorithms.js  writes the runnable .py of every algorithm as the page does, and runs each with python3
+src/algorithms/          'See the algorithm used': algorithms.json (which figures come from which part of the model, the
+                         explanation in English and French, the code to show, what the .py runs), algo.js and algo.css (the dialog)
 ```
 
 **The presentation** (`src/sections/presentation`) is the landing view, with its own night-blue look. It is `"bare"` in the
@@ -106,6 +109,17 @@ PTS.section('cost', function (root) {          // runs once, the first time the 
 - `PTS.model.accounts(options)` and `PTS.model.cost(rates)` recompute the accounts and the cost in the browser.
 - `PTS.store.get(key, default)` and `.set(key, value)` remember a small per-viewer choice; the page must work without them.
 
+## See the algorithm used
+
+The build puts a small link "See the algorithm used" under every block of the report whose `{{ }}` figures come from the model. The
+keys of the block's expressions (`m.cost...`, `f.central...`, `d.french.cases...`) are matched against the `keys` of each algorithm in
+`src/algorithms/algorithms.json`, longest first; a block whose figures come from no algorithm (a section's own design data, a source)
+gets no link, and a block with a chart but no `{{ }}` can be given one in `blocks`. The dialog shows the explanation, the figures of the
+block with their value, the code of the model (cut from `model/*.py` at build time, by function or constant name, or between two
+markers) and a button that builds a runnable .py in the page: the model files the script imports and the inputs they read, packed into
+it. When a function is renamed or an algorithm changes, update `algorithms.json` (the build stops if a name is missing) and run
+`node tools/check_algorithms.js`.
+
 ## Rules that keep the site coherent
 
 1. **Plain words.** The reader is not a rail engineer. Short sentences. Explain a term the first time it appears.
@@ -123,7 +137,8 @@ PTS.section('cost', function (root) {          // runs once, the first time the 
 6. **Drawings.** Inline SVG with a `viewBox`, `role="img"` and an `aria-label`; labels on arrows; wrap in `figure.fig` with a
    caption. Use the `.draw` classes (ground, struct, new, newline, oldline). Wide drawings go in `.fig-scroll`.
 7. **Phone width.** Nothing may make the page scroll sideways at 400 px. Check with `shot.js --width 400`.
-8. **The published page is sandboxed.** No external requests other than the two Google fonts, no downloads, no print dialog,
+8. **The published page is sandboxed.** No external requests other than the two Google fonts, no downloads (except the .py the
+   algorithm dialog builds in the page), no print dialog,
    no `alert` or `confirm`, no iframes. Everything a section needs is in its folder or in src/data.
 9. **Do not edit shared files** (src/css, src/js, build.py, manifest) for the needs of one section; put the code in the
    section's own files and note what could later be shared.

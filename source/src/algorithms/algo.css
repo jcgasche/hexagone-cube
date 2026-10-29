@@ -1,0 +1,44 @@
+/* "See the algorithm used": the link under a block and the dialog (src/algorithms/algo.js) */
+.algo-link { margin: 0; display: flex; justify-content: flex-end }
+.algo-btn { appearance: none; background: none; border: 0; padding: 2px 0; font: inherit; font-size: 12.5px; color: var(--muted); cursor: pointer; text-decoration: underline dotted; text-underline-offset: 3px }
+.algo-btn::before { content: "ƒ(x)"; font-family: var(--mono); font-size: 11px; margin-right: 6px; color: var(--muted); text-decoration: none; display: inline-block }
+.algo-btn:hover, .algo-btn:focus-visible { color: var(--accent) }
+.algo-dlg { width: min(940px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); padding: 0; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); color: var(--text);
+  box-shadow: 0 18px 50px rgba(0,0,0,.28); display: none; flex-direction: column; overflow: hidden }
+.algo-dlg[open] { display: flex }
+.algo-dlg::backdrop { background: rgba(10,16,24,.55) }
+.algo-head { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px 10px; border-bottom: 1px solid var(--rule) }
+.algo-head > div { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1 }
+.algo-head h2 { font-size: 21px }
+.algo-x { appearance: none; border: 1px solid var(--rule); background: var(--surface); color: var(--muted); border-radius: 6px; width: 32px; height: 32px; font-size: 20px; line-height: 1; cursor: pointer; flex: none }
+.algo-x:hover { color: var(--ink) }
+.algo-uses { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 10px 18px 0 }
+.algo-uses:empty { display: none }
+.algo-uses-k { font-size: 12px; color: var(--muted); margin-right: 2px }
+.algo-chip { appearance: none; font: inherit; font-size: 12.5px; border: 1px solid var(--rule); background: var(--surface); color: var(--text); border-radius: 14px; padding: 3px 10px; cursor: pointer; text-align: left }
+.algo-chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--ink) }
+.algo-tabs { display: flex; gap: 4px; padding: 10px 18px 0; border-bottom: 1px solid var(--rule) }
+.algo-tabs button { appearance: none; font: inherit; font-size: 14px; font-weight: 600; background: none; border: 0; border-bottom: 2px solid transparent; color: var(--muted); padding: 6px 10px 8px; cursor: pointer }
+.algo-tabs button[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent) }
+.algo-body { overflow: auto; padding: 14px 18px 16px; min-height: 0; flex: 1 }
+.algo-panel { display: flex; flex-direction: column; gap: 10px }
+.algo-panel[hidden] { display: none }
+.algo-panel > p { max-width: 78ch }
+.algo-panel h3 { font-size: 16px; margin-top: 6px }
+.algo-panel code { font-family: var(--mono); font-size: 12.5px }
+.algo-panel p code { background: var(--surface-2); border-radius: 4px; padding: 0 4px }
+.algo-figs td:first-child { word-break: break-word }
+.algo-file { font-family: var(--mono); font-size: 12.5px; font-weight: 600; color: var(--ink); margin-top: 6px }
+.algo-lines { font-size: 11.5px; color: var(--muted); margin-bottom: -6px }
+.algo-code { margin: 0; background: var(--surface-2); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 12px; overflow-x: auto; font-family: var(--mono); font-size: 12.5px; line-height: 1.5; tab-size: 4 }
+.algo-code code { font-size: inherit; white-space: pre }
+.algo-code .ln { display: inline-block; width: 3.4em; margin-right: 12px; text-align: right; color: var(--muted); opacity: .7; user-select: none }
+.py-k { color: var(--py-k); font-weight: 600 } .py-s { color: var(--py-s) } .py-c { color: var(--py-c); font-style: italic } .py-n { color: var(--py-n) }
+.py-f { color: var(--py-f); font-weight: 600 } .py-b { color: var(--py-b) } .py-u { color: var(--py-u) }
+.algo-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 12px 18px; border-top: 1px solid var(--rule); background: var(--surface) }
+.algo-dl { appearance: none; font: inherit; font-size: 14px; font-weight: 600; background: var(--accent); color: var(--accent-ink); border: 0; border-radius: 6px; padding: 8px 14px; cursor: pointer }
+.algo-foot .note { flex: 1; min-width: 220px; font-size: 12.5px }
+@media (max-width: 600px) {
+  .algo-dlg { width: calc(100vw - 16px); max-height: calc(100dvh - 16px) }
+  .algo-head, .algo-body, .algo-foot { padding-inline: 12px } .algo-tabs, .algo-uses { padding-inline: 12px }
+}

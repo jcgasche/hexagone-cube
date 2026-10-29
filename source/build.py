@@ -13,7 +13,7 @@ What it does, in order:
  4. checks that every internal link has a target and that no long dash slipped into the text;
  5. writes the page: styles, sections, data, scripts.
 """
-import argparse, hashlib, html, json, os, re, sys
+import argparse, ast, base64, gzip, hashlib, html, json, os, re, sys
 from decimal import Decimal, ROUND_HALF_UP
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -80,13 +80,15 @@ FORMATS = {
 }
 
 
-def substitute(text, ctx, where, problems):
+def substitute(text, ctx, where, problems, record=None):
     def rep(mo):
         body = mo.group(1); expr, _, fmt = body.rpartition('|') if '|' in body else (body, '', '1')
         expr, fmt = expr.strip(), fmt.strip()
         try:
             val = eval(expr, {'__builtins__': {}, 'abs': abs, 'min': min, 'max': max, 'round': round, 'sum': sum, 'len': len}, ctx)
-            return FORMATS[fmt](val)
+            out = FORMATS[fmt](val)
+            if record is not None: record.append((body, out))
+            return out
         except Exception as e:
             problems.append(f'{where}: cannot evaluate {{{{ {body} }}}}: {e!r}'); return '??'
     return re.sub(r'\{\{(.+?)\}\}', rep, text)
@@ -124,6 +126,128 @@ def sources_table(numbers, sources, lang='en'):
     th = ('N°', 'Éditeur et document', 'Utilisé pour', 'Lien') if lang == 'fr' else ('No.', 'Publisher and document', 'Used for', 'Link')
     return (f'<div class="tbl-wrap"><table class="tbl"><thead><tr><th class="num">{th[0]}</th><th>{th[1]}</th><th>{th[2]}</th><th>{th[3]}</th></tr></thead><tbody>'
             + '\n'.join(rows) + '</tbody></table></div>')
+
+
+# ---------------------------------------------------------------- "See the algorithm used": the code and data behind each figure
+ALGO_WORDS = {'en': {'link': 'See the algorithm used', 'title': 'Algorithm used', 'explain': 'Explanation', 'code': 'Code', 'close': 'Close',
+                     'uses': 'This part uses', 'figures': 'Figures of this part that it computes', 'expr': 'Model value', 'shown': 'Shown as',
+                     'more': 'and {n} more', 'download': 'Download a runnable .py', 'lines': 'lines {a} to {z}',
+                     'run': 'Runs with Python 3.8 or later, nothing to install: the model files and the inputs it needs are packed into it. Run it with: python3 {file}',
+                     'what': 'What the script runs', 'from': 'From the model in source/model/ of the study’s repository',
+                     'doc': 'Hexagone³, Paris through stations: one algorithm of the study, with the model files and inputs it needs.'},
+              'fr': {'link': 'Voir l’algorithme utilisé', 'title': 'Algorithme utilisé', 'explain': 'Explication', 'code': 'Code', 'close': 'Fermer',
+                     'uses': 'Cette partie utilise', 'figures': 'Chiffres de cette partie qu’il calcule', 'expr': 'Valeur du modèle', 'shown': 'Affiché',
+                     'more': 'et {n} de plus', 'download': 'Télécharger un .py exécutable', 'lines': 'lignes {a} à {z}',
+                     'run': 'Fonctionne avec Python 3.8 ou plus récent, sans rien installer : les fichiers du modèle et les données nécessaires sont inclus. Lancez-le avec : python3 {file}',
+                     'what': 'Ce qu’exécute le script', 'from': 'Tiré du modèle, dans source/model/ du dépôt de l’étude',
+                     'doc': 'Hexagone³, gares traversantes à Paris : un algorithme de l’étude, avec les fichiers du modèle et les données dont il a besoin.'}}
+KEY = re.compile(r'(?<![\w.\'"])(m|f|b|fp|pts|d)((?:\.[A-Za-z_]\w*)+)')
+MODEL = os.path.join(ROOT, 'model')
+QUOTE3 = "'" * 3
+
+
+def algo_catalogue():
+    """The algorithms of src/algorithms/algorithms.json, with the code of each piece cut from the model files at build time."""
+    cat = jload(SRC, 'algorithms', 'algorithms.json')
+    trees = {}
+    def tree(f):
+        if f not in trees:
+            text = read(ROOT, f); trees[f] = (text.split('\n'), ast.parse(text))
+        return trees[f]
+    def span(lines, node):                       # a statement, and the comment lines that continue it below (indented, nothing but a comment)
+        a, z = node.lineno, node.end_lineno
+        if getattr(node, 'decorator_list', None): a = min(d.lineno for d in node.decorator_list)
+        while z < len(lines) and re.match(r'\s+#', lines[z]): z += 1
+        return a, z
+    for al in cat['algorithms']:
+        pieces = []
+        for f, names in al['code']:
+            lines, tr = tree(f)
+            for n in names:
+                if isinstance(n, dict):                # the lines from one marker to the end of the statement that holds the other
+                    a = next(i for i, l in enumerate(lines, 1) if l.startswith(n['from']))
+                    z0 = next(i for i, l in enumerate(lines, 1) if i >= a and n['to'] in l)
+                    z = max([s.end_lineno for s in ast.walk(tr) if isinstance(s, ast.stmt) and s.lineno <= z0 <= s.end_lineno
+                             and s.end_lineno - s.lineno < 40] or [z0])
+                    pieces.append((f, a, z)); continue
+                found = None
+                for s in tr.body:
+                    if isinstance(s, (ast.FunctionDef, ast.ClassDef)) and s.name == n: found = s
+                    elif isinstance(s, (ast.Assign, ast.AnnAssign)):
+                        tg = s.targets if isinstance(s, ast.Assign) else [s.target]
+                        if n in [x.id for t in tg for x in ([t] if isinstance(t, ast.Name) else getattr(t, 'elts', [])) if isinstance(x, ast.Name)]: found = s
+                    if found: break
+                if found is None: raise SystemExit(f"algorithms.json: {al['id']}: no {n} in {f}")
+                pieces.append((f, *span(lines, found)))
+        order = [x[0] for x in al['code']]
+        out = []                                       # in file order, overlapping or touching pieces merged
+        for f, a, z in sorted(set(pieces), key=lambda p: (order.index(p[0]), p[1])):
+            if out and out[-1][0] == f and a <= out[-1][2] + 1: out[-1][2] = max(out[-1][2], z)
+            else: out.append([f, a, z])
+        al['pieces'] = [{'file': f, 'start': a, 'text': '\n'.join(tree(f)[0][a - 1:z])} for f, a, z in out]
+        # the files the runnable script needs: the model modules it imports, and the inputs they read
+        imports = lambda text: re.findall(r'^\s*(?:import|from)\s+(\w+)', text, re.M)
+        mods, todo = [], imports(al['run'])
+        while todo:
+            x = todo.pop()
+            if x in mods or not os.path.exists(os.path.join(MODEL, x + '.py')): continue
+            mods.append(x); todo += imports(read(MODEL, x + '.py'))
+        al['files'] = sorted('model/' + x + '.py' for x in mods) + cat['data']['base'] + (cat['data']['french'] if 'french' in mods else []) + al.get('data', [])
+        for x in al['files']:
+            if x.endswith('.py') and QUOTE3 in read(ROOT, x): raise SystemExit(f'{x}: holds three single quotes in a row, so it cannot be packed into a raw string')
+    cat['by_key'] = sorted(((tuple(k.split('.')), al['id']) for al in cat['algorithms'] for k in al['keys']), key=lambda kv: -len(kv[0]))
+    return cat
+
+
+def algo_of(cat, key):
+    parts = tuple(key.split('.'))
+    return next((a for k, a in cat['by_key'] if parts[:len(k)] == k), None)
+
+
+def top_blocks(text):
+    """[(start, end, id)] of the outermost <div class="block"> of a section: end is the position of its closing </div>."""
+    out, stack = [], []
+    for mo in re.finditer(r'<div\b([^>]*)>|</div>', text):
+        if mo.group(0) != '</div>':
+            cls = re.search(r'class="([^"]*)"', mo.group(1) or ''); idm = re.search(r'\bid="([^"]*)"', mo.group(1) or '')
+            stack.append((mo.start(), 'block' in (cls.group(1).split() if cls else []), idm.group(1) if idm else None))
+        elif stack:
+            a, is_block, bid = stack.pop()
+            if is_block and not any(s[1] for s in stack): out.append((a, mo.start(), bid))
+    return sorted(out)
+
+
+def algo_blocks(cat, sec, raw, ctx):
+    """For each block of a section: the algorithms its figures come from (most used first) and each figure with its value as shown."""
+    res = []
+    for i, (a, z, bid) in enumerate(top_blocks(raw)):
+        rec, count, figs = [], {}, []
+        substitute(raw[a:z], ctx, sec, [], rec)
+        for body, shown in rec:
+            expr = body.rpartition('|')[0].strip() if '|' in body else body.strip()
+            ids = [x for x in (algo_of(cat, mo.group(1) + mo.group(2)) for mo in KEY.finditer(expr)) if x]
+            for x in ids: count[x] = count.get(x, 0) + 1
+            if ids and not any(f[0] == expr for f in figs): figs.append([expr, shown, sorted(set(ids), key=ids.index)])
+        algos = sorted(count, key=lambda x: -count[x]) or cat['blocks'].get(bid, [])
+        res.append((bid or f'{sec}.{i + 1}', algos, figs))
+    return res
+
+
+def algo_link(lang, key, algos):
+    return (f'<p class="algo-link"><button type="button" class="algo-btn" data-block="{html.escape(key, quote=True)}" data-algos="{" ".join(algos)}">'
+            f'{ALGO_WORDS[lang]["link"]}</button></p>\n')
+
+
+def algo_data(cat, lang, blocks):
+    """What the page carries for the modal: per algorithm its words and code, per block its figures, and the files the scripts pack."""
+    files, algos = {}, {}
+    for al in cat['algorithms']:
+        algos[al['id']] = {'title': al['title_' + lang], 'explain': al['explain_' + lang], 'pieces': al['pieces'], 'run': al['run'], 'files': al['files']}
+        for x in al['files']:
+            if x in files: continue
+            data = open(os.path.join(ROOT, x), 'rb').read()
+            files[x] = ['text', data.decode('utf-8')] if x.endswith('.py') else ['gz', base64.b64encode(gzip.compress(data, 9, mtime=0)).decode('ascii')]
+    return {'words': ALGO_WORDS[lang], 'algos': algos, 'blocks': blocks, 'files': files}
 
 
 def main():
@@ -178,7 +302,8 @@ def build(a, lang, out):
 
     # pass 1: read sections, substitute numbers, number the sources in order of first citation
     by_url = {}
-    numbers, parts, css, js = {}, [], [read(SRC, 'css', 'base.css'), read(SRC, 'css', 'components.css')], [read(SRC, 'js', f) for f in ('core.js', 'charts.js', 'model.js')]
+    numbers, parts, css, js = {}, [], [read(SRC, 'css', 'base.css'), read(SRC, 'css', 'components.css'), read(SRC, 'algorithms', 'algo.css')], [read(SRC, 'js', f) for f in ('core.js', 'charts.js', 'model.js')] + [read(SRC, 'algorithms', 'algo.js')]
+    cat = algo_catalogue(); algo_figs = {}
     chapter = 0; annex = 0
     lent = {x for sec in man['sections'] for x in sec.get('borrows', [])}
     untranslated = []
@@ -199,7 +324,12 @@ def build(a, lang, out):
         if not exists(d, 'section.html'):
             warnings.append(f"section {s['id']} has no section.html yet"); body = f'<p class="lede">{W["later"]}</p>'
         else:
-            body = substitute(TR_MARK.sub('', read(d, src_name), count=1), ctx, s['id'] + '/' + src_name, problems)
+            raw = TR_MARK.sub('', read(d, src_name), count=1)
+            body = substitute(raw, ctx, s['id'] + '/' + src_name, problems)
+            if s['group'] != 'Presentation' and s['id'] not in cat['skip']:        # the full report: which algorithm each block's figures come from
+                s['algo'] = algo_blocks(cat, s['id'], raw, ctx)
+                for key, algos, figs in s['algo']:
+                    if algos: algo_figs[key] = figs
         for k in find_cites(body):
             if k in numbers or k not in sources: continue
             url = sources[k]['url']
@@ -221,6 +351,12 @@ def build(a, lang, out):
         nav.append(f'    <a href="#{s["id"]}"><i>{s["label"]}</i><span>{html.escape(s["nav"])}</span></a>')
         body = s['body'].replace('<!--SOURCES-->', sources_table(numbers, sources, lang))
         body = render_cites(body, numbers, sources, s['id'], problems)
+        if s.get('algo'):                              # a link under every block whose figures come from the model
+            blocks = top_blocks(body)
+            if len(blocks) != len(s['algo']): problems.append(f"{s['id']}: {len(s['algo'])} blocks in the source, {len(blocks)} once built")
+            else:
+                for (_, z, _), (key, algos, _) in sorted(zip(blocks, s["algo"]), key=lambda x: -x[0][1]):
+                    if algos: body = body[:z] + algo_link(lang, key, algos) + body[z:]
         lede = ''
         mo = re.match(r'\s*(<p class="lede">.*?</p>)', body, re.S)
         if mo: lede = mo.group(1); body = body[mo.end():]
@@ -251,7 +387,8 @@ def build(a, lang, out):
     style = '\n'.join(css); script = '\n'.join(js).replace('</script', '<\\/script')
     title = names.get('title_' + lang, man.get('title_' + lang, man['title'])) if lang != 'en' else man['title']
     head = f'<title>{title}</title>\n<link rel="stylesheet" href="{FONTS}">\n<style>\n{style}\n</style>\n'
-    tail = f'<script>\n{data_js}\n</script>\n<script>\n{script}\nPTS.start();\n</script>\n'
+    algo_js = json.dumps(algo_data(cat, lang, algo_figs), ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
+    tail = f'<script type="application/json" id="pts-algo">{algo_js}</script>\n<script>\n{data_js}\n</script>\n<script>\n{script}\nPTS.start();\n</script>\n'
     full = (f'<!doctype html>\n<html lang="{lang}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
             + head + '</head>\n<body>\n' + page + tail + '</body>\n</html>\n')
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)

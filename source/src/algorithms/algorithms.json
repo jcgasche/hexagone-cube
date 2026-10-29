@@ -1,0 +1,692 @@
+{
+ "_about": "The algorithms behind the figures of the report. The build adds a link 'See the algorithm used' to every block whose figures come from one of them (the keys of the block's {{ }} expressions are matched against 'keys', longest first; a key that matches none, such as a section's own design data, gets no link), and to the blocks listed in 'blocks'. For each algorithm the page shows the explanation, the code of the parts listed in 'code' (a function or constant by name, or the lines from 'from' to 'to'), and offers a runnable .py: the model files it imports and the inputs it reads, packed into one file, and 'run'. Paths are relative to source/.",
+ "data": {
+  "base": [
+   "model/inputs/stats.json",
+   "model/inputs/regional.json",
+   "model/inputs/regional_weighted.json",
+   "model/inputs/regional_comfort.json",
+   "model/inputs/points.csv",
+   "model/inputs/points_weighted.csv",
+   "model/inputs/points_comfort.csv"
+  ],
+  "french": [
+   "model/inputs/job_access.json",
+   "model/inputs/chatelet_stop.json",
+   "model/inputs/paris_crossing.json"
+  ]
+ },
+ "blocks": {
+  "access.map": [
+   "access"
+  ],
+  "cost.explorer": [
+   "cost"
+  ],
+  "financing.calculator": [
+   "accounts"
+  ],
+  "timetable.london": [
+   "timetable"
+  ]
+ },
+ "skip": [
+  "presentation",
+  "about",
+  "sources"
+ ],
+ "algorithms": [
+  {
+   "id": "service",
+   "title_en": "The hour of TGVs and the platform rule",
+   "title_fr": "L’heure des TGV et la règle des quais",
+   "keys": [
+    "m.service",
+    "m.service_full",
+    "m.hour_today",
+    "m.hour_full",
+    "m.per_track",
+    "m.stop_min",
+    "m.clear_min",
+    "m.reserve_min",
+    "m.run_min",
+    "m.tracks_per_direction",
+    "m.reverse",
+    "m.util"
+   ],
+   "explain_en": [
+    "A TGV holds its platform track for its stop (<code>STOP_MIN</code>, 7 minutes) and 2 more minutes kept free for a late train (<code>RESERVE_MIN</code>); then the track stays empty 3 minutes before the next train can come in (<code>CLEAR_MIN</code>). One track therefore takes a train every 12 minutes, 5 an hour (<code>PER_TRACK</code>), and each station has 3 tracks each way (<code>TRACKS_PER_DIRECTION</code>).",
+    "<code>service()</code> takes the number of TGVs an hour on each of the four lines, today (<code>HOUR_TODAY</code>) or with the two southern lines at their planned capacity (<code>HOUR_FULL</code>). The north and east trains run through to a southern line, half to each; the southern trains left over pair with each other on the direct link between Montparnasse and Gare de Lyon; a train still without a partner runs on to the east line as a new link. No train turns back in Paris.",
+    "For each station it then counts the stops an hour in one direction, the tracks the rule asks for (the stops divided by 5, rounded up) and the trains each provided track takes."
+   ],
+   "explain_fr": [
+    "Un TGV occupe sa voie à quai le temps de son arrêt (<code>STOP_MIN</code>, 7 minutes) et 2 minutes de plus gardées libres pour un train en retard (<code>RESERVE_MIN</code>) ; la voie reste ensuite vide 3 minutes avant que le train suivant puisse entrer (<code>CLEAR_MIN</code>). Une voie reçoit donc un train toutes les 12 minutes, soit 5 par heure (<code>PER_TRACK</code>), et chaque gare a 3 voies par sens (<code>TRACKS_PER_DIRECTION</code>).",
+    "<code>service()</code> prend le nombre de TGV par heure sur chacune des quatre lignes, aujourd’hui (<code>HOUR_TODAY</code>) ou avec les deux lignes du sud à leur capacité prévue (<code>HOUR_FULL</code>). Les trains du nord et de l’est continuent vers une ligne du sud, la moitié vers chacune ; les trains du sud qui restent s’apparient entre eux par le lien direct entre Montparnasse et Gare de Lyon ; un train encore sans partenaire continue vers la ligne de l’est comme nouvelle liaison. Aucun train ne rebrousse dans Paris.",
+    "Pour chaque gare, il compte ensuite les arrêts par heure dans un sens, les voies que demande la règle (les arrêts divisés par 5, arrondis au-dessus) et les trains que reçoit chaque voie prévue."
+   ],
+   "code": [
+    [
+     "model/nordest.py",
+     [
+      "HOUR_TODAY",
+      "HOUR_FULL",
+      "STOP_MIN",
+      "CLEAR_MIN",
+      "RESERVE_MIN",
+      "UTIL",
+      "PER_TRACK",
+      "TRACKS_PER_DIRECTION",
+      "service"
+     ]
+    ]
+   ],
+   "run": "import nordest as N\nfor name, hour in (('today', N.HOUR_TODAY), ('southern lines full', N.HOUR_FULL)):\n    s = N.service(hour)\n    print(f'--- {name}: TGVs an hour on each line {hour}')\n    print('trains a platform track takes an hour:', s['per_track'])\n    print('through trains each way between a southern line and the north or east:', s['through_each_way'])\n    print('trains each way on the direct link Montparnasse to Gare de Lyon:', s['link_each_way'])\n    for k, v in s['flows'].items(): print('  ', k, v)\n    for st in ('nordest', 'lyon', 'montparnasse'):\n        print(f'   {st}: {s[st + \"_stops\"]} stops an hour (both ways), the rule asks for {s[st + \"_tracks_calc\"]} tracks, {s[st + \"_load\"]:.2f} trains an hour on each track')"
+  },
+  {
+   "id": "ter_paths",
+   "title_en": "Regional trains in the TGV tunnels and their platforms",
+   "title_fr": "Les trains régionaux dans les tunnels TGV et leurs quais",
+   "keys": [
+    "m.ter_paths",
+    "m.reg_platforms",
+    "m.sub_tracks",
+    "m.ter_corridors"
+   ],
+   "explain_en": [
+    "The TGVs keep their places of the 12-minute beat; regional express trains (TER) take paths in between, on a grid of one path every 2 minutes (<code>PATH_MIN</code>, 30 an hour each way). The condition is signalling that lets trains run 1.5 minutes apart (<code>SIGNAL_MIN</code>).",
+    "<code>ter_paths()</code> counts, for each tunnel section and each way, the TGVs of the full service (<code>service(HOUR_FULL)</code>) and the TER of <code>TER_FLOW</code>, and how much of the hour they occupy at 1.5 and at 2 minutes a train: trains times minutes, divided by 60. It compares the busiest section with the 75% that planners keep as a ceiling at the peak (<code>UIC_PEAK</code>).",
+    "It then adds up the platform time: a TER holds its track 5 minutes and leaves it empty 2 (<code>TER_PLATFORM_MIN</code>), a TGV 12 minutes (<code>TGV_PLATFORM_MIN</code>), and compares the minutes used with the 60 minutes each track has in an hour. The suburban tracks follow the rule of <code>REG_PLATFORMS</code>: a stop in passing every 3 minutes, 20 trains an hour a track. It also prices two options that are not in the plan: line R running through, and an Atlantic tunnel of its own for the TER if the signalling only reaches 2 minutes."
+   ],
+   "explain_fr": [
+    "Les TGV gardent leurs places du battement de 12 minutes ; les trains régionaux express (TER) prennent des sillons entre eux, sur une grille d’un sillon toutes les 2 minutes (<code>PATH_MIN</code>, 30 par heure et par sens). La condition est une signalisation qui permet de faire circuler les trains à 1,5 minute l’un de l’autre (<code>SIGNAL_MIN</code>).",
+    "<code>ter_paths()</code> compte, pour chaque section de tunnel et chaque sens, les TGV du service complet (<code>service(HOUR_FULL)</code>) et les TER de <code>TER_FLOW</code>, et la part de l’heure qu’ils occupent à 1,5 et à 2 minutes par train : trains fois minutes, divisé par 60. Il compare la section la plus chargée aux 75 % que les exploitants gardent comme plafond à la pointe (<code>UIC_PEAK</code>).",
+    "Il additionne ensuite le temps à quai : un TER occupe sa voie 5 minutes et la laisse vide 2 (<code>TER_PLATFORM_MIN</code>), un TGV 12 minutes (<code>TGV_PLATFORM_MIN</code>), et compare les minutes utilisées aux 60 minutes de chaque voie dans l’heure. Les voies de banlieue suivent la règle de <code>REG_PLATFORMS</code> : un arrêt au passage toutes les 3 minutes, 20 trains par heure et par voie. Il chiffre aussi deux options hors du projet : la ligne R en traversée, et un tunnel atlantique propre aux TER si la signalisation n’atteint que 2 minutes."
+   ],
+   "code": [
+    [
+     "model/nordest.py",
+     [
+      "REG_PLATFORMS",
+      "TER_HOUR",
+      "TER_FLOW",
+      "PATH_MIN",
+      "SIGNAL_MIN",
+      "UIC_PEAK",
+      "TER_PLATFORM_MIN",
+      "TGV_PLATFORM_MIN",
+      "R_OPTION",
+      "SUB_PLATFORM_MIN",
+      "ter_paths"
+     ]
+    ]
+   ],
+   "run": "import nordest as N\np = N.ter_paths()\nprint('paths an hour each way:', p['paths_per_hour'], '| signalling, minutes between trains:', p['signal_min'])\nprint('section            TGV  TER  total  occupied at 1.5 min  at 2 min')\nfor k, v in p['loads'].items():\n    print(f\"{k:18s} {v['tgv']:4.0f} {v['ter']:4.0f} {v['total']:6.0f}  {v['occ_15']:18.0%}  {v['occ_20']:7.0%}\")\nprint('busiest section:', f\"{p['max_occ_15']:.0%} at 1.5 minutes, {p['max_occ_20']:.0%} at 2 minutes; ceiling {p['uic_peak']:.0%}\")\nfor k, v in p['platforms'].items(): print('platforms', k, f\"{v['used']:.0f} of {v['avail']:.0f} minutes, {v['share']:.0%}\")\nprint('line R option, bn euros:', round(p['r_option']['cost'], 2), '| Atlantic TER tunnel option, bn euros:', round(p['atlantic_option']['cost'], 2))"
+  },
+  {
+   "id": "access",
+   "title_en": "Minutes from a point to a station where the train stops",
+   "title_fr": "Minutes d’un point à une gare où le train s’arrête",
+   "keys": [
+    "m.access",
+    "m.TH",
+    "m.TH_ACCESS",
+    "m.paris",
+    "m.by_arr",
+    "m.by_dir",
+    "m.far_stop_share",
+    "m.share_quicker",
+    "m.share_within1",
+    "m.value_of_choice",
+    "m.today",
+    "pts"
+   ],
+   "explain_en": [
+    "The input is the time by public transport from 1,000 points evenly spread over Paris, and from the 1,265 communes of the region, to each of today's four terminals (<code>model/inputs/points.csv</code> and <code>regional.json</code>, computed by <code>model.py</code> on the regional network data: walking, waiting and riding, each with its official weight in the weighted version). Minutes to Saint-Lazare are derived from those to the other terminals by <code>sl_time()</code>.",
+    "<code>tgv_times()</code> gives, for one point, the minutes to reach a station where the passenger's TGV stops. Paris Nord-Est is entered from either historic hall, so it counts the nearer of Gare du Nord and Gare de l'Est. A north or east train stops at Nord-Est and at one southern station, half at each; a southern train stops at its own station and at Nord-Est or the other southern station. In the central measure the passenger walks to the nearer of the two stations of a train taken at random, and the ride between the two Paris stops is not counted. In the 'ride' measure that 6-minute run (<code>TH_ACCESS</code>) is counted and the passenger picks the train that calls at the best station.",
+    "<code>access()</code> takes the change against today for every direction, weights the four directions by their passengers (<code>W</code>), averages the 1,000 points for Paris and the communes by population for the inner and outer rings, and weights the three rings by where TGV passengers start (<code>SH</code>). The map and the tables by district and by direction come from the same function applied point by point."
+   ],
+   "explain_fr": [
+    "L’entrée est le temps en transports en commun depuis 1 000 points répartis régulièrement dans Paris, et depuis les 1 265 communes de la région, jusqu’à chacun des quatre terminus actuels (<code>model/inputs/points.csv</code> et <code>regional.json</code>, calculés par <code>model.py</code> sur les données du réseau régional : marche, attente et trajet, chacun avec son poids officiel dans la version pondérée). Les minutes jusqu’à Saint-Lazare sont dérivées de celles vers les autres terminus par <code>sl_time()</code>.",
+    "<code>tgv_times()</code> donne, pour un point, les minutes pour atteindre une gare où s’arrête le TGV du voyageur. Paris Nord-Est est accessible par l’une ou l’autre des deux halles historiques, on retient donc la plus proche de Gare du Nord et Gare de l’Est. Un train du nord ou de l’est s’arrête à Nord-Est et dans une gare du sud, la moitié dans chacune ; un train du sud s’arrête dans sa propre gare et à Nord-Est ou dans l’autre gare du sud. Dans la mesure centrale, le voyageur va à la plus proche des deux gares d’un train pris au hasard, et le trajet entre les deux arrêts parisiens n’est pas compté. Dans la mesure « trajet », ce parcours de 6 minutes (<code>TH_ACCESS</code>) est compté et le voyageur choisit le train qui dessert la meilleure gare.",
+    "<code>access()</code> prend l’écart avec aujourd’hui pour chaque direction, pondère les quatre directions par leurs voyageurs (<code>W</code>), fait la moyenne des 1 000 points pour Paris et des communes par population pour la petite et la grande couronne, et pondère les trois couronnes selon l’origine des voyageurs TGV (<code>SH</code>). La carte et les tableaux par arrondissement et par direction viennent de la même fonction appliquée point par point."
+   ],
+   "code": [
+    [
+     "model/nordest.py",
+     [
+      "TH",
+      "TH_ACCESS",
+      "sl_time",
+      "tgv_times",
+      "access",
+      "today_mean",
+      {
+       "from": "    # access",
+       "to": "    out['max_gain'] ="
+      }
+     ]
+    ]
+   ],
+   "run": "import statistics as S\nimport nordest as N\nfor tag, label in (('clock', 'clock minutes'), ('eq', 'weighted minutes, the official way')):\n    for measure in ('station', 'ride'):\n        a = N.access(tag, measure=measure)\n        print(f'{label}, measure {measure!r}: change against today', {k: round(v, 2) for k, v in a['rings'].items()}, '| all:', round(a['all'], 2), '| share of Paris points quicker:', f\"{a['paris_share_quicker']:.0%}\")\npts = N.DATA['clock'][0]\ntoday = S.mean(sum(N.W[k] * t[k] for k in N.W) for t in pts)\nstation = S.mean(sum(N.W[k] * N.tgv_times(t, 0.0)[k] for k in N.W) for t in pts)\nprint(f'average point in Paris: {today:.1f} minutes today, {station:.1f} with the project (to a station where the train stops)')"
+  },
+  {
+   "id": "tgv_traffic",
+   "title_en": "New TGV journeys and the time they save",
+   "title_fr": "Les nouveaux voyages en TGV et le temps gagné",
+   "keys": [
+    "m.access_effect",
+    "m.connecting",
+    "m.conn",
+    "m.dest_axis",
+    "m.destinations",
+    "m.dest"
+   ],
+   "explain_en": [
+    "Two groups of TGV passengers gain. Those who start or end in the Paris region reach a station sooner: <code>access_effect()</code> takes the average change of weighted minutes from <code>access()</code>, puts it on the whole door-to-door trip (<code>trip_eq()</code>) and applies the elasticity of traffic to travel time (<code>ELAST</code>, -1.1): new journeys = journeys × ((1 + change / trip) <sup>-1.1</sup> − 1).",
+    "Those who cross Paris (<code>CONN</code>, about 5 million a year, from the 2012 to 2013 survey) no longer change station. <code>city_pair()</code> compares, for every pair of main destinations on two lines (<code>DEST</code>), the trip today, with its changes of vehicle across Paris (<code>TRANSFERS</code>), and with the project: a direct train, or one change inside one station. Each change today keeps 63% of potential passengers (<code>CHANGE_KEEP</code>, British ticket data); a change inside one station keeps 1/1.12 (<code>STATION_KEEP</code>, SBB). The time model is applied on top. <code>destinations()</code> averages the city pairs of each pair of lines and <code>connecting()</code> weights them by today's flows (<code>PSH</code>), half of the passengers on a served pair finding a direct train (<code>DIRECT_SHARE</code>).",
+    "The time saved is valued with the rule of a half (<code>gain()</code>): existing passengers get all of it at the official value of time, new ones half."
+   ],
+   "explain_fr": [
+    "Deux groupes de voyageurs TGV y gagnent. Ceux qui partent ou arrivent en Île-de-France atteignent une gare plus vite : <code>access_effect()</code> prend l’écart moyen de minutes pondérées donné par <code>access()</code>, le rapporte à tout le trajet porte à porte (<code>trip_eq()</code>) et applique l’élasticité du trafic au temps de parcours (<code>ELAST</code>, -1,1) : nouveaux voyages = voyages × ((1 + écart / trajet) <sup>-1,1</sup> − 1).",
+    "Ceux qui traversent Paris (<code>CONN</code>, environ 5 millions par an, d’après l’enquête 2012-2013) ne changent plus de gare. <code>city_pair()</code> compare, pour chaque paire de destinations principales sur deux lignes (<code>DEST</code>), le trajet d’aujourd’hui, avec ses correspondances à travers Paris (<code>TRANSFERS</code>), et celui du projet : un train direct, ou une correspondance dans une même gare. Chaque correspondance actuelle garde 63 % des voyageurs potentiels (<code>CHANGE_KEEP</code>, données de billetterie britanniques) ; une correspondance dans une même gare en garde 1/1,12 (<code>STATION_KEEP</code>, CFF). Le modèle de temps s’applique en plus. <code>destinations()</code> fait la moyenne des paires de villes de chaque paire de lignes et <code>connecting()</code> les pondère par les flux actuels (<code>PSH</code>), la moitié des voyageurs d’une paire desservie trouvant un train direct (<code>DIRECT_SHARE</code>).",
+    "Le temps gagné est valorisé par la règle de la moitié (<code>gain()</code>) : les voyageurs existants en ont tout, à la valeur officielle du temps, les nouveaux la moitié."
+   ],
+   "code": [
+    [
+     "model/estimate.py",
+     [
+      "VOT_LD",
+      "ELAST",
+      "ACC_EGR",
+      "gain"
+     ]
+    ],
+    [
+     "model/nordest.py",
+     [
+      "CONN",
+      "OLD_CLOCK",
+      "trip_eq",
+      "access_effect",
+      "UPLIFT_DIRECT",
+      "DIRECT_SHARE",
+      "CHANGE_KEEP",
+      "STATION_KEEP",
+      "TRANSFERS",
+      "DEST",
+      "pair_ride",
+      "city_pair",
+      "destinations",
+      "connecting"
+     ]
+    ]
+   ],
+   "run": "import nordest as N\na = N.access_effect()\nprint(f\"Paris-region TGV passengers: {a['minutes']:+.2f} weighted minutes, {a['journeys']:.2f} million more journeys a year, time saved worth {a['benefit']:.3f} bn euros a year\")\nc = N.connecting()\nprint(f\"Passengers crossing Paris: {c['base']:.2f} million a year today, {c['new']:.2f} million more ({c['uplift']:.0%}), time saved worth {c['ben']:.3f} bn euros a year\")\nfor k, p in c['pairs'].items():\n    print(f\"   {k:20s} share {p['share']:.0%}  today {p['old_clock']:.0f} min to change station  direct train {p['direct'] or '-'}  growth {p['growth']:.0%}\")"
+  },
+  {
+   "id": "regional",
+   "title_en": "Regional and suburban trains running through",
+   "title_fr": "Les trains régionaux et de banlieue en traversée",
+   "keys": [
+    "m.regional",
+    "m.regional_high",
+    "m.regional_low",
+    "m.regional_deep2",
+    "m.TR",
+    "m.TR_G",
+    "m.TR_TER",
+    "m.G_STOP",
+    "m.TER_STOP",
+    "m.tripend_shares"
+   ],
+   "explain_en": [
+    "A suburban or regional train that today ends at Gare du Nord, Gare de l'Est, Montparnasse or Gare de Lyon runs on to a second station (<code>SUB_PAIR</code>, <code>TER_RUN</code>). <code>_reach()</code> and <code>regional_saving()</code> give, for each of the 1,000 points of Paris, the minutes saved by getting off at whichever of the two stations is better, the ride between them included (<code>TR</code>: a 6-minute run and a 1-minute stop; 5 minutes of stop for a TER), and average them.",
+    "<code>regional()</code> turns that into traffic and value line by line (<code>LINES</code>, million journeys a year; <code>TERM_SHARE</code>, the share that starts or ends at the terminal). Suburban lines grow 15% (<code>REG_UPLIFT</code>, the middle of what joined lines elsewhere observed), scaled down if the saving is cut. TER traffic follows the time model on a 100-minute trip. Time is valued at the Paris-region and regional values with the rule of a half.",
+    "<code>cross_paris()</code> adds the suburb-to-suburb trips across Paris: they change twice today, keep 63% of passengers at each change (<code>CHANGE_LOSS</code>), and stay on one train or change once on the platforms of Nord-Est with the project. <code>second_station()</code> counts the riders who would get off at the second station, those for whom it saves more than a minute."
+   ],
+   "explain_fr": [
+    "Un train de banlieue ou régional qui finit aujourd’hui à Gare du Nord, Gare de l’Est, Montparnasse ou Gare de Lyon continue vers une deuxième gare (<code>SUB_PAIR</code>, <code>TER_RUN</code>). <code>_reach()</code> et <code>regional_saving()</code> donnent, pour chacun des 1 000 points de Paris, les minutes gagnées en descendant à la meilleure des deux gares, trajet entre elles compris (<code>TR</code> : 6 minutes de parcours et 1 minute d’arrêt ; 5 minutes d’arrêt pour un TER), et en font la moyenne.",
+    "<code>regional()</code> en tire le trafic et la valeur ligne par ligne (<code>LINES</code>, millions de voyages par an ; <code>TERM_SHARE</code>, la part qui part ou arrive au terminus). Les lignes de banlieue gagnent 15 % (<code>REG_UPLIFT</code>, le milieu de ce qu’ont observé ailleurs les lignes raccordées), moins si le gain de temps est réduit. Le trafic TER suit le modèle de temps sur un trajet de 100 minutes. Le temps est valorisé aux valeurs francilienne et régionale, par la règle de la moitié.",
+    "<code>cross_paris()</code> ajoute les trajets de banlieue à banlieue à travers Paris : ils comptent deux correspondances aujourd’hui, gardent 63 % des voyageurs à chacune (<code>CHANGE_LOSS</code>), et restent dans un seul train ou changent une fois sur les quais de Nord-Est avec le projet. <code>second_station()</code> compte les voyageurs qui descendraient à la deuxième gare, ceux à qui elle fait gagner plus d’une minute."
+   ],
+   "code": [
+    [
+     "model/nordest.py",
+     [
+      "TR",
+      "TER_STOP",
+      "TR_TER",
+      "G_STOP",
+      "TR_G",
+      "LINES",
+      "TERM_SHARE",
+      "THROUGH_TRAINS",
+      "TER",
+      "REG_UPLIFT",
+      "TER_TRIP",
+      "SUB_PAIR",
+      "TER_RUN",
+      "_reach",
+      "regional_saving",
+      "regional",
+      "second_station",
+      "TRANSIT_SHARE",
+      "CROSS_SHARE",
+      "CHANGE_LOSS",
+      "EASY_CHANGE",
+      "CORRIDOR",
+      "cross_paris"
+     ]
+    ]
+   ],
+   "run": "import nordest as N\ng = N.regional()\nprint('line            journeys (M)  riders at the terminal (M)  clock minutes saved')\nfor l, q, u, clock, eq in g['rows']: print(f'{l:15s} {q:12.1f}  {u:26.1f}  {clock:19.1f}')\nprint(f\"average clock minutes saved: {g['avg_clock_saving']:.1f}\")\nprint(f\"new journeys: suburban {g['new_transilien']:.1f} M, regional express {g['new_ter']:.2f} M; of which suburb to suburb across Paris {g['cross']['new']:.1f} M\")\nprint(f\"value of time saved: {g['benefit']:.3f} bn euros a year; new fares {g['fares']:.3f} bn\")\nprint(f\"riders getting off at the second station: suburban {g['second_station_sub']:.1f} M, regional express {g['second_station_ter']:.1f} M a year\")"
+  },
+  {
+   "id": "cost",
+   "title_en": "The cost, built up from unit prices of built projects",
+   "title_fr": "Le coût, construit à partir des prix unitaires de projets réalisés",
+   "keys": [
+    "m.cost",
+    "m.cost_low",
+    "m.cost_high",
+    "m.rates",
+    "m.rates_low",
+    "m.rates_high",
+    "m.gross_up",
+    "m.station_total",
+    "m.len",
+    "m.link_km",
+    "m.tunnels",
+    "m.corridor_km",
+    "m.layout",
+    "m.backtest",
+    "m.stages"
+   ],
+   "explain_en": [
+    "The project is described as quantities: km of twin-track tunnel (the corridors each tunnel runs along, <code>CORRIDOR_KM</code> and <code>TUNNELS</code>), metres of platform track in each deep station (tracks × platform length, <code>LAYOUT</code> and <code>LEN</code>), underground junctions, portals, the four historic halls and a few lump sums.",
+    "<code>cost()</code> multiplies each quantity by a unit price taken from built projects (<code>RATE</code>: Grand Paris Express, Elizabeth line, Zurich, RER E). On the works it adds design (12%), the client's costs (8%) and land (7%), then 15% for risk on the whole. The low and high cases use <code>RATE_LOW</code> and <code>RATE_HIGH</code> (other unit prices and 10% or 30% of risk).",
+    "<code>backtest()</code> applies the same prices to seven projects built or priced in Paris, Lyon, Marseille, Stuttgart, Zurich and Munich, and compares the result with what they cost. The stages split the same quantities between a first stage (the north and east to the south-east, with Gare de Lyon and Saint-Lazare) and a second (Montparnasse and the link)."
+   ],
+   "explain_fr": [
+    "Le projet est décrit en quantités : km de tunnel à double voie (les corridors que suit chaque tunnel, <code>CORRIDOR_KM</code> et <code>TUNNELS</code>), mètres de voie à quai dans chaque gare profonde (voies × longueur de quai, <code>LAYOUT</code> et <code>LEN</code>), jonctions souterraines, têtes de tunnel, les quatre halles historiques et quelques forfaits.",
+    "<code>cost()</code> multiplie chaque quantité par un prix unitaire tiré de projets réalisés (<code>RATE</code> : Grand Paris Express, Elizabeth line, Zurich, RER E). Sur les travaux, il ajoute les études (12 %), les frais du maître d’ouvrage (8 %) et le foncier (7 %), puis 15 % de risque sur le tout. Les cas bas et haut prennent <code>RATE_LOW</code> et <code>RATE_HIGH</code> (d’autres prix unitaires et 10 % ou 30 % de risque).",
+    "<code>backtest()</code> applique les mêmes prix à sept projets construits ou chiffrés à Paris, Lyon, Marseille, Stuttgart, Zurich et Munich, et compare le résultat à ce qu’ils ont coûté. Les phases répartissent les mêmes quantités entre une première phase (le nord et l’est vers le sud-est, avec Gare de Lyon et Saint-Lazare) et une seconde (Montparnasse et le lien)."
+   ],
+   "code": [
+    [
+     "model/nordest.py",
+     [
+      "RATE",
+      "RATE_LOW",
+      "RATE_HIGH",
+      "CORRIDOR_KM",
+      "LINK_KM",
+      "TUNNELS",
+      "TUNNEL_KM",
+      "JUNCTIONS",
+      "PORTALS",
+      "LAYOUT",
+      "LEN",
+      "cost",
+      "backtest",
+      "STAGE_CORRIDORS",
+      {
+       "from": "    # staging (cost only)",
+       "to": "    assert abs(out['stages']"
+      }
+     ]
+    ]
+   ],
+   "run": "import nordest as N\nc = N.cost()\nprint(f\"{c['tunnel_km']:.1f} km of twin-track tunnel, {c['platform_total']:,.0f} m of platform track, {c['tracks_total']} platform tracks\")\nfor k, v in c['items'].items(): print(f'   {k:40s} {v:6.2f}')\nprint(f\"works {c['hard']:.2f} + design and client {c['soft']:.2f} + land {c['land']:.2f} + risk {c['risk']:.2f} = {c['total']:.2f} bn euros of 2026\")\nprint(f\"low case {N.cost(N.RATE_LOW)['total']:.1f}, high case {N.cost(N.RATE_HIGH)['total']:.1f}\")\nprint('back-test, bn euros: model without risk, with risk, actual')\nfor b in N.backtest(): print(f\"   {b['name']:42s} {b['model_no_risk']:6.2f} {b['model_with_risk']:6.2f} {b['actual']:6.2f}\")"
+  },
+  {
+   "id": "yearly",
+   "title_en": "The yearly cost and the one-at-a-time tests",
+   "title_fr": "Le coût annuel et les tests un à un",
+   "keys": [
+    "m.yearly",
+    "m.yearly_ride",
+    "m.sens",
+    "m.idc",
+    "m.AF",
+    "m.ratios",
+    "m.extras",
+    "m.deep2_scaled",
+    "m.rate_tests",
+    "m.vot",
+    "m.elasticity"
+   ],
+   "explain_en": [
+    "<code>yearly_cost()</code> turns the cost into a cost a year: spending is spread evenly over 12 years of works and carries interest at 3% until opening (<code>idc()</code>), then is repaid over 60 years at 3% (the annuity factor <code>AF</code>). It adds one renewal of the rail systems after 30 years, set aside each year, and the running costs: tunnels at a rate between the two French benchmarks (<code>OM_TUNNEL</code>), stations per metre of platform (<code>OM_STATION</code>), and the extra running of regional trains.",
+    "<code>yearly()</code> puts on the other side what the traffic model gives (<code>access_effect()</code>, <code>connecting()</code>, <code>regional()</code>): new journeys, track charges on new TGV fares (35% of the fare, <code>TRACK_SHARE</code>), new regional fares, the time saved, and comfort and wider effects in the proportions of the Grand Paris Express appraisal (<code>wider()</code>). The ratios of benefits to yearly cost follow.",
+    "The one-at-a-time tests run <code>yearly()</code> again with one assumption changed each time (unit prices, years of works, boarding time, the measure, crowding weights, the cross-Paris gain, suburban growth, tunnel upkeep, traffic reached) and keep the results."
+   ],
+   "explain_fr": [
+    "<code>yearly_cost()</code> transforme le coût en coût annuel : la dépense est étalée sur 12 ans de travaux et porte intérêt à 3 % jusqu’à l’ouverture (<code>idc()</code>), puis est remboursée sur 60 ans à 3 % (le facteur d’annuité <code>AF</code>). Il ajoute un renouvellement des systèmes ferroviaires après 30 ans, provisionné chaque année, et les coûts d’exploitation : les tunnels à un taux entre les deux références françaises (<code>OM_TUNNEL</code>), les gares par mètre de quai (<code>OM_STATION</code>), et la circulation supplémentaire des trains régionaux.",
+    "<code>yearly()</code> met en regard ce que donne le modèle de trafic (<code>access_effect()</code>, <code>connecting()</code>, <code>regional()</code>) : les nouveaux voyages, les péages sur les nouvelles recettes TGV (35 % du prix du billet, <code>TRACK_SHARE</code>), les nouvelles recettes régionales, le temps gagné, et le confort et les effets élargis dans les proportions de l’évaluation du Grand Paris Express (<code>wider()</code>). Les ratios des avantages au coût annuel en découlent.",
+    "Les tests un à un relancent <code>yearly()</code> en changeant une hypothèse à chaque fois (prix unitaires, durée des travaux, temps d’accès aux quais, mesure, poids de l’inconfort, gain des traversées, croissance de la banlieue, entretien des tunnels, trafic atteint) et en gardent les résultats."
+   ],
+   "code": [
+    [
+     "model/nordest.py",
+     [
+      "r_",
+      "AF",
+      "BUILD_YEARS",
+      "idc",
+      "RENEW_YEAR",
+      "TRACK_SHARE",
+      "OM_TUNNEL_HIGH",
+      "OM_TUNNEL_LOW",
+      "OM_TUNNEL",
+      "OM_STATION",
+      "GPE",
+      "R_COMFORT",
+      "R_WIDER",
+      "yearly_cost",
+      "wider",
+      "yearly",
+      {
+       "from": "    tests = {",
+       "to": "    out['sens'] ="
+      },
+      {
+       "from": "    # things not in the central estimate",
+       "to": "                     'co2_kt'"
+      }
+     ]
+    ]
+   ],
+   "run": "import nordest as N\nc = N.yearly_cost()\nprint(f\"cost {c['capex']:.2f} bn, x {c['idc']:.3f} for interest during the works = {c['capex_open']:.2f} bn at opening\")\nprint(f\"repayment {c['annuity']:.3f} + renewal {c['renewal']:.3f} + running {c['om']:.3f} = {c['cost']:.3f} bn euros a year\")\nY = N.yearly()\nprint(f\"new TGV journeys {Y['tgv_journeys']:.2f} M, new regional journeys {Y['reg_journeys']:.1f} M a year\")\nprint(f\"time saved {Y['time_benefit']:.3f} + comfort {Y['comfort']:.3f} + wider effects {Y['wider']:.3f} = {Y['benefit_total']:.3f} bn a year\")\nprint(f\"benefits against yearly cost: time alone {Y['cover_time']:.0%}, all {Y['cover_all']:.0%}\")\nfor name, kw in {'Works take 15 years, not 12': dict(years=15), 'Every passenger takes 2 minutes longer to board': dict(deep=2.0), 'Suburban traffic grows 25%': dict(uplift=N.REG_UPLIFT_HIGH)}.items():\n    y = N.yearly(**kw); print(f\"test: {name}: cost {y['cost']:.3f}, cover {y['cover_all']:.0%}\")"
+  },
+  {
+   "id": "accounts",
+   "title_en": "The two accounts: running the project and repaying it",
+   "title_fr": "Les deux comptes : exploiter le projet et le rembourser",
+   "keys": [
+    "f",
+    "b",
+    "fp"
+   ],
+   "explain_en": [
+    "<code>make_base()</code> gathers what the accounts need from the traffic and cost model: three costs (low, central, high), four traffic cases (<code>traffic()</code>), and how Paris-region passengers respond to a charge, tabulated every 10 cents (<code>access_curve()</code>).",
+    "<code>accounts()</code> is plain arithmetic on that base, so that the calculator of the page (<code>src/js/model.js</code>) repeats it to the cent. The operations account sets the running costs and the renewal fund against the project's own income: the charge of 2.55 euros on a TGV passenger who uses a station their line did not serve and 5.10 for crossing Paris (fewer journeys as the fare rises, elasticity -0.7), the charge on regional express passengers, new Navigo pass holders, track charges, station shops, the transport authority's fee per km and part of the operators' saving on trainsets. The capital account sets the repayment of construction against the surplus of operations, a regional tax package, a European grant and the public grant that closes the gap.",
+    "It also gives the benefits against the yearly cost, and what public budgets get back in taxes. <code>breakeven_charge()</code> searches the charge that balances operations; <code>irr()</code> finds the rate of return by bisection on 60 years of flows."
+   ],
+   "explain_fr": [
+    "<code>make_base()</code> réunit ce dont les comptes ont besoin dans le modèle de trafic et de coût : trois coûts (bas, central, haut), quatre cas de trafic (<code>traffic()</code>), et la réponse des voyageurs franciliens à une redevance, tabulée tous les 10 centimes (<code>access_curve()</code>).",
+    "<code>accounts()</code> est un simple calcul sur cette base, de sorte que le calculateur de la page (<code>src/js/model.js</code>) le refait au centime près. Le compte d’exploitation met en regard les coûts d’exploitation et le fonds de renouvellement et les recettes propres du projet : la redevance de 2,55 euros sur un voyageur TGV qui utilise une gare que sa ligne ne desservait pas et de 5,10 pour traverser Paris (moins de voyages quand le prix monte, élasticité -0,7), la redevance sur les voyageurs TER, les nouveaux abonnés Navigo, les péages, les commerces des gares, la redevance de l’autorité organisatrice par km et une part de l’économie de rames des opérateurs. Le compte de capital met en regard le remboursement de la construction et l’excédent d’exploitation, un ensemble de taxes régionales, une subvention européenne et la subvention publique qui comble l’écart.",
+    "Il donne aussi les avantages rapportés au coût annuel, et ce que les budgets publics récupèrent en impôts. <code>breakeven_charge()</code> cherche la redevance qui équilibre l’exploitation ; <code>irr()</code> trouve le taux de rentabilité par dichotomie sur 60 ans de flux."
+   ],
+   "code": [
+    [
+     "model/finance.py",
+     [
+      "CHARGE_END",
+      "CHARGE_THROUGH",
+      "REX_SECOND",
+      "REX_THROUGH",
+      "NAVIGO_PASS",
+      "PASS_TRIPS",
+      "NAVIGO_NEW",
+      "SHOP_FEE",
+      "SHOP_NET",
+      "AUTH_FEE",
+      "SET_YEAR",
+      "SETS",
+      "FLEET_CAPTURE",
+      "LEVY",
+      "EU_GRANT",
+      "traffic",
+      "make_base",
+      "af",
+      "idc",
+      "grow_factor",
+      "at_charge",
+      "accounts",
+      "breakeven_charge",
+      "irr"
+     ]
+    ],
+    [
+     "model/nordest.py",
+     [
+      "access_charged",
+      "access_curve"
+     ]
+    ]
+   ],
+   "run": "import contextlib, io\nimport finance as F\nbase = F.make_base()\na = F.accounts(base)\nprint('OPERATIONS, bn euros a year')\nfor k, v in a['ops_cost'].items(): print(f'   cost    {k:58s} {v:7.3f}')\nfor k, v in a['ops_rev'].items(): print(f'   income  {k:58s} {v:7.3f}')\nprint(f\"   balance {a['ops_balance']:+.3f}, running costs covered {a['ops_cover']:.0%}\")\nprint('CAPITAL')\nprint(f\"   construction {a['capex']:.2f} bn, repayment {a['annuity']:.3f} bn a year; public grant {a['grant_bn']:.2f} bn ({a['grant_share']:.0%} of the cost)\")\nprint(f\"charge that balances operations alone: {F.breakeven_charge(base)} euros\")\nprint(f\"rate of return, central: {F.irr(base):.2%}\")"
+  },
+  {
+   "id": "french",
+   "title_en": "The French appraisal: net present value at 4.5%",
+   "title_fr": "L’évaluation à la française : valeur actuelle nette à 4,5 %",
+   "keys": [
+    "d.french.cases",
+    "d.french.timeline",
+    "d.french.budget",
+    "d.french.params",
+    "d.french.names",
+    "d.french.model",
+    "d.french.jobs",
+    "d.french.each_alone",
+    "d.french.all_but"
+   ],
+   "explain_en": [
+    "<code>model_figures()</code> takes the opening-year figures of the traffic, cost and finance models. <code>official_streams()</code> spreads them over the years of the official method (Instruction of 2014, DGITM fiches of 2019): works from 2028, opening in 2040, explicit years to 2070, then flows held flat to 2140; long-distance traffic +1.2% a year and short-distance +0.3% until 2070; values of time +0.84% a year; the official carbon value path; producers' balances; and a cost of public funds of 1.2 on net public money.",
+    "<code>added_streams()</code> adds the items the official list leaves out, each with a low, central and high value (the table <code>P</code>): commuters on the census-fitted job-access model (<code>model/inputs/job_access.json</code>), crowding relief, the four parks, cross-France journeys, the regular timetable, freed trainsets, carbon of the works and others. Wider effects are kept apart from the headline figure.",
+    "<code>evaluate()</code> discounts every year to 2026 at 4.5% (<code>npv()</code>) and gives the net present value, the value per euro of construction, the ratio of benefits to costs and the internal rate of return (<code>irr()</code>, by bisection). The cases (low, high, other rates, no growth, without one item) call it with one option changed; <code>budget()</code> lays out the money year by year."
+   ],
+   "explain_fr": [
+    "<code>model_figures()</code> reprend les chiffres de l’année d’ouverture des modèles de trafic, de coût et de financement. <code>official_streams()</code> les répartit sur les années de la méthode officielle (Instruction de 2014, fiches-outils DGITM de 2019) : travaux à partir de 2028, ouverture en 2040, années explicites jusqu’en 2070, puis flux constants jusqu’en 2140 ; trafic longue distance +1,2 % par an et courte distance +0,3 % jusqu’en 2070 ; valeurs du temps +0,84 % par an ; la trajectoire officielle de la valeur du carbone ; les bilans des producteurs ; et un coût d’opportunité des fonds publics de 1,2 sur l’argent public net.",
+    "<code>added_streams()</code> ajoute les postes que la liste officielle omet, chacun avec une valeur basse, centrale et haute (la table <code>P</code>) : les actifs, d’après le modèle d’accès à l’emploi ajusté sur le recensement (<code>model/inputs/job_access.json</code>), le désencombrement, les quatre parcs, les voyages à travers la France, le cadencement, les rames libérées, le carbone des travaux et d’autres. Les effets élargis sont tenus à part du chiffre principal.",
+    "<code>evaluate()</code> actualise chaque année à 2026 au taux de 4,5 % (<code>npv()</code>) et donne la valeur actuelle nette, la valeur par euro de construction, le rapport des avantages aux coûts et le taux de rentabilité interne (<code>irr()</code>, par dichotomie). Les cas (bas, haut, autres taux, sans croissance, sans un poste) l’appellent avec une option changée ; <code>budget()</code> présente l’argent année par année."
+   ],
+   "code": [
+    [
+     "model/french.py",
+     [
+      "BASE_YEAR",
+      "R_FR",
+      "VOT_GROWTH",
+      "COFP",
+      "model_figures",
+      "growth_opts",
+      "official_streams",
+      "added_streams",
+      "npv",
+      "irr",
+      "evaluate",
+      "budget"
+     ]
+    ]
+   ],
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nprint('running the traffic and finance models, then 2028 to 2140 year by year (about 15 seconds)...')\nm = FR.model_figures()\nfor lv, level in (('low', 0), ('central', 1), ('high', 2)):\n    e = FR.evaluate(m, level)\n    irr = 'n/a' if e['irr'] is None else f\"{e['irr']:.1%}\"\n    print(f\"{lv:8s} NPV {e['npv']:+6.1f} bn euros of 2026, {e['per_euro']:+.2f} per euro of construction, benefits / costs {e['ratio']:.2f}, IRR {irr}\")\nc = FR.evaluate(m, 1)\nprint('present value by family, central (bn):')\nfor k, v in c['pv_families'].items(): print(f'   {k:50s} {v:+7.2f}')"
+  },
+  {
+   "id": "study",
+   "title_en": "The study's simple reading: opening-year benefits against the yearly cost",
+   "title_fr": "La lecture simple de l’étude : avantages de l’année d’ouverture et coût annuel",
+   "keys": [
+    "d.french.study"
+   ],
+   "explain_en": [
+    "The simple reading uses the same complete list of benefits as the French appraisal, but in one year: the opening year, at today's traffic and today's values, with no growth and no cost of public funds.",
+    "<code>study_method()</code> takes the opening-year value of every item from <code>official_streams()</code> and <code>added_streams()</code>, adds the yearly value of the parks once open, and keeps apart the items that happen once (plots, signal boxes, carbon of the works, making the parks). It divides the yearly benefits by the yearly cost of the finance model (repayment over 60 years at 3%, renewal and running costs) to give the share of the yearly cost returned in benefits, and by the repayment alone. A flat rate of return is found by bisection.",
+    "<code>study_tests()</code> carries each one-at-a-time test of the station model (<code>m.sens</code>) onto this complete count: the change of benefit and of yearly cost of each test is applied to the totals."
+   ],
+   "explain_fr": [
+    "La lecture simple reprend la même liste complète d’avantages que l’évaluation à la française, mais sur une seule année : l’année d’ouverture, au trafic et aux valeurs d’aujourd’hui, sans croissance ni coût des fonds publics.",
+    "<code>study_method()</code> prend la valeur de l’année d’ouverture de chaque poste dans <code>official_streams()</code> et <code>added_streams()</code>, ajoute la valeur annuelle des parcs une fois ouverts, et tient à part les postes ponctuels (terrains, postes d’aiguillage, carbone des travaux, création des parcs). Il divise les avantages annuels par le coût annuel du modèle de financement (remboursement sur 60 ans à 3 %, renouvellement et exploitation) pour obtenir la part du coût annuel rendue en avantages, et par le seul remboursement. Un taux de rentabilité à flux constants est trouvé par dichotomie.",
+    "<code>study_tests()</code> reporte chaque test un à un du modèle des gares (<code>m.sens</code>) sur ce compte complet : la variation d’avantage et de coût annuel de chaque test s’applique aux totaux."
+   ],
+   "code": [
+    [
+     "model/french.py",
+     [
+      "study_method",
+      "model_json",
+      "study_tests"
+     ]
+    ]
+   ],
+   "data": [
+    "src/data/model.json"
+   ],
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nprint('running the traffic and finance models (about 15 seconds)...')\nm = FR.model_figures()\ns = FR.study_method(m, 1)\nprint('yearly benefits at opening, bn euros:')\nfor k, v in sorted(s['benefits'].items(), key=lambda kv: -kv[1]): print(f'   {k:70s} {v:+.3f}')\nprint(f\"total {s['benefit_total']:.3f} against a yearly cost of {s['yearly_cost']:.3f}: {s['cover']:.0%} of the yearly cost returned, {s['cover_capital']:.0%} of the repayment\")\nprint(f\"with wider effects: {s['cover_wider']:.0%}\")"
+  },
+  {
+   "id": "france",
+   "title_en": "Journeys across France through Paris",
+   "title_fr": "Les voyages à travers la France par Paris",
+   "keys": [
+    "d.french.france",
+    "d.french.more_trains"
+   ],
+   "explain_en": [
+    "<code>france()</code> counts the long-distance journeys between two regions that the project helps. Travellers who today take a TGV round Paris by the bypass line gain when a train through Paris is quicker or comes more often: the wait for a convenient train is a quarter of the interval between trains, and through Paris there is a train every hour (<code>PROJ_PER_DAY</code>); new journeys follow from the generalised time with an elasticity of -1 (<code>GC_ELAST</code>).",
+    "Air travellers on city pairs that cross Paris (<code>AIR_PAIRS</code>) switch as rail's share of rail plus air rises with shorter rail times (<code>rail_share()</code>, read on the curve <code>SHARE_CURVE</code>). The fares the railway keeps, the carbon saved on planes and cars follow.",
+    "<code>show_pairs()</code> gives the city pairs the page shows, today with a change of station (the median of what a passenger would choose in SNCF's timetable, <code>model/inputs/paris_crossing.json</code>) against the through train. <code>more_trains()</code> counts the extra runs and trainsets an hourly direct train between every two directions would need."
+   ],
+   "explain_fr": [
+    "<code>france()</code> compte les voyages longue distance entre deux régions que le projet facilite. Les voyageurs qui prennent aujourd’hui un TGV qui contourne Paris par l’interconnexion gagnent quand un train par Paris est plus rapide ou plus fréquent : l’attente d’un train qui convient vaut le quart de l’intervalle entre trains, et par Paris il y a un train toutes les heures (<code>PROJ_PER_DAY</code>) ; les nouveaux voyages suivent le temps généralisé avec une élasticité de -1 (<code>GC_ELAST</code>).",
+    "Les voyageurs aériens sur des paires de villes qui passent par Paris (<code>AIR_PAIRS</code>) changent de mode à mesure que la part du train dans le train et l’avion monte avec des temps de train plus courts (<code>rail_share()</code>, lue sur la courbe <code>SHARE_CURVE</code>). Les recettes que garde le chemin de fer et le carbone évité en avion et en voiture en découlent.",
+    "<code>show_pairs()</code> donne les paires de villes que montre la page, aujourd’hui avec un changement de gare (la médiane de ce qu’un voyageur choisirait dans l’horaire SNCF, <code>model/inputs/paris_crossing.json</code>) contre le train traversant. <code>more_trains()</code> compte les circulations et les rames supplémentaires qu’exigerait un train direct par heure entre deux directions quelconques."
+   ],
+   "code": [
+    [
+     "model/french.py",
+     [
+      "CITIES",
+      "BYPASS",
+      "PROJ_PER_DAY",
+      "X_CHANGE",
+      "X_CHANGE_CLOCK",
+      "DAY_MIN",
+      "DISPLACE_CAP",
+      "GC_ELAST",
+      "SHARE_CURVE",
+      "AIR_DOOR",
+      "rail_share",
+      "france",
+      "show_pairs",
+      "TURN_MIN",
+      "SERVICE_H",
+      "more_trains"
+     ]
+    ]
+   ],
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nf = FR.france(1)\nprint(f\"bypass travellers today: {f['bypass_pax']:.1f} M a year; new journeys {f['new_bypass']:.2f} M; air passengers who switch {f['air_pax'] / 1e6:.2f} M\")\nprint(f\"time saved worth {f['users_bypass']:.3f} bn a year; fares kept by the railway {f['fares']:.3f} bn; CO2 avoided on planes {f['air_t'] / 1000:.0f} thousand tonnes\")\nfor r in FR.show_pairs(): print(f\"   {r['pair'][0]:10s} to {r['pair'][1]:12s} today {FR.hm(r['today_min'])}, through Paris {FR.hm(r['project_min'])}, by air door to door {FR.hm(r['air_door_min'])}\")\nmt = FR.more_trains()\nprint(f\"an hourly direct train between every two directions: {mt['runs_day']:.0f} more runs a day, {mt['sets_low']:.0f} to {mt['sets_high']:.0f} trainsets\")"
+  },
+  {
+   "id": "parks",
+   "title_en": "The four parks on the freed tracks",
+   "title_fr": "Les quatre parcs sur les voies libérées",
+   "keys": [
+    "d.french.parks"
+   ],
+   "explain_en": [
+    "When the surface tracks of the four terminals close, their land is freed (<code>P['freed_ha']</code>, read from maps, low, central and high). <code>parks()</code> keeps a share for parks (<code>PARK_SHARE</code>) and a share for building plots (<code>PLOT_SHARE</code>).",
+    "The parks are valued by their visits: hectares × visits a hectare a year × the share of visits that are new × 3.3 euros of welfare a visit (<code>VISIT_VALUE</code>, the ORVal model of the University of Exeter), plus a share for health. Making them and keeping them are costs per hectare. The plots are valued at a density and a price per square metre."
+   ],
+   "explain_fr": [
+    "Quand les voies de surface des quatre terminus ferment, leurs emprises sont libérées (<code>P['freed_ha']</code>, lues sur les plans, basse, centrale et haute). <code>parks()</code> en garde une part pour des parcs (<code>PARK_SHARE</code>) et une part pour des terrains à bâtir (<code>PLOT_SHARE</code>).",
+    "Les parcs sont valorisés par leurs visites : hectares × visites par hectare et par an × la part de visites nouvelles × 3,3 euros de bien-être par visite (<code>VISIT_VALUE</code>, le modèle ORVal de l’université d’Exeter), plus une part pour la santé. Leur création et leur entretien sont des coûts à l’hectare. Les terrains sont valorisés à une densité et un prix au mètre carré."
+   ],
+   "code": [
+    [
+     "model/french.py",
+     [
+      "PARK_SHARE",
+      "PLOT_SHARE",
+      "VISIT_VALUE",
+      "parks"
+     ]
+    ]
+   ],
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nfor lv, level in (('low', 0), ('central', 1), ('high', 2)):\n    p = FR.parks(level)\n    print(f\"{lv:8s} {p['ha']:.0f} ha of parks, {p['visits'] / 1e6:.1f} M visits a year worth {p['value'] * 1000:.0f} M euros; making them {p['make'] * 1000:.0f} M, upkeep {p['upkeep'] * 1000:.1f} M a year; plots {p['plots_ha']:.0f} ha worth {p['plots']:.2f} bn\")"
+  },
+  {
+   "id": "timetable",
+   "title_en": "The evenly spaced hour, track by track",
+   "title_fr": "L’heure régulière, voie par voie",
+   "keys": [
+    "d.timetable.table"
+   ],
+   "explain_en": [
+    "The hour of TGVs is built by rule, without a search. A TGV stops 7 minutes, its track stays held 2 more for a late train and is then empty 3: one place of 12 minutes, so 5 trains a track an hour. Every run between two of the three stations takes the same 6 minutes. A train comes into each side of each station every 4 minutes on 3 tracks in turn (<code>G_STEP</code>, <code>G_TRACKS</code>): 15 places an hour.",
+    "<code>interleave()</code> spreads the kinds of train (clockwise, anticlockwise, and the trains that swap between the two southern stations by the link) as evenly as possible over the 15 places. <code>grid_build()</code> gives each train its minutes at its two Paris stops and its tracks; <code>spread()</code> decides which of the trains at Nord-Est come from or go to the east line rather than the north.",
+    "<code>grid_check()</code> checks every rule on the finished hour: no two trains on one track within 12 minutes, trains at least 3 minutes apart in and out of each side. <code>ter_check()</code> takes the regional express hour fitted between these TGVs by a constraint solver (<code>model/ter_timetable.py</code>, kept in <code>model/inputs/ter_timetable.json</code>) and checks it again rule by rule: spacing on every shared track, platform tracks, length of stops."
+   ],
+   "explain_fr": [
+    "L’heure des TGV est construite par règle, sans recherche. Un TGV s’arrête 7 minutes, sa voie reste réservée 2 minutes de plus pour un train en retard puis vide 3 : une place de 12 minutes, soit 5 trains par voie et par heure. Chaque parcours entre deux des trois gares dure les mêmes 6 minutes. Un train entre de chaque côté de chaque gare toutes les 4 minutes, sur 3 voies à tour de rôle (<code>G_STEP</code>, <code>G_TRACKS</code>) : 15 places par heure.",
+    "<code>interleave()</code> répartit les types de train (sens horaire, sens antihoraire, et les trains qui passent d’une gare du sud à l’autre par le lien) aussi régulièrement que possible sur les 15 places. <code>grid_build()</code> donne à chaque train ses minutes à ses deux arrêts parisiens et ses voies ; <code>spread()</code> décide lesquels des trains de Nord-Est viennent de la ligne de l’est ou y vont plutôt que du nord.",
+    "<code>grid_check()</code> vérifie chaque règle sur l’heure terminée : jamais deux trains sur une voie à moins de 12 minutes, des trains à au moins 3 minutes d’écart à l’entrée et à la sortie de chaque côté. <code>ter_check()</code> reprend l’heure des TER placée entre ces TGV par un solveur de contraintes (<code>model/ter_timetable.py</code>, gardée dans <code>model/inputs/ter_timetable.json</code>) et la vérifie à nouveau règle par règle : espacement sur chaque voie partagée, voies à quai, durée des arrêts."
+   ],
+   "code": [
+    [
+     "model/table_timetable.py",
+     [
+      "spread",
+      "gaps",
+      {
+       "from": "# ------------------------------------------------------------------ the synchronised hour",
+       "to": "TURN = {"
+      },
+      "interleave",
+      "grid_build",
+      "grid_check",
+      "ter_check"
+     ]
+    ]
+   ],
+   "data": [
+    "model/outputs/nordest.json",
+    "model/inputs/ter_timetable.json"
+   ],
+   "run": "import contextlib, io, json, os\nwith contextlib.redirect_stdout(io.StringIO()):\n    import table_timetable as TT\nter = json.load(open(os.path.join('model', 'inputs', 'ter_timetable.json')))\nfor sc in TT.GRID:\n    tt = TT.grid_export(sc)\n    bad = TT.grid_check(tt)\n    print(f\"--- hour {sc!r}: {len(tt['trains'])} TGVs, places in order: {' '.join(tt['sequence'])}\")\n    print('   rules broken:', bad or 'none')\n    for t in tt['trains'][:6]:\n        a, b = t['stops']\n        print(f\"   {t['route']}  {a['st']} track {a['track']} arr {a['arr']:02d} dep {a['dep']:02d}  ->  {b['st']} track {b['track']} arr {b['arr']:02d} dep {b['dep']:02d}\")\n    print('   ...')\n    ms = TT.ter_check(sc, tt, ter)\n    print(f\"   regional express trains: closest spacing {ms['min_gap']} min, {ms['close']} of {ms['pairs']} pairs closer than {ter['params']['sep']} min, {ms['longer_stops']} of {ms['stops']} stops longer than 5 min\")"
+  },
+  {
+   "id": "timetable_search",
+   "title_en": "Waits for passengers crossing Paris, and timetables drawn at random",
+   "title_fr": "Les attentes des voyageurs qui traversent Paris, et des horaires tirés au hasard",
+   "keys": [
+    "d.timetable.inputs",
+    "d.timetable.cases",
+    "d.timetable.platforms",
+    "d.timetable.table.grid.measures",
+    "d.timetable.table.measures",
+    "d.timetable"
+   ],
+   "explain_en": [
+    "<code>model/timetable.py</code> measures a timetable from the passenger's side. <code>evenness()</code> takes, for each line, the average wait from a random minute for the next train leaving Paris to it or arriving from it (<code>mean_wait()</code>: half of each gap between trains, weighted by the gap), the lines weighted by their trains; for each pair of lines with direct trains, the average wait for the next direct train, weighted by the share of that pair (<code>PSH</code>); and between the north and the east, the minutes in Paris with one change at Nord-Est, 4 minutes to a train going the same way and 6 to the other side of the station. <code>crossing()</code> follows a passenger who leaves on the first train to their line, their own or one reached by a change.",
+    "To compare, <code>anneal()</code> searches by simulated annealing (fixed seed) for an hour timed for changes, moving the minutes of the trains under the same platform and tunnel rules, and <code>random_cases()</code> draws timetables at random within those rules. The evenly spaced hour of the page is measured with the same functions."
+   ],
+   "explain_fr": [
+    "<code>model/timetable.py</code> mesure un horaire du point de vue du voyageur. <code>evenness()</code> prend, pour chaque ligne, l’attente moyenne depuis une minute quelconque du prochain train qui quitte Paris vers elle ou qui en arrive (<code>mean_wait()</code> : la moitié de chaque intervalle entre trains, pondérée par l’intervalle), les lignes pondérées par leurs trains ; pour chaque paire de lignes reliées par des trains directs, l’attente moyenne du prochain train direct, pondérée par la part de la paire (<code>PSH</code>) ; et entre le nord et l’est, les minutes passées dans Paris avec une correspondance à Nord-Est, 4 minutes vers un train qui va dans le même sens et 6 vers l’autre côté de la gare. <code>crossing()</code> suit un voyageur qui repart par le premier train vers sa ligne, le sien ou un autre après une correspondance.",
+    "Pour comparer, <code>anneal()</code> cherche par recuit simulé (graine fixe) une heure calée sur les correspondances, en déplaçant les minutes des trains sous les mêmes règles de quais et de tunnels, et <code>random_cases()</code> tire des horaires au hasard dans ces règles. L’heure régulière de la page est mesurée avec les mêmes fonctions."
+   ],
+   "code": [
+    [
+     "model/timetable.py",
+     [
+      "CHANGE_SAME",
+      "change",
+      "crossing",
+      "mean_wait",
+      "LINE_WEIGHT",
+      "evenness",
+      "anneal",
+      "random_cases"
+     ]
+    ]
+   ],
+   "data": [
+    "model/outputs/nordest.json",
+    "model/inputs/ter_timetable.json"
+   ],
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import table_timetable as TT\n    import timetable as T\nfor sc in TT.GRID:\n    fx = TT.Fixed(TT.grid_export(sc)['trains']).trains()\n    ev = T.evenness(fx)\n    print(f\"evenly spaced hour {sc!r}: average wait for a train to or from one's line {ev['paris_wait']:.1f} min; for the next direct train between two lines {ev['direct_wait']:.1f} min; north to east with a change at Nord-Est {ev['ne_change']:.1f} min\")\nprint('The search for an hour timed for changes (anneal) and the timetables drawn at random take about 20 minutes: run model/timetable.py in the repository for them.')"
+  }
+ ]
+}

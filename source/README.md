@@ -46,11 +46,12 @@ python3 model/export.py          # data the site reads                   -> src/
 python3 model/timetable.py       # the hour of trains (about 20 minutes)  -> src/sections/timetable/data.json
 python3 model/table_timetable.py # the TGV hour shown, and the TER hour checked against it -> src/sections/timetable/data.json
 node tools/check_model.js        # the browser model must give the same numbers as the Python one
+node tools/check_algorithms.js   # every 'See the algorithm used' script runs on its own with python3
 python3 build.py
 ```
 
 Change an assumption in `model/nordest.py`, `model/finance.py` or `model/french.py` (every assumption is a named constant with a comment), run the
-eight commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
+commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` lists the keys the templates and scripts can read.
 
 ## What is where
 
@@ -62,6 +63,7 @@ eight commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md
 | `src/data/` | Model results and shared data; `sources.json` is the shared source list, `paris_geo.json` the outline of Paris |
 | `model/` | The Python model and its inputs |
 | `tools/` | Screenshot and check scripts |
+| `src/algorithms/` | The algorithm behind each figure: explanations, code shown, runnable scripts (see CONTRIBUTING.md) |
 | `../index.html`, `../en.html` | The built pages, the study itself, in French and English (`dist/` holds trial builds and is not kept) |
 | `CONTRIBUTING.md` | How to write a section: components, helpers, rules, agreed anchors |
 | `docs/TRIANGLE_BRIEF.md` | The project as modelled: concept, central figures, model keys, writing rules, open study points |
