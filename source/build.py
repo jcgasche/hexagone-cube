@@ -13,6 +13,7 @@ What it does, in order:
  4. checks that every internal link has a target and that no long dash slipped into the text;
  5. writes the page: styles, sections, data, scripts.
 """
+from html.parser import HTMLParser
 import argparse, ast, base64, gzip, hashlib, html, json, os, re, sys
 from decimal import Decimal, ROUND_HALF_UP
 
@@ -80,14 +81,16 @@ FORMATS = {
 }
 
 
-def substitute(text, ctx, where, problems, record=None):
+def substitute(text, ctx, where, problems, record=None, mark=False):
     def rep(mo):
         body = mo.group(1); expr, _, fmt = body.rpartition('|') if '|' in body else (body, '', '1')
         expr, fmt = expr.strip(), fmt.strip()
         try:
             val = eval(expr, {'__builtins__': {}, 'abs': abs, 'min': min, 'max': max, 'round': round, 'sum': sum, 'len': len}, ctx)
             out = FORMATS[fmt](val)
-            if record is not None: record.append((body, out))
+            if record is not None:
+                record.append((body, out))
+                if mark: return MARK_A + str(len(record) - 1) + MARK_B + out + MARK_Z
             return out
         except Exception as e:
             problems.append(f'{where}: cannot evaluate {{{{ {body} }}}}: {e!r}'); return '??'
@@ -130,13 +133,13 @@ def sources_table(numbers, sources, lang='en'):
 
 # ---------------------------------------------------------------- "See the algorithm used": the code and data behind each figure
 ALGO_WORDS = {'en': {'link': 'See the algorithm used', 'title': 'Algorithm used', 'explain': 'Explanation', 'code': 'Code', 'close': 'Close',
-                     'uses': 'This part uses', 'figures': 'Figures of this part that it computes', 'expr': 'Model value', 'shown': 'Shown as',
+                     'uses': 'This part uses', 'figures': 'Figures of this part that it computes', 'expr': 'What it is, and its model value', 'shown': 'Shown as',
                      'more': 'and {n} more', 'download': 'Download a runnable .py', 'lines': 'lines {a} to {z}',
                      'run': 'Runs with Python 3.8 or later, nothing to install: the model files and the inputs it needs are packed into it. Run it with: python3 {file}',
                      'what': 'What the script runs', 'from': 'From the model in source/model/ of the study’s repository',
                      'doc': 'Hexagone³, Paris through stations: one algorithm of the study, with the model files and inputs it needs.'},
               'fr': {'link': 'Voir l’algorithme utilisé', 'title': 'Algorithme utilisé', 'explain': 'Explication', 'code': 'Code', 'close': 'Fermer',
-                     'uses': 'Cette partie utilise', 'figures': 'Chiffres de cette partie qu’il calcule', 'expr': 'Valeur du modèle', 'shown': 'Affiché',
+                     'uses': 'Cette partie utilise', 'figures': 'Chiffres de cette partie qu’il calcule', 'expr': 'Ce que c’est, et sa valeur dans le modèle', 'shown': 'Affiché',
                      'more': 'et {n} de plus', 'download': 'Télécharger un .py exécutable', 'lines': 'lignes {a} à {z}',
                      'run': 'Fonctionne avec Python 3.8 ou plus récent, sans rien installer : les fichiers du modèle et les données nécessaires sont inclus. Lancez-le avec : python3 {file}',
                      'what': 'Ce qu’exécute le script', 'from': 'Tiré du modèle, dans source/model/ du dépôt de l’étude',
@@ -144,6 +147,93 @@ ALGO_WORDS = {'en': {'link': 'See the algorithm used', 'title': 'Algorithm used'
 KEY = re.compile(r'(?<![\w.\'"])(m|f|b|fp|pts|d)((?:\.[A-Za-z_]\w*)+)')
 MODEL = os.path.join(ROOT, 'model')
 QUOTE3 = "'" * 3
+
+
+
+MARK_A, MARK_B, MARK_Z = '', '', ''          # around a figure in a block: MARK_A n MARK_B value MARK_Z
+VOID = {'br', 'img', 'input', 'hr', 'meta', 'link', 'wbr', 'col', 'area', 'source'}
+
+
+class _Tree(HTMLParser):
+    """Just enough of a DOM to find the words around a figure: tags, classes and text, in order."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True); self.root = {'tag': '', 'cls': [], 'kids': [], 'up': None}; self.at = self.root
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs); n = {'tag': tag, 'cls': (a.get('class') or '').split(), 'kids': [], 'up': self.at, 'span': int(a.get('colspan') or 1)}
+        self.at['kids'].append(n)
+        if tag not in VOID: self.at = n
+    def handle_startendtag(self, tag, attrs): self.at['kids'].append({'tag': tag, 'cls': [], 'kids': [], 'up': self.at})
+    def handle_endtag(self, tag):
+        n = self.at
+        while n is not self.root and n['tag'] != tag: n = n['up']
+        if n is not self.root: self.at = n['up']
+    def handle_data(self, d): self.at['kids'].append(d)
+
+
+def _text(n):
+    return n if isinstance(n, str) else ''.join(_text(k) for k in n['kids'] if n.get('tag') not in ('style', 'script'))
+
+
+def _clean(t, keep):
+    """Words of a node: the figure `keep` marked for the page to show in bold, the other figures as their values, no citations."""
+    t = re.sub(MARK_A + r'(\d+)' + MARK_B + '(.*?)' + MARK_Z, lambda m: ('\u0001' + m.group(2) + '\u0002') if int(m.group(1)) == keep else m.group(2), t)
+    t = re.sub(r'\[\[[^\]]*\]\]', '', t)
+    return re.sub(r'\s+', ' ', t).strip()
+
+
+def figure_context(marked):
+    """For each figure n of a block (marked by substitute(mark=True)): the words of the page that say what it is. A figure in a tile is
+    named by the tile's label; in a table, by its row and its column; elsewhere, by the sentence it stands in."""
+    tr = _Tree(); tr.feed(marked); out = {}
+    def walk(n):
+        for k in n['kids']:
+            if isinstance(k, str):
+                for m in re.finditer(MARK_A + r'(\d+)' + MARK_B, k): out.setdefault(int(m.group(1)), describe(n, int(m.group(1))))
+            else: walk(k)
+    def up(n, test):
+        while n is not None and n is not tr.root:
+            if test(n): return n
+            n = n['up']
+        return None
+    def describe(n, i):
+        tile = up(n, lambda x: 'tile' in x['cls'])
+        if tile and up(n, lambda x: 'n' in x['cls']):
+            k = next((c for c in tile['kids'] if not isinstance(c, str) and 'k' in c['cls']), None)
+            if k: return _clean(_text(k), i)
+        cell = up(n, lambda x: x['tag'] in ('td', 'th'))
+        if cell and not up(cell, lambda x: x['tag'] == 'thead') and len(_clean(_text(cell), -1)) <= 60:     # a long cell is prose: its sentence says more
+            row = cell['up']; cells = [c for c in row['kids'] if not isinstance(c, str) and c['tag'] in ('td', 'th')]
+            table = up(row, lambda x: x['tag'] == 'table')
+            parts = []
+            if cells and cells[0] is not cell: parts.append(_clean(_text(cells[0]), -1))
+            if table:
+                th = [x for x in table['kids'] if not isinstance(x, str) and x['tag'] == 'thead']
+                rows = [r for r in th[0]['kids'] if not isinstance(r, str) and r['tag'] == 'tr'] if th else []
+                if rows:
+                    col = sum(c.get('span', 1) for c in cells[:cells.index(cell)])
+                    hs = []
+                    for r in rows:                               # the heading over that column, on each heading row
+                        x = 0; hc = [c for c in r['kids'] if not isinstance(c, str) and c['tag'] in ('td', 'th')]
+                        skip = len(cells) and len(hc) and r is not rows[0] and sum(c.get('span', 1) for c in hc) < sum(c.get('span', 1) for c in cells)
+                        x = sum(c.get('span', 1) for c in cells) - sum(c.get('span', 1) for c in hc) if skip else 0
+                        for c in hc:
+                            if x <= col < x + c.get('span', 1): hs.append(_clean(_text(c), -1)); break
+                            x += c.get('span', 1)
+                    hs = [h for h in hs if h]
+                    if hs: parts.append(', '.join(hs))
+            if parts: return ': '.join(parts) if len(parts) == 2 else parts[0]
+        svgt = up(n, lambda x: x['tag'] == 'text')
+        if svgt: return _clean(_text(svgt), i)
+        box = up(n, lambda x: x['tag'] in ('p', 'li', 'figcaption', 'dd', 'dt', 'td', 'th', 'summary', 'span') and (x['tag'] != 'span' or x['cls'])) or n
+        t = _clean(_text(box), i)
+        sents = re.split(r'(?<=[.;!?])\s+(?=[A-ZÀ-Ý\u0001(])', t)
+        s = next((x for x in sents if '\u0001' in x), t)
+        if len(s) > 220:                                       # a long sentence: the words around the figure
+            p = s.index('\u0001'); a = max(0, p - 120); z = min(len(s), p + 100)
+            s = ('… ' if a else '') + s[a:z].strip() + (' …' if z < len(s) else '')
+        return s
+    walk(tr.root)
+    return out
 
 
 def algo_catalogue():
@@ -222,12 +312,12 @@ def algo_blocks(cat, sec, raw, ctx):
     res = []
     for i, (a, z, bid) in enumerate(top_blocks(raw)):
         rec, count, figs = [], {}, []
-        substitute(raw[a:z], ctx, sec, [], rec)
-        for body, shown in rec:
+        words = figure_context(substitute(raw[a:z], ctx, sec, [], rec, mark=True))
+        for n, (body, shown) in enumerate(rec):
             expr = body.rpartition('|')[0].strip() if '|' in body else body.strip()
             ids = [x for x in (algo_of(cat, mo.group(1) + mo.group(2)) for mo in KEY.finditer(expr)) if x]
             for x in ids: count[x] = count.get(x, 0) + 1
-            if ids and not any(f[0] == expr for f in figs): figs.append([expr, shown, sorted(set(ids), key=ids.index)])
+            if ids and not any(f[0] == expr for f in figs): figs.append([expr, shown, sorted(set(ids), key=ids.index), words.get(n, '')])
         algos = sorted(count, key=lambda x: -count[x]) or cat['blocks'].get(bid, [])
         res.append((bid or f'{sec}.{i + 1}', algos, figs))
     return res
@@ -242,7 +332,7 @@ def algo_data(cat, lang, blocks):
     """What the page carries for the modal: per algorithm its words and code, per block its figures, and the files the scripts pack."""
     files, algos = {}, {}
     for al in cat['algorithms']:
-        algos[al['id']] = {'title': al['title_' + lang], 'explain': al['explain_' + lang], 'pieces': al['pieces'], 'run': al['run'], 'files': al['files']}
+        algos[al['id']] = {'title': al['title_' + lang], 'explain': [al['goal_' + lang]] + al['explain_' + lang], 'pieces': al['pieces'], 'run': al['run'], 'files': al['files']}
         for x in al['files']:
             if x in files: continue
             data = open(os.path.join(ROOT, x), 'rb').read()

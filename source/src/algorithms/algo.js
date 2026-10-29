@@ -123,12 +123,15 @@
     dlg.querySelectorAll('.algo-panel').forEach(function (p) { p.hidden = p.dataset.panel !== state.tab; });
     // explanation, and the figures of this block that this algorithm gives
     const ex = dlg.querySelector('[data-panel=explain]'); PTS.clear(ex);
-    al.explain.forEach(function (p) { ex.appendChild(h('p', { html: p })); });
+    al.explain.forEach(function (p, i) { ex.appendChild(h('p', { html: p, class: i ? null : 'algo-goal' })); });
     const figs = (D.blocks[state.block] || []).filter(function (f) { return f[2].indexOf(state.id) >= 0; });
     if (figs.length) {
       ex.appendChild(h('h3', { text: W.figures }));
       const max = 14, tb = h('tbody');
-      figs.slice(0, max).forEach(function (f) { tb.appendChild(h('tr', {}, h('td', {}, h('code', { text: f[0] })), h('td', { class: 'num', text: f[1] }))); });
+      figs.slice(0, max).forEach(function (f) {
+        const what = esc((f[3] || '').replace(/^(\u0001?)(\p{Ll})/u, function (m, b, c) { return b + c.toUpperCase(); })).replace(/\u0001/g, '<b>').replace(/\u0002/g, '</b>');       // the page's words for it, the figure in bold
+        tb.appendChild(h('tr', {}, h('td', {}, h('span', { class: 'algo-what', html: what }), h('code', { text: f[0] })), h('td', { class: 'num', text: f[1] })));
+      });
       ex.appendChild(h('div', { class: 'tbl-wrap' }, h('table', { class: 'tbl no-stack algo-figs' }, h('thead', {}, h('tr', {}, h('th', { text: W.expr }), h('th', { class: 'num', text: W.shown }))), tb)));
       if (figs.length > max) ex.appendChild(h('p', { class: 'note', text: W.more.replace('{n}', figs.length - max) }));
     }

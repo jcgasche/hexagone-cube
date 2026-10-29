@@ -80,7 +80,9 @@
      ]
     ]
    ],
-   "run": "import nordest as N\nfor name, hour in (('today', N.HOUR_TODAY), ('southern lines full', N.HOUR_FULL)):\n    s = N.service(hour)\n    print(f'--- {name}: TGVs an hour on each line {hour}')\n    print('trains a platform track takes an hour:', s['per_track'])\n    print('through trains each way between a southern line and the north or east:', s['through_each_way'])\n    print('trains each way on the direct link Montparnasse to Gare de Lyon:', s['link_each_way'])\n    for k, v in s['flows'].items(): print('  ', k, v)\n    for st in ('nordest', 'lyon', 'montparnasse'):\n        print(f'   {st}: {s[st + \"_stops\"]} stops an hour (both ways), the rule asks for {s[st + \"_tracks_calc\"]} tracks, {s[st + \"_load\"]:.2f} trains an hour on each track')"
+   "run": "import nordest as N\nfor name, hour in (('today', N.HOUR_TODAY), ('southern lines full', N.HOUR_FULL)):\n    s = N.service(hour)\n    print(f'--- {name}: TGVs an hour on each line {hour}')\n    print('trains a platform track takes an hour:', s['per_track'])\n    print('through trains each way between a southern line and the north or east:', s['through_each_way'])\n    print('trains each way on the direct link Montparnasse to Gare de Lyon:', s['link_each_way'])\n    for k, v in s['flows'].items(): print('  ', k, v)\n    for st in ('nordest', 'lyon', 'montparnasse'):\n        print(f'   {st}: {s[st + \"_stops\"]} stops an hour (both ways), the rule asks for {s[st + \"_tracks_calc\"]} tracks, {s[st + \"_load\"]:.2f} trains an hour on each track')",
+   "goal_en": "Here, we calculate how the TGVs of each line pair up through Paris and how many platform tracks each station needs, depending on the trains an hour on each line and on how long a train holds its track (stop, reserve, clearing time).",
+   "goal_fr": "Ici, on calcule comment les TGV de chaque ligne s’apparient à travers Paris et combien de voies à quai il faut dans chaque gare, en fonction des trains par heure sur chaque ligne et du temps pendant lequel un train occupe sa voie (arrêt, réserve, dégagement)."
   },
   {
    "id": "ter_paths",
@@ -120,7 +122,9 @@
      ]
     ]
    ],
-   "run": "import nordest as N\np = N.ter_paths()\nprint('paths an hour each way:', p['paths_per_hour'], '| signalling, minutes between trains:', p['signal_min'])\nprint('section            TGV  TER  total  occupied at 1.5 min  at 2 min')\nfor k, v in p['loads'].items():\n    print(f\"{k:18s} {v['tgv']:4.0f} {v['ter']:4.0f} {v['total']:6.0f}  {v['occ_15']:18.0%}  {v['occ_20']:7.0%}\")\nprint('busiest section:', f\"{p['max_occ_15']:.0%} at 1.5 minutes, {p['max_occ_20']:.0%} at 2 minutes; ceiling {p['uic_peak']:.0%}\")\nfor k, v in p['platforms'].items(): print('platforms', k, f\"{v['used']:.0f} of {v['avail']:.0f} minutes, {v['share']:.0%}\")\nprint('line R option, bn euros:', round(p['r_option']['cost'], 2), '| Atlantic TER tunnel option, bn euros:', round(p['atlantic_option']['cost'], 2))"
+   "run": "import nordest as N\np = N.ter_paths()\nprint('paths an hour each way:', p['paths_per_hour'], '| signalling, minutes between trains:', p['signal_min'])\nprint('section            TGV  TER  total  occupied at 1.5 min  at 2 min')\nfor k, v in p['loads'].items():\n    print(f\"{k:18s} {v['tgv']:4.0f} {v['ter']:4.0f} {v['total']:6.0f}  {v['occ_15']:18.0%}  {v['occ_20']:7.0%}\")\nprint('busiest section:', f\"{p['max_occ_15']:.0%} at 1.5 minutes, {p['max_occ_20']:.0%} at 2 minutes; ceiling {p['uic_peak']:.0%}\")\nfor k, v in p['platforms'].items(): print('platforms', k, f\"{v['used']:.0f} of {v['avail']:.0f} minutes, {v['share']:.0%}\")\nprint('line R option, bn euros:', round(p['r_option']['cost'], 2), '| Atlantic TER tunnel option, bn euros:', round(p['atlantic_option']['cost'], 2))",
+   "goal_en": "Here, we calculate how full the tunnels and the regional platforms are at the peak, depending on the TGVs and regional express trains an hour on each section, the spacing the signalling allows and the time each train holds its platform.",
+   "goal_fr": "Ici, on calcule le remplissage des tunnels et des quais régionaux à la pointe, en fonction des TGV et des TER par heure sur chaque section, de l’espacement que permet la signalisation et du temps qu’occupe chaque train à quai."
   },
   {
    "id": "access",
@@ -167,7 +171,9 @@
      ]
     ]
    ],
-   "run": "import statistics as S\nimport nordest as N\nfor tag, label in (('clock', 'clock minutes'), ('eq', 'weighted minutes, the official way')):\n    for measure in ('station', 'ride'):\n        a = N.access(tag, measure=measure)\n        print(f'{label}, measure {measure!r}: change against today', {k: round(v, 2) for k, v in a['rings'].items()}, '| all:', round(a['all'], 2), '| share of Paris points quicker:', f\"{a['paris_share_quicker']:.0%}\")\npts = N.DATA['clock'][0]\ntoday = S.mean(sum(N.W[k] * t[k] for k in N.W) for t in pts)\nstation = S.mean(sum(N.W[k] * N.tgv_times(t, 0.0)[k] for k in N.W) for t in pts)\nprint(f'average point in Paris: {today:.1f} minutes today, {station:.1f} with the project (to a station where the train stops)')"
+   "run": "import statistics as S\nimport nordest as N\nfor tag, label in (('clock', 'clock minutes'), ('eq', 'weighted minutes, the official way')):\n    for measure in ('station', 'ride'):\n        a = N.access(tag, measure=measure)\n        print(f'{label}, measure {measure!r}: change against today', {k: round(v, 2) for k, v in a['rings'].items()}, '| all:', round(a['all'], 2), '| share of Paris points quicker:', f\"{a['paris_share_quicker']:.0%}\")\npts = N.DATA['clock'][0]\ntoday = S.mean(sum(N.W[k] * t[k] for k in N.W) for t in pts)\nstation = S.mean(sum(N.W[k] * N.tgv_times(t, 0.0)[k] for k in N.W) for t in pts)\nprint(f'average point in Paris: {today:.1f} minutes today, {station:.1f} with the project (to a station where the train stops)')",
+   "goal_en": "Here, we calculate the minutes it takes to reach a station where one's TGV stops, compared with today, depending on where people start (1,000 points in Paris, 1,265 communes), the times by public transport to each station and which stations each train calls at.",
+   "goal_fr": "Ici, on calcule le temps pour atteindre une gare où s’arrête son TGV, comparé à aujourd’hui, en fonction du point de départ (1 000 points dans Paris, 1 265 communes), des temps en transports en commun vers chaque gare et des gares desservies par chaque train."
   },
   {
    "id": "tgv_traffic",
@@ -221,7 +227,9 @@
      ]
     ]
    ],
-   "run": "import nordest as N\na = N.access_effect()\nprint(f\"Paris-region TGV passengers: {a['minutes']:+.2f} weighted minutes, {a['journeys']:.2f} million more journeys a year, time saved worth {a['benefit']:.3f} bn euros a year\")\nc = N.connecting()\nprint(f\"Passengers crossing Paris: {c['base']:.2f} million a year today, {c['new']:.2f} million more ({c['uplift']:.0%}), time saved worth {c['ben']:.3f} bn euros a year\")\nfor k, p in c['pairs'].items():\n    print(f\"   {k:20s} share {p['share']:.0%}  today {p['old_clock']:.0f} min to change station  direct train {p['direct'] or '-'}  growth {p['growth']:.0%}\")"
+   "run": "import nordest as N\na = N.access_effect()\nprint(f\"Paris-region TGV passengers: {a['minutes']:+.2f} weighted minutes, {a['journeys']:.2f} million more journeys a year, time saved worth {a['benefit']:.3f} bn euros a year\")\nc = N.connecting()\nprint(f\"Passengers crossing Paris: {c['base']:.2f} million a year today, {c['new']:.2f} million more ({c['uplift']:.0%}), time saved worth {c['ben']:.3f} bn euros a year\")\nfor k, p in c['pairs'].items():\n    print(f\"   {k:20s} share {p['share']:.0%}  today {p['old_clock']:.0f} min to change station  direct train {p['direct'] or '-'}  growth {p['growth']:.0%}\")",
+   "goal_en": "Here, we calculate the new TGV journeys and the value of the time saved, depending on the minutes gained to reach a station, the changes of vehicle removed for passengers crossing Paris, and how traffic responds to time and to changes (elasticity, British and Swiss evidence).",
+   "goal_fr": "Ici, on calcule les nouveaux voyages en TGV et la valeur du temps gagné, en fonction des minutes gagnées pour atteindre une gare, des correspondances supprimées pour ceux qui traversent Paris, et de la réaction du trafic au temps et aux correspondances (élasticité, données britanniques et suisses)."
   },
   {
    "id": "regional",
@@ -279,7 +287,9 @@
      ]
     ]
    ],
-   "run": "import nordest as N\ng = N.regional()\nprint('line            journeys (M)  riders at the terminal (M)  clock minutes saved')\nfor l, q, u, clock, eq in g['rows']: print(f'{l:15s} {q:12.1f}  {u:26.1f}  {clock:19.1f}')\nprint(f\"average clock minutes saved: {g['avg_clock_saving']:.1f}\")\nprint(f\"new journeys: suburban {g['new_transilien']:.1f} M, regional express {g['new_ter']:.2f} M; of which suburb to suburb across Paris {g['cross']['new']:.1f} M\")\nprint(f\"value of time saved: {g['benefit']:.3f} bn euros a year; new fares {g['fares']:.3f} bn\")\nprint(f\"riders getting off at the second station: suburban {g['second_station_sub']:.1f} M, regional express {g['second_station_ter']:.1f} M a year\")"
+   "run": "import nordest as N\ng = N.regional()\nprint('line            journeys (M)  riders at the terminal (M)  clock minutes saved')\nfor l, q, u, clock, eq in g['rows']: print(f'{l:15s} {q:12.1f}  {u:26.1f}  {clock:19.1f}')\nprint(f\"average clock minutes saved: {g['avg_clock_saving']:.1f}\")\nprint(f\"new journeys: suburban {g['new_transilien']:.1f} M, regional express {g['new_ter']:.2f} M; of which suburb to suburb across Paris {g['cross']['new']:.1f} M\")\nprint(f\"value of time saved: {g['benefit']:.3f} bn euros a year; new fares {g['fares']:.3f} bn\")\nprint(f\"riders getting off at the second station: suburban {g['second_station_sub']:.1f} M, regional express {g['second_station_ter']:.1f} M a year\")",
+   "goal_en": "Here, we calculate the minutes saved and the new journeys on regional and suburban trains that run through Paris, depending on each line's traffic, the share of riders who start or end at the terminal, the second station each line reaches and the growth seen on joined lines elsewhere.",
+   "goal_fr": "Ici, on calcule les minutes gagnées et les nouveaux voyages des trains régionaux et de banlieue qui traversent Paris, en fonction du trafic de chaque ligne, de la part des voyageurs qui partent ou arrivent au terminus, de la deuxième gare desservie et de la croissance observée ailleurs sur des lignes raccordées."
   },
   {
    "id": "cost",
@@ -337,7 +347,9 @@
      ]
     ]
    ],
-   "run": "import nordest as N\nc = N.cost()\nprint(f\"{c['tunnel_km']:.1f} km of twin-track tunnel, {c['platform_total']:,.0f} m of platform track, {c['tracks_total']} platform tracks\")\nfor k, v in c['items'].items(): print(f'   {k:40s} {v:6.2f}')\nprint(f\"works {c['hard']:.2f} + design and client {c['soft']:.2f} + land {c['land']:.2f} + risk {c['risk']:.2f} = {c['total']:.2f} bn euros of 2026\")\nprint(f\"low case {N.cost(N.RATE_LOW)['total']:.1f}, high case {N.cost(N.RATE_HIGH)['total']:.1f}\")\nprint('back-test, bn euros: model without risk, with risk, actual')\nfor b in N.backtest(): print(f\"   {b['name']:42s} {b['model_no_risk']:6.2f} {b['model_with_risk']:6.2f} {b['actual']:6.2f}\")"
+   "run": "import nordest as N\nc = N.cost()\nprint(f\"{c['tunnel_km']:.1f} km of twin-track tunnel, {c['platform_total']:,.0f} m of platform track, {c['tracks_total']} platform tracks\")\nfor k, v in c['items'].items(): print(f'   {k:40s} {v:6.2f}')\nprint(f\"works {c['hard']:.2f} + design and client {c['soft']:.2f} + land {c['land']:.2f} + risk {c['risk']:.2f} = {c['total']:.2f} bn euros of 2026\")\nprint(f\"low case {N.cost(N.RATE_LOW)['total']:.1f}, high case {N.cost(N.RATE_HIGH)['total']:.1f}\")\nprint('back-test, bn euros: model without risk, with risk, actual')\nfor b in N.backtest(): print(f\"   {b['name']:42s} {b['model_no_risk']:6.2f} {b['model_with_risk']:6.2f} {b['actual']:6.2f}\")",
+   "goal_en": "Here, we calculate what the project costs to build, depending on its quantities (km of tunnel, metres of platform, junctions, portals, halls), the unit prices of built projects and the mark-ups for design, client, land and risk.",
+   "goal_fr": "Ici, on calcule le coût de construction du projet, en fonction de ses quantités (km de tunnel, mètres de quai, bifurcations, têtes de tunnel, halles), des prix unitaires de projets réalisés et des majorations pour études, maîtrise d’ouvrage, foncier et risque."
   },
   {
    "id": "yearly",
@@ -397,7 +409,9 @@
      ]
     ]
    ],
-   "run": "import nordest as N\nc = N.yearly_cost()\nprint(f\"cost {c['capex']:.2f} bn, x {c['idc']:.3f} for interest during the works = {c['capex_open']:.2f} bn at opening\")\nprint(f\"repayment {c['annuity']:.3f} + renewal {c['renewal']:.3f} + running {c['om']:.3f} = {c['cost']:.3f} bn euros a year\")\nY = N.yearly()\nprint(f\"new TGV journeys {Y['tgv_journeys']:.2f} M, new regional journeys {Y['reg_journeys']:.1f} M a year\")\nprint(f\"time saved {Y['time_benefit']:.3f} + comfort {Y['comfort']:.3f} + wider effects {Y['wider']:.3f} = {Y['benefit_total']:.3f} bn a year\")\nprint(f\"benefits against yearly cost: time alone {Y['cover_time']:.0%}, all {Y['cover_all']:.0%}\")\nfor name, kw in {'Works take 15 years, not 12': dict(years=15), 'Every passenger takes 2 minutes longer to board': dict(deep=2.0), 'Suburban traffic grows 25%': dict(uplift=N.REG_UPLIFT_HIGH)}.items():\n    y = N.yearly(**kw); print(f\"test: {name}: cost {y['cost']:.3f}, cover {y['cover_all']:.0%}\")"
+   "run": "import nordest as N\nc = N.yearly_cost()\nprint(f\"cost {c['capex']:.2f} bn, x {c['idc']:.3f} for interest during the works = {c['capex_open']:.2f} bn at opening\")\nprint(f\"repayment {c['annuity']:.3f} + renewal {c['renewal']:.3f} + running {c['om']:.3f} = {c['cost']:.3f} bn euros a year\")\nY = N.yearly()\nprint(f\"new TGV journeys {Y['tgv_journeys']:.2f} M, new regional journeys {Y['reg_journeys']:.1f} M a year\")\nprint(f\"time saved {Y['time_benefit']:.3f} + comfort {Y['comfort']:.3f} + wider effects {Y['wider']:.3f} = {Y['benefit_total']:.3f} bn a year\")\nprint(f\"benefits against yearly cost: time alone {Y['cover_time']:.0%}, all {Y['cover_all']:.0%}\")\nfor name, kw in {'Works take 15 years, not 12': dict(years=15), 'Every passenger takes 2 minutes longer to board': dict(deep=2.0), 'Suburban traffic grows 25%': dict(uplift=N.REG_UPLIFT_HIGH)}.items():\n    y = N.yearly(**kw); print(f\"test: {name}: cost {y['cost']:.3f}, cover {y['cover_all']:.0%}\")",
+   "goal_en": "Here, we calculate the cost a year of the project and the benefits a year at opening, depending on the cost to build, the interest rate, the years of works, running costs, and the traffic and time saved from the traffic model; then the same with one assumption changed at a time.",
+   "goal_fr": "Ici, on calcule le coût annuel du projet et ses avantages annuels à l’ouverture, en fonction du coût de construction, du taux d’intérêt, de la durée des travaux, des coûts d’exploitation, et du trafic et du temps gagné donnés par le modèle de trafic ; puis la même chose en changeant une hypothèse à la fois."
   },
   {
    "id": "accounts",
@@ -456,7 +470,9 @@
      ]
     ]
    ],
-   "run": "import contextlib, io\nimport finance as F\nbase = F.make_base()\na = F.accounts(base)\nprint('OPERATIONS, bn euros a year')\nfor k, v in a['ops_cost'].items(): print(f'   cost    {k:58s} {v:7.3f}')\nfor k, v in a['ops_rev'].items(): print(f'   income  {k:58s} {v:7.3f}')\nprint(f\"   balance {a['ops_balance']:+.3f}, running costs covered {a['ops_cover']:.0%}\")\nprint('CAPITAL')\nprint(f\"   construction {a['capex']:.2f} bn, repayment {a['annuity']:.3f} bn a year; public grant {a['grant_bn']:.2f} bn ({a['grant_share']:.0%} of the cost)\")\nprint(f\"charge that balances operations alone: {F.breakeven_charge(base)} euros\")\nprint(f\"rate of return, central: {F.irr(base):.2%}\")"
+   "run": "import contextlib, io\nimport finance as F\nbase = F.make_base()\na = F.accounts(base)\nprint('OPERATIONS, bn euros a year')\nfor k, v in a['ops_cost'].items(): print(f'   cost    {k:58s} {v:7.3f}')\nfor k, v in a['ops_rev'].items(): print(f'   income  {k:58s} {v:7.3f}')\nprint(f\"   balance {a['ops_balance']:+.3f}, running costs covered {a['ops_cover']:.0%}\")\nprint('CAPITAL')\nprint(f\"   construction {a['capex']:.2f} bn, repayment {a['annuity']:.3f} bn a year; public grant {a['grant_bn']:.2f} bn ({a['grant_share']:.0%} of the cost)\")\nprint(f\"charge that balances operations alone: {F.breakeven_charge(base)} euros\")\nprint(f\"rate of return, central: {F.irr(base):.2%}\")",
+   "goal_en": "Here, we calculate whether the project pays for its running and how its construction is repaid, depending on the charges on passengers, the other income (Navigo passes, shops, fees), the running costs and the sources of capital (regional taxes, European and public grants).",
+   "goal_fr": "Ici, on calcule si le projet couvre son exploitation et comment sa construction est remboursée, en fonction des redevances sur les voyageurs, des autres recettes (abonnements Navigo, commerces, redevances), des coûts d’exploitation et des sources de capital (taxes régionales, subventions européenne et publique)."
   },
   {
    "id": "french",
@@ -502,7 +518,9 @@
      ]
     ]
    ],
-   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nprint('running the traffic and finance models, then 2028 to 2140 year by year (about 15 seconds)...')\nm = FR.model_figures()\nfor lv, level in (('low', 0), ('central', 1), ('high', 2)):\n    e = FR.evaluate(m, level)\n    irr = 'n/a' if e['irr'] is None else f\"{e['irr']:.1%}\"\n    print(f\"{lv:8s} NPV {e['npv']:+6.1f} bn euros of 2026, {e['per_euro']:+.2f} per euro of construction, benefits / costs {e['ratio']:.2f}, IRR {irr}\")\nc = FR.evaluate(m, 1)\nprint('present value by family, central (bn):')\nfor k, v in c['pv_families'].items(): print(f'   {k:50s} {v:+7.2f}')"
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nprint('running the traffic and finance models, then 2028 to 2140 year by year (about 15 seconds)...')\nm = FR.model_figures()\nfor lv, level in (('low', 0), ('central', 1), ('high', 2)):\n    e = FR.evaluate(m, level)\n    irr = 'n/a' if e['irr'] is None else f\"{e['irr']:.1%}\"\n    print(f\"{lv:8s} NPV {e['npv']:+6.1f} bn euros of 2026, {e['per_euro']:+.2f} per euro of construction, benefits / costs {e['ratio']:.2f}, IRR {irr}\")\nc = FR.evaluate(m, 1)\nprint('present value by family, central (bn):')\nfor k, v in c['pv_families'].items(): print(f'   {k:50s} {v:+7.2f}')",
+   "goal_en": "Here, we calculate the net present value of the project under the official French rules, depending on every benefit and cost year by year from 2028 to 2140, traffic growth, the value of time and of carbon, the 4.5% discount rate and the cost of public funds.",
+   "goal_fr": "Ici, on calcule la valeur actuelle nette du projet selon les règles officielles françaises, en fonction de chaque avantage et chaque coût année par année de 2028 à 2140, de la croissance du trafic, de la valeur du temps et du carbone, du taux d’actualisation de 4,5 % et du coût des fonds publics."
   },
   {
    "id": "study",
@@ -534,7 +552,9 @@
    "data": [
     "src/data/model.json"
    ],
-   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nprint('running the traffic and finance models (about 15 seconds)...')\nm = FR.model_figures()\ns = FR.study_method(m, 1)\nprint('yearly benefits at opening, bn euros:')\nfor k, v in sorted(s['benefits'].items(), key=lambda kv: -kv[1]): print(f'   {k:70s} {v:+.3f}')\nprint(f\"total {s['benefit_total']:.3f} against a yearly cost of {s['yearly_cost']:.3f}: {s['cover']:.0%} of the yearly cost returned, {s['cover_capital']:.0%} of the repayment\")\nprint(f\"with wider effects: {s['cover_wider']:.0%}\")"
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nprint('running the traffic and finance models (about 15 seconds)...')\nm = FR.model_figures()\ns = FR.study_method(m, 1)\nprint('yearly benefits at opening, bn euros:')\nfor k, v in sorted(s['benefits'].items(), key=lambda kv: -kv[1]): print(f'   {k:70s} {v:+.3f}')\nprint(f\"total {s['benefit_total']:.3f} against a yearly cost of {s['yearly_cost']:.3f}: {s['cover']:.0%} of the yearly cost returned, {s['cover_capital']:.0%} of the repayment\")\nprint(f\"with wider effects: {s['cover_wider']:.0%}\")",
+   "goal_en": "Here, we calculate the share of the yearly cost that comes back as benefits in the opening year, depending on the complete list of benefits at today's traffic and values and on the yearly cost (repayment, renewal and running).",
+   "goal_fr": "Ici, on calcule la part du coût annuel rendue en avantages l’année de l’ouverture, en fonction de la liste complète des avantages au trafic et aux valeurs d’aujourd’hui et du coût annuel (remboursement, renouvellement et exploitation)."
   },
   {
    "id": "france",
@@ -577,7 +597,9 @@
      ]
     ]
    ],
-   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nf = FR.france(1)\nprint(f\"bypass travellers today: {f['bypass_pax']:.1f} M a year; new journeys {f['new_bypass']:.2f} M; air passengers who switch {f['air_pax'] / 1e6:.2f} M\")\nprint(f\"time saved worth {f['users_bypass']:.3f} bn a year; fares kept by the railway {f['fares']:.3f} bn; CO2 avoided on planes {f['air_t'] / 1000:.0f} thousand tonnes\")\nfor r in FR.show_pairs(): print(f\"   {r['pair'][0]:10s} to {r['pair'][1]:12s} today {FR.hm(r['today_min'])}, through Paris {FR.hm(r['project_min'])}, by air door to door {FR.hm(r['air_door_min'])}\")\nmt = FR.more_trains()\nprint(f\"an hourly direct train between every two directions: {mt['runs_day']:.0f} more runs a day, {mt['sets_low']:.0f} to {mt['sets_high']:.0f} trainsets\")"
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nf = FR.france(1)\nprint(f\"bypass travellers today: {f['bypass_pax']:.1f} M a year; new journeys {f['new_bypass']:.2f} M; air passengers who switch {f['air_pax'] / 1e6:.2f} M\")\nprint(f\"time saved worth {f['users_bypass']:.3f} bn a year; fares kept by the railway {f['fares']:.3f} bn; CO2 avoided on planes {f['air_t'] / 1000:.0f} thousand tonnes\")\nfor r in FR.show_pairs(): print(f\"   {r['pair'][0]:10s} to {r['pair'][1]:12s} today {FR.hm(r['today_min'])}, through Paris {FR.hm(r['project_min'])}, by air door to door {FR.hm(r['air_door_min'])}\")\nmt = FR.more_trains()\nprint(f\"an hourly direct train between every two directions: {mt['runs_day']:.0f} more runs a day, {mt['sets_low']:.0f} to {mt['sets_high']:.0f} trainsets\")",
+   "goal_en": "Here, we calculate the journeys between regions that the project adds or speeds up, depending on today's trains that go round Paris, the number of trains through Paris, the time saved, and how rail's share against air changes with travel time.",
+   "goal_fr": "Ici, on calcule les voyages entre régions que le projet ajoute ou accélère, en fonction des trains qui contournent Paris aujourd’hui, du nombre de trains par Paris, du temps gagné et de l’évolution de la part du train face à l’avion avec le temps de parcours."
   },
   {
    "id": "parks",
@@ -605,7 +627,9 @@
      ]
     ]
    ],
-   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nfor lv, level in (('low', 0), ('central', 1), ('high', 2)):\n    p = FR.parks(level)\n    print(f\"{lv:8s} {p['ha']:.0f} ha of parks, {p['visits'] / 1e6:.1f} M visits a year worth {p['value'] * 1000:.0f} M euros; making them {p['make'] * 1000:.0f} M, upkeep {p['upkeep'] * 1000:.1f} M a year; plots {p['plots_ha']:.0f} ha worth {p['plots']:.2f} bn\")"
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import french as FR\nfor lv, level in (('low', 0), ('central', 1), ('high', 2)):\n    p = FR.parks(level)\n    print(f\"{lv:8s} {p['ha']:.0f} ha of parks, {p['visits'] / 1e6:.1f} M visits a year worth {p['value'] * 1000:.0f} M euros; making them {p['make'] * 1000:.0f} M, upkeep {p['upkeep'] * 1000:.1f} M a year; plots {p['plots_ha']:.0f} ha worth {p['plots']:.2f} bn\")",
+   "goal_en": "Here, we calculate the size and value of the parks made on the freed tracks, depending on the hectares freed, the share kept for parks, the visits a hectare draws and the value of a visit.",
+   "goal_fr": "Ici, on calcule la taille et la valeur des parcs créés sur les voies libérées, en fonction des hectares libérés, de la part gardée pour les parcs, des visites par hectare et de la valeur d’une visite."
   },
   {
    "id": "timetable",
@@ -645,7 +669,9 @@
     "model/outputs/nordest.json",
     "model/inputs/ter_timetable.json"
    ],
-   "run": "import contextlib, io, json, os\nwith contextlib.redirect_stdout(io.StringIO()):\n    import table_timetable as TT\nter = json.load(open(os.path.join('model', 'inputs', 'ter_timetable.json')))\nfor sc in TT.GRID:\n    tt = TT.grid_export(sc)\n    bad = TT.grid_check(tt)\n    print(f\"--- hour {sc!r}: {len(tt['trains'])} TGVs, places in order: {' '.join(tt['sequence'])}\")\n    print('   rules broken:', bad or 'none')\n    for t in tt['trains'][:6]:\n        a, b = t['stops']\n        print(f\"   {t['route']}  {a['st']} track {a['track']} arr {a['arr']:02d} dep {a['dep']:02d}  ->  {b['st']} track {b['track']} arr {b['arr']:02d} dep {b['dep']:02d}\")\n    print('   ...')\n    ms = TT.ter_check(sc, tt, ter)\n    print(f\"   regional express trains: closest spacing {ms['min_gap']} min, {ms['close']} of {ms['pairs']} pairs closer than {ter['params']['sep']} min, {ms['longer_stops']} of {ms['stops']} stops longer than 5 min\")"
+   "run": "import contextlib, io, json, os\nwith contextlib.redirect_stdout(io.StringIO()):\n    import table_timetable as TT\nter = json.load(open(os.path.join('model', 'inputs', 'ter_timetable.json')))\nfor sc in TT.GRID:\n    tt = TT.grid_export(sc)\n    bad = TT.grid_check(tt)\n    print(f\"--- hour {sc!r}: {len(tt['trains'])} TGVs, places in order: {' '.join(tt['sequence'])}\")\n    print('   rules broken:', bad or 'none')\n    for t in tt['trains'][:6]:\n        a, b = t['stops']\n        print(f\"   {t['route']}  {a['st']} track {a['track']} arr {a['arr']:02d} dep {a['dep']:02d}  ->  {b['st']} track {b['track']} arr {b['arr']:02d} dep {b['dep']:02d}\")\n    print('   ...')\n    ms = TT.ter_check(sc, tt, ter)\n    print(f\"   regional express trains: closest spacing {ms['min_gap']} min, {ms['close']} of {ms['pairs']} pairs closer than {ter['params']['sep']} min, {ms['longer_stops']} of {ms['stops']} stops longer than 5 min\")",
+   "goal_en": "Here, we calculate the minute and the track of every TGV in one hour at the three stations, depending on the stop, the reserve and the clearing time of a track, the run between stations and the trains of each line; then we check every rule, and the regional trains fitted between them.",
+   "goal_fr": "Ici, on calcule la minute et la voie de chaque TGV sur une heure dans les trois gares, en fonction de l’arrêt, de la réserve et du dégagement d’une voie, du trajet entre gares et des trains de chaque ligne ; puis on vérifie chaque règle, ainsi que les TER placés entre eux."
   },
   {
    "id": "timetable_search",
@@ -686,7 +712,9 @@
     "model/outputs/nordest.json",
     "model/inputs/ter_timetable.json"
    ],
-   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import table_timetable as TT\n    import timetable as T\nfor sc in TT.GRID:\n    fx = TT.Fixed(TT.grid_export(sc)['trains']).trains()\n    ev = T.evenness(fx)\n    print(f\"evenly spaced hour {sc!r}: average wait for a train to or from one's line {ev['paris_wait']:.1f} min; for the next direct train between two lines {ev['direct_wait']:.1f} min; north to east with a change at Nord-Est {ev['ne_change']:.1f} min\")\nprint('The search for an hour timed for changes (anneal) and the timetables drawn at random take about 20 minutes: run model/timetable.py in the repository for them.')"
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import table_timetable as TT\n    import timetable as T\nfor sc in TT.GRID:\n    fx = TT.Fixed(TT.grid_export(sc)['trains']).trains()\n    ev = T.evenness(fx)\n    print(f\"evenly spaced hour {sc!r}: average wait for a train to or from one's line {ev['paris_wait']:.1f} min; for the next direct train between two lines {ev['direct_wait']:.1f} min; north to east with a change at Nord-Est {ev['ne_change']:.1f} min\")\nprint('The search for an hour timed for changes (anneal) and the timetables drawn at random take about 20 minutes: run model/timetable.py in the repository for them.')",
+   "goal_en": "Here, we calculate how long passengers wait in a given hour of trains, depending on the minutes of each train, the time to change trains and the share of passengers between each pair of lines.",
+   "goal_fr": "Ici, on calcule combien de temps attendent les voyageurs dans une heure de trains donnée, en fonction des minutes de chaque train, du temps de correspondance et de la part des voyageurs entre chaque paire de lignes."
   }
  ]
 }
