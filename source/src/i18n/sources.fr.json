@@ -248,7 +248,6 @@
  "london_nca": "Parcs de Londres : 5 milliards de livres d’avantages par an, dont 926 millions de loisirs et 950 millions de dépenses de santé évitées",
  "ce_l15": "Grand Paris Express : aucune ligne pour la gêne des travaux ; les effets montent jusqu’en 2035 à mesure que logements et emplois se déplacent, ils ne sont pas complets à l’ouverture",
  "interco_c2": "Voyageurs des TGV entre régions : 10,2 millions en 1999, 21,9 millions en 2009, dont 17,6 millions dans des trains qui s’arrêtent en région parisienne ; environ 40 % partent de Roissy, de Marne-la-Vallée ou de Massy, ou y arrivent ; 3,4 millions entre deux régions par Massy en 2008",
-
  "bdt_tgv23": "122 millions de voyageurs TGV en 2023, un record ; un TGV sur trois roulait plein",
  "zh_tec21": "Ligne diamétrale de Zurich : pourquoi la gare traversante est sous les voies sud ; capacité de la gare centrale accrue d’environ un tiers ; quais de 420 m sur 13,5 m ; deux à trois voies de la halle raccourcies de 100 m à la fois ; 300 000 voyageurs par jour en 2004",
  "zh_rr2000": "Gare traversante de Zurich : raisons du choix, la gare annexe comme solution transitoire, quais de 420 m pour à peine moins de 30 millions de CHF de plus que 300 m, estimation de 1 450 millions de CHF, prévisions de demande",
@@ -402,5 +401,6 @@
  "ch_sch_lage": "Lausanne à Genève en 39 minutes",
  "ch_sch_zhch": "Zurich à Coire en 74 minutes",
  "ch_sch_zhlg": "Zurich à Lugano en 1 h 53",
- "ch_fo365": "Berne à Lausanne : 66 minutes depuis des années ; objectif de 57 minutes pour améliorer les nœuds de Lausanne et de Berne"
+ "ch_fo365": "Berne à Lausanne : 66 minutes depuis des années ; objectif de 57 minutes pour améliorer les nœuds de Lausanne et de Berne",
+ "idfm_airports": "Mardi 3 novembre 2026 : la première arrivée depuis les quais de chaque terminus à Roissy (Terminal 2) et à Orly, départs de 10 h 00 à 10 h 49, temps de correspondance du fichier (model/airports.py)"
 }

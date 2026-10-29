@@ -350,3 +350,11 @@ body[data-page="presentation"] .menu-btn { display: none }
   .pz-bar > span:first-child { grid-column: 1 / -1; white-space: normal }
   .pz-bar-h > span:first-child { display: none }
 }
+
+/* the whole region: the map of the TER and the airports, and its bars */
+#presentation .pz-rg-split { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start }
+#presentation .pz-rg .pz-bar { grid-template-columns: 12.5em minmax(0, 1fr) 6.4em }
+#presentation .pz-rg .pz-bar-h { margin-top: 2px }
+#presentation .pz-rg .pz-bar > b small { display: inline }
+@media (max-width: 900px) { #presentation .pz-rg-split { grid-template-columns: minmax(0, 1fr) } }
+@media (max-width: 560px) { #presentation .pz-rg .pz-bar { grid-template-columns: 8.6em minmax(0, 1fr) 5.6em; font-size: 12px } #presentation .pz-rg .pz-bar > b small { display: block } }

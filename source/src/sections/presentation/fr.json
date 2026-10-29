@@ -24,7 +24,24 @@
   "No change in Paris": "Sans changement à Paris",
   "With the project and more trains": "Avec le projet et plus de trains",
   "1 direct an hour": "1 direct par heure",
-  "possible between every TGV city in France, by buying more trainsets. The limit is no longer the infrastructure.": "possible entre chacune des villes TGV de France, avec l’acquisition de rames supplémentaires. La limite n’est plus l’infrastructure."
+  "possible between every TGV city in France, by buying more trainsets. The limit is no longer the infrastructure.": "possible entre chacune des villes TGV de France, avec l’acquisition de rames supplémentaires. La limite n’est plus l’infrastructure.",
+  "From the north": "Depuis le Nord",
+  "From the east": "Depuis l’Est",
+  "From Burgundy": "Depuis la Bourgogne",
+  "From the west": "Depuis l’Ouest",
+  "Laroche-Migennes, Auxerre, Dijon by TER": "Laroche-Migennes, Auxerre, Dijon en TER",
+  "Roissy-CDG": "Roissy-CDG",
+  "Line 14": "Ligne 14",
+  "Metro across Paris": "Métro à travers Paris",
+  "TER": "TER",
+  "TER through": "TER traversant",
+  "Today, from the TER’s first Paris station": "Aujourd’hui, depuis la première gare parisienne du TER",
+  "With the project, from the same station": "Avec le projet, depuis la même gare",
+  "Today, at the terminal": "Aujourd’hui, au terminus",
+  "With the project, through": "Avec le projet, traversant",
+  "on the TER": "dans le TER",
+  "by any TGV": "par n’importe quel TGV",
+  "the same station": "la même gare"
  },
  "patterns": [
   [
@@ -34,6 +51,14 @@
   [
    "{0} to {1} min",
    "{0} à {1} min"
+  ],
+  [
+   "-{0} min",
+   "-{0} min"
+  ],
+  [
+   "{0} → {1}",
+   "{0} → {1}"
   ]
  ]
 }

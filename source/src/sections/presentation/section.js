@@ -528,6 +528,89 @@ PTS.section('presentation', function (root) {
     lockHeight($('#pz-fr-bars'), [function () { frSet('today'); }, function () { frSet('project'); }, function () { frSet('more'); }]);
   })();
 
+  // ---------------------------------------------------------------- the whole region: TER to both airports and to the TGVs, today and through
+  (function () {
+    const A = D.airports, G = D.paris_geo, PJ = D.project, svg = $('#pz-rg-map'), glow = defs(svg);
+    const V = { lon: [2.06, 2.73], lat: [48.68, 49.06] }, W = 520, kx = Math.cos(48.86 * Math.PI / 180), sc = W / ((V.lon[1] - V.lon[0]) * kx);
+    const pr = function (ll) { return [(ll[0] - V.lon[0]) * kx * sc, (V.lat[1] - ll[1]) * sc]; };
+    const L = function (a) { return a.map(function (p, i) { const q = pr(p); return (i ? 'L' : 'M') + q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join(' '); };
+    const st = {}; PJ.stations.forEach(function (x) { st[x.short || x.name] = x.at; });
+    const NE = st['Nord-Est'], LY = st['Gare de Lyon'], MP = st['Montparnasse'];
+    const T = { Nord: [2.3551, 48.8802], Est: [2.3584, 48.8767], Lyon: [2.3735, 48.8449], Bercy: [2.3813, 48.839], Montparnasse: [2.3205, 48.8412] };
+    const CDG = [2.5699, 49.004], ORLY = [2.3611, 48.7289];
+    const EDGE = { north: [2.40, 49.06], east: [2.73, 48.94], burgundy: [2.73, 48.72], atlantic: [2.06, 48.71] };
+    const NAME_AT = { north: [2.40, 49.06], east: [2.71, 48.905], burgundy: [2.66, 48.705], atlantic: [2.06, 48.71] };     // where each direction's name sits, inside the map
+    const portal = {}; PJ.portals.forEach(function (x) { portal[x.name] = x.at; });
+    const WAY = {                                                           // each direction: from the edge of the map to today's terminal, and on through the plan's two stations
+      north: { out: [EDGE.north, portal['Porte de la Chapelle']], today: T.Nord, plan: [NE, MP] },
+      east: { out: [EDGE.east, portal['Rosa Parks']], today: T.Est, plan: [NE, LY] },
+      burgundy: { out: [EDGE.burgundy, portal['Porte de Charenton']], today: T.Bercy, plan: [LY, NE] },
+      atlantic: { out: [EDGE.atlantic, portal['Porte de Vanves']], today: T.Montparnasse, plan: [MP, NE] }
+    };
+    add(svg, 'path', { d: G.outline.map(function (r) { return L(r) + 'Z'; }).join(''), fill: 'rgba(255,255,255,.05)', stroke: 'rgba(255,255,255,.25)', 'stroke-width': 1 });
+    add(svg, 'path', { d: L(PJ.seine), fill: 'none', stroke: 'rgba(90,162,255,.4)', 'stroke-width': 3, 'stroke-linecap': 'round' });
+    // the two airport lines, the same in both views
+    const lines = [[NE, [2.39, 48.92], [2.50, 48.97], CDG], [LY, [2.37, 48.80], ORLY]];
+    add(svg, 'path', { d: L(lines[0]), fill: 'none', stroke: '#5aa2ff', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    add(svg, 'path', { d: L(lines[1]), fill: 'none', stroke: '#ffc24b', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+    ride(svg, L(lines[0]), { c: '#5aa2ff', glow: glow, r: 4, dur: 7 }); ride(svg, L(lines[1]), { c: '#ffc24b', glow: glow, r: 4, dur: 6, begin: -2 });
+    const today = add(svg, 'g', { style: 'transition: opacity .6s' }), plan = add(svg, 'g', { style: 'transition: opacity .6s' });
+    Object.keys(WAY).forEach(function (k, i) {                               // the TER lines from outside: grey to the portal in both views
+      const w = WAY[k];
+      add(svg, 'path', { d: L(w.out), fill: 'none', stroke: 'rgba(164,139,255,.5)', 'stroke-width': 3, 'stroke-linecap': 'round' });
+      const dt = L(w.out.concat([w.today])), dp = L(w.out.concat(w.plan));
+      add(today, 'path', { d: dt, fill: 'none', stroke: '#a48bff', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+      add(plan, 'path', { d: dp, fill: 'none', stroke: '#a48bff', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', filter: glow });
+      ride(today, dt, { c: '#a48bff', glow: glow, r: 4.5, dur: 6, begin: -i * 1.5, back: true });
+      ride(plan, dp, { c: '#a48bff', glow: glow, r: 4.5, dur: 7, begin: -i * 1.7 }); ride(plan, dp, { c: '#a48bff', glow: glow, r: 4.5, dur: 7, begin: -i * 1.7 - 3.5 });
+    });
+    // today: the metro across Paris between the terminals and the two airport lines
+    [[T.Montparnasse, T.Nord], [T.Montparnasse, T.Lyon], [T.Bercy, T.Nord], [T.Est, T.Lyon]].forEach(function (q) {
+      add(today, 'path', { d: L(q), fill: 'none', stroke: '#ff7a59', 'stroke-width': 2, 'stroke-dasharray': '4 5', opacity: .9 });
+    });
+    [T.Nord, T.Est, T.Lyon, T.Bercy, T.Montparnasse].forEach(function (q) { const c = pr(q); add(today, 'circle', { cx: c[0], cy: c[1], r: 4.5, fill: '#fff' }); });
+    const tl = pr([2.245, 48.868]); add(today, 'text', { x: tl[0], y: tl[1], 'text-anchor': 'end', class: 'dim', text: 'Metro across Paris', style: 'fill: #ff9b80; font-size: 11px' });
+    // the plan: the triangle lit
+    [[NE, LY], [LY, MP], [MP, NE]].forEach(function (q) { add(plan, 'path', { d: L(q), stroke: '#44d7ff', 'stroke-width': 4, fill: 'none', filter: glow }); });
+    [NE, LY, MP].forEach(function (q) { const c = pr(q); add(plan, 'circle', { cx: c[0], cy: c[1], r: 7, fill: 'rgba(68,215,255,.15)', stroke: 'rgba(68,215,255,.7)' }); add(plan, 'circle', { cx: c[0], cy: c[1], r: 3.5, fill: '#fff', filter: glow }); });
+    // names
+    const label = function (ll, text, dx, dy, anchor, cls, style) { const c = pr(ll); add(svg, 'text', { x: c[0] + dx, y: c[1] + dy, 'text-anchor': anchor || 'start', class: cls || 'dim', text: text, style: style || '' }); };
+    [[CDG, 'Roissy-CDG', 'end', -10, -8], [ORLY, 'Orly', 'start', 10, 4]].forEach(function (q) { const c = pr(q[0]); add(svg, 'circle', { cx: c[0], cy: c[1], r: 7, fill: '#fff', filter: glow }); add(svg, 'path', { d: 'M' + (c[0] - 4) + ' ' + c[1] + ' l4 -3 l4 3 l-4 1 z', fill: '#0b1530' }); label(q[0], q[1], q[3], q[4], q[2], 'big'); });
+    label(NE, 'Nord-Est', 8, -6, 'start', 'dim', 'fill: #fff'); label(LY, 'Gare de Lyon', 10, 12, 'start', 'dim', 'fill: #fff'); label(MP, 'Montparnasse', -8, 12, 'end', 'dim', 'fill: #fff');
+    label([2.46, 48.955], 'RER B', 8, 0, 'start', 'dim', 'fill: #5aa2ff'); label([2.37, 48.79], 'Line 14', 8, 0, 'start', 'dim', 'fill: #ffc24b');
+    A.rows.forEach(function (r) {                                           // the towns, at the edge each direction comes from
+      const e = NAME_AT[r.id], c = pr(e), top = e[1] > 49, right = e[0] > 2.5;
+      add(svg, 'text', { x: c[0] + (top ? 8 : right ? -6 : 6), y: c[1] + (top ? 14 : right ? -4 : -10), 'text-anchor': top ? 'start' : right ? 'end' : 'start', class: 'big', text: r.name, style: 'fill: #cbbcff' });
+      add(svg, 'text', { x: c[0] + (top ? 8 : right ? -6 : 6), y: c[1] + (top ? 28 : right ? 10 : 4), 'text-anchor': top ? 'start' : right ? 'end' : 'start', class: 'dim', text: r.towns, style: 'font-size: 11px' });
+    });
+    // the bars: each direction to each airport
+    const host = $('#pz-rg-bars'), AP = { cdg: 'Roissy', orly: 'Orly' };
+    host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, from the TER’s first Paris station'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'With the project, from the same station')));
+    const head = h('b', { text: 'Today, at the terminal' });
+    host.appendChild(h('div', { class: 'pz-bar pz-bar-h' }, h('span'), h('span'), head));
+    const rows = [];
+    ['cdg', 'orly'].forEach(function (ap) {
+      A.rows.forEach(function (r) {
+        const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b');
+        host.appendChild(h('div', { class: 'pz-bar' }, h('span', { text: r.name + ' → ' + AP[ap] }), h('div', { class: 'pz-track' }, t, q), b));
+        rows.push({ t: t, q: q, b: b, x: r[ap] });
+      });
+    });
+    const max = Math.max.apply(0, rows.map(function (r) { return r.x.today; }));
+    const set = function (v) {
+      const now = v === 'today';
+      today.style.opacity = now ? 1 : 0; plan.style.opacity = now ? 0 : 1;
+      rows.forEach(function (r) {
+        r.t.style.width = (r.x.today / max * 100) + '%'; r.q.style.width = now ? '0%' : (r.x.plan / max * 100) + '%';
+        r.b.innerHTML = now ? F.n(r.x.today, 0) : F.n(r.x.plan, 0) + ' <small>-' + F.n(r.x.today - r.x.plan, 0) + ' min</small>';
+        r.b.style.color = now ? '#fff' : '#3fe0a5';
+      });
+      head.textContent = now ? 'Today, at the terminal' : 'With the project, through';
+    };
+    auto($('#pz-rg-toggle'), [['today', 'Today'], ['project', 'With the project']], 5000, set);
+    lockHeight(host, [function () { set('today'); }, function () { set('project'); }]);
+  })();
+
   // ---------------------------------------------------------------- the running total, in today's money
   (function () {
     const svg = $('#pz-curve-svg'), T = D.french.timeline, W = 520, H = 300, m = { l: 44, r: 14, t: 40, b: 28 };

@@ -1,0 +1,201 @@
+{
+ "_note": "Written by model/airports.py from model/inputs/airports.json (the IDFM timetable). Minutes inside Paris, from the TER's first station.",
+ "params": {
+  "run": 6.0,
+  "ter_stop": 5.0,
+  "deep_to_tgv": 4.0,
+  "deep_to_metro": 5.0,
+  "today_walk": {
+   "Nord": 6,
+   "Est": 5,
+   "Lyon": 7,
+   "Bercy": 7,
+   "Montparnasse": 8
+  },
+  "tgv_per_hour": {
+   "NELY": 7,
+   "LYNE": 7,
+   "MPLY": 9,
+   "LYMP": 9,
+   "NEMP": 6,
+   "MPNE": 6
+  },
+  "date": "20261103",
+  "departures": 8
+ },
+ "ride": {
+  "cdg": 37.74999999999997,
+  "orly": 25.40208333333335
+ },
+ "legs": {
+  "Nord-cdg": {
+   "mean": 37.74999999999997,
+   "min": 34.66666666666663,
+   "max": 42.66666666666663
+  },
+  "Nord-orly": {
+   "mean": 41.695833333333354,
+   "min": 39.48333333333335,
+   "max": 45.81666666666672
+  },
+  "Est-cdg": {
+   "mean": 45.24999999999997,
+   "min": 41.66666666666663,
+   "max": 50.66666666666663
+  },
+  "Est-orly": {
+   "mean": 44.44166666666669,
+   "min": 42.81666666666672,
+   "max": 46.81666666666672
+  },
+  "Lyon-cdg": {
+   "mean": 48.0833333333333,
+   "min": 42.66666666666663,
+   "max": 52.66666666666663
+  },
+  "Lyon-orly": {
+   "mean": 25.40208333333335,
+   "min": 24.41666666666663,
+   "max": 26.81666666666672
+  },
+  "Bercy-cdg": {
+   "mean": 54.66666666666663,
+   "min": 49.66666666666663,
+   "max": 59.66666666666663
+  },
+  "Bercy-orly": {
+   "mean": 24.36041666666668,
+   "min": 22.75,
+   "max": 26.149999999999977
+  },
+  "Montparnasse-cdg": {
+   "mean": 58.37499999999997,
+   "min": 52.66666666666663,
+   "max": 64.66666666666663
+  },
+  "Montparnasse-orly": {
+   "mean": 43.575,
+   "min": 38.0,
+   "max": 46.14999999999998
+  }
+ },
+ "rows": [
+  {
+   "id": "north",
+   "name": "From the north",
+   "towns": "Amiens, Compiègne, Beauvais, Saint-Quentin",
+   "terminal": "Nord",
+   "stations": [
+    "NE",
+    "MP"
+   ],
+   "cdg": {
+    "today": 43.74999999999997,
+    "plan": 42.74999999999997,
+    "how": "first",
+    "ways": {
+     "first": 42.74999999999997
+    }
+   },
+   "orly": {
+    "today": 47.695833333333354,
+    "plan": 44.687797619047636,
+    "how": "tgv",
+    "ways": {
+     "tgv": 44.687797619047636
+    }
+   }
+  },
+  {
+   "id": "east",
+   "name": "From the east",
+   "towns": "Château-Thierry, Reims, Troyes",
+   "terminal": "Est",
+   "stations": [
+    "NE",
+    "LY"
+   ],
+   "cdg": {
+    "today": 50.24999999999997,
+    "plan": 42.74999999999997,
+    "how": "first",
+    "ways": {
+     "first": 42.74999999999997
+    }
+   },
+   "orly": {
+    "today": 49.44166666666669,
+    "plan": 41.40208333333335,
+    "how": "on_board",
+    "ways": {
+     "on_board": 41.40208333333335,
+     "tgv": 44.687797619047636
+    }
+   }
+  },
+  {
+   "id": "burgundy",
+   "name": "From Burgundy",
+   "towns": "Laroche-Migennes, Auxerre, Dijon by TER",
+   "terminal": "Bercy",
+   "stations": [
+    "LY",
+    "NE"
+   ],
+   "cdg": {
+    "today": 61.66666666666663,
+    "plan": 53.74999999999997,
+    "how": "on_board",
+    "ways": {
+     "on_board": 53.74999999999997,
+     "tgv": 57.035714285714256
+    }
+   },
+   "orly": {
+    "today": 31.36041666666668,
+    "plan": 30.40208333333335,
+    "how": "first",
+    "ways": {
+     "first": 30.40208333333335
+    }
+   }
+  },
+  {
+   "id": "atlantic",
+   "name": "From the west",
+   "towns": "Chartres, Dreux, Granville",
+   "terminal": "Montparnasse",
+   "stations": [
+    "MP",
+    "NE"
+   ],
+   "cdg": {
+    "today": 66.37499999999997,
+    "plan": 53.74999999999997,
+    "how": "on_board",
+    "ways": {
+     "on_board": 53.74999999999997,
+     "tgv": 57.74999999999997
+    }
+   },
+   "orly": {
+    "today": 51.575,
+    "plan": 43.73541666666669,
+    "how": "tgv",
+    "ways": {
+     "tgv": 43.73541666666669
+    }
+   }
+  }
+ ],
+ "gain": {
+  "cdg": {
+   "min": 1.0,
+   "max": 12.625
+  },
+  "orly": {
+   "min": 0.9583333333333286,
+   "max": 8.03958333333334
+  }
+ }
+}

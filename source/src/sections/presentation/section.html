@@ -236,6 +236,28 @@
   </div>
 </section>
 
+<section class="pz-slide" id="presentation.region" data-dot="The whole region">
+  <div class="pz-in">
+    <p class="pz-kicker">For the whole region</p>
+    <h2 class="pz-h">Both airports and every TGV, from every TER line</h2>
+    <p class="pz-lead">A regional express train no longer ends at a terminal: it runs through two of the three TGV stations, {{ m.run_min | 0 }} minutes apart. RER B to Roissy leaves from Nord-Est, line 14 to Orly from Gare de Lyon, and TGVs to every direction stop at the two stations your train serves. So wherever you board a TER, in Amiens or Chartres, Troyes or Auxerre, you reach both airports and every TGV with at most one change of train inside one station, never a crossing of Paris by metro.</p>
+    <div class="pz-split pz-rg-split">
+      <div class="pz-stage"><svg id="pz-rg-map" viewBox="0 0 520 450" role="img" aria-label="Map of the Paris region: regional express trains from the north, the east, Burgundy and the west; today they end at four terminals, with the plan they run through two of the three TGV stations, where RER B leaves for Roissy and line 14 for Orly"></svg></div>
+      <div class="pz-story pz-rg">
+        <div class="pz-auto" id="pz-rg-toggle"></div>
+        <div id="pz-rg-bars" class="pz-bars"></div>
+        <p class="pz-note">Minutes inside Paris, from the moment the TER reaches its first Paris station, to the airport's station; the TER leg is the same in both cases. Today: the walk through the terminal from the access model, then the Île-de-France timetable of a weekday, the connections a traveller would take.[[idfm_airports]] With the plan: the TER's own run to its second station ({{ m.run_min | 0 }} minutes and a {{ d.airports.params.ter_stop | 0 }}-minute stop), or any TGV between two stations, then RER B or line 14 as today; {{ d.airports.params.deep_to_metro | 0 }} minutes assumed from a deep platform to the RER or the metro <span class="tag assume">assumption</span>.</p>
+      </div>
+    </div>
+    <div class="pz-grid3">
+      <div class="pz-stat good"><b data-count="{{ d.timetable.table.grid.measures.full.ne_change | 0 }}" data-post=" min" data-d="0">{{ d.timetable.table.grid.measures.full.ne_change | 0 }} min</b><span>from a TER to a TGV in another direction, change inside one station and wait included, against about {{ d.french.params.x_today | 0 }} minutes today from train to train across Paris</span></div>
+      <div class="pz-stat good"><b data-count="{{ d.airports.gain.cdg.max | 0 }}" data-pre="up to -" data-post=" min" data-d="0">up to -{{ d.airports.gain.cdg.max | 0 }} min</b><span>to Roissy, for the TER of the east, Burgundy and the west; from the north, RER B leaves from Nord-Est as it leaves from Gare du Nord today</span></div>
+      <div class="pz-stat good"><b data-count="{{ d.airports.gain.orly.max | 0 }}" data-pre="up to -" data-post=" min" data-d="0">up to -{{ d.airports.gain.orly.max | 0 }} min</b><span>to Orly, for the TER of the east and the west; from Burgundy, line 14 leaves from Gare de Lyon as it leaves from Bercy today</span></div>
+    </div>
+    <p class="pz-more"><a href="#crossing.regional">Regional passengers</a><a href="#service.pairing">Which trains run where</a></p>
+  </div>
+</section>
+
 <section class="pz-slide pz-end" id="presentation.report" data-dot="Full report">
   <div class="pz-in">
     <h2 class="pz-h">Paris at the centre, for the whole country</h2>

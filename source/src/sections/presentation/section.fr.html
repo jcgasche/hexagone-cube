@@ -1,4 +1,4 @@
-<!-- en: 3f87685a6a -->
+<!-- en: d4558d78aa -->
 <div class="pz">
 <nav class="pz-dots" id="pz-dots" aria-label="Parties de la présentation"></nav>
 
@@ -234,6 +234,28 @@
       <figure class="pz-stage pz-curve"><figcaption>Cumul en euros d’aujourd’hui, en milliards d’euros</figcaption><svg id="pz-curve-svg" role="img" aria-label="Le cumul des avantages moins les coûts, en euros d’aujourd’hui, baisse pendant les travaux puis repasse au-dessus de zéro"></svg></figure>
     </div>
     <p class="pz-more"><a href="#financing">Le financement</a><a href="#economy">Le bilan socio-économique</a><a href="#risks">Risques et points à vérifier</a></p>
+  </div>
+</section>
+
+<section class="pz-slide" id="presentation.region" data-dot="Toute la région">
+  <div class="pz-in">
+    <p class="pz-kicker">Pour toute la région</p>
+    <h2 class="pz-h">Les deux aéroports et tous les TGV, depuis chaque ligne TER</h2>
+    <p class="pz-lead">Un TER ne s’arrête plus à un terminus&nbsp;: il traverse deux des trois gares TGV, à {{ m.run_min | 0 }}&nbsp;minutes l’une de l’autre. Le RER B vers Roissy part de Nord-Est, la ligne 14 vers Orly de la gare de Lyon, et des TGV vers toutes les directions s’arrêtent dans les deux gares que votre train dessert. Ainsi, où que vous montiez dans un TER, à Amiens ou à Chartres, à Troyes ou à Auxerre, vous atteignez les deux aéroports et tous les TGV avec au plus un changement de train dans une seule gare, jamais une traversée de Paris en métro.</p>
+    <div class="pz-split pz-rg-split">
+      <div class="pz-stage"><svg id="pz-rg-map" viewBox="0 0 520 450" role="img" aria-label="Carte de la région parisienne : les TER venant du Nord, de l’Est, de la Bourgogne et de l’Ouest ; aujourd’hui ils s’arrêtent dans quatre terminus, avec le projet ils traversent deux des trois gares TGV, d’où partent le RER B vers Roissy et la ligne 14 vers Orly"></svg></div>
+      <div class="pz-story pz-rg">
+        <div class="pz-auto" id="pz-rg-toggle"></div>
+        <div id="pz-rg-bars" class="pz-bars"></div>
+        <p class="pz-note">Minutes dans Paris, depuis l’arrivée du TER dans sa première gare parisienne jusqu’à la gare de l’aéroport&nbsp;; le trajet en TER est le même dans les deux cas. Aujourd’hui&nbsp;: la marche dans le terminus selon le modèle d’accès, puis l’horaire francilien d’un jour de semaine, avec les correspondances qu’un voyageur prendrait.[[idfm_airports]] Avec le projet&nbsp;: la course du TER lui-même jusqu’à sa deuxième gare ({{ m.run_min | 0 }}&nbsp;minutes et un arrêt de {{ d.airports.params.ter_stop | 0 }}&nbsp;minutes), ou n’importe quel TGV entre deux gares, puis le RER B ou la ligne 14 comme aujourd’hui&nbsp;; {{ d.airports.params.deep_to_metro | 0 }}&nbsp;minutes supposées d’un quai souterrain au RER ou au métro <span class="tag assume">hypothèse</span>.</p>
+      </div>
+    </div>
+    <div class="pz-grid3">
+      <div class="pz-stat good"><b data-count="{{ d.timetable.table.grid.measures.full.ne_change | 0 }}" data-post=" min" data-d="0">{{ d.timetable.table.grid.measures.full.ne_change | 0 }} min</b><span>d’un TER à un TGV vers une autre direction, changement dans une seule gare et attente compris, contre environ {{ d.french.params.x_today | 0 }}&nbsp;minutes aujourd’hui de train à train à travers Paris</span></div>
+      <div class="pz-stat good"><b data-count="{{ d.airports.gain.cdg.max | 0 }}" data-pre="jusqu’à -" data-post=" min" data-d="0">jusqu’à -{{ d.airports.gain.cdg.max | 0 }} min</b><span>vers Roissy, pour les TER de l’Est, de la Bourgogne et de l’Ouest&nbsp;; depuis le Nord, le RER B part de Nord-Est comme il part de la gare du Nord aujourd’hui</span></div>
+      <div class="pz-stat good"><b data-count="{{ d.airports.gain.orly.max | 0 }}" data-pre="jusqu’à -" data-post=" min" data-d="0">jusqu’à -{{ d.airports.gain.orly.max | 0 }} min</b><span>vers Orly, pour les TER de l’Est et de l’Ouest&nbsp;; depuis la Bourgogne, la ligne 14 part de la gare de Lyon comme elle part de Bercy aujourd’hui</span></div>
+    </div>
+    <p class="pz-more"><a href="#crossing.regional">Les voyageurs régionaux</a><a href="#service.pairing">Quels trains circulent où</a></p>
   </div>
 </section>
 
