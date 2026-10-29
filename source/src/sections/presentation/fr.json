@@ -41,7 +41,16 @@
   "With the project, through": "Avec le projet, traversant",
   "on the TER": "dans le TER",
   "by any TGV": "par n’importe quel TGV",
-  "the same station": "la même gare"
+  "the same station": "la même gare",
+  "Lille, Brussels, London": "Lille, Bruxelles, Londres",
+  "Strasbourg, Reims by TGV": "Strasbourg, Reims en TGV",
+  "no change": "sans changement",
+  "1 change": "1 changement",
+  "2 changes": "2 changements",
+  "on the TER, no change": "dans le TER, sans changement",
+  "on the TER, 1 change": "dans le TER, 1 changement",
+  "by any TGV, 1 change": "par n’importe quel TGV, 1 changement",
+  "by any TGV, no change": "par n’importe quel TGV, sans changement"
  },
  "patterns": [
   [

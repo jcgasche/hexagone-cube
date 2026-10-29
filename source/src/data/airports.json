@@ -188,6 +188,275 @@
    }
   }
  ],
+ "airports": [
+  {
+   "direction": "atlantic",
+   "name": "From the west",
+   "towns": "Chartres, Dreux, Granville",
+   "airport": "cdg",
+   "terminal": "Montparnasse",
+   "today": 66.37499999999997,
+   "plan": 53.74999999999997,
+   "how": "on_board",
+   "changes_today": 2,
+   "changes_plan": 0
+  },
+  {
+   "direction": "east",
+   "name": "From the east",
+   "towns": "Château-Thierry, Reims, Troyes",
+   "airport": "orly",
+   "terminal": "Est",
+   "today": 49.44166666666669,
+   "plan": 41.40208333333335,
+   "how": "on_board",
+   "changes_today": 1,
+   "changes_plan": 0
+  },
+  {
+   "direction": "burgundy",
+   "name": "From Burgundy",
+   "towns": "Laroche-Migennes, Auxerre, Dijon by TER",
+   "airport": "cdg",
+   "terminal": "Bercy",
+   "today": 61.66666666666663,
+   "plan": 53.74999999999997,
+   "how": "on_board",
+   "changes_today": 2,
+   "changes_plan": 0
+  },
+  {
+   "direction": "atlantic",
+   "name": "From the west",
+   "towns": "Chartres, Dreux, Granville",
+   "airport": "orly",
+   "terminal": "Montparnasse",
+   "today": 51.575,
+   "plan": 43.73541666666669,
+   "how": "tgv",
+   "changes_today": 2,
+   "changes_plan": 1
+  },
+  {
+   "direction": "east",
+   "name": "From the east",
+   "towns": "Château-Thierry, Reims, Troyes",
+   "airport": "cdg",
+   "terminal": "Est",
+   "today": 50.24999999999997,
+   "plan": 42.74999999999997,
+   "how": "first",
+   "changes_today": 1,
+   "changes_plan": 0
+  },
+  {
+   "direction": "north",
+   "name": "From the north",
+   "towns": "Amiens, Compiègne, Beauvais, Saint-Quentin",
+   "airport": "orly",
+   "terminal": "Nord",
+   "today": 47.695833333333354,
+   "plan": 44.687797619047636,
+   "how": "tgv",
+   "changes_today": 1,
+   "changes_plan": 1
+  },
+  {
+   "direction": "north",
+   "name": "From the north",
+   "towns": "Amiens, Compiègne, Beauvais, Saint-Quentin",
+   "airport": "cdg",
+   "terminal": "Nord",
+   "today": 43.74999999999997,
+   "plan": 42.74999999999997,
+   "how": "first",
+   "changes_today": 0,
+   "changes_plan": 0
+  },
+  {
+   "direction": "burgundy",
+   "name": "From Burgundy",
+   "towns": "Laroche-Migennes, Auxerre, Dijon by TER",
+   "airport": "orly",
+   "terminal": "Bercy",
+   "today": 31.36041666666668,
+   "plan": 30.40208333333335,
+   "how": "first",
+   "changes_today": 0,
+   "changes_plan": 0
+  }
+ ],
+ "tgv": [
+  {
+   "direction": "north",
+   "town": "Compiègne",
+   "line": "A",
+   "to": "Bordeaux, Rennes, Nantes",
+   "to_fr": "Bordeaux, Rennes, Nantes",
+   "terminal": "Nord",
+   "tgv_terminal": "Montparnasse",
+   "today": 52.0,
+   "plan": 9.0,
+   "how": "first",
+   "at": "NE"
+  },
+  {
+   "direction": "burgundy",
+   "town": "Laroche-Migennes",
+   "line": "A",
+   "to": "Bordeaux, Rennes, Nantes",
+   "to_fr": "Bordeaux, Rennes, Nantes",
+   "terminal": "Bercy",
+   "tgv_terminal": "Montparnasse",
+   "today": 50.0,
+   "plan": 7.333333333333334,
+   "how": "first",
+   "at": "LY"
+  },
+  {
+   "direction": "atlantic",
+   "town": "Chartres",
+   "line": "N",
+   "to": "Lille, Brussels, London",
+   "to_fr": "Lille, Bruxelles, Londres",
+   "terminal": "Montparnasse",
+   "tgv_terminal": "Nord",
+   "today": 53.75,
+   "plan": 12.125,
+   "how": "first",
+   "at": "MP"
+  },
+  {
+   "direction": "atlantic",
+   "town": "Chartres",
+   "line": "S",
+   "to": "Lyon, Marseille",
+   "to_fr": "Lyon, Marseille",
+   "terminal": "Montparnasse",
+   "tgv_terminal": "Lyon",
+   "today": 48.875,
+   "plan": 7.333333333333334,
+   "how": "first",
+   "at": "MP"
+  },
+  {
+   "direction": "east",
+   "town": "Troyes",
+   "line": "A",
+   "to": "Bordeaux, Rennes, Nantes",
+   "to_fr": "Bordeaux, Rennes, Nantes",
+   "terminal": "Est",
+   "tgv_terminal": "Montparnasse",
+   "today": 50.0,
+   "plan": 9.0,
+   "how": "first",
+   "at": "NE"
+  },
+  {
+   "direction": "burgundy",
+   "town": "Auxerre",
+   "line": "N",
+   "to": "Lille, Brussels, London",
+   "to_fr": "Lille, Bruxelles, Londres",
+   "terminal": "Bercy",
+   "tgv_terminal": "Nord",
+   "today": 48.75,
+   "plan": 10.964285714285715,
+   "how": "first",
+   "at": "LY"
+  },
+  {
+   "direction": "atlantic",
+   "town": "Dreux",
+   "line": "E",
+   "to": "Strasbourg, Reims by TGV",
+   "to_fr": "Strasbourg, Reims en TGV",
+   "terminal": "Montparnasse",
+   "tgv_terminal": "Est",
+   "today": 54.0,
+   "plan": 17.0,
+   "how": "first",
+   "at": "MP"
+  },
+  {
+   "direction": "east",
+   "town": "Château-Thierry",
+   "line": "S",
+   "to": "Lyon, Marseille",
+   "to_fr": "Lyon, Marseille",
+   "terminal": "Est",
+   "tgv_terminal": "Lyon",
+   "today": 43.875,
+   "plan": 8.285714285714285,
+   "how": "first",
+   "at": "NE"
+  },
+  {
+   "direction": "north",
+   "town": "Amiens",
+   "line": "S",
+   "to": "Lyon, Marseille",
+   "to_fr": "Lyon, Marseille",
+   "terminal": "Nord",
+   "tgv_terminal": "Lyon",
+   "today": 40.875,
+   "plan": 8.285714285714285,
+   "how": "first",
+   "at": "NE"
+  }
+ ],
+ "lines": {
+  "N": {
+   "name": "Lille, Brussels, London",
+   "name_fr": "Lille, Bruxelles, Londres",
+   "trains": 8,
+   "terminal": "Nord",
+   "via": "NE"
+  },
+  "E": {
+   "name": "Strasbourg, Reims by TGV",
+   "name_fr": "Strasbourg, Reims en TGV",
+   "trains": 5,
+   "terminal": "Est",
+   "via": "NE"
+  },
+  "S": {
+   "name": "Lyon, Marseille",
+   "trains": 16,
+   "terminal": "Lyon",
+   "via": "LY"
+  },
+  "A": {
+   "name": "Bordeaux, Rennes, Nantes",
+   "trains": 15,
+   "terminal": "Montparnasse",
+   "via": "MP"
+  }
+ },
+ "move": {
+  "Nord-Est": 10,
+  "Nord-Lyon": 22,
+  "Nord-Montparnasse": 33,
+  "Nord-Austerlitz": 27,
+  "Nord-Saint-Lazare": 20,
+  "Nord-Bercy": 27,
+  "Est-Lyon": 25,
+  "Est-Montparnasse": 31,
+  "Est-Austerlitz": 25,
+  "Est-Saint-Lazare": 20,
+  "Est-Bercy": 28,
+  "Lyon-Montparnasse": 30,
+  "Lyon-Austerlitz": 12,
+  "Lyon-Saint-Lazare": 20,
+  "Lyon-Bercy": 8,
+  "Montparnasse-Austerlitz": 22,
+  "Montparnasse-Saint-Lazare": 20,
+  "Montparnasse-Bercy": 30,
+  "Austerlitz-Saint-Lazare": 25,
+  "Austerlitz-Bercy": 15,
+  "Saint-Lazare-Bercy": 25
+ },
+ "margin": 15,
  "gain": {
   "cdg": {
    "min": 1.0,

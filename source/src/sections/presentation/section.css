@@ -358,3 +358,11 @@ body[data-page="presentation"] .menu-btn { display: none }
 #presentation .pz-rg .pz-bar > b small { display: inline }
 @media (max-width: 900px) { #presentation .pz-rg-split { grid-template-columns: minmax(0, 1fr) } }
 @media (max-width: 560px) { #presentation .pz-rg .pz-bar { grid-template-columns: 8.6em minmax(0, 1fr) 5.6em; font-size: 12px } #presentation .pz-rg .pz-bar > b small { display: block } }
+#presentation .pz-rg-tgv { display: flex; flex-direction: column; gap: 6px; align-items: stretch }
+#presentation .pz-rg-tgv .pz-trip { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; padding: 4px 6px; border-radius: 8px }
+#presentation .pz-rg-tgv .pz-trip:hover { background: rgba(255,255,255,.05) }
+#presentation .pz-rg-tgv .pz-trip-n { white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+#presentation .pz-rg-tgv .pz-trip-t { white-space: nowrap }
+#presentation .pz-rg-tgv .pz-trip-t b { font-size: 20px }
+#presentation .pz-rg .pz-bar > span:first-child { display: flex; flex-direction: column; line-height: 1.2; white-space: normal }
+#presentation .pz-rg-ch { color: var(--muted); font-size: 11px }

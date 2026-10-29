@@ -718,22 +718,24 @@
   },
   {
    "id": "airports",
-   "title_en": "From a regional express train to the airports, today and with the plan",
-   "title_fr": "D’un TER aux aéroports, aujourd’hui et avec le projet",
+   "title_en": "From a regional express train to the TGVs and the airports, today and with the plan",
+   "title_fr": "D’un TER aux TGV et aux aéroports, aujourd’hui et avec le projet",
    "keys": [
     "d.airports"
    ],
-   "goal_en": "Here, we calculate the minutes inside Paris from a regional express train's first Paris station to Roissy and to Orly, today from each terminal on the Île-de-France timetable, and with the plan through the two stations the train serves.",
-   "goal_fr": "Ici, on calcule les minutes dans Paris entre la première gare parisienne d’un TER et Roissy ou Orly, aujourd’hui depuis chaque terminus sur l’horaire francilien, et avec le projet par les deux gares que le train dessert.",
+   "goal_en": "Here, we calculate the minutes from a regional express train to a TGV in another direction and to each airport, today from each terminal (metro across Paris, the margin to make a train, the Île-de-France timetable) and with the plan through the two stations the train serves.",
+   "goal_fr": "Ici, on calcule les minutes d’un TER à un TGV vers une autre direction et à chaque aéroport, aujourd’hui depuis chaque terminus (métro à travers Paris, marge pour avoir son train, horaire francilien) et avec le projet par les deux gares que le train dessert.",
    "explain_en": [
     "<code>model/airports.py</code> counts the minutes inside Paris from the moment a regional express train reaches its first Paris station to the station of each airport; the train's own leg to Paris is the same today and with the plan, so it is left out. Four directions are followed (<code>DIRECTIONS</code>): from the north (Gare du Nord today), the east (Gare de l'Est), Burgundy (Bercy) and the west (Montparnasse).",
     "Today, <code>read_legs()</code> reads the Île-de-France timetable (IDFM GTFS): from each terminal's own platforms, the earliest arrival at Roissy (Terminal 2) and at Orly for departures every 7 minutes from 10:00 to 10:49 on a Tuesday, with the transfer times of the file, 3 minutes between two platforms of one station when it gives none and 2 minutes to change trains at a platform; the mean over the departures is kept in <code>model/inputs/airports.json</code>. <code>compute()</code> adds the walk from the regional platform to the concourse and from the concourse to the first metro or RER platform, from the access model (<code>TODAY_WALK</code>).",
-    "With the plan, the passenger reaches Nord-Est (RER B) or Gare de Lyon (line 14) by the cheapest of three ways: the train stops there first; the train runs on to it (the 6-minute run and the 5-minute stop); or any TGV from the first station, with a walk of <code>DEEP_TO_TGV</code> minutes and half the interval between the TGVs of that side of the triangle (<code>TGV_PER_HOUR</code>). Then <code>DEEP_TO_METRO</code> minutes to the RER or metro platform and the same ride as today. The walks inside the deep stations are assumptions."
+    "With the plan, the passenger reaches Nord-Est (RER B) or Gare de Lyon (line 14) by the cheapest of three ways: the train stops there first; the train runs on to it (the 6-minute run and the 5-minute stop); or any TGV from the first station, with a walk of <code>DEEP_TO_TGV</code> minutes and half the interval between the TGVs of that side of the triangle (<code>TGV_PER_HOUR</code>). Then <code>DEEP_TO_METRO</code> minutes to the RER or metro platform and the same ride as today. The walks inside the deep stations are assumptions.",
+    "For the TGVs, today's time from train to train is the walk out of the terminal, the metro or walk to the TGV's terminal (<code>MOVE</code>, as the journey planner gives it, shared with the cross-France model), the margin a traveller keeps to make a train (<code>MARGIN</code>) and half the interval between that line's TGVs (<code>LINES</code>). With the plan it is the walk to the TGV platform of the station the TER stops at and half the interval between the TGVs leaving it towards that line (<code>tgv_from()</code>: every train of a line passes its own station; the north and east trains run on to the south-east or the Atlantic in the proportions of the tunnels; the rest pair on the link). The examples shown (<code>EXAMPLES</code>) are sorted by the minutes saved; so are the airport rows, with the changes of train counted (<code>CHANGES_TODAY</code>)."
    ],
    "explain_fr": [
     "<code>model/airports.py</code> compte les minutes dans Paris depuis l’arrivée d’un TER dans sa première gare parisienne jusqu’à la gare de chaque aéroport&nbsp;; le trajet du train jusqu’à Paris est le même aujourd’hui et avec le projet, il est donc laissé de côté. Quatre directions sont suivies (<code>DIRECTIONS</code>)&nbsp;: depuis le Nord (gare du Nord aujourd’hui), l’Est (gare de l’Est), la Bourgogne (Bercy) et l’Ouest (Montparnasse).",
     "Aujourd’hui, <code>read_legs()</code> lit l’horaire francilien (GTFS IDFM)&nbsp;: depuis les quais de chaque terminus, la première arrivée à Roissy (Terminal 2) et à Orly pour des départs toutes les 7 minutes de 10 h 00 à 10 h 49 un mardi, avec les temps de correspondance du fichier, 3 minutes entre deux quais d’une même gare quand il n’en donne pas et 2 minutes pour changer de train sur un quai&nbsp;; la moyenne sur les départs est gardée dans <code>model/inputs/airports.json</code>. <code>compute()</code> ajoute la marche du quai régional à la halle et de la halle au premier quai de métro ou de RER, selon le modèle d’accès (<code>TODAY_WALK</code>).",
-    "Avec le projet, le voyageur atteint Nord-Est (RER B) ou la gare de Lyon (ligne 14) par le moins cher de trois chemins&nbsp;: le train s’y arrête d’abord&nbsp;; le train y continue (la course de 6 minutes et l’arrêt de 5 minutes)&nbsp;; ou n’importe quel TGV depuis la première gare, avec une marche de <code>DEEP_TO_TGV</code> minutes et la moitié de l’intervalle entre les TGV de ce côté du triangle (<code>TGV_PER_HOUR</code>). Puis <code>DEEP_TO_METRO</code> minutes jusqu’au quai du RER ou du métro et le même trajet qu’aujourd’hui. Les marches dans les gares souterraines sont des hypothèses."
+    "Avec le projet, le voyageur atteint Nord-Est (RER B) ou la gare de Lyon (ligne 14) par le moins cher de trois chemins&nbsp;: le train s’y arrête d’abord&nbsp;; le train y continue (la course de 6 minutes et l’arrêt de 5 minutes)&nbsp;; ou n’importe quel TGV depuis la première gare, avec une marche de <code>DEEP_TO_TGV</code> minutes et la moitié de l’intervalle entre les TGV de ce côté du triangle (<code>TGV_PER_HOUR</code>). Puis <code>DEEP_TO_METRO</code> minutes jusqu’au quai du RER ou du métro et le même trajet qu’aujourd’hui. Les marches dans les gares souterraines sont des hypothèses.",
+    "Pour les TGV, le temps de train à train aujourd’hui est la sortie du terminus, le métro ou la marche jusqu’au terminus du TGV (<code>MOVE</code>, tel que le calculateur d’itinéraire le donne, partagé avec le modèle des trajets à travers la France), la marge qu’un voyageur garde pour avoir son train (<code>MARGIN</code>) et la moitié de l’intervalle entre les TGV de cette ligne (<code>LINES</code>). Avec le projet, c’est la marche jusqu’au quai TGV de la gare où le TER s’arrête et la moitié de l’intervalle entre les TGV qui en partent vers cette ligne (<code>tgv_from()</code>&nbsp;: chaque train d’une ligne passe par sa propre gare&nbsp;; les trains du Nord et de l’Est continuent vers le Sud-Est ou l’Atlantique dans les proportions des tunnels&nbsp;; les autres s’apparient sur la liaison). Les exemples montrés (<code>EXAMPLES</code>) sont classés par minutes gagnées&nbsp;; les lignes des aéroports aussi, avec le nombre de changements (<code>CHANGES_TODAY</code>)."
    ],
    "code": [
     [
@@ -745,9 +747,14 @@
       "DEEP_TO_TGV",
       "DEEP_TO_METRO",
       "TODAY_WALK",
+      "TODAY_OUT",
+      "LINES",
+      "tgv_from",
+      "EXAMPLES",
       "DIRECTIONS",
       "AIRPORT_FROM",
       "AIRPORT_LEG",
+      "CHANGES_TODAY",
       "compute"
      ]
     ]
@@ -755,7 +762,7 @@
    "data": [
     "model/inputs/airports.json"
    ],
-   "run": "import json, os\nimport airports as AP\nlegs = json.load(open(os.path.join(os.path.dirname(os.path.abspath(AP.__file__)), 'inputs', 'airports.json')))['legs']\nout = AP.compute(legs)\nfor r in out['rows']:\n    print(f\"{r['name']:16s} Roissy {r['cdg']['today']:5.1f} -> {r['cdg']['plan']:5.1f} min ({r['cdg']['how']})   Orly {r['orly']['today']:5.1f} -> {r['orly']['plan']:5.1f} min ({r['orly']['how']})\")"
+   "run": "import json, os\nimport airports as AP\nlegs = json.load(open(os.path.join(os.path.dirname(os.path.abspath(AP.__file__)), 'inputs', 'airports.json')))['legs']\nout = AP.compute(legs)\nfor r in out['tgv']:\n    print(f\"{r['town']:16s} -> TGV for {r['to']:26s} {r['today']:5.1f} -> {r['plan']:5.1f} min, change at {r['at']}\")\nfor r in out['airports']:\n    print(f\"{r['name']:16s} -> {r['airport']:5s} {r['today']:5.1f} -> {r['plan']:5.1f} min ({r['how']}; {r['changes_today']} -> {r['changes_plan']} changes)\")"
   }
  ]
 }

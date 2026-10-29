@@ -583,18 +583,21 @@ PTS.section('presentation', function (root) {
       add(svg, 'text', { x: c[0] + (top ? 8 : right ? -6 : 6), y: c[1] + (top ? 14 : right ? -4 : -10), 'text-anchor': top ? 'start' : right ? 'end' : 'start', class: 'big', text: r.name, style: 'fill: #cbbcff' });
       add(svg, 'text', { x: c[0] + (top ? 8 : right ? -6 : 6), y: c[1] + (top ? 28 : right ? 10 : 4), 'text-anchor': top ? 'start' : right ? 'end' : 'start', class: 'dim', text: r.towns, style: 'font-size: 11px' });
     });
-    // the bars: each direction to each airport
-    const host = $('#pz-rg-bars'), AP = { cdg: 'Roissy', orly: 'Orly' };
+    // from the TER to a TGV in another direction: the examples, best saving first
+    const tg = $('#pz-rg-tgv');
+    A.tgv.forEach(function (r) {
+      tg.appendChild(h('div', { class: 'pz-trip' }, h('span', { class: 'pz-trip-n', text: r.town + ' → ' + r.to }),
+        h('span', { class: 'pz-trip-t' }, h('s', { text: F.n(r.today, 0) }), ' ', h('b', { text: F.n(r.plan, 0) + ' min' }))));
+    });
+    // the bars: each direction to each airport, best saving first, only where something changes
+    const host = $('#pz-rg-bars'), AP = { cdg: 'Roissy', orly: 'Orly' }, CH = function (n) { return n === 0 ? 'no change' : n === 1 ? '1 change' : n + ' changes'; };
     host.appendChild(h('div', { class: 'pz-key' }, h('span', null, h('i', { style: 'background: rgba(255,122,89,.75)' }), 'Today, from the TER’s first Paris station'), h('span', null, h('i', { style: 'background: linear-gradient(90deg,#44d7ff,#3fe0a5)' }), 'With the project, from the same station')));
     const head = h('b', { text: 'Today, at the terminal' });
     host.appendChild(h('div', { class: 'pz-bar pz-bar-h' }, h('span'), h('span'), head));
-    const rows = [];
-    ['cdg', 'orly'].forEach(function (ap) {
-      A.rows.forEach(function (r) {
-        const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b');
-        host.appendChild(h('div', { class: 'pz-bar' }, h('span', { text: r.name + ' → ' + AP[ap] }), h('div', { class: 'pz-track' }, t, q), b));
-        rows.push({ t: t, q: q, b: b, x: r[ap] });
-      });
+    const rows = A.airports.filter(function (r) { return r.today - r.plan > 2; }).map(function (r) {
+      const t = h('i', { class: 't' }), q = h('i', { class: 'p' }), b = h('b'), c = h('small', { class: 'pz-rg-ch' });
+      host.appendChild(h('div', { class: 'pz-bar' }, h('span', null, h('span', { text: r.name + ' → ' + AP[r.airport] }), c), h('div', { class: 'pz-track' }, t, q), b));
+      return { t: t, q: q, b: b, c: c, x: r };
     });
     const max = Math.max.apply(0, rows.map(function (r) { return r.x.today; }));
     const set = function (v) {
@@ -604,6 +607,7 @@ PTS.section('presentation', function (root) {
         r.t.style.width = (r.x.today / max * 100) + '%'; r.q.style.width = now ? '0%' : (r.x.plan / max * 100) + '%';
         r.b.innerHTML = now ? F.n(r.x.today, 0) : F.n(r.x.plan, 0) + ' <small>-' + F.n(r.x.today - r.x.plan, 0) + ' min</small>';
         r.b.style.color = now ? '#fff' : '#3fe0a5';
+        r.c.textContent = now ? CH(r.x.changes_today) : (r.x.how === 'tgv' ? 'by any TGV' : 'on the TER') + ', ' + CH(r.x.changes_plan);
       });
       head.textContent = now ? 'Today, at the terminal' : 'With the project, through';
     };
