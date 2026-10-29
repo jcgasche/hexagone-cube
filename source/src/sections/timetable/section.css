@@ -82,3 +82,9 @@
 #timetable .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
 #timetable .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }
 #timetable .tt-rername { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: var(--land); stroke-width: 3px }
+#timetable .tt-run { cursor: help; outline: none }
+#timetable .tt-run text { font-size: 11.5px; font-weight: 600; paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; stroke-linejoin: round }
+#timetable .tt-run-old { fill: var(--muted); font-weight: 500 }
+#timetable .tt-run-strike { stroke: var(--muted); stroke-width: 1.3 }
+#timetable .tt-run-new { fill: var(--good) }
+#timetable .tt-run:focus-visible text { stroke: var(--accent-soft) }

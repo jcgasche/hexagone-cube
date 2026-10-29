@@ -1129,6 +1129,12 @@ body[data-page="presentation"] .menu-btn { display: none }
 :is(#timetable, .borrow-timetable) .legend i.tt-pair b.sub { width: 9px; height: 9px; margin: 1px }
 :is(#timetable, .borrow-timetable) .legend i.tt-pair b.ring { width: 7px; height: 7px; margin: 2px; box-shadow: 0 0 0 1.5px var(--surface), 0 0 0 3px var(--c) }
 :is(#timetable, .borrow-timetable) .tt-rername { font-size: 11px; font-weight: 700; paint-order: stroke; stroke: var(--land); stroke-width: 3px }
+:is(#timetable, .borrow-timetable) .tt-run { cursor: help; outline: none }
+:is(#timetable, .borrow-timetable) .tt-run text { font-size: 11.5px; font-weight: 600; paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; stroke-linejoin: round }
+:is(#timetable, .borrow-timetable) .tt-run-old { fill: var(--muted); font-weight: 500 }
+:is(#timetable, .borrow-timetable) .tt-run-strike { stroke: var(--muted); stroke-width: 1.3 }
+:is(#timetable, .borrow-timetable) .tt-run-new { fill: var(--good) }
+:is(#timetable, .borrow-timetable) .tt-run:focus-visible text { stroke: var(--accent-soft) }
 
 /* ---- crossing */
 /* pair selector */
@@ -2909,7 +2915,7 @@ body[data-page="presentation"] .menu-btn { display: none }
 
 </section>
 <section class="page" id="timetable" data-title="The timetable" hidden>
-<header><span class="eyebrow">Chapter 7</span><h1>The timetable: an evenly spaced hour at the three stations</h1><p class="lede">All three stations work to the same clock. Each train takes a place of 12 minutes on its track, the platform rule of the report (see <a class="xref" href="#service.platforms">how many platforms</a>), and every run between two stations is made to take 6 minutes, so trains from outside Paris arrive at every station at :00, :04, :08 and every 4 minutes after. Three tracks each way take 15 trains an hour: the southern lines full, with no place to spare. Today's busy hour fits with 3 places free on each side.</p></header>
+<header><span class="eyebrow">Chapter 7</span><h1>The timetable: an evenly spaced hour at the three stations</h1><p class="lede">All three stations work to the same clock. Each train takes a place of 12 minutes on its track, the platform rule of the report (see <a class="xref" href="#service.platforms">how many platforms</a>), and every run between two stations is made to take 6 minutes, so trains from outside Paris arrive at every station at :00, :04, :08 and every 4 minutes after. That is slower than the tunnels allow: a train could run from Nord-Est or Montparnasse to Gare de Lyon in 4.3 minutes and from Nord-Est to Montparnasse in 5.0, but giving every run the same 6 minutes is what keeps the three stations on one clock (the map below shows both times). Three tracks each way take 15 trains an hour: the southern lines full, with no place to spare. Today's busy hour fits with 3 places free on each side.</p></header>
 
 
 <div class="callout warn"><b>A sketch of a timetable, not a timetable</b><p>The minutes below follow a few stated rules: the time a train stops and holds its track, the time a track stays empty between two trains, and the spacing of trains in a tunnel. No signalling, junction or driver has been studied. The whole report uses this beat: 7-minute stops and runs of 6 minutes between stations, as built here. The benefits count the travel times it gives, and the economic return adds €157m a year for its regularity: a timetable easy to read and easy to repair. The model is <code>model/table_timetable.py</code>, which runs in seconds.</p></div>
@@ -8799,6 +8805,22 @@ PTS.section('timetable', function (root) {
       return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
     };
     const ease = function (f) { return f < 0.5 ? 2 * f * f : 1 - 2 * (1 - f) * (1 - f); };
+    // the run between two stations: what the tunnel allows, struck through, and the 6 minutes of the timetable, which keep the three stations on one clock
+    const GP = T.table.grid.params, TECHK = { 'NE-LY': 'L', 'NE-MP': 'M', 'MP-LY': 'LM' };
+    Object.keys(between).forEach(function (k) {
+      const pl = poly(between[k]), m = at(pl, 0.5), q = at(pl, 0.55), dx = q[0] - m[0], dy = q[1] - m[1], L = Math.hypot(dx, dy) || 1;
+      const off = narrow ? 9 : 12, side = k === 'MP-LY' ? 1 : -1, x = m[0] - dy / L * off * side, y = m[1] + dx / L * off * side;
+      const tech = F.n(GP.technical[TECHK[k]], 1);
+      const lg = s('g', { class: 'tt-run', tabindex: 0, role: 'img', 'aria-label': 'Timetabled at ' + n0(GP.run) + ' min, not ' + tech });
+      const tx = add(lg, 'text', { x: x, y: y + 4, 'text-anchor': 'middle' });
+      add(tx, 'tspan', { class: 'tt-run-old', text: tech + ' min' });
+      add(tx, 'tspan', { class: 'tt-run-new', dx: 5, text: n0(GP.run) + ' min' });
+      PTS.tip.bind(lg, function () {
+        return '<b>Timetabled at ' + n0(GP.run) + ' min, not ' + tech + '</b><br>A train could run between these two stations in ' + tech + ' minutes. Every run is given the same ' + n0(GP.run) +
+          ' minutes so that, with the ' + n0(GP.stop) + '-minute stop, each train reaches its next station on a place of the same ' + n0(GP.step) + '-minute beat: the three stations keep one clock.';
+      });
+      svg.appendChild(lg);
+    });
     const APPROACH = 5;                                                   // minutes drawn from the edge of the map to the platform
     const g = s('g'); svg.appendChild(g);
     dots = trainsOf(state.sc).map(function (t) {
@@ -8819,6 +8841,12 @@ PTS.section('timetable', function (root) {
     if (state.layer === 'all') regional({ svg: svg, g: g, pr: pr, dp: dp, stn: stn, sl: sl, ch: ch, C: C, outer: outer, between: between, trunk1: trunk1, trunk2: trunk2, rev: rev, ext: ext, far: far,
       poly: poly, ease: ease, slot: slot, GAP: GAP, LEN: LEN, narrow: narrow, APPROACH: APPROACH, W: W, H: H, edge: edge });
     mapHost.appendChild(svg);
+    svg.querySelectorAll('.tt-run-old').forEach(function (o) {           // the stroke through the time the tunnel allows, drawn once the text has a size
+      try {
+        const p = o.getStartPositionOfChar(0), w = o.getComputedTextLength();
+        o.parentNode.parentNode.appendChild(s('line', { class: 'tt-run-strike', x1: p.x - 1, x2: p.x + w + 1, y1: p.y - 3.6, y2: p.y - 3.6 }));
+      } catch (e) { /* not rendered yet: the label stays without its stroke */ }
+    });
     placeDots(state.v);
   };
   // a train's mark, drawn round (0, 0) and moved with a transform: a dot (TGV alone, suburban), a square (TGV with the others), a ringed dot (regional express)

@@ -235,6 +235,22 @@ PTS.section('timetable', function (root) {
       return [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t];
     };
     const ease = function (f) { return f < 0.5 ? 2 * f * f : 1 - 2 * (1 - f) * (1 - f); };
+    // the run between two stations: what the tunnel allows, struck through, and the 6 minutes of the timetable, which keep the three stations on one clock
+    const GP = T.table.grid.params, TECHK = { 'NE-LY': 'L', 'NE-MP': 'M', 'MP-LY': 'LM' };
+    Object.keys(between).forEach(function (k) {
+      const pl = poly(between[k]), m = at(pl, 0.5), q = at(pl, 0.55), dx = q[0] - m[0], dy = q[1] - m[1], L = Math.hypot(dx, dy) || 1;
+      const off = narrow ? 9 : 12, side = k === 'MP-LY' ? 1 : -1, x = m[0] - dy / L * off * side, y = m[1] + dx / L * off * side;
+      const tech = F.n(GP.technical[TECHK[k]], 1);
+      const lg = s('g', { class: 'tt-run', tabindex: 0, role: 'img', 'aria-label': 'Timetabled at ' + n0(GP.run) + ' min, not ' + tech });
+      const tx = add(lg, 'text', { x: x, y: y + 4, 'text-anchor': 'middle' });
+      add(tx, 'tspan', { class: 'tt-run-old', text: tech + ' min' });
+      add(tx, 'tspan', { class: 'tt-run-new', dx: 5, text: n0(GP.run) + ' min' });
+      PTS.tip.bind(lg, function () {
+        return '<b>Timetabled at ' + n0(GP.run) + ' min, not ' + tech + '</b><br>A train could run between these two stations in ' + tech + ' minutes. Every run is given the same ' + n0(GP.run) +
+          ' minutes so that, with the ' + n0(GP.stop) + '-minute stop, each train reaches its next station on a place of the same ' + n0(GP.step) + '-minute beat: the three stations keep one clock.';
+      });
+      svg.appendChild(lg);
+    });
     const APPROACH = 5;                                                   // minutes drawn from the edge of the map to the platform
     const g = s('g'); svg.appendChild(g);
     dots = trainsOf(state.sc).map(function (t) {
@@ -255,6 +271,12 @@ PTS.section('timetable', function (root) {
     if (state.layer === 'all') regional({ svg: svg, g: g, pr: pr, dp: dp, stn: stn, sl: sl, ch: ch, C: C, outer: outer, between: between, trunk1: trunk1, trunk2: trunk2, rev: rev, ext: ext, far: far,
       poly: poly, ease: ease, slot: slot, GAP: GAP, LEN: LEN, narrow: narrow, APPROACH: APPROACH, W: W, H: H, edge: edge });
     mapHost.appendChild(svg);
+    svg.querySelectorAll('.tt-run-old').forEach(function (o) {           // the stroke through the time the tunnel allows, drawn once the text has a size
+      try {
+        const p = o.getStartPositionOfChar(0), w = o.getComputedTextLength();
+        o.parentNode.parentNode.appendChild(s('line', { class: 'tt-run-strike', x1: p.x - 1, x2: p.x + w + 1, y1: p.y - 3.6, y2: p.y - 3.6 }));
+      } catch (e) { /* not rendered yet: the label stays without its stroke */ }
+    });
     placeDots(state.v);
   };
   // a train's mark, drawn round (0, 0) and moved with a transform: a dot (TGV alone, suburban), a square (TGV with the others), a ringed dot (regional express)

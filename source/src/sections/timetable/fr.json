@@ -210,6 +210,14 @@
   [
    "{0} million hours a year",
    "{0} millions d’heures par an"
+  ],
+  [
+   "Timetabled at {0} min, not {1}",
+   "Calé sur {0} min au lieu de {1}"
+  ],
+  [
+   "A train could run between these two stations in {0} minutes. Every run is given the same {1} minutes so that, with the {2}-minute stop, each train reaches its next station on a place of the same {3}-minute beat: the three stations keep one clock.",
+   "Un train pourrait relier ces deux gares en {0} minutes. Chaque trajet reçoit les mêmes {1} minutes pour que, avec l’arrêt de {2} minutes, chaque train atteigne la gare suivante sur un créneau du même battement de {3} minutes : les trois gares gardent une seule horloge."
   ]
  ]
 }
