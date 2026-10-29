@@ -1786,6 +1786,39 @@ body[data-page="presentation"] .menu-btn { display: none }
   </div>
 </section>
 
+<section class="pz-slide" id="presentation.region" data-dot="The whole region">
+  <div class="pz-in">
+    <p class="pz-kicker">For the whole region</p>
+    <h2 class="pz-h">9 minutes instead of 52: every TGV, from every TER town</h2>
+    <p class="pz-lead">Today a passenger from Compiègne bound for Bordeaux gets off the TER at the terminal, crosses Paris by metro to another terminal, keeps a margin to make the train, and waits for it: about 52 minutes from train to train. With the plan no TER ends in Paris: it runs through two of the three TGV stations, 6 minutes apart, and TGVs to every direction stop at one of them. The same passenger walks to the next platform: 9 minutes. The towns that are far from everything today, with no new track of their own, are joined to the whole country, and to both airports.</p>
+    <div class="pz-split pz-rg-split">
+      <div class="pz-stage"><svg id="pz-rg-map" viewBox="0 0 520 450" role="img" aria-label="Map of the Paris region: regional express trains from the north, the east, Burgundy and the west; today they end at four terminals, with the plan they run through two of the three TGV stations, where RER B leaves for Roissy and line 14 for Orly"></svg></div>
+      <div class="pz-story pz-rg">
+        <h3 class="pz-h2">From the TER to a TGV in another direction, minutes from train to train</h3>
+        <div class="pz-trips pz-rg-tgv" id="pz-rg-tgv" aria-label="From a TER town to a TGV in another direction: today with a crossing of Paris, and with the project inside one station"></div>
+        <p class="pz-note">Today: out of the terminal, the metro or walk to the TGV's terminal as a journey planner gives it, the 15-minute margin a traveller keeps to make a train, then half the interval between that line's TGVs. With the project: the walk to the TGV platform of the station the TER stops at, and half the interval between the TGVs leaving it towards that line, as the timetable shares them.</p>
+      </div>
+    </div>
+    <h3 class="pz-h2">To the airports: RER B from Nord-Est, line 14 from Gare de Lyon</h3>
+    <div class="pz-split pz-rg-split">
+      <div class="pz-story pz-rg">
+        <div class="pz-auto" id="pz-rg-toggle"></div>
+        <div id="pz-rg-bars" class="pz-bars"></div>
+      </div>
+      <div class="pz-story">
+        <p class="pz-lead">The airport lines stay where they are: RER B leaves from Nord-Est, line 14 from Gare de Lyon. What changes is how you reach them. A TER from Chartres ends at Montparnasse today, and Roissy is a metro ride, a change at Châtelet and another at Gare du Nord away; with the plan the same train runs on to Nord-Est and you walk to RER B. From Troyes, Orly is two changes and a crossing of Paris today; with the plan the TER itself stops at Gare de Lyon.</p>
+        <p class="pz-note">Minutes inside Paris, from the TER's arrival at its first Paris station to the airport's station; the ride to Paris is the same in both cases, so it is left out. Today: the walk through the terminal from the access model, then the Île-de-France timetable of a weekday, the connections a traveller would take, each change with the transfer time the timetable gives.<sup class="cite"><a href="#sources.idfm_airports" title="Île-de-France Mobilités, open data, network timetable (GTFS), version of 15 October 2026: Tuesday 3 November 2026: the earliest arrival from each terminal&#x27;s platforms at Roissy (Terminal 2) and Orly, departures from 10:00 to 10:49, the transfer times of the file (model/airports.py)">3</a></sup> With the project: the TER's own run to its second station (6 minutes and a 5-minute stop), or any TGV between two stations, then RER B or line 14 as today; 5 minutes assumed from a deep platform to the RER or the metro <span class="tag assume">assumption</span>. From the north to Roissy and from Burgundy to Orly nothing changes, since the airport line already leaves from the terminal: those two cases are not shown.</p>
+      </div>
+    </div>
+    <div class="pz-grid3">
+      <div class="pz-stat good"><b data-count="9" data-post=" min" data-d="0">9 min</b><span>from the TER to a TGV in another direction, change inside one station and wait included, instead of 52 today; 12 minutes on average over the timetable's hour, against 58 today from train to train across Paris</span></div>
+      <div class="pz-stat good"><b data-count="13" data-pre="-" data-post=" min" data-d="0">-13 min</b><span>and 2 changes fewer to Roissy for the TER of the west: the train itself goes on to Nord-Est, where RER B leaves</span></div>
+      <div class="pz-stat good"><b data-count="0" data-d="0">0</b><span>TER ends in Paris: 11 trains an hour from the north run on to Montparnasse, 4 from the east to Gare de Lyon, and the Atlantic and Burgundy trains to Nord-Est</span></div>
+    </div>
+    <p class="pz-more"><a href="#crossing.regional">Regional passengers</a><a href="#service.pairing">Which trains run where</a></p>
+  </div>
+</section>
+
 <section class="pz-slide" id="presentation.regional" data-dot="Regional trains">
   <div class="pz-in">
     <p class="pz-kicker">TER and Transilien</p>
@@ -1848,39 +1881,6 @@ body[data-page="presentation"] .menu-btn { display: none }
       <figure class="pz-stage pz-curve"><figcaption>Running total in today's money, € billion</figcaption><svg id="pz-curve-svg" role="img" aria-label="The running total of benefits minus costs, in today's money, falls during the works and climbs back above zero"></svg></figure>
     </div>
     <p class="pz-more"><a href="#financing">Financing</a><a href="#economy">The economic return</a><a href="#risks">Risks and what to verify</a></p>
-  </div>
-</section>
-
-<section class="pz-slide" id="presentation.region" data-dot="The whole region">
-  <div class="pz-in">
-    <p class="pz-kicker">For the whole region</p>
-    <h2 class="pz-h">9 minutes instead of 52: every TGV, from every TER town</h2>
-    <p class="pz-lead">Today a passenger from Compiègne bound for Bordeaux gets off the TER at the terminal, crosses Paris by metro to another terminal, keeps a margin to make the train, and waits for it: about 52 minutes from train to train. With the plan no TER ends in Paris: it runs through two of the three TGV stations, 6 minutes apart, and TGVs to every direction stop at one of them. The same passenger walks to the next platform: 9 minutes. The towns that are far from everything today, with no new track of their own, are joined to the whole country, and to both airports.</p>
-    <div class="pz-split pz-rg-split">
-      <div class="pz-stage"><svg id="pz-rg-map" viewBox="0 0 520 450" role="img" aria-label="Map of the Paris region: regional express trains from the north, the east, Burgundy and the west; today they end at four terminals, with the plan they run through two of the three TGV stations, where RER B leaves for Roissy and line 14 for Orly"></svg></div>
-      <div class="pz-story pz-rg">
-        <h3 class="pz-h2">From the TER to a TGV in another direction, minutes from train to train</h3>
-        <div class="pz-trips pz-rg-tgv" id="pz-rg-tgv" aria-label="From a TER town to a TGV in another direction: today with a crossing of Paris, and with the project inside one station"></div>
-        <p class="pz-note">Today: out of the terminal, the metro or walk to the TGV's terminal as a journey planner gives it, the 15-minute margin a traveller keeps to make a train, then half the interval between that line's TGVs. With the project: the walk to the TGV platform of the station the TER stops at, and half the interval between the TGVs leaving it towards that line, as the timetable shares them.</p>
-      </div>
-    </div>
-    <h3 class="pz-h2">To the airports: RER B from Nord-Est, line 14 from Gare de Lyon</h3>
-    <div class="pz-split pz-rg-split">
-      <div class="pz-story pz-rg">
-        <div class="pz-auto" id="pz-rg-toggle"></div>
-        <div id="pz-rg-bars" class="pz-bars"></div>
-      </div>
-      <div class="pz-story">
-        <p class="pz-lead">The airport lines stay where they are: RER B leaves from Nord-Est, line 14 from Gare de Lyon. What changes is how you reach them. A TER from Chartres ends at Montparnasse today, and Roissy is a metro ride, a change at Châtelet and another at Gare du Nord away; with the plan the same train runs on to Nord-Est and you walk to RER B. From Troyes, Orly is two changes and a crossing of Paris today; with the plan the TER itself stops at Gare de Lyon.</p>
-        <p class="pz-note">Minutes inside Paris, from the TER's arrival at its first Paris station to the airport's station; the ride to Paris is the same in both cases, so it is left out. Today: the walk through the terminal from the access model, then the Île-de-France timetable of a weekday, the connections a traveller would take, each change with the transfer time the timetable gives.<sup class="cite"><a href="#sources.idfm_airports" title="Île-de-France Mobilités, open data, network timetable (GTFS), version of 15 October 2026: Tuesday 3 November 2026: the earliest arrival from each terminal&#x27;s platforms at Roissy (Terminal 2) and Orly, departures from 10:00 to 10:49, the transfer times of the file (model/airports.py)">3</a></sup> With the project: the TER's own run to its second station (6 minutes and a 5-minute stop), or any TGV between two stations, then RER B or line 14 as today; 5 minutes assumed from a deep platform to the RER or the metro <span class="tag assume">assumption</span>. From the north to Roissy and from Burgundy to Orly nothing changes, since the airport line already leaves from the terminal: those two cases are not shown.</p>
-      </div>
-    </div>
-    <div class="pz-grid3">
-      <div class="pz-stat good"><b data-count="9" data-post=" min" data-d="0">9 min</b><span>from the TER to a TGV in another direction, change inside one station and wait included, instead of 52 today; 12 minutes on average over the timetable's hour, against 58 today from train to train across Paris</span></div>
-      <div class="pz-stat good"><b data-count="13" data-pre="-" data-post=" min" data-d="0">-13 min</b><span>and 2 changes fewer to Roissy for the TER of the west: the train itself goes on to Nord-Est, where RER B leaves</span></div>
-      <div class="pz-stat good"><b data-count="0" data-d="0">0</b><span>TER ends in Paris: 11 trains an hour from the north run on to Montparnasse, 4 from the east to Gare de Lyon, and the Atlantic and Burgundy trains to Nord-Est</span></div>
-    </div>
-    <p class="pz-more"><a href="#crossing.regional">Regional passengers</a><a href="#service.pairing">Which trains run where</a></p>
   </div>
 </section>
 
