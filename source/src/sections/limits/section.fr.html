@@ -1,4 +1,4 @@
-<!-- en: 5f2c24800c -->
+<!-- en: ab542b8973 -->
 <p class="lede">Cette étude est un dossier de préfaisabilité indépendant, écrit par une seule personne, extérieure à toute entreprise ferroviaire et à toute administration. Elle montre que l’idée mérite une étude professionnelle&nbsp;; elle ne montre pas qu’elle peut être construite telle qu’elle est dessinée. Ce chapitre dit ce qui repose sur des données, ce qui est supposé, et ce que seule une étude professionnelle peut trancher.</p>
 
 <div class="block" id="limits.what">
@@ -44,7 +44,7 @@
     <li><strong>La règle des quais.</strong> Arrêts de {{ m.stop_min | 0 }}&nbsp;minutes, {{ m.reserve_min | 0 }}&nbsp;minutes réservées à un train en retard et {{ m.clear_min | 0 }} pour libérer la voie&nbsp;: {{ m.per_track | 0 }}&nbsp;trains par heure et par voie.</li>
     <li><strong>Le coût.</strong> {{ m.cost.total | 1 }}&nbsp;Md€, tiré de rares exemples de gares souterraines construites sous des gares en service&nbsp;: de {{ m.cost_low | 0 }} à {{ m.cost_high | 0 }}&nbsp;Md€ selon les prix et les aléas retenus. Le sol sous la gare de Lyon et Montparnasse n’est pas étudié.</li>
     <li><strong>L’accès aux quais d’une gare souterraine.</strong> Supposé aussi rapide qu’aujourd’hui&nbsp;; deux minutes de plus pour chaque voyageur retireraient {{ 1 - d.french.study.central.tests['Every passenger takes 2 minutes longer to board than today'].benefits / d.french.study.central.benefit_total | pct }} des bénéfices.</li>
-    <li><strong>Qui traverse Paris.</strong> Aucun comptage public récent des trajets d’un côté de Paris à l’autre&nbsp;; les nouveaux voyages sont estimés à partir des changements de train que le projet supprime.</li>
+    <li><strong>Qui traverse Paris.</strong> Aucun comptage public récent des trajets d’un côté de Paris à l’autre&nbsp;; les nouveaux voyages sont estimés à partir des changements de train que le projet supprime. Le résultat est un scénario exploratoire&nbsp;: distinguer les voyageurs qui changent d’itinéraire, ceux qui quittent la voiture ou l’avion et les déplacements entièrement nouveaux demande des données d’enquête (voir <a class="xref" href="#traffic.tgv">trois sortes de nouveaux voyageurs</a>).</li>
     <li><strong>Les coûts d’exploitation.</strong> Les rares références françaises varient du simple au triple&nbsp;: les recettes propres du projet couvrent de {{ f.high_running.ops_cover | pct }} à {{ f.low_running.ops_cover | pct }} des coûts d’exploitation sur cette fourchette.</li>
   </ul>
   <p>Chaque hypothèse, avec ce qui se passe si elle est fausse, figure dans <a class="xref" href="#method.assumptions">les hypothèses sans données</a>, et chaque question ouverte dans <a class="xref" href="#risks.verify">ce qu’il faut vérifier, point par point</a>.</p>
