@@ -104,6 +104,8 @@ a.xref .xnum { font-style: normal; font-weight: 600; font-size: .88em; margin-ri
 /* a point: a paragraph or list item that opens with a bold lead-in (set by the build), shown as a small heading over its text */
 .pt > strong:first-child { display: block; font-family: var(--display); font-size: 17px; letter-spacing: .005em; line-height: 1.25; margin-bottom: 6px }
 li.pt { margin-top: 4px }
+li > p.cont { margin-top: 12px }
+details > p + p, .tbl-wrap + p { margin-top: 14px }
 li.pt::marker { color: var(--accent) }
 .block > ul > li.pt:first-child { margin-top: 0 }
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 40px; align-items: start }

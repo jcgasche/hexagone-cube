@@ -23,6 +23,7 @@ src/sections/<id>/       one folder per section:
 model/                   the Python model (see README.md)
 tools/shot.js            screenshot of a section, prints console errors and horizontal overflow
 tools/check_model.js     checks that src/js/model.js gives the same numbers as the Python model
+tools/split_paragraphs.py  cuts long paragraphs at sentence ends, English and French, words unchanged
 tools/check_algorithms.js  writes the runnable .py of every algorithm as the page does, and runs each with python3
 src/algorithms/          'See the algorithm used': algorithms.json (which figures come from which part of the model, the
                          explanation in English and French, the code to show, what the .py runs), algo.js and algo.css (the dialog)
@@ -86,6 +87,8 @@ the heading, which comes from the manifest. Then a series of blocks:
 - **Points.** A paragraph or list item that opens with a bold phrase ending in a full stop or a colon (`<p><strong>The rule.</strong> ...`)
   is shown with that phrase as a small heading over its text (the build adds the class `pt`). A bold phrase that runs into the sentence
   (`<strong>London had no fast line;</strong> Paris has five`) stays inline.
+- **Short paragraphs.** Keep a paragraph under about 480 characters. `python3 tools/split_paragraphs.py` splits longer ones at sentence ends in
+  both languages, without changing a word, and updates the French hash. A list item continues in `<p class="cont">`.
 - **Formulas.** A rule or a calculation that the text states in words can be set apart, like a displayed equation, in both languages:
   `<div class="formula"><span class="f-label">The platform rule</span><div class="f-math"><span class="cl">...</span><span class="cl">...</span></div><p class="f-note">What the symbols are.</p></div>`.
   Inside `.f-math`: `<var>` for a named quantity, `<span class="op">×</span>` for an operator, `<span class="frac"><span>a</span><span>b</span></span>` for a
