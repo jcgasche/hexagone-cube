@@ -1,4 +1,4 @@
-<!-- en: 4bb1d4fb11 -->
+<!-- en: 445982eb08 -->
 <p class="lede">Ce chapitre répond à six questions, dans l’ordre&nbsp;: ce que le projet coûte à construire, ce qu’il coûte et rapporte chaque année, ce qu’il rend au pays, ce que les trains traversants changent à travers la France, comment l’argent et les avantages se répartissent année après année, et comment il se compare à d’autres projets. Les avantages sont évalués selon la méthode française officielle pour les projets de transport, les règles que l’État applique à chaque ligne nouvelle,[[fr_instruction]] et chaque règle est nommée là où elle sert. Deux lectures sont données côte à côte. La lecture simple de l’étude compare les avantages de l’année de mise en service, tenus constants, à la facture annuelle. La lecture officielle évalue chaque année, des premiers travaux jusqu’en 2140, et ramène le tout à sa valeur d’aujourd’hui (on dit qu’elle l’actualise).</p>
 
 <div class="block" id="economy.glance">
@@ -158,8 +158,11 @@
     </div>
     <div class="prose">
       <h3>Pourquoi le chiffre du carbone reste modeste</h3>
+      <h3>L’avion</h3>
       <p>Le trafic aérien entre les régions françaises est faible&nbsp;: 8,2 millions de passagers en 2025, la plupart vers Nice et Toulouse, qui restent à plus de cinq heures de train même avec le projet, et les liaisons que le projet fait passer sous quatre heures en comptent chacune quelques centaines de milliers.[[dgac25]]</p>
+      <h3>La voiture</h3>
       <p>Le levier le plus important est la voiture, qui assure la plupart des longs trajets en France&nbsp;: un quart des nouveaux trajets comptés dans le modèle en viennent, {{ d.french.study.central.benefits[d.french.names.key.carbon_car] | m }}&nbsp;M€ de carbone par an dans la famille 5, et le scénario officiel décarbone les voitures d’ici 2050, après quoi le gain ne porte plus que sur les accidents, le bruit et la congestion.[[fr_ref]]</p>
+      <h3>Ce que montre le tableau</h3>
       <p>Ce que montre le tableau, c’est l’autre moitié de l’histoire&nbsp;: pour les week-ends et les vacances, des millions de personnes en région gagnent un train toutes les heures, direct ou avec une correspondance rapide dans une même gare, vers des régions qu’elles ne pouvaient atteindre qu’en changeant de gare à Paris. Le calcul valorise ce choix à travers les trajets qu’il ajoute&nbsp;; il ne valorise rien pour les voyageurs qui avaient déjà un train direct.</p>
     </div>
   </div>
@@ -197,7 +200,9 @@
     </div>
   </div>
   <h3>Comment le gain croît au fil des ans</h3>
+  <h3>Logements et emplois se déplacent</h3>
   <p>Le calcul garde les logements et les emplois là où le recensement de 2022 les a trouvés. Entreprises et ménages se rapprochent des lieux mieux desservis en quinze à vingt ans&nbsp;: l’évaluation du Grand Paris Express modélise ce mouvement, et sa contre-expertise note que les effets de localisation ne sont pas complets à la mise en service et continuent de croître jusqu’en 2035.[[ce_l15]]</p>
+  <h3>Comment le gain augmente</h3>
   <p>Ici, le gain des navetteurs augmente de moitié en vingt ans dans le cas central, pas du tout dans le cas bas, et double dans le cas haut, en plus de la croissance officielle des trajets et de la valeur du temps&nbsp;: {{ d.french.timeline.jobs.users[12] | m }}&nbsp;M€ en {{ d.french.params.open | str }}, {{ d.french.timeline.jobs.users[32] | m }}&nbsp;M€ en 2060, {{ d.french.timeline.jobs.users[42] | m }}&nbsp;M€ en {{ d.french.params.last | str }}, puis un niveau constant.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Accès à l’emploi&nbsp;: {{ d.french.timeline.jobs.users[12] | m }}&nbsp;M€ par an à la mise en service, {{ d.french.timeline.jobs.users[42] | m }}&nbsp;M€ en {{ d.french.params.last | str }}</strong><span>Millions d’euros par an&nbsp;: le gain propre des navetteurs et les effets élargis présentés à part, du cas bas au cas haut</span></div>
@@ -229,6 +234,7 @@
 <div class="block" id="economy.method">
   <h2>Comment les règles françaises ont été appliquées</h2>
   <p>La France évalue chaque projet de transport avec une seule méthode, fixée par une instruction de 2014 et un ensemble de fiches outils du ministère des Transports.[[fr_instruction, fr_v1]] Son chiffre principal est une valeur actualisée nette&nbsp;: chaque coût et chaque avantage de chaque année, ramené à sa valeur d’aujourd’hui avec un taux d’actualisation, coûts déduits.</p>
+  <h3>Comment lire le tableau</h3>
   <p>Le tableau dit ce qu’est chaque règle, la valeur retenue ici, et où elle s’applique sur cette page. La lecture simple propre à l’étude est gardée à côté parce qu’elle ne demande aucune prévision&nbsp;: elle vérifie si les avantages d’une année au trafic d’aujourd’hui couvrent la facture d’une année.</p>
   <div class="formula"><span class="f-label">Valeur actuelle nette</span><div class="f-math"><span class="cl"><var>VAN</var><span class="op">=</span><span class="sum"><span>{{ d.french.params.resid_end | str }}</span><span class="sig">∑</span><span><var>t</var> = {{ d.french.params.build_start | str }}</span></span><span class="frac"><span><var>avantages</var><sub><var>t</var></sub> − <var>coûts</var><sub><var>t</var></sub></span><span>(1 + {{ d.french.params.rate | pct1 }})<sup><var>t</var> − {{ d.french.params.base_year | str }}</sup></span></span><span class="op">=</span><span class="res">+{{ d.french.cases.central.npv | 1 }} Md€</span></span></div><p class="f-note">Les avantages de chaque année moins ses coûts, en euros de {{ d.french.params.base_year | str }}, chaque année comptant moins à mesure qu’elle s’éloigne ; la construction est un coût des premières années.</p></div>
   <div class="tbl-wrap"><table class="tbl">
@@ -378,6 +384,7 @@
   <div class="callout warn"><b>Croissance et place se recoupent</b>
     <p>Les avantages ne peuvent croître de {{ d.french.params.ld_growth | pct1 }} par an pendant trente ans que si les trains peuvent porter les voyageurs. La croissance de la lecture officielle a donc besoin de la place que le projet doit libérer&nbsp;: la place aux heures de pointe de la famille 8 est la condition de la croissance, pas un avantage en plus, et c’est pourquoi elle n’est valorisée que sur les trajets que les gares terminus devraient refuser.</p>
   </div>
+  <h3>Ce qui trancherait les points ouverts</h3>
   <p>Ce qui trancherait les plus gros points ouverts, et qui peut le faire&nbsp;:</p>
   <ol>
     <li><strong>La place pour plus de trains (point à étudier I1).</strong> Le calcul valorise à {{ d.french.params.cap_value | 0 }}&nbsp;€ chacun les trajets que les gares terminus devraient refuser. L’avis du gestionnaire d’infrastructure, SNCF Réseau, sur le moment où chaque gare terminus et chaque ligne sera saturée, avec et sans le projet, remplacerait cette hypothèse. Sans aucune valeur pour la place, la valeur nette est de +{{ d.french.cases.no_capacity.npv | 1 }}&nbsp;Md€&nbsp;; à {{ d.french.params.cap_value * 2 | 0 }}&nbsp;€ le trajet, elle est de +{{ d.french.cases.capacity_40.npv | 1 }}&nbsp;Md€.</li>

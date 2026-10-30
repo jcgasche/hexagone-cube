@@ -87,6 +87,9 @@ the heading, which comes from the manifest. Then a series of blocks:
 - **Points.** A paragraph or list item that opens with a bold phrase ending in a full stop or a colon (`<p><strong>The rule.</strong> ...`)
   is shown with that phrase as a small heading over its text (the build adds the class `pt`). A bold phrase that runs into the sentence
   (`<strong>London had no fast line;</strong> Paris has five`) stays inline.
+- **Sub-parts.** Give every point of a part its own title: `<h3>What it is about</h3>` then short text that makes the point. A paragraph that
+  opens with a bold phrase (`<p><strong>Who pays.</strong> ...`) in the running text becomes such a title at build time. Both are numbered
+  9.1.1, 9.1.2 automatically, and their text lines up under the title.
 - **Short paragraphs.** Keep a paragraph under about 480 characters. `python3 tools/split_paragraphs.py` splits longer ones at sentence ends in
   both languages, without changing a word, and updates the French hash. A list item continues in `<p class="cont">`.
 - **Formulas.** A rule or a calculation that the text states in words can be set apart, like a displayed equation, in both languages:

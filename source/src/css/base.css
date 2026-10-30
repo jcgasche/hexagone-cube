@@ -94,7 +94,14 @@ main .page:not(.presentation) h1 { font-size: clamp(30px, 4.6vw, 42px); line-hei
 .block h3 { font-size: 20px; line-height: 1.25; margin-top: 22px; display: flex; gap: 10px; align-items: baseline }
 h2 > .num, h3 > .num { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); letter-spacing: 0; flex: none }
 h3 > .num { color: var(--muted) }
-@media (min-width: 760px) { .block > :not(h2):not(.algo-link) { margin-left: 28px } .block > .algo-link { margin-left: 28px } }
+h3 > .num { min-width: 3.1em }
+@media (min-width: 760px) {
+  .block > :not(h2) { margin-left: 28px }
+  /* under a numbered sub-part, the text lines up with the title, past its number */
+  .block > h3 ~ :is(p, ul, ol, .formula, .callout), .prose > h3 ~ :is(p, ul, ol, .formula, .callout) { margin-left: calc(28px + 3.1em + 10px); max-width: 62ch }
+  .prose > h3 ~ :is(p, ul, ol, .formula, .callout) { margin-left: calc(3.1em + 10px) }
+  .block > .cols { margin-left: 28px }
+}
 a.xref .xnum { font-style: normal; font-weight: 600; font-size: .88em; margin-right: .32em; font-variant-numeric: tabular-nums }
 .eyebrow { font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--accent); font-weight: 600 }
 .lede { max-width: 66ch; font-size: 19px; line-height: 1.55; color: var(--text) }

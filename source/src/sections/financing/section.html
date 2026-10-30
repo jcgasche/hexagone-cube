@@ -75,6 +75,7 @@
 <div class="block" id="financing.charge">
   <h2>A charge on high-speed passengers who use what the project adds</h2>
   <p>The proposal tested: nothing changes for a passenger who boards or leaves at the station of their own line, Gare de Lyon for the south-east, Montparnasse for the Atlantic coast, Nord-Est, entered from either historic hall, for the north and the east. Every train still stops there.</p>
+  <h3>What a passenger pays</h3>
   <p>A passenger who boards or leaves at another station, which their line did not serve before, pays €{{ fp.charge_end | 2 }}, the price of a metro ticket in 2026.[[fares26]] A passenger who crosses Paris pays €{{ fp.charge_through | 2 }}, on a direct train or with a change inside one station. Each passenger can avoid the charge by doing what they do today, so the charge never makes a journey dearer than it is now.</p>
   <div class="cols">
     <div class="prose">
@@ -101,12 +102,14 @@
   <p><strong>Collecting it through the operators.</strong> The charge could also be billed to the train operators as a station charge per stop at the new stations and per train crossing Paris, rather than printed on each ticket. Operators would spread it across their fares as they see fit; passengers on the most sensitive fares would then see less of it, which is the case of a response of 0.5 rather than 0.7: {{ f.resp05.tgv.net_new - f.central.tgv.net_new | 1 }} million more journeys a year. Both can be tried in <a class="xref" href="#financing.calculator">the calculator</a>.</p>
   <p><strong>Is it possible in law?</strong> Two routes exist. Station charges are regulated at cost plus a return: €1,260 million a year for all French stations in 2026.[[fin_art069]] The cost of the new stations would enter that base and be billed to train operators, who pass it on. European law also lets a track owner charge more for a specific project, on the basis of its long-term cost.[[fin_dir2012]]</p>
   <p>The other route is a levy written into a budget law, as for the airport express, repaid in part by a levy on air passengers.[[fin_cdgxlevy, cdgx2]] Precedents for the level: the solidarity tax on a flight from Paris within Europe is €7.40;[[fin_airtax]] operators pay the Channel Tunnel about €35 per passenger (derived, upper bound).[[fin_getlink]]</p>
+  <h3>Legal form</h3>
   <p>A charge that depends on the station used and on crossing Paris, not on every ticket, is a matter for the legal form chosen (study point D7). The figures here take the charge as free of VAT; if it carried the 10% VAT of tickets, the project would keep €{{ fp.charge_end / 1.1 | 2 }} of each €{{ fp.charge_end | 2 }}.</p>
 </div>
 
 <div class="block" id="financing.rex">
   <h2>A charge on regional express passengers</h2>
   <p>Regional express trains (TER) would run in the TGV tunnels, and every one of them would run through Paris. Northern TER would run through Nord-Est to Montparnasse and on to the Atlantic side, so their second station is Montparnasse; eastern TER would run through Nord-Est to Gare de Lyon and on to Burgundy, so their second station is Gare de Lyon; Atlantic TER and the TER of Gare de Lyon would run through to Nord-Est, their second station.</p>
+  <h3>The charge tested</h3>
   <p>Line R, a suburban line, stays on the surface at Gare de Lyon and pays nothing. The proposal tested: €{{ fp.rex_second | 2 }} for a passenger who gets off at the second station, the price of the metro ticket that passenger no longer buys;[[fares26]] €{{ fp.rex_through | 2 }} for a passenger who crosses Paris without getting off. Nothing for a passenger who gets off at the first station, as today.</p>
   <div class="tbl-wrap"><table class="tbl">
     <thead><tr><th>Who pays</th><th class="num">Passengers a year, million</th><th class="num">Charge</th><th class="num">€ million a year</th><th>Where the number comes from</th></tr></thead>

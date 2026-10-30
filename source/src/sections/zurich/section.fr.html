@@ -1,4 +1,4 @@
-<!-- en: 41e7ff0571 -->
+<!-- en: bfd185f3ba -->
 <p class="lede">La gare centrale de Zurich était une gare terminus : 16 voies qui s’arrêtaient sur des heurtoirs en plein centre-ville. Plutôt que de l’agrandir, le canton a construit à deux reprises une gare traversante à quatre voies en dessous, en 1990 et en 2014, chacune avec son propre tunnel. Les huit voies traversantes représentent moins d’un tiers des voies à quai de la gare et reçoivent, selon un décompte approximatif, près de la moitié de ses trains.</p>
 
 <div class="block" id="zurich.layout">
@@ -165,6 +165,7 @@
   </div>
   <p><strong>La référence pour Paris.</strong> Les quatre voies traversantes de Löwenstrasse reçoivent environ 460 trains par jour,[[zvv]] soit en moyenne environ 6 par voie et par heure sur une journée de service de 19 à 20 heures (déduit). La règle utilisée pour les gares parisiennes dimensionne une voie TGV à {{ m.per_track | 0 }} trains par heure : un arrêt de {{ m.stop_min | 0 }} minutes, {{ m.reserve_min | 0 }} minutes réservées à un train en retard et {{ m.clear_min | 0 }} minutes entre un départ et l’arrivée suivante, soit un créneau de {{ m.stop_min + m.reserve_min + m.clear_min | 0 }} minutes <span class="tag assume">hypothèse</span>.</p>
   <p>Avec les lignes pleines, les six voies TGV de Nord-Est et de Montparnasse sont chargées à {{ m.service_full.nordest_load | 1 }} et {{ m.service_full.montparnasse_load | 1 }} trains par heure et par voie, et les huit de la gare de Lyon à {{ m.service_full.lyon_stops / m.cost.detail['Gare de Lyon'].hs | 1 }}, la quatrième voie de chaque sens y recevant aussi les TER : voir <a class="xref" href="#service.platforms">combien de quais</a>. Les deux décomptes ne sont pas tout à fait comparables.</p>
+  <h3>Les différences avec Paris</h3>
   <p>Zurich mêle trains grandes lignes et trains de banlieue sur les mêmes quatre voies, et ses trains se concentrent autour de l’heure pleine ; Paris donne aux TER leurs propres quais, sauf sur la quatrième voie de chaque sens à la gare de Lyon, et répartit les arrêts sur toute l’heure.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Les voies traversantes de Zurich reçoivent en moyenne environ 6 trains par heure chacune ; la règle parisienne en permet {{ m.per_track | 0 }} et charge les voies de {{ m.service_full.lyon_stops / m.cost.detail['Gare de Lyon'].hs | 1 }} à {{ m.service_full.montparnasse_load | 1 }}</strong><span>Trains par heure et par voie à quai. Zurich : tous les trains, en moyenne sur la journée (déduit). Paris : voies TGV, selon la règle de cette étude</span></div>

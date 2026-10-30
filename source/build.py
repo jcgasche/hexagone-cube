@@ -330,8 +330,27 @@ def mark_points(body):
     return POINT.sub(lambda m: f'<{m.group(1)} class="pt">{m.group(2)}', body)
 
 
+TAG = re.compile(r'<(/?)(div|figure|details|table|ul|ol)\b([^>]*)>|<p class="pt"><strong>((?:(?!</strong>).)*)</strong>')
+def promote_points(body, longest=110):
+    """A point that stands in the running text of a block, not in a card, a figure or a list, is a sub-part: its bold phrase becomes an
+    <h3>, numbered with the others, and the rest of the paragraph its content."""
+    stack, found = [], []
+    for mo in TAG.finditer(body):
+        if mo.group(4) is not None:
+            title = mo.group(4)
+            if stack and all(t == 'div' and c.split() and c.split()[0] in ('block', 'cols', 'prose') for t, c in stack) and len(re.sub(r'<[^>]+>', '', title)) <= longest:
+                found.append(mo)
+        elif mo.group(1): stack and stack.pop()
+        elif not mo.group(0).endswith('/>'):
+            c = re.search(r'class="([^"]*)"', mo.group(3) or ''); stack.append((mo.group(2), c.group(1) if c else ''))
+    for mo in reversed(found):
+        title = re.sub(r'[\s\u00a0]*[.:]$', '', mo.group(4)); z = body.index('</p>', mo.end()); rest = body[mo.end():z].strip()
+        body = body[:mo.start()] + f'<h3 class="sub">{title}</h3>' + (f'\n<p>{rest}</p>' if rest else '') + body[z + 4:]
+    return body
+
+
 FIG_WORD = {'en': 'Figure', 'fr': 'Figure'}
-H2 = re.compile(r'<h2>'); H3 = re.compile(r'<h3>'); FIG = re.compile(r'<figure class="fig[^"]*"[^>]*>'); FIG_HEAD = re.compile(r'<div class="fig-head">')
+H2 = re.compile(r'<h2>'); H3 = re.compile(r'<h3( class="sub")?>'); FIG = re.compile(r'<figure class="fig[^"]*"[^>]*>'); FIG_HEAD = re.compile(r'<div class="fig-head">')
 
 
 def number_body(body, label, lang):
@@ -346,7 +365,7 @@ def number_body(body, label, lang):
         title = re.sub(r'<[^>]+>', '', chunk[mo.end():chunk.index('</h2>', mo.end())]).strip()
         chunk = chunk[:mo.start()] + f'<h2><span class="num">{n}</span>' + chunk[mo.end():]
         j = [0]
-        def h3(m): j[0] += 1; return f'<h3><span class="num">{n}.{j[0]}</span>'
+        def h3(m): j[0] += 1; return f'<h3{m.group(1) or ""}><span class="num">{n}.{j[0]}</span>'
         chunk = H3.sub(h3, chunk)
         out.append((a, z, chunk))
         if bid: nums[bid] = n; entries.append((bid, n, title))
@@ -485,16 +504,16 @@ def build(a, lang, out):
         nav.append(f'    <a href="#{s["id"]}"><i>{s["label"]}</i><span>{html.escape(s["nav"])}</span></a>')
         body = s['body'].replace('<!--SOURCES-->', sources_table(numbers, sources, lang))
         body = render_cites(body, numbers, sources, s['id'], problems)
-        body = mark_points(body)
+        body = promote_points(mark_points(body))
         if s.get('algo'):                              # a link under every block whose figures come from the model
             blocks = top_blocks(body)
             if len(blocks) != len(s['algo']): problems.append(f"{s['id']}: {len(s['algo'])} blocks in the source, {len(blocks)} once built")
             else:
                 for (_, z, _), (key, algos, _) in sorted(zip(blocks, s["algo"]), key=lambda x: -x[0][1]):
                     if algos: body = body[:z] + algo_link(lang, key, algos) + body[z:]
-        if s.get('label'):                             # chapters and annexes: numbered parts, figures, and their list in the contents
-            body, bn, entries = number_body(body, s['label'], lang)
-            part_nums.update(bn); part_nums[s['id']] = s['label']
+        if s.get('label') or s['id'] == 'summary':     # chapters and annexes: numbered parts, figures, and their list in the contents
+            body, bn, entries = number_body(body, s['label'] or 'S', lang)
+            part_nums.update(bn); part_nums[s['id']] = s['label'] or 'S'
             if entries: nav.append('    <div class="subs">' + ''.join(f'<a href="#{i}"><i>{n}</i><span>{html.escape(t)}</span></a>' for i, n, t in entries) + '</div>')
         lede = ''
         mo = re.match(r'\s*(<p class="lede">.*?</p>)', body, re.S)

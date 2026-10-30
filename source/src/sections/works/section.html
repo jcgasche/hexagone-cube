@@ -153,6 +153,7 @@
     </li>
     <li><strong>What is not known.</strong> The benefits of the first stage on its own have not been estimated. Whether the works should be staged at all, and whether the Atlantic could come first, has not been studied: staging is a study point.</li>
   </ul>
+  <h3>Whether to stop after the first stage</h3>
   <p>Whether to stop after the first stage cannot be judged yet, because its benefits on their own have not been estimated; see <a class="xref" href="#risks.stages">building in stages</a>. The whole cost is built up in <a class="xref" href="#cost.total">the cost chapter</a>.</p>
 </div>
 
@@ -182,6 +183,7 @@
     <figcaption>The link and its two junctions belong to the second stage; the junction cavern at Gare de Lyon is dug with the first-stage station. Before a stage opens, its stations keep running as terminals. In Zürich the terminal stayed open throughout, two or three tracks at a time being shortened above the works.[[w_zh_bartec, w_zh_tec21]] Whether the Paris terminals can spare platforms in the same way is not known: Gare du Nord was turned down as the terminal of the airport express for lack of capacity,[[cdgx]] and the line to Lyon is being raised from 13 to 16 trains an hour by 2030.[[lgvse]]</figcaption>
   </figure>
   <h3>Is twelve years plausible?</h3>
+  <h3>How long similar projects took</h3>
   <p>Smaller projects of the same kind took seven to thirteen years, and one is past twenty. Montparnasse ({{ m.cost.tracks['Montparnasse'] | 0 }} tracks), Gare de Lyon ({{ m.cost.tracks['Gare de Lyon'] | 0 }}) and Saint-Lazare ({{ m.cost.tracks['Saint-Lazare'] | 0 }}) are smaller than Paris Nord-Est and may take less time. The second stage holds most of the tunnel, {{ m.stages.second.km | 1 }} km of {{ m.cost.tunnel_km | 1 }}: boring it in about five years would need several machines at once, as on the Elizabeth line, where eight machines bored 42 km in three years.[[w_tunneltalk]] Whether that shortens or lengthens the critical path of the second stage is to be checked.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Built projects far smaller than this one took 7 to 13 years</strong><span>Years from the start of the main works to the first opening</span></div>
@@ -193,6 +195,7 @@
     </ul>
     <figcaption>Zürich: start of main works to the opening of the station.[[w_zh_start, zvv]] RER E: award of the civil contracts to the opening to Nanterre, first planned for 2020.[[d92lots, w_rere24, w_d92delay]] Elizabeth line: start of works (unverified) to the opening of the central section, planned for December 2018.[[w_wiki_crossrail, w_tfl22, nao21]] Stuttgart: start of works (unverified) to the opening now planned.[[w_wiki_s21, s21]]</figcaption>
   </figure>
+  <h3>What a longer schedule costs</h3>
   <p>A longer schedule costs money as well as time, because interest runs during the works. Over {{ m.params.build_years | 0 }} years it adds {{ m.idc - 1 | pct }} to the cost. If the works took 15 years, the yearly cost of the project would rise by {{ m.sens['Works take 15 years, not 12'].cost / m.yearly.cost - 1 | pct1 }}; see <a class="xref" href="#risks.sensitivity">the sensitivity tests</a>.</p>
   <div class="cols">
     <div class="card">

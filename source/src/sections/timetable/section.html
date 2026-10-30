@@ -72,12 +72,15 @@
     <div class="tile" style="--tc: var(--s2)"><span class="n">+{{ m.hour_full.Atlantic / 9 - 1 | pct }}</span><span class="k">high-speed departures an hour on the Atlantic side</span><span class="d">From Montparnasse's 9 today to {{ m.hour_full.Atlantic | 0 }}; +{{ m.hour_full.Atlantic / 11 - 1 | pct }} against the 11 planned after its works[[ae14]]</span></div>
   </div>
   <p>The third figure counts each train once for each line it uses, as the first two do. {{ d.timetable.table.grid.sides.max.NE['in'].trains | 0 }} trains an hour each way from the north and east would mean {{ d.timetable.table.grid.sides.max.NE['in'].trains - m.hour_full.North - m.hour_full.East | 0 }} more than this study assumes for those lines today; no capacity figure was found for the northern and eastern high-speed lines, whose signalling is rated at about 15 trains an hour.[[cgpc04]]</p>
+  <h3>What the stations allow, not a forecast</h3>
   <p>So this is what the stations allow, not a forecast <span class="tag assume">assumption</span>. Whether the lines, rather than the terminals, cap today's traffic is study point I1 in <a class="xref" href="#risks.verify">what to verify</a>. The map and the clocks below show all three hours.</p>
 </div>
 
 <div class="block" id="timetable.map">
   <h2>The hour at the platforms and on the map, in step</h2>
+  <h3>How to read it</h3>
   <p>Press play: the three clocks and the map run the same hour together. Choose today's traffic or the most the three stations can take. Each train has the colour of the two lines it joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way.</p>
+  <h3>All trains</h3>
   <p>The second tab, all trains, adds the others: TGVs become squares, regional express trains are ringed grey dots running in the TGV tunnels between the TGVs, and the two new suburban lines, RER G (today's lines P and N, joined) and RER F (today's lines H, K and L), are dots, one colour for each line, in their own tunnels.</p>
   <div class="controls" id="tt-scen-2"></div>
   <div class="controls" id="tt-layer"></div>
@@ -105,8 +108,11 @@
 
 <div class="block" id="timetable.london">
   <h2>London trains, running through</h2>
+  <h3>London trains today</h3>
   <p>Today London trains end at Gare du Nord: 12 non-stop trains a day each way, from tracks closed off for the border checks. A passenger from Lyon to London crosses Paris between two stations and changes twice, at Paris and at London, a trip sold by Eurostar in about 5 h 30 (read on the operator's site, October 2026, unverified).</p>
+  <h3>London trains in this timetable</h3>
   <p>In this timetable London trains are shown in their own colour, one an hour each way, running through Paris on a south-east path: from Marseille or Lyon they stop at Gare de Lyon and at Nord-Est, where the track they use is closed off for the border checks while their passengers, checked in the control hall, board <span class="tag assume">assumption</span>.</p>
+  <h3>Trains from London</h3>
   <p>Trains from London stop like any other: their passengers were checked before leaving London. Running through, a passenger from Lyon or Marseille stays on the same train to London. Passengers boarding in the south would be checked in a terminal of their own at Lyon or Marseille; whether that is done, and the same for Bordeaux by Montparnasse, is study point I5 in <a class="xref" href="#risks.verify">what to verify</a>.</p>
 </div>
 
@@ -140,6 +146,7 @@
       <tr><th>Frankfurt and Stuttgart Hbf, ICE, where trains reverse</th><td>6 minutes[[delfi_gtfs]]</td></tr>
       <tr><th>Zürich, long-distance trains that wait for connections</th><td>6 to 9 minutes (see <a class="xref" href="#zurich.why">Zürich</a>)</td></tr>
     </tbody></table></div>
+  <h3>The stop chosen</h3>
   <p>A Paris stop is closer to Lyon Part-Dieu than to Hamburg, so this study takes {{ d.timetable.table.grid.params.stop | 0 }} minutes, with {{ d.timetable.table.grid.params.reserve | 0 }} minutes of reserve on the track <span class="tag assume">assumption</span>. Longer stops have a price. With the project, for every passenger crossing Paris there are about {{ d.timetable.inputs.ratio | 0 }} who start or end their trip in Paris,[[art24]] and about half of them stay on board through one of the two stops, because their station is the train's second (derived from the 1,000 points of the <a class="xref" href="#access.map">access map</a>). The chart counts what each length of stop adds against {{ d.timetable.inputs.stop | 0 }} minutes.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Each minute of stop adds more than a million passenger-hours a year</strong><span>Passenger-hours a year added, compared with {{ d.timetable.inputs.stop | 0 }}-minute stops, for each length of stop</span></div>

@@ -1,4 +1,4 @@
-<!-- en: bc21222685 -->
+<!-- en: 224817e502 -->
 <p class="lede">Les trois gares vivent au rythme de la même horloge. Chaque train occupe sa voie pendant un créneau de {{ d.timetable.table.grid.params.slot | 0 }} minutes, la règle des quais de ce rapport (voir <a class="xref" href="#service.platforms">combien de quais</a>), et chaque trajet entre deux gares est calé sur {{ d.timetable.table.grid.params.run | 0 }} minutes : les trains venus de l’extérieur de Paris arrivent donc dans chaque gare à :00, :0{{ d.timetable.table.grid.params.step | 0 }}, :0{{ 2 * d.timetable.table.grid.params.step | 0 }}, puis toutes les {{ d.timetable.table.grid.params.step | 0 }} minutes. C’est plus lent que ce que permettent les tunnels : un train pourrait aller de Nord-Est ou de Montparnasse à Gare de Lyon en {{ d.timetable.table.grid.params.technical.L | 1 }} minutes et de Nord-Est à Montparnasse en {{ d.timetable.table.grid.params.technical.M | 1 }}, mais donner à chaque trajet les mêmes {{ d.timetable.table.grid.params.run | 0 }} minutes est ce qui garde les trois gares sur une seule horloge (la carte ci-dessous montre les deux temps). Trois voies dans chaque sens prennent {{ d.timetable.table.grid.params.places | 0 }} trains par heure : assez pour les lignes du sud à pleine capacité, sans aucun créneau de reste. L’heure chargée d’aujourd’hui y tient avec {{ d.timetable.table.grid.sides.today.MP['in'].free | 0 }} créneaux libres de chaque côté.</p>
 
 <div class="callout warn"><b>Une esquisse d’horaire, pas un horaire</b><p>Les minutes ci-dessous suivent quelques règles énoncées : la durée pendant laquelle un train s’arrête et occupe sa voie, le temps pendant lequel une voie reste vide entre deux trains, et l’espacement des trains dans un tunnel. Ni la signalisation, ni les bifurcations, ni les conducteurs n’ont été étudiés. Tout le rapport utilise cette cadence : des arrêts de {{ m.stop_min | 0 }} minutes et des trajets de {{ m.TH.L - m.stop_min | 0 }} minutes entre les gares, tels qu’ils sont construits ici. Les avantages comptent les temps de parcours qu’elle donne, et le bilan socio-économique y ajoute {{ d.french.study.central.benefits[d.french.names.key.timetable] | m }}&nbsp;M€ par an pour sa régularité&nbsp;: un horaire facile à lire et facile à rétablir. Le modèle est <code>model/table_timetable.py</code>, qui tourne en quelques secondes.</p></div>
@@ -74,12 +74,15 @@
     <div class="tile" style="--tc: var(--s2)"><span class="n">+{{ m.hour_full.Atlantic / 9 - 1 | pct }}</span><span class="k">de départs à grande vitesse par heure côté Atlantique</span><span class="d">Des 9 de Montparnasse aujourd’hui à {{ m.hour_full.Atlantic | 0 }} ; +{{ m.hour_full.Atlantic / 11 - 1 | pct }} par rapport aux 11 prévus après ses travaux[[ae14]]</span></div>
   </div>
   <p>Le troisième chiffre compte chaque train une fois pour chaque ligne qu’il emprunte, comme les deux premiers. {{ d.timetable.table.grid.sides.max.NE['in'].trains | 0 }} trains par heure dans chaque sens depuis le Nord et l’Est, ce serait {{ d.timetable.table.grid.sides.max.NE['in'].trains - m.hour_full.North - m.hour_full.East | 0 }} de plus que ce que cette étude retient aujourd’hui pour ces lignes ; aucun chiffre de capacité n’a été trouvé pour les LGV du Nord et de l’Est, dont la signalisation est donnée pour environ 15 trains par heure.[[cgpc04]]</p>
+  <h3>Ce que les gares permettent, pas une prévision</h3>
   <p>C’est donc ce que les gares permettent, et non une prévision <span class="tag assume">hypothèse</span>. Savoir si ce sont les lignes, plutôt que les terminus, qui plafonnent le trafic actuel est le point à étudier I1 dans <a class="xref" href="#risks.verify">ce qu’il faut vérifier</a>. La carte et les horloges ci-dessous montrent les trois heures.</p>
 </div>
 
 <div class="block" id="timetable.map">
   <h2>L’heure à quai et sur la carte, au même rythme</h2>
+  <h3>Comment la lire</h3>
   <p>Appuyez sur Lecture : les trois horloges et la carte déroulent ensemble la même heure. Choisissez le trafic d’aujourd’hui ou le maximum que les trois gares peuvent prendre. Chaque train a la couleur des deux lignes qu’il relie : plus foncée vers le Nord ou l’Est, et de l’Atlantique vers le Sud-Est ; plus claire dans l’autre sens.</p>
+  <h3>Tous les trains</h3>
   <p>Le second onglet, « Tous les trains », ajoute les autres : les TGV deviennent des carrés, les TER sont des points gris cerclés qui circulent dans les tunnels TGV entre les TGV, et les deux nouvelles lignes de banlieue, le RER G (les lignes P et N d’aujourd’hui, réunies) et le RER F (les lignes H, K et L d’aujourd’hui), sont des points, d’une couleur par ligne, dans leurs propres tunnels.</p>
   <div class="controls" id="tt-scen-2"></div>
   <div class="controls" id="tt-layer"></div>
@@ -107,8 +110,11 @@
 
 <div class="block" id="timetable.london">
   <h2>Les trains de Londres traversent Paris</h2>
+  <h3>Les trains de Londres aujourd’hui</h3>
   <p>Aujourd’hui, les trains de Londres s’arrêtent à la gare du Nord : 12 trains sans arrêt par jour dans chaque sens, au départ de voies isolées pour les contrôles aux frontières. Un voyageur de Lyon à Londres traverse Paris d’une gare à l’autre et change deux fois, à Paris et à Londres, un trajet vendu par Eurostar en 5 h 30 environ (lu sur le site de l’opérateur en octobre 2026, non vérifié).</p>
+  <h3>Les trains de Londres dans cet horaire</h3>
   <p>Dans cet horaire, les trains de Londres ont leur propre couleur, un par heure dans chaque sens, et traversent Paris sur un sillon du Sud-Est : depuis Marseille ou Lyon, ils s’arrêtent à la gare de Lyon et à Nord-Est, où la voie qu’ils utilisent est isolée pour les contrôles aux frontières pendant que leurs voyageurs, contrôlés dans la salle de contrôle, montent à bord <span class="tag assume">hypothèse</span>.</p>
+  <h3>Les trains venant de Londres</h3>
   <p>Les trains venant de Londres s’arrêtent comme les autres : leurs voyageurs ont été contrôlés avant de quitter Londres. Comme le train traverse Paris, un voyageur de Lyon ou de Marseille reste dans le même train jusqu’à Londres. Les voyageurs qui montent dans le sud seraient contrôlés dans un terminal à part à Lyon ou à Marseille ; savoir si cela se fera, et de même pour Bordeaux par Montparnasse, est le point à étudier I5 dans <a class="xref" href="#risks.verify">ce qu’il faut vérifier</a>.</p>
 </div>
 
@@ -143,6 +149,7 @@
       <tr><th>Francfort et Stuttgart Hbf, ICE, où les trains rebroussent</th><td>6 minutes[[delfi_gtfs]]</td></tr>
       <tr><th>Zurich, trains grandes lignes qui attendent les correspondances</th><td>6 à 9 minutes (voir <a class="xref" href="#zurich.why">Zurich</a>)</td></tr>
     </tbody></table></div>
+  <h3>L’arrêt retenu</h3>
   <p>Un arrêt à Paris ressemble davantage à Lyon Part-Dieu qu’à Hambourg : cette étude retient donc {{ d.timetable.table.grid.params.stop | 0 }} minutes, avec {{ d.timetable.table.grid.params.reserve | 0 }} minutes de réserve sur la voie <span class="tag assume">hypothèse</span>. Des arrêts plus longs ont un prix. Avec le projet, pour chaque voyageur qui traverse Paris, environ {{ d.timetable.inputs.ratio | 0 }} commencent ou terminent leur trajet à Paris,[[art24]] et à peu près la moitié d’entre eux restent à bord pendant l’un des deux arrêts, parce que leur gare est la deuxième du train (déduit des 1 000 points de la <a class="xref" href="#access.map">carte d’accès</a>). Le graphique compte ce que chaque durée d’arrêt ajoute par rapport à {{ d.timetable.inputs.stop | 0 }} minutes.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Chaque minute d’arrêt ajoute plus d’un million d’heures-voyageurs par an</strong><span>Heures-voyageurs ajoutées par an, par rapport à des arrêts de {{ d.timetable.inputs.stop | 0 }} minutes, pour chaque durée d’arrêt</span></div>

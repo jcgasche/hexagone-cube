@@ -1,4 +1,4 @@
-<!-- en: 2d9489fbb0 -->
+<!-- en: 46fb72bfc0 -->
 <p class="lede">Les gares seraient construites sous cinq gares terminus qui restent en service, avec {{ m.cost.tunnel_km | 1 }}&nbsp;km de tunnel sous la ville. Ce chapitre montre comment de tels travaux ont été menés ailleurs, ce qui changerait dans chacune des gares d’aujourd’hui, et comment le projet pourrait ouvrir en deux étapes. Le modèle suppose {{ m.params.build_years | 0 }}&nbsp;ans de travaux. C’est une hypothèse, pas un programme&nbsp;: il n’existe ni études de conception ni reconnaissance des sols.</p>
 
 <div class="block" id="works.methods">
@@ -156,6 +156,7 @@
     </li>
     <li><strong>Ce que l’on ne sait pas.</strong> Les avantages de la première étape seule n’ont pas été estimés. On n’a étudié ni s’il faut construire par étapes, ni si l’Atlantique pourrait passer en premier&nbsp;: le découpage en étapes est un point à étudier.</li>
   </ul>
+  <h3>S’arrêter après la première étape ?</h3>
   <p>On ne peut pas encore juger s’il faudrait s’arrêter après la première étape, car ses avantages seuls n’ont pas été estimés&nbsp;; voir <a class="xref" href="#risks.stages">construire par étapes</a>. Le coût complet est détaillé dans <a class="xref" href="#cost.total">le chapitre sur le coût</a>.</p>
 </div>
 
@@ -185,6 +186,7 @@
     <figcaption>La liaison et ses deux bifurcations relèvent de la deuxième étape&nbsp;; la caverne de bifurcation de la gare de Lyon est creusée avec la gare de la première étape. Avant l’ouverture d’une étape, ses gares continuent de fonctionner en terminus. À Zurich, la gare terminus est restée ouverte tout du long, deux ou trois voies à la fois étant raccourcies au-dessus des travaux.[[w_zh_bartec, w_zh_tec21]] On ne sait pas si les gares terminus parisiennes peuvent libérer des quais de la même façon&nbsp;: la gare du Nord a été écartée comme terminus de l’express de l’aéroport faute de capacité,[[cdgx]] et la ligne vers Lyon doit passer de 13 à 16 trains par heure d’ici 2030.[[lgvse]]</figcaption>
   </figure>
   <h3>Douze ans, est-ce plausible&nbsp;?</h3>
+  <h3>La durée de projets comparables</h3>
   <p>Des projets plus petits du même genre ont pris de sept à treize ans, et l’un dépasse vingt ans. Montparnasse ({{ m.cost.tracks['Montparnasse'] | 0 }} voies), la gare de Lyon ({{ m.cost.tracks['Gare de Lyon'] | 0 }}) et Saint-Lazare ({{ m.cost.tracks['Saint-Lazare'] | 0 }}) sont plus petites que Paris Nord-Est et pourraient demander moins de temps. La deuxième étape contient l’essentiel du tunnel, {{ m.stages.second.km | 1 }}&nbsp;km sur {{ m.cost.tunnel_km | 1 }}&nbsp;: le creuser en cinq ans environ demanderait plusieurs tunneliers à la fois, comme pour l’Elizabeth line, où huit tunneliers ont creusé 42&nbsp;km en trois ans.[[w_tunneltalk]] Reste à vérifier si cela raccourcit ou allonge le chemin critique de la deuxième étape.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Des projets réalisés, bien plus petits que celui-ci, ont pris de 7 à 13 ans</strong><span>Années entre le début des travaux principaux et la première ouverture</span></div>
@@ -196,6 +198,7 @@
     </ul>
     <figcaption>Zurich&nbsp;: du début des travaux principaux à l’ouverture de la gare.[[w_zh_start, zvv]] RER E&nbsp;: de l’attribution des marchés de génie civil à l’ouverture jusqu’à Nanterre, d’abord prévue pour 2020.[[d92lots, w_rere24, w_d92delay]] Elizabeth line&nbsp;: du début des travaux (non vérifié) à l’ouverture de la section centrale, prévue pour décembre 2018.[[w_wiki_crossrail, w_tfl22, nao21]] Stuttgart&nbsp;: du début des travaux (non vérifié) à l’ouverture aujourd’hui prévue.[[w_wiki_s21, s21]]</figcaption>
   </figure>
+  <h3>Ce que coûte un calendrier plus long</h3>
   <p>Un calendrier plus long coûte de l’argent autant que du temps, car les intérêts courent pendant les travaux. Sur {{ m.params.build_years | 0 }}&nbsp;ans, ils ajoutent {{ m.idc - 1 | pct }} au coût. Si les travaux duraient 15 ans, le coût annuel du projet augmenterait de {{ m.sens['Works take 15 years, not 12'].cost / m.yearly.cost - 1 | pct1 }}&nbsp;; voir <a class="xref" href="#risks.sensitivity">les tests de sensibilité</a>.</p>
   <div class="cols">
     <div class="card">

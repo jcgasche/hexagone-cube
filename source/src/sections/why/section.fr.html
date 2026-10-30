@@ -1,4 +1,4 @@
-<!-- en: 51f7688967 -->
+<!-- en: a787333e7a -->
 <p class="lede">Toutes les grandes lignes qui arrivent à Paris finissent sur un heurtoir, dans l’une de quatre gares séparées. Chaque train doit donc faire demi-tour, un voyageur qui traverse la France doit traverser la ville en métro, et les gares les plus chargées manquent de place pour plus de trains. D’autres villes ont réglé ce même problème en faisant passer les trains de part en part.</p>
 
 <div class="block" id="why.terminals">
@@ -12,7 +12,9 @@
   <div class="cols">
     <div class="prose">
       <p>Les trains à grande vitesse (TGV) venant du nord arrivent à la gare du Nord, ceux de l’est à la gare de l’Est, ceux du sud-est à la gare de Lyon et ceux de la côte atlantique à Montparnasse. Les trains de banlieue et les trains régionaux finissent dans ces quatre mêmes gares, et les lignes de banlieue de l’ouest dans une cinquième, Saint-Lazare.</p>
+      <h3>Terminus et gare traversante</h3>
       <p>Toutes quatre sont des <strong>gares terminus</strong> : la voie s’arrête au bout du quai, et un train ne peut repartir que par où il est venu. Une <strong>gare traversante</strong> est l’inverse : les trains arrivent par un bout et repartent par l’autre, sans faire demi-tour.</p>
+      <h3>Trois conséquences</h3>
       <p>Ces culs-de-sac ont trois conséquences. Un train occupe longtemps son quai pendant qu’il fait demi-tour. Un voyageur dont le trajet continue au-delà de Paris doit changer de gare. Et chaque ligne n’atteint qu’un coin de la ville. La suite du chapitre les reprend une à une.</p>
       <details>
         <summary><strong>Les mots de ce rapport</strong></summary>
@@ -55,7 +57,9 @@
 <div class="block" id="why.capacity">
   <h2>Une gare terminus utilise mal ses quais, et les grandes manquent de place</h2>
   <p>Un train qui arrive dans une gare terminus est vidé, contrôlé, souvent nettoyé et réapprovisionné, rempli de nouveau, puis renvoyé sur les voies par lesquelles il est arrivé. À Montparnasse, les neuf voies réservées aux trains à grande vitesse donnent au plus neuf départs par heure : un train par voie et par heure.[[ae14]]</p>
-  <p>Un TGV qui ne fait que s’arrêter a besoin de 3 minutes, ou de 4 à 5 dans les plus grandes gares.[[fnaut]] Les gares traversantes sont prévues pour quatre à six trains grandes lignes par heure sur chaque voie à quai : la nouvelle gare de Stuttgart, pas encore ouverte, en a atteint environ six lors d’un test de charge simulé.[[bt19, dhz]]</p>
+  <p>Un TGV qui ne fait que s’arrêter a besoin de 3 minutes, ou de 4 à 5 dans les plus grandes gares.[[fnaut]]</p>
+  <h3>Ce que reçoit une gare traversante</h3>
+  <p>Les gares traversantes sont prévues pour quatre à six trains grandes lignes par heure sur chaque voie à quai : la nouvelle gare de Stuttgart, pas encore ouverte, en a atteint environ six lors d’un test de charge simulé.[[bt19, dhz]]</p>
   <p>Une gare en service, la gare de la Löwenstrasse à Zurich, accueille environ 460 trains par jour sur quatre voies, soit environ six par heure sur chacune en moyenne,[[zvv]] même si les trains traversants qui y attendent des correspondances stationnent de 6 à 9 minutes (déduit des tableaux de départs ; voir <a class="xref" href="#zurich.results">Zurich</a>).[[zh_board_arr, zh_board_dep]]</p>
   <p><strong>La règle que cette étude applique à ses propres gares.</strong> Les quais sont affectés par sens, {{ m.tracks_per_direction | 0 }} voies dans chaque sens dans chaque gare. Un arrêt dure {{ m.stop_min | 0 }} minutes ; la voie reste ensuite réservée {{ m.reserve_min | 0 }} minutes de plus pour un train en retard, et après le départ il faut environ {{ m.clear_min | 0 }} minutes avant que le train suivant puisse arriver. Chaque train occupe donc une place de {{ m.stop_min + m.reserve_min + m.clear_min | 0 }} minutes et une voie reçoit {{ m.per_track | 0 }} trains par heure <span class="tag assume">hypothèse</span>, pour les trois chiffres, comme dans <a class="xref" href="#timetable">l’horaire</a>.</p>
   <p>Trois voies par sens reçoivent {{ 3 * m.per_track | 0 }} trains par heure, à peu près le maximum qu’apporte une ligne à grande vitesse, 15 à 16. Ce qui limite aujourd’hui le nombre de trains, les quais ou les lignes hors de Paris, est un point à étudier (I1 dans <a class="xref" href="#risks.verify">ce qu’il faut vérifier</a>). La façon dont la règle dimensionne les nouvelles gares est expliquée dans <a class="xref" href="#service.platforms">combien de quais</a>.</p>

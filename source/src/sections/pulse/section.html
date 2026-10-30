@@ -6,6 +6,7 @@
 <div class="block" id="pulse.idea">
   <h2>The idea: all the trains are in the station together</h2>
   <p>A regular-interval timetable repeats itself every hour: each line leaves at the same minutes all day. The Swiss network has had one since 23 May 1982.[[ch_nc1982]] The pulse adds a second rule. At the main stations, called nodes, the trains of all lines arrive at about the same time and leave again together a few minutes later.[[ch_fc1994]]</p>
+  <h3>How SBB describes it</h3>
   <p>In the words of SBB, the Swiss federal railway, trains and buses reach a node just before the full and the half hour, or at minutes 15 and 45, and leave shortly after.[[ch_sbb1997]] The passenger does not hunt for a connection: it is standing at another platform.</p>
   <div class="cols wide-left">
     <figure class="fig">
@@ -40,12 +41,14 @@
     </ul>
     <figcaption>2026 timetable (derived).[[zh_board_arr, zh_board_dep]] Trains that go back the way you came are not shown.</figcaption>
   </figure>
+  <h3>How long a change takes</h3>
   <p>The station's standard minimum for a change is 7 minutes.[[ch_probahn]] Shorter changes exist where the planner names the pair of trains: Bern to St. Gallen is sold with 4 minutes, because the two trains stand on the two sides of one platform.[[zh_search_stg]] Where no value is set, Swiss timetable data assume 2 minutes.[[ch_ski]]</p>
 </div>
 
 <div class="block" id="pulse.nodes">
   <h2>The nodes and the minute at which they beat</h2>
   <p>The plan of 1994 named seven nodes. Zürich, Basel, Bern and Winterthur are served at the full hour and, for a large part, at the half hour. Lausanne, Biel and Luzern are served at minutes 15 and 45, because the runs to them are slightly too long for the hour. A node at 15 and 45 needs a train every half hour to give good connections.[[ch_fc1994]]</p>
+  <h3>The 2026 timetable</h3>
   <p>The 2026 timetable still shows Zürich, Bern and Basel at 00 and 30, and Lausanne and Biel at 15 and 45. Luzern now gathers its trains around the hour, and St. Gallen behaves as a node of its own (derived from the timetable). Choose a station or a line.</p>
   <div class="controls" id="pu-view"></div>
   <div class="cols wide-left">
@@ -160,11 +163,15 @@
   <h2>What it would mean for Paris</h2>
   <div class="callout warn"><b>An illustration, not a timetable</b><p>What follows shows what a pulse needs and what the through stations would make possible. A sketch of one hour of trains at the three stations, and of what timing them for changes would give, is in the chapter on <a class="xref" href="#timetable">the timetable</a>. No benefit of a pulse is counted in the model behind this report.</p></div>
   <p>A pulse needs one thing that Paris lacks: a place where the trains of all lines stand together. Today its main lines end in separate terminals, and a passenger between the north or east of France and the south-east or the Atlantic coast changes stations across the city. In the model this takes {{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }} minutes from train to train. The three through stations do not create one such place either.</p>
+  <h3>How far apart the stations are</h3>
   <p>They are {{ m.TH.L | 0 }} minutes apart by train, a {{ m.run_min | 0 }}-minute run and a {{ m.stop_min | 0 }}-minute stop, every high-speed train calls at two of them, and half of the trains of each line pass each station: in the standard hour, {{ m.service.flows['Atlantic to north'] + m.service.flows['Atlantic to east'] | 0 }} of the {{ m.service.hour.Atlantic | 0 }} Atlantic trains run through Nord-Est to the north or the east and {{ m.service.link_each_way | 0 }} take the direct link to Gare de Lyon and the south-east, and the south-east line splits the same way: see <a class="xref" href="#service.pairing">which trains pair</a>.</p>
+  <h3>A partial meeting at each station</h3>
   <p>A timed meeting would therefore be partial at each station (derived from that pattern). At Nord-Est it could join the north and the east with the Atlantic coast and the south-east, and the north with the east, on the trains that pass there. At Gare de Lyon it could join the south-east with the north and the east, and by the link with the Atlantic coast.</p>
   <p>At Montparnasse it could join the Atlantic coast with the north, the east and the south-east. A passenger whose train does not call at the right station changes once more, or takes the next train of the hour. A change inside one station is taken as {{ m.connecting.central.pairs['Nord-Est'].change_clock | 1 }} clock minutes <span class="tag assume">assumption</span>, and about {{ m.connecting.central.direct_share | pct }} of the passengers crossing Paris would not change at all, because a train runs through: see <a class="xref" href="#crossing.tgv">crossing Paris</a>.</p>
   <p><strong>A pulse costs platforms.</strong> The number of platforms in this report assumes that stops are spread through the hour: {{ m.tracks_per_direction | 0 }} high-speed tracks each way at each station, {{ 2 * m.tracks_per_direction | 0 }} in all, each able to take {{ m.per_track | 0 }} trains an hour by the rule used, and loaded at {{ m.service_full.nordest_load | 1 }} trains an hour per track at Nord-Est, {{ m.service_full.montparnasse_load | 1 }} at Montparnasse and {{ m.service_full.lyon_load | 1 }} at Gare de Lyon when the lines are full: see <a class="xref" href="#service.platforms">how many platforms</a>.</p>
+  <h3>A pulse would need more tracks</h3>
   <p>A timetable in which trains meet at fixed minutes would need more tracks, for two reasons. More trains stand in the station at the same moment, and each stands longer: in Zürich a through train that waits for connections stops for 6 to 9 minutes, against 3 minutes for one that does not wait (derived, see <a class="xref" href="#zurich.why">Zürich</a>).</p>
+  <h3>The other side of the coin</h3>
   <p>The other side of the same coin: a pulse station is empty for most of the hour, so its average use, about 6 trains an hour per track at Zürich's Löwenstrasse (derived), is a design choice and not a ceiling. It says nothing about what six Paris tracks could take with stops spread evenly.</p>
   <figure class="fig">
     <div class="fig-head"><strong>A change inside one station: {{ m.connecting.central.pairs['Nord-Est'].change_clock | 1 }} minutes assumed, against {{ m.connecting.central.pairs['Lyon-Nord'].old_clock | 1 }} today between two stations</strong><span>Minutes from one train to the next, or from one station to the next. Paris: values of this study's model. Zürich: values of the 2026 timetable</span></div>
