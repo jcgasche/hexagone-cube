@@ -87,5 +87,9 @@
   "nav_fr": "Sources",
   "heading_fr": "Sources"
  },
- "title_fr": "Les gares traversantes de Paris"
+ "title_fr": "Les gares traversantes de Paris",
+ "next": {
+  "nav_fr": "La suite",
+  "heading_fr": "Ce qui reste à faire, et les données qu’il faut"
+ }
 }

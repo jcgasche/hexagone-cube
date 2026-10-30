@@ -1606,6 +1606,8 @@ body[data-page="presentation"] .menu-btn { display: none }
     <div class="subs"><a href="#risks.sensitivity"><i>13.1</i><span>How sure is the result?</span></a><a href="#risks.risks"><i>13.2</i><span>What could change the answer</span></a><a href="#risks.stages"><i>13.3</i><span>Stages and the decision</span></a><a href="#risks.verify"><i>13.4</i><span>What to verify, point by point</span></a></div>
     <a href="#limits"><i>14</i><span>Assumptions and limits</span></a>
     <div class="subs"><a href="#limits.what"><i>14.1</i><span>What this study is, and what it is not</span></a><a href="#limits.data"><i>14.2</i><span>What rests on data</span></a><a href="#limits.assumed"><i>14.3</i><span>The main assumptions with no data behind them yet</span></a><a href="#limits.range"><i>14.4</i><span>How far the result can move</span></a><a href="#limits.professional"><i>14.5</i><span>What a professional study would add</span></a><a href="#limits.correct"><i>14.6</i><span>Corrections are welcome</span></a></div>
+    <a href="#next"><i>15</i><span>What&#x27;s next</span></a>
+    <div class="subs"><a href="#next.list"><i>15.1</i><span>The work still to do, and the data it needs</span></a><a href="#next.help"><i>15.2</i><span>How to help</span></a></div>
     <h4>Annexes</h4>
     <a href="#zurich"><i>A</i><span>Zürich main station</span></a>
     <div class="subs"><a href="#zurich.layout"><i>A.1</i><span>Four stations in one</span></a><a href="#zurich.why"><i>A.2</i><span>Why through platforms, and not a bigger terminus</span></a><a href="#zurich.results"><i>A.3</i><span>What changed</span></a><a href="#zurich.lessons"><i>A.4</i><span>What Paris can take from it, and where the comparison stops</span></a></div>
@@ -1899,7 +1901,7 @@ body[data-page="presentation"] .menu-btn { display: none }
     <h3 class="pz-h2">All the figures, sources and assumptions</h3>
     <p class="pz-lead">Every number on this page comes from the study's model. The full report sets out how each one is made, what it rests on and what is still to verify.</p>
     <a class="pz-cta" href="#summary">Read the full report</a>
-    <p class="pz-more"><a href="#limits">Assumptions and limits</a><a href="#about">About this study</a></p>
+    <p class="pz-more"><a href="#limits">Assumptions and limits</a><a href="#next">What's next</a><a href="#about">About this study</a></p>
   </div>
 </section>
 </div>
@@ -4757,6 +4759,42 @@ body[data-page="presentation"] .menu-btn { display: none }
 <div class="block" id="limits.correct">
   <h2><span class="num">14.6</span>Corrections are welcome</h2>
   <p>A figure that looks wrong, a source that is better, a rule that the study misses: open an issue on the <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">study's GitHub page</a>, or write to <a href="mailto:hexagone.cube.paris@gmail.com">hexagone.cube.paris@gmail.com</a>. Each correction is carried into the model and into both languages.</p>
+</div>
+
+</section>
+<section class="page" id="next" data-title="What&#x27;s next" hidden>
+<header><span class="eyebrow">Chapter 15</span><h1>What is still to do, and the data it needs</h1><p class="lede">This study is far from finished. It is one person's first estimate, written to show that the idea deserves a professional study, and several of its figures rest on assumptions that only better data can replace. This chapter lists the work still to do, in order of how much each item could change the result, with the data it needs, why, and who could help. It is kept up to date: each row says where the item stands.</p></header>
+
+
+<div class="block" id="next.list">
+  <h2><span class="num">15.1</span>The work still to do, and the data it needs</h2>
+  <p>Each row has a status. <strong>Open:</strong> nobody is working on it yet. <strong>Asked:</strong> someone who can help has been contacted. <strong>Feedback received:</strong> an expert has answered and the study has been changed where needed. The full list of open questions, with the first answer this report gives to each, is in <a class="xref" href="#risks.verify"><i class="xnum">13.4</i>what to verify, point by point</a>.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Work</th><th>Data sought</th><th>Why it matters</th><th>Who could help</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><th>Who crosses Paris today, and between which stations</th><td>Counts of TGV passengers who change station in Paris, by pair of stations and of cities: ticket data, or a new survey in the stations like the one of 2012-13</td><td>The new traffic across Paris is in proportion to this count, and it is the largest share of the high-speed gain (study point I12; see <a class="xref" href="#traffic.tgv"><i class="xnum">10.3</i>traffic</a>)</td><td>SNCF Voyageurs; the rail regulator ART; researchers who hold survey data</td><td>Open</td></tr>
+      <tr><th>What kind of new passenger: other route, other mode, or a new trip</th><td>Surveys of what travellers would choose (revealed and stated preference), on trips across Paris and between regions</td><td>The rates of passengers kept per change come from Britain and Switzerland; whether they hold in Paris is not shown, and a forecast must tell the three kinds apart (see <a class="xref" href="#traffic.tgv"><i class="xnum">10.3</i>three kinds of new passenger</a>)</td><td>Transport demand modellers in universities and consultancies</td><td>Feedback received</td></tr>
+      <tr><th>What limits the number of trains today</th><td>Use of platforms and approach tracks at each terminal, hour by hour, and the capacity studies of the lines outside Paris</td><td>Decides whether through platforms bring more trains or only shorter stops (study point I1)</td><td>SNCF Réseau capacity planners</td><td>Open</td></tr>
+      <tr><th>Can the tunnels take a train every 1.5 minutes, and the platforms 15 TGVs an hour</th><td>A timetable simulation with the signalling (ETCS level 2), train performance and dwell times measured on long TGVs</td><td>The regional trains share the TGV tunnels only if trains can follow that closely, and the platform count rests on the 12-minute beat (study points I2 and I27; see <a class="xref" href="#timetable"><i class="xnum">7</i>the timetable</a>)</td><td>Signalling engineers and timetable planners, in France or Switzerland</td><td>Open</td></tr>
+      <tr><th>The ground under the stations and along the tunnels</th><td>Public borehole records (the BRGM's subsoil database), the old quarries of Paris, and the depth of the metro and RER lines to cross</td><td>Sets how deep each station must be, how it is built, and its cost (study points A4, A5, I24, I25; see <a class="xref" href="#stations"><i class="xnum">3</i>the stations</a>)</td><td>Tunnel and geotechnical engineers; the tunnelling association AFTES</td><td>Open</td></tr>
+      <tr><th>Where the tunnels, junctions and portals can go</th><td>Plans of the existing tunnels, foundations and networks along each route</td><td>The lengths are read from maps, and no junction has been drawn (study points I7 and A6)</td><td>Railway route designers</td><td>Open</td></tr>
+      <tr><th>Unit prices and the allowance for risk</th><td>Final costs, item by item, of deep stations and urban rail tunnels built recently in Europe</td><td>Cost is the largest single uncertainty of the result (study points I9 and I10; see <a class="xref" href="#cost.units"><i class="xnum">9.2</i>the prices used</a>)</td><td>Cost estimators; researchers who compare construction costs</td><td>Open</td></tr>
+      <tr><th>What it costs to run</th><td>Running costs of deep stations and tunnels in France, and what today's terminals cost that would stop</td><td>The two French records differ by a factor of three (study point I11; see <a class="xref" href="#financing.operations"><i class="xnum">11.2</i>running costs</a>)</td><td>SNCF Gares &amp; Connexions; SNCF Réseau; operators of comparable stations</td><td>Open</td></tr>
+      <tr><th>Reaching a platform underground</th><td>Walking times from the street and from the metro to deep platforms in comparable stations, and the flows they carry at peak</td><td>Two minutes more for every passenger would remove a fifth of the benefits (see <a class="xref" href="#limits.assumed"><i class="xnum">14.3</i>the main assumptions</a>)</td><td>Station designers; pedestrian flow modellers</td><td>Open</td></tr>
+      <tr><th>Suburban passengers on the merged lines</th><td>Ticket validations by station and the trips of line L riders, and the network times to Saint-Lazare</td><td>Sets how many RER F riders gain from running through (study points I22 and I23; see <a class="xref" href="#crossing.regional"><i class="xnum">8.2</i>regional and suburban passengers</a>)</td><td>Île-de-France Mobilités open data; regional planners</td><td>Open</td></tr>
+      <tr><th>Building under stations that stay open</th><td>Methods and stages from projects built under working stations, and the disruption they caused</td><td>Covered today only by the risk allowance (study point A10; see <a class="xref" href="#works.methods"><i class="xnum">4.1</i>the works</a>)</td><td>Contractors and tunnel engineers</td><td>Open</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="block" id="next.help">
+  <h2><span class="num">15.2</span>How to help</h2>
+  <ul>
+    <li><strong>A pointer to data</strong> is the most useful help: a published dataset, a study, a report that answers one of the rows above.</li>
+    <li><strong>A correction</strong>: a figure that looks wrong or a rule the study misses. Each one is carried into the model and into both languages.</li>
+    <li><strong>An introduction</strong> to someone who works on one of these questions.</li>
+  </ul>
+  <p>Write to <a href="mailto:hexagone.cube.paris@gmail.com">hexagone.cube.paris@gmail.com</a>, or open an issue on the <a href="https://github.com/jcgasche/hexagone-cube/issues" target="_blank" rel="noopener">study's GitHub page</a>. Those who help are thanked by name in <a class="xref" href="#about"><i class="xnum">E</i>about this study</a> if they agree.</p>
 </div>
 
 </section>

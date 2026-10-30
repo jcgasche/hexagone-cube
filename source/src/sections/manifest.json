@@ -17,6 +17,7 @@
     {"id": "economy",   "group": "Report",  "nav": "Economic return",        "heading": "What the country gets back"},
     {"id": "risks",     "group": "Report",  "nav": "Risks and next steps",   "heading": "What could change the answer, and what to verify"},
     {"id": "limits",    "group": "Report",  "nav": "Assumptions and limits", "heading": "What this study can and cannot tell"},
+    {"id": "next",      "group": "Report",  "nav": "What's next", "heading": "What is still to do, and the data it needs"},
     {"id": "zurich",    "group": "Annexes", "nav": "Zürich main station",    "heading": "Zürich: a terminus that became a through station"},
     {"id": "elizabeth", "group": "Annexes", "nav": "Elizabeth line, London", "heading": "The Elizabeth line: joining two sides of a capital"},
     {"id": "pulse",     "group": "Annexes", "nav": "The Swiss timetable",    "heading": "The Swiss pulse: every train meets every train"},
