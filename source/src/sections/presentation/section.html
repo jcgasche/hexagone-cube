@@ -43,7 +43,7 @@
         <div class="pz-step" data-step="1" hidden>
           <h3>The TGV triangle</h3>
           <p>Gare du Nord and Gare de l'Est merge into one deep station, Paris Nord-Est. With Gare de Lyon and Montparnasse, three through stations are joined by one twin-track tunnel on each side of the triangle.</p>
-          <ul><li>{{ m.run_min | 0 }} minutes from any station to any other</li><li>Every station has direct trains to every direction: north, east, south-east and Atlantic</li><li>No train reverses: each one stops twice and goes on</li></ul>
+          <ul><li>{{ m.run_min | 0 }} minutes from any station to any other</li><li>Every station has direct trains to every direction: north, east, south-east and Atlantic</li><li>No train reverses: each one stops twice and goes on</li><li>Naturally balanced: in a busy hour each corner takes about as many TGVs, {{ m.hour_today.Southeast | 0 }} each way at Gare de Lyon, {{ m.hour_today.Atlantic | 0 }} at Montparnasse and {{ m.hour_today.North + m.hour_today.East | 0 }} at Nord-Est ({{ m.hour_today.North | 0 }} north, {{ m.hour_today.East | 0 }} east)</li></ul>
         </div>
         <div class="pz-step" data-step="2" hidden>
           <h3>With TER and Transilien</h3>
@@ -115,11 +115,11 @@
   <div class="pz-in">
     <p class="pz-kicker">The timetable</p>
     <h2 class="pz-h">One beat of {{ d.timetable.table.grid.params.slot | 0 }} minutes, the Swiss way</h2>
-    <p class="pz-lead">Every TGV stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Here is why the beat is 12 minutes, and below, the most the stations could take, more than the plan needs.</p>
+    <p class="pz-lead">Every TGV stops {{ d.timetable.table.grid.params.stop | 0 }} minutes, at the same minutes every hour, at all three stations. Each station has {{ 2 * m.tracks_per_direction | 0 }} TGV platform tracks, {{ m.tracks_per_direction | 0 }} each way: enough for the {{ m.hour_today.Atlantic | 0 }} or so TGVs an hour each way that each station takes today, and for the {{ m.hour_full.Atlantic | 0 }} of the southern lines when full (Gare de Lyon gets a fourth track each way for its {{ m.hour_full.Southeast | 0 }}th). Here is why the beat is 12 minutes, and below, the most the stations could take, more than the plan needs.</p>
     <div class="pz-beat">
       <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }} min at the platform</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} reserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} to clear</span></div>
       <div class="pz-grid3">
-        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }} min</b><span>Each platform track takes a train every {{ d.timetable.table.grid.params.slot | 0 }} minutes: {{ d.timetable.table.grid.params.stop | 0 }} at the platform, then {{ d.timetable.table.grid.params.reserve | 0 }} kept free for a late train and {{ d.timetable.table.grid.params.b | 0 }} to clear the track. That makes {{ d.timetable.table.grid.params.places | 0 }} trains an hour on each side of each station.</span></div>
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }} min</b><span>Each platform track takes a train every {{ d.timetable.table.grid.params.slot | 0 }} minutes: {{ d.timetable.table.grid.params.stop | 0 }} at the platform, then {{ d.timetable.table.grid.params.reserve | 0 }} kept free for a late train and {{ d.timetable.table.grid.params.b | 0 }} to clear the track. With {{ d.timetable.table.grid.params.tracks | 0 }} tracks each way, that makes {{ d.timetable.table.grid.params.places | 0 }} trains an hour on each side of each station.</span></div>
         <div class="pz-stat"><b>{{ d.timetable.table.grid.params.run | 0 }} min</b><span>Between each of the stations, the speed in the connecting tunnels is set (slowed) so that every run takes the same time. This gives a metronome beat that makes the timetable simpler to plan and every delay handled the same way.</span></div>
         <div class="pz-stat"><b>Same minutes every hour</b><span>A late train uses its {{ d.timetable.table.grid.params.reserve | 0 }} minutes of reserve or takes the next place of the beat. Everyone learns one pattern, and a small delay stays small instead of spreading through the station.</span></div>
       </div>
@@ -129,7 +129,7 @@
       <div class="pz-tt-head"><div class="pz-tt-legend" id="pz-tt-legend"></div><div class="pz-tt-ctl" id="pz-tt-ctl"></div></div>
       <div class="pz-tt-body"><div class="pz-tt-map" id="pz-tt-map"></div><div class="pz-tt-clocks" id="pz-tt-clocks"></div></div>
     </div>
-    <p class="pz-claim"><b>{{ m.ter_paths.paths_per_hour | 0 }} trains an hour</b> at most in each tunnel and each direction, one every {{ m.ter_paths.signal_min[1] | 0 }} minutes: the TGVs on the beat, the TER between them.</p>
+    <p class="pz-claim"><b>{{ d.timetable.table.grid.params.places | 0 }} TGVs an hour</b> each way in each tunnel on the beat, and up to <b>{{ m.ter_paths.paths_per_hour | 0 }} trains an hour</b> in one direction, one every {{ m.ter_paths.signal_min[1] | 0 }} minutes: the paths between the TGVs are room for the TER.</p>
     <p class="pz-more"><a href="#timetable">The timetable</a><a href="#pulse">The Swiss pulse</a><a href="#service">Which trains run where</a></p>
   </div>
 </section>
@@ -211,9 +211,9 @@
     <p class="pz-lead">The jobs are on the far side of Paris. Two new RER lines take commuters there without a change.</p>
     <p class="pz-lead">The regional lines (TER) on either side are joined too, so the neighbouring regions work as one whole. People in the outer areas gain what Parisians gain: more direct links to the rest of France and to the other outer areas, so more choice of where to work and where to live.</p>
     <div class="pz-lines">
-      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G: lines P and N, merged</h3><p>From the north-east and east through Nord-Est and Châtelet-Les Halles to Montparnasse, and on to Versailles and Saint-Quentin-en-Yvelines, with line 18 from Versailles to Saclay.</p></div></div>
-      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F: lines L, H and K, merged</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense.</p></div></div>
-      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Regional express trains</h3><p>In the TGV tunnels: from the north on to Montparnasse, from the east on to Gare de Lyon. None ends in Paris.</p></div></div>
+      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G: lines P and N, merged</h3><p>From the north-east and east through Nord-Est and Châtelet-Les Halles to Montparnasse, and on to Versailles and Saint-Quentin-en-Yvelines, with line 18 from Versailles to Saclay. Lines P and N run about as many trains today, {{ m.reg_platforms.n.peak.P | 0 }} and {{ m.reg_platforms.n.peak.N | 0 }} an hour each way at the peak, so the merged line is balanced.</p></div></div>
+      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F: lines L, H and K, merged</h3><p>From the northern suburbs through Nord-Est to a deep Saint-Lazare, and on to Clichy-Levallois, Courbevoie and La Défense. The two sides match today: {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} trains an hour each way on H and K together, {{ m.reg_platforms.h.peak_l[0] | 0 }} to {{ m.reg_platforms.h.peak_l[1] | 0 }} on L.</p></div></div>
+      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Regional express trains</h3><p>In the TGV tunnels: from the north on to Montparnasse, from the east on to Gare de Lyon. None ends in Paris. The two ends are close: at the peak, {{ m.ter_paths.ter_hour.Nord + m.ter_paths.ter_hour.Est | 0 }} TER an hour each way at Nord-Est, {{ m.ter_paths.ter_hour.atlantic_today + m.ter_paths.ter_hour.lyon_today | 0 }} at Montparnasse and Gare de Lyon together.</p></div></div>
     </div>
     <div class="pz-grid3">
       <div class="pz-stat good"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}k</b><span>suburb-to-suburb trips a day across Paris, from {{ d.french.jobs.trips_day.ref / 1000 | 0 }}k</span></div>

@@ -1,4 +1,4 @@
-<!-- en: 01c7a0341c -->
+<!-- en: afa0190b8c -->
 <div class="pz">
 <nav class="pz-dots" id="pz-dots" aria-label="Parties de la présentation"></nav>
 
@@ -44,7 +44,7 @@
         <div class="pz-step" data-step="1" hidden>
           <h3>Le triangle TGV</h3>
           <p>La gare du Nord et la gare de l’Est fusionnent en une <strong>nouvelle gare entièrement souterraine</strong>, Paris Nord-Est. Avec la gare de Lyon et Montparnasse, trois gares traversantes sont reliées par un tunnel à double voie sur chaque côté du triangle.</p>
-          <ul><li>{{ m.run_min | 0 }}&nbsp;minutes entre deux gares, quelles qu’elles soient</li><li>Chaque gare a des trains directs vers toutes les directions&nbsp;: Nord, Est, Sud-Est et Atlantique</li><li>Aucun train ne rebrousse chemin&nbsp;: chacun marque deux arrêts et continue</li></ul>
+          <ul><li>{{ m.run_min | 0 }}&nbsp;minutes entre deux gares, quelles qu’elles soient</li><li>Chaque gare a des trains directs vers toutes les directions&nbsp;: Nord, Est, Sud-Est et Atlantique</li><li>Aucun train ne rebrousse chemin&nbsp;: chacun marque deux arrêts et continue</li><li>Un équilibre naturel&nbsp;: à une heure chargée, chaque pôle reçoit à peu près autant de TGV, {{ m.hour_today.Southeast | 0 }} par sens à la gare de Lyon, {{ m.hour_today.Atlantic | 0 }} à Montparnasse et {{ m.hour_today.North + m.hour_today.East | 0 }} à Nord-Est ({{ m.hour_today.North | 0 }} du Nord, {{ m.hour_today.East | 0 }} de l’Est)</li></ul>
         </div>
         <div class="pz-step" data-step="2" hidden>
           <h3>Avec TER et Transilien</h3>
@@ -116,11 +116,11 @@
   <div class="pz-in">
     <p class="pz-kicker">L’horaire</p>
     <h2 class="pz-h">Une cadence de {{ d.timetable.table.grid.params.slot | 0 }}&nbsp;minutes, à la suisse</h2>
-    <p class="pz-lead">Chaque TGV s’arrête {{ d.timetable.table.grid.params.stop | 0 }}&nbsp;minutes, aux mêmes minutes chaque heure, dans les trois gares. Voici pourquoi la cadence est de 12&nbsp;minutes, et plus bas, le maximum que les gares pourraient accueillir, plus que ce que le plan demande.</p>
+    <p class="pz-lead">Chaque TGV s’arrête {{ d.timetable.table.grid.params.stop | 0 }}&nbsp;minutes, aux mêmes minutes chaque heure, dans les trois gares. Chaque gare compte {{ 2 * m.tracks_per_direction | 0 }}&nbsp;voies à quai TGV, {{ m.tracks_per_direction | 0 }} par sens&nbsp;: assez pour la douzaine de TGV par heure et par sens que chaque gare reçoit aujourd’hui, et pour les {{ m.hour_full.Atlantic | 0 }} des lignes du sud à pleine capacité (la gare de Lyon reçoit une quatrième voie par sens pour son {{ m.hour_full.Southeast | 0 }}<sup>e</sup>). Voici pourquoi la cadence est de 12&nbsp;minutes, et plus bas, le maximum que les gares pourraient accueillir, plus que ce que le plan demande.</p>
     <div class="pz-beat">
       <div class="pz-beat-bar" aria-hidden="true"><span style="flex: {{ d.timetable.table.grid.params.stop | 0 }}">{{ d.timetable.table.grid.params.stop | 0 }}&nbsp;min à quai</span><span class="r" style="flex: {{ d.timetable.table.grid.params.reserve | 0 }}">{{ d.timetable.table.grid.params.reserve | 0 }} de réserve</span><span class="c" style="flex: {{ d.timetable.table.grid.params.b | 0 }}">{{ d.timetable.table.grid.params.b | 0 }} pour libérer</span></div>
       <div class="pz-grid3">
-        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }}&nbsp;min</b><span>Chaque voie à quai reçoit un train toutes les {{ d.timetable.table.grid.params.slot | 0 }}&nbsp;minutes&nbsp;: {{ d.timetable.table.grid.params.stop | 0 }} à quai, puis {{ d.timetable.table.grid.params.reserve | 0 }} gardées libres pour un train en retard et {{ d.timetable.table.grid.params.b | 0 }} pour libérer la voie. Soit {{ d.timetable.table.grid.params.places | 0 }}&nbsp;trains par heure de chaque côté de chaque gare.</span></div>
+        <div class="pz-stat"><b>{{ d.timetable.table.grid.params.slot | 0 }}&nbsp;min</b><span>Chaque voie à quai reçoit un train toutes les {{ d.timetable.table.grid.params.slot | 0 }}&nbsp;minutes&nbsp;: {{ d.timetable.table.grid.params.stop | 0 }} à quai, puis {{ d.timetable.table.grid.params.reserve | 0 }} gardées libres pour un train en retard et {{ d.timetable.table.grid.params.b | 0 }} pour libérer la voie. Avec {{ d.timetable.table.grid.params.tracks | 0 }}&nbsp;voies par sens, cela fait {{ d.timetable.table.grid.params.places | 0 }}&nbsp;trains par heure de chaque côté de chaque gare.</span></div>
         <div class="pz-stat"><b>{{ d.timetable.table.grid.params.run | 0 }}&nbsp;min</b><span>Entre chacune des gares, la vitesse dans les tunnels de connexion est adaptée (ralentie) pour que le temps de trajet soit identique. Cela permet une cadence métronome qui simplifie la planification et permet une gestion standardisée des retards.</span></div>
         <div class="pz-stat"><b>Les mêmes minutes chaque heure</b><span>Un train en retard utilise ses {{ d.timetable.table.grid.params.reserve | 0 }}&nbsp;minutes de réserve ou prend la place suivante de la cadence. Tout le monde apprend un seul schéma, et un petit retard reste petit au lieu de se propager dans la gare.</span></div>
       </div>
@@ -130,7 +130,7 @@
       <div class="pz-tt-head"><div class="pz-tt-legend" id="pz-tt-legend"></div><div class="pz-tt-ctl" id="pz-tt-ctl"></div></div>
       <div class="pz-tt-body"><div class="pz-tt-map" id="pz-tt-map"></div><div class="pz-tt-clocks" id="pz-tt-clocks"></div></div>
     </div>
-    <p class="pz-claim"><b>{{ m.ter_paths.paths_per_hour | 0 }} trains par heure</b> au plus dans chaque tunnel et dans chaque sens, un toutes les {{ m.ter_paths.signal_min[1] | 0 }}&nbsp;minutes&nbsp;: les TGV sur la cadence, les TER entre eux.</p>
+    <p class="pz-claim"><b>{{ d.timetable.table.grid.params.places | 0 }} TGV par heure</b> dans chaque sens et dans chaque tunnel sur la cadence, et jusqu’à <b>{{ m.ter_paths.paths_per_hour | 0 }} trains par heure</b> dans un sens, un toutes les {{ m.ter_paths.signal_min[1] | 0 }}&nbsp;minutes&nbsp;: les sillons entre les TGV laissent la place aux TER.</p>
     <p class="pz-more"><a href="#timetable">L’horaire</a><a href="#pulse">Le cadencement à la suisse</a><a href="#service">Quels trains circulent où</a></p>
   </div>
 </section>
@@ -212,9 +212,9 @@
     <p class="pz-lead">Les emplois sont de l’autre côté de Paris. Deux nouvelles lignes de RER y conduisent sans changement.</p>
     <p class="pz-lead">Les lignes de TER de part et d’autre de l’axe sont connectées afin d’inscrire les régions avoisinantes dans un ensemble. Les habitants de la périphérie gagnent les mêmes avantages que les Parisiens&nbsp;: plus de liaisons directes vers le reste de la France et vers les autres régions périphériques, ce qui se traduit par de meilleures possibilités d’arbitrage entre emplois et logements.</p>
     <div class="pz-lines">
-      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est et Châtelet-Les Halles, jusqu’à Montparnasse, puis vers Versailles et Saint-Quentin-en-Yvelines, avec la ligne 18 de Versailles à Saclay.</p></div></div>
-      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à une nouvelle gare souterraine à Saint-Lazare, puis vers Clichy-Levallois, Courbevoie et La Défense.</p></div></div>
-      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV&nbsp;: depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris.</p></div></div>
+      <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est et Châtelet-Les Halles, jusqu’à Montparnasse, puis vers Versailles et Saint-Quentin-en-Yvelines, avec la ligne 18 de Versailles à Saclay. Les lignes P et N font circuler à peu près autant de trains aujourd’hui, {{ m.reg_platforms.n.peak.P | 0 }} et {{ m.reg_platforms.n.peak.N | 0 }} par heure et par sens à la pointe&nbsp;: la ligne fusionnée est équilibrée.</p></div></div>
+      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à une nouvelle gare souterraine à Saint-Lazare, puis vers Clichy-Levallois, Courbevoie et La Défense. Les deux côtés s’équilibrent aujourd’hui&nbsp;: {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} trains par heure et par sens sur H et K ensemble, {{ m.reg_platforms.h.peak_l[0] | 0 }} à {{ m.reg_platforms.h.peak_l[1] | 0 }} sur L.</p></div></div>
+      <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV&nbsp;: depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris. Les deux extrémités sont proches&nbsp;: à la pointe, {{ m.ter_paths.ter_hour.Nord + m.ter_paths.ter_hour.Est | 0 }} TER par heure et par sens à Nord-Est, {{ m.ter_paths.ter_hour.atlantic_today + m.ter_paths.ter_hour.lyon_today | 0 }} à Montparnasse et à la gare de Lyon réunies.</p></div></div>
     </div>
     <div class="pz-grid3">
       <div class="pz-stat good"><b data-count="{{ d.french.jobs.trips_day.central / 1000 | 0 }}" data-post="&nbsp;k" data-d="0">{{ d.french.jobs.trips_day.central / 1000 | 0 }}&nbsp;k</b><span>trajets par jour de banlieue à banlieue à travers Paris, contre {{ d.french.jobs.trips_day.ref / 1000 | 0 }}&nbsp;k</span></div>
