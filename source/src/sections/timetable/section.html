@@ -78,9 +78,9 @@
 
 <div class="block" id="timetable.map">
   <h2>The hour at the platforms and on the map, in step</h2>
-  <h3>How to read it</h3>
+  <h3>How to read the map</h3>
   <p>Press play: the three clocks and the map run the same hour together. Choose today's traffic or the most the three stations can take. Each train has the colour of the two lines it joins: darker towards the north or east, and from the Atlantic to the south-east; lighter the other way.</p>
-  <h3>All trains</h3>
+  <h3>The all-trains tab</h3>
   <p>The second tab, all trains, adds the others: TGVs become squares, regional express trains are ringed grey dots running in the TGV tunnels between the TGVs, and the two new suburban lines, RER G (today's lines P and N, joined) and RER F (today's lines H, K and L), are dots, one colour for each line, in their own tunnels.</p>
   <div class="controls" id="tt-scen-2"></div>
   <div class="controls" id="tt-layer"></div>
@@ -146,7 +146,7 @@
       <tr><th>Frankfurt and Stuttgart Hbf, ICE, where trains reverse</th><td>6 minutes[[delfi_gtfs]]</td></tr>
       <tr><th>Zürich, long-distance trains that wait for connections</th><td>6 to 9 minutes (see <a class="xref" href="#zurich.why">Zürich</a>)</td></tr>
     </tbody></table></div>
-  <h3>The stop chosen</h3>
+  <h3>The stop chosen, and the price of longer stops</h3>
   <p>A Paris stop is closer to Lyon Part-Dieu than to Hamburg, so this study takes {{ d.timetable.table.grid.params.stop | 0 }} minutes, with {{ d.timetable.table.grid.params.reserve | 0 }} minutes of reserve on the track <span class="tag assume">assumption</span>. Longer stops have a price. With the project, for every passenger crossing Paris there are about {{ d.timetable.inputs.ratio | 0 }} who start or end their trip in Paris,[[art24]] and about half of them stay on board through one of the two stops, because their station is the train's second (derived from the 1,000 points of the <a class="xref" href="#access.map">access map</a>). The chart counts what each length of stop adds against {{ d.timetable.inputs.stop | 0 }} minutes.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Each minute of stop adds more than a million passenger-hours a year</strong><span>Passenger-hours a year added, compared with {{ d.timetable.inputs.stop | 0 }}-minute stops, for each length of stop</span></div>

@@ -13,7 +13,7 @@
       <p>High-speed trains (TGV) from the north arrive at Gare du Nord, from the east at Gare de l'Est, from the south-east at Gare de Lyon and from the Atlantic coast at Montparnasse. Suburban and regional trains end at the same four stations, and the suburban lines of the west at a fifth, Saint-Lazare.</p>
       <h3>A terminal against a through station</h3>
       <p>All four are <strong>terminals</strong>: the track stops at the end of the platform, and a train can only leave the way it came. A <strong>through station</strong> is the opposite: trains arrive at one end and leave by the other, without turning back.</p>
-      <h3>Three consequences</h3>
+      <h3>What follows from the dead ends</h3>
       <p>Three things follow from the dead ends. A train holds its platform for a long time while it turns round. A traveller whose trip continues beyond Paris has to change station. And each line reaches only one corner of the city. The rest of this chapter takes them in turn.</p>
       <details>
         <summary><strong>Words used in this report</strong></summary>
@@ -56,7 +56,7 @@
 <div class="block" id="why.capacity">
   <h2>A terminal uses its platforms badly, and the big ones are short of room</h2>
   <p>A train that arrives at a terminal is emptied, checked, often cleaned and restocked, filled again, and sent back out across the tracks it came in on. At Montparnasse the nine tracks kept for high-speed trains give at most nine departures an hour: one train per track per hour.[[ae14]] A TGV that only stops needs 3 minutes, or 4 to 5 at the largest stations.[[fnaut]]</p>
-  <h3>What a through station takes</h3>
+  <h3>How many trains a through platform takes</h3>
   <p>Through stations are planned for four to six long-distance trains an hour on each platform track: Stuttgart's new station, not yet open, reached about six in a simulated stress test.[[bt19, dhz]] One that is in service, Zürich's Löwenstrasse station, handles about 460 trains a day on four tracks, about six an hour on each on average,[[zvv]] though the through trains that wait for connections there stand 6 to 9 minutes (derived from the departure boards; see <a class="xref" href="#zurich.results">Zürich</a>).[[zh_board_arr, zh_board_dep]]</p>
   <p><strong>The rule this study uses for its own stations.</strong> Platforms are dedicated by direction, {{ m.tracks_per_direction | 0 }} tracks each way at each station. A stop takes {{ m.stop_min | 0 }} minutes; the track is then held {{ m.reserve_min | 0 }} minutes more for a late train, and after the departure it needs about {{ m.clear_min | 0 }} minutes before the next train can arrive. So each train takes a place of {{ m.stop_min + m.reserve_min + m.clear_min | 0 }} minutes and one track takes {{ m.per_track | 0 }} trains an hour <span class="tag assume">assumption</span>, all three figures, as in <a class="xref" href="#timetable">the timetable</a>.</p>
   <p>Three tracks each way take {{ 3 * m.per_track | 0 }} trains an hour, about the most a high-speed line brings, 15 to 16. What limits the number of trains today, the platforms or the lines outside Paris, is a study point (I1 in <a class="xref" href="#risks.verify">what to verify</a>). How the rule sizes the new stations is in <a class="xref" href="#service.platforms">how many platforms</a>.</p>

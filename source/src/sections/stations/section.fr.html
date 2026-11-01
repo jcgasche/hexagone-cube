@@ -1,14 +1,14 @@
-<!-- en: 27abb5a652 -->
+<!-- en: 282c6f140e -->
 <p class="lede">Personne n’a conçu ces gares : trois gares TGV, à Paris Nord-Est, à la gare de Lyon et à Montparnasse, et une gare de banlieue à Saint-Lazare. Ce chapitre esquisse où chacune se placerait sous la gare actuelle, ce qui existe déjà en sous-sol à cet endroit, et comment un voyageur irait de la rue jusqu’au train. Dans l’illustration utilisée par le modèle, rejoindre un quai souterrain prend {{ m.extras.hall_deep | 1 }} minutes depuis la halle, contre {{ m.extras.hall_today | 1 }} minutes aujourd’hui pour longer à pied un quai de gare terminus. Cette quasi-égalité repose sur des hypothèses qu’une étude préliminaire devra vérifier.</p>
 
 <div class="block" id="stations.nordest">
   <h2>Paris Nord-Est : une seule gare sous deux halles</h2>
   <div class="callout warn"><b>Comment lire les dessins</b><p>Tous les dessins de ce chapitre sont des croquis indicatifs. Seules les dimensions qui ont une source, ou qui viennent du modèle, sont indiquées en chiffres. Les positions, les formes et l’ordre des quais sont inventés pour rendre le croquis lisible. Les contours en pointillés signalent des ouvrages dont la profondeur n’est pas publiée.</p></div>
-  <h3>Le site</h3>
+  <h3>Ce qui existe aujourd’hui sur le site</h3>
   <p>La gare du Nord et la gare de l’Est sont à {{ d.stations.halls_apart | 0 }} m l’une de l’autre ; il faut aujourd’hui 8 à 14 minutes à pied pour passer de l’une à l’autre.[[nordest]] Entre les deux, à environ {{ d.stations.magenta.depth | 0 }} m de profondeur, se trouve Magenta, une gare ouverte en 1999 sur la ligne E du RER, le réseau de lignes express de banlieue qui traversent Paris en souterrain : {{ d.stations.magenta.tracks | 0 }} voies dans une caverne de {{ d.stations.magenta.length | 0 }} m de long et {{ d.stations.magenta.width | 0 }} m de large.[[magenta]]</p>
-  <h3>Les voies à quai</h3>
+  <h3>La nouvelle gare et ses voies à quai</h3>
   <p>On entrerait dans la nouvelle gare par l’une ou l’autre halle. Elle compte {{ m.cost.tracks['Paris Nord-Est'] | 0 }} voies à quai : {{ m.cost.detail['Paris Nord-Est'].hs | 0 }} pour les TGV, de {{ m.len.hs | 0 }} m, groupées par trois pour les trains vers le Nord et l’Est et par trois pour les trains vers le sud, {{ m.cost.detail['Paris Nord-Est'].ter | 0 }} pour les TER, de {{ m.len.ter | 0 }} m, {{ m.sub_tracks['Paris Nord-Est'].n | 0 }} pour le RER G, la nouvelle ligne de banlieue qui réunit les lignes P et N d’aujourd’hui, et {{ m.sub_tracks['Paris Nord-Est'].h | 0 }} pour le RER F, qui réunit les lignes H, K et L d’aujourd’hui, toutes deux de {{ m.len.sub | 0 }} m. Chaque type de train a ses propres quais.</p>
-  <h3>Comment les trains y arrivent</h3>
+  <h3>Comment les trains rejoignent les quais</h3>
   <p>Les TER circulent dans les tunnels des TGV, dans les sillons laissés entre les TGV (voir <a class="xref" href="#service.hour">l’heure type</a>) ; le RER G et le RER F ont chacun leur propre tunnel. Tous les quais sont côte à côte dans une seule boîte, les {{ m.cost.detail['Paris Nord-Est'].ter | 0 }} voies TER du côté ouest. Les TER du Nord quittent les voies TGV par de simples aiguillages ; ceux de l’Est, qui continuent vers la gare de Lyon, croisent les voies TGV par un saut-de-mouton en dessous à chaque bout de la gare <span class="tag assume">hypothèse</span>.</p>
   <h3>Pourquoi toutes les lignes passent en souterrain</h3>
   <p>Tous les trains qui utilisent aujourd’hui la gare du Nord et la gare de l’Est passent en souterrain, si bien que toutes les voies de surface des deux gares sont libérées : laisser ne serait-ce qu’une ligne en surface garderait l’essentiel du coût et ferait perdre le parc.</p>
@@ -67,13 +67,13 @@
   <p>La gare de Lyon compte 22 voies de surface sous deux halles (non vérifié) ;[[st_wiki_lyon]] les sept quais du Hall 1 font déjà 400 m de long.[[st_etf]] Sa gare souterraine est l’une des plus grandes de Paris : lignes A et D du RER sur cinq niveaux, 315 m de long et 41 m de large, le RER D au-dessus du RER A (non vérifié).[[st_wiki_rera]] Le tunnel du RER D est à {{ d.stations.rerd_depth | 0 }} m de profondeur.[[st_rerd]] La ligne 14 du métro passe à côté (non vérifié).[[st_wiki_lyonmetro]]</p>
   <h3>La nouvelle gare</h3>
   <p>La nouvelle gare aurait {{ m.cost.tracks['Gare de Lyon'] | 0 }} voies à quai de {{ m.len.hs | 0 }} m, {{ m.cost.tracks['Gare de Lyon'] / 2 | 0 }} par sens. Trois par sens accueillent les TGV de la cadence de 12 minutes. La quatrième, une par sens, accueille le {{ m.ter_paths.loads.southeast.tgv | 0 }}e TGV de l’heure sur la ligne du Sud-Est, que six voies ne pourraient pas recevoir, et les {{ m.ter_paths.loads.nelyon.ter | 0 }} TER par heure et par sens qui traversent de Paris Nord-Est vers la Bourgogne : elle est occupée {{ m.ter_paths.platforms.lyon_4th.used | 0 }} minutes sur {{ m.ter_paths.platforms.lyon_4th.avail | 0 }} à l’heure de pointe ({{ m.ter_paths.platforms.lyon_4th.share | pct }}).</p>
-  <h3>Les TER</h3>
+  <h3>Les TER, et la bifurcation vers la liaison directe</h3>
   <p>Les TER partagent le tunnel TGV depuis Paris Nord-Est. Tous les TER de la gare de Lyon et de Bercy passent en souterrain et deviennent traversants, si bien que les voies TER de la gare de Lyon et la gare de Bercy sont libérées. À l’extrémité côté centre, les voies TGV bifurquent : vers Paris Nord-Est, et vers la liaison directe menant à Montparnasse, longue de {{ m.link_km | 0 }} km, qui passe sous la Seine.</p>
   <h3>Son emplacement</h3>
   <p>L’emplacement naturel de la gare est sous les quais de surface actuels, à côté de la gare RER. Ni la gare ni la bifurcation n’ont été étudiées ; la géométrie de la liaison directe est un point à étudier.</p>
   <h3>La ligne R reste en surface</h3>
   <p><strong>La ligne de banlieue R reste en surface,</strong> sur un petit terminus de quelques voies. C’est le seul point ouvert qui reste à la gare de Lyon. La ligne R ne peut pas simplement utiliser les deux nouvelles voies : la quatrième voie de chaque sens est déjà occupée {{ m.ter_paths.platforms.lyon_4th.used | 0 }} minutes sur {{ m.ter_paths.platforms.lyon_4th.avail | 0 }}, et avec les {{ m.ter_paths.r_option.trains | 0 }} trains par heure de la ligne R, elle serait occupée {{ m.ter_paths.r_option.lyon_4th | 0 }} minutes, plus qu’une voie ne peut offrir.</p>
-  <h3>Ce que demanderait la traversée de la ligne R</h3>
+  <h3>Ce qu’il faudrait pour faire traverser la ligne R</h3>
   <p>Un train traversant doit aussi continuer au-delà, et à Paris Nord-Est les voies TER passeraient de {{ m.ter_paths.platforms.nordest_ter.used | g }} à {{ m.ter_paths.r_option.nordest_ter | g }} minutes occupées sur {{ m.ter_paths.platforms.nordest_ter.avail | 0 }}. Faire traverser la ligne R demanderait donc {{ m.ter_paths.r_option.tracks_lyon | 0 }} voies de plus à la gare de Lyon et {{ m.ter_paths.r_option.tracks_ne | 0 }} à Paris Nord-Est, longues de {{ m.ter_paths.r_option.len | 0 }} m, pour environ {{ m.ter_paths.r_option.cost | 1 }}&nbsp;Md€ toutes majorations comprises. Le tunnel du Sud-Est lui-même pourrait accueillir la ligne R : {{ m.ter_paths.r_option.southeast_load | 0 }} trains par heure, {{ m.ter_paths.r_option.southeast_occ_15 | pct }} de sa capacité avec des trains espacés d’environ 1,5 minute, sans tunnel d’accès supplémentaire.</p>
   <p>Au-delà de Paris Nord-Est, elle aurait pour pendant des trains supplémentaires sur les branches de l’actuelle ligne P vers Meaux ou Provins <span class="tag assume">hypothèse</span>. Faute de demande avérée pour ces trains, cette option est laissée pour plus tard, pour la croissance que la ligne R pourrait connaître ; elle n’est pas comptée dans le coût.</p>
   <figure class="fig">
@@ -111,7 +111,7 @@
   <p>Montparnasse compte 28 voies à quai, 24 dans la gare principale et 4 dans son annexe de Vaugirard.[[ae14]] Les quais sont à un niveau au-dessus de la rue : le Hall 1 est au niveau 2.[[st_gc_montp]] Ils sont déjà couverts par une dalle qui porte un jardin de 3,5 hectares, le Jardin Atlantique (non vérifié).[[st_jardin]] Quatre lignes de métro se croisent autour de la gare (non vérifié).[[st_wiki_montp]]</p>
   <h3>La nouvelle gare</h3>
   <p>La nouvelle gare aurait {{ m.cost.tracks['Montparnasse'] | 0 }} voies à quai : {{ m.cost.detail['Montparnasse'].hs | 0 }} pour les TGV, trois par sens, {{ m.cost.detail['Montparnasse'].ter | 0 }} pour les TER, de {{ m.len.ter | 0 }} m, et {{ m.sub_tracks['Montparnasse'].n | 0 }} pour le RER G, de {{ m.len.sub | 0 }} m. Les trains arrivent de Paris Nord-Est par deux tunnels côte à côte, l’un pour les TGV, que les TER partagent dans les sillons laissés entre les TGV, l’autre pour le RER G, et repartent côté Atlantique : les TER vers Chartres, Le Mans et Granville, le RER G vers Versailles et le sud-ouest.</p>
-  <h3>Le côté centre et le sous-sol</h3>
+  <h3>La bifurcation côté centre, et les anciennes carrières</h3>
   <p>À l’extrémité côté centre, les voies TGV bifurquent vers Paris Nord-Est, sous la Seine, et vers la liaison directe menant à la gare de Lyon, qui passe aussi sous le fleuve. Ce quartier de Paris repose sur d’anciennes carrières de calcaire : 770 hectares de la ville sont sous-minés, dans huit arrondissements dont le 14e et le 15e, où se trouve la gare.[[quarries]]</p>
   <figure class="fig">
     <div class="fig-head"><strong>Vue de dessus : environ {{ m.cost.platform_m['Montparnasse'] / m.cost.platform_m['Paris Nord-Est'] | pct }} de la longueur de quais de Paris Nord-Est <span class="tag sketch">croquis indicatif</span></strong><span>Plan, à la même échelle que celui de Paris Nord-Est ; la largeur de chaque voie est celle de Magenta</span></div>
@@ -178,19 +178,19 @@
 
 <div class="block" id="stations.chatelet">
   <h2>Châtelet-Les Halles : un arrêt du RER G à côté des RER A, B et D</h2>
-  <h3>L’arrêt</h3>
+  <h3>Un arrêt au passage sous le Forum des Halles</h3>
   <p>Le RER G s’arrête une fois entre Paris Nord-Est et Montparnasse, à Châtelet-Les Halles, où se croisent les RER A, B et D et les lignes de métro 1, 4, 7, 11 et 14. Son tunnel passe sous le Forum des Halles et s’y élargit en {{ m.cost.tracks['Châtelet-Les Halles'] | 0 }} voies à quai de {{ m.len.sub | 0 }}&nbsp;m, une par sens. Un arrêt au passage demande moins de voies que les extrémités d’une ligne : le RER A fait passer jusqu’à 30 trains par heure sur une voie par sens à Auber et à Châtelet, et les {{ m.params.g_trains_h | 0 }} trains du RER G tiennent sur une seule.</p>
-  <h3>Ce que coûte l’arrêt</h3>
+  <h3>Ce que l’arrêt coûte en temps et en argent</h3>
   <p>L’arrêt ajoute {{ m.G_STOP | 0 }} minutes : le trajet de Nord-Est à Montparnasse prend {{ m.TR_G | 0 }} minutes. Les quais et les correspondances avec la gare existante reviennent à {{ (m.cost.station_cost['Châtelet-Les Halles'] + m.cost.items['Links into Châtelet-Les Halles']) * m.gross_up | 2 }}&nbsp;Md€ en coût complet <span class="tag assume">hypothèse</span> ; l’emplacement des quais et les cheminements vers les RER A, B et D ne sont pas dessinés. Rien ne change en surface, sauf de nouvelles sorties dans le Forum des Halles.</p>
 </div>
 
 <div class="block" id="stations.halls">
   <h2>De la place pour les voyageurs : les halles une fois les trains en souterrain</h2>
-  <h3>Les halles aujourd’hui</h3>
+  <h3>Les halles aujourd’hui : peu de place pour les voyageurs</h3>
   <p>Trois des gares actuelles ont une grande halle couverte côté rue : les halles historiques de la gare du Nord et de la gare de Lyon, et le niveau couvert des quais de Montparnasse. Chacune mesure environ {{ d.stations.halls.hall_len | 0 }} m de long. Les voyageurs disposent à peu près des {{ d.stations.halls.wait_len | 0 }} premiers mètres ; le reste est occupé par le bout des voies et leurs quais (estimation d’après les plans des gares de la SNCF <span class="tag assume">hypothèse</span>).</p>
   <h3>Des espaces d’attente bondés</h3>
   <p>Les espaces d’attente sont bondés : la gare du Nord a été conçue pour 500 000 voyageurs par jour et en reçoit plus de 700 000 ;[[st_inquiry_nord]] à Montparnasse, la salle qui longe le bout des quais est en grande partie occupée par des gens qui attendent.[[st_apur_montp]]</p>
-  <h3>Une halle pour les voyageurs</h3>
+  <h3>Toute la halle pour les voyageurs</h3>
   <p>Avec les quais en profondeur, chaque halle devient tout entière un espace pour les voyageurs : un lieu pour attendre, se retrouver, manger et faire des achats au-dessus des quais, et le chemin pour y descendre. À la gare de Lyon, il s’agit du Hall 1. Les voies au-delà du bout de chaque bâtiment deviennent des parcs ; à la gare de Lyon, quelques voies de surface restent pour le petit terminus de la ligne R (voir <a class="xref" href="#project.parks">les parcs à la place des voies</a>).</p>
   <p>La gare de l’Est, seconde entrée de Nord-Est, garde ses halles comme entrée et n’est pas comptée ici ; Saint-Lazare non plus, dont la gare de surface reste en service.</p>
   <div class="tiles">
@@ -228,7 +228,7 @@
   <p><strong>La profondeur ne gêne pas les accès.</strong> Les règles européennes autorisent des pentes jusqu’à 35 mm par mètre.[[tsi]] Un tunnel peut donc gagner ou perdre 35 m de profondeur en un kilomètre (déduit). Des quais à 35 ou 40 m de profondeur n’ont donc besoin que d’environ 1,0 à 1,2 km de tunnel pour rejoindre la surface.</p>
   <p>Les têtes de tunnel sont à {{ m.corridor_km.north | 1 }} à {{ m.corridor_km.southeast | 1 }} km des gares, sur les voies existantes au niveau du périphérique (à Rosa Parks pour la ligne de l’Est), ce qui laisse la place pour la rampe au-delà des bifurcations ; les gares TGV sont à {{ m.corridor_km.nelyon | 0 }} à {{ m.corridor_km.nemont | 0 }} km les unes des autres en passant par Paris Nord-Est, et la liaison directe entre Montparnasse et la gare de Lyon mesure {{ m.link_km | 0 }} km. Le RER F est le cas serré : ses voies remontent {{ m.corridor_km.slwest | 1 }} km à l’ouest de Saint-Lazare, de quoi monter d’environ {{ m.corridor_km.slwest * 35 | 0 }} m à la pente maximale (déduit).</p>
   <p>La liaison directe ne change pas le raisonnement : même avec une pente constante de 35 m par kilomètre, elle a la place de plonger sous la Seine et de remonter.</p>
-  <h3>La traversée de la Seine</h3>
+  <h3>La traversée de la Seine, et ce qu’on sait du sous-sol</h3>
   <p><strong>La Seine est franchie en deux endroits,</strong> entre Paris Nord-Est et Montparnasse, où deux tunnels passent dessous côte à côte (le TGV, que partagent les TER, et le RER G), et sur la liaison directe entre Montparnasse et la gare de Lyon, un tunnel TGV seulement.</p>
   <p>Le RER F reste sur la rive droite. La gare du Nord, la gare de l’Est et la gare de Lyon sont toutes sur la rive droite ; Montparnasse est sur la rive gauche. Deux lignes passent déjà sous le fleuve dans le centre : la ligne B du RER, sur une rampe de 4 %, et la ligne 14 du métro (non vérifié).[[st_wiki_rerb, st_wiki_m14]]</p>
   <div class="tbl-wrap"><table class="tbl stations-known stack-sm">
@@ -245,10 +245,10 @@
 </div>
 
 <div class="block" id="stations.boarding">
-  <h2>De la halle à la voiture</h2>
+  <h2>De la halle au train</h2>
   <p>Les quais souterrains sont plus loin de la rue que les quais de surface. Mais une gare terminus impose déjà sa longue marche : le train attend au-delà des portiques, et la voiture moyenne est à {{ d.stations.walk.today_m | 0 }} m le long du quai. Une gare traversante s’aborde par le dessus, en plusieurs points de sa longueur. Suivez un voyageur dans les deux.</p>
   <figure class="fig">
-    <div class="fig-head"><strong><span id="stations-walk-title">Rejoindre un quai souterrain prend à peu près autant de temps que longer un quai de gare terminus</span> <span class="tag sketch">croquis indicatif</span></strong><span>Minutes de la halle à la voiture, pour le voyageur moyen. Vues de côté, pas à l’échelle</span></div>
+    <div class="fig-head"><strong><span id="stations-walk-title">Rejoindre un quai souterrain prend à peu près autant de temps que longer un quai de gare terminus</span> <span class="tag sketch">croquis indicatif</span></strong><span>Minutes de la halle à la voiture du train, pour le voyageur moyen. Vues de côté, pas à l’échelle</span></div>
     <div class="controls">
       <div class="field"><span>Suivre un voyageur</span><div id="stations-walk-steps"></div></div>
       <div class="field stations-depth-slider" id="stations-walk-depth"></div>
@@ -262,7 +262,7 @@
     </div>
     <figcaption>Construit sur des hypothèses <span class="tag assume">hypothèse</span> : 1 minute aux portiques ; {{ d.stations.walk.walk_speed | 2 }} m par seconde à pied ; escaliers mécaniques à {{ d.stations.walk.esc_speed | 2 }} m par seconde, {{ d.stations.walk.esc_per_m | 0 }} m d’escalier mécanique pour chaque mètre de profondeur ; une demi-minute à chaque palier ; descentes aux quarts d’un quai de {{ d.stations.walk.platform | 0 }} m. Les vitesses de marche suivent les recommandations britanniques de conception des gares.[[nr]] La marche de la halle jusqu’à la bonne descente n’est pas comptée.</figcaption>
   </figure>
-  <h3>Le résultat</h3>
+  <h3>Gare souterraine et terminus : presque à égalité</h3>
   <p>Avec des quais à {{ d.stations.walk.depth | 0 }} m de profondeur, la gare souterraine arrive à {{ m.extras.hall_deep | 1 }} minutes et la gare terminus à {{ m.extras.hall_today | 1 }} minutes. L’écart, environ {{ (m.extras.hall_deep - m.extras.hall_today) * 60 | 0 }} secondes, est bien en deçà de l’incertitude d’un tel croquis. Les chiffres sont les mêmes dans les trois gares TGV : La gare de Lyon et Montparnasse ont moins de voies que Paris Nord-Est, ce qui les rend plus étroites, pas plus courtes, et un quai TGV y mesure partout {{ m.len.hs | 0 }} m. Sur un quai TER de {{ m.len.ter | 0 }} m, la voiture moyenne est à environ {{ m.len.ter / 8 | 0 }} m d’une descente au lieu de {{ d.stations.walk.deep_m | 0 }}, et sur un quai de banlieue de {{ m.len.sub | 0 }} m, à Saint-Lazare par exemple, à environ {{ m.len.sub / 8 | 0 }} m (déduit).</p>
   <p>Aucun temps mesuré n’est publié pour les gares terminus parisiennes ni pour des gares souterraines. Le modèle régional de déplacements de l’État applique une pénalité aux gares souterraines ; sa valeur n’est pas publiée.[[modus]]</p>
   <div class="callout"><b>Ce que le modèle en fait</b><p>Le scénario central suppose le temps passé dans la gare égal à celui d’aujourd’hui. C’est une hypothèse, et le résultat y est sensible : <a class="xref" href="#risks.sensitivity">les tests de sensibilité</a> comprennent deux minutes de plus pour chaque voyageur, ce qui retire {{ 1 - d.french.study.central.tests['Every passenger takes 2 minutes longer to board than today'].benefits / d.french.study.central.benefit_total | pct }} des avantages.</p></div>

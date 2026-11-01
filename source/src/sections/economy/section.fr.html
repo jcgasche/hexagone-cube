@@ -1,8 +1,8 @@
-<!-- en: 445982eb08 -->
+<!-- en: 658dfd43f3 -->
 <p class="lede">Ce chapitre répond à six questions, dans l’ordre&nbsp;: ce que le projet coûte à construire, ce qu’il coûte et rapporte chaque année, ce qu’il rend au pays, ce que les trains traversants changent à travers la France, comment l’argent et les avantages se répartissent année après année, et comment il se compare à d’autres projets. Les avantages sont évalués selon la méthode française officielle pour les projets de transport, les règles que l’État applique à chaque ligne nouvelle,[[fr_instruction]] et chaque règle est nommée là où elle sert. Deux lectures sont données côte à côte. La lecture simple de l’étude compare les avantages de l’année de mise en service, tenus constants, à la facture annuelle. La lecture officielle évalue chaque année, des premiers travaux jusqu’en 2140, et ramène le tout à sa valeur d’aujourd’hui (on dit qu’elle l’actualise).</p>
 
 <div class="block" id="economy.glance">
-  <h2>Le tableau complet en six chiffres</h2>
+  <h2>Le bilan en six chiffres</h2>
   <div class="tiles eco-glance">
     <div class="tile" style="--tc: var(--s8)"><span class="n">{{ m.cost.total | 1 }}<small>&nbsp;Md€</small></span><span class="k">Pour construire</span><span class="d">Prix de 2026, études, foncier et marge pour risques de {{ m.cost.risk / (m.cost.hard + m.cost.soft + m.cost.land) | pct }} compris. {{ m.cost_low | 1 }}&nbsp;Md€ aux prix unitaires bas, {{ m.cost_high | 1 }}&nbsp;Md€ aux prix hauts. Voir <a class="xref" href="#cost">le chapitre sur le coût</a></span></div>
     <div class="tile" style="--tc: var(--s8)"><span class="n">{{ f.central.annuity | 2 }}<small>&nbsp;Md€ par an</small></span><span class="k">Pour rembourser la construction</span><span class="d">Sur {{ b.n | 0 }} ans à {{ b.r | pct }}, intérêts pendant les {{ m.params.build_years | 0 }} ans de travaux compris. C’est le coût annuel d’avoir construit le projet</span></div>
@@ -141,7 +141,7 @@
 </div>
 
 <div class="block" id="economy.france">
-  <h2>À travers la France sans changer de train</h2>
+  <h2>Traverser la France sans changer de train</h2>
   <p>Aujourd’hui, un TGV de l’Ouest s’arrête à Montparnasse et un TGV du Nord à la gare du Nord&nbsp;: un voyageur de Bordeaux à Lille traverse Paris en métro, {{ d.french.params.x_today | 0 }} minutes d’un train à l’autre, ou prend l’un des rares trains directs quotidiens qui contournent Paris par Massy, une heure plus lents. Avec le projet, chaque train traverse Paris et continue sa route, avec deux arrêts de quelques minutes&nbsp;: de Lille à Bordeaux en <span data-pair="Lille,Bordeaux" data-what="project"></span> au lieu de <span data-pair="Lille,Bordeaux" data-what="today"></span>, de Bordeaux à Strasbourg en <span data-pair="Bordeaux,Strasbourg" data-what="project"></span>, de Rennes à Strasbourg en <span data-pair="Rennes,Strasbourg" data-what="project"></span>, de Lille à Marseille, les deux villes les plus éloignées, en <span data-pair="Lille,Marseille" data-what="project"></span>, toutes les heures, en direct ou avec une correspondance dans une même gare. L’avion, aéroports compris, met à peu près autant de temps de porte à porte, et c’est à partir de là que le rail prend le marché.[[hotrails24]]</p>
   <div class="tbl-wrap"><table class="tbl" id="eco-france-table"></table></div>
   <p class="note">Temps ferroviaires tirés des horaires SNCF d’un jour de semaine de mars 2026&nbsp;: aujourd’hui avec un changement de gare à Paris, les correspondances qu’un voyageur choisirait&nbsp;; avec le projet, les trajets des mêmes trains plus {{ d.french.params.x_proj | 0 }}&nbsp;minutes pour traverser Paris.[[sncf_crossing]] En avion&nbsp;: {{ d.french.params.air_door[0] | 0 }} minutes pour rejoindre l’aéroport, s’enregistrer, embarquer, débarquer et gagner la ville, plus le vol <span class="tag assume">hypothèse</span>. Passagers aériens de 2025 entre les deux villes.[[dgac25]] Part du rail dans le marché rail et avion d’après la courbe publiée&nbsp;: environ 90&nbsp;% à deux heures, 70&nbsp;% à trois, 55&nbsp;% à quatre, 35&nbsp;% à cinq.[[hotrails24]]</p>
@@ -158,9 +158,7 @@
     </div>
     <div class="prose">
       <h3>Pourquoi le chiffre du carbone reste modeste</h3>
-      <h3>L’avion</h3>
       <p>Le trafic aérien entre les régions françaises est faible&nbsp;: 8,2 millions de passagers en 2025, la plupart vers Nice et Toulouse, qui restent à plus de cinq heures de train même avec le projet, et les liaisons que le projet fait passer sous quatre heures en comptent chacune quelques centaines de milliers.[[dgac25]]</p>
-      <h3>La voiture</h3>
       <p>Le levier le plus important est la voiture, qui assure la plupart des longs trajets en France&nbsp;: un quart des nouveaux trajets comptés dans le modèle en viennent, {{ d.french.study.central.benefits[d.french.names.key.carbon_car] | m }}&nbsp;M€ de carbone par an dans la famille 5, et le scénario officiel décarbone les voitures d’ici 2050, après quoi le gain ne porte plus que sur les accidents, le bruit et la congestion.[[fr_ref]]</p>
       <h3>Ce que montre le tableau</h3>
       <p>Ce que montre le tableau, c’est l’autre moitié de l’histoire&nbsp;: pour les week-ends et les vacances, des millions de personnes en région gagnent un train toutes les heures, direct ou avec une correspondance rapide dans une même gare, vers des régions qu’elles ne pouvaient atteindre qu’en changeant de gare à Paris. Le calcul valorise ce choix à travers les trajets qu’il ajoute&nbsp;; il ne valorise rien pour les voyageurs qui avaient déjà un train direct.</p>
@@ -200,9 +198,7 @@
     </div>
   </div>
   <h3>Comment le gain croît au fil des ans</h3>
-  <h3>Logements et emplois se déplacent</h3>
   <p>Le calcul garde les logements et les emplois là où le recensement de 2022 les a trouvés. Entreprises et ménages se rapprochent des lieux mieux desservis en quinze à vingt ans&nbsp;: l’évaluation du Grand Paris Express modélise ce mouvement, et sa contre-expertise note que les effets de localisation ne sont pas complets à la mise en service et continuent de croître jusqu’en 2035.[[ce_l15]]</p>
-  <h3>Comment le gain augmente</h3>
   <p>Ici, le gain des navetteurs augmente de moitié en vingt ans dans le cas central, pas du tout dans le cas bas, et double dans le cas haut, en plus de la croissance officielle des trajets et de la valeur du temps&nbsp;: {{ d.french.timeline.jobs.users[12] | m }}&nbsp;M€ en {{ d.french.params.open | str }}, {{ d.french.timeline.jobs.users[32] | m }}&nbsp;M€ en 2060, {{ d.french.timeline.jobs.users[42] | m }}&nbsp;M€ en {{ d.french.params.last | str }}, puis un niveau constant.</p>
   <figure class="fig">
     <div class="fig-head"><strong>Accès à l’emploi&nbsp;: {{ d.french.timeline.jobs.users[12] | m }}&nbsp;M€ par an à la mise en service, {{ d.french.timeline.jobs.users[42] | m }}&nbsp;M€ en {{ d.french.params.last | str }}</strong><span>Millions d’euros par an&nbsp;: le gain propre des navetteurs et les effets élargis présentés à part, du cas bas au cas haut</span></div>
@@ -325,7 +321,7 @@
       <tbody>
         <tr><th>Londres, Elizabeth line, 2022</th><td>32</td><td>1,97 en 2011&nbsp;; 1,37 en 2020 après la hausse du coût</td><td>3,09&nbsp;; 1,88</td><td>Non publié</td><td>Les effets élargis font 27&nbsp;% à 36&nbsp;% des avantages. Les recettes couvrent les coûts d’exploitation. Sur le coût brut, environ 0,8 à 1,2 (déduit). Environ 150&nbsp;€ d’investissement par trajet annuel (déduit).[[eco_cr11, nao21]]</td></tr>
         <tr><th>Londres, Thameslink, 2018</th><td>9</td><td>Jusqu’à 2,1 à l’approbation&nbsp;; 1,4 en 2013</td><td>Non indiqué</td><td>Non publié</td><td>[[eco_nao13, eco_nao14]]</td></tr>
-        <tr><th>Marseille, gare souterraine et ligne nouvelle, phases 1 et 2, vers 2035</th><td>4,2</td><td>Bénéfice net de 0,36 à 0,66 par euro investi, soit 1,4 à 1,7 (déduit)</td><td>Aucun</td><td>Pas en service</td><td>Jugé «&nbsp;positif mais faible&nbsp;» par les contre-experts de l’État&nbsp;; compte des recettes ferroviaires supplémentaires et la décongestion des routes.[[eco_lnpca]]</td></tr>
+        <tr><th>Marseille, gare souterraine et ligne nouvelle, phases 1 et 2, vers 2035</th><td>4,2</td><td>Gain net de 0,36 à 0,66 par euro investi, soit 1,4 à 1,7 (déduit)</td><td>Aucun</td><td>Pas en service</td><td>Jugé «&nbsp;positif mais faible&nbsp;» par les contre-experts de l’État&nbsp;; compte des recettes ferroviaires supplémentaires et la décongestion des routes.[[eco_lnpca]]</td></tr>
         <tr><th>Sydney Metro City and Southwest, 2024</th><td>14</td><td>1,3</td><td>1,7</td><td>Pas encore</td><td>À un taux d’actualisation de 7&nbsp;%. Effets élargis&nbsp;: 21&nbsp;% des avantages.[[eco_ia17]]</td></tr>
         <tr><th>Francfort, tunnel des grandes lignes, années 2040</th><td>4,6</td><td>1,2 pour le projet du nœud ferroviaire</td><td>Non publié</td><td>Pas en service</td><td>Non vérifié.[[eco_ffm]]</td></tr>
         <tr><th>Melbourne Metro Tunnel, 2025</th><td>9</td><td>1,1</td><td>1,5</td><td>Pas encore</td><td>Effets élargis&nbsp;: 28&nbsp;% des avantages.[[eco_ia16]]</td></tr>
@@ -342,7 +338,7 @@
   </details>
   <div class="cols">
     <div class="prose">
-      <h3>La même chose en taux de rentabilité</h3>
+      <h3>Le même constat en taux de rentabilité</h3>
       <p>Certains projets français et danois publient un taux de rentabilité annuel pour la société, et pas de rapport. Le seuil d’approbation était de 8&nbsp;% en France quand les premiers tronçons du RER ont été examinés,[[cgpc]] de 6&nbsp;% au Danemark&nbsp;;[[eco_cph]] aujourd’hui, la méthode française demande une valeur positive à {{ d.french.params.rate | pct1 }}, c’est-à-dire un taux de rentabilité supérieur à {{ d.french.params.rate | pct1 }}.</p>
       <div class="tbl-wrap"><table class="tbl no-stack">
         <thead><tr><th>Projet</th><th class="num">Prévu</th><th class="num">Mesuré</th></tr></thead>

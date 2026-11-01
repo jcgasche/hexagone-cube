@@ -10,7 +10,7 @@
   </ul>
   <h3>How many trains in a standard hour</h3>
   <p>How many trains is a standard hour? This study takes {{ m.hour_today.Atlantic | 0 }} TGVs an hour each way on the Atlantic line, {{ m.hour_today.Southeast | 0 }} on the south-east line, {{ m.hour_today.North | 0 }} on the northern line and {{ m.hour_today.East | 0 }} on the eastern line <span class="tag assume">assumption</span>. These are round numbers for a busy hour, not counts; the real pattern has to come from a timetable study, and what caps the number of trains today, platforms or lines, is a study point (I1 in <a class="xref" href="#risks.verify">what to verify</a>). The triangle is balanced by these numbers: each of its three stations is the home of about as many TGVs, the {{ m.hour_today.North | 0 }} northern and {{ m.hour_today.East | 0 }} eastern trains of Nord-Est together matching Gare de Lyon and Montparnasse.</p>
-  <h3>Filling the southern lines</h3>
+  <h3>With the southern lines full</h3>
   <p>The second pattern below fills the two southern lines to their planned capacity: {{ m.hour_full.Southeast | 0 }} trains an hour on the line to Lyon from 2030,[[lgvse]] and up to {{ m.hour_full.Atlantic | 0 }} on the Atlantic line with new signalling.[[ae14, cgedd09]] No capacity figure was found for the northern and eastern lines; they are held at {{ m.hour_full.North | 0 }} and {{ m.hour_full.East | 0 }} <span class="tag assume">assumption</span>.</p>
   <figure class="fig">
     <div class="fig-head"><strong id="svc-flow-title">Trains from the south either run on to the north or east through Nord-Est, or cross to the other southern station by the link</strong><span>High-speed trains an hour in each direction; the width of a band is the number of trains <span class="tag sketch">illustrative sketch</span></span></div>
@@ -44,8 +44,9 @@
   <h2>Any line can be paired with any other</h2>
   <p>The tunnels join all four lines, so a train arriving from one line can leave by any of the others: the northern and eastern lines meet the two southern ones at Nord-Est, and the two southern lines meet each other by the link. The timetable is free to pair them as traffic requires, and to change the pairing from one hour to the next. The choice holds at every station: from each of the three, there are direct trains in all four directions.</p>
   <h3>Four unequal lines</h3>
-  <p>The four lines are not equal. The two southern lines carry more than twice the passengers of the northern and eastern ones: about 44 and 35 million a year counted at their Paris terminals, against 21.5 and 12 (derived).[[art24]] So not every train from the south can find a partner in the north or the east. In the standard hour, {{ m.service.flows['Atlantic to north'] | 0 }} trains from each southern line go on to the north and {{ m.service.flows['Atlantic to east'] | 0 }} to the east, which uses every train of the northern and eastern lines.</p>
-  <h3>Pairing the southern trains</h3>
+  <p>The four lines are not equal. The two southern lines carry more than twice the passengers of the northern and eastern ones: about 44 and 35 million a year counted at their Paris terminals, against 21.5 and 12 (derived).[[art24]]</p>
+  <h3>Pairing the trains of the four lines</h3>
+  <p>So not every train from the south can find a partner in the north or the east. In the standard hour, {{ m.service.flows['Atlantic to north'] | 0 }} trains from each southern line go on to the north and {{ m.service.flows['Atlantic to east'] | 0 }} to the east, which uses every train of the northern and eastern lines.</p>
   <p>The {{ m.service.link_each_way | 0 }} trains left on each southern line are paired with each other by the direct link, with no reversal. When the southern lines are full, {{ m.service_full.link_each_way | 0 }} an hour each way take the link and {{ m.service_full.new_east_tgv | 0 }} south-east train an hour is left without a partner: it runs on through Nord-Est to the east line, as a new hourly link. No train turns back anywhere.</p>
   <h3>What passengers get</h3>
   <p>For passengers, this gives direct trains on five of the six pairs of lines; only north to east has none, because the two lines meet just north of Nord-Est. <a class="xref" href="#crossing.tgv">Crossing Paris by TGV</a> gives the times for each pair. Fixed pairs, with each southern line tied to one northern line, would be simpler to run but would leave only two pairs with direct trains; the model no longer tests that case, since the link makes it unnecessary.</p>
@@ -109,7 +110,6 @@
     </tbody></table></div>
   <p class="note">Stops an hour, both directions together. The rule rounds up to whole tracks in each direction. With the lines full, the south-east line's {{ m.hour_full.Southeast | 0 }} trains an hour planned for 2030 would come to {{ m.service_full.lyon_stops / (2 * m.service_full.tracks_per_direction) | 1 }} an hour on each of three tracks each way, more than the {{ m.per_track | 1 }} that a track takes; the fourth track each way at Gare de Lyon takes the extra train. One hour of trains at each station is drawn in <a class="xref" href="#timetable">the timetable</a>.</p>
   <h3>Regional express trains: in the TGV tunnels, on platforms of their own</h3>
-  <h3>Regional express trains in the TGV tunnels</h3>
   <p>Regional express trains (TER) have no tunnel of their own: they run in the TGV tunnels. The paths through the tunnels are laid on a grid of 2 minutes, {{ m.ter_paths.paths_per_hour | 0 }} an hour each way. The TGVs keep their places of the {{ m.stop_min + m.reserve_min + m.clear_min | 0 }}-minute beat, one every 4 minutes on each side, and the TER take the paths in between.</p>
   <h3>Nothing changes for TGV passengers</h3>
   <p>Nothing changes for TGV passengers: the {{ m.reserve_min | 0 }} minutes held after each stop become the window between the public departure, when the doors close at the time printed in the timetable, and the railway departure, when the train leaves in its path. Every train, TGV or TER, takes the same {{ m.run_min | 0 }} minutes between two stations, so the paths never cross.</p>
@@ -168,7 +168,6 @@
     <li><strong>Depots</strong> stay where they are; trains reach them through the tunnel portals (see <a class="xref" href="#works.surface">changes on the surface</a>).</li>
   </ul>
   <h3>Regional express and suburban trains through Paris</h3>
-  <h3>Lines joined across Paris</h3>
   <p>Each of the new tunnels joins lines from both sides of Paris. Regional express trains from the north run through Nord-Est to Montparnasse and on to the lines towards Chartres, Le Mans and Granville; those from the east run through Nord-Est to Gare de Lyon and on to Burgundy, and the other way. Line P from the east runs on along line N towards Versailles and Saint-Quentin-en-Yvelines, as RER G; lines H and K from the north run on through Saint-Lazare onto the branches of line L, as RER F. Line R does not run through.</p>
   <h3>Direct trains and easy changes</h3>
   <p>So three pairs of suburban lines have direct trains across Paris, H with L, K with L and P with N, and three more have one easy change at Nord-Est, between lines H or K and line N, and between line P and line L.</p>

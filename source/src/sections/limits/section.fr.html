@@ -40,10 +40,10 @@
 <div class="block" id="limits.assumed">
   <h2>Les principales hypothèses qui n’ont pas encore de données</h2>
   <ul>
-    <li><strong>La signalisation.</strong> Les TER ne partagent les tunnels TGV que si les trains peuvent se suivre à environ {{ m.ter_paths.signal_min[0] | 1 }}&nbsp;minutes.</li>
+    <li><strong>La signalisation.</strong> Les TER ne partagent les tunnels TGV que si les trains peuvent se suivre à environ {{ m.ter_paths.signal_min[0] | 1 }}&nbsp;minute.</li>
     <li><strong>La règle des quais.</strong> Arrêts de {{ m.stop_min | 0 }}&nbsp;minutes, {{ m.reserve_min | 0 }}&nbsp;minutes réservées à un train en retard et {{ m.clear_min | 0 }} pour libérer la voie&nbsp;: {{ m.per_track | 0 }}&nbsp;trains par heure et par voie.</li>
     <li><strong>Le coût.</strong> {{ m.cost.total | 1 }}&nbsp;Md€, tiré de rares exemples de gares souterraines construites sous des gares en service&nbsp;: de {{ m.cost_low | 0 }} à {{ m.cost_high | 0 }}&nbsp;Md€ selon les prix et les aléas retenus. Le sol sous la gare de Lyon et Montparnasse n’est pas étudié.</li>
-    <li><strong>L’accès aux quais d’une gare souterraine.</strong> Supposé aussi rapide qu’aujourd’hui&nbsp;; deux minutes de plus pour chaque voyageur retireraient {{ 1 - d.french.study.central.tests['Every passenger takes 2 minutes longer to board than today'].benefits / d.french.study.central.benefit_total | pct }} des bénéfices.</li>
+    <li><strong>L’accès aux quais d’une gare souterraine.</strong> Supposé aussi rapide qu’aujourd’hui&nbsp;; deux minutes de plus pour chaque voyageur retireraient {{ 1 - d.french.study.central.tests['Every passenger takes 2 minutes longer to board than today'].benefits / d.french.study.central.benefit_total | pct }} des avantages.</li>
     <li><strong>Qui traverse Paris.</strong> Aucun comptage public récent des trajets d’un côté de Paris à l’autre&nbsp;; les nouveaux voyages sont estimés à partir des changements de train que le projet supprime. Le résultat est un scénario exploratoire&nbsp;: distinguer les voyageurs qui changent d’itinéraire, ceux qui quittent la voiture ou l’avion et les déplacements entièrement nouveaux demande des données d’enquête (voir <a class="xref" href="#traffic.tgv">trois sortes de nouveaux voyageurs</a>).</li>
     <li><strong>Les coûts d’exploitation.</strong> Les rares références françaises varient du simple au triple&nbsp;: les recettes propres du projet couvrent de {{ f.high_running.ops_cover | pct }} à {{ f.low_running.ops_cover | pct }} des coûts d’exploitation sur cette fourchette.</li>
   </ul>
@@ -52,7 +52,7 @@
 
 <div class="block" id="limits.range">
   <h2>Jusqu’où le résultat peut bouger</h2>
-  <p>Dans le cas central, les bénéfices comptés rendent {{ d.french.study.central.cover | pct }} du coût annuel, et la lecture française donne +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui. Les postes incertains, pris ensemble, font varier ce chiffre de +{{ d.french.cases.low.npv | 1 }} à +{{ d.french.cases.high.npv | 1 }}&nbsp;Md€. Le résultat justifie donc une étude professionnelle, pas encore une décision de construire.</p>
+  <p>Dans le cas central, les avantages comptés rendent {{ d.french.study.central.cover | pct }} du coût annuel, et la lecture française donne +{{ d.french.cases.central.npv | 1 }}&nbsp;Md€ nets en euros d’aujourd’hui. Les postes incertains, pris ensemble, font varier ce chiffre de +{{ d.french.cases.low.npv | 1 }} à +{{ d.french.cases.high.npv | 1 }}&nbsp;Md€. Le résultat justifie donc une étude professionnelle, pas encore une décision de construire.</p>
 </div>
 
 <div class="block" id="limits.professional">
