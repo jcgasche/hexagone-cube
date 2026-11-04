@@ -34,6 +34,16 @@ SHELL_FR = [('>Presentation<', '>Présentation<'), ('>Full report<', '>Rapport c
 OTHER = {'en': ('fr', 'FR', 'Lire en français'), 'fr': ('en', 'EN', 'Read in English')}
 
 
+
+# Privacy-friendly analytics by Plausible, added to the <head> of every page.
+PLAUSIBLE = """<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-eYhS6I-QmjdLMmTNzwnlN.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
+"""
+
 def en_hash(text): return hashlib.sha1(text.encode('utf-8')).hexdigest()[:10]
 TR_MARK = re.compile(r'^\s*<!--\s*en:\s*([0-9a-f]{10})\s*-->\s*\n?')
 
@@ -548,7 +558,7 @@ def build(a, lang, out):
     algo_js = json.dumps(algo_data(cat, lang, algo_figs), ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
     tail = f'<script type="application/json" id="pts-algo">{algo_js}</script>\n<script>\n{data_js}\n</script>\n<script>\n{script}\nPTS.start();\n</script>\n'
     full = (f'<!doctype html>\n<html lang="{lang}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">\n'
-            + head + '</head>\n<body>\n' + page + tail + '</body>\n</html>\n')
+            + head + PLAUSIBLE + '</head>\n<body>\n' + page + tail + '</body>\n</html>\n')
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
     with open(out, 'w', encoding='utf-8') as f: f.write(full)
     for w in warnings: print('warning:', w)
