@@ -1,0 +1,548 @@
+{
+ "parts": {
+  "T": {
+   "pv_benefits": 44.35,
+   "pv_costs": 27.86,
+   "npv": 16.49,
+   "ratio": 1.59,
+   "name": "TGV and TER triangle",
+   "capex": 29.71,
+   "capex_low": 20.13,
+   "capex_high": 43.59,
+   "first_year": {
+    "benefits": 2.598,
+    "running": 0.245
+   },
+   "items": {
+    "Building the tunnels and stations": -21.6,
+    "Renewing the rail systems every thirty years": -0.32,
+    "Running the tunnels and stations": -2.51,
+    "Running the extra regional trains": -0.52,
+    "TGV travellers of the Paris region: a nearer station": 7.51,
+    "TGV travellers crossing Paris: no change of station": 11.51,
+    "Room for more TGVs in the busy hours": 3.8,
+    "Regional travellers: the Paris side of their trip": 0.91,
+    "Regional express travellers crossing Paris: no change": 0.8,
+    "Fares of the new TGV journeys kept by the railway": 7.6,
+    "Trainsets saved: trains no longer wait in a terminal": 0.76,
+    "Carbon: car trips replaced by the new TGV journeys": 0.13,
+    "Less crowding on the metro and RER legs no longer ridden": 0.67,
+    "Travellers of the western bypass trains: more trains, shorter routes": 2.57,
+    "Travellers who leave the plane for a through train": 0.09,
+    "Fares of the new cross-France journeys kept by the railway": 0.6,
+    "Carbon: flights replaced by through trains": 0.92,
+    "Carbon and roads: car trips replaced on cross-France journeys": 0.04,
+    "A regular timetable: easy to read, easy to repair": 3.49,
+    "TGV travellers arrive later: a known through platform": 2.49,
+    "Carbon emitted by the works": -0.3,
+    "Roads: fewer accidents, less noise, pollution and congestion": 0.37,
+    "Cost of raising the public money": -2.6,
+    "Cost of raising the public money for these items": 0.09
+   }
+  },
+  "F": {
+   "pv_benefits": 5.27,
+   "pv_costs": 4.68,
+   "npv": 0.59,
+   "ratio": 1.13,
+   "name": "RER F",
+   "capex": 4.65,
+   "capex_low": 2.97,
+   "capex_high": 7.11,
+   "first_year": {
+    "benefits": 0.301,
+    "running": 0.038
+   },
+   "items": {
+    "Building the tunnels and stations": -3.38,
+    "Renewing the rail systems every thirty years": -0.07,
+    "Running the tunnels and stations": -0.47,
+    "Regional travellers: the Paris side of their trip": 0.9,
+    "Trainsets saved: trains no longer wait in a terminal": 0.18,
+    "Commuters who gain a through suburban line across Paris": 3.11,
+    "Less crowding on the metro and RER legs no longer ridden": 0.99,
+    "Carbon emitted by the works": -0.05,
+    "Roads: fewer accidents, less noise, pollution and congestion": 0.08,
+    "Cost of raising the public money": -0.71
+   }
+  },
+  "G": {
+   "pv_benefits": 2.68,
+   "pv_costs": 5.74,
+   "npv": -3.07,
+   "ratio": 0.47,
+   "name": "RER G",
+   "capex": 5.64,
+   "capex_low": 3.76,
+   "capex_high": 8.83,
+   "first_year": {
+    "benefits": 0.172,
+    "running": 0.044
+   },
+   "items": {
+    "Building the tunnels and stations": -4.1,
+    "Renewing the rail systems every thirty years": -0.14,
+    "Running the tunnels and stations": -0.54,
+    "Running the extra regional trains": -0.01,
+    "Regional travellers: the Paris side of their trip": 0.54,
+    "Trainsets saved: trains no longer wait in a terminal": 0.07,
+    "Commuters who gain a through suburban line across Paris": 0.42,
+    "RER G stops at Châtelet-Les Halles: easier changes to RER A, B, D and five metro lines": 0.56,
+    "Less crowding on line 4 and the metro and RER in Paris, relieved by RER G": 1.03,
+    "Carbon emitted by the works": -0.06,
+    "Roads: fewer accidents, less noise, pollution and congestion": 0.05,
+    "Cost of raising the public money": -0.9
+   }
+  },
+  "S": {
+   "pv_benefits": 1.04,
+   "pv_costs": -0.0,
+   "npv": 1.04,
+   "ratio": null,
+   "name": "Surface freed (needs every part)",
+   "capex": 0.0,
+   "capex_low": 0.0,
+   "capex_high": 0.0,
+   "first_year": {
+    "benefits": -0.097,
+    "running": 0.0
+   },
+   "items": {
+    "Upkeep of the surface terminals no longer needed": 0.37,
+    "Building plots at the edge of the freed tracks, sold": 0.1,
+    "Four new parks on the freed tracks": 0.39,
+    "Signal boxes of the surface approaches not renewed": 0.1,
+    "Less rail noise along the approaches that close": 0.09,
+    "Cost of raising the public money for these items": -0.01
+   }
+  }
+ },
+ "combos": {
+  "T": {
+   "pv_benefits": 44.35,
+   "pv_costs": 27.86,
+   "npv": 16.49,
+   "ratio": 1.59
+  },
+  "T+F": {
+   "pv_benefits": 49.61,
+   "pv_costs": 32.54,
+   "npv": 17.08,
+   "ratio": 1.52
+  },
+  "T+G": {
+   "pv_benefits": 47.02,
+   "pv_costs": 33.6,
+   "npv": 13.42,
+   "ratio": 1.4
+  },
+  "F+G+S": {
+   "pv_benefits": 8.98,
+   "pv_costs": 10.42,
+   "npv": -1.44,
+   "ratio": 0.86
+  },
+  "F+S": {
+   "pv_benefits": 6.3,
+   "pv_costs": 4.68,
+   "npv": 1.62,
+   "ratio": 1.35
+  },
+  "G+S": {
+   "pv_benefits": 3.71,
+   "pv_costs": 5.74,
+   "npv": -2.03,
+   "ratio": 0.65
+  },
+  "plan": {
+   "pv_benefits": 53.33,
+   "pv_costs": 38.28,
+   "npv": 15.04,
+   "ratio": 1.39
+  }
+ },
+ "shares": {
+  "cost": {
+   "T": 0.7426745778183479,
+   "F": 0.11629392971246008,
+   "G": 0.14103149246919217
+  },
+  "stage1_of_triangle_gains": 0.362,
+  "stage1_of_triangle_cost": 0.552,
+  "stage1_items": {
+   "TGV travellers of the Paris region: a nearer station": 0.444,
+   "TGV travellers crossing Paris: no change of station": 0.322,
+   "Room for more TGVs in the busy hours": 0.571,
+   "Fares of the new TGV journeys kept by the railway": 0.332,
+   "Carbon: car trips replaced by the new TGV journeys": 0.332,
+   "Roads: fewer accidents, less noise, pollution and congestion": 0.332,
+   "A regular timetable: easy to read, easy to repair": 0.667,
+   "TGV travellers arrive later: a known through platform": 0.667,
+   "Trainsets saved: trains no longer wait in a terminal": 0.667,
+   "Regional travellers: the Paris side of their trip": 0.08,
+   "Regional express travellers crossing Paris: no change": 0.08,
+   "Less crowding on the metro and RER legs no longer ridden": 0.322,
+   "Travellers of the western bypass trains: more trains, shorter routes": 0.0,
+   "Travellers who leave the plane for a through train": 0.0,
+   "Fares of the new cross-France journeys kept by the railway": 0.0,
+   "Carbon: flights replaced by through trains": 0.0,
+   "Carbon and roads: car trips replaced on cross-France journeys": 0.0
+  },
+  "regional_by_part": {
+   "T": 0.3869780455421082,
+   "F": 0.38451344280329425,
+   "G": 0.22850851165459768
+  },
+  "crowding_by_part": {
+   "F": 0.5975032665440162,
+   "T": 0.4024967334559838
+  }
+ },
+ "stages": {
+  "counted": {
+   "pv_benefits": 53.33,
+   "pv_costs": 38.28,
+   "npv": 15.04,
+   "ratio": 1.39,
+   "name": "As the economic return counts it: everything opens in 2040",
+   "opens": {
+    "T": 2040,
+    "F": 2040,
+    "G": 2040
+   }
+  },
+  "works": {
+   "pv_benefits": 55.44,
+   "pv_costs": 38.52,
+   "npv": 16.93,
+   "ratio": 1.44,
+   "name": "The order of the Works chapter: north, east and south-east TGVs with RER F in 2037, the rest in 2040",
+   "opens": {
+    "T1": 2037,
+    "F": 2037,
+    "T2": 2040,
+    "G": 2040
+   }
+  },
+  "triangle": {
+   "pv_benefits": 57.74,
+   "pv_costs": 38.51,
+   "npv": 19.23,
+   "ratio": 1.5,
+   "name": "The triangle first: every TGV and TER in 2037, RER F and RER G in 2040",
+   "opens": {
+    "T": 2037,
+    "F": 2040,
+    "G": 2040
+   }
+  },
+  "triangle_f": {
+   "pv_benefits": 58.26,
+   "pv_costs": 38.58,
+   "npv": 19.68,
+   "ratio": 1.51,
+   "name": "The triangle and RER F in 2037, RER G in 2040 (if the money of nine years allowed it)",
+   "opens": {
+    "T": 2037,
+    "F": 2037,
+    "G": 2040
+   }
+  },
+  "later5": {
+   "pv_benefits": 56.31,
+   "pv_costs": 36.78,
+   "npv": 19.53,
+   "ratio": 1.53,
+   "name": "The triangle in 2037, RER F and RER G in 2045",
+   "opens": {
+    "T": 2037,
+    "F": 2045,
+    "G": 2045
+   }
+  },
+  "later10": {
+   "pv_benefits": 55.07,
+   "pv_costs": 35.45,
+   "npv": 19.61,
+   "ratio": 1.55,
+   "name": "The triangle in 2037, RER F and RER G in 2050",
+   "opens": {
+    "T": 2037,
+    "F": 2050,
+    "G": 2050
+   }
+  },
+  "no_g": {
+   "pv_benefits": 54.02,
+   "pv_costs": 33.63,
+   "npv": 20.4,
+   "ratio": 1.61,
+   "name": "The triangle in 2037, RER F in 2040, no RER G (the surface of Gare de l’Est and Montparnasse not freed)",
+   "opens": {
+    "T": 2037,
+    "F": 2040
+   }
+  },
+  "triangle_only": {
+   "pv_benefits": 48.76,
+   "pv_costs": 29.71,
+   "npv": 19.04,
+   "ratio": 1.64,
+   "name": "The triangle alone in 2037, no suburban tunnel",
+   "opens": {
+    "T": 2037
+   }
+  }
+ },
+ "stage1_sensitivity": {
+  "0.25": 16.41,
+  "0.5": 17.56
+ },
+ "spend": {
+  "triangle_by_2036": 29.7,
+  "spent_by_2036_at_the_plan_rate": 30.0,
+  "stage1_of_the_works_chapter": 21.0
+ },
+ "rerd": {
+  "cost": {
+   "low": 2.16,
+   "central": 2.79,
+   "high": 3.89
+  },
+  "upkeep": 0.019,
+  "cases": {
+   "today": {
+    "name": "Today’s trains: RER B 20, RER D 12 and line R 5",
+    "reliability": 0.053,
+    "more_trains": 0.0,
+    "r_time": 0.0074,
+    "trains": 0.0,
+    "benefit": 0.0604,
+    "french": {
+     "pv_benefits": 1.06,
+     "pv_costs": 2.72,
+     "npv": -1.66,
+     "ratio": 0.39
+    },
+    "french_trains_free": {
+     "pv_benefits": 1.06,
+     "pv_costs": 2.72,
+     "npv": -1.66,
+     "ratio": 0.39
+    },
+    "french_low": {
+     "pv_benefits": 1.06,
+     "pv_costs": 3.68,
+     "npv": -2.61,
+     "ratio": 0.29
+    },
+    "french_high": {
+     "pv_benefits": 1.06,
+     "pv_costs": 2.17,
+     "npv": -1.11,
+     "ratio": 0.49
+    },
+    "with_plan": {
+     "npv": 13.38,
+     "ratio": 1.327
+    }
+   },
+   "growth": {
+    "name": "More trains: RER B 24, RER D 16 and line R 5",
+    "reliability": 0.0362,
+    "more_trains": 0.119,
+    "r_time": 0.0074,
+    "trains": 0.0744,
+    "benefit": 0.1627,
+    "french": {
+     "pv_benefits": 2.86,
+     "pv_costs": 3.82,
+     "npv": -0.96,
+     "ratio": 0.75
+    },
+    "french_trains_free": {
+     "pv_benefits": 2.86,
+     "pv_costs": 2.72,
+     "npv": 0.14,
+     "ratio": 1.05
+    },
+    "french_low": {
+     "pv_benefits": 2.86,
+     "pv_costs": 4.78,
+     "npv": -1.92,
+     "ratio": 0.6
+    },
+    "french_high": {
+     "pv_benefits": 2.86,
+     "pv_costs": 3.27,
+     "npv": -0.41,
+     "ratio": 0.87
+    },
+    "with_plan": {
+     "npv": 14.08,
+     "ratio": 1.335
+    }
+   }
+  },
+  "trains_b": [
+   0.031,
+   400000.0,
+   10.0
+  ],
+  "trains_d": [
+   0.0434,
+   560000.0,
+   14.0
+  ],
+  "r_hours_day": 1600,
+  "params": {
+   "peak_hours": 4.0,
+   "run_km": {
+    "B": 50.0,
+    "D": 70.0,
+    "G": 70.0,
+    "F": 45.0
+   },
+   "round_h": {
+    "B": 2.5,
+    "D": 3.5,
+    "G": 3.5,
+    "F": 2.5
+   },
+   "trainkm_cost": 27.5,
+   "trainset_year": 0.002,
+   "all_trips": 1.24
+  }
+ },
+ "bd": {
+  "base": {
+   "through": 30.9,
+   "b_s": 70.9,
+   "d_s": 61.5,
+   "rider_min": {
+    "B": 1.2168666666666668,
+    "D": 1.053
+   }
+  },
+  "doors_s": 20.0,
+  "plan": {
+   "through": 31.0,
+   "b_s": 63.4,
+   "d_s": 53.9,
+   "rider_min": {
+    "B": 1.0842666666666667,
+    "D": 0.9207333333333333
+   },
+   "relief": 0.111,
+   "relief_b": 0.129,
+   "relief_d": 0.06,
+   "minutes_day": 52000.0,
+   "year": 0.0065,
+   "french": {
+    "pv_benefits": 0.11,
+    "pv_costs": 0.0,
+    "npv": 0.11,
+    "ratio": null
+   }
+  },
+  "plan_kr": {
+   "through": 31.0,
+   "b_s": 65.8,
+   "d_s": 52.2,
+   "rider_min": {
+    "B": 1.1318666666666666,
+    "D": 0.8964
+   },
+   "relief": 0.071,
+   "relief_b": 0.11,
+   "relief_d": -0.036,
+   "minutes_day": 48000.0,
+   "year": 0.006,
+   "french": {
+    "pv_benefits": 0.1,
+    "pv_costs": 0.0,
+    "npv": 0.1,
+    "ratio": null
+   }
+  },
+  "variant": {
+   "through": 31.1,
+   "b_s": 53.4,
+   "d_s": 41.9,
+   "rider_min": {
+    "B": 0.906,
+    "D": 0.7119333333333333
+   },
+   "relief": 0.335,
+   "relief_b": 0.404,
+   "relief_d": 0.145,
+   "minutes_day": 99000.0,
+   "year": 0.0124,
+   "french": {
+    "pv_benefits": 0.22,
+    "pv_costs": 0.0,
+    "npv": 0.22,
+    "ratio": null
+   }
+  }
+ },
+ "counted_crowding": {
+  "g_crowd_year": 0.069,
+  "crowd_year": 0.111,
+  "g_crowd_pv": 1.03,
+  "crowd_pv": 1.66
+ },
+ "relief": {
+  "plan": {
+   "b": 0.12941176470588234,
+   "d": 0.06024096385542166,
+   "both": 0.11087190527448865
+  },
+  "plan_kr": {
+   "b": 0.11029411764705888,
+   "d": -0.03614457831325302,
+   "both": 0.07104413347685679
+  },
+  "variant": {
+   "b": 0.40441176470588236,
+   "d": 0.14457831325301207,
+   "both": 0.3347685683530678
+  }
+ },
+ "room": {
+  "G": {
+   "from": 12,
+   "to": 16,
+   "gain": 0.014,
+   "running": 0.043,
+   "net": -0.03,
+   "french": {
+    "pv_benefits": 0.24,
+    "pv_costs": 0.65,
+    "npv": -0.4,
+    "ratio": 0.37
+   },
+   "platform_limit": 20
+  },
+  "F": {
+   "from": 23,
+   "to": 27,
+   "gain": 0.017,
+   "running": 0.03,
+   "net": -0.013,
+   "french": {
+    "pv_benefits": 0.3,
+    "pv_costs": 0.44,
+    "npv": -0.15,
+    "ratio": 0.67
+   },
+   "platform_limit": 32
+  }
+ },
+ "need": {
+  "to_pay": 1.44,
+  "to_match_plan": 5.5,
+  "to_pay_year": 0.082,
+  "to_match_plan_year": 0.313
+ }
+}
