@@ -212,6 +212,13 @@ for d, lab in ((5, 'later5'), (10, 'later10')):
     o = S2 + d
     stages[lab] = scenario('The triangle in 2037, RER F and RER G in %d' % o, merge(tri, timed('F', o, build=(o - 3, o - 1)), timed('G', o, build=(o - 3, o - 1)), later(S, d)), {'T': S1, 'F': o, 'G': o})
 stages['no_g'] = scenario('The triangle in 2037, RER F in 2040, no RER G (the surface of Gare de l’Est and Montparnasse not freed)', merge(tri, timed('F', S2, build=(S2 - 3, S2 - 1))), {'T': S1, 'F': S2})
+# where the gain of the triangle first comes from: the years between the two openings, item by item (the works are paid in the same years)
+_a = merge(T, F, G, S); _b = merge(timed('T', S1), timed('F', S2), timed('G', S2), S); _d = lambda ks: sum(pv(_b[k]) - pv(_a[k]) for k in ks)
+_ben = [k for k in ITEMS if k not in COST_ITEMS]; _run = [FR.RUNNING, FR.EXTRA_TRAINS]; _rest = [k for k in COST_ITEMS if k not in _run and k != FR.COFP_ITEM]
+early = {'years': S2 - S1, 'benefits_sum': round(sum(_b[k][IX[t]] - _a[k][IX[t]] for k in _ben for t in range(S1, S2)), 2), 'benefits': round(_d(_ben), 2), 'running': round(-_d(_run), 2),
+         'public_money': round(_d([FR.COFP_ITEM]), 2), 'works': round(_d(_rest), 2), 'net': round(_d(ITEMS), 2), 'per_year': round(_d(ITEMS) / (S2 - S1), 1),
+         'after': round(sum(pv([v if t >= S2 else 0.0 for t, v in zip(YEARS, _b[k])]) - pv([v if t >= S2 else 0.0 for t, v in zip(YEARS, _a[k])]) for k in ITEMS), 2)}
+print('EARLY', early)
 # how much the order of the Works chapter depends on the share of the triangle's gains given to its first stage
 t1_keep = t1_ben; sens1 = {}
 for sh in (0.25, 0.5):
@@ -296,7 +303,7 @@ need['to_pay_year'] = round(need['to_pay'] / per_bn_year, 3); need['to_match_pla
 
 out = {'parts': parts_out, 'combos': combos, 'shares': {'cost': c_share, 'stage1_of_triangle_gains': round(t1_ben, 3), 'stage1_of_triangle_cost': round(t1_cost, 3),
                                                        'stage1_items': {k: round(v, 3) for k, v in T1_SHARE.items()}, 'regional_by_part': reg, 'crowding_by_part': crowd},
-       'stages': stages, 'stage1_sensitivity': sens1, 'spend': spend, 'rerd': rd_out, 'bd': bd, 'counted_crowding': counted, 'relief': relief, 'room': room, 'need': need}
+       'stages': stages, 'early': early, 'stage1_sensitivity': sens1, 'spend': spend, 'rerd': rd_out, 'bd': bd, 'counted_crowding': counted, 'relief': relief, 'room': room, 'need': need}
 json.dump(out, open(os.path.join(FR.OUT, 'levers.json'), 'w'), indent=1, ensure_ascii=False)
 
 # the annex 'parts' reads the same figures, with short keys for the items it names and whole widths for its bars

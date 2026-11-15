@@ -294,6 +294,17 @@
    }
   }
  },
+ "early": {
+  "years": 3,
+  "benefits_sum": 7.48,
+  "benefits": 4.41,
+  "running": 0.43,
+  "public_money": 0.21,
+  "works": 0.0,
+  "net": 4.19,
+  "per_year": 1.4,
+  "after": 0.0
+ },
  "stage1_sensitivity": {
   "0.25": 16.41,
   "0.5": 17.56
