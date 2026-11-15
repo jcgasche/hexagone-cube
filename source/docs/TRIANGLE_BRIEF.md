@@ -32,7 +32,7 @@
   Nord-Est and 4 at Montparnasse; 5-minute stop with margin + 2.5-minute gap = 8 trains an hour a track (16 each way; peak today 14,
   Nord 11 + Est 3; 15 planned). Northern and eastern TER run on to Montparnasse (Chartres, Le Mans, Granville); Atlantic TER to Nord-Est.
 - Line N (formerly P and N): own tunnel east approach, Nord-Est, Montparnasse, Atlantic side (11.5 km); 4 tracks of 225 m at Nord-Est
-  and at Montparnasse; 10 trains an hour a track; peak P 12, N 11 (16 with the Clamart plan).
+  and at Montparnasse; 10 trains an hour a track; peak P 12, N 11 (no published plan adds line N trains at Montparnasse: the Clamart turnback, about 2032, is for disrupted days).
 - Line H (formerly H, K and L): tunnel from the north approach under Nord-Est to a new deep through station under Saint-Lazare, then up
   to the Batignolles tracks (6.2 km: 2.4 + 2.6 + 1.2); 6 tracks of 225 m at Nord-Est and at Saint-Lazare; peak H 20 + K 3 against
   L 23 (IDFM timetable, 3 November 2026). Line J and the Normandy trains stay at the surface station of Saint-Lazare.

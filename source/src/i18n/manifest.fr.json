@@ -91,5 +91,9 @@
  "next": {
   "nav_fr": "La suite",
   "heading_fr": "Ce qui reste à faire, et les données qu’il faut"
+ },
+ "flows": {
+  "nav_fr": "Voyageurs par ligne",
+  "heading_fr": "Qui voyage où : les voyageurs de chaque ligne, tronçon par tronçon"
  }
 }

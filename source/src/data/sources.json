@@ -518,5 +518,10 @@
   "publisher": "Île-de-France Mobilités, open data, network timetable (GTFS), version of 15 October 2026",
   "about": "Tuesday 3 November 2026: trains in the busiest 60 minutes at each line’s Paris terminal, the busier of morning arrivals and evening departures (own count). Line L 23 at Saint-Lazare (12 by La Défense from Versailles Rive Droite and Saint-Nom-la-Bretèche, 11 from Nanterre-Université and Cergy-le-Haut), line H 20 and line K 3 at Gare du Nord, line P 12 at Gare de l’Est (11 arriving in the morning), line N 11 at Montparnasse",
   "url": "https://data.iledefrance-mobilites.fr/explore/dataset/offre-horaires-tc-gtfs-idfm/"
+ },
+ "idfm_nu23": {
+  "publisher": "Île-de-France Mobilités, line committee for lines N and U, 3 April 2023",
+  "about": "Master plan for lines N and U. Turnback tracks at Clamart for days of disruption: 4 trains an hour arriving and leaving, on the Paris side or the other, with a change to metro line 15; cost put at 28 million euros (2020 values), opening about 2032. Trains stopping at Clamart: 4 an hour in 2023, 8 in 2026, then 12 and 15 after 2030, by stopping trains that already run (Rambouillet, then Dreux). No figure for more line N trains at Paris-Montparnasse. Boardings on a working day in 2019: line N 132,000, line U 52,000",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/29d2e8f1-96f8-4d50-a4e1-fb291de60124_2023_04_03_Pr%C3%A9sentation_Comit%C3%A9+de+ligne+N%26U+2023.pdf"
  }
 }

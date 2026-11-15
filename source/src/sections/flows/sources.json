@@ -1,0 +1,102 @@
+{
+ "sncf_count": {
+  "publisher": "SNCF Voyageurs, open data, count of passengers boarding Transilien trains (updated June 2026)",
+  "about": "Boardings counted aboard the trains at each station, by line, type of day and time of day; counts of 2022 to 2025 according to the line. On a working day, all stations of the line: RER D 631,000, line L 297,000, line J 280,000, line H 239,000, line N 132,000, line P 101,000, line R 71,000, line U 47,000, line K 16,000, and the SNCF parts of RER A, B, C and E",
+  "url": "https://ressources.data.sncf.com/explore/dataset/comptage-voyageurs-trains-transilien/"
+ },
+ "idfm_valid": {
+  "publisher": "Île-de-France Mobilités, open data, validations on the rail network by day, July 2025 to June 2026",
+  "about": "Tickets and passes validated at the entrance of each station, by day; Monday to Friday averages stand for boardings at the RATP stations of RER A and B that one line serves, and at the new stations of RER E",
+  "url": "https://data.iledefrance-mobilites.fr/explore/dataset/validations-reseau-ferre-nombre-validations-par-jour-2eme-trimestre/"
+ },
+ "idfm_profiles": {
+  "publisher": "Île-de-France Mobilités, open data, validations on the rail network, hourly profiles by type of day, second quarter of 2026",
+  "about": "Share of a working day's entries made in each hour, by station: 11% to 14% in the busiest morning hour on most networks",
+  "url": "https://data.iledefrance-mobilites.fr/explore/dataset/validations-reseau-ferre-profils-horaires-par-jour-type-2eme-trimestre/"
+ },
+ "ratp_a": {
+  "publisher": "RATP, press release on the single control centre of RER A, April 2024",
+  "about": "RER A: up to 1.3 million passengers a day",
+  "url": "https://ratpgroup.com/api/media/240425-CP-Le-RER-A-se-dote-dun-nouveau-Centre-de-Commandement-Unique-entierement-modernise.pdf"
+ },
+ "cc_rer": {
+  "publisher": "Cour des comptes, quality of service on the RER, October 2023",
+  "about": "RER A carries 1.4 million passengers a day, 60% of whom get off in its central sections; the tunnel shared by RER B and D passes about 28 trains an hour in practice",
+  "url": "https://www.ccomptes.fr/sites/default/files/2023-10/20231018-Qualite-de-service-dans-les-RER.pdf"
+ },
+ "sncf_lines": {
+  "publisher": "SNCF Connect, pages of the lines of the Paris region (read November 2026)",
+  "about": "RER B 983,000 passengers a day in 2019; line K about 15,000 a day, line P over 100,000, line R over 70,000 (undated)",
+  "url": "https://www.sncf-connect.com/ile-de-france/rer/ligne-rer-b"
+ },
+ "idfm_c": {
+  "publisher": "Île-de-France Mobilités, RER C line committee, 31 January 2024",
+  "about": "RER C: 540,000 passengers a day (count of 2017)",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/5c777e7b-527a-4312-b41f-85d6290d1553_Comit%C3%A9+de+Ligne+RER+C+IDFM+31+janvier+2024.pdf"
+ },
+ "idfm_d": {
+  "publisher": "Île-de-France Mobilités, RER D line committee, 8 June 2026",
+  "about": "RER D: 631,000 passengers a day from Monday to Friday; the fullest trains of the Transilien network",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/gHEXaXP5nELKZKiH_Comit%C3%A9deligneRERD_08-06-26.pdf"
+ },
+ "idfm_e": {
+  "publisher": "Île-de-France Mobilités, RER E, full east to west service, December 2024",
+  "about": "RER E: 370,000 passengers a day when the full service to Nanterre began, 600,000 expected",
+  "url": "https://www.iledefrance-mobilites.fr/actualites/rer-e-offre-complete-est-ouest"
+ },
+ "idfm_e24": {
+  "publisher": "Île-de-France Mobilités, RER E line committee, 24 June 2026",
+  "about": "RER E central section: 16 trains an hour at the peak today, 22 aimed at with the new signalling",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/H-oaVhdINw8A5S0B_Comit%C3%A9ligneRERE24_06_2026.pdf"
+ },
+ "idfm_h": {
+  "publisher": "Île-de-France Mobilités, line H committee, November 2020",
+  "about": "Line H: about 260,000 passengers a working day (counts of 2019), 22 trains an hour in the peak direction",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/d61908a8-7159-4c0a-8d8e-a800554e2064_Comit%C3%A9+de+ligne+H_nov20_v14-1.pdf"
+ },
+ "sncf_j": {
+  "publisher": "Transilien SNCF Voyageurs, line J, 2026",
+  "about": "Line J: more than 277,000 passengers a day",
+  "url": "https://www.transilien.com/fr/premieres-lignes/ligne-j-la-force-du-collectif-et-de-l-experience"
+ },
+ "sncf_l": {
+  "publisher": "SNCF group, line L of Transilien, January 2026",
+  "about": "Line L: 297,000 trips a day",
+  "url": "https://www.groupe-sncf.com/en/group/about-us/companies/sncf-voyageurs/dsp-line-l-transilien"
+ },
+ "sncf_hdf": {
+  "publisher": "SNCF group, the lines from Paris to Hauts-de-France, June 2026",
+  "about": "Regional express trains from Paris Nord to Hauts-de-France: 8 lines, 250 trains and 70,000 passengers a day",
+  "url": "https://www.groupe-sncf.com/en/group/about-us/companies/sncf-voyageurs/paris-lines-hauts-de-france"
+ },
+ "idfm_b22": {
+  "publisher": "Île-de-France Mobilités, RER B line committee, 20 December 2022",
+  "about": "Tunnel shared by RER B and D: 20 RER B and 12 RER D an hour each way in the timetable; 17.5 and 11 ran on average",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/30665715-7e0f-44e7-9230-befa711975f5_20221220_Comit%C3%A9+de+ligne+B_Vf-1.pdf"
+ },
+ "alstom_mi09": {
+  "publisher": "Alstom, 100th MI09 train delivered, July 2015",
+  "about": "RER A: an MI09 train carries up to 2,600 passengers",
+  "url": "https://www.alstom.com/fr/press-releases-news/2015/7/alstom-et-bombardier-livrent-la-100eme-rame-mi09-au-stif-et-a-la-ratp"
+ },
+ "alstom_mi20": {
+  "publisher": "Alstom, the MI20, future train of RER B, May 2026",
+  "about": "RER B: the future MI20 has 1,063 places a unit, up to 35% more than today's trains of the same length",
+  "url": "https://www.alstom.com/fr/press-releases-news/2026/5/le-mi20-futur-train-du-rer-b-se-devoile"
+ },
+ "sncf_rerng": {
+  "publisher": "Transilien SNCF Voyageurs, first journey of the RER NG",
+  "about": "RER E: 1,550 places a unit of 112 m, 3,100 for two units coupled",
+  "url": "https://www.transilien.com/fr/page-presse/premier-voyage-rer-ng-nouvelle-generation"
+ },
+ "sncf_d_ng": {
+  "publisher": "Alstom, RER NG in service on RER D, December 2024; SNCF, RER D blog, October 2020",
+  "about": "RER D: 1,861 places a unit of 130 m; two units hold about 550 more than two of the older trains",
+  "url": "https://www.alstom.com/fr/press-releases-news/2024/12/le-rer-ng-dalstom-entre-en-service-commercial-sur-la-ligne-rer-d-du-reseau-ile-de-france-mobilites"
+ },
+ "sncf_francilien": {
+  "publisher": "Transilien SNCF Voyageurs, the Francilien train",
+  "about": "Francilien trains: 922 places for 8 cars and 726 for 7 cars; 1,844 and 1,452 for two units coupled",
+  "url": "https://www.transilien.com/fr/page-deplacements/materiel-francilien"
+ }
+}

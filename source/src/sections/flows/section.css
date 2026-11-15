@@ -1,0 +1,27 @@
+/* Passengers by line. The lines keep the colours of the network map of Ile-de-France Mobilites; TER and TGV have one colour each;
+   the plan's RER F and RER G take the site's 'new' blue and its green. The by-track view runs from green (room on the trains) to red (full). */
+#flows {
+  --fl-A: #e3051c; --fl-B: #5291ce; --fl-C: #f2b600; --fl-D: #00814f; --fl-E: #c04191; --fl-H: #8d5e2a; --fl-J: #b3a800; --fl-K: #9f9825; --fl-L: #b792bd;
+  --fl-N: #00b092; --fl-P: #f58f53; --fl-R: #f18aa5; --fl-U: #b90845; --fl-V: #6e491e; --fl-F: var(--new); --fl-G: var(--s3); --fl-ter: #5d7fa3; --fl-tgv: var(--ink);
+  --fl-c0: #1a9850; --fl-c1: #91cf60; --fl-c2: #f2c94c; --fl-c3: #fc8d59; --fl-c4: #d73027;
+}
+#flows .fl-fig { gap: 12px }
+#flows .fl-col { display: contents }
+#flows .fl-map { background: var(--land); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; min-width: 0 }
+#flows .fl-svg { display: block; width: 100%; height: auto; touch-action: pan-y }
+#flows .fl-svg line { cursor: default }
+#flows .fl-miss { opacity: .85 }
+#flows .fl-lab circle { fill: var(--surface); stroke: var(--ink); pointer-events: none }
+#flows .fl-lab text { fill: var(--ink); font-family: var(--body); pointer-events: none; paint-order: stroke; stroke: var(--land); stroke-linejoin: round }
+#flows .fl-lab .fl-paris { font-weight: 600; fill: var(--muted) }
+#flows .fl-legend { display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--text) }
+#flows .fl-leg-row { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center }
+#flows .fl-leg-t { color: var(--muted); font-weight: 600 }
+#flows .fl-leg-i { display: inline-flex; gap: 6px; align-items: center; font-variant-numeric: tabular-nums }
+#flows .fl-chip { width: 22px; height: 6px; border-radius: 3px; flex: none }
+#flows .fl-chip-miss { background: repeating-linear-gradient(90deg, var(--neutral-mark) 0 5px, transparent 5px 9px) }
+#flows .fl-bar { width: 34px; background: var(--muted); border-radius: 2px; flex: none }
+#flows .fl-tbl td, #flows .fl-tbl th { vertical-align: top }
+#flows .fl-q { white-space: nowrap; font-size: 12px; color: var(--muted) }
+
+#flows #fl-lines th:first-child, #flows #fl-lines td:first-child { white-space: nowrap; }

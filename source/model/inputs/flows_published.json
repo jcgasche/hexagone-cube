@@ -1,0 +1,161 @@
+{
+ "_about": "Published figures used by model/flows.py for the chapter 'flows'. 'lines': passengers a working day on a whole line, used to set the stations that have no count (RER A and B, whose RATP stations in Paris are not counted line by line; RER E, whose 2022 count is older than its extension to Nanterre). 'published': the same kind of figure for the other lines, shown beside the counts, not used in the fit. 'ter': passengers a working day on regional express trains at a Paris terminal. 'places': places on a full train of the line at the peak, seated and standing. 'capacity': trains an hour each way that a section is said to take. Each entry names its source by the key of src/sections/flows/sources.json.",
+ "lines": {
+  "A": {
+   "day": 1300000,
+   "year": "2024",
+   "src": "ratp_a",
+   "note": "up to 1.3 million a day (RATP, 2024); the Cour des comptes wrote 1.4 million in 2023"
+  },
+  "B": {
+   "day": 983000,
+   "year": "2019",
+   "src": "sncf_lines",
+   "note": "983,000 a day in 2019; about one million in 2026"
+  },
+  "E": {
+   "day": 370000,
+   "year": "2024",
+   "src": "idfm_e",
+   "note": "370,000 a day when the full service to Nanterre began; 600,000 expected"
+  }
+ },
+ "published": {
+  "C": {
+   "day": 540000,
+   "year": "2017",
+   "src": "idfm_c"
+  },
+  "D": {
+   "day": 631000,
+   "year": "2026",
+   "src": "idfm_d"
+  },
+  "H": {
+   "day": 260000,
+   "year": "2019",
+   "src": "idfm_h"
+  },
+  "J": {
+   "day": 277000,
+   "year": "2026",
+   "src": "sncf_j"
+  },
+  "K": {
+   "day": 15000,
+   "year": "",
+   "src": "sncf_lines"
+  },
+  "L": {
+   "day": 297000,
+   "year": "2026",
+   "src": "sncf_l"
+  },
+  "N": {
+   "day": 132000,
+   "year": "2019",
+   "src": "idfm_nu23"
+  },
+  "U": {
+   "day": 52000,
+   "year": "2019",
+   "src": "idfm_nu23"
+  },
+  "P": {
+   "day": 100000,
+   "year": "",
+   "src": "sncf_lines"
+  },
+  "R": {
+   "day": 70000,
+   "year": "",
+   "src": "sncf_lines"
+  }
+ },
+ "ter": {
+  "Nord": {
+   "day": 70000,
+   "year": "2026",
+   "src": "sncf_hdf"
+  },
+  "Montparnasse": {
+   "day": 23800,
+   "year": "2012-13",
+   "src": "survey"
+  },
+  "Lyon": {
+   "day": 14900,
+   "year": "2012-13",
+   "src": "survey"
+  },
+  "Est": {
+   "day": 8100,
+   "year": "2012-13",
+   "src": "survey"
+  }
+ },
+ "places": {
+  "A": {
+   "n": 2600,
+   "src": "alstom_mi09",
+   "note": "MI09, two decks"
+  },
+  "B": {
+   "n": 1575,
+   "src": "alstom_mi20",
+   "note": "derived: the future MI20 holds 1,063 a unit, said to be up to 35% more than today's; two units a train"
+  },
+  "D": {
+   "n": 3172,
+   "src": "sncf_d_ng",
+   "note": "derived: two RER NG units of 130 m hold 3,722, about 550 more than two of the older Z 2N units that still run most trains"
+  },
+  "E": {
+   "n": 3100,
+   "src": "sncf_rerng",
+   "note": "two RER NG units of 112 m"
+  },
+  "H": {
+   "n": 1844,
+   "src": "sncf_francilien",
+   "note": "two Francilien units of 8 cars"
+  },
+  "K": {
+   "n": 1844,
+   "src": "sncf_francilien",
+   "note": "two Francilien units of 8 cars"
+  },
+  "P": {
+   "n": 1844,
+   "src": "sncf_francilien",
+   "note": "two Francilien units of 8 cars; other trains run on some branches"
+  },
+  "J": {
+   "n": 1452,
+   "src": "sncf_francilien",
+   "note": "two Francilien units of 7 cars"
+  },
+  "L": {
+   "n": 1452,
+   "src": "sncf_francilien",
+   "note": "two Francilien units of 7 cars"
+  }
+ },
+ "capacity": {
+  "BD": {
+   "cap": 32,
+   "src": "idfm_b22",
+   "note": "20 RER B and 12 RER D an hour each way in the timetable; about 28 run in practice"
+  },
+  "E": {
+   "cap": 22,
+   "src": "idfm_e24",
+   "note": "16 an hour at the peak today; 22 aimed at with the new signalling"
+  },
+  "LGVSE": {
+   "cap": 13,
+   "src": "lgvse",
+   "note": "13 an hour each way at the peak today, 16 from 2030"
+  }
+ }
+}

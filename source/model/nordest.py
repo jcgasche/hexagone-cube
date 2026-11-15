@@ -351,7 +351,7 @@ REG_PLATFORMS = {                       # platform rule for regional and suburba
     # suburban: no RER G or RER F train turns back at Nord-Est, Montparnasse or Saint-Lazare, so each is a stop in passing like Chatelet;
     # a track takes a train every 3 minutes, a 1-minute stop and 2 minutes between trains, below the 30 an hour RER A runs on one
     # track each way at Auber and Chatelet (Charles chose 2 RER G and 4 RER F tracks, 19 October 2026; was 10 a track on 4 and 6 tracks)
-    'n': {'per_track': 20, 'tracks': 2, 'peak': {'P': 12, 'N': 11}, 'peak_clamart': 16},
+    'n': {'per_track': 20, 'tracks': 2, 'peak': {'P': 12, 'N': 11}},
     'h': {'per_track': 20, 'tracks': 4, 'peak': {'H': 20, 'K': 3}, 'peak_l': 23}}
 # peaks: most trains in any 60 minutes that start or end at the Paris terminal, the busier of morning arrivals and evening departures, counted on the
 # Ile-de-France Mobilites timetable (GTFS) of Tuesday 3 November 2026: P 12 leaving in the evening (11 arriving in the morning), N 11, H 20, K 3,
