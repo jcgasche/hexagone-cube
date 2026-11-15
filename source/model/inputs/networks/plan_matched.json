@@ -1,0 +1,9 @@
+{
+ "name": "plan_matched",
+ "label": "The plan, with a timetable written for the joined lines",
+ "about": "The plan, with the departures of each joined line moved so that a through train does not wait at the join (ASSUMPTION: the lines beyond can take the moved times).",
+ "include": [
+  "plan"
+ ],
+ "matched_timetable": true
+}

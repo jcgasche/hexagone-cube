@@ -35,6 +35,8 @@ A NETWORK FILE holds:
                 leave b's terminal, if one leaves within max_wait_min: it waits at the last stop of the path until that train's time.
                 The same the other way. A train with no partner ends at the last stop of the path; a departure with no partner starts
                 from its end of the path.
+  "matched_timetable": true   the timetable is rewritten for the joined lines: the onward train leaves as soon as the train from the
+                other side is ready, so nobody waits at the join, and its whole onward run is that much earlier.
 Nothing else of the timetable is touched: on both sides every train keeps its times, its stops and its branch, so no connection that
 exists today is lost. The wait at the last stop of the path is the price of that caution; a timetable drawn for the joined lines
 would remove most of it, so the gains are on the low side.
@@ -186,8 +188,11 @@ def apply_network(trips, S, walks, net):
                 nxt_alone = i + 1 < len(inbound) and ready[i + 1] <= d and not (j + 1 < len(outbound) and outbound[j + 1]['stops'][0][2] - ready[i + 1] <= maxw)
                 if nxt_alone: continue                                  # the next train is closer to this departure and has no other: it takes it
                 o = outbound[j]; j += 1; waits.append((d - ready[i]) / 60.0)
-                t['stops'][-1][2] = d
-                t['stops'] += [list(x) for x in o['stops'][1:]]
+                if net.get('matched_timetable'):                        # a timetable written for the joined line: the onward train leaves as soon as this one is ready
+                    sh = d - ready[i]; t['stops'] += [[x[0], x[1] - sh, x[2] - sh] + list(x[3:]) for x in o['stops'][1:]]
+                else:
+                    t['stops'][-1][2] = d
+                    t['stops'] += [list(x) for x in o['stops'][1:]]
                 o['gone'] = True; done += 1
             for o in outbound:                                          # a departure with no partner starts from its own end of the path
                 if not o.get('gone'):
