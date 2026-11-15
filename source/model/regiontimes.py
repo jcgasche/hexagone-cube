@@ -154,8 +154,12 @@ def apply_network(trips, S, walks, net):
     # ---- lines run on along tracks that exist: path = [[stop, minutes from the terminal, line whose platform it is], ...]
     for ex in net.get('extend', []):
         dwell = int(ex.get('dwell_min', 0.7) * 60); pth = ex['path']; n_in = n_out = 0
+        via, not_via = set(ex.get('via', [])), set(ex.get('not_via', []))            # only the trains that call (or do not call) at these stations: one branch of a line
         for t in trips:
             last, first = t['stops'][-1], t['stops'][0]
+            if via or not_via:
+                called = {par(q[0]) for q in t['stops']} | {q[0] for q in t['stops']}
+                if (via and not called & via) or (not_via and called & not_via): continue
             if last[5] in ex['lines'] and par(last[0]) == ex['terminal'] and not t.get('ext'):
                 t0 = last[1]; lab = lambda q: q[2] if len(q) > 2 else last[5]
                 t['stops'][-1] = [pth[0][0], t0, t0 + dwell, True, True, lab(pth[0])]

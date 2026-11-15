@@ -1,0 +1,42 @@
+{
+ "name": "plan_j_cormeilles",
+ "label": "The plan, line J by Cormeilles to Nord-Est",
+ "about": "Line J trains no longer end at the surface of Saint-Lazare: they use the underground platforms of RER F and run on to Nord-Est in 4 minutes, in the room RER F leaves in its tunnel (23 trains an hour for a limit of 32). Where they turn or run on beyond Nord-Est is left open (ASSUMPTION: they end at Nord-Est). The 9 trains an hour of the branch by Cormeilles-en-Parisis (Pontoise, Gisors, Conflans).",
+ "include": [
+  "plan"
+ ],
+ "extend": [
+  {
+   "name": "The plan, line J by Cormeilles to Nord-Est",
+   "lines": [
+    "J"
+   ],
+   "terminal": "IDFM:71370",
+   "path": [
+    [
+     "X:SL:F",
+     0
+    ],
+    [
+     "X:NE:F",
+     4
+    ]
+   ],
+   "dwell_min": 1.0,
+   "via": [
+    "IDFM:65399"
+   ]
+  }
+ ],
+ "watch": [
+  {
+   "name": "RER F tunnel, Nord-Est to Saint-Lazare",
+   "pairs": [
+    [
+     "X:NE:F",
+     "X:SL:F"
+    ]
+   ]
+  }
+ ]
+}
