@@ -1,0 +1,33 @@
+{
+ "name": "plan_cdgx_est",
+ "label": "The plan, CDG Express ending at Nord-Est",
+ "about": "CDG Express as planned for 28 March 2027: a train every 15 minutes, 20 minutes without a stop from the airport (terminal 2) to Gare de l’Est. With the surface of Gare de l’Est closed, it is given the RER G platforms of Nord-Est (ASSUMPTION; the study lists its terminus as an open point). Here it ends there.",
+ "include": [
+  "plan"
+ ],
+ "new_stops": [
+  {
+   "id": "X:CDG",
+   "name": "Aéroport Charles de Gaulle 2 (CDG Express)",
+   "lon": 2.5711,
+   "lat": 49.004
+  }
+ ],
+ "new_lines": [
+  {
+   "line": "CDGX",
+   "kind": 2,
+   "headway_min": 15,
+   "stops": [
+    [
+     "X:CDG",
+     0
+    ],
+    [
+     "X:NE:G",
+     20
+    ]
+   ]
+  }
+ ]
+}
