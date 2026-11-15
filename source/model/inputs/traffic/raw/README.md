@@ -36,3 +36,7 @@ The four quarterly files (Jul 2025 – Jun 2026, about 460,000 to 480,000 rows e
 - TGV passengers by line, axis or city pair: none found. SNCF publishes trains per city pair (`regularite-mensuelle-tgv-aqst`, downloaded), per axis (`regularite-mensuelle-tgv-axes`) and fares (`tarifs-tgv-inoui-ouigo`), but no passenger counts. The Autorité de régulation des transports dataset on data.gouv.fr, "Données du marché français du transport ferroviaire de voyageurs et de marchandises" (id `5afd4b6bc751df5b49337448`, licence fr-lo, resource `https://ftp.autorite-transports.fr/ART_donnees_transport_ferroviaire.xlsx`), could not be downloaded: the ftp.autorite-transports.fr host did not answer.
 - Passenger load per section or per train on RER or Transilien ("charge", "taux d'occupation", "affluence"): no dataset on IDFM, SNCF or data.gouv.fr. The SNCF Transilien boardings file (by station and time band) is the closest.
 - IDFM history 2015–2025 (`histo-validations-reseau-ferre`, 11 yearly zip files `data-rf-YYYY.zip`) exists but was not downloaded, since the four quarters above already cover a full recent year.
+
+## Landmarks drawn under the passenger map
+
+- `ign_departements-ile-de-france.geojson`: borders of the eight départements of Île-de-France. IGN Admin Express COG (2018 edition), simplified and converted by the project france-geojson (https://github.com/gregoiredavid/france-geojson, file `regions/ile-de-france/departements-ile-de-france.geojson`), downloaded 15 November 2026. Licence ouverte Etalab.

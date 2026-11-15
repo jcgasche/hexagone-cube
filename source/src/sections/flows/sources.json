@@ -98,5 +98,15 @@
   "publisher": "Transilien SNCF Voyageurs, the Francilien train",
   "about": "Francilien trains: 922 places for 8 cars and 726 for 7 cars; 1,844 and 1,452 for two units coupled",
   "url": "https://www.transilien.com/fr/page-deplacements/materiel-francilien"
+ },
+ "ign_dep": {
+  "publisher": "IGN, Admin Express COG (2018 edition), borders simplified by the project france-geojson",
+  "about": "Borders of the eight départements of Île-de-France, drawn under the map as landmarks",
+  "url": "https://github.com/gregoiredavid/france-geojson"
+ },
+ "osm_rivers": {
+  "publisher": "OpenStreetMap contributors (extract of 15 November 2026, ODbL licence)",
+  "about": "Course of the Seine, the Marne and the Oise in and around Île-de-France, drawn under the map as landmarks",
+  "url": "https://www.openstreetmap.org/copyright"
  }
 }

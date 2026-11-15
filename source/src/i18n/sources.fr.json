@@ -432,5 +432,7 @@
  "rd_qo256": "Un second tunnel entre Châtelet et la gare du Nord : plus de 2 milliards d’euros, des interruptions totales de circulation pendant plus d’un an, difficilement réalisable ; le schéma directeur du RER D est préféré",
  "rd_b23": "RER B dans le tunnel commun : 17,5 trains par heure en moyenne, au lieu de 20",
  "rd_punct": "Ponctualité de janvier à avril 2026 : RER B 89,2 %, RER D 83,0 %, ligne P 89,3 %, ligne N 93,6 %",
- "rd_vrt19": "NExTEO sur les RER B et D, la nouvelle signalisation choisie à la place d’un second tunnel : 788 millions d’euros (conditions de 2018)"
+ "rd_vrt19": "NExTEO sur les RER B et D, la nouvelle signalisation choisie à la place d’un second tunnel : 788 millions d’euros (conditions de 2018)",
+ "ign_dep": "Limites des huit départements d’Île-de-France, tracées sous la carte comme repères",
+ "osm_rivers": "Cours de la Seine, de la Marne et de l’Oise en Île-de-France et autour, tracés sous la carte comme repères"
 }

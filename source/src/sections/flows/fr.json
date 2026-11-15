@@ -6,8 +6,6 @@
   "By line": "Par ligne",
   "By track and tunnel": "Par voie et par tunnel",
   "Passengers shown": "Voyageurs affichés",
-  "Whole region": "Toute la région",
-  "Area": "Zone",
   "Places on the trains used": "Places utilisées dans les trains",
   "Train paths used": "Sillons utilisés",
   "Colour": "Couleur",
@@ -71,7 +69,14 @@
   "Line P": "Ligne P",
   "Line R": "Ligne R",
   "Line U": "Ligne U",
-  "Line V": "Ligne V"
+  "Line V": "Ligne V",
+  "Zoom in": "Zoomer",
+  "Zoom out": "Dézoomer",
+  "Show Paris": "Afficher Paris",
+  "Show the whole region": "Afficher toute la région",
+  "Region": "Région",
+  "Drag to move. Click the map, then scroll to zoom.": "Glissez pour déplacer. Cliquez sur la carte, puis utilisez la molette pour zoomer.",
+  "Two fingers to move and zoom.": "Deux doigts pour déplacer et zoomer."
  },
  "patterns": [
   [

@@ -8,7 +8,7 @@
     <div class="controls" id="fl-controls"></div>
     <div class="fl-map" id="fl-map"></div>
     <div class="fl-legend" id="fl-legend"></div>
-    <figcaption>Point at a line to read its figures. A dashed grey line means that no figure is published: the line is drawn, at a fixed width, so that the gap shows. RER and Transilien: boardings counted at the stations,[[sncf_count, idfm_valid]] sent along the line as the census journeys to work run.[[mobpro]] TER: the published total of each Paris terminal, shared out by trains (an estimate).[[sncf_hdf, survey]] TGV: the total of each line at its terminal.[[art24]] With the project: the model of this study. Trains: the timetable of Tuesday 3 November 2026.[[idfm_counts]]</figcaption>
+    <figcaption>Drag the map to move it; zoom with the buttons, with two fingers, or with the scroll wheel once the map has been clicked. More stations are named as the view closes in. Point at a line to read its figures. A dashed grey line means that no figure is published: the line is drawn, at a fixed width, so that the gap shows. RER and Transilien: boardings counted at the stations,[[sncf_count, idfm_valid]] sent along the line as the census journeys to work run.[[mobpro]] TER: the published total of each Paris terminal, shared out by trains (an estimate).[[sncf_hdf, survey]] TGV: the total of each line at its terminal.[[art24]] With the project: the model of this study. Trains: the timetable of Tuesday 3 November 2026.[[idfm_counts]] Background: borders of the départements,[[ign_dep]] the Seine, the Marne and the Oise.[[osm_rivers]]</figcaption>
   </figure>
   <p>The second view adds up the lines that use the same pair of tracks, and colours each section by how full it is. Two measures are offered. The first sets the passengers of the busiest hour against the places on the trains of that hour. The second sets the trains of that hour against the trains the section can take; it is published for very few sections, and the others stay grey.</p>
 </div>
@@ -38,6 +38,27 @@
       <tr><th>With the project: TGV link, Montparnasse to Gare de Lyon</th><td class="num">{{ d.flows.k.tun['Montparnasse to Gare de Lyon'].all | 0 }}</td><td class="num">{{ d.flows.k.tun['Montparnasse to Gare de Lyon'].trains | 0 }}</td><td>{{ m.ter_paths.paths_per_hour | 0 }} (rule of the plan)</td><td class="num">not estimated</td></tr>
     </tbody>
   </table></div>
+</div>
+
+<div class="block" id="flows.balance">
+  <h2>The two sides of RER F and RER G, in passengers</h2>
+  <p>A through line runs the same trains on its two sides: the busier side sets how many trains run and how long they are, and the other side rides with room to spare. The plan joins lines that run the same number of trains in the busiest hour, as set out in <a class="xref" href="#service.platforms">how many platforms</a>. Here is the same check in passengers, with the counts of this chapter.</p>
+  <div class="tbl-wrap"><table class="tbl fl-tbl fl-wide">
+    <thead><tr><th>Side of the new line</th><th class="num">Trains in the busiest hour, one way</th><th class="num">Passengers a day at the Paris terminal, both ways</th><th class="num">Passengers in the busiest hour, busier way</th><th class="num">Passengers a train in that hour</th></tr></thead>
+    <tbody>
+      <tr><th>RER F, north: lines H and K at Gare du Nord</th><td class="num">{{ d.flows.balance.HK.h | 0 }}</td><td class="num">{{ d.flows.balance.HK.p | 0 }}</td><td class="num">{{ d.flows.balance.HK.ld | 0 }}</td><td class="num">{{ d.flows.balance.HK.per_train | 0 }}</td></tr>
+      <tr><th>RER F, west: line L at Saint-Lazare</th><td class="num">{{ d.flows.balance.L.h | 0 }}</td><td class="num">{{ d.flows.balance.L.p | 0 }}</td><td class="num">{{ d.flows.balance.L.ld | 0 }}</td><td class="num">{{ d.flows.balance.L.per_train | 0 }}</td></tr>
+      <tr><th>RER G, east: line P at Gare de l’Est</th><td class="num">{{ d.flows.balance.P.h | 0 }}</td><td class="num">{{ d.flows.balance.P.p | 0 }}</td><td class="num">{{ d.flows.balance.P.ld | 0 }}</td><td class="num">{{ d.flows.balance.P.per_train | 0 }}</td></tr>
+      <tr><th>RER G, south-west: line N at Montparnasse</th><td class="num">{{ d.flows.balance.N.h | 0 }}</td><td class="num">{{ d.flows.balance.N.p | 0 }}</td><td class="num">{{ d.flows.balance.N.ld | 0 }}</td><td class="num">{{ d.flows.balance.N.per_train | 0 }}</td></tr>
+      <tr><th>Not joined: line J at Saint-Lazare</th><td class="num">{{ d.flows.balance.J.h | 0 }}</td><td class="num">{{ d.flows.balance.J.p | 0 }}</td><td class="num">{{ d.flows.balance.J.ld | 0 }}</td><td class="num">{{ d.flows.balance.J.per_train | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Trains: the timetable of Tuesday 3 November 2026.[[idfm_counts]] Passengers a day: the boardings counted at the stations, sent along each line.[[sncf_count]] Busiest hour: an estimate from the entries hour by hour,[[idfm_profiles]] as on the map <span class="tag assume">assumption</span>.</p>
+  <p><strong>RER G: lines P and N match in passengers as they do in trains.</strong> Line P brings about {{ d.flows.balance.P.p | 0 }} passengers a day to Gare de l’Est and line N about {{ d.flows.balance.N.p | 0 }} to Montparnasse, {{ 1 - d.flows.balance.ratio.N_P | pct }} fewer, for {{ d.flows.balance.P.h | 0 }} and {{ d.flows.balance.N.h | 0 }} trains in the busiest hour. No other line fits either of them: line R runs {{ d.flows.balance.R.h | 0 }} trains an hour at Gare de Lyon, and lines L and J run twice as many as line P.</p>
+  <p><strong>RER F: the north is the busier side, and the west gains room.</strong> Lines H and K together and line L each run {{ d.flows.balance.HK.h | 0 }} trains in the busiest hour, but the north carries more: about {{ d.flows.balance.HK.p | 0 }} passengers a day at Gare du Nord, against {{ d.flows.balance.L.p | 0 }} on line L at Saint-Lazare and {{ d.flows.balance.L.max_p | 0 }} on its busiest section, between Clichy-Levallois and Asnières. At the peak a train carries about {{ d.flows.balance.HK.per_train | 0 }} passengers in the north and {{ d.flows.balance.L.per_train | 0 }} to {{ d.flows.balance.L.max_per_train | 0 }} in the west.</p>
+  <p class="cont">The trains of RER F are therefore sized by the north: {{ m.len.sub | 0 }} m, the length of line H’s trains today, two units of 8 cars where line L runs two units of 7.[[sncf_francilien]] Every train on line L’s side gains places.</p>
+  <p><strong>Line J, the other candidate at Saint-Lazare, fits less well.</strong> In passengers, line J is as far above the north ({{ d.flows.balance.ratio.J_HK - 1 | pct }}, with about {{ d.flows.balance.J.p | 0 }} a day) as line L’s busiest section is below it ({{ 1 - d.flows.balance.ratio.Lmax_HK | pct }}). But line J runs {{ d.flows.balance.J.h | 0 }} trains in the busiest hour, two more than the north, and part of it shares its tracks with the trains to Normandy.</p>
+  <p class="cont">Line L is also the line whose riders go furthest beyond the terminal: {{ d.flows.k.term_share.L | pct }} of its trips start or end at Saint-Lazare, against {{ d.flows.k.term_share.J | pct }} on line J. A line that runs through serves those riders best. Line L stays the choice.</p>
 </div>
 
 <div class="block" id="flows.lines">

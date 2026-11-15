@@ -528,6 +528,21 @@ def step2():
         l = link_between(by_name[a], by_name[b]); rs = [r for r in recs if r['l'] == l and r['s'] in lines]
         ld = sum(r['ld'] or 0 for r in rs); pl = sum(r['pl'] or 0 for r in rs if r['ld'] is not None)
         return {'p': sum(r['p'] or 0 for r in rs), 'h': sum(r['h'] or 0 for r in rs), 'ld': round(ld), 'crowd': round(ld / pl, 3) if pl else None}
+    def at_term(name, lines):                                          # a line where it enters its Paris terminal: passengers a day both ways, trains and passengers in the busiest hour, busier way
+        n = by_name[name]; rs = [r for r in today if r['s'] in lines and n in links[r['l']]]
+        return {'p': sum(r['p'] or 0 for r in rs), 'h': sum(r['h'] or 0 for r in rs), 'ld': round(sum(r['ld'] or 0 for r in rs))}
+    bal = {'HK': at_term('Gare du Nord', ('H', 'K')), 'H': at_term('Gare du Nord', ('H',)), 'K': at_term('Gare du Nord', ('K',)), 'L': at_term('Gare Saint-Lazare', ('L',)), 'J': at_term('Gare Saint-Lazare', ('J',)),
+           'P': at_term("Gare de l'Est", ('P',)), 'N': at_term('Gare Montparnasse', ('N',)), 'R': at_term('Gare de Lyon', ('R',))}
+    study_h = {'H': RP['h']['peak']['H'], 'K': RP['h']['peak']['K'], 'HK': RP['h']['peak']['H'] + RP['h']['peak']['K'], 'L': RP['h']['peak_l'], 'P': RP['n']['peak']['P'], 'N': RP['n']['peak']['N']}
+    for k, v in bal.items():                                           # trains: the counts the study uses at each terminal where it has one (same timetable, busiest 60 minutes)
+        v['h'] = study_h.get(k, v['h']); v['per_train'] = int(round(v['ld'] / v['h'], -1)) if v['h'] else None
+    lrow = next(l for l in line_rows if l['line'] == 'L')              # line L is busiest a little beyond its terminal
+    bal['L'].update(max_p=lrow['max_p'], max_at=lrow['max_at'], max_ld=lrow['max_ld'], max_per_train=int(round(lrow['max_ld'] / bal['L']['h'], -1)))
+    bal['ratio'] = {'N_P': round(bal['N']['p'] / bal['P']['p'], 3), 'L_HK': round(bal['L']['p'] / bal['HK']['p'], 3), 'Lmax_HK': round(lrow['max_p'] / bal['HK']['p'], 3), 'J_HK': round(bal['J']['p'] / bal['HK']['p'], 3)}
+    for k, v in bal.items():
+        if k != 'ratio': v['p'] = int(round(v['p'], -3)); v['ld'] = int(round(v['ld'], -2))
+    bal['L']['max_p'] = int(round(bal['L']['max_p'], -3)); bal['L']['max_ld'] = int(round(bal['L']['max_ld'], -2))
+    print('balance', bal)
     sec = {'bd': on_link(today, 'Gare du Nord', 'Châtelet - Les Halles', ('B', 'D')), 'b_bd': on_link(today, 'Gare du Nord', 'Châtelet - Les Halles', ('B',)), 'd_bd': on_link(today, 'Gare du Nord', 'Châtelet - Les Halles', ('D',)),
            'a': on_link(today, 'Châtelet - Les Halles', 'Gare de Lyon', ('A',)), 'd_lyon': on_link(today, 'Châtelet - Les Halles', 'Gare de Lyon', ('D',)),
            'b_south': on_link(today, 'Châtelet - Les Halles', 'Saint-Michel Notre-Dame', ('B',)), 'e': on_link(today, 'Magenta', 'Haussmann Saint-Lazare', ('E',)),
@@ -554,8 +569,33 @@ def step2():
     sid = {k: i for i, k in enumerate(series)}; gid = {k: i for i, k in enumerate(list(series) + [k for k in gnames])}
     row = lambda r: [r['l'], sid[r['s']], r['p'], r['q'], r['h'], r['d'], r['ld'], r['pl'], r.get('cap'), r.get('new')]
     grow = lambda o: [o['l'], gid[o['s']], o['p'], o['q'], o['h'], o['crowd'], o['use'], o.get('cap'), [sid[w] for w in sorted(set(o['who']), key=lambda w: sid[w])], o.get('new')]
-    label = [by_name[n] for n in LABELS if n in by_name]
-    out = {'day': net['day'], 'nodes': nodes, 'links': links, 'label': label, 'series': [dict(id=k, **v) for k, v in series.items()], 'groups': [{'id': k, 'name': v} for k, v in gnames.items()],
+    # station names: the hand-picked ones first, then every other station, the busiest first; the page shows as many as fit at the zoom chosen
+    busy = {}
+    for r in today:
+        for n in links[r['l']]: busy[n] = busy.get(n, 0) + (r['p'] or 0)
+    first = [by_name[n] for n in LABELS if n in by_name]
+    label = first + sorted((i for i, n in enumerate(nodes) if n[2] and i not in first), key=lambda i: -busy.get(i, 0))
+    # landmarks under the lines: the borders of the departements (IGN Admin Express, by way of france-geojson) and the rivers (OpenStreetMap)
+    def thin(pts, step):                                               # drop points closer than 'step' km to the last one kept
+        out = [pts[0]]
+        for q in pts[1:-1]:
+            if math.hypot(q[0] - out[-1][0], q[1] - out[-1][1]) >= step: out.append(q)
+        return out + [pts[-1]]
+    geo = {'dep': [], 'rivers': []}
+    f = os.path.join(RAW, 'ign_departements-ile-de-france.geojson')
+    if os.path.exists(f):
+        for ft in json.load(open(f))['features']:
+            g = ft['geometry']; polys = g['coordinates'] if g['type'] == 'MultiPolygon' else [g['coordinates']]
+            for pl in polys: geo['dep'].append([ft['properties']['code'], thin([list(xy(lon, lat)) for lon, lat in pl[0]], 0.25 if ft['properties']['code'] == '75' else 0.6)])
+    f = os.path.join(RAW, 'osm_rivers_idf.json')
+    if os.path.exists(f):
+        for name, ways in json.load(open(f))['rivers'].items():
+            for w in ways:
+                pts = thin([list(xy(lon, lat)) for lon, lat in w], 0.15)
+                if len(pts) > 1: geo['rivers'].append([name, pts])
+    f = os.path.join(HERE, '..', 'src', 'data', 'paris_geo.json')              # the two woods of Paris, as on the other maps of the study
+    geo['parks'] = [thin([list(xy(lon, lat)) for lon, lat in w['r'][0]], 0.1) for w in json.load(open(f))['bois']] if os.path.exists(f) else []
+    out = {'day': net['day'], 'nodes': nodes, 'links': links, 'label': label, 'geo': geo, 'balance': bal, 'series': [dict(id=k, **v) for k, v in series.items()], 'groups': [{'id': k, 'name': v} for k, v in gnames.items()],
            'today': [row(r) for r in today], 'project': [row(r) for r in proj], 'today_tracks': [grow(o) for o in gt], 'project_tracks': [grow(o) for o in gp],
            'lines': line_rows, 'ter': ter_rows, 'tgv': tgv_rows, 'tunnels': tun_rows, 'sec': sec, 'key': key, 'k': k, 'peak_share': PS, 'capacity': cap, 'published': pub}
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
