@@ -107,5 +107,9 @@
  "lc": {
   "nav_fr": "La ligne L avec le RER C",
   "heading_fr": "Une variante : la ligne L reliée au RER C sud, le RER C ouest relié à la ligne H"
+ },
+ "parts": {
+  "nav_fr": "Ce que rapporte chaque partie",
+  "heading_fr": "Ce que rapporte chaque partie du projet, et l’ordre des mises en service"
  }
 }

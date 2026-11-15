@@ -475,7 +475,7 @@ def build(a, lang, out):
         if s['group'] == 'Presentation': s['label'], s['eyebrow'] = '', ''
         elif s['id'] == 'summary': s['label'], s['eyebrow'] = '', W['summary']
         elif s['group'] == 'Report': chapter += 1; s['label'], s['eyebrow'] = str(chapter), f"{W['chapter']} {chapter}"
-        else: annex += 1; s['label'] = 'ABCDEFGH'[annex - 1]; s['eyebrow'] = f"{W['annex']} {s['label']}"
+        else: annex += 1; s['label'] = 'ABCDEFGHIJKL'[annex - 1]; s['eyebrow'] = f"{W['annex']} {s['label']}"
         src_name = 'section.html'
         if lang != 'en' and exists(d, 'section.html'):
             if exists(d, f'section.{lang}.html'):

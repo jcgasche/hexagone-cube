@@ -1,0 +1,7 @@
+/* Annex: the return of each part of the plan and the order of the openings. Static bars and tables. */
+#parts .pt-wide thead th { white-space: normal; vertical-align: bottom; }
+#parts .pt-wide th:first-child { min-width: 12rem; }
+#parts .bars .lab { max-width: 30ch; }
+@media (max-width: 560px) {
+  #parts .pt-wide th:first-child { min-width: 9rem; }
+}

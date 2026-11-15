@@ -298,6 +298,15 @@ out = {'parts': parts_out, 'combos': combos, 'shares': {'cost': c_share, 'stage1
                                                        'stage1_items': {k: round(v, 3) for k, v in T1_SHARE.items()}, 'regional_by_part': reg, 'crowding_by_part': crowd},
        'stages': stages, 'stage1_sensitivity': sens1, 'spend': spend, 'rerd': rd_out, 'bd': bd, 'counted_crowding': counted, 'relief': relief, 'room': room, 'need': need}
 json.dump(out, open(os.path.join(FR.OUT, 'levers.json'), 'w'), indent=1, ensure_ascii=False)
+
+# the annex 'parts' reads the same figures, with short keys for the items it names and whole widths for its bars
+KEYS = {'job': FR.JOB_USERS, 'g_stop': FR.G_STOP_ITEM, 'g_crowd': FR.G_CROWD, 'crowd': FR.CROWD, 'reg': 'Regional travellers: the Paris side of their trip', 'sets': 'Trainsets saved: trains no longer wait in a terminal'}
+top = max(max(v['pv_benefits'], v['pv_costs']) for v in parts_out.values()); top_s = max(v['npv'] for v in stages.values())
+page = dict(out, k={q: {k: parts_out[q]['items'].get(n, 0.0) for k, n in KEYS.items()} for q in 'TFG'},
+            bar={'parts': {q: {'b': int(round(100 * v['pv_benefits'] / top)), 'c': int(round(100 * v['pv_costs'] / top))} for q, v in parts_out.items()},
+                 'stages': {q: int(round(100 * v['npv'] / top_s)) for q, v in stages.items()}},
+            years={'counted': FR.OPEN, 'first': FR.OPEN - 3, 'build_start': FR.BUILD_START})
+json.dump(page, open(os.path.join(HERE, '..', 'src', 'sections', 'parts', 'data.json'), 'w'), indent=1, ensure_ascii=False)
 if __name__ == '__main__':
     print('PARTS'); [print('  %-34s capex %5.1f  PV benefits %6.2f  PV costs %6.2f  NPV %6.2f  ratio %s   first year %s' % (v['name'], v['capex'], v['pv_benefits'], v['pv_costs'], v['npv'], v['ratio'], v['first_year'])) for v in parts_out.values()]
     print('COMBOS'); [print('  %-8s %s' % (k, v)) for k, v in combos.items()]

@@ -25,6 +25,7 @@
     {"id": "pulse",     "group": "Annexes", "nav": "The Swiss timetable",    "heading": "The Swiss pulse: every train meets every train"},
     {"id": "rerd",      "group": "Annexes", "nav": "RER D beside RER G",     "heading": "An option: a pair of tracks for RER D in the works of RER G"},
     {"id": "lc",        "group": "Annexes", "nav": "Line L with RER C",      "heading": "A variant: line L joined to RER C south, RER C west joined to line H"},
+    {"id": "parts",     "group": "Annexes", "nav": "Return of each part",    "heading": "The return of each part of the plan, and the order of the openings"},
     {"id": "method",    "group": "Annexes", "nav": "Method and assumptions", "heading": "How the numbers are made"},
     {"id": "about",     "group": "Annexes", "nav": "About this study",       "heading": "Who wrote it, and how to reuse it"},
     {"id": "sources",   "group": "Annexes", "nav": "Sources",                "heading": "Sources"}
