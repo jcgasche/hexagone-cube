@@ -513,5 +513,10 @@
   "publisher": "SEMAPA, investor presentation",
   "about": "Paris Rive Gauche: building rights and cost of covering tracks",
   "url": "https://www.semapa.fr/wp-content/uploads/2024/01/2022.02_semapa.presentation_investisseurs_ex.2020.pdf"
+ },
+ "idfm_counts": {
+  "publisher": "Île-de-France Mobilités, open data, network timetable (GTFS), version of 15 October 2026",
+  "about": "Tuesday 3 November 2026: trains in the busiest 60 minutes at each line’s Paris terminal, the busier of morning arrivals and evening departures (own count). Line L 23 at Saint-Lazare (12 by La Défense from Versailles Rive Droite and Saint-Nom-la-Bretèche, 11 from Nanterre-Université and Cergy-le-Haut), line H 20 and line K 3 at Gare du Nord, line P 12 at Gare de l’Est (11 arriving in the morning), line N 11 at Montparnasse",
+  "url": "https://data.iledefrance-mobilites.fr/explore/dataset/offre-horaires-tc-gtfs-idfm/"
  }
 }

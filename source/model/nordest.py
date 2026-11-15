@@ -320,7 +320,8 @@ LINES = {'H': 54.6, 'K': 4.1, 'P': 27.3, 'N': 30.4, 'R': 19.1,                  
          'L': 297000 * 260 / 1e6}                                                     # line L, Saint-Lazare: 297,000 trips a weekday (version 4; unverified)
 TERM_SHARE = {'H': 119900 / 215000, 'K': 119900 / 215000, 'N': 66800 / 117000, 'P': 63900 / 105000, 'R': 33000 / 70000,
               'L': 0.5}                 # half of line L's riders start or end at Saint-Lazare (ASSUMPTION)
-THROUGH_TRAINS = {'L': 0.88}            # share of a line's trains that run through the new tunnel; the rest end at the surface station (ASSUMPTION; 1 for the others)
+THROUGH_TRAINS = {'L': 1.0}             # share of a line's trains that run through the new tunnel; the rest would end at the surface station. Line L: all of them, its 23 trains an hour
+                                        # at the peak match the 23 of lines H and K (IDFM timetable, Tuesday 3 November 2026; was 0.88, from an L peak of 24 to 28 that was derived, not counted)
 TER_DAY = {'Nord': 69200, 'Montparnasse': 23800, 'Lyon': 14900, 'Est': 8100}        # TER and Intercites, weekday, 2012-13
 TER = {k: v * 350 / 1e6 for k, v in TER_DAY.items()}
 REG_UPLIFT = 0.15                       # suburban lines joined through a centre: 5% to 30% observed, middle about 17%; 15% taken as net of background growth
@@ -330,7 +331,7 @@ NEW_MONEY = 0.30                        # share of extra suburban journeys paid 
 YIELD = {'transilien': 1.22, 'ter': 8.0}        # euros per journey (Ile-de-France average; regional express ASSUMPTION)
 REG_TRAINKM = 2.0 * 0.77                # million extra train-km a year for regional trains running through (ASSUMPTION: 77% of the 2.0 M of the earlier layout, version 4)
 REG_TRAINKM_COST = 27.5                 # euros per extra train-km: half the average cost per train-km paid by the region (ASSUMPTION)
-G_TRAINS_H = 12                         # RER G trains an hour each way at the peak: each P train runs on as an N train, so the larger of P (11) and N (12)
+G_TRAINS_H = 12                         # RER G trains an hour each way at the peak: each P train runs on as an N train, so the larger of P (12) and N (11)
 G_STOP_SETS = G_TRAINS_H * 2 * G_STOP / 60      # trainsets the Chatelet stop takes: each round trip 2 x 2 minutes longer at 12 trains an hour (0.8)
 G_STOP_RUN = 3200 * 250 / 1e9           # bn a year: crew and power for 2 more minutes on about 290 RER G trains a weekday, 3,200 train-hours at 250 euros (ASSUMPTION)
 SECOND_MIN = 1.0                        # a passenger uses the second station when it saves more than this, on the clock (ASSUMPTION)
@@ -350,8 +351,11 @@ REG_PLATFORMS = {                       # platform rule for regional and suburba
     # suburban: no RER G or RER F train turns back at Nord-Est, Montparnasse or Saint-Lazare, so each is a stop in passing like Chatelet;
     # a track takes a train every 3 minutes, a 1-minute stop and 2 minutes between trains, below the 30 an hour RER A runs on one
     # track each way at Auber and Chatelet (Charles chose 2 RER G and 4 RER F tracks, 19 October 2026; was 10 a track on 4 and 6 tracks)
-    'n': {'per_track': 20, 'tracks': 2, 'peak': {'P': 11, 'N': 12}, 'peak_clamart': 16},
-    'h': {'per_track': 20, 'tracks': 4, 'peak': {'H': 20, 'K': 3}, 'peak_l': (24, 28)}}
+    'n': {'per_track': 20, 'tracks': 2, 'peak': {'P': 12, 'N': 11}, 'peak_clamart': 16},
+    'h': {'per_track': 20, 'tracks': 4, 'peak': {'H': 20, 'K': 3}, 'peak_l': 23}}
+# peaks: most trains in any 60 minutes that start or end at the Paris terminal, the busier of morning arrivals and evening departures, counted on the
+# Ile-de-France Mobilites timetable (GTFS) of Tuesday 3 November 2026: P 12 leaving in the evening (11 arriving in the morning), N 11, H 20, K 3,
+# L 23 arriving in the morning (12 by La Defense from Versailles Rive Droite and Saint-Nom-la-Breteche, 11 from Nanterre-Universite and Cergy; 22 leaving in the evening)
 
 # version 4.1: regional express trains in the TGV tunnels. Peak trains an hour each way (Charles, 15 October 2026; ASSUMPTION)
 TER_HOUR = {'Nord': 11, 'Est': 3, 'new_east_link': 1, 'atlantic_today': 7, 'lyon_today': 4}

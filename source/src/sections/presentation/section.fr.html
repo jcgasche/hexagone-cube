@@ -1,4 +1,4 @@
-<!-- en: afa0190b8c -->
+<!-- en: 5d7e979691 -->
 <div class="pz">
 <nav class="pz-dots" id="pz-dots" aria-label="Parties de la présentation"></nav>
 
@@ -213,7 +213,7 @@
     <p class="pz-lead">Les lignes de TER de part et d’autre de l’axe sont connectées afin d’inscrire les régions avoisinantes dans un ensemble. Les habitants de la périphérie gagnent les mêmes avantages que les Parisiens&nbsp;: plus de liaisons directes vers le reste de la France et vers les autres régions périphériques, ce qui se traduit par de meilleures possibilités d’arbitrage entre emplois et logements.</p>
     <div class="pz-lines">
       <div class="pz-line"><b class="pz-ln g">G</b><div><h3>RER G&nbsp;: les lignes P et N, fusionnées</h3><p>Du nord-est et de l’est, via Nord-Est et Châtelet-Les Halles, jusqu’à Montparnasse, puis vers Versailles et Saint-Quentin-en-Yvelines, avec la ligne 18 de Versailles à Saclay. Les lignes P et N font circuler à peu près autant de trains aujourd’hui, {{ m.reg_platforms.n.peak.P | 0 }} et {{ m.reg_platforms.n.peak.N | 0 }} par heure et par sens à la pointe&nbsp;: la ligne fusionnée est équilibrée.</p></div></div>
-      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à une nouvelle gare souterraine à Saint-Lazare, puis vers Clichy-Levallois, Courbevoie et La Défense. Les deux côtés s’équilibrent aujourd’hui&nbsp;: {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} trains par heure et par sens sur H et K ensemble, {{ m.reg_platforms.h.peak_l[0] | 0 }} à {{ m.reg_platforms.h.peak_l[1] | 0 }} sur L.</p></div></div>
+      <div class="pz-line"><b class="pz-ln f">F</b><div><h3>RER F&nbsp;: les lignes L, H et K, fusionnées</h3><p>De la banlieue nord, via Nord-Est, jusqu’à une nouvelle gare souterraine à Saint-Lazare, puis vers Clichy-Levallois, Courbevoie et La Défense. Les deux côtés s’équilibrent aujourd’hui&nbsp;: {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} trains par heure et par sens sur H et K ensemble, {{ m.reg_platforms.h.peak_l | 0 }} sur L.</p></div></div>
       <div class="pz-line"><b class="pz-ln t">TER</b><div><h3>Les TER</h3><p>Dans les tunnels TGV&nbsp;: depuis le nord jusqu’à Montparnasse, depuis l’est jusqu’à la gare de Lyon. Aucun ne s’arrête en terminus à Paris. Les deux extrémités sont proches&nbsp;: à la pointe, {{ m.ter_paths.ter_hour.Nord + m.ter_paths.ter_hour.Est | 0 }} TER par heure et par sens à Nord-Est, {{ m.ter_paths.ter_hour.atlantic_today + m.ter_paths.ter_hour.lyon_today | 0 }} à Montparnasse et à la gare de Lyon réunies.</p></div></div>
     </div>
     <div class="pz-grid3">
