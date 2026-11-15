@@ -1,0 +1,1135 @@
+{
+ "sources": {
+  "stations": "Île-de-France Mobilités open data, dataset projets_arrets_idf \"Gares, stations et pôles d'échanges multimodaux en projet en Ile-de-France\" (modified 2026-08-31, Licence Ouverte v2.0), https://data.iledefrance-mobilites.fr/api/explore/v2.1/catalog/datasets/projets_arrets_idf/exports/json?where=mode%3D%22m%C3%A9tro%22%20and%20indice%20in%20(%2215%22%2C%2216%22%2C%2217%22%2C%2218%22), read 2026-11-15. Station order is mine (from the published line maps); names and coordinates are the dataset's.",
+  "opening_year_dataset": "Île-de-France Mobilités dataset projets_lignes_idf, field mes_off_tx (modified 2026-08-31), read 2026-11-15",
+  "opening_revised": "Sortir à Paris, \"Grand Paris Express: the new timetable for lines 15, 16, 17 and 18\", updated 2026-09-30, reporting the schedule announced on 2026-09-24, https://www.sortiraparis.com/en/news/in-paris/articles/343880-lines-15-16-17-and-18-of-the-grand-paris-express-a-shift-in-the-projected-timetable-for-putting-the-lines-into-service, read 2026-11-15 (press, not an official page)",
+  "run_times": "Société des grands projets, \"Temps de parcours intergares prévisionnels\" on data.gouv.fr (published 2015, Licence Ouverte; times include dwell at each station), https://static.data.gouv.fr/resources/temps-de-parcours-intergares-previsionnels/20150226-114622/201502_SGP_OD12_TempsParcours.csv, read 2026-11-15. Line 15 Est is not in that file.",
+  "connections": "Lines of existing rail stations (IDFM emplacement-des-gares-idf, field res_com) within 400 m of the new station, computed by me, plus other GPE lines at the same station name. A proxy, not an official correspondence list.",
+  "official_pages_unavailable": "iledefrance-mobilites.fr project pages and fact sheets returned HTTP 403 on 2026-11-15; societedesgrandsprojets.fr line pages were not found."
+ },
+ "lines": [
+  {
+   "line": "15",
+   "section": "15 Sud",
+   "stations": [
+    {
+     "name": "Pont de Sèvres",
+     "lon": 2.23026,
+     "lat": 48.82746,
+     "connections_existing": [
+      "METRO 9"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Issy RER",
+     "lon": 2.2597,
+     "lat": 48.8211,
+     "connections_existing": [
+      "RER C"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Fort d'Issy-Vanves-Clamart",
+     "lon": 2.27343,
+     "lat": 48.81412,
+     "connections_existing": [
+      "TRAIN N"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Châtillon - Montrouge",
+     "lon": 2.30255,
+     "lat": 48.8112,
+     "connections_existing": [
+      "METRO 13",
+      "TRAM 6"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Bagneux",
+     "lon": 2.31868,
+     "lat": 48.80276,
+     "connections_existing": [
+      "METRO 4"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Arcueil-Cachan",
+     "lon": 2.32835,
+     "lat": 48.79747,
+     "connections_existing": [
+      "RER B"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Villejuif - Gustave Roussy",
+     "lon": 2.34937,
+     "lat": 48.79305,
+     "connections_existing": [
+      "METRO 14"
+     ],
+     "connections_gpe": [
+      "METRO 14"
+     ]
+    },
+    {
+     "name": "Villejuif Louis Aragon",
+     "lon": 2.36722,
+     "lat": 48.78846,
+     "connections_existing": [
+      "METRO 7",
+      "TRAM 7"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Vitry Centre",
+     "lon": 2.38704,
+     "lat": 48.78999,
+     "connections_existing": [
+      "TRAM 9"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Les Ardoines",
+     "lon": 2.40887,
+     "lat": 48.7823,
+     "connections_existing": [
+      "RER C"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Le Vert de Maisons",
+     "lon": 2.4328,
+     "lat": 48.78923,
+     "connections_existing": [
+      "RER D"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Créteil l'Echat",
+     "lon": 2.44994,
+     "lat": 48.79558,
+     "connections_existing": [
+      "METRO 8"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Saint-Maur - Créteil",
+     "lon": 2.47271,
+     "lat": 48.80679,
+     "connections_existing": [
+      "RER A"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Champigny Centre",
+     "lon": 2.50249,
+     "lat": 48.81657,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Bry - Villiers - Champigny",
+     "lon": 2.52638,
+     "lat": 48.82399,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Noisy-Champs",
+     "lon": 2.58108,
+     "lat": 48.84351,
+     "connections_existing": [
+      "RER A"
+     ],
+     "connections_gpe": [
+      "METRO 16"
+     ]
+    }
+   ],
+   "between_stations": [
+    {
+     "from": "Pont de Sèvres",
+     "to": "Issy RER",
+     "run_time_s": 147
+    },
+    {
+     "from": "Issy RER",
+     "to": "Fort d'Issy-Vanves-Clamart",
+     "run_time_s": 127
+    },
+    {
+     "from": "Fort d'Issy-Vanves-Clamart",
+     "to": "Châtillon - Montrouge",
+     "run_time_s": 140
+    },
+    {
+     "from": "Châtillon - Montrouge",
+     "to": "Bagneux",
+     "run_time_s": 125
+    },
+    {
+     "from": "Bagneux",
+     "to": "Arcueil-Cachan",
+     "run_time_s": 100
+    },
+    {
+     "from": "Arcueil-Cachan",
+     "to": "Villejuif - Gustave Roussy",
+     "run_time_s": 142
+    },
+    {
+     "from": "Villejuif - Gustave Roussy",
+     "to": "Villejuif Louis Aragon",
+     "run_time_s": 143
+    },
+    {
+     "from": "Villejuif Louis Aragon",
+     "to": "Vitry Centre",
+     "run_time_s": 146
+    },
+    {
+     "from": "Vitry Centre",
+     "to": "Les Ardoines",
+     "run_time_s": 149
+    },
+    {
+     "from": "Les Ardoines",
+     "to": "Le Vert de Maisons",
+     "run_time_s": 134
+    },
+    {
+     "from": "Le Vert de Maisons",
+     "to": "Créteil l'Echat",
+     "run_time_s": 125
+    },
+    {
+     "from": "Créteil l'Echat",
+     "to": "Saint-Maur - Créteil",
+     "run_time_s": 150
+    },
+    {
+     "from": "Saint-Maur - Créteil",
+     "to": "Champigny Centre",
+     "run_time_s": 188
+    },
+    {
+     "from": "Champigny Centre",
+     "to": "Bry - Villiers - Champigny",
+     "run_time_s": 159
+    },
+    {
+     "from": "Bry - Villiers - Champigny",
+     "to": "Noisy-Champs",
+     "run_time_s": 237
+    }
+   ],
+   "run_time_end_to_end_min": 36.9,
+   "straight_line_km_between_stations": 28.8,
+   "commercial_speed_kmh": "55 to 65",
+   "peak_headway_min": "2 to 3",
+   "opening": [
+    {
+     "from": "Pont de Sèvres",
+     "to": "Noisy-Champs",
+     "idfm_operation": "ligne 15 - sud",
+     "year_idfm_dataset": 2027,
+     "revised_sept_2026": "autumn 2027"
+    }
+   ],
+   "published_figures_source": "Société des grands projets, brochure \"Ligne 15\" (July 2024), p.3: \"En heure de pointe, les métros arriveront en gare toutes les 2 à 3 minutes\" and \"une vitesse moyenne comprise entre 55 et 65 km/h\", https://aubervilliers.fr/IMG/pdf/240716_sgp_plaquette_l15_164x220mm_exe-bd-1.pdf (hosted by the town of Aubervilliers), read 2026-11-15"
+  },
+  {
+   "line": "15",
+   "section": "15 Ouest",
+   "stations": [
+    {
+     "name": "Pont de Sèvres",
+     "lon": 2.23026,
+     "lat": 48.82746,
+     "connections_existing": [
+      "METRO 9"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Saint-Cloud",
+     "lon": 2.21717,
+     "lat": 48.84409,
+     "connections_existing": [
+      "TRAIN L",
+      "TRAIN U",
+      "TRAM 2"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Rueil-Suresnes Mont-Valérien",
+     "lon": 2.20212,
+     "lat": 48.87249,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Nanterre - La Boule",
+     "lon": 2.2018,
+     "lat": 48.88767,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Nanterre - La Folie",
+     "lon": 2.22673,
+     "lat": 48.89822,
+     "connections_existing": [
+      "RER A",
+      "RER E"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "La Défense",
+     "lon": 2.23754,
+     "lat": 48.88943,
+     "connections_existing": [
+      "METRO 1",
+      "RER A",
+      "TRAIN L",
+      "TRAIN U",
+      "TRAM 2"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Bécon-les-Bruyères",
+     "lon": 2.26709,
+     "lat": 48.90538,
+     "connections_existing": [
+      "TRAIN L"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Bois-Colombes",
+     "lon": 2.272,
+     "lat": 48.91485,
+     "connections_existing": [
+      "TRAIN J"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Les Agnettes",
+     "lon": 2.28767,
+     "lat": 48.92247,
+     "connections_existing": [
+      "METRO 13"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Les Grésillons",
+     "lon": 2.31304,
+     "lat": 48.91993,
+     "connections_existing": [
+      "RER C"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Saint-Denis Pleyel",
+     "lon": 2.34656,
+     "lat": 48.91768,
+     "connections_existing": [
+      "METRO 13",
+      "METRO 14",
+      "RER D"
+     ],
+     "connections_gpe": [
+      "METRO 14",
+      "METRO 16",
+      "METRO 17"
+     ]
+    }
+   ],
+   "between_stations": [
+    {
+     "from": "Pont de Sèvres",
+     "to": "Saint-Cloud",
+     "run_time_s": 165
+    },
+    {
+     "from": "Saint-Cloud",
+     "to": "Rueil-Suresnes Mont-Valérien",
+     "run_time_s": 174
+    },
+    {
+     "from": "Rueil-Suresnes Mont-Valérien",
+     "to": "Nanterre - La Boule",
+     "run_time_s": 138
+    },
+    {
+     "from": "Nanterre - La Boule",
+     "to": "Nanterre - La Folie",
+     "run_time_s": 146
+    },
+    {
+     "from": "Nanterre - La Folie",
+     "to": "La Défense",
+     "run_time_s": 140
+    },
+    {
+     "from": "La Défense",
+     "to": "Bécon-les-Bruyères",
+     "run_time_s": 204
+    },
+    {
+     "from": "Bécon-les-Bruyères",
+     "to": "Bois-Colombes",
+     "run_time_s": 112
+    },
+    {
+     "from": "Bois-Colombes",
+     "to": "Les Agnettes",
+     "run_time_s": 119
+    },
+    {
+     "from": "Les Agnettes",
+     "to": "Les Grésillons",
+     "run_time_s": 142
+    },
+    {
+     "from": "Les Grésillons",
+     "to": "Saint-Denis Pleyel",
+     "run_time_s": 151
+    }
+   ],
+   "run_time_end_to_end_min": 24.9,
+   "straight_line_km_between_stations": 20.2,
+   "commercial_speed_kmh": "55 to 65",
+   "peak_headway_min": "2 to 3",
+   "opening": [
+    {
+     "from": "Pont de Sèvres",
+     "to": "Saint-Denis Pleyel",
+     "idfm_operation": "ligne 15 - ouest - phases 1 and 2",
+     "year_idfm_dataset": 2031,
+     "revised_sept_2026": "2031"
+    }
+   ],
+   "published_figures_source": "Société des grands projets, brochure \"Ligne 15\" (July 2024), p.3: \"En heure de pointe, les métros arriveront en gare toutes les 2 à 3 minutes\" and \"une vitesse moyenne comprise entre 55 et 65 km/h\", https://aubervilliers.fr/IMG/pdf/240716_sgp_plaquette_l15_164x220mm_exe-bd-1.pdf (hosted by the town of Aubervilliers), read 2026-11-15"
+  },
+  {
+   "line": "15",
+   "section": "15 Est",
+   "stations": [
+    {
+     "name": "Saint-Denis Pleyel",
+     "lon": 2.34656,
+     "lat": 48.91768,
+     "connections_existing": [
+      "METRO 13",
+      "METRO 14",
+      "RER D"
+     ],
+     "connections_gpe": [
+      "METRO 14",
+      "METRO 16",
+      "METRO 17"
+     ]
+    },
+    {
+     "name": "Stade de France",
+     "lon": 2.36339,
+     "lat": 48.91802,
+     "connections_existing": [
+      "RER B"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Mairie d'Aubervilliers",
+     "lon": 2.3818,
+     "lat": 48.91417,
+     "connections_existing": [
+      "METRO 12"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Fort d'Aubervilliers",
+     "lon": 2.40544,
+     "lat": 48.91416,
+     "connections_existing": [
+      "METRO 7"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Drancy-Bobigny",
+     "lon": 2.42707,
+     "lat": 48.91581,
+     "connections_existing": [
+      "TRAM 1"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Bobigny - Pablo Picasso",
+     "lon": 2.44988,
+     "lat": 48.90632,
+     "connections_existing": [
+      "METRO 5",
+      "TRAM 1"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Pont de Bondy",
+     "lon": 2.47047,
+     "lat": 48.9054,
+     "connections_existing": [
+      "TRAM 1"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Bondy",
+     "lon": 2.4802,
+     "lat": 48.89426,
+     "connections_existing": [
+      "RER E",
+      "TRAM 4"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Rosny-Bois-Perrier",
+     "lon": 2.48172,
+     "lat": 48.88273,
+     "connections_existing": [
+      "METRO 11",
+      "RER E"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Val de Fontenay",
+     "lon": 2.48985,
+     "lat": 48.85585,
+     "connections_existing": [
+      "RER A",
+      "RER E"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Nogent-Le-Perreux",
+     "lon": 2.49478,
+     "lat": 48.83863,
+     "connections_existing": [
+      "RER E"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Champigny Centre",
+     "lon": 2.50249,
+     "lat": 48.81657,
+     "connections_existing": [],
+     "connections_gpe": []
+    }
+   ],
+   "between_stations": [
+    {
+     "from": "Saint-Denis Pleyel",
+     "to": "Stade de France",
+     "run_time_s": null
+    },
+    {
+     "from": "Stade de France",
+     "to": "Mairie d'Aubervilliers",
+     "run_time_s": null
+    },
+    {
+     "from": "Mairie d'Aubervilliers",
+     "to": "Fort d'Aubervilliers",
+     "run_time_s": null
+    },
+    {
+     "from": "Fort d'Aubervilliers",
+     "to": "Drancy-Bobigny",
+     "run_time_s": null
+    },
+    {
+     "from": "Drancy-Bobigny",
+     "to": "Bobigny - Pablo Picasso",
+     "run_time_s": null
+    },
+    {
+     "from": "Bobigny - Pablo Picasso",
+     "to": "Pont de Bondy",
+     "run_time_s": null
+    },
+    {
+     "from": "Pont de Bondy",
+     "to": "Bondy",
+     "run_time_s": null
+    },
+    {
+     "from": "Bondy",
+     "to": "Rosny-Bois-Perrier",
+     "run_time_s": null
+    },
+    {
+     "from": "Rosny-Bois-Perrier",
+     "to": "Val de Fontenay",
+     "run_time_s": null
+    },
+    {
+     "from": "Val de Fontenay",
+     "to": "Nogent-Le-Perreux",
+     "run_time_s": null
+    },
+    {
+     "from": "Nogent-Le-Perreux",
+     "to": "Champigny Centre",
+     "run_time_s": null
+    }
+   ],
+   "run_time_end_to_end_min": null,
+   "straight_line_km_between_stations": 19.7,
+   "commercial_speed_kmh": "55 to 65",
+   "peak_headway_min": "2 to 3",
+   "opening": [
+    {
+     "from": "Saint-Denis Pleyel",
+     "to": "Champigny Centre",
+     "idfm_operation": "ligne 15 - est (phases 1 and 2)",
+     "year_idfm_dataset": 2031,
+     "revised_sept_2026": "2031"
+    }
+   ],
+   "published_figures_source": "Société des grands projets, brochure \"Ligne 15\" (July 2024), p.3: \"En heure de pointe, les métros arriveront en gare toutes les 2 à 3 minutes\" and \"une vitesse moyenne comprise entre 55 et 65 km/h\", https://aubervilliers.fr/IMG/pdf/240716_sgp_plaquette_l15_164x220mm_exe-bd-1.pdf (hosted by the town of Aubervilliers), read 2026-11-15"
+  },
+  {
+   "line": "16",
+   "section": "16",
+   "stations": [
+    {
+     "name": "Saint-Denis Pleyel",
+     "lon": 2.34655,
+     "lat": 48.9179,
+     "connections_existing": [
+      "METRO 13",
+      "METRO 14",
+      "RER D"
+     ],
+     "connections_gpe": [
+      "METRO 14",
+      "METRO 15",
+      "METRO 17"
+     ]
+    },
+    {
+     "name": "La Courneuve-Six Routes",
+     "lon": 2.38449,
+     "lat": 48.92928,
+     "connections_existing": [
+      "TRAM 1"
+     ],
+     "connections_gpe": [
+      "METRO 17"
+     ]
+    },
+    {
+     "name": "Le Bourget",
+     "lon": 2.42212,
+     "lat": 48.93058,
+     "connections_existing": [
+      "RER B",
+      "TRAM 11"
+     ],
+     "connections_gpe": [
+      "METRO 17"
+     ]
+    },
+    {
+     "name": "Le Blanc-Mesnil",
+     "lon": 2.46294,
+     "lat": 48.94567,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Aulnay",
+     "lon": 2.48786,
+     "lat": 48.95184,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Sevran-Beaudottes",
+     "lon": 2.52553,
+     "lat": 48.94722,
+     "connections_existing": [
+      "RER B"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Sevran-Livry",
+     "lon": 2.53532,
+     "lat": 48.93585,
+     "connections_existing": [
+      "RER B"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Clichy-Montfermeil",
+     "lon": 2.55658,
+     "lat": 48.90465,
+     "connections_existing": [
+      "TRAM 4"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Chelles Gournay",
+     "lon": 2.58577,
+     "lat": 48.87451,
+     "connections_existing": [
+      "RER E",
+      "TRAIN P"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Noisy-Champs",
+     "lon": 2.58108,
+     "lat": 48.84351,
+     "connections_existing": [
+      "RER A"
+     ],
+     "connections_gpe": [
+      "METRO 15"
+     ]
+    }
+   ],
+   "between_stations": [
+    {
+     "from": "Saint-Denis Pleyel",
+     "to": "La Courneuve-Six Routes",
+     "run_time_s": 174
+    },
+    {
+     "from": "La Courneuve-Six Routes",
+     "to": "Le Bourget",
+     "run_time_s": 169
+    },
+    {
+     "from": "Le Bourget",
+     "to": "Le Blanc-Mesnil",
+     "run_time_s": 177
+    },
+    {
+     "from": "Le Blanc-Mesnil",
+     "to": "Aulnay",
+     "run_time_s": 132
+    },
+    {
+     "from": "Aulnay",
+     "to": "Sevran-Beaudottes",
+     "run_time_s": 181
+    },
+    {
+     "from": "Sevran-Beaudottes",
+     "to": "Sevran-Livry",
+     "run_time_s": 121
+    },
+    {
+     "from": "Sevran-Livry",
+     "to": "Clichy-Montfermeil",
+     "run_time_s": 207
+    },
+    {
+     "from": "Clichy-Montfermeil",
+     "to": "Chelles Gournay",
+     "run_time_s": 204
+    },
+    {
+     "from": "Chelles Gournay",
+     "to": "Noisy-Champs",
+     "run_time_s": 178
+    }
+   ],
+   "run_time_end_to_end_min": 25.7,
+   "straight_line_km_between_stations": 26.7,
+   "commercial_speed_kmh": null,
+   "peak_headway_min": null,
+   "opening": [
+    {
+     "from": "Saint-Denis Pleyel",
+     "to": "Le Blanc-Mesnil",
+     "idfm_operation": "ligne 16-17 phase 1 / ligne 16 phase 1",
+     "year_idfm_dataset": 2027,
+     "revised_sept_2026": "autumn 2028 (to \"Parc du Blanc-Mesnil\")"
+    },
+    {
+     "from": "Le Blanc-Mesnil",
+     "to": "Noisy-Champs",
+     "idfm_operation": "ligne 16 phase 1 (to Clichy-Montfermeil, 2027) and phase 2 (Chelles, Noisy-Champs, 2028)",
+     "year_idfm_dataset": 2028,
+     "revised_sept_2026": "autumn 2029"
+    }
+   ],
+   "published_figures_source": null
+  },
+  {
+   "line": "17",
+   "section": "17",
+   "stations": [
+    {
+     "name": "Saint-Denis Pleyel",
+     "lon": 2.34655,
+     "lat": 48.9179,
+     "connections_existing": [
+      "METRO 13",
+      "METRO 14",
+      "RER D"
+     ],
+     "connections_gpe": [
+      "METRO 14",
+      "METRO 15",
+      "METRO 16"
+     ]
+    },
+    {
+     "name": "La Courneuve-Six Routes",
+     "lon": 2.38449,
+     "lat": 48.92928,
+     "connections_existing": [
+      "TRAM 1"
+     ],
+     "connections_gpe": [
+      "METRO 16"
+     ]
+    },
+    {
+     "name": "Le Bourget",
+     "lon": 2.42212,
+     "lat": 48.93058,
+     "connections_existing": [
+      "RER B",
+      "TRAM 11"
+     ],
+     "connections_gpe": [
+      "METRO 16"
+     ]
+    },
+    {
+     "name": "Le Bourget Aéroport",
+     "lon": 2.43642,
+     "lat": 48.94672,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Triangle de Gonesse",
+     "lon": 2.47636,
+     "lat": 48.9787,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Parc des expositions",
+     "lon": 2.51607,
+     "lat": 48.97498,
+     "connections_existing": [
+      "RER B"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Aéroport Charles de Gaulle T2",
+     "lon": 2.57016,
+     "lat": 49.00476,
+     "connections_existing": [
+      "CDGVAL",
+      "RER B"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Aéroport Charles de Gaulle 2e gare",
+     "lon": 2.57116,
+     "lat": 49.01008,
+     "connections_existing": [
+      "CDGVAL"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Le Mesnil-Amelot",
+     "lon": 2.59552,
+     "lat": 49.02589,
+     "connections_existing": [],
+     "connections_gpe": []
+    }
+   ],
+   "between_stations": [
+    {
+     "from": "Saint-Denis Pleyel",
+     "to": "La Courneuve-Six Routes",
+     "run_time_s": 174
+    },
+    {
+     "from": "La Courneuve-Six Routes",
+     "to": "Le Bourget",
+     "run_time_s": 169
+    },
+    {
+     "from": "Le Bourget",
+     "to": "Le Bourget Aéroport",
+     "run_time_s": 173
+    },
+    {
+     "from": "Le Bourget Aéroport",
+     "to": "Triangle de Gonesse",
+     "run_time_s": 223
+    },
+    {
+     "from": "Triangle de Gonesse",
+     "to": "Parc des expositions",
+     "run_time_s": 220
+    },
+    {
+     "from": "Parc des expositions",
+     "to": "Aéroport Charles de Gaulle T2",
+     "run_time_s": 248
+    },
+    {
+     "from": "Aéroport Charles de Gaulle T2",
+     "to": "Aéroport Charles de Gaulle 2e gare",
+     "run_time_s": 98
+    },
+    {
+     "from": "Aéroport Charles de Gaulle 2e gare",
+     "to": "Le Mesnil-Amelot",
+     "run_time_s": 153
+    }
+   ],
+   "run_time_end_to_end_min": 24.3,
+   "straight_line_km_between_stations": 23.7,
+   "commercial_speed_kmh": null,
+   "peak_headway_min": null,
+   "opening": [
+    {
+     "from": "Saint-Denis Pleyel",
+     "to": "Le Bourget Aéroport",
+     "idfm_operation": "ligne 17-16 phase 1 / ligne 17 phase 1",
+     "year_idfm_dataset": 2027,
+     "revised_sept_2026": "autumn 2028"
+    },
+    {
+     "from": "Le Bourget Aéroport",
+     "to": "Parc des expositions",
+     "idfm_operation": "ligne 17 phase 2",
+     "year_idfm_dataset": 2028,
+     "revised_sept_2026": "autumn 2029"
+    },
+    {
+     "from": "Parc des expositions",
+     "to": "Le Mesnil-Amelot",
+     "idfm_operation": "ligne 17 phases 2-3",
+     "year_idfm_dataset": 2030,
+     "revised_sept_2026": "end of 2030"
+    }
+   ],
+   "published_figures_source": null
+  },
+  {
+   "line": "18",
+   "section": "18",
+   "stations": [
+    {
+     "name": "Aéroport d'Orly",
+     "lon": 2.36227,
+     "lat": 48.72808,
+     "connections_existing": [
+      "METRO 14",
+      "ORLYVAL"
+     ],
+     "connections_gpe": [
+      "METRO 14"
+     ]
+    },
+    {
+     "name": "Antonypole Wissous Centre",
+     "lon": 2.31001,
+     "lat": 48.73584,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Massy Opéra",
+     "lon": 2.29137,
+     "lat": 48.73172,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Massy Palaiseau",
+     "lon": 2.25859,
+     "lat": 48.72525,
+     "connections_existing": [
+      "RER B",
+      "RER C",
+      "TRAIN V",
+      "TRAM 12"
+     ],
+     "connections_gpe": []
+    },
+    {
+     "name": "Polytechnique",
+     "lon": 2.20097,
+     "lat": 48.71535,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Université Paris-Saclay",
+     "lon": 2.17327,
+     "lat": 48.71215,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Christ de Saclay",
+     "lon": 2.16177,
+     "lat": 48.7298,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Guyancourt",
+     "lon": 2.07176,
+     "lat": 48.76016,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Satory",
+     "lon": 2.10422,
+     "lat": 48.78711,
+     "connections_existing": [],
+     "connections_gpe": []
+    },
+    {
+     "name": "Versailles Chantiers",
+     "lon": 2.13676,
+     "lat": 48.7947,
+     "connections_existing": [
+      "RER C",
+      "TER CENTRE-VDL",
+      "TER NORMANDIE",
+      "TRAIN N",
+      "TRAIN U",
+      "TRAIN V"
+     ],
+     "connections_gpe": []
+    }
+   ],
+   "between_stations": [
+    {
+     "from": "Aéroport d'Orly",
+     "to": "Antonypole Wissous Centre",
+     "run_time_s": 233
+    },
+    {
+     "from": "Antonypole Wissous Centre",
+     "to": "Massy Opéra",
+     "run_time_s": 126
+    },
+    {
+     "from": "Massy Opéra",
+     "to": "Massy Palaiseau",
+     "run_time_s": 154
+    },
+    {
+     "from": "Massy Palaiseau",
+     "to": "Polytechnique",
+     "run_time_s": 248
+    },
+    {
+     "from": "Polytechnique",
+     "to": "Université Paris-Saclay",
+     "run_time_s": 136
+    },
+    {
+     "from": "Université Paris-Saclay",
+     "to": "Christ de Saclay",
+     "run_time_s": 154
+    },
+    {
+     "from": "Christ de Saclay",
+     "to": "Guyancourt",
+     "run_time_s": 398
+    },
+    {
+     "from": "Guyancourt",
+     "to": "Satory",
+     "run_time_s": 415,
+     "note": "sum of Saint-Quentin Est > Saint-Quentin Université > Satory in the 2015 file (Saint-Quentin Université is no longer a station)"
+    },
+    {
+     "from": "Satory",
+     "to": "Versailles Chantiers",
+     "run_time_s": 147
+    }
+   ],
+   "run_time_end_to_end_min": 33.5,
+   "straight_line_km_between_stations": 30.3,
+   "commercial_speed_kmh": null,
+   "peak_headway_min": null,
+   "opening": [
+    {
+     "from": "Massy Palaiseau",
+     "to": "Christ de Saclay",
+     "idfm_operation": "ligne 18 phase 1",
+     "year_idfm_dataset": 2026,
+     "revised_sept_2026": "December 2026, subject to commissioning conditions"
+    },
+    {
+     "from": "Aéroport d'Orly",
+     "to": "Massy Palaiseau",
+     "idfm_operation": "ligne 18 phase 2",
+     "year_idfm_dataset": 2027,
+     "revised_sept_2026": "autumn 2027"
+    },
+    {
+     "from": "Christ de Saclay",
+     "to": "Versailles Chantiers",
+     "idfm_operation": "ligne 18 phases 3-4",
+     "year_idfm_dataset": 2030,
+     "revised_sept_2026": "2030"
+    }
+   ],
+   "published_end_to_end_min": 30,
+   "published_figures_source": "Préfecture de la région Île-de-France, press kit \"Grand Paris Express : la ligne 18 est sur les rails\" (February 2019), p.6: \"Versailles chantiers <> aéroport d'Orly en 30 minutes\" and \"Saint-Quentin Est <> Massy-Palaiseau en 18 minutes\", https://www.prefectures-regions.gouv.fr/ile-de-france/ile-de-france/irecontenu/telechargement/55172/364314/file/DP-GRAND%20PARIS%20EXPRESS%20LA%20LIGNE%2018%20EST%20SUR%20LES%20RAILS.pdf, read 2026-11-15"
+  }
+ ]
+}
