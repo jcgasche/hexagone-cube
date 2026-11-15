@@ -13,6 +13,7 @@
     {"id": "crossing",  "group": "Report",  "nav": "Crossing Paris",         "heading": "Crossing Paris, by TGV and by regional train"},
     {"id": "cost",      "group": "Report",  "nav": "Cost",                   "heading": "What it would cost to build"},
     {"id": "flows",     "group": "Report",  "nav": "Passengers by line",     "heading": "Who rides where: the passengers of every line, section by section"},
+    {"id": "times",     "group": "Report",  "nav": "Travel times in the region", "heading": "Travel times across the region: minutes saved, station by station, and for how many people"},
     {"id": "traffic",   "group": "Report",  "nav": "Traffic",                "heading": "How many more passengers"},
     {"id": "financing", "group": "Report",  "nav": "Financing",              "heading": "Paying to run it, paying to build it"},
     {"id": "economy",   "group": "Report",  "nav": "Economic return",        "heading": "What the country gets back"},

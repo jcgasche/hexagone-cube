@@ -1,0 +1,12 @@
+{
+ "idfm_tt": {
+  "publisher": "Île-de-France Mobilités, open data, network timetable (GTFS), version of 15 October 2026",
+  "about": "Tuesday 3 November 2026: every train of the metro, the RER, the Transilien lines and the tramways, and the TER trains inside the region, with the walking times published between platforms; read train by train for the station-to-station times",
+  "url": "https://data.iledefrance-mobilites.fr/explore/dataset/offre-horaires-tc-gtfs-idfm/"
+ },
+ "csa": {
+  "publisher": "J. Dibbelt, T. Pajor, B. Strasser, D. Wagner, Connection Scan Algorithm, ACM Journal of Experimental Algorithmics 23, 2018 (first published 2013)",
+  "about": "The method used to read a timetable for the quickest trips: every hop of every train, sorted by departure, is read once",
+  "url": "https://arxiv.org/abs/1703.05997"
+ }
+}

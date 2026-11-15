@@ -1,0 +1,61 @@
+/* Travel times in the region. Minutes run from green (short) to red (long); minutes saved from pale yellow to dark green, as on the map
+   'Reaching the station'; a station that gets slower is orange. */
+#times {
+  --tm-m0: #1a9850; --tm-m1: #74c365; --tm-m2: #d2e77f; --tm-m3: #fed976; --tm-m4: #fc8d59; --tm-m5: #d73027;
+  --tm-g0: color-mix(in srgb, var(--neutral-mark) 45%, var(--land)); --tm-g1: #f0c33c; --tm-g2: #b9d23f; --tm-g3: #6cc04f; --tm-g4: #1f9a55; --tm-g5: #00602f; --tm-slow: #d9481f;
+  --tm-water: color-mix(in srgb, #5b9bd5 45%, var(--land));
+}
+:root[data-theme="dark"] #times { --tm-g5: #0c8a4c }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) #times { --tm-g5: #0c8a4c } }
+#times .tm-fig { gap: 12px }
+#times .tm-map { background: var(--land); border: 1px solid var(--rule); border-radius: 6px; overflow: hidden; min-width: 0; position: relative }
+#times .tm-svg { display: block; width: 100%; height: auto; touch-action: pan-x pan-y; cursor: grab; user-select: none; -webkit-user-select: none }
+#times .tm-svg.tm-drag { cursor: grabbing }
+#times .tm-on .tm-svg { touch-action: none }
+#times .tm-on { outline: 2px solid var(--new); outline-offset: -2px }
+#times .tm-geo * { fill: none; pointer-events: none; stroke-linejoin: round; stroke-linecap: round }
+#times .tm-geo .tm-dep { stroke: var(--rule) }
+#times .tm-geo .tm-paris { stroke: var(--muted); fill: var(--surface); fill-opacity: .55 }
+#times .tm-geo .tm-park { fill: var(--park); stroke: none }
+#times .tm-geo .tm-river { stroke: var(--tm-water) }
+#times .tm-geo .tm-rail { stroke: var(--neutral-mark); opacity: .45 }
+#times .tm-dots circle { stroke: var(--land); cursor: pointer }
+#times .tm-dots .tm-hi { stroke: color-mix(in srgb, var(--ink) 55%, transparent) }
+#times .tm-dots .tm-none { fill: var(--land); stroke: var(--neutral-mark) }
+#times .tm-dots .tm-from { fill: var(--ink); stroke: var(--land) }
+#times .tm-dots .tm-ring { fill: none; stroke: var(--ink); pointer-events: none }
+#times .tm-lab text { fill: var(--ink); font-family: var(--body); pointer-events: none; paint-order: stroke; stroke: var(--land); stroke-linejoin: round }
+#times .tm-lab .tm-lab-from { font-weight: 700 }
+#times .tm-tools { position: absolute; top: 8px; right: 8px; display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end }
+#times .tm-zb { font: 600 13px/1 var(--body); min-width: 30px; height: 30px; padding: 0 8px; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); color: var(--ink); cursor: pointer }
+#times .tm-zb:hover { border-color: var(--muted) }
+#times .tm-hint { position: absolute; left: 8px; bottom: 6px; font-size: 12px; color: var(--muted); background: var(--land); padding: 1px 6px; border-radius: 4px; pointer-events: none; opacity: .9 }
+#times .tm-hint-t { display: none }
+@media (hover: none) { #times .tm-hint-m { display: none } #times .tm-hint-t { display: inline } }
+#times .tm-pick { display: flex; gap: 8px; align-items: center }
+#times .tm-input { font: inherit; padding: 7px 10px; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); color: var(--ink); min-width: 0; width: 260px; max-width: 100%; flex: 0 1 260px }
+#times .tm-input:disabled { opacity: .6 }
+#times .tm-all { font: 600 13px/1 var(--body); height: 36px; white-space: nowrap; padding: 0 12px; border: 1px solid var(--rule); border-radius: 5px; background: var(--surface); color: var(--ink); cursor: pointer }
+#times .tm-all:disabled { opacity: .45; cursor: default }
+#times .tm-note { font-size: 13px; color: var(--muted); align-self: end; padding-bottom: 9px }
+#times .tm-title { font-weight: 600; color: var(--ink); font-size: 14px }
+#times .tm-title b { font-weight: 700 }
+#times .tm-legend { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--text) }
+#times .tm-leg-row { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center }
+#times .tm-leg-t { color: var(--muted); font-weight: 600 }
+#times .tm-leg-i { display: inline-flex; gap: 5px; align-items: baseline; font-variant-numeric: tabular-nums }
+#times .tm-leg-i small { color: var(--muted) }
+#times .tm-chip { width: 12px; height: 12px; border-radius: 50%; display: inline-block; align-self: center; border: 1px solid var(--dot-edge) }
+#times .tm-leg-note { color: var(--muted); font-size: 12.5px }
+#times .tm-plan-row th, #times .tm-plan-row td { font-weight: 700; color: var(--ink) }
+#times .tm-cmd { font-family: var(--mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace); font-size: 13px; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 10px 14px; overflow-x: auto; white-space: pre; margin: 8px 0; color: var(--ink) }
+#times .tm-wide th { white-space: normal }
+#times #tm-lines thead th, #times #tm-versions thead th, #times #tm-classes-table thead th { white-space: normal }
+#times #tm-lines tbody th { white-space: nowrap }
+#times #tm-versions tbody th { min-width: 170px }
+@media (max-width: 560px) {
+  #times .tm-tools { top: 6px; right: 6px }
+  #times .tm-zb { padding: 0 6px; font-size: 12px }
+  #times .tm-hint { max-width: 70% }
+  #times #tm-lines tbody th { white-space: normal }
+}

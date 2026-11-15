@@ -1,0 +1,105 @@
+{
+ "name": "plan_ter",
+ "label": "TER through Paris alone",
+ "about": "Only the TER of the plan: trains of Gare du Nord run on to Montparnasse, trains of Gare de l'Est to Gare de Lyon. Times from the study: Nord-Est to Saint-Lazare 4 minutes and Nord-Est to Montparnasse by Chatelet 9 minutes, stops included (model TR.SL, TR_G); TER 11 minutes between two Paris stations, a 5-minute stop included (TR_TER). The new platforms take the walking times that the timetable gives today for the suburban platforms of the same station, and 5 minutes to those platforms themselves (ASSUMPTION); 3 minutes between two groups of new platforms in one station, as between two lines of one station today (ASSUMPTION).",
+ "new_stops": [
+  {
+   "id": "X:NE:T",
+   "name": "Paris Nord-Est (TER)",
+   "lon": 2.3568,
+   "lat": 48.8785,
+   "member_of": [
+    "IDFM:71410",
+    "IDFM:71359"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:462394",
+    "IDFM:monomodalStopPlace:470519"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:MP:T",
+   "name": "Montparnasse (TER)",
+   "lon": 2.3205,
+   "lat": 48.8412,
+   "member_of": [
+    "IDFM:71139"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:43238"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:LY:T",
+   "name": "Gare de Lyon (TER)",
+   "lon": 2.3735,
+   "lat": 48.8449,
+   "member_of": [
+    "IDFM:73626"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:470195"
+   ],
+   "to_like_min": 5
+  }
+ ],
+ "walks": [],
+ "through": [
+  {
+   "name": "TER north to Atlantic",
+   "a": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:71410"
+   },
+   "b": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:71139"
+   },
+   "path": [
+    [
+     "X:NE:T",
+     0
+    ],
+    [
+     "X:MP:T",
+     11
+    ]
+   ],
+   "dwell_min": 5,
+   "max_wait_min": 15
+  },
+  {
+   "name": "TER east to south-east",
+   "a": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:71359"
+   },
+   "b": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:73626"
+   },
+   "path": [
+    [
+     "X:NE:T",
+     0
+    ],
+    [
+     "X:LY:T",
+     11
+    ]
+   ],
+   "dwell_min": 5,
+   "max_wait_min": 15
+  }
+ ]
+}
