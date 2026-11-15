@@ -1,0 +1,1844 @@
+{
+ "source": "Transitous public journey planner (MOTIS 2 router fed with the Île-de-France Mobilités GTFS among others), https://api.transitous.org/api/v1/plan, no API key",
+ "queried": "2026-11-15 12:35 UTC+01:00",
+ "query": {
+  "date": "Tuesday 2026-11-17",
+  "time": "departures from 08:00 Paris time (07:00 UTC), 30-minute search window; fastest itinerary leaving at or after 07:50 kept",
+  "transitModes": "TRAM,SUBWAY,METRO,RAIL,REGIONAL_RAIL,REGIONAL_FAST_RAIL,SUBURBAN",
+  "excluded": "buses and coaches",
+  "endpoints": "coordinates of the IDFM station point named in from_point / to_point (dataset emplacement-des-gares-idf); walking to and from the platform and between lines is included in duration_min",
+  "url_example": "https://api.transitous.org/api/v1/plan?fromPlace=48.814239,2.27449&toPlace=...&time=2026-11-17T07:00:00Z&transitModes=TRAM,SUBWAY,METRO,RAIL,REGIONAL_RAIL,REGIONAL_FAST_RAIL,SUBURBAN&searchWindow=1800&numItineraries=6"
+ },
+ "notes": "Not the IDFM planner (its API needs a key). Times are scheduled times from the GTFS loaded by Transitous on the query date; works or late changes for 17 November may differ.",
+ "journeys": [
+  {
+   "from": "Clamart",
+   "to": "Châtelet-Les Halles",
+   "from_point": "Clamart (TRAIN N)",
+   "to_point": "Châtelet-Les Halles (RER A)",
+   "duration_min": 29,
+   "departure": "08:18",
+   "arrival": "08:47",
+   "changes": 2,
+   "lines": [
+    "N (REGIONAL_RAIL)",
+    "6 (SUBWAY)",
+    "B (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Clamart",
+     "dep": "08:18",
+     "arr": "08:19"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "N",
+     "from": "Clamart",
+     "to": "Gare Montparnasse",
+     "dep": "08:19",
+     "arr": "08:26"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Montparnasse",
+     "to": "Gare Montparnasse",
+     "dep": "08:26",
+     "arr": "08:32"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "6",
+     "from": "Gare Montparnasse",
+     "to": "Denfert-Rochereau",
+     "dep": "08:32",
+     "arr": "08:35"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Denfert-Rochereau",
+     "to": "Denfert-Rochereau",
+     "dep": "08:35",
+     "arr": "08:39"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Denfert-Rochereau",
+     "to": "Châtelet - Les Halles",
+     "dep": "08:39",
+     "arr": "08:46"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Châtelet - Les Halles",
+     "to": "END",
+     "dep": "08:46",
+     "arr": "08:47"
+    }
+   ],
+   "walk_min_included": 12
+  },
+  {
+   "from": "Versailles Chantiers",
+   "to": "Gare de l'Est",
+   "from_point": "Versailles-Chantiers (RER C)",
+   "to_point": "Gare de l'Est (TRAIN P)",
+   "duration_min": 41,
+   "departure": "08:02",
+   "arrival": "08:43",
+   "changes": 1,
+   "lines": [
+    "TER (REGIONAL_RAIL)",
+    "4 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Versailles Chantiers",
+     "dep": "08:02",
+     "arr": "08:04"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "TER",
+     "from": "Versailles Chantiers",
+     "to": "Paris Montparnasse Vaugirard",
+     "dep": "08:04",
+     "arr": "08:16"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Paris Montparnasse Vaugirard",
+     "to": "Gare Montparnasse",
+     "dep": "08:16",
+     "arr": "08:23"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "4",
+     "from": "Gare Montparnasse",
+     "to": "Gare de l'Est",
+     "dep": "08:23",
+     "arr": "08:39"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de l'Est",
+     "to": "END",
+     "dep": "08:39",
+     "arr": "08:43"
+    }
+   ],
+   "walk_min_included": 13
+  },
+  {
+   "from": "Meaux",
+   "to": "Gare Montparnasse",
+   "from_point": "Meaux (TRAIN P)",
+   "to_point": "Montparnasse (TRAIN N)",
+   "duration_min": 55,
+   "departure": "08:13",
+   "arrival": "09:08",
+   "changes": 1,
+   "lines": [
+    "P (REGIONAL_RAIL)",
+    "4 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Meaux",
+     "dep": "08:13",
+     "arr": "08:14"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "P",
+     "from": "Meaux",
+     "to": "Gare de l'Est",
+     "dep": "08:14",
+     "arr": "08:39"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de l'Est",
+     "to": "Gare de l'Est",
+     "dep": "08:39",
+     "arr": "08:43"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "4",
+     "from": "Gare de l'Est",
+     "to": "Gare Montparnasse",
+     "dep": "08:44",
+     "arr": "09:00"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Montparnasse",
+     "to": "END",
+     "dep": "09:00",
+     "arr": "09:08"
+    }
+   ],
+   "walk_min_included": 13
+  },
+  {
+   "from": "Épinay-Villetaneuse",
+   "to": "Gare Saint-Lazare",
+   "from_point": "Épinay-Villetaneuse (TRAIN H)",
+   "to_point": "Saint-Lazare (TRAIN L)",
+   "duration_min": 27,
+   "departure": "08:09",
+   "arrival": "08:36",
+   "changes": 1,
+   "lines": [
+    "H (REGIONAL_RAIL)",
+    "E (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Épinay - Villetaneuse",
+     "dep": "08:09",
+     "arr": "08:12"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "H",
+     "from": "Épinay - Villetaneuse",
+     "to": "Gare du Nord",
+     "dep": "08:12",
+     "arr": "08:21"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare du Nord",
+     "to": "Magenta",
+     "dep": "08:21",
+     "arr": "08:25"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "Magenta",
+     "to": "Haussmann Saint-Lazare",
+     "dep": "08:26",
+     "arr": "08:28"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Haussmann Saint-Lazare",
+     "to": "END",
+     "dep": "08:28",
+     "arr": "08:36"
+    }
+   ],
+   "walk_min_included": 15
+  },
+  {
+   "from": "Saint-Denis",
+   "to": "Asnières-sur-Seine",
+   "from_point": "Saint-Denis (RER D)",
+   "to_point": "Asnières-sur-Seine (TRAIN L)",
+   "duration_min": 27,
+   "departure": "08:12",
+   "arrival": "08:39",
+   "changes": 2,
+   "lines": [
+    "H (REGIONAL_RAIL)",
+    "E (REGIONAL_RAIL)",
+    "J (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Saint-Denis",
+     "dep": "08:12",
+     "arr": "08:13"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "H",
+     "from": "Saint-Denis",
+     "to": "Gare du Nord",
+     "dep": "08:13",
+     "arr": "08:20"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare du Nord",
+     "to": "Magenta",
+     "dep": "08:20",
+     "arr": "08:24"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "Magenta",
+     "to": "Haussmann Saint-Lazare",
+     "dep": "08:26",
+     "arr": "08:28"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Haussmann Saint-Lazare",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:28",
+     "arr": "08:33"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "J",
+     "from": "Gare Saint-Lazare",
+     "to": "Asnières-sur-Seine",
+     "dep": "08:33",
+     "arr": "08:38"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Asnières-sur-Seine",
+     "to": "END",
+     "dep": "08:38",
+     "arr": "08:39"
+    }
+   ],
+   "walk_min_included": 11
+  },
+  {
+   "from": "La Défense",
+   "to": "Gare du Nord",
+   "from_point": "La Défense (RER A)",
+   "to_point": "Gare du Nord (RER B)",
+   "duration_min": 22,
+   "departure": "08:10",
+   "arrival": "08:32",
+   "changes": 0,
+   "lines": [
+    "E (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "La Défense",
+     "dep": "08:10",
+     "arr": "08:14"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "La Défense",
+     "to": "Magenta",
+     "dep": "08:14",
+     "arr": "08:24"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Magenta",
+     "to": "END",
+     "dep": "08:24",
+     "arr": "08:32"
+    }
+   ],
+   "walk_min_included": 12
+  },
+  {
+   "from": "Cergy Préfecture",
+   "to": "Gare du Nord",
+   "from_point": "Cergy-Préfecture (RER A)",
+   "to_point": "Gare du Nord (RER B)",
+   "duration_min": 50,
+   "departure": "08:12",
+   "arrival": "09:02",
+   "changes": 2,
+   "lines": [
+    "L (REGIONAL_RAIL)",
+    "A (REGIONAL_RAIL)",
+    "E (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Cergy Préfecture",
+     "dep": "08:12",
+     "arr": "08:13"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "L",
+     "from": "Cergy Préfecture",
+     "to": "Nanterre Université",
+     "dep": "08:13",
+     "arr": "08:37"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Nanterre Université",
+     "to": "Nanterre Université",
+     "dep": "08:37",
+     "arr": "08:39"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Nanterre Université",
+     "to": "La Défense",
+     "dep": "08:39",
+     "arr": "08:42"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "La Défense",
+     "to": "La Défense",
+     "dep": "08:42",
+     "arr": "08:44"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "La Défense",
+     "to": "Magenta",
+     "dep": "08:44",
+     "arr": "08:54"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Magenta",
+     "to": "END",
+     "dep": "08:54",
+     "arr": "09:02"
+    }
+   ],
+   "walk_min_included": 13
+  },
+  {
+   "from": "Pontoise",
+   "to": "Gare Montparnasse",
+   "from_point": "Pontoise (TRAIN H)",
+   "to_point": "Montparnasse (TRAIN N)",
+   "duration_min": 57,
+   "departure": "08:07",
+   "arrival": "09:04",
+   "changes": 1,
+   "lines": [
+    "J (REGIONAL_RAIL)",
+    "13 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Pontoise",
+     "dep": "08:07",
+     "arr": "08:10"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "J",
+     "from": "Pontoise",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:10",
+     "arr": "08:45"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Saint-Lazare",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:45",
+     "arr": "08:49"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "13",
+     "from": "Gare Saint-Lazare",
+     "to": "Gare Montparnasse",
+     "dep": "08:50",
+     "arr": "09:01"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Montparnasse",
+     "to": "END",
+     "dep": "09:01",
+     "arr": "09:04"
+    }
+   ],
+   "walk_min_included": 10
+  },
+  {
+   "from": "Massy-Palaiseau",
+   "to": "La Défense",
+   "from_point": "Massy-Palaiseau (RER B)",
+   "to_point": "La Défense (RER A)",
+   "duration_min": 51,
+   "departure": "08:06",
+   "arrival": "08:57",
+   "changes": 1,
+   "lines": [
+    "B (REGIONAL_RAIL)",
+    "A (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Massy - Palaiseau",
+     "dep": "08:06",
+     "arr": "08:10"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Massy - Palaiseau",
+     "to": "Châtelet - Les Halles",
+     "dep": "08:10",
+     "arr": "08:40"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Châtelet - Les Halles",
+     "to": "Châtelet - Les Halles",
+     "dep": "08:40",
+     "arr": "08:42"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Châtelet - Les Halles",
+     "to": "La Défense",
+     "dep": "08:44",
+     "arr": "08:53"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "La Défense",
+     "to": "END",
+     "dep": "08:53",
+     "arr": "08:57"
+    }
+   ],
+   "walk_min_included": 10
+  },
+  {
+   "from": "Bobigny Pablo Picasso",
+   "to": "Montparnasse-Bienvenüe",
+   "from_point": "Bobigny Pablo Picasso (METRO 5)",
+   "to_point": "Montparnasse Bienvenüe (METRO 12)",
+   "duration_min": 34,
+   "departure": "08:13",
+   "arrival": "08:47",
+   "changes": 2,
+   "lines": [
+    "5 (SUBWAY)",
+    "B (REGIONAL_RAIL)",
+    "4 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Bobigny - Pablo Picasso",
+     "dep": "08:13",
+     "arr": "08:14"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "5",
+     "from": "Bobigny - Pablo Picasso",
+     "to": "Gare du Nord",
+     "dep": "08:14",
+     "arr": "08:29"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare du Nord",
+     "to": "Gare du Nord",
+     "dep": "08:29",
+     "arr": "08:32"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Gare du Nord",
+     "to": "Saint-Michel Notre-Dame",
+     "dep": "08:32",
+     "arr": "08:37"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Saint-Michel Notre-Dame",
+     "to": "Saint-Michel Notre-Dame",
+     "dep": "08:37",
+     "arr": "08:41"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "4",
+     "from": "Saint-Michel Notre-Dame",
+     "to": "Gare Montparnasse",
+     "dep": "08:41",
+     "arr": "08:46"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Montparnasse",
+     "to": "END",
+     "dep": "08:46",
+     "arr": "08:47"
+    }
+   ],
+   "walk_min_included": 9
+  },
+  {
+   "from": "Créteil Préfecture",
+   "to": "Gare Saint-Lazare",
+   "from_point": "Créteil–Préfecture (METRO 8)",
+   "to_point": "Saint-Lazare (TRAIN L)",
+   "duration_min": 39,
+   "departure": "08:10",
+   "arrival": "08:49",
+   "changes": 2,
+   "lines": [
+    "8 (SUBWAY)",
+    "1 (SUBWAY)",
+    "14 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Créteil - Préfecture",
+     "dep": "08:10",
+     "arr": "08:11"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "8",
+     "from": "Créteil - Préfecture",
+     "to": "Reuilly - Diderot",
+     "dep": "08:11",
+     "arr": "08:31"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Reuilly - Diderot",
+     "to": "Reuilly - Diderot",
+     "dep": "08:31",
+     "arr": "08:35"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "1",
+     "from": "Reuilly - Diderot",
+     "to": "Gare de Lyon",
+     "dep": "08:35",
+     "arr": "08:36"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de Lyon",
+     "to": "Gare de Lyon",
+     "dep": "08:36",
+     "arr": "08:40"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "14",
+     "from": "Gare de Lyon",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:40",
+     "arr": "08:47"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Saint-Lazare",
+     "to": "END",
+     "dep": "08:47",
+     "arr": "08:49"
+    }
+   ],
+   "walk_min_included": 11
+  },
+  {
+   "from": "Juvisy",
+   "to": "Gare du Nord",
+   "from_point": "Juvisy (RER D)",
+   "to_point": "Gare du Nord (RER B)",
+   "duration_min": 38,
+   "departure": "08:07",
+   "arrival": "08:45",
+   "changes": 1,
+   "lines": [
+    "C (REGIONAL_RAIL)",
+    "B (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Juvisy",
+     "dep": "08:07",
+     "arr": "08:12"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "C",
+     "from": "Juvisy",
+     "to": "Saint-Michel Notre-Dame",
+     "dep": "08:12",
+     "arr": "08:29"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Saint-Michel Notre-Dame",
+     "to": "Saint-Michel Notre-Dame",
+     "dep": "08:29",
+     "arr": "08:31"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Saint-Michel Notre-Dame",
+     "to": "Gare du Nord",
+     "dep": "08:32",
+     "arr": "08:38"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare du Nord",
+     "to": "END",
+     "dep": "08:38",
+     "arr": "08:45"
+    }
+   ],
+   "walk_min_included": 14
+  },
+  {
+   "from": "Melun",
+   "to": "Châtelet-Les Halles",
+   "from_point": "Melun (RER D)",
+   "to_point": "Châtelet-Les Halles (RER A)",
+   "duration_min": 39,
+   "departure": "08:12",
+   "arrival": "08:51",
+   "changes": 1,
+   "lines": [
+    "R (REGIONAL_RAIL)",
+    "A (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Melun",
+     "dep": "08:12",
+     "arr": "08:13"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "R",
+     "from": "Melun",
+     "to": "Gare de Lyon",
+     "dep": "08:13",
+     "arr": "08:44"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de Lyon",
+     "to": "Gare de Lyon",
+     "dep": "08:44",
+     "arr": "08:46"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Gare de Lyon",
+     "to": "Châtelet - Les Halles",
+     "dep": "08:47",
+     "arr": "08:50"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Châtelet - Les Halles",
+     "to": "END",
+     "dep": "08:50",
+     "arr": "08:51"
+    }
+   ],
+   "walk_min_included": 4
+  },
+  {
+   "from": "Saint-Germain-en-Laye",
+   "to": "Gare de Lyon",
+   "from_point": "Saint-Germain-en-Laye (RER A)",
+   "to_point": "Gare de Lyon (RER A)",
+   "duration_min": 63,
+   "departure": "08:03",
+   "arrival": "09:06",
+   "changes": 2,
+   "lines": [
+    "T13 (TRAM)",
+    "T13 (TRAM)",
+    "A (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Saint-Germain-en-Laye",
+     "dep": "08:03",
+     "arr": "08:10"
+    },
+    {
+     "mode": "TRAM",
+     "line": "T13",
+     "from": "Saint-Germain-en-Laye",
+     "to": "Camp des Loges",
+     "dep": "08:10",
+     "arr": "08:14"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Camp des Loges",
+     "to": "Camp des Loges",
+     "dep": "08:14",
+     "arr": "08:16"
+    },
+    {
+     "mode": "TRAM",
+     "line": "T13",
+     "from": "Camp des Loges",
+     "to": "Saint-Germain-en-Laye",
+     "dep": "08:18",
+     "arr": "08:22"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Saint-Germain-en-Laye",
+     "to": "Saint-Germain-en-Laye",
+     "dep": "08:22",
+     "arr": "08:27"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Saint-Germain-en-Laye",
+     "to": "Gare de Lyon",
+     "dep": "08:28",
+     "arr": "09:01"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de Lyon",
+     "to": "END",
+     "dep": "09:01",
+     "arr": "09:06"
+    }
+   ],
+   "walk_min_included": 19
+  },
+  {
+   "from": "Aéroport Charles de Gaulle 2 TGV",
+   "to": "Denfert-Rochereau",
+   "from_point": "Aéroport Charles De Gaulle 2-TGV (RER B)",
+   "to_point": "Denfert-Rochereau (RER B)",
+   "duration_min": 56,
+   "departure": "08:08",
+   "arrival": "09:04",
+   "changes": 1,
+   "lines": [
+    "CDG VAL (TRAM)",
+    "B (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Aéroport CDG (Terminal 2) - TGV",
+     "dep": "08:08",
+     "arr": "08:12"
+    },
+    {
+     "mode": "TRAM",
+     "line": "CDG VAL",
+     "from": "Aéroport CDG (Terminal 2) - TGV",
+     "to": "Aéroport CDG 1 (Terminal 3)",
+     "dep": "08:12",
+     "arr": "08:16"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Aéroport CDG 1 (Terminal 3)",
+     "to": "Aéroport CDG 1 (Terminal 3)",
+     "dep": "08:16",
+     "arr": "08:20"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Aéroport CDG 1 (Terminal 3)",
+     "to": "Denfert-Rochereau",
+     "dep": "08:20",
+     "arr": "09:03"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Denfert-Rochereau",
+     "to": "END",
+     "dep": "09:03",
+     "arr": "09:04"
+    }
+   ],
+   "walk_min_included": 9
+  },
+  {
+   "from": "Aéroport d'Orly",
+   "to": "Gare Saint-Lazare",
+   "from_point": "Aéroport d’Orly​ (METRO 14)",
+   "to_point": "Saint-Lazare (TRAIN L)",
+   "duration_min": 32,
+   "departure": "08:00",
+   "arrival": "08:32",
+   "changes": 0,
+   "lines": [
+    "14 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Aéroport d’Orly (Terminaux 1-2-3)",
+     "dep": "08:00",
+     "arr": "08:01"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "14",
+     "from": "Aéroport d’Orly (Terminaux 1-2-3)",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:01",
+     "arr": "08:30"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Saint-Lazare",
+     "to": "END",
+     "dep": "08:30",
+     "arr": "08:32"
+    }
+   ],
+   "walk_min_included": 3
+  },
+  {
+   "from": "Argenteuil",
+   "to": "Bibliothèque François Mitterrand",
+   "from_point": "Argenteuil (TRAIN J)",
+   "to_point": "Bibliothèque François Mitterrand (RER C)",
+   "duration_min": 31,
+   "departure": "08:00",
+   "arrival": "08:31",
+   "changes": 1,
+   "lines": [
+    "J (REGIONAL_RAIL)",
+    "14 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Argenteuil",
+     "dep": "08:00",
+     "arr": "08:01"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "J",
+     "from": "Argenteuil",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:01",
+     "arr": "08:11"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Saint-Lazare",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:11",
+     "arr": "08:15"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "14",
+     "from": "Gare Saint-Lazare",
+     "to": "Bibliothèque François Mitterrand",
+     "dep": "08:15",
+     "arr": "08:26"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Bibliothèque François Mitterrand",
+     "to": "END",
+     "dep": "08:26",
+     "arr": "08:31"
+    }
+   ],
+   "walk_min_included": 10
+  },
+  {
+   "from": "Noisy-le-Grand Mont d'Est",
+   "to": "Saint-Denis",
+   "from_point": "Noisy-le-Grand-Mont d'Est (RER A)",
+   "to_point": "Saint-Denis (RER D)",
+   "duration_min": 31,
+   "departure": "08:04",
+   "arrival": "08:35",
+   "changes": 2,
+   "lines": [
+    "A (REGIONAL_RAIL)",
+    "E (REGIONAL_RAIL)",
+    "H (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Noisy-le-Grand - Mont d'Est",
+     "dep": "08:04",
+     "arr": "08:06"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Noisy-le-Grand - Mont d'Est",
+     "to": "Val de Fontenay",
+     "dep": "08:06",
+     "arr": "08:11"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Val de Fontenay",
+     "to": "Val de Fontenay",
+     "dep": "08:11",
+     "arr": "08:13"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "Val de Fontenay",
+     "to": "Magenta",
+     "dep": "08:13",
+     "arr": "08:25"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Magenta",
+     "to": "Gare du Nord",
+     "dep": "08:25",
+     "arr": "08:29"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "H",
+     "from": "Gare du Nord",
+     "to": "Saint-Denis",
+     "dep": "08:29",
+     "arr": "08:34"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Saint-Denis",
+     "to": "END",
+     "dep": "08:34",
+     "arr": "08:35"
+    }
+   ],
+   "walk_min_included": 9
+  },
+  {
+   "from": "Chelles-Gournay",
+   "to": "La Défense",
+   "from_point": "Chelles-Gournay (RER E)",
+   "to_point": "La Défense (RER A)",
+   "duration_min": 40,
+   "departure": "08:12",
+   "arrival": "08:52",
+   "changes": 1,
+   "lines": [
+    "P (REGIONAL_RAIL)",
+    "E (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Chelles - Gournay",
+     "dep": "08:12",
+     "arr": "08:13"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "P",
+     "from": "Chelles - Gournay",
+     "to": "Gare de l'Est",
+     "dep": "08:13",
+     "arr": "08:27"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de l'Est",
+     "to": "Magenta",
+     "dep": "08:27",
+     "arr": "08:36"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "Magenta",
+     "to": "La Défense",
+     "dep": "08:37",
+     "arr": "08:48"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "La Défense",
+     "to": "END",
+     "dep": "08:48",
+     "arr": "08:52"
+    }
+   ],
+   "walk_min_included": 14
+  },
+  {
+   "from": "Rambouillet",
+   "to": "Gare du Nord",
+   "from_point": "Rambouillet (TRAIN N)",
+   "to_point": "Gare du Nord (RER B)",
+   "duration_min": 62,
+   "departure": "08:01",
+   "arrival": "09:03",
+   "changes": 2,
+   "lines": [
+    "TER 862462 (REGIONAL_RAIL)",
+    "6 (SUBWAY)",
+    "B (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Rambouillet",
+     "dep": "08:01",
+     "arr": "08:03"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "TER 862462",
+     "from": "Rambouillet",
+     "to": "Paris Montparnasse Hall 1 - 2",
+     "dep": "08:03",
+     "arr": "08:35"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Paris Montparnasse Hall 1 - 2",
+     "to": "Gare Montparnasse",
+     "dep": "08:35",
+     "arr": "08:37"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "6",
+     "from": "Gare Montparnasse",
+     "to": "Denfert-Rochereau",
+     "dep": "08:38",
+     "arr": "08:41"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Denfert-Rochereau",
+     "to": "Denfert-Rochereau",
+     "dep": "08:41",
+     "arr": "08:45"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Denfert-Rochereau",
+     "to": "Gare du Nord",
+     "dep": "08:45",
+     "arr": "08:56"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare du Nord",
+     "to": "END",
+     "dep": "08:56",
+     "arr": "09:03"
+    }
+   ],
+   "walk_min_included": 15
+  },
+  {
+   "from": "Mantes-la-Jolie",
+   "to": "Gare de Lyon",
+   "from_point": "Mantes-la-Jolie (TRAIN J)",
+   "to_point": "Gare de Lyon (RER A)",
+   "duration_min": 53,
+   "departure": "09:07",
+   "arrival": "10:00",
+   "changes": 1,
+   "lines": [
+    "TER 13120 (REGIONAL_RAIL)",
+    "14 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Mantes-la-Jolie",
+     "dep": "09:07",
+     "arr": "09:13"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "TER 13120",
+     "from": "Mantes-la-Jolie",
+     "to": "Paris Saint-Lazare",
+     "dep": "09:13",
+     "arr": "09:49"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Paris Saint-Lazare",
+     "to": "Gare Saint-Lazare",
+     "dep": "09:49",
+     "arr": "09:51"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "14",
+     "from": "Gare Saint-Lazare",
+     "to": "Gare de Lyon",
+     "dep": "09:52",
+     "arr": "09:59"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de Lyon",
+     "to": "END",
+     "dep": "09:59",
+     "arr": "10:00"
+    }
+   ],
+   "walk_min_included": 9
+  },
+  {
+   "from": "Évry-Courcouronnes",
+   "to": "Gare de l'Est",
+   "from_point": "Évry Courcouronnes (RER D)",
+   "to_point": "Gare de l'Est (TRAIN P)",
+   "duration_min": 47,
+   "departure": "08:17",
+   "arrival": "09:04",
+   "changes": 2,
+   "lines": [
+    "D (REGIONAL_RAIL)",
+    "C (REGIONAL_RAIL)",
+    "5 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Évry - Courcouronnes",
+     "dep": "08:17",
+     "arr": "08:18"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "D",
+     "from": "Évry - Courcouronnes",
+     "to": "Juvisy",
+     "dep": "08:18",
+     "arr": "08:28"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Juvisy",
+     "to": "Juvisy",
+     "dep": "08:28",
+     "arr": "08:30"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "C",
+     "from": "Juvisy",
+     "to": "Gare d'Austerlitz",
+     "dep": "08:30",
+     "arr": "08:44"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare d'Austerlitz",
+     "to": "Gare d'Austerlitz",
+     "dep": "08:44",
+     "arr": "08:48"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "5",
+     "from": "Gare d'Austerlitz",
+     "to": "Gare de l'Est",
+     "dep": "08:48",
+     "arr": "09:00"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de l'Est",
+     "to": "END",
+     "dep": "09:00",
+     "arr": "09:04"
+    }
+   ],
+   "walk_min_included": 11
+  },
+  {
+   "from": "Sartrouville",
+   "to": "Nation",
+   "from_point": "Sartrouville (RER A)",
+   "to_point": "Nation (METRO 1)",
+   "duration_min": 32,
+   "departure": "08:02",
+   "arrival": "08:34",
+   "changes": 0,
+   "lines": [
+    "A (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Sartrouville",
+     "dep": "08:02",
+     "arr": "08:03"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Sartrouville",
+     "to": "Nation",
+     "dep": "08:03",
+     "arr": "08:31"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Nation",
+     "to": "END",
+     "dep": "08:31",
+     "arr": "08:34"
+    }
+   ],
+   "walk_min_included": 4
+  },
+  {
+   "from": "Villejuif Louis Aragon",
+   "to": "Porte de Clignancourt",
+   "from_point": "Villejuif - Louis Aragon (METRO 7)",
+   "to_point": "Porte de Clignancourt (METRO 4)",
+   "duration_min": 41,
+   "departure": "08:00",
+   "arrival": "08:41",
+   "changes": 1,
+   "lines": [
+    "7 (SUBWAY)",
+    "4 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Villejuif - Louis Aragon",
+     "dep": "08:00",
+     "arr": "08:01"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "7",
+     "from": "Villejuif - Louis Aragon",
+     "to": "Châtelet",
+     "dep": "08:01",
+     "arr": "08:21"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Châtelet",
+     "to": "Châtelet",
+     "dep": "08:21",
+     "arr": "08:26"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "4",
+     "from": "Châtelet",
+     "to": "Porte de Clignancourt",
+     "dep": "08:26",
+     "arr": "08:40"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Porte de Clignancourt",
+     "to": "END",
+     "dep": "08:40",
+     "arr": "08:41"
+    }
+   ],
+   "walk_min_included": 7
+  },
+  {
+   "from": "Boulogne Pont de Saint-Cloud",
+   "to": "République",
+   "from_point": "Boulogne - Pont de Saint-Cloud (METRO 10)",
+   "to_point": "République (METRO 3)",
+   "duration_min": 34,
+   "departure": "08:11",
+   "arrival": "08:45",
+   "changes": 1,
+   "lines": [
+    "10 (SUBWAY)",
+    "8 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Boulogne Pont de Saint-Cloud",
+     "dep": "08:11",
+     "arr": "08:12"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "10",
+     "from": "Boulogne Pont de Saint-Cloud",
+     "to": "La Motte-Picquet - Grenelle",
+     "dep": "08:12",
+     "arr": "08:24"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "La Motte-Picquet - Grenelle",
+     "to": "La Motte-Picquet - Grenelle",
+     "dep": "08:24",
+     "arr": "08:28"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "8",
+     "from": "La Motte-Picquet - Grenelle",
+     "to": "République",
+     "dep": "08:28",
+     "arr": "08:42"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "République",
+     "to": "END",
+     "dep": "08:42",
+     "arr": "08:45"
+    }
+   ],
+   "walk_min_included": 8
+  },
+  {
+   "from": "Mairie de Montreuil",
+   "to": "Balard",
+   "from_point": "Mairie de Montreuil (METRO 9)",
+   "to_point": "Balard (METRO 8)",
+   "duration_min": 43,
+   "departure": "08:03",
+   "arrival": "08:46",
+   "changes": 2,
+   "lines": [
+    "9 (SUBWAY)",
+    "A (REGIONAL_RAIL)",
+    "8 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Mairie de Montreuil",
+     "dep": "08:03",
+     "arr": "08:04"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "9",
+     "from": "Mairie de Montreuil",
+     "to": "Nation",
+     "dep": "08:04",
+     "arr": "08:12"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Nation",
+     "to": "Nation",
+     "dep": "08:12",
+     "arr": "08:16"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Nation",
+     "to": "Auber",
+     "dep": "08:16",
+     "arr": "08:25"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Auber",
+     "to": "Opéra",
+     "dep": "08:25",
+     "arr": "08:30"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "8",
+     "from": "Opéra",
+     "to": "Balard",
+     "dep": "08:30",
+     "arr": "08:45"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Balard",
+     "to": "END",
+     "dep": "08:45",
+     "arr": "08:46"
+    }
+   ],
+   "walk_min_included": 11
+  },
+  {
+   "from": "Sevran-Beaudottes",
+   "to": "Gare Montparnasse",
+   "from_point": "Sevran-Beaudottes (RER B)",
+   "to_point": "Montparnasse (TRAIN N)",
+   "duration_min": 44,
+   "departure": "08:05",
+   "arrival": "08:49",
+   "changes": 1,
+   "lines": [
+    "B (REGIONAL_RAIL)",
+    "6 (SUBWAY)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Sevran - Beaudottes",
+     "dep": "08:05",
+     "arr": "08:06"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "B",
+     "from": "Sevran - Beaudottes",
+     "to": "Denfert-Rochereau",
+     "dep": "08:06",
+     "arr": "08:39"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Denfert-Rochereau",
+     "to": "Denfert-Rochereau",
+     "dep": "08:39",
+     "arr": "08:43"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "6",
+     "from": "Denfert-Rochereau",
+     "to": "Gare Montparnasse",
+     "dep": "08:43",
+     "arr": "08:47"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Montparnasse",
+     "to": "END",
+     "dep": "08:47",
+     "arr": "08:49"
+    }
+   ],
+   "walk_min_included": 7
+  },
+  {
+   "from": "Poissy",
+   "to": "Châtelet-Les Halles",
+   "from_point": "Poissy (RER A)",
+   "to_point": "Châtelet-Les Halles (RER A)",
+   "duration_min": 34,
+   "departure": "08:06",
+   "arrival": "08:40",
+   "changes": 2,
+   "lines": [
+    "J (REGIONAL_RAIL)",
+    "3 (SUBWAY)",
+    "A (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Poissy",
+     "dep": "08:06",
+     "arr": "08:07"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "J",
+     "from": "Poissy",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:07",
+     "arr": "08:25"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare Saint-Lazare",
+     "to": "Gare Saint-Lazare",
+     "dep": "08:25",
+     "arr": "08:29"
+    },
+    {
+     "mode": "SUBWAY",
+     "line": "3",
+     "from": "Gare Saint-Lazare",
+     "to": "Opéra",
+     "dep": "08:31",
+     "arr": "08:33"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Opéra",
+     "to": "Auber",
+     "dep": "08:33",
+     "arr": "08:37"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "A",
+     "from": "Auber",
+     "to": "Châtelet - Les Halles",
+     "dep": "08:37",
+     "arr": "08:39"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Châtelet - Les Halles",
+     "to": "END",
+     "dep": "08:39",
+     "arr": "08:40"
+    }
+   ],
+   "walk_min_included": 10
+  },
+  {
+   "from": "Tournan",
+   "to": "Gare Saint-Lazare",
+   "from_point": "Tournan (RER E)",
+   "to_point": "Saint-Lazare (TRAIN L)",
+   "duration_min": 49,
+   "departure": "08:14",
+   "arrival": "09:03",
+   "changes": 1,
+   "lines": [
+    "P (REGIONAL_RAIL)",
+    "E (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Tournan",
+     "dep": "08:14",
+     "arr": "08:15"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "P",
+     "from": "Tournan",
+     "to": "Gare de l'Est",
+     "dep": "08:15",
+     "arr": "08:42"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Gare de l'Est",
+     "to": "Magenta",
+     "dep": "08:42",
+     "arr": "08:51"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "Magenta",
+     "to": "Haussmann Saint-Lazare",
+     "dep": "08:52",
+     "arr": "08:55"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Haussmann Saint-Lazare",
+     "to": "END",
+     "dep": "08:55",
+     "arr": "09:03"
+    }
+   ],
+   "walk_min_included": 18
+  },
+  {
+   "from": "Gare du Nord",
+   "to": "Gare Saint-Lazare",
+   "from_point": "Gare du Nord (RER B)",
+   "to_point": "Saint-Lazare (TRAIN L)",
+   "duration_min": 18,
+   "departure": "08:03",
+   "arrival": "08:21",
+   "changes": 0,
+   "lines": [
+    "E (REGIONAL_RAIL)"
+   ],
+   "legs": [
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "START",
+     "to": "Magenta",
+     "dep": "08:03",
+     "arr": "08:11"
+    },
+    {
+     "mode": "REGIONAL_RAIL",
+     "line": "E",
+     "from": "Magenta",
+     "to": "Haussmann Saint-Lazare",
+     "dep": "08:11",
+     "arr": "08:13"
+    },
+    {
+     "mode": "WALK",
+     "line": null,
+     "from": "Haussmann Saint-Lazare",
+     "to": "END",
+     "dep": "08:13",
+     "arr": "08:21"
+    }
+   ],
+   "walk_min_included": 16
+  }
+ ]
+}
