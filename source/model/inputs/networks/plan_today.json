@@ -1,0 +1,33 @@
+{
+ "name": "plan_today",
+ "label": "The plan on today's network, without lines 15 to 18",
+ "about": "The plan, version 4.1, on the network of today: used to count the passengers of the new tunnels on the same footing as today's counts.",
+ "include": [
+  "cordons",
+  "rer_f",
+  "rer_g",
+  "ter"
+ ],
+ "walks": [
+  [
+   "X:NE:F",
+   "X:NE:G",
+   3
+  ],
+  [
+   "X:NE:F",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:NE:G",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:MP:G",
+   "X:MP:T",
+   3
+  ]
+ ]
+}

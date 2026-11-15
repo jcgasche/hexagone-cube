@@ -1,0 +1,35 @@
+{
+ "name": "plan_kb",
+ "label": "The plan, with line K into RER B",
+ "about": "The plan, with line K into RER B. Annex D.",
+ "include": [
+  "cordons",
+  "gpe",
+  "rer_f",
+  "rer_g",
+  "ter",
+  "k_into_b"
+ ],
+ "walks": [
+  [
+   "X:NE:F",
+   "X:NE:G",
+   3
+  ],
+  [
+   "X:NE:F",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:NE:G",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:MP:G",
+   "X:MP:T",
+   3
+  ]
+ ]
+}

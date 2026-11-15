@@ -1,0 +1,104 @@
+{
+ "name": "ter",
+ "label": "TER through Paris",
+ "about": "The TER run through the TGV tunnels: 11 minutes between two Paris stations, a 5-minute stop included (model TR_TER). Trains of the north run on to Montparnasse, trains of the east to Gare de Lyon.",
+ "new_stops": [
+  {
+   "id": "X:NE:T",
+   "name": "Paris Nord-Est (TER)",
+   "lon": 2.3568,
+   "lat": 48.8785,
+   "member_of": [
+    "IDFM:71410",
+    "IDFM:71359"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:462394",
+    "IDFM:monomodalStopPlace:470519"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:MP:T",
+   "name": "Montparnasse (TER)",
+   "lon": 2.3164,
+   "lat": 48.8384,
+   "member_of": [
+    "IDFM:71139"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:43238"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:LY:T",
+   "name": "Gare de Lyon (TER)",
+   "lon": 2.3764,
+   "lat": 48.8434,
+   "member_of": [
+    "IDFM:73626"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:470195"
+   ],
+   "to_like_min": 5
+  }
+ ],
+ "through": [
+  {
+   "name": "TER north to Atlantic",
+   "a": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:71410"
+   },
+   "b": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:71139"
+   },
+   "path": [
+    [
+     "X:NE:T",
+     0
+    ],
+    [
+     "X:MP:T",
+     11
+    ]
+   ],
+   "dwell_min": 5,
+   "max_wait_min": 15
+  },
+  {
+   "name": "TER east to south-east",
+   "a": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:71359"
+   },
+   "b": {
+    "lines": [
+     "TER"
+    ],
+    "terminal": "IDFM:73626"
+   },
+   "path": [
+    [
+     "X:NE:T",
+     0
+    ],
+    [
+     "X:LY:T",
+     11
+    ]
+   ],
+   "dwell_min": 5,
+   "max_wait_min": 15
+  }
+ ]
+}

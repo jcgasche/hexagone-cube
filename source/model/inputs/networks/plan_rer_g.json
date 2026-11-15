@@ -1,82 +1,10 @@
 {
  "name": "plan_rer_g",
  "label": "RER G alone",
- "about": "Only RER G of the plan: line P joined to line N by Nord-Est, Chatelet-Les Halles and Montparnasse. Times from the study: Nord-Est to Saint-Lazare 4 minutes and Nord-Est to Montparnasse by Chatelet 9 minutes, stops included (model TR.SL, TR_G); TER 11 minutes between two Paris stations, a 5-minute stop included (TR_TER). The new platforms take the walking times that the timetable gives today for the suburban platforms of the same station, and 5 minutes to those platforms themselves (ASSUMPTION); 3 minutes between two groups of new platforms in one station, as between two lines of one station today (ASSUMPTION).",
- "new_stops": [
-  {
-   "id": "X:NE:G",
-   "name": "Paris Nord-Est (RER G)",
-   "lon": 2.3568,
-   "lat": 48.8785,
-   "member_of": [
-    "IDFM:71410",
-    "IDFM:71359"
-   ],
-   "like": [
-    "IDFM:monomodalStopPlace:462394",
-    "IDFM:monomodalStopPlace:470519"
-   ],
-   "to_like_min": 5
-  },
-  {
-   "id": "X:CH:G",
-   "name": "Châtelet - Les Halles (RER G)",
-   "lon": 2.347,
-   "lat": 48.862,
-   "member_of": [
-    "IDFM:474151"
-   ],
-   "like": [
-    "IDFM:monomodalStopPlace:45102"
-   ],
-   "to_like_min": 5
-  },
-  {
-   "id": "X:MP:G",
-   "name": "Montparnasse (RER G)",
-   "lon": 2.3205,
-   "lat": 48.8412,
-   "member_of": [
-    "IDFM:71139"
-   ],
-   "like": [
-    "IDFM:monomodalStopPlace:43238"
-   ],
-   "to_like_min": 5
-  }
- ],
- "walks": [],
- "through": [
-  {
-   "name": "RER G",
-   "a": {
-    "lines": [
-     "P"
-    ],
-    "terminal": "IDFM:71359"
-   },
-   "b": {
-    "lines": [
-     "N"
-    ],
-    "terminal": "IDFM:71139"
-   },
-   "path": [
-    [
-     "X:NE:G",
-     0
-    ],
-    [
-     "X:CH:G",
-     4
-    ],
-    [
-     "X:MP:G",
-     9
-    ]
-   ],
-   "dwell_min": 1,
-   "max_wait_min": 10
-  }
+ "about": "Only RER G.",
+ "include": [
+  "cordons",
+  "gpe",
+  "rer_g"
  ]
 }

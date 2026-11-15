@@ -103,5 +103,9 @@
  "rerd": {
   "nav_fr": "Le RER D à côté du RER G",
   "heading_fr": "Une option : une paire de voies pour le RER D dans le chantier du RER G"
+ },
+ "lc": {
+  "nav_fr": "La ligne L avec le RER C",
+  "heading_fr": "Une variante : la ligne L reliée au RER C sud, le RER C ouest relié à la ligne H"
  }
 }

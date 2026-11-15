@@ -1,0 +1,151 @@
+{
+ "unit": "commuters of the census riding through the section, one way in the morning",
+ "versions": {
+  "future": {
+   "P at Gare de l'Est": 33786,
+   "N at Montparnasse": 22174,
+   "H and K at Gare du Nord": 48469,
+   "L at Saint-Lazare": 17248,
+   "B, Châtelet to Gare du Nord": 67952,
+   "D, Châtelet to Gare du Nord": 24893,
+   "R at Gare de Lyon": 23176,
+   "C, Saint-Michel to Austerlitz": 46568
+  },
+  "plan": {
+   "P at Gare de l'Est": 42689,
+   "N at Montparnasse": 42580,
+   "H and K at Gare du Nord": 74483,
+   "L at Saint-Lazare": 42360,
+   "B, Châtelet to Gare du Nord": 59188,
+   "D, Châtelet to Gare du Nord": 23444,
+   "R at Gare de Lyon": 23143,
+   "C, Saint-Michel to Austerlitz": 47467,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 62016,
+   "RER G tunnel, Nord-Est to Châtelet": 33122,
+   "RER G tunnel, Châtelet to Montparnasse": 33621
+  },
+  "plan_g_no_chatelet": {
+   "P at Gare de l'Est": 43025,
+   "N at Montparnasse": 43216,
+   "H and K at Gare du Nord": 73988,
+   "L at Saint-Lazare": 43439,
+   "B, Châtelet to Gare du Nord": 63272,
+   "D, Châtelet to Gare du Nord": 25110,
+   "R at Gare de Lyon": 23132,
+   "C, Saint-Michel to Austerlitz": 47466,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 63375,
+   "RER G tunnel, Nord-Est to Châtelet": 35690
+  },
+  "plan_kb": {
+   "P at Gare de l'Est": 42768,
+   "N at Montparnasse": 42558,
+   "H and K at Gare du Nord": 73270,
+   "L at Saint-Lazare": 41830,
+   "B, Châtelet to Gare du Nord": 61142,
+   "D, Châtelet to Gare du Nord": 23498,
+   "R at Gare de Lyon": 23144,
+   "C, Saint-Michel to Austerlitz": 47478,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 59192,
+   "RER G tunnel, Nord-Est to Châtelet": 33080,
+   "RER G tunnel, Châtelet to Montparnasse": 33590
+  },
+  "plan_kb_rd": {
+   "P at Gare de l'Est": 42778,
+   "N at Montparnasse": 42509,
+   "H and K at Gare du Nord": 71814,
+   "L at Saint-Lazare": 41939,
+   "B, Châtelet to Gare du Nord": 60548,
+   "D, Châtelet to Gare du Nord": 25841,
+   "R at Gare de Lyon": 23707,
+   "C, Saint-Michel to Austerlitz": 47491,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 59411,
+   "RER G tunnel, Nord-Est to Châtelet": 32810,
+   "RER G tunnel, Châtelet to Montparnasse": 33565
+  },
+  "plan_rd": {
+   "P at Gare de l'Est": 42699,
+   "N at Montparnasse": 42531,
+   "H and K at Gare du Nord": 72983,
+   "L at Saint-Lazare": 42468,
+   "B, Châtelet to Gare du Nord": 58600,
+   "D, Châtelet to Gare du Nord": 25762,
+   "R at Gare de Lyon": 23704,
+   "C, Saint-Michel to Austerlitz": 47480,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 62197,
+   "RER G tunnel, Nord-Est to Châtelet": 32851,
+   "RER G tunnel, Châtelet to Montparnasse": 33596
+  },
+  "plan_rer_f": {
+   "P at Gare de l'Est": 36689,
+   "N at Montparnasse": 21922,
+   "H and K at Gare du Nord": 71189,
+   "L at Saint-Lazare": 42915,
+   "B, Châtelet to Gare du Nord": 66576,
+   "D, Châtelet to Gare du Nord": 25046,
+   "R at Gare de Lyon": 23192,
+   "C, Saint-Michel to Austerlitz": 47424,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 65264
+  },
+  "plan_rer_g": {
+   "P at Gare de l'Est": 39798,
+   "N at Montparnasse": 42011,
+   "H and K at Gare du Nord": 51373,
+   "L at Saint-Lazare": 17236,
+   "B, Châtelet to Gare du Nord": 64813,
+   "D, Châtelet to Gare du Nord": 24440,
+   "R at Gare de Lyon": 23158,
+   "C, Saint-Michel to Austerlitz": 47068,
+   "RER G tunnel, Nord-Est to Châtelet": 34839,
+   "RER G tunnel, Châtelet to Montparnasse": 35341
+  },
+  "plan_ter": {
+   "P at Gare de l'Est": 34333,
+   "N at Montparnasse": 21404,
+   "H and K at Gare du Nord": 49043,
+   "L at Saint-Lazare": 17247,
+   "B, Châtelet to Gare du Nord": 68718,
+   "D, Châtelet to Gare du Nord": 25517,
+   "R at Gare de Lyon": 23177,
+   "C, Saint-Michel to Austerlitz": 47036
+  },
+  "plan_today": {
+   "P at Gare de l'Est": 50628,
+   "N at Montparnasse": 63466,
+   "H and K at Gare du Nord": 98789,
+   "L at Saint-Lazare": 62635,
+   "B, Châtelet to Gare du Nord": 88342,
+   "D, Châtelet to Gare du Nord": 30005,
+   "R at Gare de Lyon": 23641,
+   "C, Saint-Michel to Austerlitz": 59744,
+   "RER F tunnel, Nord-Est to Saint-Lazare": 87339,
+   "RER G tunnel, Nord-Est to Châtelet": 39253,
+   "RER G tunnel, Châtelet to Montparnasse": 48835
+  },
+  "today": {
+   "P at Gare de l'Est": 39731,
+   "N at Montparnasse": 30446,
+   "H and K at Gare du Nord": 64459,
+   "L at Saint-Lazare": 22548,
+   "B, Châtelet to Gare du Nord": 106458,
+   "D, Châtelet to Gare du Nord": 34032,
+   "R at Gare de Lyon": 23692,
+   "C, Saint-Michel to Austerlitz": 59319
+  },
+  "variant_c": {
+   "P at Gare de l'Est": 41057,
+   "N at Montparnasse": 43551,
+   "H and K at Gare du Nord": 73871,
+   "L at Saint-Lazare": 45874,
+   "B, Châtelet to Gare du Nord": 40497,
+   "D, Châtelet to Gare du Nord": 21349,
+   "R at Gare de Lyon": 23699,
+   "C, Saint-Michel to Austerlitz": 0,
+   "RER G tunnel, Nord-Est to Châtelet": 32107,
+   "RER G tunnel, Châtelet to Montparnasse": 33803,
+   "New tunnel, Saint-Lazare to Châtelet": 61714,
+   "New tunnel, Châtelet to Austerlitz": 69927,
+   "New link, Saint-Michel to Châtelet": 28133,
+   "New tunnel, Châtelet to Nord-Est (C and H)": 54438
+  }
+ }
+}

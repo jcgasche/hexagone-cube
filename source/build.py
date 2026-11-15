@@ -524,7 +524,7 @@ def build(a, lang, out):
         if s.get('label') or s['id'] == 'summary':     # chapters and annexes: numbered parts, figures, and their list in the contents
             body, bn, entries = number_body(body, s['label'] or 'S', lang)
             part_nums.update(bn); part_nums[s['id']] = s['label'] or 'S'
-            if entries: nav.append('    <div class="subs">' + ''.join(f'<a href="#{i}"><i>{n}</i><span>{html.escape(t)}</span></a>' for i, n, t in entries) + '</div>')
+            if entries: nav.append('    <div class="subs">' + ''.join(f'<a href="#{i}"><i>{n}</i><span>{html.escape(html.unescape(t))}</span></a>' for i, n, t in entries) + '</div>')
         lede = ''
         mo = re.match(r'\s*(<p class="lede">.*?</p>)', body, re.S)
         if mo: lede = mo.group(1); body = body[mo.end():]

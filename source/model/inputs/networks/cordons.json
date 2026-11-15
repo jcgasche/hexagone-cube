@@ -1,0 +1,108 @@
+{
+ "name": "cordons",
+ "label": "Sections watched",
+ "about": "No change to the network: the sections where the travellers of each version are counted. A terminal counts the travellers aboard a line's trains as they reach or leave its Paris terminal; a tunnel counts those who ride through it.",
+ "watch": [
+  {
+   "name": "P at Gare de l'Est",
+   "at": [
+    "IDFM:monomodalStopPlace:470519",
+    "X:NE:G"
+   ],
+   "lines": [
+    "P"
+   ],
+   "except": [
+    "X:CH:G",
+    "X:MP:G"
+   ]
+  },
+  {
+   "name": "N at Montparnasse",
+   "at": [
+    "IDFM:monomodalStopPlace:43238",
+    "X:MP:G"
+   ],
+   "lines": [
+    "N"
+   ],
+   "except": [
+    "X:CH:G",
+    "X:NE:G"
+   ]
+  },
+  {
+   "name": "H and K at Gare du Nord",
+   "at": [
+    "IDFM:monomodalStopPlace:462394",
+    "X:NE:F",
+    "X:NE:H"
+   ],
+   "lines": [
+    "H",
+    "K"
+   ],
+   "except": [
+    "X:SL:F",
+    "X:CH:CH"
+   ]
+  },
+  {
+   "name": "L at Saint-Lazare",
+   "at": [
+    "IDFM:monomodalStopPlace:58566",
+    "X:SL:F",
+    "X:SL:C"
+   ],
+   "lines": [
+    "L"
+   ],
+   "except": [
+    "X:NE:F",
+    "X:CH:CL"
+   ]
+  },
+  {
+   "name": "B, Châtelet to Gare du Nord",
+   "at": [
+    "IDFM:monomodalStopPlace:45102"
+   ],
+   "lines": [
+    "B"
+   ],
+   "except": [
+    "IDFM:monomodalStopPlace:44877"
+   ]
+  },
+  {
+   "name": "D, Châtelet to Gare du Nord",
+   "at": [
+    "IDFM:monomodalStopPlace:45102"
+   ],
+   "lines": [
+    "D"
+   ],
+   "except": [
+    "IDFM:monomodalStopPlace:470195"
+   ]
+  },
+  {
+   "name": "R at Gare de Lyon",
+   "at": [
+    "IDFM:monomodalStopPlace:470195"
+   ],
+   "lines": [
+    "R"
+   ]
+  },
+  {
+   "name": "C, Saint-Michel to Austerlitz",
+   "pairs": [
+    [
+     "IDFM:monomodalStopPlace:44877",
+     "IDFM:monomodalStopPlace:43072"
+    ]
+   ]
+  }
+ ]
+}

@@ -434,6 +434,25 @@ def step2():
     f_pax = (ss['H'] + ss['K'] + ss['L'] + cross['H-L']['project'] + cross['K-L']['project'] + cross['P-L']['project']) * W260
     g_pax = (ss['P'] + ss['N'] + cross['P-N']['project'] + cross['H-N']['project'] + cross['K-N']['project']) * W260
     RP = m['reg_platforms']; nordN, est, sl, mont, lyon, chat = (by_name[n] for n in ('Gare du Nord', "Gare de l'Est", 'Gare Saint-Lazare', 'Gare Montparnasse', 'Gare de Lyon', 'Châtelet - Les Halles'))
+    # The suburban tunnels: the travel-time engine (model/regiontimes.py) sends each commuter of the census by the quickest route on the plan's
+    # network, lines 15 to 18 in service, and counts who rides through each tunnel. A commuter of the engine stands for as many passengers a day
+    # as on today's network at the three terminals it reproduces well: line P at Gare de l'Est, line N at Montparnasse, lines H and K at Gare du Nord.
+    g_pax_s = g_pax; engine = None
+    rf = os.path.join(HERE, 'inputs', 'regiontimes', 'riders.json')
+    if os.path.exists(rf):
+        RV = json.load(open(rf))['versions']; T0 = RV['today']; P1 = RV['plan']
+        term = lambda recs, name, lines: sum(r['p'] or 0 for r in recs if r['s'] in lines and by_name[name] in links[r['l']])
+        counted = term(today, "Gare de l'Est", ('P',)) + term(today, 'Gare Montparnasse', ('N',)) + term(today, 'Gare du Nord', ('H', 'K'))
+        modelled = T0["P at Gare de l'Est"] + T0['N at Montparnasse'] + T0['H and K at Gare du Nord']; fac = counted / modelled
+        nm = {'f': 'RER F tunnel, Nord-Est to Saint-Lazare', 'g': 'RER G tunnel, Nord-Est to Châtelet', 'g_s': 'RER G tunnel, Châtelet to Montparnasse',
+              'b': 'B, Châtelet to Gare du Nord', 'd': 'D, Châtelet to Gare du Nord'}
+        f_pax, g_pax, g_pax_s = (P1[nm[x]] * fac for x in ('f', 'g', 'g_s'))
+        engine = {'factor': round(fac, 2), 'counted': round(counted, -3), 'modelled': round(modelled, -2), 'commuters': {x: round(P1[nm[x]], -2) for x in nm},
+                  'bd_future': round(RV['future'][nm['b']] + RV['future'][nm['d']], -2), 'bd_plan': round(P1[nm['b']] + P1[nm['d']], -2),
+                  'bd_relief': round(1 - (P1[nm['b']] + P1[nm['d']]) / (RV['future'][nm['b']] + RV['future'][nm['d']]), 3),
+                  'l_modelled': round(T0['L at Saint-Lazare'], -2), 'l_counted': round(term(today, 'Gare Saint-Lazare', ('L',)), -3),
+                  'bd_modelled': round(T0[nm['b']] + T0[nm['d']], -2),
+                  'today_net': {x: int(round(RV['plan_today'][nm[x]] * fac, -3)) for x in ('f', 'g', 'g_s')} if 'plan_today' in RV else None}
     def tunnel(a, b, sid, pax, tph, capacity, lines_for_load, name):
         share = sum(PS.get(l, 0) for l in lines_for_load) / len(lines_for_load) if lines_for_load else None
         pl = [places.get(l, {}).get('n') for l in lines_for_load]; pl = sum(pl) / len(pl) if lines_for_load and all(pl) else None
@@ -441,7 +460,7 @@ def step2():
     f_tph = max(sum(RP['h']['peak'].values()), RP['h']['peak_l']); g_tph = m['params']['g_trains_h']
     proj.append(tunnel(nordN, sl, 'F', f_pax, f_tph, RP['h']['per_track'] * RP['h']['tracks'] / 2, ['H', 'L'], 'RER F tunnel'))
     proj.append(tunnel(est, chat, 'G', g_pax, g_tph, RP['n']['per_track'] * RP['n']['tracks'] / 2, ['P', 'N'], 'RER G tunnel'))
-    proj.append(tunnel(chat, mont, 'G', g_pax, g_tph, RP['n']['per_track'] * RP['n']['tracks'] / 2, ['P', 'N'], 'RER G tunnel'))
+    proj.append(tunnel(chat, mont, 'G', g_pax_s, g_tph, RP['n']['per_track'] * RP['n']['tracks'] / 2, ['P', 'N'], 'RER G tunnel'))
     # TGV: who rides through a tunnel. Each passenger of the Paris region takes the stop that is quickest for them, the ride between stops counted
     # (as nordest.far_stop_share); passengers who cross Paris ride the side that joins their two lines.
     pts, reg = nd.DATA['clock']; TH = nd.TH_ACCESS; ringpop = collections.defaultdict(float)
@@ -557,7 +576,7 @@ def step2():
     th = lambda x: None if x is None else int(round(x / 1000.0)) * 1000           # figures written in the text, to the nearest thousand
     lr = {l['line']: l for l in line_rows}
     k = {'bd': th(sec['bd']['p']), 'b_bd': th(sec['b_bd']['p']), 'd_bd': th(sec['d_bd']['p']), 'a': th(sec['a']['p']), 'e': th(sec['e']['p']), 'b_south': th(sec['b_south']['p']), 'd_lyon': th(sec['d_lyon']['p']),
-         'f': th(f_pax), 'g': th(g_pax), 'dpn': th(key['dpn']), 'pn': th(key['pn']), 'hkl': th(key['hkl']), 'counted': th(key['counted']), 'all': th(key['all']),
+         'f': th(f_pax), 'g': th(g_pax), 'g_s': th(g_pax_s), 'engine': engine, 'dpn': th(key['dpn']), 'pn': th(key['pn']), 'hkl': th(key['hkl']), 'counted': th(key['counted']), 'all': th(key['all']),
          'line': {l: th(v['fit']) for l, v in lr.items()}, 'count': {l: th(v['counted']) for l, v in lr.items()}, 'term_share': {l: v['term_share'] for l, v in lr.items() if v['term_share']},
          'tun': {t['name']: {'tgv': th(t['tgv']), 'ter': th(t['ter']), 'all': th(t['tgv'] + t['ter']), 'trains': t['trains']} for t in tun_rows},
          'study_day': {l: th(q * 1e6 / 260) for l, q in nd.LINES.items()}, 'tgv_day': {r['terminal']: th(r['day']) for r in tgv_rows},

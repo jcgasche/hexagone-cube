@@ -1,0 +1,75 @@
+{
+ "name": "rer_g_direct",
+ "label": "RER G without its stop at Châtelet",
+ "about": "RER G with no stop at Châtelet-Les Halles: 7 minutes from Nord-Est to Montparnasse.",
+ "new_stops": [
+  {
+   "id": "X:NE:G",
+   "name": "Paris Nord-Est (RER G)",
+   "lon": 2.3568,
+   "lat": 48.8785,
+   "member_of": [
+    "IDFM:71410",
+    "IDFM:71359"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:462394",
+    "IDFM:monomodalStopPlace:470519"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:MP:G",
+   "name": "Montparnasse (RER G)",
+   "lon": 2.3164,
+   "lat": 48.8384,
+   "member_of": [
+    "IDFM:71139"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:43238"
+   ],
+   "to_like_min": 5
+  }
+ ],
+ "through": [
+  {
+   "name": "RER G",
+   "a": {
+    "lines": [
+     "P"
+    ],
+    "terminal": "IDFM:71359"
+   },
+   "b": {
+    "lines": [
+     "N"
+    ],
+    "terminal": "IDFM:71139"
+   },
+   "path": [
+    [
+     "X:NE:G",
+     0
+    ],
+    [
+     "X:MP:G",
+     7
+    ]
+   ],
+   "dwell_min": 1,
+   "max_wait_min": 10
+  }
+ ],
+ "watch": [
+  {
+   "name": "RER G tunnel, Nord-Est to Châtelet",
+   "pairs": [
+    [
+     "X:NE:G",
+     "X:MP:G"
+    ]
+   ]
+  }
+ ]
+}

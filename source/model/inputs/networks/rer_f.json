@@ -1,0 +1,76 @@
+{
+ "name": "rer_f",
+ "label": "RER F",
+ "about": "RER F: lines H and K joined to line L by a tunnel from Nord-Est to Saint-Lazare, 4 minutes, stop included (model TR.SL). At Saint-Lazare the change to the other lines takes the same time as today (3 minutes); at Nord-Est 5 minutes to today's suburban platforms (ASSUMPTION).",
+ "new_stops": [
+  {
+   "id": "X:NE:F",
+   "name": "Paris Nord-Est (RER F)",
+   "lon": 2.3568,
+   "lat": 48.8785,
+   "member_of": [
+    "IDFM:71410",
+    "IDFM:71359"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:462394",
+    "IDFM:monomodalStopPlace:470519"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:SL:F",
+   "name": "Saint-Lazare (RER F)",
+   "lon": 2.3254,
+   "lat": 48.8763,
+   "member_of": [
+    "IDFM:71370"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:58566"
+   ],
+   "to_like_min": 3
+  }
+ ],
+ "through": [
+  {
+   "name": "RER F",
+   "a": {
+    "lines": [
+     "H",
+     "K"
+    ],
+    "terminal": "IDFM:71410"
+   },
+   "b": {
+    "lines": [
+     "L"
+    ],
+    "terminal": "IDFM:71370"
+   },
+   "path": [
+    [
+     "X:NE:F",
+     0
+    ],
+    [
+     "X:SL:F",
+     4
+    ]
+   ],
+   "dwell_min": 1,
+   "max_wait_min": 10
+  }
+ ],
+ "watch": [
+  {
+   "name": "RER F tunnel, Nord-Est to Saint-Lazare",
+   "pairs": [
+    [
+     "X:NE:F",
+     "X:SL:F"
+    ]
+   ]
+  }
+ ]
+}

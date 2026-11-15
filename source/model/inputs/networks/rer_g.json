@@ -1,0 +1,101 @@
+{
+ "name": "rer_g",
+ "label": "RER G",
+ "about": "RER G: line P joined to line N by a tunnel from Nord-Est to Montparnasse with a stop at Châtelet-Les Halles: 4 minutes to Châtelet, 9 to Montparnasse, stops included (model TR_G).",
+ "new_stops": [
+  {
+   "id": "X:NE:G",
+   "name": "Paris Nord-Est (RER G)",
+   "lon": 2.3568,
+   "lat": 48.8785,
+   "member_of": [
+    "IDFM:71410",
+    "IDFM:71359"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:462394",
+    "IDFM:monomodalStopPlace:470519"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:CH:G",
+   "name": "Châtelet-Les Halles (RER G)",
+   "lon": 2.347,
+   "lat": 48.8617,
+   "member_of": [
+    "IDFM:474151"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:45102"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:MP:G",
+   "name": "Montparnasse (RER G)",
+   "lon": 2.3164,
+   "lat": 48.8384,
+   "member_of": [
+    "IDFM:71139"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:43238"
+   ],
+   "to_like_min": 5
+  }
+ ],
+ "through": [
+  {
+   "name": "RER G",
+   "a": {
+    "lines": [
+     "P"
+    ],
+    "terminal": "IDFM:71359"
+   },
+   "b": {
+    "lines": [
+     "N"
+    ],
+    "terminal": "IDFM:71139"
+   },
+   "path": [
+    [
+     "X:NE:G",
+     0
+    ],
+    [
+     "X:CH:G",
+     4
+    ],
+    [
+     "X:MP:G",
+     9
+    ]
+   ],
+   "dwell_min": 1,
+   "max_wait_min": 10
+  }
+ ],
+ "watch": [
+  {
+   "name": "RER G tunnel, Nord-Est to Châtelet",
+   "pairs": [
+    [
+     "X:NE:G",
+     "X:CH:G"
+    ]
+   ]
+  },
+  {
+   "name": "RER G tunnel, Châtelet to Montparnasse",
+   "pairs": [
+    [
+     "X:CH:G",
+     "X:MP:G"
+    ]
+   ]
+  }
+ ]
+}

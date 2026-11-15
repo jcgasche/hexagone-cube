@@ -22,6 +22,9 @@ KM_NORTH_RAMP = 1.2      # km of new tunnel from the present RER D tracks north 
 KM_CHATELET_LYON = 2.5   # km, Chatelet-Les Halles to Gare de Lyon (the RER D tunnel of 1995 is 2.5 km)
 KM_SOUTH_RAMP = 1.5      # km from new platforms at Gare de Lyon up to the RER D tracks towards Villeneuve (ASSUMPTION)
 R_FOLD_HARD = 0.10       # line R into the underground RER D platforms of Gare de Lyon: crossovers and platform works (ASSUMPTION)
+K_FOLD_HARD = 0.10       # line K onto the RER B tracks, which it runs beside from Mitry-Claye to Gare du Nord: crossovers and platform works (ASSUMPTION)
+K_PEAK, R_PEAK = 4, 5    # trains of lines K and R that reach Gare du Nord and Gare de Lyon in their busiest 60 minutes (IDFM timetable, Tuesday 3 November 2026)
+B_PEAK, D_PEAK = 20, 12  # RER B and RER D trains an hour each way in the shared tunnel (timetable)
 
 
 def items(layout, R):
@@ -63,6 +66,7 @@ for lay in ('shared', 'own', 'moved', 'route'):
     c['year_low'] = round(c['low'] * AF + c['upkeep'], 3); c['year_high'] = round(c['high'] * AF + c['upkeep'], 3)
     cost[lay] = c
 cost['r_fold'] = {lab: round(all_in(R_FOLD_HARD, R), 2) for lab, R in (('low', RATE_LOW), ('central', RATE), ('high', RATE_HIGH))}
+cost['k_fold'] = {lab: round(all_in(K_FOLD_HARD, R), 2) for lab, R in (('low', RATE_LOW), ('central', RATE), ('high', RATE_HIGH))}
 cost['uplift'] = round((1 + RATE['design'] + RATE['client'] + RATE['land']) * (1 + RATE['risk']), 3)
 
 # ---------------------------------------------------------------- earlier studies, for the comparison
@@ -141,7 +145,10 @@ for lay, cl in (('dg', 'shared'), ('six', 'own'), ('six', 'moved'), ('six', 'rou
 CUT_MIN, CUT_DAYS = 15.0, 300          # minutes lost by each rider of the section while RER D does not run through; days a year (ASSUMPTION)
 cut = {'riders': k['d_bd'], 'min': CUT_MIN, 'year': round(k['d_bd'] * CUT_DAYS * CUT_MIN / 60 * VOT / 1e9, 2)}
 
-out = {'cost': cost, 'past': past, 'sim': sim, 'more': more, 'value': value, 'cut': cut,
+G_PEAK = FL['k']['h']['g']
+kr = {'k': K_PEAK, 'r': R_PEAK, 'b': B_PEAK, 'd': D_PEAK, 'g': G_PEAK, 'today': B_PEAK + D_PEAK, 'plan': B_PEAK + D_PEAK + G_PEAK, 'old': B_PEAK + K_PEAK, 'd_pair': D_PEAK + R_PEAK,
+      'total': B_PEAK + K_PEAK + D_PEAK + R_PEAK + G_PEAK, 'added': G_PEAK + K_PEAK + R_PEAK, 'shared': D_PEAK + R_PEAK + G_PEAK}
+out = {'cost': cost, 'past': past, 'sim': sim, 'more': more, 'value': value, 'cut': cut, 'kr': kr,
        'riders': RIDERS, 'params': {'peak': PEAK, 'hit': HIT, 'w_late': W_LATE[1], 'vot': VOT, 'days': DAYS, 'ramp_km': KM_NORTH_RAMP, 'south_link_km': KM_SOUTH_LINK,
                                     'nord_chatelet_km': KM_NORD_CHATELET, 'chatelet_lyon_km': KM_CHATELET_LYON, 'south_ramp_km': KM_SOUTH_RAMP, 'sub_len': SUB_LEN},
        'k': {'bd': k['bd'], 'b_bd': k['b_bd'], 'd_bd': k['d_bd'], 'g': k['g'], 'new_pairs': round(k['g'] + k['d_bd'], -3), 'd': k['line']['D'], 'b': k['line']['B'],

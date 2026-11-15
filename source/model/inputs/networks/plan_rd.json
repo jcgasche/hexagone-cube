@@ -1,0 +1,35 @@
+{
+ "name": "plan_rd",
+ "label": "The plan, with line R into RER D",
+ "about": "The plan, with line R into RER D. Annex D.",
+ "include": [
+  "cordons",
+  "gpe",
+  "rer_f",
+  "rer_g",
+  "ter",
+  "r_into_d"
+ ],
+ "walks": [
+  [
+   "X:NE:F",
+   "X:NE:G",
+   3
+  ],
+  [
+   "X:NE:F",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:NE:G",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:MP:G",
+   "X:MP:T",
+   3
+  ]
+ ]
+}

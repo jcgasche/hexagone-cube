@@ -1,0 +1,46 @@
+{
+ "name": "variant_c",
+ "label": "Variant: line L to RER C south, RER C west to line H",
+ "about": "No tunnel from Nord-Est to Saint-Lazare. Line L runs to Châtelet-Les Halles and Austerlitz and on as RER C to the south; RER C from the west runs from Saint-Michel to Châtelet-Les Halles and Nord-Est and on as line H. RER G, the TER, line K into RER B and line R into RER D as in the other version.",
+ "include": [
+  "cordons",
+  "gpe",
+  "rer_g",
+  "ter",
+  "k_into_b",
+  "r_into_d",
+  "c_split"
+ ],
+ "walks": [
+  [
+   "X:NE:H",
+   "X:NE:G",
+   3
+  ],
+  [
+   "X:NE:H",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:NE:G",
+   "X:NE:T",
+   3
+  ],
+  [
+   "X:MP:G",
+   "X:MP:T",
+   3
+  ],
+  [
+   "X:CH:G",
+   "X:CH:CL",
+   3
+  ],
+  [
+   "X:CH:G",
+   "X:CH:CH",
+   3
+  ]
+ ]
+}

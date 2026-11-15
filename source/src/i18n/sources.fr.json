@@ -436,5 +436,10 @@
  "ign_dep": "Limites des huit départements d’Île-de-France, tracées sous la carte comme repères",
  "osm_rivers": "Cours de la Seine, de la Marne et de l’Oise en Île-de-France et autour, tracés sous la carte comme repères",
  "idfm_tt": "Mardi 3 novembre 2026 : tous les trains du métro, du RER, des lignes Transilien et des tramways, et les TER à l’intérieur de la région, avec les temps de marche publiés entre les quais ; lus train par train pour les temps de gare à gare",
- "csa": "La méthode utilisée pour lire un horaire et trouver les trajets les plus rapides : chaque saut de chaque train, trié par heure de départ, est lu une seule fois"
+ "csa": "La méthode utilisée pour lire un horaire et trouver les trajets les plus rapides : chaque saut de chaque train, trié par heure de départ, est lu une seule fois",
+ "gpe_times": "Temps de parcours entre deux stations voisines des lignes 15 Sud, 15 Ouest, 16, 17 et 18, arrêts compris ; la ligne 15 Est n’est pas dans le fichier et prend la vitesse de la ligne 15 Sud",
+ "gpe_stations": "Nom et position de chaque station des lignes 15, 16, 17 et 18",
+ "gpe_l15": "À l’heure de pointe, un métro toutes les 2 à 3 minutes ; vitesse moyenne entre 55 et 65 km/h",
+ "gpe_dates": "Dates de mise en service annoncées le 24 septembre 2026 : ligne 18 de décembre 2026 à 2030, ligne 15 Sud à l’automne 2027, ligne 16 en 2028 et 2029, ligne 17 de 2028 à 2030, lignes 15 Ouest et 15 Est en 2031",
+ "transitous": "Trajet le plus rapide partant après 8 h le mardi 17 novembre 2026 pour 30 paires de gares, en métro, train et tramway, d’après l’horaire d’Île-de-France Mobilités ; sert à vérifier les temps calculés sur le réseau d’aujourd’hui"
 }

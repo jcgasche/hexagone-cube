@@ -1,0 +1,211 @@
+<p class="lede">This annex tests another map of the suburban lines, outside the plan. The plan joins lines H, K and L in a tunnel between Nord-Est and Saint-Lazare, as RER F. Here that tunnel is not built. Line L runs under Paris to Châtelet-Les Halles and Gare d’Austerlitz and goes on to the south as RER C. RER C from the west turns north at Saint-Michel, stops at Châtelet-Les Halles and goes on from Nord-Est as line H. On today’s timetables it saves {{ d.times.v.variant_c.hours_day | 0 }} hours a working day where the plan saves {{ d.times.v.plan.hours_day | 0 }}, and takes {{ d.lc.load.bd_relief | pct }} of the commuters out of the tunnel of RER B and D. It also makes {{ d.times.x.c_kb.slower | 0 }} trips to work slower than the plan does, and costs about €{{ d.lc.cost.central | 1 }}bn more. It is not in the plan, nor in its cost or its benefits.</p>
+
+<div class="block" id="lc.what">
+  <h2>What changes on the map</h2>
+  <p>The TGV and TER tunnels, RER G from Nord-Est to Montparnasse through Châtelet, the underground station Nord-Est and the underground platforms at Saint-Lazare are those of the plan. Only the routes of lines H and L and of RER C change.</p>
+  <figure class="fig">
+    <div class="fig-head"><strong>Two new lines through Châtelet in place of the tunnel from Nord-Est to Saint-Lazare</strong><span>Suburban lines in the centre of Paris. Schematic, not to scale; the TGV and TER tunnels, the same in both, are left out</span></div>
+    <div class="lc-maps">
+      <div><div class="lc-cap">The plan</div>
+      <svg viewBox="0 0 380 300" role="img" aria-label="The plan" class="lc-svg">
+      <polyline points="208,0 208,35 183,130 180,174 165,300" class="lc-l lc-old"/>
+      <polyline points="183,130 300,200 380,248" class="lc-l lc-old"/>
+      <polyline points="0,165 60,160 180,174 262,235 340,300" class="lc-l lc-old"/>
+      <polyline points="0,20 95,50 215,35 215,0" class="lc-l lc-f"/>
+      <polyline points="380,8 222,35 197,130 95,245 30,300" class="lc-l lc-g"/>
+      <circle cx="95" cy="50" r="5" class="lc-st"/>
+      <text x="87" y="70" text-anchor="end" class="lc-t">Saint-Lazare</text>
+      <circle cx="218" cy="35" r="10" class="lc-st"/>
+      <text x="233" y="52" text-anchor="start" class="lc-t">Nord-Est</text>
+      <circle cx="193" cy="130" r="10" class="lc-st"/>
+      <text x="170" y="134" text-anchor="end" class="lc-t">Châtelet</text>
+      <circle cx="180" cy="174" r="5" class="lc-st"/>
+      <text x="128" y="194" text-anchor="end" class="lc-t">Saint-Michel</text>
+      <circle cx="262" cy="235" r="5" class="lc-st"/>
+      <text x="252" y="252" text-anchor="end" class="lc-t">Austerlitz</text>
+      <circle cx="95" cy="245" r="5" class="lc-st"/>
+      <text x="85" y="239" text-anchor="end" class="lc-t">Montparnasse</text>
+      <circle cx="60" cy="160" r="5" class="lc-st"/>
+      <text x="60" y="149" text-anchor="middle" class="lc-t">Invalides</text>
+      <circle cx="300" cy="200" r="5" class="lc-st"/>
+      <text x="300" y="189" text-anchor="middle" class="lc-t">Gare de Lyon</text>
+      </svg></div>
+      <div><div class="lc-cap">The variant</div>
+      <svg viewBox="0 0 380 300" role="img" aria-label="The variant" class="lc-svg">
+      <polyline points="208,0 208,35 183,130 180,174 165,300" class="lc-l lc-old"/>
+      <polyline points="183,130 300,200 380,248" class="lc-l lc-old"/>
+      <polyline points="180,174 262,235" class="lc-l lc-gone"/>
+      <polyline points="0,20 95,50 197,130 262,235 340,300" class="lc-l lc-a"/>
+      <polyline points="0,165 60,160 180,174 190,130 215,35 215,0" class="lc-l lc-b"/>
+      <polyline points="380,8 222,35 204,130 95,245 30,300" class="lc-l lc-g"/>
+      <circle cx="95" cy="50" r="5" class="lc-st"/>
+      <text x="87" y="70" text-anchor="end" class="lc-t">Saint-Lazare</text>
+      <circle cx="218" cy="35" r="10" class="lc-st"/>
+      <text x="233" y="52" text-anchor="start" class="lc-t">Nord-Est</text>
+      <circle cx="193" cy="130" r="10" class="lc-st"/>
+      <text x="170" y="134" text-anchor="end" class="lc-t">Châtelet</text>
+      <circle cx="180" cy="174" r="5" class="lc-st"/>
+      <text x="128" y="194" text-anchor="end" class="lc-t">Saint-Michel</text>
+      <circle cx="262" cy="235" r="5" class="lc-st"/>
+      <text x="252" y="252" text-anchor="end" class="lc-t">Austerlitz</text>
+      <circle cx="95" cy="245" r="5" class="lc-st"/>
+      <text x="85" y="239" text-anchor="end" class="lc-t">Montparnasse</text>
+      <circle cx="60" cy="160" r="5" class="lc-st"/>
+      <text x="60" y="149" text-anchor="middle" class="lc-t">Invalides</text>
+      <circle cx="300" cy="200" r="5" class="lc-st"/>
+      <text x="300" y="189" text-anchor="middle" class="lc-t">Gare de Lyon</text>
+      </svg></div>
+    </div>
+    <div class="lc-legend"><span class="lc-leg-i"><i class="lc-chip lc-a"></i>Line L with RER C south</span><span class="lc-leg-i"><i class="lc-chip lc-b"></i>RER C west with line H</span><span class="lc-leg-i"><i class="lc-chip lc-f"></i>RER F (lines H, K and L)</span><span class="lc-leg-i"><i class="lc-chip lc-g"></i>RER G (lines P and N)</span><span class="lc-leg-i"><i class="lc-chip lc-old"></i>RER B, C and D, where they run today</span><span class="lc-leg-i"><i class="lc-chip lc-gone"></i>RER C tracks left without trains</span></div>
+    <figcaption>Left: the plan, with RER F between Nord-Est and Saint-Lazare and RER C along the Seine. Right: the variant. Line L reaches Châtelet and Austerlitz and takes the southern branches of RER C; RER C from the west turns north at Saint-Michel and takes line H at Nord-Est. RER G is the same in both.</figcaption>
+  </figure>
+  <ul>
+    <li><strong>Line L and the south of RER C become one line.</strong> From its underground platforms at Saint-Lazare, line L runs {{ d.lc.km.sl_chatelet | 1 }} km to Châtelet-Les Halles, then {{ d.lc.km.chatelet_austerlitz | 1 }} km under the Seine to the RER C tracks at Gare d’Austerlitz. Its trains go on to Juvisy, Brétigny, Massy, Dourdan and Étampes. Saint-Lazare to Châtelet takes 4 minutes and Châtelet to Austerlitz 4 more, stops included <span class="tag assume">assumption</span>.</li>
+    <li><strong>The west of RER C and line H become one line.</strong> The RER C trains from Versailles, Saint-Quentin-en-Yvelines and Pontoise leave their tracks at Saint-Michel Notre-Dame, run {{ d.lc.km.chatelet_saint_michel | 1 }} km to Châtelet-Les Halles and {{ d.lc.km.nord_chatelet | 1 }} km beside RER G to Nord-Est, and go on as line H. Saint-Michel to Châtelet takes 2 minutes and Châtelet to Nord-Est 4 more <span class="tag assume">assumption</span>.</li>
+    <li><strong>No tunnel between Nord-Est and Saint-Lazare, and no RER C train between Saint-Michel and Austerlitz.</strong> No station loses its trains, since the two are neighbouring stops. A trip along the left bank through both, from Juvisy to Invalides for instance, changes at Châtelet.</li>
+    <li><strong>Lines K and R run through as branches of RER B and RER D.</strong> Without RER F, line K has no tunnel of its own: it joins RER B, or it keeps its platforms on the surface of Gare du Nord. The variant is counted with lines K and R through, as in <a class="xref" href="#rerd.kr">the annex on RER D</a>, and compared with the plan counted the same way.</li>
+    <li><strong>Above ground, the same tracks are freed.</strong> Lines H and K leave the surface of Gare du Nord and line L the surface of Saint-Lazare, as in the plan.</li>
+  </ul>
+</div>
+
+<div class="block" id="lc.trains">
+  <h2>Trains: each new line has as many on one side as on the other, and Châtelet to Nord-Est needs three pairs of tracks</h2>
+  <p><strong>The two sides of each line match, train for train.</strong> In the busiest hour of the morning, line L brings {{ d.lc.trains.peak.L | 0 }} trains into Saint-Lazare and RER C brings {{ d.lc.trains.peak.C_south | 0 }} from the south into Gare d’Austerlitz. Line H brings {{ d.lc.trains.peak.H | 0 }} into Gare du Nord and RER C runs {{ d.lc.trains.peak.C_west | 0 }} through Saint-Michel towards the west.[[idfm_tt]] In the plan, RER F joins the {{ d.flows.k.h.f | 0 }} trains of lines H and K with the {{ d.lc.trains.peak.L | 0 }} of line L.</p>
+  <p><strong>Between Châtelet and Nord-Est, {{ d.lc.trains.three_pairs.all | 0 }} trains an hour each way, twice today’s {{ d.lc.trains.today | 0 }}.</strong> Two pairs of tracks would each run at their limit of {{ d.lc.trains.limit_two | 0 }} trains an hour (see <a class="xref" href="#rerd.sim">what a pair of tracks can take</a>), with no room for a late train. The variant is priced with three: the old tunnel, the pair of RER G, and a second new pair beside it.</p>
+  <div class="tbl-wrap"><table class="tbl lc-wide">
+    <thead><tr><th>Trains an hour each way, Châtelet to Nord-Est</th><th class="num">Today</th><th class="num">The plan</th><th class="num">The variant</th><th class="num">The variant, lines K and R through</th></tr></thead>
+    <tbody>
+      <tr><th>Old tunnel</th><td class="num">RER B {{ d.lc.trains.peak.B | 0 }} and RER D {{ d.lc.trains.peak.D | 0 }}: {{ d.lc.trains.today | 0 }}</td><td class="num">{{ d.lc.trains.today | 0 }}</td><td class="num">{{ d.lc.trains.three_pairs.old | 0 }}</td><td class="num">RER B {{ d.lc.trains.peak.B | 0 }} and line K {{ d.lc.trains.peak.K | 0 }}: {{ d.lc.trains.with_kr.old | 0 }}</td></tr>
+      <tr><th>Pair of RER G</th><td class="num"></td><td class="num">{{ d.lc.trains.peak.G | 0 }}</td><td class="num">{{ d.lc.trains.three_pairs.g | 0 }}</td><td class="num">{{ d.lc.trains.with_kr.g | 0 }}</td></tr>
+      <tr><th>Pair of RER C west and line H</th><td class="num"></td><td class="num"></td><td class="num">{{ d.lc.trains.three_pairs.ch | 0 }}</td><td class="num">{{ d.lc.trains.with_kr.ch | 0 }}</td></tr>
+      <tr><th>Pair of RER D</th><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">RER D {{ d.lc.trains.peak.D | 0 }} and line R {{ d.lc.trains.peak.R | 0 }}: {{ d.lc.trains.with_kr.d | 0 }}</td></tr>
+      <tr><th><strong>All tracks</strong></th><td class="num"><strong>{{ d.lc.trains.today | 0 }}</strong></td><td class="num"><strong>{{ d.lc.trains.today + d.lc.trains.peak.G | 0 }}</strong></td><td class="num"><strong>{{ d.lc.trains.three_pairs.all | 0 }}</strong></td><td class="num"><strong>{{ d.lc.trains.with_kr.all | 0 }}</strong></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cont">With lines K and R through, RER D needs tracks of its own: a fourth pair, or the tracks of RER G, which would then hold {{ d.lc.trains.with_kr.dg | 0 }} trains an hour for a limit of {{ d.lc.trains.limit_two | 0 }}. The new line of RER C west and line H runs {{ d.lc.trains.three_pairs.ch | 0 }} trains on a pair that takes about {{ d.lc.trains.limit_one | 0 }} with one platform track each way.</p>
+  <p><strong>Between Saint-Lazare and Austerlitz, {{ d.lc.trains.lc | 0 }} trains an hour on a new pair.</strong> At Châtelet the line stops at two platform tracks each way, by the plan’s rule of 20 trains an hour for a platform track.</p>
+  <p><strong>In the calculation, every train keeps today’s times.</strong> A train that ends at Saint-Lazare, Austerlitz, Saint-Michel or Gare du Nord runs on through the new tunnel and becomes the next departure on the other side, if one leaves within 10 minutes (see <a class="xref" href="#times.method">how the times are calculated</a>). Over the morning, {{ d.lc.joins.l_c.joined | 0 }} of the {{ d.lc.joins.l_c.arrivals | 0 }} trains of line L find an RER C train to become, and {{ d.lc.joins.h_c.joined | 0 }} of the {{ d.lc.joins.h_c.arrivals | 0 }} trains of line H. A timetable written for the joined lines would do better.</p>
+</div>
+
+<div class="block" id="lc.times">
+  <h2>Travel times: more hours saved than with the plan, less evenly shared</h2>
+  <p>The three versions are run by the calculation of <a class="xref" href="#times.versions">travel times in the region</a>: every station of metro, RER, Transilien and TER, the timetable of a Tuesday morning, lines 15 to 18 in service, each trip weighed by the people who make it to go to work.</p>
+  <div class="tbl-wrap"><table class="tbl lc-wide">
+    <thead><tr><th>Against the network before the project</th><th class="num">The plan</th><th class="num">The plan, lines K and R through</th><th class="num">The variant, lines K and R through</th></tr></thead>
+    <tbody>
+      <tr><th>Hours saved a working day</th><td class="num">{{ d.times.v.plan.hours_day | 0 }}</td><td class="num">{{ d.times.v.plan_kb_rd.hours_day | 0 }}</td><td class="num">{{ d.times.v.variant_c.hours_day | 0 }}</td></tr>
+      <tr><th>People who save 1 minute or more on their trip to work</th><td class="num">{{ d.times.v.plan.commuters_1 | 0 }}</td><td class="num">{{ d.times.v.plan_kb_rd.commuters_1 | 0 }}</td><td class="num">{{ d.times.v.variant_c.commuters_1 | 0 }}</td></tr>
+      <tr><th>of whom 5 minutes or more</th><td class="num">{{ d.times.v.plan.commuters_5 | 0 }}</td><td class="num">{{ d.times.v.plan_kb_rd.commuters_5 | 0 }}</td><td class="num">{{ d.times.v.variant_c.commuters_5 | 0 }}</td></tr>
+      <tr><th>of whom 10 minutes or more</th><td class="num">{{ d.times.v.plan.commuters_10 | 0 }}</td><td class="num">{{ d.times.v.plan_kb_rd.commuters_10 | 0 }}</td><td class="num">{{ d.times.v.variant_c.commuters_10 | 0 }}</td></tr>
+      <tr><th>People whose trip gets slower</th><td class="num">{{ d.times.v.plan.slower | 0 }}</td><td class="num">{{ d.times.v.plan_kb_rd.slower | 0 }}</td><td class="num">{{ d.times.v.variant_c.slower | 0 }}</td></tr>
+      <tr><th>Stations that gain 1 minute or more</th><td class="num">{{ d.times.v.plan.stations_1 | 0 }}</td><td class="num">{{ d.times.v.plan_kb_rd.stations_1 | 0 }}</td><td class="num">{{ d.times.v.variant_c.stations_1 | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Journeys to work by public transport, census of 2022,[[mobpro]] timetable of Tuesday 3 November 2026,[[idfm_tt]] departures between 7:30 and 8:30. Hours count both ways.</p>
+  <p><strong>Against the plan with lines K and R through, {{ d.times.x.c_kb.commuters_1 | 0 }} people gain {{ d.times.x.c_kb.mean_of_gainers | 1 }} minutes and {{ d.times.x.c_kb.slower | 0 }} lose {{ d.times.x.c_kb.slower_mean | 1 }}.</strong> The variant saves {{ d.lc.value.hours_gained | 0 }} hours a working day that the plan does not, and gives back {{ d.lc.value.hours_lost | 0 }} that the plan saves. The balance is {{ d.lc.value.hours_more | 0 }} hours a day in its favour, {{ d.lc.value.more_than_plan_kr | pct }} more than the plan.</p>
+  <p><strong>The trips that gain: the west with the centre and the south-east, the north with the left bank.</strong> Saint-Lazare is {{ d.lc.ex.sl_aus.var | 0 }} minutes from Austerlitz instead of {{ d.lc.ex.sl_aus.today | 0 }}. The towns of line L reach Châtelet without a change, and with it RER A, B and D. The towns of RER C south reach Saint-Lazare. The towns of line H reach Saint-Michel, Invalides and Javel.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Minutes, station to station</th><th class="num">Before the project</th><th class="num">The plan</th><th class="num">The variant</th></tr></thead>
+    <tbody>
+      <tr><th>Saint-Lazare to Gare d’Austerlitz</th><td class="num">{{ d.lc.ex.sl_aus.today | 0 }}</td><td class="num">{{ d.lc.ex.sl_aus.plan | 0 }}</td><td class="num">{{ d.lc.ex.sl_aus.var | 0 }}</td></tr>
+      <tr><th>Enghien-les-Bains to Javel</th><td class="num">{{ d.lc.ex.enghien_javel.today | 0 }}</td><td class="num">{{ d.lc.ex.enghien_javel.plan | 0 }}</td><td class="num">{{ d.lc.ex.enghien_javel.var | 0 }}</td></tr>
+      <tr><th>Brétigny to Saint-Lazare</th><td class="num">{{ d.lc.ex.bretigny_sl.today | 0 }}</td><td class="num">{{ d.lc.ex.bretigny_sl.plan | 0 }}</td><td class="num">{{ d.lc.ex.bretigny_sl.var | 0 }}</td></tr>
+      <tr><th>Bécon-les-Bruyères to Châtelet-Les Halles</th><td class="num">{{ d.lc.ex.becon_chatelet.today | 0 }}</td><td class="num">{{ d.lc.ex.becon_chatelet.plan | 0 }}</td><td class="num">{{ d.lc.ex.becon_chatelet.var | 0 }}</td></tr>
+      <tr><th>Saint-Lazare to Juvisy</th><td class="num">{{ d.lc.ex.sl_juvisy.today | 0 }}</td><td class="num">{{ d.lc.ex.sl_juvisy.plan | 0 }}</td><td class="num">{{ d.lc.ex.sl_juvisy.var | 0 }}</td></tr>
+      <tr><th>Juvisy to Châtelet-Les Halles</th><td class="num">{{ d.lc.ex.juvisy_chatelet.today | 0 }}</td><td class="num">{{ d.lc.ex.juvisy_chatelet.plan | 0 }}</td><td class="num">{{ d.lc.ex.juvisy_chatelet.var | 0 }}</td></tr>
+      <tr><th>Épinay-Villetaneuse to Saint-Michel Notre-Dame</th><td class="num">{{ d.lc.ex.epinay_sm.today | 0 }}</td><td class="num">{{ d.lc.ex.epinay_sm.plan | 0 }}</td><td class="num">{{ d.lc.ex.epinay_sm.var | 0 }}</td></tr>
+      <tr><th>Clichy-Levallois to Bibliothèque François Mitterrand</th><td class="num">{{ d.lc.ex.clichy_bfm.today | 0 }}</td><td class="num">{{ d.lc.ex.clichy_bfm.plan | 0 }}</td><td class="num">{{ d.lc.ex.clichy_bfm.var | 0 }}</td></tr>
+      <tr><th>Saint-Cloud to Gare d’Austerlitz</th><td class="num">{{ d.lc.ex.stcloud_aus.today | 0 }}</td><td class="num">{{ d.lc.ex.stcloud_aus.plan | 0 }}</td><td class="num">{{ d.lc.ex.stcloud_aus.var | 0 }}</td></tr>
+      <tr><th>Invalides to Gare du Nord</th><td class="num">{{ d.lc.ex.invalides_nord.today | 0 }}</td><td class="num">{{ d.lc.ex.invalides_nord.plan | 0 }}</td><td class="num">{{ d.lc.ex.invalides_nord.var | 0 }}</td></tr>
+      <tr><th>Ermont-Eaubonne to Invalides</th><td class="num">{{ d.lc.ex.ermont_invalides.today | 0 }}</td><td class="num">{{ d.lc.ex.ermont_invalides.plan | 0 }}</td><td class="num">{{ d.lc.ex.ermont_invalides.var | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>The trips that lose: the north with Saint-Lazare, and RER C from one side of Paris to the other.</strong> The plan puts Gare du Nord {{ d.lc.ex.nord_sl.plan | 0 }} minutes from Saint-Lazare; the variant leaves a change at Châtelet, {{ d.lc.ex.nord_sl.var | 0 }} minutes. The riders of RER C who cross Paris on one train today change at Châtelet: {{ d.times.v.variant_c.slower | 0 }} people lose {{ d.times.v.variant_c.slower_mean | 1 }} minutes on their trip to work against the network before the project, where the plan makes nobody slower.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Minutes, station to station</th><th class="num">Before the project</th><th class="num">The plan</th><th class="num">The variant</th></tr></thead>
+    <tbody>
+      <tr><th>Gare du Nord to Saint-Lazare</th><td class="num">{{ d.lc.ex.nord_sl.today | 0 }}</td><td class="num">{{ d.lc.ex.nord_sl.plan | 0 }}</td><td class="num">{{ d.lc.ex.nord_sl.var | 0 }}</td></tr>
+      <tr><th>Épinay-Villetaneuse to Saint-Lazare</th><td class="num">{{ d.lc.ex.epinay_sl.today | 0 }}</td><td class="num">{{ d.lc.ex.epinay_sl.plan | 0 }}</td><td class="num">{{ d.lc.ex.epinay_sl.var | 0 }}</td></tr>
+      <tr><th>Bécon-les-Bruyères to Gare du Nord</th><td class="num">{{ d.lc.ex.becon_nord.today | 0 }}</td><td class="num">{{ d.lc.ex.becon_nord.plan | 0 }}</td><td class="num">{{ d.lc.ex.becon_nord.var | 0 }}</td></tr>
+      <tr><th>Juvisy to Invalides</th><td class="num">{{ d.lc.ex.juvisy_invalides.today | 0 }}</td><td class="num">{{ d.lc.ex.juvisy_invalides.plan | 0 }}</td><td class="num">{{ d.lc.ex.juvisy_invalides.var | 0 }}</td></tr>
+      <tr><th>Bibliothèque François Mitterrand to Musée d’Orsay</th><td class="num">{{ d.lc.ex.bfm_orsay.today | 0 }}</td><td class="num">{{ d.lc.ex.bfm_orsay.plan | 0 }}</td><td class="num">{{ d.lc.ex.bfm_orsay.var | 0 }}</td></tr>
+      <tr><th>Versailles Château Rive Gauche to Gare d’Austerlitz</th><td class="num">{{ d.lc.ex.versailles_aus.today | 0 }}</td><td class="num">{{ d.lc.ex.versailles_aus.plan | 0 }}</td><td class="num">{{ d.lc.ex.versailles_aus.var | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p><strong>Town by town, the largest gains and losses against the plan.</strong> The first six rows are the pairs of towns where the variant saves the most hours against the plan with lines K and R through, the last six those where it loses the most.</p>
+  <div class="tbl-wrap"><table class="tbl lc-wide">
+    <thead><tr><th>Home</th><th>Work</th><th class="num">People going to work</th><th class="num">The plan, lines K and R through (minutes)</th><th class="num">The variant (minutes)</th></tr></thead>
+    <tbody>
+      <tr><th>{{ d.lc.od.gain[0]['from'] | str }}</th><td>{{ d.lc.od.gain[0].to | str }}</td><td class="num">{{ d.lc.od.gain[0].commuters | 0 }}</td><td class="num">{{ d.lc.od.gain[0].base | 0 }}</td><td class="num">{{ d.lc.od.gain[0].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.gain[1]['from'] | str }}</th><td>{{ d.lc.od.gain[1].to | str }}</td><td class="num">{{ d.lc.od.gain[1].commuters | 0 }}</td><td class="num">{{ d.lc.od.gain[1].base | 0 }}</td><td class="num">{{ d.lc.od.gain[1].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.gain[2]['from'] | str }}</th><td>{{ d.lc.od.gain[2].to | str }}</td><td class="num">{{ d.lc.od.gain[2].commuters | 0 }}</td><td class="num">{{ d.lc.od.gain[2].base | 0 }}</td><td class="num">{{ d.lc.od.gain[2].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.gain[3]['from'] | str }}</th><td>{{ d.lc.od.gain[3].to | str }}</td><td class="num">{{ d.lc.od.gain[3].commuters | 0 }}</td><td class="num">{{ d.lc.od.gain[3].base | 0 }}</td><td class="num">{{ d.lc.od.gain[3].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.gain[4]['from'] | str }}</th><td>{{ d.lc.od.gain[4].to | str }}</td><td class="num">{{ d.lc.od.gain[4].commuters | 0 }}</td><td class="num">{{ d.lc.od.gain[4].base | 0 }}</td><td class="num">{{ d.lc.od.gain[4].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.gain[5]['from'] | str }}</th><td>{{ d.lc.od.gain[5].to | str }}</td><td class="num">{{ d.lc.od.gain[5].commuters | 0 }}</td><td class="num">{{ d.lc.od.gain[5].base | 0 }}</td><td class="num">{{ d.lc.od.gain[5].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.loss[0]['from'] | str }}</th><td>{{ d.lc.od.loss[0].to | str }}</td><td class="num">{{ d.lc.od.loss[0].commuters | 0 }}</td><td class="num">{{ d.lc.od.loss[0].base | 0 }}</td><td class="num">{{ d.lc.od.loss[0].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.loss[1]['from'] | str }}</th><td>{{ d.lc.od.loss[1].to | str }}</td><td class="num">{{ d.lc.od.loss[1].commuters | 0 }}</td><td class="num">{{ d.lc.od.loss[1].base | 0 }}</td><td class="num">{{ d.lc.od.loss[1].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.loss[2]['from'] | str }}</th><td>{{ d.lc.od.loss[2].to | str }}</td><td class="num">{{ d.lc.od.loss[2].commuters | 0 }}</td><td class="num">{{ d.lc.od.loss[2].base | 0 }}</td><td class="num">{{ d.lc.od.loss[2].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.loss[3]['from'] | str }}</th><td>{{ d.lc.od.loss[3].to | str }}</td><td class="num">{{ d.lc.od.loss[3].commuters | 0 }}</td><td class="num">{{ d.lc.od.loss[3].base | 0 }}</td><td class="num">{{ d.lc.od.loss[3].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.loss[4]['from'] | str }}</th><td>{{ d.lc.od.loss[4].to | str }}</td><td class="num">{{ d.lc.od.loss[4].commuters | 0 }}</td><td class="num">{{ d.lc.od.loss[4].base | 0 }}</td><td class="num">{{ d.lc.od.loss[4].variant | 0 }}</td></tr>
+      <tr><th>{{ d.lc.od.loss[5]['from'] | str }}</th><td>{{ d.lc.od.loss[5].to | str }}</td><td class="num">{{ d.lc.od.loss[5].commuters | 0 }}</td><td class="num">{{ d.lc.od.loss[5].base | 0 }}</td><td class="num">{{ d.lc.od.loss[5].variant | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">Door to door by the quickest route, walk to the station included.</p>
+</div>
+
+<div class="block" id="lc.load">
+  <h2>Passengers: {{ d.lc.load.bd_relief | pct }} fewer in the tunnel of RER B and D</h2>
+  <p><strong>The new line from Saint-Michel to Nord-Est runs beside RER B and D and takes their riders.</strong> One morning, {{ d.lc.load.bd.future | 0 }} people go to work through the tunnel of RER B and D between Châtelet and Gare du Nord before the project. The plan leaves {{ d.lc.load.bd.plan | 0 }}, {{ d.lc.load.bd_relief_plan | pct }} fewer. The variant leaves {{ d.lc.load.bd.variant_c | 0 }}, {{ d.lc.load.bd_relief | pct }} fewer (see <a class="xref" href="#times.tunnels">who rides through the centre of Paris</a>).</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Section</th><th class="num">Passengers a working day, both ways</th></tr></thead>
+    <tbody>
+      <tr><th>Line L with RER C south, Saint-Lazare to Châtelet</th><td class="num">{{ d.lc.load.day.c_sl_ch | 0 }}</td></tr>
+      <tr><th>Line L with RER C south, Châtelet to Austerlitz</th><td class="num">{{ d.lc.load.day.c_ch_aus | 0 }}</td></tr>
+      <tr><th>RER C west with line H, Saint-Michel to Châtelet</th><td class="num">{{ d.lc.load.day.c_sm_ch | 0 }}</td></tr>
+      <tr><th>RER C west with line H, Châtelet to Nord-Est</th><td class="num">{{ d.lc.load.day.c_ch_ne | 0 }}</td></tr>
+      <tr><th>RER G, Nord-Est to Châtelet</th><td class="num">{{ d.lc.load.day.g_n | 0 }}</td></tr>
+      <tr><th>RER G, Châtelet to Montparnasse</th><td class="num">{{ d.lc.load.day.g_s | 0 }}</td></tr>
+      <tr><th>For comparison: RER F in the plan, Nord-Est to Saint-Lazare</th><td class="num">{{ d.flows.k.f | 0 }}</td></tr>
+      <tr><th>For comparison: RER C between Saint-Michel and Austerlitz, before the project</th><td class="num">{{ d.lc.load.c_today_day | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note">People going to work one morning, each by the quickest route, times {{ d.times.k.factor | 2 }} passengers a day for one of them (see <a class="xref" href="#flows.method">how the passengers are counted</a>). Orders of size, with no limit on the room in the trains.</p>
+  <p class="cont">The line from Saint-Lazare to Austerlitz would carry about as many passengers as RER F in the plan. The line from Saint-Michel to Nord-Est comes on top.</p>
+</div>
+
+<div class="block" id="lc.cost">
+  <h2>Cost: about €{{ d.lc.cost.central | 1 }}bn more than the plan</h2>
+  <p>The variant builds {{ d.lc.cost.km_new | 1 }} km of twin-track tunnel where the plan builds the {{ d.lc.cost.km_not_built | 1 }} km of RER F, and {{ d.lc.cost.tracks_chatelet | 0 }} more platform tracks under Châtelet-Les Halles. It is priced at the unit prices of the plan (see <a class="xref" href="#cost">Cost</a>), as in <a class="xref" href="#rerd.cost">the annex on RER D</a>. The lengths are read from maps <span class="tag assume">assumption</span>.</p>
+  <div class="tbl-wrap"><table class="tbl">
+    <thead><tr><th>Works, against the plan</th><th class="num">€bn</th></tr></thead>
+    <tbody>
+      <tr><th>Tunnel from Saint-Lazare to Châtelet, {{ d.lc.km.sl_chatelet | 1 }} km</th><td class="num">{{ d.lc.cost.items.sl_chatelet | 2 }}</td></tr>
+      <tr><th>Tunnel from Châtelet to Austerlitz, {{ d.lc.km.chatelet_austerlitz | 1 }} km</th><td class="num">{{ d.lc.cost.items.chatelet_austerlitz | 2 }}</td></tr>
+      <tr><th>Link from Saint-Michel to Châtelet, {{ d.lc.km.chatelet_saint_michel | 1 }} km</th><td class="num">{{ d.lc.cost.items.chatelet_saint_michel | 2 }}</td></tr>
+      <tr><th>Second new pair from Châtelet to Nord-Est, {{ d.lc.km.nord_chatelet | 1 }} km</th><td class="num">{{ d.lc.cost.items.nord_chatelet | 2 }}</td></tr>
+      <tr><th>Châtelet, line L with RER C south: {{ d.lc.params.tracks.lc | 0 }} platform tracks of {{ d.lc.params.sub_len | 0 }} m</th><td class="num">{{ d.lc.cost.items.chatelet_lc | 2 }}</td></tr>
+      <tr><th>Châtelet, RER C west with line H: {{ d.lc.params.tracks.ch | 0 }} platform tracks</th><td class="num">{{ d.lc.cost.items.chatelet_ch | 2 }}</td></tr>
+      <tr><th>Passages to the RER and metro station at Châtelet</th><td class="num">{{ d.lc.cost.items.chatelet_links | 2 }}</td></tr>
+      <tr><th>Tie-in to RER C at Gare d’Austerlitz</th><td class="num">{{ d.lc.cost.items.tie_austerlitz | 2 }}</td></tr>
+      <tr><th>Tie-in to RER C at Saint-Michel</th><td class="num">{{ d.lc.cost.items.tie_saint_michel | 2 }}</td></tr>
+      <tr><th>RER F tunnel from Nord-Est to Saint-Lazare, not built, {{ d.lc.cost.km_not_built | 1 }} km</th><td class="num">{{ d.lc.cost.items.rer_f_tunnel | 2 }}</td></tr>
+      <tr><th><strong>Works</strong></th><td class="num"><strong>{{ d.lc.cost.hard | 2 }}</strong></td></tr>
+      <tr><th><strong>With studies, client costs, land and risk (times {{ d.lc.cost.uplift | 2 }})</strong></th><td class="num"><strong>{{ d.lc.cost.central | 1 }}</strong> ({{ d.lc.cost.low | 1 }} to {{ d.lc.cost.high | 1 }})</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cont">The underground platforms at Saint-Lazare and at Nord-Est are counted as in the plan <span class="tag assume">assumption</span>. The pair of tracks for RER D and the links of lines K and R, which both sides of the comparison use, add about €{{ d.lc.cost.d_pair + d.lc.cost.kr | 1 }}bn to either: about €{{ d.lc.cost.with_d | 1 }}bn over the plan for the variant as it is counted here.</p>
+  <p><strong>The time saved does not pay for it.</strong> €{{ d.lc.cost.central | 1 }}bn is about €{{ d.lc.cost.year * 1000 | 0 }}m a year over 60 years at the State’s rate of 4.5%, upkeep included. The {{ d.lc.value.hours_more | 0 }} hours a day that the variant saves over the plan are those of the journeys to work; with the other trips ({{ d.lc.value.all_trips | 2 }} times as many hours), {{ d.lc.value.days | 0 }} working days and €{{ d.lc.value.vot | 0 }} an hour, they are worth about €{{ d.lc.value.year * 1000 | 0 }}m a year, {{ d.lc.value.share_of_cost | pct }} of that cost. The hours gained alone, without the hours lost, would be worth about €{{ d.lc.value.year_gained * 1000 | 0 }}m a year.</p>
+</div>
+
+<div class="block" id="lc.open">
+  <h2>What the comparison says, and what it leaves open</h2>
+  <ul>
+    <li><strong>On time alone, the variant comes out ahead of the plan by {{ d.lc.value.more_than_plan_kr | pct }}, for about €{{ d.lc.cost.central | 1 }}bn more.</strong> It serves more people ({{ d.times.v.variant_c.commuters_1 | 0 }} save 1 minute or more, against {{ d.times.v.plan_kb_rd.commuters_1 | 0 }}), and it is the only version tested that makes some trips slower than they were before the project.</li>
+    <li><strong>Its strongest effect is on the busiest tracks of the region.</strong> It takes {{ d.lc.load.bd_relief | pct }} of the commuters out of the tunnel of RER B and D, where the plan takes {{ d.lc.load.bd_relief_plan | pct }}. The value of a less crowded RER B and D, and of the trains that could be added on the new tracks, is not counted here. It is what would decide the case.</li>
+    <li><strong>The route under the Seine is not drawn.</strong> RER C runs along the left bank, just under the quays. The link from Saint-Michel has to leave it, cross under the Seine and the Île de la Cité and reach Châtelet in about a kilometre. The tunnel from Châtelet has to meet RER C under Gare d’Austerlitz. Whether both fit, and at what depth, needs a survey.</li>
+    <li><strong>Châtelet-Les Halles would hold {{ d.lc.cost.tracks_chatelet_all | 0 }} new platform tracks.</strong> {{ d.lc.cost.tracks_chatelet | 0 }} for the two new lines, two for RER G and two for RER D, under the busiest interchange of the region. No comparable station has been priced; the figure here uses the plan’s price per metre of platform track.</li>
+    <li><strong>Two tie-ins are made on RER C in service.</strong> Each is priced as a junction and a tie-in of the plan. The length of the closures is not estimated.</li>
+    <li><strong>The trains have to run under both currents.</strong> RER C runs under 1,500 volts direct current south and west of Paris, lines H and L under 25,000 volts. The joined lines need trains for both, as RER B and D have.</li>
+    <li><strong>The Pontoise branch of RER C would close a loop.</strong> It meets line H at Ermont-Eaubonne. Its trains would run from Pontoise through Invalides, Châtelet and Nord-Est and back towards Ermont-Eaubonne. The branches to pair on each side are a timetable question left open.</li>
+  </ul>
+</div>

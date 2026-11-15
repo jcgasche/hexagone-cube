@@ -1,0 +1,1244 @@
+{
+ "name": "gpe",
+ "label": "Lines 15, 16, 17 and 18",
+ "about": "The lines of the Grand Paris Express that are not in the timetable yet, complete, as they are planned to be when the project opens: line 15 as one line from Noisy-Champs round by Pont de Sevres and Saint-Denis Pleyel to Champigny Centre, lines 16, 17 and 18. Run times between stations as published by the Societe des grands projets (2015), line 18 brought to the 30 minutes published in 2019; line 15 east from its length (ASSUMPTION). A train every 2.5 minutes on line 15 (2 to 3 published), every 4 minutes on lines 16, 17 and 18 (ASSUMPTION). A change to a platform that exists within 350 m takes 3 minutes plus the distance at 70 m a minute (ASSUMPTION); the lines of the Grand Paris Express share one platform group where they meet.",
+ "new_stops": [
+  {
+   "id": "GPE:pont-de-sevres",
+   "name": "Pont de Sèvres",
+   "lon": 2.23026,
+   "lat": 48.82746,
+   "member_of": [
+    "IDFM:70698"
+   ]
+  },
+  {
+   "id": "GPE:issy-rer",
+   "name": "Issy RER",
+   "lon": 2.2597,
+   "lat": 48.8211,
+   "member_of": [
+    "IDFM:70612"
+   ]
+  },
+  {
+   "id": "GPE:fort-d-issy-vanves-clamart",
+   "name": "Fort d'Issy-Vanves-Clamart",
+   "lon": 2.27343,
+   "lat": 48.81412,
+   "member_of": [
+    "IDFM:70505"
+   ]
+  },
+  {
+   "id": "GPE:chatillon-montrouge",
+   "name": "Châtillon - Montrouge",
+   "lon": 2.30255,
+   "lat": 48.8112,
+   "member_of": [
+    "IDFM:461505"
+   ]
+  },
+  {
+   "id": "GPE:bagneux",
+   "name": "Bagneux",
+   "lon": 2.31868,
+   "lat": 48.80276,
+   "member_of": [
+    "IDFM:483315"
+   ]
+  },
+  {
+   "id": "GPE:arcueil-cachan",
+   "name": "Arcueil-Cachan",
+   "lon": 2.32835,
+   "lat": 48.79747,
+   "member_of": [
+    "IDFM:70263"
+   ]
+  },
+  {
+   "id": "GPE:villejuif-gustave-roussy",
+   "name": "Villejuif - Gustave Roussy",
+   "lon": 2.34937,
+   "lat": 48.79305,
+   "member_of": [
+    "IDFM:478860"
+   ]
+  },
+  {
+   "id": "GPE:villejuif-louis-aragon",
+   "name": "Villejuif Louis Aragon",
+   "lon": 2.36722,
+   "lat": 48.78846,
+   "member_of": [
+    "IDFM:70143"
+   ]
+  },
+  {
+   "id": "GPE:vitry-centre",
+   "name": "Vitry Centre",
+   "lon": 2.38704,
+   "lat": 48.78999,
+   "member_of": []
+  },
+  {
+   "id": "GPE:les-ardoines",
+   "name": "Les Ardoines",
+   "lon": 2.40887,
+   "lat": 48.7823,
+   "member_of": [
+    "IDFM:70064"
+   ]
+  },
+  {
+   "id": "GPE:le-vert-de-maisons",
+   "name": "Le Vert de Maisons",
+   "lon": 2.4328,
+   "lat": 48.78923,
+   "member_of": [
+    "IDFM:73624"
+   ]
+  },
+  {
+   "id": "GPE:creteil-l-echat",
+   "name": "Créteil l'Echat",
+   "lon": 2.44994,
+   "lat": 48.79558,
+   "member_of": [
+    "IDFM:70269"
+   ]
+  },
+  {
+   "id": "GPE:saint-maur-creteil",
+   "name": "Saint-Maur - Créteil",
+   "lon": 2.47271,
+   "lat": 48.80679,
+   "member_of": [
+    "IDFM:70393"
+   ]
+  },
+  {
+   "id": "GPE:champigny-centre",
+   "name": "Champigny Centre",
+   "lon": 2.50249,
+   "lat": 48.81657,
+   "member_of": []
+  },
+  {
+   "id": "GPE:bry-villiers-champigny",
+   "name": "Bry - Villiers - Champigny",
+   "lon": 2.52638,
+   "lat": 48.82399,
+   "member_of": []
+  },
+  {
+   "id": "GPE:noisy-champs",
+   "name": "Noisy-Champs",
+   "lon": 2.58108,
+   "lat": 48.84351,
+   "member_of": [
+    "IDFM:73163"
+   ]
+  },
+  {
+   "id": "GPE:saint-cloud",
+   "name": "Saint-Cloud",
+   "lon": 2.21717,
+   "lat": 48.84409,
+   "member_of": [
+    "IDFM:73749"
+   ]
+  },
+  {
+   "id": "GPE:rueil-suresnes-mont-valerien",
+   "name": "Rueil-Suresnes Mont-Valérien",
+   "lon": 2.20212,
+   "lat": 48.87249,
+   "member_of": []
+  },
+  {
+   "id": "GPE:nanterre-la-boule",
+   "name": "Nanterre - La Boule",
+   "lon": 2.2018,
+   "lat": 48.88767,
+   "member_of": []
+  },
+  {
+   "id": "GPE:nanterre-la-folie",
+   "name": "Nanterre - La Folie",
+   "lon": 2.22673,
+   "lat": 48.89822,
+   "member_of": [
+    "IDFM:488087"
+   ]
+  },
+  {
+   "id": "GPE:la-defense",
+   "name": "La Défense",
+   "lon": 2.23754,
+   "lat": 48.88943,
+   "member_of": [
+    "IDFM:71517"
+   ]
+  },
+  {
+   "id": "GPE:becon-les-bruyeres",
+   "name": "Bécon-les-Bruyères",
+   "lon": 2.26709,
+   "lat": 48.90538,
+   "member_of": [
+    "IDFM:72124"
+   ]
+  },
+  {
+   "id": "GPE:bois-colombes",
+   "name": "Bois-Colombes",
+   "lon": 2.272,
+   "lat": 48.91485,
+   "member_of": [
+    "IDFM:72179"
+   ]
+  },
+  {
+   "id": "GPE:les-agnettes",
+   "name": "Les Agnettes",
+   "lon": 2.28767,
+   "lat": 48.92247,
+   "member_of": [
+    "IDFM:72240"
+   ]
+  },
+  {
+   "id": "GPE:les-gresillons",
+   "name": "Les Grésillons",
+   "lon": 2.31304,
+   "lat": 48.91993,
+   "member_of": [
+    "IDFM:72225"
+   ]
+  },
+  {
+   "id": "GPE:saint-denis-pleyel",
+   "name": "Saint-Denis Pleyel",
+   "lon": 2.34656,
+   "lat": 48.91768,
+   "member_of": [
+    "IDFM:490784"
+   ]
+  },
+  {
+   "id": "GPE:stade-de-france",
+   "name": "Stade de France",
+   "lon": 2.36339,
+   "lat": 48.91802,
+   "member_of": [
+    "IDFM:72211"
+   ]
+  },
+  {
+   "id": "GPE:mairie-d-aubervilliers",
+   "name": "Mairie d'Aubervilliers",
+   "lon": 2.3818,
+   "lat": 48.91417,
+   "member_of": [
+    "IDFM:72524"
+   ]
+  },
+  {
+   "id": "GPE:fort-d-aubervilliers",
+   "name": "Fort d'Aubervilliers",
+   "lon": 2.40544,
+   "lat": 48.91416,
+   "member_of": [
+    "IDFM:73695"
+   ]
+  },
+  {
+   "id": "GPE:drancy-bobigny",
+   "name": "Drancy-Bobigny",
+   "lon": 2.42707,
+   "lat": 48.91581,
+   "member_of": []
+  },
+  {
+   "id": "GPE:bobigny-pablo-picasso",
+   "name": "Bobigny - Pablo Picasso",
+   "lon": 2.44988,
+   "lat": 48.90632,
+   "member_of": [
+    "IDFM:72486"
+   ]
+  },
+  {
+   "id": "GPE:pont-de-bondy",
+   "name": "Pont de Bondy",
+   "lon": 2.47047,
+   "lat": 48.9054,
+   "member_of": []
+  },
+  {
+   "id": "GPE:bondy",
+   "name": "Bondy",
+   "lon": 2.4802,
+   "lat": 48.89426,
+   "member_of": [
+    "IDFM:72037"
+   ]
+  },
+  {
+   "id": "GPE:rosny-bois-perrier",
+   "name": "Rosny-Bois-Perrier",
+   "lon": 2.48172,
+   "lat": 48.88273,
+   "member_of": [
+    "IDFM:426280"
+   ]
+  },
+  {
+   "id": "GPE:val-de-fontenay",
+   "name": "Val de Fontenay",
+   "lon": 2.48985,
+   "lat": 48.85585,
+   "member_of": [
+    "IDFM:71718"
+   ]
+  },
+  {
+   "id": "GPE:nogent-le-perreux",
+   "name": "Nogent-Le-Perreux",
+   "lon": 2.49478,
+   "lat": 48.83863,
+   "member_of": [
+    "IDFM:71609"
+   ]
+  },
+  {
+   "id": "GPE:la-courneuve-six-routes",
+   "name": "La Courneuve-Six Routes",
+   "lon": 2.38449,
+   "lat": 48.92928,
+   "member_of": []
+  },
+  {
+   "id": "GPE:le-bourget",
+   "name": "Le Bourget",
+   "lon": 2.42212,
+   "lat": 48.93058,
+   "member_of": [
+    "IDFM:72641"
+   ]
+  },
+  {
+   "id": "GPE:le-blanc-mesnil",
+   "name": "Le Blanc-Mesnil",
+   "lon": 2.46294,
+   "lat": 48.94567,
+   "member_of": []
+  },
+  {
+   "id": "GPE:aulnay",
+   "name": "Aulnay",
+   "lon": 2.48786,
+   "lat": 48.95184,
+   "member_of": []
+  },
+  {
+   "id": "GPE:sevran-beaudottes",
+   "name": "Sevran-Beaudottes",
+   "lon": 2.52553,
+   "lat": 48.94722,
+   "member_of": [
+    "IDFM:73491"
+   ]
+  },
+  {
+   "id": "GPE:sevran-livry",
+   "name": "Sevran-Livry",
+   "lon": 2.53532,
+   "lat": 48.93585,
+   "member_of": [
+    "IDFM:73439"
+   ]
+  },
+  {
+   "id": "GPE:clichy-montfermeil",
+   "name": "Clichy-Montfermeil",
+   "lon": 2.55658,
+   "lat": 48.90465,
+   "member_of": []
+  },
+  {
+   "id": "GPE:chelles-gournay",
+   "name": "Chelles Gournay",
+   "lon": 2.58577,
+   "lat": 48.87451,
+   "member_of": [
+    "IDFM:68407"
+   ]
+  },
+  {
+   "id": "GPE:le-bourget-aeroport",
+   "name": "Le Bourget Aéroport",
+   "lon": 2.43642,
+   "lat": 48.94672,
+   "member_of": []
+  },
+  {
+   "id": "GPE:triangle-de-gonesse",
+   "name": "Triangle de Gonesse",
+   "lon": 2.47636,
+   "lat": 48.9787,
+   "member_of": []
+  },
+  {
+   "id": "GPE:parc-des-expositions",
+   "name": "Parc des expositions",
+   "lon": 2.51607,
+   "lat": 48.97498,
+   "member_of": [
+    "IDFM:73568"
+   ]
+  },
+  {
+   "id": "GPE:aeroport-charles-de-gaulle-t2",
+   "name": "Aéroport Charles de Gaulle T2",
+   "lon": 2.57016,
+   "lat": 49.00476,
+   "member_of": [
+    "IDFM:73699"
+   ]
+  },
+  {
+   "id": "GPE:aeroport-charles-de-gaulle-2e-gare",
+   "name": "Aéroport Charles de Gaulle 2e gare",
+   "lon": 2.57116,
+   "lat": 49.01008,
+   "member_of": []
+  },
+  {
+   "id": "GPE:le-mesnil-amelot",
+   "name": "Le Mesnil-Amelot",
+   "lon": 2.59552,
+   "lat": 49.02589,
+   "member_of": []
+  },
+  {
+   "id": "GPE:aeroport-d-orly",
+   "name": "Aéroport d'Orly",
+   "lon": 2.36227,
+   "lat": 48.72808,
+   "member_of": [
+    "IDFM:63284"
+   ]
+  },
+  {
+   "id": "GPE:antonypole-wissous-centre",
+   "name": "Antonypole Wissous Centre",
+   "lon": 2.31001,
+   "lat": 48.73584,
+   "member_of": []
+  },
+  {
+   "id": "GPE:massy-opera",
+   "name": "Massy Opéra",
+   "lon": 2.29137,
+   "lat": 48.73172,
+   "member_of": []
+  },
+  {
+   "id": "GPE:massy-palaiseau",
+   "name": "Massy Palaiseau",
+   "lon": 2.25859,
+   "lat": 48.72525,
+   "member_of": [
+    "IDFM:63244"
+   ]
+  },
+  {
+   "id": "GPE:polytechnique",
+   "name": "Polytechnique",
+   "lon": 2.20097,
+   "lat": 48.71535,
+   "member_of": []
+  },
+  {
+   "id": "GPE:universite-paris-saclay",
+   "name": "Université Paris-Saclay",
+   "lon": 2.17327,
+   "lat": 48.71215,
+   "member_of": []
+  },
+  {
+   "id": "GPE:christ-de-saclay",
+   "name": "Christ de Saclay",
+   "lon": 2.16177,
+   "lat": 48.7298,
+   "member_of": []
+  },
+  {
+   "id": "GPE:guyancourt",
+   "name": "Guyancourt",
+   "lon": 2.07176,
+   "lat": 48.76016,
+   "member_of": []
+  },
+  {
+   "id": "GPE:satory",
+   "name": "Satory",
+   "lon": 2.10422,
+   "lat": 48.78711,
+   "member_of": []
+  },
+  {
+   "id": "GPE:versailles-chantiers",
+   "name": "Versailles Chantiers",
+   "lon": 2.13676,
+   "lat": 48.7947,
+   "member_of": [
+    "IDFM:63880"
+   ]
+  }
+ ],
+ "walks": [
+  [
+   "GPE:pont-de-sevres",
+   "IDFM:463233",
+   6.5
+  ],
+  [
+   "GPE:pont-de-sevres",
+   "IDFM:21938",
+   6.5
+  ],
+  [
+   "GPE:issy-rer",
+   "IDFM:monomodalStopPlace:43084",
+   6.4
+  ],
+  [
+   "GPE:fort-d-issy-vanves-clamart",
+   "IDFM:monomodalStopPlace:43111",
+   3.9
+  ],
+  [
+   "GPE:chatillon-montrouge",
+   "IDFM:22237",
+   4.1
+  ],
+  [
+   "GPE:chatillon-montrouge",
+   "IDFM:463087",
+   4.2
+  ],
+  [
+   "GPE:chatillon-montrouge",
+   "IDFM:482428",
+   5.5
+  ],
+  [
+   "GPE:chatillon-montrouge",
+   "IDFM:2336",
+   5.6
+  ],
+  [
+   "GPE:bagneux",
+   "IDFM:483423",
+   4.5
+  ],
+  [
+   "GPE:bagneux",
+   "IDFM:483314",
+   4.8
+  ],
+  [
+   "GPE:arcueil-cachan",
+   "IDFM:monomodalStopPlace:43067",
+   5.0
+  ],
+  [
+   "GPE:villejuif-gustave-roussy",
+   "IDFM:490916",
+   3.3
+  ],
+  [
+   "GPE:villejuif-gustave-roussy",
+   "IDFM:490906",
+   3.3
+  ],
+  [
+   "GPE:villejuif-louis-aragon",
+   "IDFM:463269",
+   4.5
+  ],
+  [
+   "GPE:villejuif-louis-aragon",
+   "IDFM:22400",
+   4.6
+  ],
+  [
+   "GPE:villejuif-louis-aragon",
+   "IDFM:29903",
+   4.9
+  ],
+  [
+   "GPE:villejuif-louis-aragon",
+   "IDFM:35946",
+   4.9
+  ],
+  [
+   "GPE:vitry-centre",
+   "IDFM:478997",
+   4.4
+  ],
+  [
+   "GPE:vitry-centre",
+   "IDFM:478977",
+   4.8
+  ],
+  [
+   "GPE:vitry-centre",
+   "IDFM:478976",
+   7.6
+  ],
+  [
+   "GPE:vitry-centre",
+   "IDFM:478975",
+   7.6
+  ],
+  [
+   "GPE:les-ardoines",
+   "IDFM:monomodalStopPlace:43227",
+   3.8
+  ],
+  [
+   "GPE:le-vert-de-maisons",
+   "IDFM:monomodalStopPlace:464040",
+   3.9
+  ],
+  [
+   "GPE:creteil-l-echat",
+   "IDFM:463166",
+   4.7
+  ],
+  [
+   "GPE:creteil-l-echat",
+   "IDFM:22211",
+   4.7
+  ],
+  [
+   "GPE:saint-maur-creteil",
+   "IDFM:monomodalStopPlace:44801",
+   4.0
+  ],
+  [
+   "GPE:noisy-champs",
+   "IDFM:monomodalStopPlace:58937",
+   4.4
+  ],
+  [
+   "GPE:saint-cloud",
+   "IDFM:monomodalStopPlace:43196",
+   6.2
+  ],
+  [
+   "GPE:nanterre-la-folie",
+   "IDFM:monomodalStopPlace:487011",
+   4.0
+  ],
+  [
+   "GPE:la-defense",
+   "IDFM:22101",
+   7.3
+  ],
+  [
+   "GPE:la-defense",
+   "IDFM:463193",
+   7.4
+  ],
+  [
+   "GPE:la-defense",
+   "IDFM:monomodalStopPlace:470549",
+   7.5
+  ],
+  [
+   "GPE:becon-les-bruyeres",
+   "IDFM:monomodalStopPlace:47923",
+   4.8
+  ],
+  [
+   "GPE:bois-colombes",
+   "IDFM:monomodalStopPlace:51238",
+   4.1
+  ],
+  [
+   "GPE:les-agnettes",
+   "IDFM:22232",
+   4.7
+  ],
+  [
+   "GPE:les-agnettes",
+   "IDFM:463207",
+   4.7
+  ],
+  [
+   "GPE:les-gresillons",
+   "IDFM:monomodalStopPlace:43230",
+   4.5
+  ],
+  [
+   "GPE:saint-denis-pleyel",
+   "IDFM:490794",
+   3.8
+  ],
+  [
+   "GPE:saint-denis-pleyel",
+   "IDFM:490774",
+   3.8
+  ],
+  [
+   "GPE:saint-denis-pleyel",
+   "IDFM:monomodalStopPlace:43204",
+   7.1
+  ],
+  [
+   "GPE:saint-denis-pleyel",
+   "IDFM:462976",
+   7.6
+  ],
+  [
+   "GPE:saint-denis-pleyel",
+   "IDFM:495051",
+   7.8
+  ],
+  [
+   "GPE:stade-de-france",
+   "IDFM:monomodalStopPlace:43145",
+   4.0
+  ],
+  [
+   "GPE:mairie-d-aubervilliers",
+   "IDFM:483898",
+   4.4
+  ],
+  [
+   "GPE:mairie-d-aubervilliers",
+   "IDFM:483904",
+   4.5
+  ],
+  [
+   "GPE:fort-d-aubervilliers",
+   "IDFM:463179",
+   4.6
+  ],
+  [
+   "GPE:fort-d-aubervilliers",
+   "IDFM:22393",
+   4.7
+  ],
+  [
+   "GPE:drancy-bobigny",
+   "IDFM:23304",
+   5.1
+  ],
+  [
+   "GPE:drancy-bobigny",
+   "IDFM:23297",
+   5.2
+  ],
+  [
+   "GPE:bobigny-pablo-picasso",
+   "IDFM:463131",
+   3.6
+  ],
+  [
+   "GPE:bobigny-pablo-picasso",
+   "IDFM:22015",
+   3.8
+  ],
+  [
+   "GPE:bobigny-pablo-picasso",
+   "IDFM:22625",
+   4.2
+  ],
+  [
+   "GPE:bobigny-pablo-picasso",
+   "IDFM:22624",
+   5.8
+  ],
+  [
+   "GPE:pont-de-bondy",
+   "IDFM:22264",
+   4.2
+  ],
+  [
+   "GPE:pont-de-bondy",
+   "IDFM:24430",
+   4.3
+  ],
+  [
+   "GPE:bondy",
+   "IDFM:monomodalStopPlace:43096",
+   3.8
+  ],
+  [
+   "GPE:bondy",
+   "IDFM:479491",
+   5.1
+  ],
+  [
+   "GPE:bondy",
+   "IDFM:471982",
+   5.2
+  ],
+  [
+   "GPE:rosny-bois-perrier",
+   "IDFM:monomodalStopPlace:42356",
+   3.6
+  ],
+  [
+   "GPE:rosny-bois-perrier",
+   "IDFM:490793",
+   4.3
+  ],
+  [
+   "GPE:rosny-bois-perrier",
+   "IDFM:490772",
+   4.3
+  ],
+  [
+   "GPE:val-de-fontenay",
+   "IDFM:monomodalStopPlace:47900",
+   5.7
+  ],
+  [
+   "GPE:nogent-le-perreux",
+   "IDFM:monomodalStopPlace:46552",
+   5.3
+  ],
+  [
+   "GPE:la-courneuve-six-routes",
+   "IDFM:22631",
+   4.1
+  ],
+  [
+   "GPE:la-courneuve-six-routes",
+   "IDFM:22630",
+   4.2
+  ],
+  [
+   "GPE:le-bourget",
+   "IDFM:470688",
+   4.3
+  ],
+  [
+   "GPE:le-bourget",
+   "IDFM:472194",
+   4.5
+  ],
+  [
+   "GPE:le-bourget",
+   "IDFM:monomodalStopPlace:43231",
+   6.9
+  ],
+  [
+   "GPE:sevran-beaudottes",
+   "IDFM:monomodalStopPlace:43193",
+   3.9
+  ],
+  [
+   "GPE:sevran-livry",
+   "IDFM:monomodalStopPlace:43194",
+   3.9
+  ],
+  [
+   "GPE:clichy-montfermeil",
+   "IDFM:478661",
+   4.6
+  ],
+  [
+   "GPE:clichy-montfermeil",
+   "IDFM:478664",
+   4.6
+  ],
+  [
+   "GPE:chelles-gournay",
+   "IDFM:monomodalStopPlace:58879",
+   5.6
+  ],
+  [
+   "GPE:parc-des-expositions",
+   "IDFM:monomodalStopPlace:47878",
+   5.7
+  ],
+  [
+   "GPE:aeroport-charles-de-gaulle-t2",
+   "IDFM:monomodalStopPlace:473364",
+   4.3
+  ],
+  [
+   "GPE:aeroport-charles-de-gaulle-t2",
+   "IDFM:10218",
+   4.5
+  ],
+  [
+   "GPE:aeroport-charles-de-gaulle-t2",
+   "IDFM:10219",
+   4.6
+  ],
+  [
+   "GPE:aeroport-charles-de-gaulle-2e-gare",
+   "IDFM:10216",
+   3.5
+  ],
+  [
+   "GPE:aeroport-charles-de-gaulle-2e-gare",
+   "IDFM:10217",
+   3.7
+  ],
+  [
+   "GPE:aeroport-d-orly",
+   "IDFM:490908",
+   3.4
+  ],
+  [
+   "GPE:aeroport-d-orly",
+   "IDFM:490917",
+   3.5
+  ],
+  [
+   "GPE:aeroport-d-orly",
+   "IDFM:473827",
+   6.7
+  ],
+  [
+   "GPE:aeroport-d-orly",
+   "IDFM:492974",
+   6.8
+  ],
+  [
+   "GPE:aeroport-d-orly",
+   "IDFM:474424",
+   7.9
+  ],
+  [
+   "GPE:massy-palaiseau",
+   "IDFM:monomodalStopPlace:58774",
+   3.5
+  ],
+  [
+   "GPE:massy-palaiseau",
+   "IDFM:486883",
+   4.0
+  ],
+  [
+   "GPE:massy-palaiseau",
+   "IDFM:494313",
+   5.6
+  ],
+  [
+   "GPE:massy-palaiseau",
+   "IDFM:496039",
+   5.6
+  ],
+  [
+   "GPE:versailles-chantiers",
+   "IDFM:monomodalStopPlace:43219",
+   5.1
+  ]
+ ],
+ "new_lines": [
+  {
+   "line": "15",
+   "kind": 1,
+   "headway_min": 2.5,
+   "stops": [
+    [
+     "GPE:noisy-champs",
+     0.0
+    ],
+    [
+     "GPE:bry-villiers-champigny",
+     3.95
+    ],
+    [
+     "GPE:champigny-centre",
+     6.6
+    ],
+    [
+     "GPE:saint-maur-creteil",
+     9.73
+    ],
+    [
+     "GPE:creteil-l-echat",
+     12.23
+    ],
+    [
+     "GPE:le-vert-de-maisons",
+     14.32
+    ],
+    [
+     "GPE:les-ardoines",
+     16.55
+    ],
+    [
+     "GPE:vitry-centre",
+     19.03
+    ],
+    [
+     "GPE:villejuif-louis-aragon",
+     21.47
+    ],
+    [
+     "GPE:villejuif-gustave-roussy",
+     23.85
+    ],
+    [
+     "GPE:arcueil-cachan",
+     26.22
+    ],
+    [
+     "GPE:bagneux",
+     27.88
+    ],
+    [
+     "GPE:chatillon-montrouge",
+     29.97
+    ],
+    [
+     "GPE:fort-d-issy-vanves-clamart",
+     32.3
+    ],
+    [
+     "GPE:issy-rer",
+     34.42
+    ],
+    [
+     "GPE:pont-de-sevres",
+     36.87
+    ],
+    [
+     "GPE:saint-cloud",
+     39.62
+    ],
+    [
+     "GPE:rueil-suresnes-mont-valerien",
+     42.52
+    ],
+    [
+     "GPE:nanterre-la-boule",
+     44.82
+    ],
+    [
+     "GPE:nanterre-la-folie",
+     47.25
+    ],
+    [
+     "GPE:la-defense",
+     49.58
+    ],
+    [
+     "GPE:becon-les-bruyeres",
+     52.98
+    ],
+    [
+     "GPE:bois-colombes",
+     54.85
+    ],
+    [
+     "GPE:les-agnettes",
+     56.83
+    ],
+    [
+     "GPE:les-gresillons",
+     59.2
+    ],
+    [
+     "GPE:saint-denis-pleyel",
+     61.72
+    ],
+    [
+     "GPE:stade-de-france",
+     63.29
+    ],
+    [
+     "GPE:mairie-d-aubervilliers",
+     65.1
+    ],
+    [
+     "GPE:fort-d-aubervilliers",
+     67.32
+    ],
+    [
+     "GPE:drancy-bobigny",
+     69.35
+    ],
+    [
+     "GPE:bobigny-pablo-picasso",
+     71.88
+    ],
+    [
+     "GPE:pont-de-bondy",
+     73.81
+    ],
+    [
+     "GPE:bondy",
+     75.64
+    ],
+    [
+     "GPE:rosny-bois-perrier",
+     77.29
+    ],
+    [
+     "GPE:val-de-fontenay",
+     81.2
+    ],
+    [
+     "GPE:nogent-le-perreux",
+     83.69
+    ],
+    [
+     "GPE:champigny-centre",
+     86.92
+    ]
+   ]
+  },
+  {
+   "line": "16",
+   "kind": 1,
+   "headway_min": 4.0,
+   "stops": [
+    [
+     "GPE:saint-denis-pleyel",
+     0.0
+    ],
+    [
+     "GPE:la-courneuve-six-routes",
+     2.9
+    ],
+    [
+     "GPE:le-bourget",
+     5.72
+    ],
+    [
+     "GPE:le-blanc-mesnil",
+     8.67
+    ],
+    [
+     "GPE:aulnay",
+     10.87
+    ],
+    [
+     "GPE:sevran-beaudottes",
+     13.88
+    ],
+    [
+     "GPE:sevran-livry",
+     15.9
+    ],
+    [
+     "GPE:clichy-montfermeil",
+     19.35
+    ],
+    [
+     "GPE:chelles-gournay",
+     22.75
+    ],
+    [
+     "GPE:noisy-champs",
+     25.72
+    ]
+   ]
+  },
+  {
+   "line": "17",
+   "kind": 1,
+   "headway_min": 4.0,
+   "stops": [
+    [
+     "GPE:saint-denis-pleyel",
+     0.0
+    ],
+    [
+     "GPE:la-courneuve-six-routes",
+     2.9
+    ],
+    [
+     "GPE:le-bourget",
+     5.72
+    ],
+    [
+     "GPE:le-bourget-aeroport",
+     8.6
+    ],
+    [
+     "GPE:triangle-de-gonesse",
+     12.32
+    ],
+    [
+     "GPE:parc-des-expositions",
+     15.98
+    ],
+    [
+     "GPE:aeroport-charles-de-gaulle-t2",
+     20.12
+    ],
+    [
+     "GPE:aeroport-charles-de-gaulle-2e-gare",
+     21.75
+    ],
+    [
+     "GPE:le-mesnil-amelot",
+     24.3
+    ]
+   ]
+  },
+  {
+   "line": "18",
+   "kind": 1,
+   "headway_min": 4.0,
+   "stops": [
+    [
+     "GPE:aeroport-d-orly",
+     0.0
+    ],
+    [
+     "GPE:antonypole-wissous-centre",
+     3.48
+    ],
+    [
+     "GPE:massy-opera",
+     5.36
+    ],
+    [
+     "GPE:massy-palaiseau",
+     7.65
+    ],
+    [
+     "GPE:polytechnique",
+     11.35
+    ],
+    [
+     "GPE:universite-paris-saclay",
+     13.38
+    ],
+    [
+     "GPE:christ-de-saclay",
+     15.68
+    ],
+    [
+     "GPE:guyancourt",
+     21.62
+    ],
+    [
+     "GPE:satory",
+     27.81
+    ],
+    [
+     "GPE:versailles-chantiers",
+     30.0
+    ]
+   ]
+  }
+ ]
+}

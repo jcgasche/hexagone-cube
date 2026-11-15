@@ -1,0 +1,102 @@
+{
+ "name": "k_into_b",
+ "label": "Line K into RER B",
+ "about": "Line K's trains no longer end at the surface of Gare du Nord: they run on as RER B trains through Châtelet-Les Halles to Massy-Palaiseau, calling at every station, in the minutes of today's RER B trains (ASSUMPTION for the place where they end). Needs RER B alone in today's tunnel, that is RER D on other tracks.",
+ "extend": [
+  {
+   "name": "Line K into RER B",
+   "lines": [
+    "K"
+   ],
+   "terminal": "IDFM:71410",
+   "path": [
+    [
+     "IDFM:monomodalStopPlace:462394",
+     0,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:45102",
+     4.0,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:44877",
+     6.2,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43833",
+     8.5,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:44500",
+     10.1,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:473890",
+     11.9,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:473843",
+     14.7,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:45877",
+     16.7,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43607",
+     18.6,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43067",
+     20.7,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:44493",
+     22.5,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43097",
+     25.1,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:46007",
+     28.1,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43066",
+     30.0,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43124",
+     32.3,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43228",
+     34.0,
+     "B"
+    ],
+    [
+     "IDFM:monomodalStopPlace:58774",
+     37.4,
+     "B"
+    ]
+   ],
+   "dwell_min": 0.7
+  }
+ ]
+}

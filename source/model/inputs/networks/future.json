@@ -1,0 +1,9 @@
+{
+ "name": "future",
+ "label": "Today, with lines 15 to 18",
+ "about": "Today's timetable with the lines of the Grand Paris Express that are not open yet: the network the project would be added to.",
+ "include": [
+  "cordons",
+  "gpe"
+ ]
+}

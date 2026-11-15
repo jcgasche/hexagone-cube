@@ -1,0 +1,57 @@
+{
+ "name": "r_into_d",
+ "label": "Line R into RER D",
+ "about": "Line R's trains no longer end at the surface of Gare de Lyon: they run on as RER D trains through Châtelet-Les Halles and Gare du Nord to Villiers-le-Bel, in the minutes of today's RER D trains (ASSUMPTION for the place where they end). Needs room for five more trains an hour between Gare de Lyon and Gare du Nord, that is RER D out of the tunnel it shares with RER B.",
+ "extend": [
+  {
+   "name": "Line R into RER D",
+   "lines": [
+    "R"
+   ],
+   "terminal": "IDFM:73626",
+   "path": [
+    [
+     "IDFM:monomodalStopPlace:470195",
+     0,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:45102",
+     5.8,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:462394",
+     9.8,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43204",
+     15.1,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:412743",
+     19.3,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43179",
+     23.6,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43251",
+     27.0,
+     "D"
+    ],
+    [
+     "IDFM:monomodalStopPlace:43222",
+     30.8,
+     "D"
+    ]
+   ],
+   "dwell_min": 0.7
+  }
+ ]
+}

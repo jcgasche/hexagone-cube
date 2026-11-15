@@ -129,7 +129,7 @@ PTS.section('times', function (root) {
     if (!q) return t + '<br><span>No time within the morning for this pair of stations.</span>';
     t += '<br><span>' + (state.from < 0 ? 'On average to all the other stations' : 'Starting from') + '</span>' + (state.from < 0 ? '' : ' <b>' + ST[state.from][NAME] + '</b>');
     const nn = state.from < 0 ? n1 : n0, d = q[0] - q[1];
-    t += '<br><span>Today:</span> <b>' + nn(q[0]) + ' min</b><br><span>With the project:</span> <b>' + nn(q[1]) + ' min</b>';
+    t += '<br><span>Before the project:</span> <b>' + nn(q[0]) + ' min</b><br><span>With the project:</span> <b>' + nn(q[1]) + ' min</b>';
     t += '<br>' + (Math.abs(d) < 0.25 ? '<span>No change</span>' : '<span>' + (d > 0 ? 'Saved:' : 'Lost:') + '</span> <b>' + nn(Math.abs(d)) + ' min</b>' + (q[0] > 0 ? ' (' + F.pct(Math.abs(d) / q[0]) + ')' : ''));
     return t + (state.from < 0 && T ? '<br><small><span>Click to see the times from this station.</span></small>' : '');
   }
@@ -196,12 +196,12 @@ PTS.section('times', function (root) {
     const who = state.from < 0 ? 'Average time from a station to all the others; every station counts by the passengers who enter it' : 'Average time from this station to all the others, each counted by the passengers who enter it';
     $('#tm-d-today').textContent = who; $('#tm-d-plan').textContent = 'The same, with the trains of the project'; $('#tm-d-saved').textContent = 'The difference between the two';
     const title = $('#tm-title'); PTS.clear(title);
-    if (state.from < 0) title.appendChild(h('span', { text: state.view === 'saved' ? 'Each station: minutes saved on average to reach all the others' : state.view === 'today' ? 'Each station: average minutes to reach all the others, today' : 'Each station: average minutes to reach all the others, with the project' }));
-    else { title.appendChild(h('span', { text: state.view === 'saved' ? 'Minutes saved to each station, from' : state.view === 'today' ? 'Minutes to each station today, from' : 'Minutes to each station with the project, from' })); title.appendChild(document.createTextNode(' ')); title.appendChild(h('b', { text: ST[state.from][NAME] })); }
+    if (state.from < 0) title.appendChild(h('span', { text: state.view === 'saved' ? 'Each station: minutes saved on average to reach all the others' : state.view === 'today' ? 'Each station: average minutes to reach all the others, before the project' : 'Each station: average minutes to reach all the others, with the project' }));
+    else { title.appendChild(h('span', { text: state.view === 'saved' ? 'Minutes saved to each station, from' : state.view === 'today' ? 'Minutes to each station before the project, from' : 'Minutes to each station with the project, from' })); title.appendChild(document.createTextNode(' ')); title.appendChild(h('b', { text: ST[state.from][NAME] })); }
     all.disabled = state.from < 0;
     // legend: the classes, with the stations in each and the passengers who enter them
     PTS.clear(legend);
-    const row = h('div', { class: 'tm-leg-row' }, h('span', { class: 'tm-leg-t', text: state.view === 'saved' ? 'Minutes saved against today' : 'Minutes' }));
+    const row = h('div', { class: 'tm-leg-row' }, h('span', { class: 'tm-leg-t', text: state.view === 'saved' ? 'Minutes saved by the project' : 'Minutes' }));
     B.forEach(function (c, i) {
       if (!cnt[i][0]) return;
       row.appendChild(h('span', { class: 'tm-leg-i' }, h('i', { class: 'tm-chip', style: { background: c[2] } }), h('span', { text: c[1] }), h('b', { text: n0(cnt[i][0]) }), h('small', null, '(', n0(Math.round(cnt[i][1] / 1000) * 1000), ')')));
@@ -214,7 +214,7 @@ PTS.section('times', function (root) {
   PTS.onResize(host, drawMap);
 
   // ---- how many commuters gain how much
-  const CL = ['Slower by more than 1 minute', 'Within 1 minute of today', '1 to 5 minutes quicker', '5 to 10 minutes quicker', 'More than 10 minutes quicker'];
+  const CL = ['Slower by more than 1 minute', 'Change of less than 1 minute', '1 to 5 minutes quicker', '5 to 10 minutes quicker', 'More than 10 minutes quicker'];
   const COL = ['var(--tm-slow)', 'var(--neutral-mark)', 'var(--tm-g2)', 'var(--tm-g3)', 'var(--tm-g5)'];
   PTS.chart.bars($('#tm-classes'), { rows: D.trips.classes.map(function (c, i) { return { label: CL[i], value: c.commuters, color: COL[i], text: n0(c.commuters) }; }).filter(function (r, i) { return i !== 1; }), fmt: n0 });
   PTS.table($('#tm-classes-table'), [
@@ -230,19 +230,19 @@ PTS.section('times', function (root) {
   PTS.table($('#tm-od'), [
     { key: 'from', label: 'From' }, { key: 'to', label: 'To' },
     { key: 'commuters', label: 'People a day', num: true, fmt: n0 },
-    { key: 'today', label: 'Today', num: true, fmt: mins }, { key: 'plan', label: 'With the project', num: true, fmt: mins },
+    { key: 'today', label: 'Before the project', num: true, fmt: mins }, { key: 'plan', label: 'With the project', num: true, fmt: mins },
     { key: 'saved', label: 'Saved', num: true, fmt: mins }
   ], D.od.map(function (o) { return { from: short(o.from), to: short(o.to), commuters: o.commuters, today: o.today, plan: o.plan, saved: o.today - o.plan }; }));
   PTS.table($('#tm-pairs'), [
     { key: 'from', label: 'From' }, { key: 'to', label: 'To' },
-    { key: 'today', label: 'Today', num: true, fmt: mins }, { key: 'plan', label: 'With the project', num: true, fmt: mins },
+    { key: 'today', label: 'Before the project', num: true, fmt: mins }, { key: 'plan', label: 'With the project', num: true, fmt: mins },
     { key: 'saved', label: 'Saved', num: true, fmt: mins }, { key: 'share', label: 'Share of the trip', num: true, fmt: function (v) { return F.pct(v); } }
   ], D.pairs.map(function (p) { return Object.assign({}, p, { from: short(p.from) }); }));
   const lineName = function (l) { return l === 'metro' ? 'Metro, all lines' : (l.length === 1 && 'ABCDE'.indexOf(l) >= 0 ? 'RER ' : 'Line ') + l; };
   PTS.table($('#tm-lines'), [
     { key: 'name', label: 'Line' },
     { key: 'weight', label: 'Passengers a working day', num: true, fmt: n0 },
-    { key: 'today', label: 'Average to the other stations today', num: true, fmt: function (v) { return n1(v) + ' min'; } },
+    { key: 'today', label: 'Average to the other stations before the project', num: true, fmt: function (v) { return n1(v) + ' min'; } },
     { key: 'gain', label: 'Saved on average', num: true, fmt: function (v) { return F.n(v, 1) + ' min'; } },
     { key: 'share_1', label: 'Passengers at stations that save 1 minute or more', num: true, fmt: function (v) { return F.pct(v); } },
     { key: 'bestTxt', label: 'Station that gains most' }
@@ -255,4 +255,15 @@ PTS.section('times', function (root) {
     { key: 'slower', label: 'Commuters slower by 1 minute or more', num: true, fmt: n0 },
     { key: 'hours_day', label: 'Hours saved a working day, journeys to work', num: true, fmt: n0 }
   ], D.versions.map(function (v) { return Object.assign({}, v, v.id === 'plan' ? { _class: 'tm-plan-row' } : {}); }));
+
+  // ---- the check of today's times against a journey planner
+  if (D.check && $('#tm-check')) {
+    const gap = function (v) { return (v < -0.05 ? '\u2212' : v > 0.05 ? '+' : '') + n1(Math.abs(v)) + ' min'; };
+    PTS.table($('#tm-check'), [
+      { key: 'from', label: 'From' }, { key: 'to', label: 'To' },
+      { key: 'ref', label: 'Journey planner', num: true, fmt: mins },
+      { key: 'model', label: 'This calculation', num: true, fmt: function (v) { return n1(v) + ' min'; } },
+      { key: 'gap', label: 'Gap', num: true, fmt: gap }
+    ], D.check.rows.map(function (r) { return { from: r.from, to: r.to, ref: r.ref, model: r.model, gap: r.model - r.ref }; }).sort(function (a, b) { return a.gap - b.gap; }));
+  }
 });

@@ -1,0 +1,183 @@
+{
+ "name": "c_split",
+ "label": "Line L to RER C south, RER C west to line H",
+ "about": "RER C is cut between Saint-Michel Notre-Dame and Gare d'Austerlitz. Its southern part runs from Austerlitz through a new tunnel to Châtelet-Les Halles (4 minutes) and Saint-Lazare (8 minutes) and on as line L. Its western part runs from Saint-Michel through a new link to Châtelet-Les Halles (2 minutes) and Nord-Est (6 minutes) and on as line H. Stops included (ASSUMPTION, at the speeds of RER G in the plan).",
+ "new_stops": [
+  {
+   "id": "X:SL:C",
+   "name": "Saint-Lazare (line L to RER C)",
+   "lon": 2.3254,
+   "lat": 48.8763,
+   "member_of": [
+    "IDFM:71370"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:58566"
+   ],
+   "to_like_min": 3
+  },
+  {
+   "id": "X:CH:CL",
+   "name": "Châtelet-Les Halles (line L to RER C)",
+   "lon": 2.347,
+   "lat": 48.8617,
+   "member_of": [
+    "IDFM:474151"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:45102"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:CH:CH",
+   "name": "Châtelet-Les Halles (RER C to line H)",
+   "lon": 2.347,
+   "lat": 48.8617,
+   "member_of": [
+    "IDFM:474151"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:45102"
+   ],
+   "to_like_min": 5
+  },
+  {
+   "id": "X:NE:H",
+   "name": "Paris Nord-Est (RER C to line H)",
+   "lon": 2.3568,
+   "lat": 48.8785,
+   "member_of": [
+    "IDFM:71410",
+    "IDFM:71359"
+   ],
+   "like": [
+    "IDFM:monomodalStopPlace:462394",
+    "IDFM:monomodalStopPlace:470519"
+   ],
+   "to_like_min": 5
+  }
+ ],
+ "walks": [
+  [
+   "X:CH:CL",
+   "X:CH:CH",
+   3
+  ]
+ ],
+ "split": [
+  {
+   "lines": [
+    "C"
+   ],
+   "at": [
+    "IDFM:monomodalStopPlace:44877",
+    "IDFM:monomodalStopPlace:43072"
+   ]
+  }
+ ],
+ "through": [
+  {
+   "name": "Line L to RER C south",
+   "a": {
+    "lines": [
+     "L"
+    ],
+    "terminal": "IDFM:71370"
+   },
+   "b": {
+    "lines": [
+     "C"
+    ],
+    "terminal": "IDFM:71135"
+   },
+   "path": [
+    [
+     "X:SL:C",
+     0
+    ],
+    [
+     "X:CH:CL",
+     4
+    ],
+    [
+     "IDFM:monomodalStopPlace:43072",
+     8,
+     "C"
+    ]
+   ],
+   "dwell_min": 1,
+   "max_wait_min": 10
+  },
+  {
+   "name": "RER C west to line H",
+   "a": {
+    "lines": [
+     "C"
+    ],
+    "terminal": "IDFM:73620"
+   },
+   "b": {
+    "lines": [
+     "H"
+    ],
+    "terminal": "IDFM:71410"
+   },
+   "path": [
+    [
+     "IDFM:monomodalStopPlace:44877",
+     0,
+     "C"
+    ],
+    [
+     "X:CH:CH",
+     2
+    ],
+    [
+     "X:NE:H",
+     6
+    ]
+   ],
+   "dwell_min": 1,
+   "max_wait_min": 10
+  }
+ ],
+ "watch": [
+  {
+   "name": "New tunnel, Saint-Lazare to Châtelet",
+   "pairs": [
+    [
+     "X:SL:C",
+     "X:CH:CL"
+    ]
+   ]
+  },
+  {
+   "name": "New tunnel, Châtelet to Austerlitz",
+   "pairs": [
+    [
+     "X:CH:CL",
+     "IDFM:monomodalStopPlace:43072"
+    ]
+   ]
+  },
+  {
+   "name": "New link, Saint-Michel to Châtelet",
+   "pairs": [
+    [
+     "IDFM:monomodalStopPlace:44877",
+     "X:CH:CH"
+    ]
+   ]
+  },
+  {
+   "name": "New tunnel, Châtelet to Nord-Est (C and H)",
+   "pairs": [
+    [
+     "X:CH:CH",
+     "X:NE:H"
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,394 @@
+{
+ "joins": {
+  "l_c": {
+   "arrivals": 100,
+   "joined": 82,
+   "wait": 6.6
+  },
+  "c_l": {
+   "arrivals": 124,
+   "joined": 96,
+   "wait": 5.6
+  },
+  "c_h": {
+   "arrivals": 95,
+   "joined": 66,
+   "wait": 5.4
+  },
+  "h_c": {
+   "arrivals": 87,
+   "joined": 81,
+   "wait": 4.3
+  }
+ },
+ "ex": {
+  "sl_aus": {
+   "from": "Gare Saint-Lazare",
+   "to": "Gare d'Austerlitz",
+   "today": 21.0,
+   "plan": 21.0,
+   "var": 9.0
+  },
+  "enghien_javel": {
+   "from": "Enghien-les-Bains",
+   "to": "Javel",
+   "today": 47.0,
+   "plan": 47.0,
+   "var": 37.0
+  },
+  "bretigny_sl": {
+   "from": "Br\u00e9tigny",
+   "to": "Gare Saint-Lazare",
+   "today": 44.0,
+   "plan": 44.0,
+   "var": 37.0
+  },
+  "becon_chatelet": {
+   "from": "B\u00e9con les Bruy\u00e8res",
+   "to": "Ch\u00e2telet - Les Halles",
+   "today": 22.0,
+   "plan": 22.0,
+   "var": 16.0
+  },
+  "sl_juvisy": {
+   "from": "Gare Saint-Lazare",
+   "to": "Juvisy",
+   "today": 35.0,
+   "plan": 35.0,
+   "var": 29.0
+  },
+  "juvisy_chatelet": {
+   "from": "Juvisy",
+   "to": "Ch\u00e2telet - Les Halles",
+   "today": 26.0,
+   "plan": 26.0,
+   "var": 21.0
+  },
+  "epinay_sm": {
+   "from": "\u00c9pinay - Villetaneuse",
+   "to": "Saint-Michel Notre-Dame",
+   "today": 22.0,
+   "plan": 22.0,
+   "var": 17.0
+  },
+  "clichy_bfm": {
+   "from": "Clichy - Levallois",
+   "to": "Biblioth\u00e8que Fran\u00e7ois Mitterrand",
+   "today": 26.0,
+   "plan": 26.0,
+   "var": 21.0
+  },
+  "stcloud_aus": {
+   "from": "Saint-Cloud",
+   "to": "Gare d'Austerlitz",
+   "today": 37.0,
+   "plan": 37.0,
+   "var": 32.0
+  },
+  "invalides_nord": {
+   "from": "Invalides",
+   "to": "Gare du Nord",
+   "today": 17.0,
+   "plan": 16.0,
+   "var": 13.0
+  },
+  "ermont_invalides": {
+   "from": "Ermont - Eaubonne",
+   "to": "Invalides",
+   "today": 37.0,
+   "plan": 35.0,
+   "var": 32.0
+  },
+  "nord_sl": {
+   "from": "Gare du Nord",
+   "to": "Gare Saint-Lazare",
+   "today": 16.0,
+   "plan": 5.0,
+   "var": 11.0
+  },
+  "epinay_sl": {
+   "from": "\u00c9pinay - Villetaneuse",
+   "to": "Gare Saint-Lazare",
+   "today": 29.0,
+   "plan": 15.0,
+   "var": 22.0
+  },
+  "becon_nord": {
+   "from": "B\u00e9con les Bruy\u00e8res",
+   "to": "Gare du Nord",
+   "today": 21.0,
+   "plan": 16.0,
+   "var": 21.0
+  },
+  "juvisy_invalides": {
+   "from": "Juvisy",
+   "to": "Invalides",
+   "today": 27.0,
+   "plan": 27.0,
+   "var": 35.0
+  },
+  "bfm_orsay": {
+   "from": "Biblioth\u00e8que Fran\u00e7ois Mitterrand",
+   "to": "Mus\u00e9e d'Orsay",
+   "today": 12.0,
+   "plan": 12.0,
+   "var": 20.0
+  },
+  "versailles_aus": {
+   "from": "Versailles Ch\u00e2teau Rive Gauche",
+   "to": "Gare d'Austerlitz",
+   "today": 47.0,
+   "plan": 47.0,
+   "var": 51.0
+  }
+ },
+ "od": {
+  "gain": [
+   {
+    "from": "Ivry-sur-Seine",
+    "to": "Paris 9e",
+    "commuters": 620,
+    "base": 46.0,
+    "variant": 41.0,
+    "saved": 5.0
+   },
+   {
+    "from": "Ivry-sur-Seine",
+    "to": "Paris 8e",
+    "commuters": 780,
+    "base": 46.0,
+    "variant": 43.0,
+    "saved": 3.0
+   },
+   {
+    "from": "Vitry-sur-Seine",
+    "to": "Paris 8e",
+    "commuters": 700,
+    "base": 54.0,
+    "variant": 50.0,
+    "saved": 4.0
+   },
+   {
+    "from": "Paris 12e",
+    "to": "Levallois-Perret",
+    "commuters": 530,
+    "base": 61.0,
+    "variant": 57.0,
+    "saved": 4.0
+   },
+   {
+    "from": "Vitry-sur-Seine",
+    "to": "Paris 10e",
+    "commuters": 330,
+    "base": 51.0,
+    "variant": 45.0,
+    "saved": 6.0
+   },
+   {
+    "from": "Ivry-sur-Seine",
+    "to": "Paris 17e",
+    "commuters": 290,
+    "base": 49.0,
+    "variant": 42.0,
+    "saved": 7.0
+   },
+   {
+    "from": "Vitry-sur-Seine",
+    "to": "Paris 17e",
+    "commuters": 330,
+    "base": 55.0,
+    "variant": 50.0,
+    "saved": 5.0
+   },
+   {
+    "from": "Vitry-sur-Seine",
+    "to": "Levallois-Perret",
+    "commuters": 130,
+    "base": 64.0,
+    "variant": 52.0,
+    "saved": 12.0
+   }
+  ],
+  "loss": [
+   {
+    "from": "Paris 17e",
+    "to": "Paris 10e",
+    "commuters": 870,
+    "base": 28.0,
+    "variant": 35.0,
+    "saved": -7.0
+   },
+   {
+    "from": "Paris 10e",
+    "to": "Paris 17e",
+    "commuters": 650,
+    "base": 27.0,
+    "variant": 34.0,
+    "saved": -7.0
+   },
+   {
+    "from": "\u00c9pinay-sur-Seine",
+    "to": "Paris 8e",
+    "commuters": 490,
+    "base": 43.0,
+    "variant": 50.0,
+    "saved": -7.0
+   },
+   {
+    "from": "Argenteuil",
+    "to": "Paris 10e",
+    "commuters": 380,
+    "base": 38.0,
+    "variant": 46.0,
+    "saved": -8.0
+   },
+   {
+    "from": "Paris 19e",
+    "to": "Levallois-Perret",
+    "commuters": 450,
+    "base": 41.0,
+    "variant": 46.0,
+    "saved": -5.0
+   },
+   {
+    "from": "Ivry-sur-Seine",
+    "to": "Paris 16e",
+    "commuters": 370,
+    "base": 51.0,
+    "variant": 57.0,
+    "saved": -6.0
+   },
+   {
+    "from": "Choisy-le-Roi",
+    "to": "Paris 15e",
+    "commuters": 460,
+    "base": 58.0,
+    "variant": 64.0,
+    "saved": -6.0
+   },
+   {
+    "from": "Paris 18e",
+    "to": "Levallois-Perret",
+    "commuters": 960,
+    "base": 40.0,
+    "variant": 43.0,
+    "saved": -3.0
+   }
+  ]
+ },
+ "trains": {
+  "peak": {
+   "B": 20,
+   "D": 12,
+   "G": 12,
+   "K": 4,
+   "R": 5,
+   "H": 20,
+   "L": 23,
+   "C_south": 23,
+   "C_west": 20
+  },
+  "limit_two": 32,
+  "limit_one": 21,
+  "ch": 20,
+  "lc": 23,
+  "two_pairs": {
+   "old": 32,
+   "new": 32,
+   "all": 64
+  },
+  "three_pairs": {
+   "old": 32,
+   "g": 12,
+   "ch": 20,
+   "all": 64
+  },
+  "with_kr": {
+   "old": 24,
+   "d": 17,
+   "g": 12,
+   "ch": 20,
+   "dg": 29,
+   "all": 73
+  },
+  "today": 32
+ },
+ "km": {
+  "sl_chatelet": 2.5,
+  "chatelet_austerlitz": 2.8,
+  "chatelet_saint_michel": 1.0,
+  "nord_chatelet": 2.2
+ },
+ "cost": {
+  "low": 3.4,
+  "central": 4.9,
+  "high": 7.4,
+  "items": {
+   "sl_chatelet": 0.438,
+   "chatelet_austerlitz": 0.49,
+   "chatelet_saint_michel": 0.175,
+   "nord_chatelet": 0.385,
+   "chatelet_lc": 0.9,
+   "chatelet_ch": 0.45,
+   "chatelet_links": 0.2,
+   "tie_austerlitz": 0.4,
+   "tie_saint_michel": 0.4,
+   "rer_f_tunnel": -0.455
+  },
+  "hard": 3.38,
+  "km_new": 8.5,
+  "km_not_built": 2.6,
+  "km_more": 5.9,
+  "uplift": 1.461,
+  "upkeep": 0.031,
+  "tracks_chatelet": 6,
+  "tracks_chatelet_all": 10,
+  "d_pair": 2.64,
+  "d_shared": 3.0,
+  "kr": 0.3,
+  "year": 0.268,
+  "year_low": 0.196,
+  "year_high": 0.39,
+  "with_d": 7.8
+ },
+ "value": {
+  "hours_more": 3500,
+  "hours_gained": 10700,
+  "hours_lost": 7600,
+  "year": 0.016,
+  "year_gained": 0.05,
+  "share_of_cost": 0.06,
+  "all_trips": 1.24,
+  "vot": 15.0,
+  "days": 250,
+  "more_than_plan": 0.233,
+  "more_than_plan_kr": 0.151
+ },
+ "load": {
+  "bd": {
+   "future": 92900,
+   "plan": 82600,
+   "plan_kb_rd": 86300,
+   "variant_c": 61800
+  },
+  "bd_relief": 0.335,
+  "bd_relief_plan": 0.111,
+  "day": {
+   "c_sl_ch": 153000,
+   "c_ch_aus": 173000,
+   "c_sm_ch": 70000,
+   "c_ch_ne": 135000,
+   "g_n": 80000,
+   "g_s": 84000
+  },
+  "c_today": 46600,
+  "c_today_day": 116000
+ },
+ "params": {
+  "sub_len": 225,
+  "tracks": {
+   "lc": 4,
+   "ch": 2
+  }
+ }
+}
