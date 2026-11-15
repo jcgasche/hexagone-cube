@@ -1,0 +1,138 @@
+<!-- en: cb6ea222a7 -->
+<p class="lede">Cette annexe teste un ajout au projet. Le RER B et le RER D partagent un seul tunnel entre la gare du Nord et Châtelet-Les Halles, la paire de voies la plus chargée de la région. Le projet creuse le tunnel du RER G juste à côté. Si le même chantier donnait au RER D sa propre paire de voies, les deux lignes cesseraient de se retarder l’une l’autre. Cela coûterait environ {{ d.rerd.cost.own.central | 1 }} à {{ d.rerd.cost.moved.central | 1 }}&nbsp;Md€ en plus du projet, et rapporterait chaque année à peu près ce que cela coûte. Cet ajout n’est ni dans le projet, ni dans son coût, ni dans ses avantages.</p>
+
+<div class="block" id="rerd.why">
+  <h2>Pourquoi regarder le RER D</h2>
+  <ul>
+    <li><strong>Un seul tunnel pour deux des lignes les plus chargées.</strong> Entre Châtelet et la gare du Nord, le RER B et le RER D transportent environ {{ d.rerd.k.bd | 0 }} voyageurs par jour sur deux voies&nbsp;: {{ d.rerd.k.b_bd | 0 }} pour le RER B et {{ d.rerd.k.d_bd | 0 }} pour le RER D (voir <a class="xref" href="#flows.map">la carte des voyageurs par ligne</a>).</li>
+    <li><strong>L’horaire demande plus que ce que le tunnel donne.</strong> Il prévoit 20 RER B et 12 RER D par heure et par sens, soit 32 trains.[[idfm_b22]] Environ 28 à 29 circulent en pratique,[[cc_rer]] et le RER B fait passer 17,5 de ses 20 trains.[[rd_b23]] Un train en retard sur une ligne retarde l’autre.</li>
+    <li><strong>La nouvelle signalisation n’ajoute pas de trains.</strong> NExTEO, attendu sur ce tronçon d’ici 2032, devrait laisser passer environ 31 des 32 trains. La limite de 32 reste.[[rd_ce]]</li>
+    <li><strong>Le projet construit à côté un tunnel pour bien moins de voyageurs.</strong> Le tunnel du RER G transporterait environ {{ d.rerd.k.g | 0 }} voyageurs par jour entre Nord-Est et Châtelet, pour {{ d.flows.k.h.g | 0 }} trains par heure quand ses quais en reçoivent {{ d.flows.sec.g.cap | 0 }}. Le RER D en transporte {{ d.rerd.k.times | 1 }} fois plus dans l’ancien tunnel voisin.</li>
+  </ul>
+  <p>Le chantier du RER G ouvre une fois le sous-sol entre les deux gares&nbsp;: des puits, une caverne à Châtelet, une gare à Nord-Est. Cette annexe cherche ce qu’il faudrait pour y faire passer aussi le RER D, et si le prix tient face aux études de 2003 et de 2013.</p>
+</div>
+
+<div class="block" id="rerd.layouts">
+  <h2>Quatre façons de faire</h2>
+  <p>Dans chaque schéma, le RER B reste où il est et garde l’ancien tunnel pour lui seul. Le RER G garde son tracé. Seul le RER D se déplace.</p>
+  <div class="tbl-wrap"><table class="tbl rd-tbl stack-sm">
+    <thead><tr><th>Schéma</th><th>Ce qui est construit pour le RER D</th><th>Travaux sur des lignes en service</th></tr></thead>
+    <tbody>
+      <tr><th>1. Le RER D sur les voies du RER G</th><td data-l="Ce qui est construit">Deux courts raccordements pour entrer dans le tunnel du RER G et en sortir, deux voies à quai de plus dans la caverne du RER G à Châtelet</td><td data-l="Travaux sur des lignes en service">Sous la gare RER de la gare du Nord, là où le RER D quitte le RER B&nbsp;; sur le tunnel du RER D vers la gare de Lyon</td></tr>
+      <tr><th>2. Sa propre paire de voies à côté du RER G</th><td data-l="Ce qui est construit">{{ d.rerd.cost.own.km | 1 }} km de tunnel à double voie à côté du RER G, deux voies à quai dans la caverne de Châtelet. Le RER D garde ses quais à la gare du Nord</td><td data-l="Travaux sur des lignes en service">Les deux mêmes endroits</td></tr>
+      <tr><th>3. Sa propre paire, avec de nouveaux quais dans les deux gares</th><td data-l="Ce qui est construit">Comme le schéma 2, et le RER D quitte ses voies actuelles au nord de la gare du Nord&nbsp;: {{ d.rerd.params.ramp_km | 1 }} km de tunnel en plus et deux voies à quai dans la gare de Nord-Est</td><td data-l="Travaux sur des lignes en service">Sur le tunnel du RER D vers la gare de Lyon seulement. Rien sous la gare RER de la gare du Nord</td></tr>
+      <tr><th>4. Un tracé entièrement nouveau jusqu’à la gare de Lyon</th><td data-l="Ce qui est construit">{{ d.rerd.cost.route.km | 1 }} km de tunnel, du nord de la gare du Nord jusqu’au-delà de la gare de Lyon, avec des quais à Nord-Est, à Châtelet et à la gare de Lyon</td><td data-l="Travaux sur des lignes en service">Seulement là où le nouveau tunnel rejoint les voies de surface, à chaque bout</td></tr>
+    </tbody>
+  </table></div>
+  <p>Dans les schémas 3 et 4, les voies à quai que le RER D libère à la gare du Nord et à Châtelet reviennent au RER B, qui s’arrête alors sur deux voies par sens dans les deux gares.</p>
+</div>
+
+<div class="block" id="rerd.sim">
+  <h2>Ce que chaque schéma change pour les trains</h2>
+  <p>Une simulation fait passer la pointe du matin train par train dans le tronçon, 300 jours pour chaque cas. Les trains arrivent en retard comme aujourd’hui,[[rd_punct]] attendent une voie à quai libre, et se suivent d’aussi près que la signalisation le permet. Le résultat est le retard que le tronçon ajoute à un train. Avec la signalisation d’aujourd’hui, la simulation laisse passer {{ d.rerd.sim.check.today_through | 1 }} des 32 trains, comme observé&nbsp;; avec NExTEO, {{ d.rerd.sim.check.nexteo_through | 1 }}. L’intervalle entre deux trains avec NExTEO et dans un tunnel neuf, {{ d.rerd.sim.check.h_new | 0 }} secondes, est une hypothèse <span class="tag assume">hypothèse</span>.</p>
+  <div class="tbl-wrap"><table class="tbl rd-tbl">
+    <thead><tr><th>Voies</th><th class="num">Trains par heure et par sens avec moins d’une minute de retard ajouté</th></tr></thead>
+    <tbody>
+      <tr><th>Ancien tunnel, RER B et D ensemble (schéma d’aujourd’hui, avec NExTEO)</th><td class="num">{{ d.rerd.sim.capacity.bd['90 s'] | 0 }}</td></tr>
+      <tr><th>Ancien tunnel, RER B seul sur deux voies à quai par sens</th><td class="num">{{ d.rerd.sim.capacity.b_alone['90 s'] | 0 }}</td></tr>
+      <tr><th>Nouveau tunnel, RER D et RER G ensemble (schéma 1)</th><td class="num">{{ d.rerd.sim.capacity.dg['90 s'] | 0 }}</td></tr>
+      <tr><th>Une ligne seule sur une voie à quai par sens (le RER G dans le projet, le RER D dans les schémas 2 à 4)</th><td class="num">{{ d.rerd.sim.capacity.one['90 s'] | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <div class="tbl-wrap"><table class="tbl rd-tbl rd-wide">
+    <thead><tr><th>Secondes que le tronçon ajoute à un train</th><th class="num">RER B</th><th class="num">RER D</th><th class="num">RER G</th><th class="num">Minutes de retard par jour ouvré, tous voyageurs</th></tr></thead>
+    <tbody>
+      <tr><th colspan="5">Service d’aujourd’hui&nbsp;: 20 RER B, 12 RER D, 12 RER G par heure</th></tr>
+      <tr><th>Le projet&nbsp;: RER B et D ensemble, RER G seul</th><td class="num">{{ d.rerd.sim.today.plan.pairs.old.lines.B.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.plan.pairs.old.lines.D.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.plan.pairs.new.lines.G.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.plan.delay_min | 0 }}</td></tr>
+      <tr><th>Schéma 1&nbsp;: le RER D avec le RER G</th><td class="num">{{ d.rerd.sim.today.dg.pairs.old.lines.B.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.dg.pairs.new.lines.D.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.dg.pairs.new.lines.G.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.dg.delay_min | 0 }}</td></tr>
+      <tr><th>Schémas 2 à 4&nbsp;: chaque ligne seule</th><td class="num">{{ d.rerd.sim.today.six.pairs.old.lines.B.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.six.pairs['D pair'].lines.D.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.six.pairs.new.lines.G.s | 0 }}</td><td class="num">{{ d.rerd.sim.today.six.delay_min | 0 }}</td></tr>
+      <tr><th colspan="5">Avec quatre trains de plus par heure sur chaque ligne&nbsp;: 24 RER B, 16 RER D, 16 RER G</th></tr>
+      <tr><th>Le projet&nbsp;: RER B et D ensemble, RER G seul</th><td class="num" colspan="2">ne peut pas circuler&nbsp;: 40 trains pour une paire de voies</td><td class="num">{{ d.rerd.sim.growth.plan.pairs.new.lines.G.s | 0 }}</td><td class="num">impraticable</td></tr>
+      <tr><th>Schéma 1&nbsp;: le RER D avec le RER G</th><td class="num">{{ d.rerd.sim.growth.dg.pairs.old.lines.B.s | 0 }}</td><td class="num">{{ d.rerd.sim.growth.dg.pairs.new.lines.D.s | 0 }}</td><td class="num">{{ d.rerd.sim.growth.dg.pairs.new.lines.G.s | 0 }}</td><td class="num">{{ d.rerd.sim.growth.dg.delay_min | 0 }}</td></tr>
+      <tr><th>Schémas 2 à 4&nbsp;: chaque ligne seule</th><td class="num">{{ d.rerd.sim.growth.six.pairs.old.lines.B.s | 0 }}</td><td class="num">{{ d.rerd.sim.growth.six.pairs['D pair'].lines.D.s | 0 }}</td><td class="num">{{ d.rerd.sim.growth.six.pairs.new.lines.G.s | 0 }}</td><td class="num">{{ d.rerd.sim.growth.six.delay_min | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>Séparer les lignes supprime l’essentiel du retard.</strong> Au service d’aujourd’hui, le tronçon ajoute {{ d.rerd.sim.today.plan.pairs.old.lines.B.s | 0 }} secondes à un train du RER B quand il partage le tunnel, et {{ d.rerd.sim.today.six.pairs.old.lines.B.s | 0 }} quand il est seul.</li>
+    <li><strong>Le partage avec le RER G fonctionne aujourd’hui, mais pas longtemps.</strong> Le schéma 1 met 24 trains dans le nouveau tunnel, ce qui passe. Avec quatre trains de plus sur chaque ligne, il en porte 32, et les RER D et G se retrouvent là où sont les RER B et D aujourd’hui. Il lie aussi le RER D à une autre ligne à branches.</li>
+    <li><strong>Chaque ligne seule est le schéma qui dure.</strong> Le RER D peut alors monter à environ 20 trains par heure, la limite d’une voie à quai par sens, et aucune ligne ne dépend d’une autre. Mettre le RER B avec le RER G, ou répartir le RER D entre les deux tunnels, donne de moins bons résultats dans tous les cas testés.</li>
+    <li><strong>Le classement des schémas ne change pas</strong> quand les retards sont réduits de moitié ou augmentés de moitié, ni quand les trains se suivent à 80 ou à 100 secondes.</li>
+  </ul>
+</div>
+
+<div class="block" id="rerd.cost">
+  <h2>Ce que cela coûterait</h2>
+  <p>Les schémas sont chiffrés avec les prix unitaires du projet (voir <a class="xref" href="#cost">Coût</a>)&nbsp;: {{ m.rates.tunnel_civil + m.rates.tunnel_systems | 3 }}&nbsp;Md€ par kilomètre de tunnel à double voie équipé, {{ m.rates.platform_m * 1000 | 1 }}&nbsp;M€ par mètre de voie à quai dans une gare souterraine, {{ m.rates.junction | 2 }}&nbsp;Md€ pour une bifurcation souterraine et {{ m.rates.portal | 2 }}&nbsp;Md€ pour le raccordement d’une paire de voies à une ligne en service. Les deux derniers sont des hypothèses <span class="tag assume">hypothèse</span>&nbsp;: aucun prix publié n’a été trouvé pour l’un ni pour l’autre.</p>
+  <div class="tbl-wrap"><table class="tbl rd-tbl rd-wide">
+    <thead><tr><th>Travaux, en milliards d’euros</th><th class="num">1. Partagé avec le RER G</th><th class="num">2. Paire propre</th><th class="num">3. Paire propre, nouveaux quais</th><th class="num">4. Nouveau tracé</th></tr></thead>
+    <tbody>
+      <tr><th>Le RER D quitte le RER B sous la gare RER de la gare du Nord</th><td class="num">{{ d.rerd.cost.shared.items.split | 2 }}</td><td class="num">{{ d.rerd.cost.own.items.split | 2 }}</td><td class="num"></td><td class="num"></td></tr>
+      <tr><th>Tunnel de descente depuis les voies du RER D au nord de la gare du Nord</th><td class="num"></td><td class="num"></td><td class="num">{{ d.rerd.cost.moved.items.ramp | 2 }}</td><td class="num">{{ d.rerd.cost.route.items.ramp | 2 }}</td></tr>
+      <tr><th>Deux voies à quai à Nord-Est, avec leurs accès</th><td class="num"></td><td class="num"></td><td class="num">{{ d.rerd.cost.moved.items.nordest + d.rerd.cost.moved.items.nordest_links | 2 }}</td><td class="num">{{ d.rerd.cost.route.items.nordest + d.rerd.cost.route.items.nordest_links | 2 }}</td></tr>
+      <tr><th>Tunnel à double voie</th><td class="num">{{ d.rerd.cost.shared.items.tunnel | 2 }}</td><td class="num">{{ d.rerd.cost.own.items.tunnel | 2 }}</td><td class="num">{{ d.rerd.cost.moved.items.tunnel | 2 }}</td><td class="num">{{ d.rerd.cost.route.items.tunnel | 2 }}</td></tr>
+      <tr><th>Deux raccordements au RER G, et la signalisation des voies partagées</th><td class="num">{{ d.rerd.cost.shared.items.merges + d.rerd.cost.shared.items.signals | 2 }}</td><td class="num"></td><td class="num"></td><td class="num"></td></tr>
+      <tr><th>Deux voies à quai dans la caverne du RER G à Châtelet, avec les couloirs vers la gare actuelle</th><td class="num">{{ d.rerd.cost.shared.items.chatelet + d.rerd.cost.shared.items.corridors | 2 }}</td><td class="num">{{ d.rerd.cost.own.items.chatelet + d.rerd.cost.own.items.corridors | 2 }}</td><td class="num">{{ d.rerd.cost.moved.items.chatelet + d.rerd.cost.moved.items.corridors | 2 }}</td><td class="num">{{ d.rerd.cost.route.items.chatelet + d.rerd.cost.route.items.corridors | 2 }}</td></tr>
+      <tr><th>Raccordement au tunnel du RER D vers la gare de Lyon</th><td class="num">{{ d.rerd.cost.shared.items.tubes | 2 }}</td><td class="num">{{ d.rerd.cost.own.items.tubes | 2 }}</td><td class="num">{{ d.rerd.cost.moved.items.tubes | 2 }}</td><td class="num"></td></tr>
+      <tr><th>Deux voies à quai à la gare de Lyon, avec leurs accès, et le tunnel de remontée vers les voies de surface</th><td class="num"></td><td class="num"></td><td class="num"></td><td class="num">{{ d.rerd.cost.route.items.lyon + d.rerd.cost.route.items.lyon_links + d.rerd.cost.route.items.south_ramp | 2 }}</td></tr>
+      <tr><th>Travaux</th><td class="num">{{ d.rerd.cost.shared.hard | 2 }}</td><td class="num">{{ d.rerd.cost.own.hard | 2 }}</td><td class="num">{{ d.rerd.cost.moved.hard | 2 }}</td><td class="num">{{ d.rerd.cost.route.hard | 2 }}</td></tr>
+      <tr><th><strong>Total, avec les études, la maîtrise d’ouvrage, le foncier et les aléas</strong></th><td class="num"><strong>{{ d.rerd.cost.shared.central | 1 }}</strong></td><td class="num"><strong>{{ d.rerd.cost.own.central | 1 }}</strong></td><td class="num"><strong>{{ d.rerd.cost.moved.central | 1 }}</strong></td><td class="num"><strong>{{ d.rerd.cost.route.central | 1 }}</strong></td></tr>
+      <tr><th>Fourchette avec les prix unitaires bas et hauts du projet</th><td class="num">{{ d.rerd.cost.shared.low | 1 }} à {{ d.rerd.cost.shared.high | 1 }}</td><td class="num">{{ d.rerd.cost.own.low | 1 }} à {{ d.rerd.cost.own.high | 1 }}</td><td class="num">{{ d.rerd.cost.moved.low | 1 }} à {{ d.rerd.cost.moved.high | 1 }}</td><td class="num">{{ d.rerd.cost.route.low | 1 }} à {{ d.rerd.cost.route.high | 1 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p>Le total est le montant des travaux multiplié par {{ d.rerd.cost.uplift | 2 }}, comme dans le projet&nbsp;: {{ m.rates.design | pct }} pour les études, {{ m.rates.client | pct }} pour la maîtrise d’ouvrage, {{ m.rates.land | pct }} pour le foncier, puis {{ m.rates.risk | pct }} d’aléas sur l’ensemble. Partager les voies du RER G n’est pas moins cher qu’une paire propre&nbsp;: les deux raccordements coûtent plus que le tunnel qu’ils évitent. Les longueurs hors du tronçon de la gare du Nord à Châtelet sont lues sur des cartes <span class="tag assume">hypothèse</span>.</p>
+</div>
+
+<div class="block" id="rerd.check">
+  <h2>Le prix tient-il face aux études de 2003 et de 2013</h2>
+  <p>Un second tunnel entre Châtelet et la gare du Nord a été étudié deux fois. Le chiffre le plus souvent cité, 2 à 3,5 milliards d’euros, est plus élevé que le schéma 2. Les deux études n’ont pas chiffré le même ouvrage, et aucune n’a chiffré le schéma 2.</p>
+  <div class="tbl-wrap"><table class="tbl rd-tbl stack-sm">
+    <thead><tr><th>Étude</th><th>Ce qu’elle a chiffré</th><th>Son prix</th><th>En euros de 2026</th><th>Le schéma le plus proche ici</th></tr></thead>
+    <tbody>
+      <tr><th>RATP, 2003</th><td data-l="Ce qu’elle a chiffré">Un second tunnel à deux tubes à côté du premier, raccordé aux gares actuelles à ses deux bouts[[rd_aut14]]</td><td data-l="Son prix">Environ {{ d.rerd.past.ratp03.value | 1 }}&nbsp;Md€ en 2003&nbsp;;[[rd_sd03]] un peu moins de {{ d.rerd.past.ratp03.in2012 | 1 }}&nbsp;Md€ aux conditions de 2012[[rd_aut14]]</td><td data-l="En euros de 2026">Environ {{ d.rerd.past.ratp03.in2026 | 1 }}&nbsp;Md€</td><td data-l="Le schéma le plus proche ici">Schéma 2&nbsp;: {{ d.rerd.cost.own.central | 1 }}&nbsp;Md€ ({{ d.rerd.cost.own.low | 1 }} à {{ d.rerd.cost.own.high | 1 }})</td></tr>
+      <tr><th>RFF avec la SNCF, la RATP et Setec, 2012-2013</th><td data-l="Ce qu’elle a chiffré">Un nouveau tunnel réservé au RER D, en quatre variantes&nbsp;: le RER D dévié entre la gare de Lyon et la gare du Nord, avec de nouvelles gares souterraines qui lui sont propres[[rd_ce, rd_aut14]]</td><td data-l="Son prix">{{ d.rerd.past.rff13.low | 1 }} à {{ d.rerd.past.rff13.high | 1 }}&nbsp;Md€ avec une gare à Châtelet&nbsp;;[[rd_stif14]] {{ d.rerd.past.rff13.wide_low | 1 }} à {{ d.rerd.past.rff13.wide_high | 1 }}&nbsp;Md€ sur les quatre variantes[[rd_ce]]</td><td data-l="En euros de 2026">Environ {{ d.rerd.past.rff13.low26 | 1 }} à {{ d.rerd.past.rff13.high26 | 1 }}&nbsp;Md€</td><td data-l="Le schéma le plus proche ici">Schéma 4&nbsp;: {{ d.rerd.cost.route.central | 1 }}&nbsp;Md€ ({{ d.rerd.cost.route.low | 1 }} à {{ d.rerd.cost.route.high | 1 }})</td></tr>
+    </tbody>
+  </table></div>
+  <p>Les prix de 2012 et de 2013 sont relevés de {{ (d.rerd.past.index - 1) | pct }} pour les ramener à 2026 <span class="tag assume">hypothèse</span>.</p>
+  <ul>
+    <li><strong>Les prix unitaires du projet ne sont pas les prix bas.</strong> Pour un tunnel doublé, ils donnent environ trois fois le prix de l’étude de la RATP. Pour un tracé entièrement nouveau, ils donnent un chiffre en haut de la fourchette de l’étude de RFF. Le schéma 2 coûte moins que le chiffre de 2013 parce qu’il construit moins&nbsp;: {{ d.rerd.cost.own.km | 1 }} km de tunnel au lieu d’un nouveau tracé, des quais dans une seule gare, dans une caverne dont le RER G a déjà besoin.</li>
+    <li><strong>Ce qui a arrêté le tunnel doublé en 2003, c’est la gare de Châtelet, pas le prix.</strong> Raccorder deux nouveaux tubes aux quais de Châtelet-Les Halles obligeait à fermer le RER B et le RER D pendant les travaux.[[rd_aut14]] C’est pourquoi RFF n’a étudié en 2012-2013 que de nouveaux tracés avec de nouvelles gares.[[rd_ce]] Aucun des quatre schémas présentés ici ne touche à la gare actuelle de Châtelet&nbsp;: le RER D s’arrête à de nouveaux quais dans la caverne du RER G, reliés à la gare par des couloirs.</li>
+    <li><strong>Ce qui a arrêté le nouveau tracé en 2013, c’est son prix et une longue coupure.</strong> Le RER D interrompu pendant 8 à 12 mois, six ans de travaux, des correspondances durablement dégradées entre les RER A, B et D, et un sous-sol encombré d’anciennes carrières et d’autres tunnels.[[rd_ce]] En 2025, l’État donnait encore plus de 2 milliards d’euros et plus d’un an de coupure comme raisons de ne pas le construire.[[rd_qo256]] La signalisation choisie à sa place coûte environ 0,8 milliard d’euros.[[rd_vrt19]]</li>
+    <li><strong>Déplacer les quais du RER D est ce qui rend l’ouvrage constructible.</strong> Le schéma 2 garde les quais de la gare du Nord, et garde donc des travaux sous une gare en service où passe le RER B. Le schéma 3 déplace le RER D vers de nouveaux quais à Nord-Est comme à Châtelet, pour {{ d.rerd.cost.moved.central - d.rerd.cost.own.central | 1 }}&nbsp;Md€ de plus. Le seul chantier qui reste sur une ligne en service est le raccordement au tunnel du RER D vers la gare de Lyon, à l’écart des deux gares et du RER B. Le schéma 4 le supprime aussi, pour {{ d.rerd.cost.route.central - d.rerd.cost.moved.central | 1 }}&nbsp;Md€ de plus encore.</li>
+    <li><strong>Une coupure a aussi un prix.</strong> Un an sans RER D entre la gare de Lyon et la gare du Nord coûterait à ses {{ d.rerd.cut.riders | 0 }} voyageurs quotidiens environ {{ d.rerd.cut.year | 1 }}&nbsp;Md€, à raison de {{ d.rerd.cut.min | 0 }} minutes perdues par trajet <span class="tag assume">hypothèse</span>. C’est la moitié de ce que le schéma 3 coûte de plus que le schéma 2.</li>
+  </ul>
+  <p><strong>Ce que cette vérification ne peut pas trancher.</strong> Les prix des bifurcations et des raccordements sont des hypothèses, et ils pèsent d’un quart des travaux dans le schéma 3 à près des deux tiers dans le schéma 1. Les prix du projet n’ont pas été éprouvés sur un raccordement à un tunnel en service, ni sur ce sous-sol. La caverne de Châtelet accueillerait quatre voies au lieu de deux, soit la taille de la gare Magenta du RER E&nbsp;;[[magenta]] on ne sait pas si le sous-sol des Halles le permet. L’étude de 2012-2013 répond à une partie de ces questions. Elle n’est pas publiée.</p>
+</div>
+
+<div class="block" id="rerd.value">
+  <h2>Ce que cela apporterait</h2>
+  <p>La valeur a deux parts, et toutes deux viennent de la nouvelle paire de voies.</p>
+  <ul>
+    <li><strong>Moins de retards, au service d’aujourd’hui.</strong> Avec chaque ligne seule, le tronçon ajoute {{ d.rerd.sim.today.six.saved_min | 0 }} minutes de retard en moins par jour ouvré, pour l’ensemble des voyageurs des trois lignes. Avec un poids de 2 pour une minute de retard, cela représente environ {{ d.rerd.value.own.reliability * 1000 | 0 }}&nbsp;M€ par an ({{ d.rerd.value.own.reliability_low * 1000 | 0 }} à {{ d.rerd.value.own.reliability_high * 1000 | 0 }}).</li>
+    <li><strong>De la place pour des trains qui ne peuvent pas circuler aujourd’hui.</strong> Le tunnel commun maintient le RER B à 20 trains par heure et le RER D à 12. Les prévisions officielles de 2014 ne voyaient pas le besoin de plus de 12 trains du RER D au nord,[[rd_stif14]] sur une ligne qui a aujourd’hui les trains les plus chargés du réseau Transilien.[[idfm_d]] Avec sa propre paire, le RER D peut en faire circuler 16 à 20, et le RER B seul 24. Quatre trains de plus par heure sur chaque ligne valent environ {{ d.rerd.more.central * 1000 | 0 }}&nbsp;M€ par an en attente plus courte et en trains moins chargés ({{ d.rerd.more.low * 1000 | 0 }} à {{ d.rerd.more.high * 1000 | 0 }}) <span class="tag assume">hypothèse</span>. Cette croissance n’est pas une condition posée au tunnel. C’est ce que le tunnel rend possible, et donc une part de ce qu’il vaut.</li>
+  </ul>
+  <div class="tbl-wrap"><table class="tbl rd-tbl rd-wide">
+    <thead><tr><th>En millions d’euros par an</th><th class="num">1. Partagé avec le RER G</th><th class="num">2. Paire propre</th><th class="num">3. Paire propre, nouveaux quais</th><th class="num">4. Nouveau tracé</th></tr></thead>
+    <tbody>
+      <tr><th>Moins de retards, au service d’aujourd’hui</th><td class="num">{{ d.rerd.value.shared.reliability * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.own.reliability * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.moved.reliability * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.route.reliability * 1000 | 0 }}</td></tr>
+      <tr><th>Avec quatre trains de plus par heure sur le RER B et sur le RER D&nbsp;: les trains en plus, et les retards à ce niveau de service</th><td class="num">{{ d.rerd.value.shared.with_growth * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.own.with_growth * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.moved.with_growth * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.route.with_growth * 1000 | 0 }}</td></tr>
+      <tr><th>Coût annuel&nbsp;: les travaux sur 60 ans à 4,5&nbsp;%, et l’entretien</th><td class="num">{{ d.rerd.value.shared.year * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.own.year * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.moved.year * 1000 | 0 }}</td><td class="num">{{ d.rerd.value.route.year * 1000 | 0 }}</td></tr>
+      <tr><th><strong>Avantages pour chaque euro de coût, avec les trains en plus</strong></th><td class="num"><strong>{{ d.rerd.value.shared.ratio_growth | 1 }}</strong></td><td class="num"><strong>{{ d.rerd.value.own.ratio_growth | 1 }}</strong></td><td class="num"><strong>{{ d.rerd.value.moved.ratio_growth | 1 }}</strong></td><td class="num"><strong>{{ d.rerd.value.route.ratio_growth | 1 }}</strong></td></tr>
+      <tr><th>Fourchette&nbsp;: d’avantages bas et d’un coût haut à des avantages hauts et un coût bas</th><td class="num">{{ d.rerd.value.shared.ratio_low | 1 }} à {{ d.rerd.value.shared.ratio_high | 1 }}</td><td class="num">{{ d.rerd.value.own.ratio_low | 1 }} à {{ d.rerd.value.own.ratio_high | 1 }}</td><td class="num">{{ d.rerd.value.moved.ratio_low | 1 }} à {{ d.rerd.value.moved.ratio_high | 1 }}</td><td class="num">{{ d.rerd.value.route.ratio_low | 1 }} à {{ d.rerd.value.route.ratio_high | 1 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p>La base est approximative&nbsp;: {{ d.rerd.params.peak | pct }} des voyageurs circulent aux pointes, {{ d.rerd.params.hit | pct }} d’entre eux sont à bord dans le tronçon ou montent après lui <span class="tag assume">hypothèse</span>, {{ d.rerd.params.vot | 0 }}&nbsp;€ par heure, {{ d.rerd.params.days | 0 }} jours par an. Les schémas 3 et 4 font circuler les mêmes trains que le schéma 2&nbsp;; ils coûtent plus cher et coupent moins longtemps.</p>
+  <p><strong>Non compté.</strong> Les grands incidents&nbsp;: aujourd’hui, un RER B bloqué arrête le RER D, et inversement. La simulation ne couvre que les files d’attente ordinaires, et ces heures-là sont probablement une grande part de la perte réelle. Les coupures que les schémas 3 et 4 évitent. Le coût d’exploitation des trains en plus.</p>
+  <p><strong>La ligne R.</strong> Avec sa propre paire, le RER D pourrait reprendre les trains de la ligne R à la gare de Lyon, pour environ {{ d.rerd.cost.r_fold.central | 2 }}&nbsp;Md€ de travaux sur l’avant-gare <span class="tag assume">hypothèse</span>. Le RER D enverrait alors environ 20 trains par heure vers le nord, la limite de sa paire. Environ 5&#8239;500 actifs des lignes de Melun et de Montereau gagneraient 9 minutes chacun, et les quais de surface de la ligne R à la gare de Lyon seraient libérés.</p>
+</div>
+
+<div class="block" id="rerd.next">
+  <h2>Ce qui permettrait de trancher</h2>
+  <ul>
+    <li><strong>L’étude de 2012-2013 elle-même.</strong> Ses quatre tracés, leurs profondeurs, la position des gares et le détail des 1,3 à 3,8 milliards d’euros ne sont pas publiés. Île-de-France Mobilités l’a commandée&nbsp;; SNCF Réseau, la RATP et Setec y ont participé.</li>
+    <li><strong>L’étude de la RATP de 2003,</strong> pour le raccordement à Châtelet et la durée de la coupure qu’il supposait.</li>
+    <li><strong>Où naissent les retards.</strong> Les minutes de retard et les trains supprimés sur le RER B et le RER D, par cause et par lieu, remplaceraient la simulation par une mesure.</li>
+    <li><strong>Les charges à la pointe</strong> sur le RER B et le RER D au nord de la gare du Nord, pour dire combien de trains en plus sont nécessaires, et quand.</li>
+    <li><strong>L’avis de ceux qui ont chiffré le tunnel&nbsp;:</strong> de nouveaux quais dans les cavernes du projet lèvent-ils les difficultés rencontrées en 2003 et en 2013, et que coûterait un raccordement au tunnel du RER D de 1995&nbsp;?</li>
+  </ul>
+  <p>Ces questions rejoignent la liste de <a class="xref" href="#next">ce qui reste à faire</a>.</p>
+</div>

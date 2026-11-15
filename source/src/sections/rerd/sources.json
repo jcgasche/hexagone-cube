@@ -1,0 +1,42 @@
+{
+ "rd_ce": {
+  "publisher": "Secrétariat général pour l’investissement, counter-expertise of the appraisal of NExTEO (H. de Tréglodé, Q. Roquigny, P. Ducos), December 2019, section 2.3.7",
+  "about": "Study of 2012-13 by RFF for the STIF, with the SNCF, the RATP and Setec: a plain doubling of the tunnel ruled out because of the tie-ins at Châtelet-Les Halles (RATP study of 2003); only a new tunnel kept for RER D alone was studied, in four variants; RER D cut for 8 to 12 months, works of six years, interchanges between RER A, B and D degraded; 1.3 to 3.8 billion euros",
+  "url": "https://www.info.gouv.fr/upload/media/organization/0001/01/sites_default_files_contenu_piece-jointe_2021_04_rapport_ce_nexteo_version_finale.pdf"
+ },
+ "rd_aut14": {
+  "publisher": "AUT Île-de-France (B. Gobitz), AUT-infos n°123, March-April 2014: doubling of the Châtelet to Gare du Nord tunnel",
+  "about": "RATP study of 2003: a second twin-tube tunnel beside the first, feasible, a little under 700 million euros (2012 values); main difficulty the tie-in to the existing station of Châtelet-Les Halles, which would close RER B and D during the works. RFF study given to the STIF in 2013: RER D diverted between Gare de Lyon and Gare du Nord, leaving its present station at Châtelet-Les Halles, with new underground stations of its own; four scenarios, one without a stop at Châtelet, one by way of République; two to over four billion euros",
+  "url": "http://www.aut-idf.org/wp-content/uploads/2017/06/2014-1.pdf"
+ },
+ "rd_sd03": {
+  "publisher": "STIF, summary of the RER B master plan, 2003",
+  "about": "A new RER D tunnel between Châtelet and Gare du Nord, to be studied for after 2015: about 500 million euros; it would separate the running of RER B and D and mainly allow more RER D trains",
+  "url": "https://cpdp.debatpublic.fr/cpdp-cdg-express/docs/pdf/cahier_acteur/synthese_rerb.pdf"
+ },
+ "rd_stif14": {
+  "publisher": "STIF, RER D line committee, 10 July 2014, lessons of the studies of the second tunnel",
+  "about": "Second tunnel: 2 to 3.5 billion euros according to the scenario, keeping a station at Châtelet; the interconnection cut for about a year; traffic forecasts do not justify more than 12 trains an hour in the north",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/c0da9f48-5a0c-486b-b0e8-aa82fe744d14_STIF-RER-D-10-07-2014+Vfinale.pdf"
+ },
+ "rd_qo256": {
+  "publisher": "Assemblée nationale, oral question n° 256, minister’s answer, March 2025",
+  "about": "A second tunnel between Châtelet and Gare du Nord: more than 2 billion euros, traffic stopped altogether for more than a year, hard to carry out; the master plan of RER D is preferred",
+  "url": "https://www.assemblee-nationale.fr/dyn/17/questions/QANR5L17QOSD256.pdf"
+ },
+ "rd_b23": {
+  "publisher": "Île-de-France Mobilités, RER B line committee, minutes of 27 November 2023",
+  "about": "RER B in the shared tunnel: 17.5 trains an hour on average, in place of 20",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/b23aa157-0b70-4af3-9099-ec1511c1984b_20231127_CR_Comit%C3%A9deligneB_vf.pdf"
+ },
+ "rd_punct": {
+  "publisher": "Île-de-France Mobilités, punctuality bulletin, April 2026",
+  "about": "Punctuality from January to April 2026: RER B 89.2%, RER D 83.0%, line P 89.3%, line N 93.6%",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/aiFrmweQX7-eWuxM_20260604-Bulletindeponctualit%C3%A9Avril20262.pdf"
+ },
+ "rd_vrt19": {
+  "publisher": "Ville, Rail & Transports, 2 July 2019",
+  "about": "NExTEO on RER B and D, the new signalling chosen in place of a second tunnel: 788 million euros (2018 values)",
+  "url": "https://www.ville-rail-transports.com/ferroviaire/rer-b-et-d-cher-nexteo/"
+ }
+}

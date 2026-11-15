@@ -95,5 +95,9 @@
  "flows": {
   "nav_fr": "Voyageurs par ligne",
   "heading_fr": "Qui voyage où : les voyageurs de chaque ligne, tronçon par tronçon"
+ },
+ "rerd": {
+  "nav_fr": "Le RER D à côté du RER G",
+  "heading_fr": "Une option : une paire de voies pour le RER D dans le chantier du RER G"
  }
 }

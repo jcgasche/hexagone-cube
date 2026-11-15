@@ -1,0 +1,4 @@
+/* Annex: RER D beside RER G. Tables only. */
+#rerd .rd-wide thead th { white-space: normal; vertical-align: bottom; }
+#rerd .rd-wide th:first-child { min-width: 15rem; }
+#rerd .rd-tbl tbody th[colspan] { background: var(--surface-2); font-weight: 600; }

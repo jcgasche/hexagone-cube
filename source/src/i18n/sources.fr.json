@@ -424,5 +424,13 @@
  "alstom_mi20": "RER B : le futur MI20 offre 1 063 places par rame, jusqu’à 35 % de plus que les trains actuels de même longueur",
  "sncf_rerng": "RER E : 1 550 places par rame de 112 m, 3 100 pour deux rames accouplées",
  "sncf_d_ng": "RER D : 1 861 places par rame de 130 m ; deux rames offrent environ 550 places de plus que deux rames des trains plus anciens",
- "sncf_francilien": "Trains Francilien : 922 places pour 8 voitures et 726 pour 7 voitures ; 1 844 et 1 452 pour deux rames accouplées"
+ "sncf_francilien": "Trains Francilien : 922 places pour 8 voitures et 726 pour 7 voitures ; 1 844 et 1 452 pour deux rames accouplées",
+ "rd_ce": "Étude de 2012-2013 de RFF pour le STIF, avec la SNCF, la RATP et Setec : un simple doublement du tunnel écarté à cause des raccordements en gare de Châtelet-Les Halles (étude de la RATP de 2003) ; seul un nouveau tunnel réservé au RER D a été étudié, en quatre variantes ; RER D interrompu pendant 8 à 12 mois, six ans de travaux, correspondances entre les RER A, B et D dégradées ; 1,3 à 3,8 milliards d’euros",
+ "rd_aut14": "Étude de la RATP de 2003 : un second tunnel à deux tubes à côté du premier, réalisable, un peu moins de 700 millions d’euros (conditions de 2012) ; principale difficulté, le raccordement à la gare existante de Châtelet-Les Halles, qui fermerait les RER B et D pendant les travaux. Étude de RFF remise au STIF en 2013 : RER D dévié entre la gare de Lyon et la gare du Nord, quittant sa gare actuelle de Châtelet-Les Halles, avec de nouvelles gares souterraines qui lui sont propres ; quatre scénarios, dont un sans arrêt à Châtelet et un par République ; de deux à plus de quatre milliards d’euros",
+ "rd_sd03": "Un nouveau tunnel du RER D entre Châtelet et la gare du Nord, à étudier pour après 2015 : de l’ordre de 500 millions d’euros ; il séparerait l’exploitation des RER B et D et permettrait surtout de renforcer la desserte du RER D",
+ "rd_stif14": "Second tunnel : 2 à 3,5 milliards d’euros selon les scénarios, en maintenant une gare à Châtelet ; interconnexion coupée pendant environ un an ; les prévisions de trafic ne justifient pas plus de 12 trains par heure au nord",
+ "rd_qo256": "Un second tunnel entre Châtelet et la gare du Nord : plus de 2 milliards d’euros, des interruptions totales de circulation pendant plus d’un an, difficilement réalisable ; le schéma directeur du RER D est préféré",
+ "rd_b23": "RER B dans le tunnel commun : 17,5 trains par heure en moyenne, au lieu de 20",
+ "rd_punct": "Ponctualité de janvier à avril 2026 : RER B 89,2 %, RER D 83,0 %, ligne P 89,3 %, ligne N 93,6 %",
+ "rd_vrt19": "NExTEO sur les RER B et D, la nouvelle signalisation choisie à la place d’un second tunnel : 788 millions d’euros (conditions de 2018)"
 }
