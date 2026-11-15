@@ -18,7 +18,28 @@
    "upkeep": 0.013,
    "year": 0.158,
    "year_low": 0.133,
-   "year_high": 0.205
+   "year_high": 0.205,
+   "with_g": {
+    "low": 2.37,
+    "central": 2.81,
+    "high": 3.64,
+    "hard": 1.923,
+    "items": {
+     "split": 0.4,
+     "chatelet": 0.315,
+     "tubes": 0.4,
+     "corridors": 0.1,
+     "merges": 0.5,
+     "tunnel": 0.158,
+     "signals": 0.05
+    },
+    "saved": 0.19,
+    "saved_hard": 0.135,
+    "ends": 1.17,
+    "year": 0.149,
+    "year_low": 0.128,
+    "year_high": 0.189
+   }
   },
   "own": {
    "low": 2.02,
@@ -36,7 +57,26 @@
    "upkeep": 0.019,
    "year": 0.147,
    "year_low": 0.117,
-   "year_high": 0.199
+   "year_high": 0.199,
+   "with_g": {
+    "low": 1.84,
+    "central": 2.33,
+    "high": 3.25,
+    "hard": 1.599,
+    "items": {
+     "split": 0.4,
+     "chatelet": 0.315,
+     "tubes": 0.4,
+     "corridors": 0.1,
+     "tunnel": 0.383
+    },
+    "saved": 0.31,
+    "saved_hard": 0.206,
+    "ends": 1.17,
+    "year": 0.132,
+    "year_low": 0.108,
+    "year_high": 0.176
+   }
   },
   "moved": {
    "low": 2.28,
@@ -56,7 +96,28 @@
    "upkeep": 0.023,
    "year": 0.183,
    "year_low": 0.133,
-   "year_high": 0.265
+   "year_high": 0.265,
+   "with_g": {
+    "low": 2.0,
+    "central": 2.81,
+    "high": 4.21,
+    "hard": 1.923,
+    "items": {
+     "ramp": 0.36,
+     "nordest": 0.315,
+     "nordest_links": 0.05,
+     "chatelet": 0.315,
+     "tubes": 0.4,
+     "corridors": 0.1,
+     "tunnel": 0.383
+    },
+    "saved": 0.5,
+    "saved_hard": 0.342,
+    "ends": 1.11,
+    "year": 0.159,
+    "year_low": 0.12,
+    "year_high": 0.227
+   }
   },
   "route": {
    "low": 3.03,
@@ -80,6 +141,11 @@
    "year_low": 0.183,
    "year_high": 0.393
   },
+  "with_g_share": {
+   "tunnel": 0.25,
+   "platform": 0.3
+  },
+  "with_g_breakeven_junction": 0.09,
   "r_fold": {
    "low": 0.14,
    "central": 0.15,
@@ -349,6 +415,663 @@
       }
      },
      "new": {
+      "trains": 12,
+      "lines": {
+       "G": {
+        "s": 4,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 1312000.0,
+    "saved_min": 0.0,
+    "works": false,
+    "reliability": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "dg": {
+    "pairs": {
+     "old": {
+      "trains": 24,
+      "lines": {
+       "B": {
+        "s": 18,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 28,
+      "lines": {
+       "D": {
+        "s": 38,
+        "cancelled": 0.003
+       },
+       "G": {
+        "s": 38,
+        "cancelled": 0.001
+       }
+      }
+     }
+    },
+    "delay_min": 233000.0,
+    "saved_min": 1079000.0,
+    "works": true,
+    "reliability": [
+     0.101,
+     0.135,
+     0.169
+    ]
+   },
+   "bg": {
+    "pairs": {
+     "old": {
+      "trains": 16,
+      "lines": {
+       "D": {
+        "s": 9,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 36,
+      "lines": {
+       "B": {
+        "s": 112,
+        "cancelled": 0.029
+       },
+       "G": {
+        "s": 109,
+        "cancelled": 0.008
+       }
+      }
+     }
+    },
+    "delay_min": 666000.0,
+    "saved_min": 646000.0,
+    "works": true,
+    "reliability": [
+     0.061,
+     0.081,
+     0.101
+    ]
+   },
+   "half": {
+    "pairs": {
+     "old": {
+      "trains": 32.0,
+      "lines": {
+       "B": {
+        "s": 89,
+        "cancelled": 0.011
+       },
+       "D": {
+        "s": 71,
+        "cancelled": 0.004
+       }
+      }
+     },
+     "new": {
+      "trains": 20.0,
+      "lines": {
+       "D": {
+        "s": 11,
+        "cancelled": 0.0
+       },
+       "G": {
+        "s": 14,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 535000.0,
+    "saved_min": 777000.0,
+    "works": true,
+    "reliability": [
+     0.073,
+     0.097,
+     0.121
+    ]
+   },
+   "quarter": {
+    "pairs": {
+     "old": {
+      "trains": 28.0,
+      "lines": {
+       "B": {
+        "s": 68,
+        "cancelled": 0.006
+       },
+       "D": {
+        "s": 46,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 24.0,
+      "lines": {
+       "D": {
+        "s": 20,
+        "cancelled": 0.001
+       },
+       "G": {
+        "s": 21,
+        "cancelled": 0.001
+       }
+      }
+     }
+    },
+    "delay_min": 406000.0,
+    "saved_min": 906000.0,
+    "works": true,
+    "reliability": [
+     0.085,
+     0.113,
+     0.142
+    ]
+   },
+   "six": {
+    "pairs": {
+     "old": {
+      "trains": 24,
+      "lines": {
+       "B": {
+        "s": 18,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "D pair": {
+      "trains": 16,
+      "lines": {
+       "D": {
+        "s": 20,
+        "cancelled": 0.001
+       }
+      }
+     },
+     "new": {
+      "trains": 12,
+      "lines": {
+       "G": {
+        "s": 4,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 145000.0,
+    "saved_min": 1167000.0,
+    "works": true,
+    "reliability": [
+     0.109,
+     0.146,
+     0.182
+    ]
+   }
+  },
+  "growth_r": {
+   "plan": {
+    "pairs": {
+     "old": {
+      "trains": 45,
+      "lines": {
+       "B": {
+        "s": 196,
+        "cancelled": 0.163
+       },
+       "D": {
+        "s": 188,
+        "cancelled": 0.143
+       }
+      }
+     },
+     "new": {
+      "trains": 12,
+      "lines": {
+       "G": {
+        "s": 4,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 1775000.0,
+    "saved_min": 0.0,
+    "works": false,
+    "reliability": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "dg": {
+    "pairs": {
+     "old": {
+      "trains": 24,
+      "lines": {
+       "B": {
+        "s": 18,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 33,
+      "lines": {
+       "D": {
+        "s": 85,
+        "cancelled": 0.02
+       },
+       "G": {
+        "s": 87,
+        "cancelled": 0.008
+       }
+      }
+     }
+    },
+    "delay_min": 443000.0,
+    "saved_min": 1332000.0,
+    "works": true,
+    "reliability": [
+     0.125,
+     0.166,
+     0.208
+    ]
+   },
+   "bg": {
+    "pairs": {
+     "old": {
+      "trains": 21,
+      "lines": {
+       "D": {
+        "s": 19,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 36,
+      "lines": {
+       "B": {
+        "s": 112,
+        "cancelled": 0.029
+       },
+       "G": {
+        "s": 109,
+        "cancelled": 0.008
+       }
+      }
+     }
+    },
+    "delay_min": 693000.0,
+    "saved_min": 1082000.0,
+    "works": true,
+    "reliability": [
+     0.101,
+     0.135,
+     0.169
+    ]
+   },
+   "half": {
+    "pairs": {
+     "old": {
+      "trains": 34.5,
+      "lines": {
+       "B": {
+        "s": 112,
+        "cancelled": 0.025
+       },
+       "D": {
+        "s": 98,
+        "cancelled": 0.011
+       }
+      }
+     },
+     "new": {
+      "trains": 22.5,
+      "lines": {
+       "D": {
+        "s": 17,
+        "cancelled": 0.001
+       },
+       "G": {
+        "s": 16,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 711000.0,
+    "saved_min": 1064000.0,
+    "works": true,
+    "reliability": [
+     0.1,
+     0.133,
+     0.166
+    ]
+   },
+   "quarter": {
+    "pairs": {
+     "old": {
+      "trains": 29.25,
+      "lines": {
+       "B": {
+        "s": 71,
+        "cancelled": 0.007
+       },
+       "D": {
+        "s": 52,
+        "cancelled": 0.002
+       }
+      }
+     },
+     "new": {
+      "trains": 27.75,
+      "lines": {
+       "D": {
+        "s": 38,
+        "cancelled": 0.004
+       },
+       "G": {
+        "s": 38,
+        "cancelled": 0.001
+       }
+      }
+     }
+    },
+    "delay_min": 485000.0,
+    "saved_min": 1290000.0,
+    "works": true,
+    "reliability": [
+     0.121,
+     0.161,
+     0.202
+    ]
+   },
+   "six": {
+    "pairs": {
+     "old": {
+      "trains": 24,
+      "lines": {
+       "B": {
+        "s": 18,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "D pair": {
+      "trains": 21,
+      "lines": {
+       "D": {
+        "s": 51,
+        "cancelled": 0.005
+       }
+      }
+     },
+     "new": {
+      "trains": 12,
+      "lines": {
+       "G": {
+        "s": 4,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 238000.0,
+    "saved_min": 1537000.0,
+    "works": true,
+    "reliability": [
+     0.144,
+     0.192,
+     0.24
+    ]
+   }
+  },
+  "today_r": {
+   "plan": {
+    "pairs": {
+     "old": {
+      "trains": 37,
+      "lines": {
+       "B": {
+        "s": 122,
+        "cancelled": 0.029
+       },
+       "D": {
+        "s": 115,
+        "cancelled": 0.023
+       }
+      }
+     },
+     "new": {
+      "trains": 12,
+      "lines": {
+       "G": {
+        "s": 4,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 931000.0,
+    "saved_min": 0.0,
+    "works": true,
+    "reliability": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "dg": {
+    "pairs": {
+     "old": {
+      "trains": 20,
+      "lines": {
+       "B": {
+        "s": 11,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 29,
+      "lines": {
+       "D": {
+        "s": 45,
+        "cancelled": 0.004
+       },
+       "G": {
+        "s": 44,
+        "cancelled": 0.002
+       }
+      }
+     }
+    },
+    "delay_min": 228000.0,
+    "saved_min": 703000.0,
+    "works": true,
+    "reliability": [
+     0.066,
+     0.088,
+     0.11
+    ]
+   },
+   "bg": {
+    "pairs": {
+     "old": {
+      "trains": 17,
+      "lines": {
+       "D": {
+        "s": 11,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 32,
+      "lines": {
+       "B": {
+        "s": 57,
+        "cancelled": 0.005
+       },
+       "G": {
+        "s": 53,
+        "cancelled": 0.002
+       }
+      }
+     }
+    },
+    "delay_min": 345000.0,
+    "saved_min": 586000.0,
+    "works": true,
+    "reliability": [
+     0.055,
+     0.073,
+     0.092
+    ]
+   },
+   "half": {
+    "pairs": {
+     "old": {
+      "trains": 28.5,
+      "lines": {
+       "B": {
+        "s": 52,
+        "cancelled": 0.005
+       },
+       "D": {
+        "s": 40,
+        "cancelled": 0.001
+       }
+      }
+     },
+     "new": {
+      "trains": 20.5,
+      "lines": {
+       "D": {
+        "s": 11,
+        "cancelled": 0.0
+       },
+       "G": {
+        "s": 14,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 324000.0,
+    "saved_min": 607000.0,
+    "works": true,
+    "reliability": [
+     0.057,
+     0.076,
+     0.095
+    ]
+   },
+   "quarter": {
+    "pairs": {
+     "old": {
+      "trains": 24.25,
+      "lines": {
+       "B": {
+        "s": 35,
+        "cancelled": 0.001
+       },
+       "D": {
+        "s": 21,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "new": {
+      "trains": 24.75,
+      "lines": {
+       "D": {
+        "s": 24,
+        "cancelled": 0.0
+       },
+       "G": {
+        "s": 24,
+        "cancelled": 0.001
+       }
+      }
+     }
+    },
+    "delay_min": 248000.0,
+    "saved_min": 683000.0,
+    "works": true,
+    "reliability": [
+     0.064,
+     0.085,
+     0.107
+    ]
+   },
+   "six": {
+    "pairs": {
+     "old": {
+      "trains": 20,
+      "lines": {
+       "B": {
+        "s": 11,
+        "cancelled": 0.0
+       }
+      }
+     },
+     "D pair": {
+      "trains": 17,
+      "lines": {
+       "D": {
+        "s": 25,
+        "cancelled": 0.001
+       }
+      }
+     },
+     "new": {
+      "trains": 12,
+      "lines": {
+       "G": {
+        "s": 4,
+        "cancelled": 0.0
+       }
+      }
+     }
+    },
+    "delay_min": 125000.0,
+    "saved_min": 806000.0,
+    "works": true,
+    "reliability": [
+     0.076,
+     0.101,
+     0.126
+    ]
+   }
+  },
+  "growth_all": {
+   "plan": {
+    "pairs": {
+     "old": {
+      "trains": 40,
+      "lines": {
+       "B": {
+        "s": 160,
+        "cancelled": 0.098
+       },
+       "D": {
+        "s": 149,
+        "cancelled": 0.052
+       }
+      }
+     },
+     "new": {
       "trains": 16,
       "lines": {
        "G": {
@@ -551,225 +1274,6 @@
     ]
    }
   },
-  "growth_r": {
-   "plan": {
-    "pairs": {
-     "old": {
-      "trains": 44,
-      "lines": {
-       "B": {
-        "s": 190,
-        "cancelled": 0.156
-       },
-       "D": {
-        "s": 181,
-        "cancelled": 0.116
-       }
-      }
-     },
-     "new": {
-      "trains": 16,
-      "lines": {
-       "G": {
-        "s": 9,
-        "cancelled": 0.0
-       }
-      }
-     }
-    },
-    "delay_min": 1687000.0,
-    "saved_min": 0.0,
-    "works": false,
-    "reliability": [
-     0.0,
-     0.0,
-     0.0
-    ]
-   },
-   "dg": {
-    "pairs": {
-     "old": {
-      "trains": 24,
-      "lines": {
-       "B": {
-        "s": 18,
-        "cancelled": 0.0
-       }
-      }
-     },
-     "new": {
-      "trains": 36,
-      "lines": {
-       "D": {
-        "s": 104,
-        "cancelled": 0.033
-       },
-       "G": {
-        "s": 110,
-        "cancelled": 0.015
-       }
-      }
-     }
-    },
-    "delay_min": 539000.0,
-    "saved_min": 1148000.0,
-    "works": true,
-    "reliability": [
-     0.108,
-     0.143,
-     0.179
-    ]
-   },
-   "bg": {
-    "pairs": {
-     "old": {
-      "trains": 20,
-      "lines": {
-       "D": {
-        "s": 17,
-        "cancelled": 0.0
-       }
-      }
-     },
-     "new": {
-      "trains": 40,
-      "lines": {
-       "B": {
-        "s": 153,
-        "cancelled": 0.085
-       },
-       "G": {
-        "s": 151,
-        "cancelled": 0.029
-       }
-      }
-     }
-    },
-    "delay_min": 982000.0,
-    "saved_min": 705000.0,
-    "works": false,
-    "reliability": [
-     0.066,
-     0.088,
-     0.11
-    ]
-   },
-   "half": {
-    "pairs": {
-     "old": {
-      "trains": 34.0,
-      "lines": {
-       "B": {
-        "s": 108,
-        "cancelled": 0.024
-       },
-       "D": {
-        "s": 92,
-        "cancelled": 0.008
-       }
-      }
-     },
-     "new": {
-      "trains": 26.0,
-      "lines": {
-       "D": {
-        "s": 24,
-        "cancelled": 0.001
-       },
-       "G": {
-        "s": 28,
-        "cancelled": 0.001
-       }
-      }
-     }
-    },
-    "delay_min": 706000.0,
-    "saved_min": 981000.0,
-    "works": true,
-    "reliability": [
-     0.092,
-     0.123,
-     0.153
-    ]
-   },
-   "quarter": {
-    "pairs": {
-     "old": {
-      "trains": 29.0,
-      "lines": {
-       "B": {
-        "s": 74,
-        "cancelled": 0.008
-       },
-       "D": {
-        "s": 54,
-        "cancelled": 0.001
-       }
-      }
-     },
-     "new": {
-      "trains": 31.0,
-      "lines": {
-       "D": {
-        "s": 48,
-        "cancelled": 0.005
-       },
-       "G": {
-        "s": 50,
-        "cancelled": 0.003
-       }
-      }
-     }
-    },
-    "delay_min": 531000.0,
-    "saved_min": 1156000.0,
-    "works": true,
-    "reliability": [
-     0.108,
-     0.145,
-     0.181
-    ]
-   },
-   "six": {
-    "pairs": {
-     "old": {
-      "trains": 24,
-      "lines": {
-       "B": {
-        "s": 18,
-        "cancelled": 0.0
-       }
-      }
-     },
-     "D pair": {
-      "trains": 20,
-      "lines": {
-       "D": {
-        "s": 42,
-        "cancelled": 0.005
-       }
-      }
-     },
-     "new": {
-      "trains": 16,
-      "lines": {
-       "G": {
-        "s": 9,
-        "cancelled": 0.0
-       }
-      }
-     }
-    },
-    "delay_min": 217000.0,
-    "saved_min": 1470000.0,
-    "works": true,
-    "reliability": [
-     0.138,
-     0.184,
-     0.23
-    ]
-   }
-  },
   "check": {
    "today_through": 29.6,
    "nexteo_through": 30.9,
@@ -815,16 +1319,16 @@
    "reliability": 0.047,
    "reliability_low": 0.036,
    "reliability_high": 0.059,
-   "growth_reliability": 0.026,
+   "growth_reliability": 0.034,
    "more_trains": 0.119,
-   "with_growth": 0.145,
-   "with_growth_low": 0.08,
-   "with_growth_high": 0.212,
-   "year": 0.158,
-   "ratio_today": 0.3,
-   "ratio_growth": 0.92,
-   "ratio_low": 0.39,
-   "ratio_high": 1.59
+   "with_growth": 0.153,
+   "with_growth_low": 0.086,
+   "with_growth_high": 0.222,
+   "year": 0.149,
+   "ratio_today": 0.32,
+   "ratio_growth": 1.03,
+   "ratio_low": 0.46,
+   "ratio_high": 1.73
   },
   "own": {
    "reliability": 0.053,
@@ -833,13 +1337,13 @@
    "growth_reliability": 0.045,
    "more_trains": 0.119,
    "with_growth": 0.164,
-   "with_growth_low": 0.093,
-   "with_growth_high": 0.235,
-   "year": 0.147,
-   "ratio_today": 0.36,
-   "ratio_growth": 1.12,
-   "ratio_low": 0.47,
-   "ratio_high": 2.01
+   "with_growth_low": 0.094,
+   "with_growth_high": 0.236,
+   "year": 0.132,
+   "ratio_today": 0.4,
+   "ratio_growth": 1.24,
+   "ratio_low": 0.53,
+   "ratio_high": 2.19
   },
   "moved": {
    "reliability": 0.053,
@@ -848,13 +1352,13 @@
    "growth_reliability": 0.045,
    "more_trains": 0.119,
    "with_growth": 0.164,
-   "with_growth_low": 0.093,
-   "with_growth_high": 0.235,
-   "year": 0.183,
-   "ratio_today": 0.29,
-   "ratio_growth": 0.9,
-   "ratio_low": 0.35,
-   "ratio_high": 1.77
+   "with_growth_low": 0.094,
+   "with_growth_high": 0.236,
+   "year": 0.159,
+   "ratio_today": 0.33,
+   "ratio_growth": 1.03,
+   "ratio_low": 0.41,
+   "ratio_high": 1.97
   },
   "route": {
    "reliability": 0.053,
@@ -863,13 +1367,13 @@
    "growth_reliability": 0.045,
    "more_trains": 0.119,
    "with_growth": 0.164,
-   "with_growth_low": 0.093,
-   "with_growth_high": 0.235,
+   "with_growth_low": 0.094,
+   "with_growth_high": 0.236,
    "year": 0.262,
    "ratio_today": 0.2,
    "ratio_growth": 0.63,
    "ratio_low": 0.24,
-   "ratio_high": 1.28
+   "ratio_high": 1.29
   }
  },
  "cut": {

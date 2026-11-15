@@ -239,7 +239,7 @@ def trains_cost(line, per_hour):
     km = per_hour * 2 * PEAK_HOURS * DAYS * RUN_KM[line]; n = per_hour * ROUND_H[line]
     return km * N.REG_TRAINKM_COST / 1e9 + n * f_sub, km, n
 r_time = TM['x']['r_only']['hours_day'] * ALL_TRIPS * DAYS * VOT_D / 1e9
-d_cost = {l: RD['cost']['own'][l] + RD['cost']['r_fold'][l] for l in ('low', 'central', 'high')}; d_upkeep = RD['cost']['own']['upkeep']
+d_cost = {l: RD['cost']['own']['with_g'][l] + RD['cost']['r_fold'][l] for l in ('low', 'central', 'high')}; d_upkeep = RD['cost']['own']['upkeep']
 sim = RD['sim']; to_bn = lambda minutes: minutes * W_LATE * VOT_D / 60 * DAYS / 1e9
 rd_cases = {
     'today': {'name': 'Today’s trains: RER B 20, RER D 12 and line R 5', 'reliability': RD['value']['own']['reliability'], 'more_trains': 0.0, 'r_time': r_time, 'trains': 0.0},
@@ -310,7 +310,7 @@ room_all = {'tgv': {k: {'now': sv['stops_direction'][n], 'full': sf['stops_direc
             'tgv_counted_pv': round(pv(part['T'][FR.CAPACITY]), 1)}
 # RER D out of the shared tunnel: on the tracks of RER G (layout 1 of the annex 'rerd') or on its own pair (layout 2), each with line R, same rules
 def d_layout(key, growth_delay):
-    c = {l: RD['cost'][key][l] + RD['cost']['r_fold'][l] for l in ('low', 'central', 'high')}; up_ = RD['cost'][key]['upkeep']; tr = trains_cost('B', 4)[0] + trains_cost('D', 4)[0]
+    c = {l: RD['cost'][key]['with_g'][l] + RD['cost']['r_fold'][l] for l in ('low', 'central', 'high')}; up_ = RD['cost'][key]['upkeep']; tr = trains_cost('B', 4)[0] + trains_cost('D', 4)[0]
     ben = to_bn(sim['today']['plan']['delay_min'] - growth_delay) + RD['more']['central'] + r_time
     f = addon(ben, up_ + tr, c['central'])
     return {'cost': round(c['central'], 2), 'cost_low': round(c['low'], 2), 'cost_high': round(c['high'], 2), 'benefit': round(ben, 4), 'running': round(up_ + tr, 4), 'french': f,
@@ -318,7 +318,12 @@ def d_layout(key, growth_delay):
             'with_plan': {'pv_benefits': round(whole['pv_benefits'] + f['pv_benefits'], 1), 'pv_costs': round(whole['pv_costs'] + f['pv_costs'], 1), 'npv': round(whole['npv'] + f['npv'], 1),
                           'ratio': round((whole['pv_benefits'] + f['pv_benefits']) / (whole['pv_costs'] + f['pv_costs']), 2), 'capex': round(capex + c['central'], 1)}}
 d_opt = {'shared': d_layout('shared', sim['growth_r']['dg']['delay_min']), 'own': d_layout('own', sim['growth_r']['six']['delay_min']),
-         'items_own': RD['cost']['own']['items'], 'items_shared': RD['cost']['shared']['items'], 'uplift': RD['cost']['uplift'],
+         'items_own': RD['cost']['own']['with_g']['items'], 'items_shared': RD['cost']['shared']['with_g']['items'], 'uplift': RD['cost']['uplift'],
+         'alone_own': RD['cost']['own']['central'], 'alone_shared': RD['cost']['shared']['central'], 'saved_own': RD['cost']['own']['with_g']['saved'],
+         'saved_shared': RD['cost']['shared']['with_g']['saved'], 'ends': RD['cost']['own']['with_g']['ends'],
+         'shared_g_s': sim['growth_r']['dg']['pairs']['new']['lines']['G']['s'], 'own_g_s': sim['growth_r']['six']['pairs']['new']['lines']['G']['s'],
+         'today_trains': sim['today_r']['dg']['pairs']['new']['trains'], 'today_shared_d_s': sim['today_r']['dg']['pairs']['new']['lines']['D']['s'],
+         'today_shared_g_s': sim['today_r']['dg']['pairs']['new']['lines']['G']['s'], 'today_own_d_s': sim['today_r']['six']['pairs']['D pair']['lines']['D']['s'],
          'shared_trains': sim['growth_r']['dg']['pairs']['new']['trains'], 'shared_d_s': sim['growth_r']['dg']['pairs']['new']['lines']['D']['s'], 'own_d_s': sim['growth_r']['six']['pairs']['D pair']['lines']['D']['s']}
 # line J in the room of RER F: the trains of one branch run on to Nord-Est (tested on the timetable, model/tunnel_room_tests.py)
 J_KM = 2.5                                 # km from the platforms of Saint-Lazare to those of Nord-Est (ASSUMPTION: 1.1 times the straight line)
@@ -343,6 +348,17 @@ cx_opt = {'pax': cx_pax, 'gain_min': cx_t['paris']['gain'], 'share_1': cx_t['par
           'through': addon(cx_gain(cx_pax, cx_t['paris']['gain']), cx_run, 0.0), 'terminus_cost': round(cx_term, 2), 'terminus': addon(0.0, cx_term_om, cx_term),
           'room_after': room_all['g']['now'] + CX['per_hour'], 'airport_share': round(cx_pax / CX['airport_pax_2025'], 3)}
 cx_opt['saving'] = round(cx_opt['terminus']['pv_costs'] - (cx_opt['through']['pv_costs'] - cx_opt['through']['pv_benefits']), 2)
+# what the plan itself gives CDG Express passengers: the line ends in the Nord-Est station, one change from RER B, D, E, F and G and from
+# the metro, in place of the surface of Gare de l'Est (2027). Not in the economic return, which counts no airport passenger.
+cx_plan = cx_t['plan_vs_2027']; cx_lyon = cx_t['bd_lyon']
+cx_opt.update(pax_day=round(cx_pax / 365, -3), plan_gain_min=cx_plan['paris']['gain'], plan_gain_min_region=cx_plan['region']['gain'], plan_share_1=cx_plan['paris']['share_1'],
+              plan_gain=round(cx_gain(cx_pax, cx_plan['paris']['gain']), 4), plan_gain_low=round(cx_gain(CX['pax_low'], min(cx_plan['paris']['gain'], cx_plan['region']['gain'])), 4),
+              plan_gain_high=round(cx_gain(CX['pax_high'], max(cx_plan['paris']['gain'], cx_plan['region']['gain'])), 4),
+              lyon_gain_min=cx_lyon['paris']['gain'], lyon_gain_min_from=cx_lyon['paris']['from']['gain'], lyon_share_1=cx_lyon['paris']['share_1'], lyon_gain=round(cx_gain(cx_pax, cx_lyon['paris']['gain']), 4),
+              through_gain_min_from=cx_t['paris']['from']['gain'], change_min=round(cx_t['examples']['chatelet']['end'] - cx_t['examples']['chatelet']['through'], 0))
+cx_opt['examples'] = {k: {('y' + c if c[0].isdigit() else c): m for c, m in v.items()} for k, v in cx_t['examples'].items()}     # keys the templates can read
+cx_opt['plan'] = addon(cx_opt['plan_gain'], 0.0, 0.0)
+cx_opt['lyon'] = addon(cx_opt['lyon_gain'], 0.0, 0.0)
 more_out = {'room': room_all, 'd': d_opt, 'j': j_opt, 'cdgx': cx_opt, 'pub': PUB, 'e_tunnel_day': FLOW['k']['e'], 'f_tunnel_day': FLOW['k']['f'],
             'params': {'j_km': J_KM, 'j_round_min': J_ROUND_MIN, 'year_days': YEAR_DAYS, 'all_trips': round(ALL_TRIPS, 2), 'vot': VOT_D, 'days': DAYS}}
 print('MORE', json.dumps({k: more_out[k] for k in ('room', 'd', 'j', 'cdgx')}, ensure_ascii=False)[:3000])

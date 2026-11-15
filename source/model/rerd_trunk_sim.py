@@ -148,7 +148,9 @@ if __name__ == '__main__':
                            'old tunnel with NExTEO': run({'B': 20, 'D': 12}, {'B': ['b'], 'D': ['d']}, {'B': ['b'], 'D': ['d']}, H_NEW),
                            'capacity with NExTEO': capacity({'B': 20, 'D': 12}, {'B': ['b'], 'D': ['d']}, {'B': ['b'], 'D': ['d']}, H_NEW)},
            'scenarios': {}}
-    SC = {'today: B 20, D 12, G 12': (20, 12, 12), 'growth: B 24, D 16, G 16': (24, 16, 16), 'growth with line R in the D: B 24, D 20, G 16': (24, 20, 16)}
+    SC = {'today: B 20, D 12, G 12': (20, 12, 12), 'growth: B 24, D 16, G 16': (24, 16, 16), 'growth with line R in the D: B 24, D 20, G 16': (24, 20, 16),
+          'growth, G as in the plan: B 24, D 16, G 12': (24, 16, 12),
+          'today with line R in the D, G as in the plan: B 20, D 17, G 12': (20, 17, 12), 'growth with line R in the D, G as in the plan: B 24, D 21, G 12': (24, 21, 12)}
     for sc, (B, D, G) in SC.items():
         res['scenarios'][sc] = {}
         for name, pairs in layouts(B, D, G).items():

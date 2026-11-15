@@ -65,6 +65,39 @@ for lay in ('shared', 'own', 'moved', 'route'):
     c['year'] = round(c['central'] * AF + c['upkeep'], 3)
     c['year_low'] = round(c['low'] * AF + c['upkeep'], 3); c['year_high'] = round(c['high'] * AF + c['upkeep'], 3)
     cost[lay] = c
+# ---------------------------------------------------------------- the same layouts built in the same works as RER G
+# RER G is dug anyway, between Nord-Est and Chatelet-Les Halles, beside the tunnel of RER B and D. What RER D can share with it, and
+# what it cannot. The two ends are RER D's alone: RER G meets no track of RER B or RER D (its junctions are with line P east of
+# Nord-Est and with line N towards Montparnasse), so the junction under Gare du Nord and the tie-in south of Chatelet are works on
+# lines in service, priced as above. The two merges of layout 1 are dug in the RER G tunnel before it opens, at the plan's price
+# of an underground junction, which is the price of one in a new tunnel.
+WITH_G_TUNNEL = 0.25     # share of the civil works of a tunnel dug beside RER G, in the same works, that the two share: shafts, worksites,
+                         # the boxes where the boring machines start and end (ASSUMPTION)
+WITH_G_PLATFORM = 0.30   # share of two platform tracks built in the same station box as those of RER G, at Chatelet or at Nord-Est, that
+                         # the two share: end walls, access and ventilation shafts, plant (ASSUMPTION). Corridors are not shared: RER D
+                         # brings many more riders than RER G.
+
+
+def items_with_g(layout, R):
+    out = []
+    for k, v in items(layout, R):
+        if k in ('chatelet', 'nordest'): v *= 1 - WITH_G_PLATFORM
+        elif k == 'tunnel' and layout in ('own', 'moved'): v -= KM_NORD_CHATELET * R['tunnel_civil'] * WITH_G_TUNNEL
+        out.append((k, v))
+    return out
+
+
+for lay in ('shared', 'own', 'moved'):
+    c = cost[lay]; w = {lab: round(all_in(sum(v for _, v in items_with_g(lay, R)), R), 2) for lab, R in (('low', RATE_LOW), ('central', RATE), ('high', RATE_HIGH))}
+    it = items_with_g(lay, RATE)
+    w.update(hard=round(sum(v for _, v in it), 3), items={k: round(v, 3) for k, v in it}, saved=round(c['central'] - w['central'], 2), saved_hard=round(c['hard'] - sum(v for _, v in it), 3),
+             ends=round(all_in(c['items'].get('split', 0) + c['items'].get('tubes', 0) + c['items'].get('ramp', 0), RATE), 2))
+    w['year'] = round(w['central'] * AF + c['upkeep'], 3); w['year_low'] = round(w['low'] * AF + c['upkeep'], 3); w['year_high'] = round(w['high'] * AF + c['upkeep'], 3)
+    c['with_g'] = w
+cost['with_g_share'] = {'tunnel': WITH_G_TUNNEL, 'platform': WITH_G_PLATFORM}
+# the price of an underground junction (works) below which layout 1 would cost less than layout 2, both built with RER G
+wo, ws = cost['own']['with_g']['items'], cost['shared']['with_g']['items']
+cost['with_g_breakeven_junction'] = round((wo['tunnel'] - ws['tunnel'] - ws['signals']) / 2, 2)
 cost['r_fold'] = {lab: round(all_in(R_FOLD_HARD, R), 2) for lab, R in (('low', RATE_LOW), ('central', RATE), ('high', RATE_HIGH))}
 cost['k_fold'] = {lab: round(all_in(K_FOLD_HARD, R), 2) for lab, R in (('low', RATE_LOW), ('central', RATE), ('high', RATE_HIGH))}
 cost['uplift'] = round((1 + RATE['design'] + RATE['client'] + RATE['land']) * (1 + RATE['risk']), 3)
@@ -80,7 +113,8 @@ past['rff13'].update(low26=round(2.0 * INDEX_2013, 1), high26=round(3.5 * INDEX_
 # ---------------------------------------------------------------- the simulation: seconds the section adds to a train
 NAMES = {'plan': 'plan: B+D in the old tunnel, G alone', 'dg': 'D+G in the new tunnel, B alone in the old', 'bg': 'B+G in the new tunnel, D alone in the old',
          'half': 'mix: half the D in each tunnel', 'quarter': 'mix: a quarter of the D with the B, three quarters with the G', 'six': 'six tracks: B, D and G each alone'}
-SCEN = {'today': 'today: B 20, D 12, G 12', 'growth': 'growth: B 24, D 16, G 16', 'growth_r': 'growth with line R in the D: B 24, D 20, G 16'}
+SCEN = {'today': 'today: B 20, D 12, G 12', 'growth': 'growth, G as in the plan: B 24, D 16, G 12', 'growth_r': 'growth with line R in the D, G as in the plan: B 24, D 21, G 12',
+        'today_r': 'today with line R in the D, G as in the plan: B 20, D 17, G 12', 'growth_all': 'growth: B 24, D 16, G 16'}
 k = FL['k']
 RIDERS = {'B': k['line']['B'], 'D': k['line']['D'], 'G': FL['key']['pn']}      # passengers a working day (chapter 'flows'); G = lines P and N
 PEAK, HIT = 0.45, 0.6        # share of journeys made in the two peaks; share of those aboard in the section or boarding after it (ASSUMPTION)
@@ -133,7 +167,7 @@ for lay, cl in (('dg', 'shared'), ('six', 'own'), ('six', 'moved'), ('six', 'rou
     # with more trains: the delay of the layout at the larger service is set against the plan at today's service, the only one of the two that can run
     gained = sim['today']['plan']['delay_min'] - sim['growth'][lay]['delay_min']
     relg = [round(gained * w * VOT / 60 * DAYS / 1e9, 3) for w in W_LATE]
-    c = cost[cl]
+    c = cost[cl]['with_g'] if 'with_g' in cost[cl] else cost[cl]          # an addition to the plan: built in the same works as RER G
     value[cl] = {'reliability': rel[1], 'reliability_low': rel[0], 'reliability_high': rel[2],
                  'growth_reliability': relg[1], 'more_trains': more['central'],
                  'with_growth': round(relg[1] + more['central'], 3),            # delay saved at the larger service, plus the worth of the extra trains
@@ -156,5 +190,6 @@ out = {'cost': cost, 'past': past, 'sim': sim, 'more': more, 'value': value, 'cu
 json.dump(out, open(os.path.join(SRC, 'rerd', 'data.json'), 'w'), indent=1)
 for lay in ('shared', 'own', 'moved', 'route'): print(lay, cost[lay]['low'], cost[lay]['central'], cost[lay]['high'], 'hard', cost[lay]['hard'], 'year', cost[lay]['year'], value[lay])
 print('past', past); print('more', more); print('cut', cut); print('k', out['k'])
-for sc in ('today', 'growth', 'growth_r'): print(sc, {l: (v['delay_min'], v['works'], v['reliability'][1]) for l, v in sim[sc].items()})
+for lay in ('shared', 'own', 'moved'): print(lay, 'with RER G', cost[lay]['with_g'])
+for sc in SCEN: print(sc, {l: (v['delay_min'], v['works'], v['reliability'][1]) for l, v in sim[sc].items()})
 print(sim['capacity'], sim['check'])

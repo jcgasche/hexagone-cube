@@ -716,6 +716,681 @@
      "capacity": 29.4
     }
    }
+  },
+  "growth, G as in the plan: B 24, D 16, G 12": {
+   "plan: B+D in the old tunnel, G alone": {
+    "old": {
+     "timetabled": 40,
+     "through": 35.7,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 160.3,
+       "over_3min": 0.42,
+       "cancelled_in_tunnel": 0.0981
+      },
+      "D": {
+       "freq": 16,
+       "added_s": 149.1,
+       "over_3min": 0.357,
+       "cancelled_in_tunnel": 0.052
+      }
+     },
+     "capacity": 37.3
+    },
+    "new": {
+     "timetabled": 12,
+     "through": 11.7,
+     "lines": {
+      "G": {
+       "freq": 12,
+       "added_s": 4.5,
+       "over_3min": 0.001,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 29.4
+    }
+   },
+   "D+G in the new tunnel, B alone in the old": {
+    "old": {
+     "timetabled": 24,
+     "through": 23.4,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 18.3,
+       "over_3min": 0.005,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.6
+    },
+    "new": {
+     "timetabled": 28,
+     "through": 27.2,
+     "lines": {
+      "D": {
+       "freq": 16,
+       "added_s": 38.5,
+       "over_3min": 0.02,
+       "cancelled_in_tunnel": 0.0027
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 37.6,
+       "over_3min": 0.024,
+       "cancelled_in_tunnel": 0.0006
+      }
+     },
+     "capacity": 37.4
+    }
+   },
+   "B+G in the new tunnel, D alone in the old": {
+    "old": {
+     "timetabled": 16,
+     "through": 15.6,
+     "lines": {
+      "D": {
+       "freq": 16,
+       "added_s": 9.3,
+       "over_3min": 0.002,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.1
+    },
+    "new": {
+     "timetabled": 36,
+     "through": 34.2,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 111.8,
+       "over_3min": 0.178,
+       "cancelled_in_tunnel": 0.0286
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 108.7,
+       "over_3min": 0.176,
+       "cancelled_in_tunnel": 0.0083
+      }
+     },
+     "capacity": 35.9
+    }
+   },
+   "mix: half the D in each tunnel": {
+    "old": {
+     "timetabled": 32.0,
+     "through": 30.9,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 88.6,
+       "over_3min": 0.11,
+       "cancelled_in_tunnel": 0.0108
+      },
+      "D": {
+       "freq": 8.0,
+       "added_s": 70.8,
+       "over_3min": 0.069,
+       "cancelled_in_tunnel": 0.0035
+      }
+     },
+     "capacity": 34.1
+    },
+    "new": {
+     "timetabled": 20.0,
+     "through": 19.5,
+     "lines": {
+      "D": {
+       "freq": 8.0,
+       "added_s": 10.6,
+       "over_3min": 0.003,
+       "cancelled_in_tunnel": 0.0002
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 13.5,
+       "over_3min": 0.003,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 37.4
+    }
+   },
+   "mix: a quarter of the D with the B, three quarters with the G": {
+    "old": {
+     "timetabled": 28.0,
+     "through": 27.1,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 68.5,
+       "over_3min": 0.069,
+       "cancelled_in_tunnel": 0.006
+      },
+      "D": {
+       "freq": 4.0,
+       "added_s": 45.9,
+       "over_3min": 0.034,
+       "cancelled_in_tunnel": 0.0004
+      }
+     },
+     "capacity": 32.2
+    },
+    "new": {
+     "timetabled": 24.0,
+     "through": 23.3,
+     "lines": {
+      "D": {
+       "freq": 12.0,
+       "added_s": 19.7,
+       "over_3min": 0.007,
+       "cancelled_in_tunnel": 0.0007
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 20.7,
+       "over_3min": 0.007,
+       "cancelled_in_tunnel": 0.0008
+      }
+     },
+     "capacity": 39.6
+    }
+   },
+   "six tracks: B, D and G each alone": {
+    "old": {
+     "timetabled": 24,
+     "through": 23.4,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 18.3,
+       "over_3min": 0.005,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.6
+    },
+    "D pair": {
+     "timetabled": 16,
+     "through": 15.6,
+     "lines": {
+      "D": {
+       "freq": 16,
+       "added_s": 20.5,
+       "over_3min": 0.011,
+       "cancelled_in_tunnel": 0.001
+      }
+     },
+     "capacity": 27.1
+    },
+    "new": {
+     "timetabled": 12,
+     "through": 11.7,
+     "lines": {
+      "G": {
+       "freq": 12,
+       "added_s": 4.5,
+       "over_3min": 0.001,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 29.4
+    }
+   }
+  },
+  "today with line R in the D, G as in the plan: B 20, D 17, G 12": {
+   "plan: B+D in the old tunnel, G alone": {
+    "old": {
+     "timetabled": 37,
+     "through": 34.9,
+     "lines": {
+      "B": {
+       "freq": 20,
+       "added_s": 121.8,
+       "over_3min": 0.23,
+       "cancelled_in_tunnel": 0.0289
+      },
+      "D": {
+       "freq": 17,
+       "added_s": 114.8,
+       "over_3min": 0.203,
+       "cancelled_in_tunnel": 0.0228
+      }
+     },
+     "capacity": 38.6
+    },
+    "new": {
+     "timetabled": 12,
+     "through": 11.7,
+     "lines": {
+      "G": {
+       "freq": 12,
+       "added_s": 4.5,
+       "over_3min": 0.001,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 29.4
+    }
+   },
+   "D+G in the new tunnel, B alone in the old": {
+    "old": {
+     "timetabled": 20,
+     "through": 19.5,
+     "lines": {
+      "B": {
+       "freq": 20,
+       "added_s": 11.2,
+       "over_3min": 0.002,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.5
+    },
+    "new": {
+     "timetabled": 29,
+     "through": 28.1,
+     "lines": {
+      "D": {
+       "freq": 17,
+       "added_s": 45.2,
+       "over_3min": 0.031,
+       "cancelled_in_tunnel": 0.0036
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 43.5,
+       "over_3min": 0.031,
+       "cancelled_in_tunnel": 0.0019
+      }
+     },
+     "capacity": 36.9
+    }
+   },
+   "B+G in the new tunnel, D alone in the old": {
+    "old": {
+     "timetabled": 17,
+     "through": 16.5,
+     "lines": {
+      "D": {
+       "freq": 17,
+       "added_s": 11.3,
+       "over_3min": 0.004,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.1
+    },
+    "new": {
+     "timetabled": 32,
+     "through": 31.1,
+     "lines": {
+      "B": {
+       "freq": 20,
+       "added_s": 57.1,
+       "over_3min": 0.04,
+       "cancelled_in_tunnel": 0.0049
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 53.0,
+       "over_3min": 0.038,
+       "cancelled_in_tunnel": 0.0017
+      }
+     },
+     "capacity": 36.8
+    }
+   },
+   "mix: half the D in each tunnel": {
+    "old": {
+     "timetabled": 28.5,
+     "through": 27.7,
+     "lines": {
+      "B": {
+       "freq": 20,
+       "added_s": 52.4,
+       "over_3min": 0.041,
+       "cancelled_in_tunnel": 0.0047
+      },
+      "D": {
+       "freq": 8.5,
+       "added_s": 39.5,
+       "over_3min": 0.031,
+       "cancelled_in_tunnel": 0.001
+      }
+     },
+     "capacity": 35.2
+    },
+    "new": {
+     "timetabled": 20.5,
+     "through": 20.0,
+     "lines": {
+      "D": {
+       "freq": 8.5,
+       "added_s": 11.1,
+       "over_3min": 0.003,
+       "cancelled_in_tunnel": 0.0002
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 13.9,
+       "over_3min": 0.004,
+       "cancelled_in_tunnel": 0.0001
+      }
+     },
+     "capacity": 37.6
+    }
+   },
+   "mix: a quarter of the D with the B, three quarters with the G": {
+    "old": {
+     "timetabled": 24.25,
+     "through": 23.4,
+     "lines": {
+      "B": {
+       "freq": 20,
+       "added_s": 35.3,
+       "over_3min": 0.021,
+       "cancelled_in_tunnel": 0.0014
+      },
+      "D": {
+       "freq": 4.25,
+       "added_s": 20.6,
+       "over_3min": 0.009,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 32.7
+    },
+    "new": {
+     "timetabled": 24.75,
+     "through": 24.3,
+     "lines": {
+      "D": {
+       "freq": 12.75,
+       "added_s": 23.5,
+       "over_3min": 0.009,
+       "cancelled_in_tunnel": 0.0004
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 24.2,
+       "over_3min": 0.012,
+       "cancelled_in_tunnel": 0.0011
+      }
+     },
+     "capacity": 39.2
+    }
+   },
+   "six tracks: B, D and G each alone": {
+    "old": {
+     "timetabled": 20,
+     "through": 19.5,
+     "lines": {
+      "B": {
+       "freq": 20,
+       "added_s": 11.2,
+       "over_3min": 0.002,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.5
+    },
+    "D pair": {
+     "timetabled": 17,
+     "through": 16.5,
+     "lines": {
+      "D": {
+       "freq": 17,
+       "added_s": 24.6,
+       "over_3min": 0.015,
+       "cancelled_in_tunnel": 0.0009
+      }
+     },
+     "capacity": 27.1
+    },
+    "new": {
+     "timetabled": 12,
+     "through": 11.7,
+     "lines": {
+      "G": {
+       "freq": 12,
+       "added_s": 4.5,
+       "over_3min": 0.001,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 29.4
+    }
+   }
+  },
+  "growth with line R in the D, G as in the plan: B 24, D 21, G 12": {
+   "plan: B+D in the old tunnel, G alone": {
+    "old": {
+     "timetabled": 45,
+     "through": 36.9,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 196.0,
+       "over_3min": 0.627,
+       "cancelled_in_tunnel": 0.1627
+      },
+      "D": {
+       "freq": 21,
+       "added_s": 188.4,
+       "over_3min": 0.582,
+       "cancelled_in_tunnel": 0.1435
+      }
+     },
+     "capacity": 38.8
+    },
+    "new": {
+     "timetabled": 12,
+     "through": 11.7,
+     "lines": {
+      "G": {
+       "freq": 12,
+       "added_s": 4.5,
+       "over_3min": 0.001,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 29.4
+    }
+   },
+   "D+G in the new tunnel, B alone in the old": {
+    "old": {
+     "timetabled": 24,
+     "through": 23.4,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 18.3,
+       "over_3min": 0.005,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.6
+    },
+    "new": {
+     "timetabled": 33,
+     "through": 31.6,
+     "lines": {
+      "D": {
+       "freq": 21,
+       "added_s": 85.4,
+       "over_3min": 0.111,
+       "cancelled_in_tunnel": 0.0202
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 86.8,
+       "over_3min": 0.121,
+       "cancelled_in_tunnel": 0.0076
+      }
+     },
+     "capacity": 35.5
+    }
+   },
+   "B+G in the new tunnel, D alone in the old": {
+    "old": {
+     "timetabled": 21,
+     "through": 20.5,
+     "lines": {
+      "D": {
+       "freq": 21,
+       "added_s": 18.8,
+       "over_3min": 0.008,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.1
+    },
+    "new": {
+     "timetabled": 36,
+     "through": 34.2,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 111.8,
+       "over_3min": 0.178,
+       "cancelled_in_tunnel": 0.0286
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 108.7,
+       "over_3min": 0.176,
+       "cancelled_in_tunnel": 0.0083
+      }
+     },
+     "capacity": 35.9
+    }
+   },
+   "mix: half the D in each tunnel": {
+    "old": {
+     "timetabled": 34.5,
+     "through": 32.8,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 112.4,
+       "over_3min": 0.187,
+       "cancelled_in_tunnel": 0.0247
+      },
+      "D": {
+       "freq": 10.5,
+       "added_s": 97.7,
+       "over_3min": 0.147,
+       "cancelled_in_tunnel": 0.0111
+      }
+     },
+     "capacity": 35.3
+    },
+    "new": {
+     "timetabled": 22.5,
+     "through": 22.0,
+     "lines": {
+      "D": {
+       "freq": 10.5,
+       "added_s": 16.6,
+       "over_3min": 0.005,
+       "cancelled_in_tunnel": 0.001
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 16.4,
+       "over_3min": 0.005,
+       "cancelled_in_tunnel": 0.0003
+      }
+     },
+     "capacity": 38.8
+    }
+   },
+   "mix: a quarter of the D with the B, three quarters with the G": {
+    "old": {
+     "timetabled": 29.25,
+     "through": 28.2,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 71.3,
+       "over_3min": 0.077,
+       "cancelled_in_tunnel": 0.0072
+      },
+      "D": {
+       "freq": 5.25,
+       "added_s": 52.5,
+       "over_3min": 0.043,
+       "cancelled_in_tunnel": 0.002
+      }
+     },
+     "capacity": 32.9
+    },
+    "new": {
+     "timetabled": 27.75,
+     "through": 27.2,
+     "lines": {
+      "D": {
+       "freq": 15.75,
+       "added_s": 37.9,
+       "over_3min": 0.021,
+       "cancelled_in_tunnel": 0.0039
+      },
+      "G": {
+       "freq": 12,
+       "added_s": 37.7,
+       "over_3min": 0.024,
+       "cancelled_in_tunnel": 0.0007
+      }
+     },
+     "capacity": 37.6
+    }
+   },
+   "six tracks: B, D and G each alone": {
+    "old": {
+     "timetabled": 24,
+     "through": 23.4,
+     "lines": {
+      "B": {
+       "freq": 24,
+       "added_s": 18.3,
+       "over_3min": 0.005,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 39.6
+    },
+    "D pair": {
+     "timetabled": 21,
+     "through": 20.3,
+     "lines": {
+      "D": {
+       "freq": 21,
+       "added_s": 51.0,
+       "over_3min": 0.053,
+       "cancelled_in_tunnel": 0.0055
+      }
+     },
+     "capacity": 27.2
+    },
+    "new": {
+     "timetabled": 12,
+     "through": 11.7,
+     "lines": {
+      "G": {
+       "freq": 12,
+       "added_s": 4.5,
+       "over_3min": 0.001,
+       "cancelled_in_tunnel": 0.0
+      }
+     },
+     "capacity": 29.4
+    }
+   }
   }
  },
  "sensitivity_growth": {

@@ -57,7 +57,7 @@ cost = {lab: round(all_in(sum(v for _, v in items(R)), R), 1) for lab, R in (('l
 cost.update(items={k: round(v, 3) for k, v in items(RATE)}, hard=round(sum(v for _, v in items(RATE)), 2), km_new=round(sum(KM.values()), 1), km_not_built=KM_NOT_BUILT, km_more=round(km_more, 1),
             uplift=round((1 + RATE['design'] + RATE['client'] + RATE['land']) * (1 + RATE['risk']), 3), upkeep=round(km_more * 0.0035 + 0.01, 3),
             tracks_chatelet=sum(TRACKS_CHATELET.values()), tracks_chatelet_all=sum(TRACKS_CHATELET.values()) + 2 + 2,      # with the two of RER G and the two of RER D (annex 'rerd')
-            d_pair=RD['cost']['own']['central'], d_shared=RD['cost']['shared']['central'], kr=round(RD['cost']['r_fold']['central'] + RD['cost']['k_fold']['central'], 2))
+            d_pair=RD['cost']['own']['with_g']['central'], d_shared=RD['cost']['shared']['with_g']['central'], kr=round(RD['cost']['r_fold']['central'] + RD['cost']['k_fold']['central'], 2))
 cost['year'] = round(cost['central'] * AF + cost['upkeep'], 3); cost['year_low'] = round(cost['low'] * AF + cost['upkeep'], 3); cost['year_high'] = round(cost['high'] * AF + cost['upkeep'], 3)
 cost['with_d'] = round(cost['central'] + cost['d_pair'] + cost['kr'], 1)
 

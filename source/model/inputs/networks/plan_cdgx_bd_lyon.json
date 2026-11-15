@@ -1,0 +1,41 @@
+{
+ "name": "plan_cdgx_bd_lyon",
+ "label": "The plan, CDG Express through the old RER B and D tunnel to Châtelet and Gare de Lyon",
+ "about": "CDG Express as planned for 28 March 2027 (a train every 15 minutes, 20 minutes without a stop), brought onto the tracks of RER B at Gare du Nord as line K would be, then through the tunnel RER B and D share today to Châtelet-Les Halles and along RER D to Gare de Lyon, in the minutes of RER D (ASSUMPTION). Needs RER D out of that tunnel (annex D): the old tunnel then carries RER B, line K and CDG Express.",
+ "include": [
+  "plan"
+ ],
+ "new_stops": [
+  {
+   "id": "X:CDG",
+   "name": "Aéroport Charles de Gaulle 2 (CDG Express)",
+   "lon": 2.5711,
+   "lat": 49.004
+  }
+ ],
+ "new_lines": [
+  {
+   "line": "CDGX",
+   "kind": 2,
+   "headway_min": 15,
+   "stops": [
+    [
+     "X:CDG",
+     0
+    ],
+    [
+     "IDFM:monomodalStopPlace:462394",
+     20
+    ],
+    [
+     "IDFM:monomodalStopPlace:45102",
+     24
+    ],
+    [
+     "IDFM:monomodalStopPlace:470195",
+     29.8
+    ]
+   ]
+  }
+ ]
+}

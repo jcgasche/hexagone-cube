@@ -24,6 +24,120 @@
   }
  },
  "cdg_express": {
+  "through": {
+   "region": {
+    "from": {
+     "end": 48.9,
+     "through": 48.1,
+     "gain": 0.8,
+     "share_1": 0.271,
+     "gain_of_gainers": 2.9
+    },
+    "to": {
+     "end": 48.8,
+     "through": 48.3,
+     "gain": 0.5,
+     "share_1": 0.424,
+     "gain_of_gainers": 2.1
+    },
+    "gain": 0.65,
+    "share_1": 0.348
+   },
+   "paris": {
+    "from": {
+     "end": 42.5,
+     "through": 41.5,
+     "gain": 0.99,
+     "share_1": 0.332,
+     "gain_of_gainers": 2.9
+    },
+    "to": {
+     "end": 42.5,
+     "through": 42.0,
+     "gain": 0.45,
+     "share_1": 0.362,
+     "gain_of_gainers": 1.6
+    },
+    "gain": 0.72,
+    "share_1": 0.347
+   }
+  },
+  "bd_lyon": {
+   "region": {
+    "from": {
+     "end": 48.9,
+     "through": 47.5,
+     "gain": 1.46,
+     "share_1": 0.444,
+     "gain_of_gainers": 3.6
+    },
+    "to": {
+     "end": 48.8,
+     "through": 48.4,
+     "gain": 0.42,
+     "share_1": 0.455,
+     "gain_of_gainers": 2.8
+    },
+    "gain": 0.94,
+    "share_1": 0.45
+   },
+   "paris": {
+    "from": {
+     "end": 42.5,
+     "through": 41.2,
+     "gain": 1.29,
+     "share_1": 0.42,
+     "gain_of_gainers": 3.6
+    },
+    "to": {
+     "end": 42.5,
+     "through": 42.4,
+     "gain": 0.08,
+     "share_1": 0.38,
+     "gain_of_gainers": 2.2
+    },
+    "gain": 0.69,
+    "share_1": 0.4
+   }
+  },
+  "plan_vs_2027": {
+   "region": {
+    "from": {
+     "end": 54.1,
+     "through": 48.9,
+     "gain": 5.2,
+     "share_1": 0.759,
+     "gain_of_gainers": 6.8
+    },
+    "to": {
+     "end": 55.1,
+     "through": 48.8,
+     "gain": 6.3,
+     "share_1": 0.803,
+     "gain_of_gainers": 7.8
+    },
+    "gain": 5.75,
+    "share_1": 0.781
+   },
+   "paris": {
+    "from": {
+     "end": 46.6,
+     "through": 42.5,
+     "gain": 4.11,
+     "share_1": 0.675,
+     "gain_of_gainers": 6.0
+    },
+    "to": {
+     "end": 47.7,
+     "through": 42.5,
+     "gain": 5.28,
+     "share_1": 0.758,
+     "gain_of_gainers": 6.9
+    },
+    "gain": 4.7,
+    "share_1": 0.717
+   }
+  },
   "region": {
    "from": {
     "end": 48.9,
@@ -62,16 +176,34 @@
   },
   "examples": {
    "chatelet": {
+    "2027": 42.0,
     "end": 34.0,
-    "through": 30.0
+    "through": 30.0,
+    "bd_lyon": 29.0
    },
    "montparnasse": {
+    "2027": 49.0,
     "end": 39.0,
-    "through": 35.0
+    "through": 35.0,
+    "bd_lyon": 39.0
+   },
+   "lyon": {
+    "2027": 46.0,
+    "end": 39.0,
+    "through": 39.0,
+    "bd_lyon": 35.0
+   },
+   "defense": {
+    "2027": 52.0,
+    "end": 42.0,
+    "through": 42.0,
+    "bd_lyon": 42.0
    },
    "versailles": {
+    "2027": 78.0,
     "end": 62.0,
-    "through": 57.0
+    "through": 57.0,
+    "bd_lyon": 62.0
    }
   }
  }

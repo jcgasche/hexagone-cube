@@ -1,0 +1,33 @@
+{
+ "name": "future_cdgx_est",
+ "label": "With lines 15 to 18, CDG Express at the surface of Gare de l'Est",
+ "about": "CDG Express as it opens on 28 March 2027: a train every 15 minutes, 20 minutes without a stop from the airport (terminal 2) to the surface platforms of Gare de l'Est. The rest of the network as the plan's reference: today's timetable with lines 15 to 18.",
+ "include": [
+  "future"
+ ],
+ "new_stops": [
+  {
+   "id": "X:CDG",
+   "name": "Aéroport Charles de Gaulle 2 (CDG Express)",
+   "lon": 2.5711,
+   "lat": 49.004
+  }
+ ],
+ "new_lines": [
+  {
+   "line": "CDGX",
+   "kind": 2,
+   "headway_min": 15,
+   "stops": [
+    [
+     "X:CDG",
+     0
+    ],
+    [
+     "IDFM:monomodalStopPlace:470519",
+     20
+    ]
+   ]
+  }
+ ]
+}

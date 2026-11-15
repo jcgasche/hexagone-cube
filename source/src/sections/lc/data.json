@@ -343,13 +343,13 @@
   "upkeep": 0.031,
   "tracks_chatelet": 6,
   "tracks_chatelet_all": 10,
-  "d_pair": 2.64,
-  "d_shared": 3.0,
+  "d_pair": 2.33,
+  "d_shared": 2.81,
   "kr": 0.3,
   "year": 0.268,
   "year_low": 0.196,
   "year_high": 0.39,
-  "with_d": 7.8
+  "with_d": 7.5
  },
  "value": {
   "hours_more": 3500,
