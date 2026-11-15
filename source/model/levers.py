@@ -301,9 +301,55 @@ sub = tally(merge(F, G, S)); need = {'to_pay': round(sub['pv_costs'] - sub['pv_b
 per_bn_year = addon(1.0, 0.0, 0.0)['pv_benefits']               # present value of one bn a year from 2040 (growing as the suburban gains do)
 need['to_pay_year'] = round(need['to_pay'] / per_bn_year, 3); need['to_match_plan_year'] = round(need['to_match_plan'] / per_bn_year, 3)
 
+# ---------------------------------------------------------------- 5. what else the tunnels could carry (block parts.more)
+TT = json.load(open(os.path.join(HERE, 'inputs', 'tunnel_room_tests.json'))); PUB = json.load(open(os.path.join(HERE, 'inputs', 'tunnel_room.json')))
+sv, sf = N.service(N.HOUR_TODAY), N.service(N.HOUR_FULL); hs_cap = lambda n: N.LAYOUT['stations'][n]['hs'] / 2 * N.PER_TRACK; tp = N.REG_PLATFORMS['ter']
+room_all = {'tgv': {k: {'now': sv['stops_direction'][n], 'full': sf['stops_direction'][n], 'places': hs_cap(n)} for k, n in (('montparnasse', 'Montparnasse'), ('nordest', 'Paris Nord-Est'), ('lyon', 'Gare de Lyon'))},
+            'ter_nordest': {'now': sum(tp['peak_today'].values()), 'planned': tp['peak_planned'], 'places': tp['per_track'] * tp['tracks'] / 2},
+            'f': {'now': N.REG_PLATFORMS['h']['peak_l'], 'places': RD['sim']['capacity']['dg']['90 s']}, 'g': {'now': N.G_TRAINS_H, 'places': N.REG_PLATFORMS['n']['per_track'] * N.REG_PLATFORMS['n']['tracks'] / 2},
+            'tgv_counted_pv': round(pv(part['T'][FR.CAPACITY]), 1)}
+# RER D out of the shared tunnel: on the tracks of RER G (layout 1 of the annex 'rerd') or on its own pair (layout 2), each with line R, same rules
+def d_layout(key, growth_delay):
+    c = {l: RD['cost'][key][l] + RD['cost']['r_fold'][l] for l in ('low', 'central', 'high')}; up_ = RD['cost'][key]['upkeep']; tr = trains_cost('B', 4)[0] + trains_cost('D', 4)[0]
+    ben = to_bn(sim['today']['plan']['delay_min'] - growth_delay) + RD['more']['central'] + r_time
+    f = addon(ben, up_ + tr, c['central'])
+    return {'cost': round(c['central'], 2), 'cost_low': round(c['low'], 2), 'cost_high': round(c['high'], 2), 'benefit': round(ben, 4), 'running': round(up_ + tr, 4), 'french': f,
+            'french_low': addon(ben, up_ + tr, c['high']), 'french_high': addon(ben, up_ + tr, c['low']),
+            'with_plan': {'pv_benefits': round(whole['pv_benefits'] + f['pv_benefits'], 1), 'pv_costs': round(whole['pv_costs'] + f['pv_costs'], 1), 'npv': round(whole['npv'] + f['npv'], 1),
+                          'ratio': round((whole['pv_benefits'] + f['pv_benefits']) / (whole['pv_costs'] + f['pv_costs']), 2), 'capex': round(capex + c['central'], 1)}}
+d_opt = {'shared': d_layout('shared', sim['growth_r']['dg']['delay_min']), 'own': d_layout('own', sim['growth_r']['six']['delay_min']),
+         'items_own': RD['cost']['own']['items'], 'items_shared': RD['cost']['shared']['items'], 'uplift': RD['cost']['uplift'],
+         'shared_trains': sim['growth_r']['dg']['pairs']['new']['trains'], 'shared_d_s': sim['growth_r']['dg']['pairs']['new']['lines']['D']['s'], 'own_d_s': sim['growth_r']['six']['pairs']['D pair']['lines']['D']['s']}
+# line J in the room of RER F: the trains of one branch run on to Nord-Est (tested on the timetable, model/tunnel_room_tests.py)
+J_KM = 2.5                                 # km from the platforms of Saint-Lazare to those of Nord-Est (ASSUMPTION: 1.1 times the straight line)
+J_ROUND_MIN = 16.0                         # minutes a round trip gains in length: twice 5 minutes and the turn (ASSUMPTION)
+YEAR_DAYS = 300                            # working days and weekends at their lower service, as days of a full service (ASSUMPTION)
+def j_case(t):
+    gain = t['hours_day'] * ALL_TRIPS * DAYS * VOT_D / 1e9; run = t['trains_day'] * J_KM * YEAR_DAYS * N.REG_TRAINKM_COST / 1e9 + t['peak_trains'] * J_ROUND_MIN / 60 * f_sub
+    return dict(t, gain=round(gain, 4), running=round(run, 4), french=addon(gain, run, 0.0), room_after=room_all['f']['now'] + t['peak_trains'])
+j_opt = {k: j_case(t) for k, t in TT['line_j'].items()}
+# CDG Express: through the RER G tunnel to Chatelet and Montparnasse, or on two platform tracks of its own at Nord-Est
+CX = PUB['cdg_express']; cx_t = TT['cdg_express']
+CX_KM = 6.0                                # km from Nord-Est to Montparnasse by Chatelet (ASSUMPTION: 1.1 times the straight lines)
+CX_TURN_KM = 4.5                           # km on to the turnback tracks planned at Clamart, where the trains would turn (ASSUMPTION)
+CX_ROUND_MIN = 38.0                        # minutes a round trip gains in length (ASSUMPTION: twice 16 minutes and the turn)
+cx_pax = (CX['pax_low'] + CX['pax_high']) / 2
+cx_gain = lambda pax, minutes: pax * minutes / 60 * N.VOT_LD / 1e9
+cx_run = CX['trains_day'] * (CX_KM + CX_TURN_KM) * 365 * N.REG_TRAINKM_COST / 1e9 + CX['per_hour'] * CX_ROUND_MIN / 60 * f_sub
+cx_term = 2 * N.LEN['sub'] * N.RATE['platform_m'] * up(N.RATE); cx_term_om = 2 * N.LEN['sub'] * N.OM_STATION
+cx_opt = {'pax': cx_pax, 'gain_min': cx_t['paris']['gain'], 'share_1': cx_t['paris']['share_1'], 'gain_of_gainers': cx_t['paris']['from']['gain_of_gainers'], 'examples': cx_t['examples'],
+          'gain': round(cx_gain(cx_pax, cx_t['paris']['gain']), 4), 'gain_low': round(cx_gain(CX['pax_low'], cx_t['region']['gain']), 4), 'gain_high': round(cx_gain(CX['pax_high'], 2 * cx_t['paris']['gain']), 4),
+          'running': round(cx_run, 4), 'km': CX_KM + CX_TURN_KM, 'round_min': CX_ROUND_MIN, 'vot': N.VOT_LD,
+          'through': addon(cx_gain(cx_pax, cx_t['paris']['gain']), cx_run, 0.0), 'terminus_cost': round(cx_term, 2), 'terminus': addon(0.0, cx_term_om, cx_term),
+          'room_after': room_all['g']['now'] + CX['per_hour'], 'airport_share': round(cx_pax / CX['airport_pax_2025'], 3)}
+cx_opt['saving'] = round(cx_opt['terminus']['pv_costs'] - (cx_opt['through']['pv_costs'] - cx_opt['through']['pv_benefits']), 2)
+more_out = {'room': room_all, 'd': d_opt, 'j': j_opt, 'cdgx': cx_opt, 'pub': PUB, 'e_tunnel_day': FLOW['k']['e'], 'f_tunnel_day': FLOW['k']['f'],
+            'params': {'j_km': J_KM, 'j_round_min': J_ROUND_MIN, 'year_days': YEAR_DAYS, 'all_trips': round(ALL_TRIPS, 2), 'vot': VOT_D, 'days': DAYS}}
+print('MORE', json.dumps({k: more_out[k] for k in ('room', 'd', 'j', 'cdgx')}, ensure_ascii=False)[:3000])
+
 out = {'parts': parts_out, 'combos': combos, 'shares': {'cost': c_share, 'stage1_of_triangle_gains': round(t1_ben, 3), 'stage1_of_triangle_cost': round(t1_cost, 3),
                                                        'stage1_items': {k: round(v, 3) for k, v in T1_SHARE.items()}, 'regional_by_part': reg, 'crowding_by_part': crowd},
-       'stages': stages, 'early': early, 'stage1_sensitivity': sens1, 'spend': spend, 'rerd': rd_out, 'bd': bd, 'counted_crowding': counted, 'relief': relief, 'room': room, 'need': need}
+       'stages': stages, 'early': early, 'more': more_out, 'stage1_sensitivity': sens1, 'spend': spend, 'rerd': rd_out, 'bd': bd, 'counted_crowding': counted, 'relief': relief, 'room': room, 'need': need}
 json.dump(out, open(os.path.join(FR.OUT, 'levers.json'), 'w'), indent=1, ensure_ascii=False)
 
 # the annex 'parts' reads the same figures, with short keys for the items it names and whole widths for its bars

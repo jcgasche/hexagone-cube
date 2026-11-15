@@ -1,0 +1,10 @@
+{
+ "_about": "Published figures used by model/levers.py for the block 'parts.more' (what else the tunnels could carry). Each entry names its source by the key of src/sections/parts/sources.json or of another section's sources.",
+ "rer_e": {"trains_today": 16, "trains_2030": 22, "headway_s": 108, "trains_day": 450, "expected_day": 700000, "day_2024": 370000, "src": "idfm_e24", "src_2024": "idfm_e"},
+ "rer_d": {"growth_15y": 0.60, "day_2023": 662000, "src": "pt_d23"},
+ "rer_b": {"ran": 17.5, "planned": 20, "src": "rd_b23"},
+ "line_p": {"growth_year": 0.038, "year_from": 2010, "year_to": 2015, "src": "pt_pest"},
+ "clamart": {"trains": 4, "year": 2032, "src": "idfm_nu23"},
+ "cdg_express": {"pax_low": 6000000, "pax_high": 8000000, "per_hour": 4, "minutes": 20, "trains_day": 152, "km": 32, "fare": 25, "trainsets": 13, "seats_max": 420,
+                 "airport_pax_2025": 72000000, "src": "pt_cdgx", "src_site": "pt_cdgx_site"}
+}

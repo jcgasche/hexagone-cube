@@ -305,6 +305,278 @@
   "per_year": 1.4,
   "after": 0.0
  },
+ "more": {
+  "room": {
+   "tgv": {
+    "montparnasse": {
+     "now": 12,
+     "full": 15,
+     "places": 15.0
+    },
+    "nordest": {
+     "now": 12.0,
+     "full": 13.0,
+     "places": 15.0
+    },
+    "lyon": {
+     "now": 12,
+     "full": 16,
+     "places": 20.0
+    }
+   },
+   "ter_nordest": {
+    "now": 14,
+    "planned": 15,
+    "places": 16.0
+   },
+   "f": {
+    "now": 23,
+    "places": 32
+   },
+   "g": {
+    "now": 12,
+    "places": 20.0
+   },
+   "tgv_counted_pv": 3.8
+  },
+  "d": {
+   "shared": {
+    "cost": 3.15,
+    "cost_low": 2.61,
+    "cost_high": 4.13,
+    "benefit": 0.1224,
+    "running": 0.0874,
+    "french": {
+     "pv_benefits": 2.15,
+     "pv_costs": 4.05,
+     "npv": -1.9,
+     "ratio": 0.53
+    },
+    "french_low": {
+     "pv_benefits": 2.15,
+     "pv_costs": 4.9,
+     "npv": -2.75,
+     "ratio": 0.44
+    },
+    "french_high": {
+     "pv_benefits": 2.15,
+     "pv_costs": 3.58,
+     "npv": -1.42,
+     "ratio": 0.6
+    },
+    "with_plan": {
+     "pv_benefits": 55.5,
+     "pv_costs": 42.3,
+     "npv": 13.1,
+     "ratio": 1.31,
+     "capex": 43.1
+    }
+   },
+   "own": {
+    "cost": 2.79,
+    "cost_low": 2.16,
+    "cost_high": 3.89,
+    "benefit": 0.1627,
+    "running": 0.0934,
+    "french": {
+     "pv_benefits": 2.86,
+     "pv_costs": 3.82,
+     "npv": -0.96,
+     "ratio": 0.75
+    },
+    "french_low": {
+     "pv_benefits": 2.86,
+     "pv_costs": 4.78,
+     "npv": -1.92,
+     "ratio": 0.6
+    },
+    "french_high": {
+     "pv_benefits": 2.86,
+     "pv_costs": 3.27,
+     "npv": -0.41,
+     "ratio": 0.87
+    },
+    "with_plan": {
+     "pv_benefits": 56.2,
+     "pv_costs": 42.1,
+     "npv": 14.1,
+     "ratio": 1.33,
+     "capex": 42.8
+    }
+   },
+   "items_own": {
+    "split": 0.4,
+    "chatelet": 0.45,
+    "tubes": 0.4,
+    "corridors": 0.1,
+    "tunnel": 0.455
+   },
+   "items_shared": {
+    "split": 0.4,
+    "chatelet": 0.45,
+    "tubes": 0.4,
+    "corridors": 0.1,
+    "merges": 0.5,
+    "tunnel": 0.158,
+    "signals": 0.05
+   },
+   "uplift": 1.461,
+   "shared_trains": 36,
+   "shared_d_s": 104,
+   "own_d_s": 42
+  },
+  "j": {
+   "all": {
+    "peak_trains": 25,
+    "trains_day": 180,
+    "hours_day": 2610,
+    "commuters_1": 25000,
+    "mean_gain": 2.4,
+    "gain": 0.0121,
+    "running": 0.017,
+    "french": {
+     "pv_benefits": 0.21,
+     "pv_costs": 0.25,
+     "npv": -0.04,
+     "ratio": 0.84
+    },
+    "room_after": 48
+   },
+   "cormeilles": {
+    "peak_trains": 9,
+    "trains_day": 67,
+    "hours_day": 840,
+    "commuters_1": 7400,
+    "mean_gain": 2.0,
+    "gain": 0.0039,
+    "running": 0.0062,
+    "french": {
+     "pv_benefits": 0.07,
+     "pv_costs": 0.09,
+     "npv": -0.02,
+     "ratio": 0.75
+    },
+    "room_after": 32
+   },
+   "ermont": {
+    "peak_trains": 9,
+    "trains_day": 86,
+    "hours_day": 1270,
+    "commuters_1": 9500,
+    "mean_gain": 2.6,
+    "gain": 0.0059,
+    "running": 0.0066,
+    "french": {
+     "pv_benefits": 0.1,
+     "pv_costs": 0.1,
+     "npv": 0.01,
+     "ratio": 1.06
+    },
+    "room_after": 32
+   }
+  },
+  "cdgx": {
+   "pax": 7000000.0,
+   "gain_min": 0.72,
+   "share_1": 0.347,
+   "gain_of_gainers": 2.9,
+   "examples": {
+    "chatelet": {
+     "end": 34.0,
+     "through": 30.0
+    },
+    "montparnasse": {
+     "end": 39.0,
+     "through": 35.0
+    },
+    "versailles": {
+     "end": 62.0,
+     "through": 57.0
+    }
+   },
+   "gain": 0.0029,
+   "gain_low": 0.0023,
+   "gain_high": 0.0067,
+   "running": 0.0211,
+   "km": 10.5,
+   "round_min": 38.0,
+   "vot": 35.0,
+   "through": {
+    "pv_benefits": 0.05,
+    "pv_costs": 0.31,
+    "npv": -0.26,
+    "ratio": 0.16
+   },
+   "terminus_cost": 0.66,
+   "terminus": {
+    "pv_benefits": 0.0,
+    "pv_costs": 0.66,
+    "npv": -0.66,
+    "ratio": 0.0
+   },
+   "room_after": 16,
+   "airport_share": 0.097,
+   "saving": 0.4
+  },
+  "pub": {
+   "_about": "Published figures used by model/levers.py for the block 'parts.more' (what else the tunnels could carry). Each entry names its source by the key of src/sections/parts/sources.json or of another section's sources.",
+   "rer_e": {
+    "trains_today": 16,
+    "trains_2030": 22,
+    "headway_s": 108,
+    "trains_day": 450,
+    "expected_day": 700000,
+    "day_2024": 370000,
+    "src": "idfm_e24",
+    "src_2024": "idfm_e"
+   },
+   "rer_d": {
+    "growth_15y": 0.6,
+    "day_2023": 662000,
+    "src": "pt_d23"
+   },
+   "rer_b": {
+    "ran": 17.5,
+    "planned": 20,
+    "src": "rd_b23"
+   },
+   "line_p": {
+    "growth_year": 0.038,
+    "year_from": 2010,
+    "year_to": 2015,
+    "src": "pt_pest"
+   },
+   "clamart": {
+    "trains": 4,
+    "year": 2032,
+    "src": "idfm_nu23"
+   },
+   "cdg_express": {
+    "pax_low": 6000000,
+    "pax_high": 8000000,
+    "per_hour": 4,
+    "minutes": 20,
+    "trains_day": 152,
+    "km": 32,
+    "fare": 25,
+    "trainsets": 13,
+    "seats_max": 420,
+    "airport_pax_2025": 72000000,
+    "src": "pt_cdgx",
+    "src_site": "pt_cdgx_site"
+   }
+  },
+  "e_tunnel_day": 170000,
+  "f_tunnel_day": 154000,
+  "params": {
+   "j_km": 2.5,
+   "j_round_min": 16.0,
+   "year_days": 300,
+   "all_trips": 1.24,
+   "vot": 15.0,
+   "days": 250
+  }
+ },
  "stage1_sensitivity": {
   "0.25": 16.41,
   "0.5": 17.56

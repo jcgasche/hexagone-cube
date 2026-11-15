@@ -1,1 +1,22 @@
-{}
+{
+ "pt_d23": {
+  "publisher": "Île-de-France Mobilités, RER D line committee, 20 November 2023",
+  "about": "RER D: 662,000 passengers in 2023, almost 60% more in fifteen years; forecast of the load in 2035 (made before Covid): flat or falling inside Paris, rising on the outer branches",
+  "url": "https://www.iledefrance-mobilites.fr/medias/portail-idfm/424d7a6b-9082-464e-a754-bee9cea635be_2023_11_20+RER+D_Comit%C3%A9+de+ligne_vf.pdf"
+ },
+ "pt_pest": {
+  "publisher": "Île-de-France Mobilités, modernisation plan of the Paris-Est network",
+  "about": "Line P: 3.8% more passengers a year from 2010 to 2015",
+  "url": "https://www.iledefrance-mobilites.fr/actualites/plan-de-modernisation-du-reseau-paris-est"
+ },
+ "pt_cdgx": {
+  "publisher": "Mobily-Cités, 28 May 2026",
+  "about": "CDG Express: 6 to 8 million passengers a year aimed at; a train every 15 minutes, 152 a day, 32 km without a stop; 13 trainsets of 240 to 420 seats; 25 euros",
+  "url": "https://mobilycites.com/le-cdg-express-dans-les-starting-blocks/"
+ },
+ "pt_cdgx_site": {
+  "publisher": "CDG Express, infrastructure manager, the journey so far (read November 2026)",
+  "about": "CDG Express enters service on 28 March 2027: 20 minutes without a stop from Gare de l'Est; over 72 million passengers at Paris-Charles de Gaulle in 2025",
+  "url": "https://cdgexpress.com/en/discover-cdg-express/journey-so-far"
+ }
+}

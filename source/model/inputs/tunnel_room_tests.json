@@ -1,0 +1,78 @@
+{
+ "_about": "Tests on the real timetable of what could run in the room the new tunnels leave (annex 'parts', block parts.more). Made by model/tunnel_room_tests.py; hours are those of the journeys to work of one working day, both ways.",
+ "line_j": {
+  "all": {
+   "peak_trains": 25,
+   "trains_day": 180,
+   "hours_day": 2610,
+   "commuters_1": 25000,
+   "mean_gain": 2.4
+  },
+  "cormeilles": {
+   "peak_trains": 9,
+   "trains_day": 67,
+   "hours_day": 840,
+   "commuters_1": 7400,
+   "mean_gain": 2.0
+  },
+  "ermont": {
+   "peak_trains": 9,
+   "trains_day": 86,
+   "hours_day": 1270,
+   "commuters_1": 9500,
+   "mean_gain": 2.6
+  }
+ },
+ "cdg_express": {
+  "region": {
+   "from": {
+    "end": 48.9,
+    "through": 48.1,
+    "gain": 0.8,
+    "share_1": 0.271,
+    "gain_of_gainers": 2.9
+   },
+   "to": {
+    "end": 48.8,
+    "through": 48.3,
+    "gain": 0.5,
+    "share_1": 0.424,
+    "gain_of_gainers": 2.1
+   },
+   "gain": 0.65,
+   "share_1": 0.348
+  },
+  "paris": {
+   "from": {
+    "end": 42.5,
+    "through": 41.5,
+    "gain": 0.99,
+    "share_1": 0.332,
+    "gain_of_gainers": 2.9
+   },
+   "to": {
+    "end": 42.5,
+    "through": 42.0,
+    "gain": 0.45,
+    "share_1": 0.362,
+    "gain_of_gainers": 1.6
+   },
+   "gain": 0.72,
+   "share_1": 0.347
+  },
+  "examples": {
+   "chatelet": {
+    "end": 34.0,
+    "through": 30.0
+   },
+   "montparnasse": {
+    "end": 39.0,
+    "through": 35.0
+   },
+   "versailles": {
+    "end": 62.0,
+    "through": 57.0
+   }
+  }
+ }
+}
