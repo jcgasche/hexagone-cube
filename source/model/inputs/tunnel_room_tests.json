@@ -205,6 +205,136 @@
     "through": 57.0,
     "bd_lyon": 62.0
    }
+  },
+  "changes": {
+   "today": {
+    "region": {
+     "from": {
+      "changes": 1.93,
+      "change_min": 12.4,
+      "two_plus": 0.758
+     },
+     "to": {
+      "changes": 1.96,
+      "change_min": 15.6,
+      "two_plus": 0.777
+     },
+     "changes": 1.945,
+     "change_min": 14.0,
+     "two_plus": 0.768
+    },
+    "paris": {
+     "from": {
+      "changes": 1.69,
+      "change_min": 10.4,
+      "two_plus": 0.635
+     },
+     "to": {
+      "changes": 1.7,
+      "change_min": 13.8,
+      "two_plus": 0.663
+     },
+     "changes": 1.695,
+     "change_min": 12.1,
+     "two_plus": 0.649
+    }
+   },
+   "est": {
+    "region": {
+     "from": {
+      "changes": 1.55,
+      "change_min": 9.6,
+      "two_plus": 0.543
+     },
+     "to": {
+      "changes": 1.62,
+      "change_min": 12.0,
+      "two_plus": 0.56
+     },
+     "changes": 1.585,
+     "change_min": 10.8,
+     "two_plus": 0.552
+    },
+    "paris": {
+     "from": {
+      "changes": 1.42,
+      "change_min": 8.8,
+      "two_plus": 0.474
+     },
+     "to": {
+      "changes": 1.51,
+      "change_min": 11.4,
+      "two_plus": 0.515
+     },
+     "changes": 1.465,
+     "change_min": 10.1,
+     "two_plus": 0.494
+    }
+   },
+   "through": {
+    "region": {
+     "from": {
+      "changes": 1.28,
+      "change_min": 8.4,
+      "two_plus": 0.33
+     },
+     "to": {
+      "changes": 1.35,
+      "change_min": 9.5,
+      "two_plus": 0.381
+     },
+     "changes": 1.315,
+     "change_min": 8.95,
+     "two_plus": 0.356
+    },
+    "paris": {
+     "from": {
+      "changes": 1.11,
+      "change_min": 7.4,
+      "two_plus": 0.249
+     },
+     "to": {
+      "changes": 1.17,
+      "change_min": 9.0,
+      "two_plus": 0.3
+     },
+     "changes": 1.14,
+     "change_min": 8.2,
+     "two_plus": 0.274
+    }
+   },
+   "bd_lyon": {
+    "region": {
+     "from": {
+      "changes": 1.36,
+      "change_min": 8.0,
+      "two_plus": 0.393
+     },
+     "to": {
+      "changes": 1.31,
+      "change_min": 9.4,
+      "two_plus": 0.379
+     },
+     "changes": 1.335,
+     "change_min": 8.7,
+     "two_plus": 0.386
+    },
+    "paris": {
+     "from": {
+      "changes": 1.23,
+      "change_min": 7.6,
+      "two_plus": 0.368
+     },
+     "to": {
+      "changes": 1.22,
+      "change_min": 9.2,
+      "two_plus": 0.376
+     },
+     "changes": 1.225,
+     "change_min": 8.4,
+     "two_plus": 0.372
+    }
+   }
   }
  }
 }

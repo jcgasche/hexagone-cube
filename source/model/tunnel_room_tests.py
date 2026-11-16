@@ -6,7 +6,10 @@ Each test is a network version of model/inputs/networks/ run by model/regiontime
   plan_cdgx_est, plan_cdgx_through               CDG Express ending at Nord-Est, or running on through the RER G tunnel
   plan_cdgx_bd_lyon                              CDG Express through the old RER B and D tunnel to Chatelet and Gare de Lyon
 
-Run from source/:  python3 model/tunnel_room_tests.py --gtfs DIR [--cdg-only]     (about 7 minutes; DIR = the IDFM timetable folder, as for regiontimes.py run)
+For CDG Express it also counts the changes: the quickest journey of each starting time is followed train by train, and its boardings
+and the minutes spent between its first boarding and its arrival off a train (walks and waits at the changes) are kept.
+
+Run from source/:  python3 model/tunnel_room_tests.py --gtfs DIR [--cdg-only | --changes-only]     (about 10 minutes; DIR = the IDFM timetable folder, as for regiontimes.py run)
 Writes model/inputs/tunnel_room_tests.json and removes the station-to-station tables it made, so that the chapter on travel times
 keeps its own list of versions.
 """
@@ -45,9 +48,78 @@ def compare_rows(A, B, ent):
     return res
 
 
-def main(gtfs, cdg_only=False):
+def changes_scan(net, origins, targets):
+    """The quickest journeys from each of 'origins' to each of 'targets' (stations), as the connection scan of regiontimes.py finds them,
+    followed train by train: boardings, and seconds not aboard between the first boarding and the arrival. Same starting times, same
+    first wait cap, same choice of the starting time as regiontimes.scan. Returns {(origin, target): (boardings, change seconds)}, the
+    averages over the starting times."""
+    import numpy as np
+    taus = np.arange(RT.T0, RT.T1 + RT.LOOK + 1, RT.STEP).astype(np.int32); K = len(taus); KE = int((RT.T1 - RT.T0) // RT.STEP) + 1
+    n, hops, foot = net['n'], net['hops'], net['foot']; ntr = max(h[5] for h in hops) + 1; BIG = RT.BIG; win = int(RT.LOOK // RT.STEP) + 1; out = {}
+    batch = max(1, 8000 // K)
+    for b0 in range(0, len(origins), batch):
+        ob = origins[b0:b0 + batch]; R = len(ob) * K
+        A = np.full((n, R), BIG, np.int32); Bd = np.zeros((n, R), np.int16); IV = np.zeros((n, R), np.int32); FB = np.full((n, R), BIG, np.int32)
+        F = np.zeros((ntr, R), bool); BT = np.zeros((ntr, R), np.int16); IVT = np.zeros((ntr, R), np.int32); BTm = np.zeros((ntr, R), np.int32); FBT = np.zeros((ntr, R), np.int32)
+        for oi, o in enumerate(ob):
+            sl = slice(oi * K, (oi + 1) * K)
+            for i in net['station'][o]:
+                A[i, sl] = np.minimum(A[i, sl], taus)
+                for j, w in foot[i]: A[j, sl] = np.minimum(A[j, sl], taus + w)
+        for dep, _, a, b, arr, tr, pick, drop, wbit in hops:
+            f = F[tr]
+            if pick:
+                can = A[a] <= dep; fresh = can & ~f
+                if fresh.any():                                             # boards here: one boarding more, time aboard so far, time of boarding
+                    np.copyto(BT[tr], Bd[a] + 1, where=fresh); np.copyto(IVT[tr], IV[a], where=fresh); BTm[tr][fresh] = dep
+                    np.copyto(FBT[tr], np.where(FB[a] < BIG, FB[a], dep), where=fresh); f |= can
+            if not drop or not f.any(): continue
+            new = np.where(f, np.int32(arr), np.int32(BIG)); better = new < A[b]
+            if not better.any(): continue
+            ivn = IVT[tr] + (arr - BTm[tr])
+            for j, nw, bj in [(b, new, better)] + [(j, new + np.int32(w), None) for j, w in foot[b]]:
+                bj = nw < A[j] if bj is None else bj
+                if bj.any(): np.copyto(A[j], nw, where=bj); np.copyto(Bd[j], BT[tr], where=bj); np.copyto(IV[j], ivn, where=bj); np.copyto(FB[j], FBT[tr], where=bj)
+        for t in targets:
+            m = np.array(net['station'][t]); sub = A[m]; am = sub.argmin(axis=0); c = np.arange(R)
+            arv, bd, iv, fb = sub[am, c], Bd[m][am, c], IV[m][am, c], FB[m][am, c]
+            for oi, o in enumerate(ob):
+                if o == t: continue
+                sl = slice(oi * K, (oi + 1) * K); ar = arv[sl]; jour = np.where(ar < BIG, ar - taus, BIG).astype(float); pk = []
+                for k in range(KE):
+                    m1 = min(K, k + win); cand = np.where(jour[k:m1] < BIG, jour[k:m1] + np.minimum(taus[k:m1] - taus[k], RT.FIRST_WAIT_CAP), np.inf); pk.append(k + int(cand.argmin()))
+                pk = np.array(pk)
+                if (jour[pk] >= BIG).any(): continue
+                B_ = bd[sl][pk]; out[(o, t)] = (float(B_.mean()), float(np.where(B_ >= 1, ar[pk] - fb[sl][pk] - iv[sl][pk], 0).mean()), float(((B_ - 1) >= 2).mean()))
+    return out
+
+
+def changes(name, gtfs, ent):
+    """Changes of the journeys from and to the airport in version 'name', each station weighed by its entries of a working day."""
+    import pickle
+    trips, S, walks = pickle.load(open(os.path.join(gtfs, '..', 'timetable_%s.pkl' % RT.DAY), 'rb'))
+    trips, S, walks, members, log = RT.apply_network(trips, S, walks, RT.read_network(os.path.join(NETS, name + '.json'))); net = RT.build(trips, S, walks, members)
+    st = [s for s in sorted(net['station']) if ent.get(s, 0) > 0 and s != AIRPORT and s in S]
+    ways = {'from': changes_scan(net, [AIRPORT], st), 'to': changes_scan(net, st, [AIRPORT])}
+    km = {s: math.hypot((S[s][1] - CENTRE[0]) * 73.0, (S[s][2] - CENTRE[1]) * 111.2) for s in st}; res = {}
+    for zone, keep in (('region', lambda s: True), ('paris', lambda s: km[s] <= PARIS_KM)):
+        res[zone] = {}
+        for way, d in ways.items():
+            rows = [(ent[s], v) for s in st if keep(s) for v in [d.get((AIRPORT, s) if way == 'from' else (s, AIRPORT))] if v]; W = sum(w for w, _ in rows)
+            res[zone][way] = {'changes': round(sum(w * max(v[0] - 1, 0) for w, v in rows) / W, 2), 'change_min': round(sum(w * v[1] for w, v in rows) / W / 60, 1),
+                              'two_plus': round(sum(w * v[2] for w, v in rows) / W, 3)}
+        for k in ('changes', 'change_min', 'two_plus'): res[zone][k] = round((res[zone]['from'][k] + res[zone]['to'][k]) / 2, 3)
+    print(' ', name, json.dumps(res['paris']), flush=True)
+    return res
+
+
+def main(gtfs, cdg_only=False, changes_only=False):
     import numpy as np
     made = []; out = {'_about': __doc__.strip().split('\n')[0] + ' Made by model/tunnel_room_tests.py; hours are those of the journeys to work of one working day, both ways.'}
+    if changes_only:
+        out = json.load(open(OUT)); ent = RT.station_entries()
+        out['cdg_express']['changes'] = {k: changes(n, gtfs, ent) for k, n in CDG.items()}
+        json.dump(out, open(OUT, 'w'), indent=1, ensure_ascii=False); return
     # ---- line J in the RER F tunnel
     if cdg_only: out['line_j'] = json.load(open(OUT))['line_j']
     else:
@@ -72,6 +144,7 @@ def main(gtfs, cdg_only=False):
     def minutes(k, n):
         ids = list(V[k]['ids']); i = ids.index(AIRPORT); j = next(q for q, x in enumerate(names[k]) if x == n); return round(float(V[k]['minutes'][i, j]), 0)
     res['examples'] = {key: {'2027': minutes('today', n), 'end': minutes('est', n), 'through': minutes('through', n), 'bd_lyon': minutes('bd_lyon', n)} for key, n in EXAMPLES}
+    res['changes'] = {k: changes(n, gtfs, ent) for k, n in CDG.items()}
     out['cdg_express'] = res
     for name in made:
         p = os.path.join(RT.RES, name + '.npz')
@@ -81,5 +154,5 @@ def main(gtfs, cdg_only=False):
 
 if __name__ == '__main__':
     a = sys.argv[1:]
-    if '--gtfs' in a: main(a[a.index('--gtfs') + 1], '--cdg-only' in a)
+    if '--gtfs' in a: main(a[a.index('--gtfs') + 1], '--cdg-only' in a, '--changes-only' in a)
     else: print(__doc__)

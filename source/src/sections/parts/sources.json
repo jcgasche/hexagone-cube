@@ -18,5 +18,10 @@
   "publisher": "CDG Express, infrastructure manager, the journey so far (read November 2026)",
   "about": "CDG Express enters service on 28 March 2027: 20 minutes without a stop from Gare de l'Est; over 72 million passengers at Paris-Charles de Gaulle in 2025",
   "url": "https://cdgexpress.com/en/discover-cdg-express/journey-so-far"
+ },
+ "idfm_r_days": {
+  "publisher": "Île-de-France Mobilités, open data, network timetable (GTFS), version of 15 October 2026",
+  "about": "Line R trains ending or starting at Gare de Lyon: 80 on Tuesday 3 November 2026, 32 on Saturday 7 November and 33 on Sunday 8 November; 5 reach Gare de Lyon in their busiest 60 minutes",
+  "url": "https://data.iledefrance-mobilites.fr/explore/dataset/offre-horaires-tc-gtfs-idfm/"
  }
 }

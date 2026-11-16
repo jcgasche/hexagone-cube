@@ -345,30 +345,40 @@
     "cost_low": 2.51,
     "cost_high": 3.81,
     "benefit": 0.1344,
-    "running": 0.0874,
+    "running": 0.1111,
     "french": {
      "pv_benefits": 2.36,
-     "pv_costs": 3.88,
-     "npv": -1.52,
-     "ratio": 0.61
+     "pv_costs": 4.23,
+     "npv": -1.87,
+     "ratio": 0.56
+    },
+    "today": {
+     "benefit": 0.0423,
+     "running": 0.0367,
+     "french": {
+      "pv_benefits": 0.74,
+      "pv_costs": 3.13,
+      "npv": -2.38,
+      "ratio": 0.24
+     }
     },
     "french_low": {
      "pv_benefits": 2.36,
-     "pv_costs": 4.62,
-     "npv": -2.26,
-     "ratio": 0.51
+     "pv_costs": 4.98,
+     "npv": -2.61,
+     "ratio": 0.48
     },
     "french_high": {
      "pv_benefits": 2.36,
-     "pv_costs": 3.49,
-     "npv": -1.13,
-     "ratio": 0.68
+     "pv_costs": 3.84,
+     "npv": -1.48,
+     "ratio": 0.62
     },
     "with_plan": {
      "pv_benefits": 55.7,
-     "pv_costs": 42.2,
-     "npv": 13.5,
-     "ratio": 1.32,
+     "pv_costs": 42.5,
+     "npv": 13.2,
+     "ratio": 1.31,
      "capex": 43.0
     }
    },
@@ -377,30 +387,40 @@
     "cost_low": 1.98,
     "cost_high": 3.42,
     "benefit": 0.1601,
-    "running": 0.0934,
+    "running": 0.1171,
     "french": {
      "pv_benefits": 2.81,
-     "pv_costs": 3.55,
-     "npv": -0.74,
-     "ratio": 0.79
+     "pv_costs": 3.9,
+     "npv": -1.09,
+     "ratio": 0.72
+    },
+    "today": {
+     "benefit": 0.0552,
+     "running": 0.0427,
+     "french": {
+      "pv_benefits": 0.97,
+      "pv_costs": 2.8,
+      "npv": -1.83,
+      "ratio": 0.35
+     }
     },
     "french_low": {
      "pv_benefits": 2.81,
-     "pv_costs": 4.37,
-     "npv": -1.56,
-     "ratio": 0.64
+     "pv_costs": 4.72,
+     "npv": -1.91,
+     "ratio": 0.6
     },
     "french_high": {
      "pv_benefits": 2.81,
-     "pv_costs": 3.12,
-     "npv": -0.3,
-     "ratio": 0.9
+     "pv_costs": 3.47,
+     "npv": -0.65,
+     "ratio": 0.81
     },
     "with_plan": {
      "pv_benefits": 56.1,
-     "pv_costs": 41.8,
-     "npv": 14.3,
-     "ratio": 1.34,
+     "pv_costs": 42.2,
+     "npv": 13.9,
+     "ratio": 1.33,
      "capex": 42.5
     }
    },
@@ -559,6 +579,160 @@
    "lyon_gain": 0.0028,
    "through_gain_min_from": 0.99,
    "change_min": 4.0,
+   "ch": {
+    "plan": {
+     "clock": 4.7,
+     "change_min_saved": 2.0,
+     "minutes": 6.7,
+     "gain": 0.0274,
+     "gain_low": 0.0199,
+     "gain_high": 0.0835,
+     "gain_clock": 0.0192,
+     "before": {
+      "changes": 1.695,
+      "change_min": 12.1,
+      "two_plus": 0.649
+     },
+     "after": {
+      "changes": 1.465,
+      "change_min": 10.1,
+      "two_plus": 0.494
+     },
+     "french": {
+      "pv_benefits": 0.48,
+      "pv_costs": 0.0,
+      "npv": 0.48,
+      "ratio": null
+     }
+    },
+    "through": {
+     "clock": 0.72,
+     "change_min_saved": 1.9,
+     "minutes": 2.62,
+     "gain": 0.0107,
+     "gain_low": 0.0055,
+     "gain_high": 0.0245,
+     "gain_clock": 0.0029,
+     "before": {
+      "changes": 1.465,
+      "change_min": 10.1,
+      "two_plus": 0.494
+     },
+     "after": {
+      "changes": 1.14,
+      "change_min": 8.2,
+      "two_plus": 0.274
+     },
+     "french": {
+      "pv_benefits": 0.19,
+      "pv_costs": 0.31,
+      "npv": -0.13,
+      "ratio": 0.6
+     },
+     "french_low": {
+      "pv_benefits": 0.1,
+      "pv_costs": 0.31,
+      "npv": -0.22,
+      "ratio": 0.31
+     },
+     "french_high": {
+      "pv_benefits": 0.43,
+      "pv_costs": 0.31,
+      "npv": 0.12,
+      "ratio": 1.37
+     },
+     "saving": 0.54
+    },
+    "lyon": {
+     "clock": 0.69,
+     "change_min_saved": 1.7,
+     "minutes": 2.39,
+     "gain": 0.0098,
+     "gain_low": 0.0054,
+     "gain_high": 0.0284,
+     "gain_clock": 0.0028,
+     "before": {
+      "changes": 1.465,
+      "change_min": 10.1,
+      "two_plus": 0.494
+     },
+     "after": {
+      "changes": 1.225,
+      "change_min": 8.4,
+      "two_plus": 0.372
+     },
+     "french": {
+      "pv_benefits": 0.17,
+      "pv_costs": 0.0,
+      "npv": 0.17,
+      "ratio": null
+     }
+    }
+   },
+   "w_change": 2.0,
+   "w_change_low": 1.5,
+   "changes": {
+    "today": {
+     "from": {
+      "changes": 1.69,
+      "change_min": 10.4,
+      "two_plus": 0.635
+     },
+     "to": {
+      "changes": 1.7,
+      "change_min": 13.8,
+      "two_plus": 0.663
+     },
+     "changes": 1.695,
+     "change_min": 12.1,
+     "two_plus": 0.649
+    },
+    "est": {
+     "from": {
+      "changes": 1.42,
+      "change_min": 8.8,
+      "two_plus": 0.474
+     },
+     "to": {
+      "changes": 1.51,
+      "change_min": 11.4,
+      "two_plus": 0.515
+     },
+     "changes": 1.465,
+     "change_min": 10.1,
+     "two_plus": 0.494
+    },
+    "through": {
+     "from": {
+      "changes": 1.11,
+      "change_min": 7.4,
+      "two_plus": 0.249
+     },
+     "to": {
+      "changes": 1.17,
+      "change_min": 9.0,
+      "two_plus": 0.3
+     },
+     "changes": 1.14,
+     "change_min": 8.2,
+     "two_plus": 0.274
+    },
+    "bd_lyon": {
+     "from": {
+      "changes": 1.23,
+      "change_min": 7.6,
+      "two_plus": 0.368
+     },
+     "to": {
+      "changes": 1.22,
+      "change_min": 9.2,
+      "two_plus": 0.376
+     },
+     "changes": 1.225,
+     "change_min": 8.4,
+     "two_plus": 0.372
+    }
+   },
    "plan": {
     "pv_benefits": 0.34,
     "pv_costs": 0.0,
@@ -650,38 +824,40 @@
   "cases": {
    "today": {
     "name": "Today’s trains: RER B 20, RER D 12 and line R 5",
-    "reliability": 0.053,
+    "reliability": 0.0478,
     "more_trains": 0.0,
     "r_time": 0.0074,
-    "trains": 0.0,
-    "benefit": 0.0604,
+    "new_trains": 0.0,
+    "r_on": 0.0237,
+    "trains": 0.0237,
+    "benefit": 0.0552,
     "french": {
-     "pv_benefits": 1.06,
-     "pv_costs": 2.45,
-     "npv": -1.38,
-     "ratio": 0.43
+     "pv_benefits": 0.97,
+     "pv_costs": 2.8,
+     "npv": -1.83,
+     "ratio": 0.35
     },
     "french_trains_free": {
-     "pv_benefits": 1.06,
+     "pv_benefits": 0.97,
      "pv_costs": 2.45,
-     "npv": -1.38,
-     "ratio": 0.43
+     "npv": -1.48,
+     "ratio": 0.4
     },
     "french_low": {
-     "pv_benefits": 1.06,
-     "pv_costs": 3.27,
-     "npv": -2.2,
-     "ratio": 0.33
+     "pv_benefits": 0.97,
+     "pv_costs": 3.62,
+     "npv": -2.65,
+     "ratio": 0.27
     },
     "french_high": {
-     "pv_benefits": 1.06,
-     "pv_costs": 2.01,
-     "npv": -0.95,
-     "ratio": 0.53
+     "pv_benefits": 0.97,
+     "pv_costs": 2.36,
+     "npv": -1.39,
+     "ratio": 0.41
     },
     "with_plan": {
-     "npv": 13.66,
-     "ratio": 1.335
+     "npv": 13.21,
+     "ratio": 1.322
     }
    },
    "growth": {
@@ -689,13 +865,15 @@
     "reliability": 0.0336,
     "more_trains": 0.119,
     "r_time": 0.0074,
-    "trains": 0.0744,
+    "new_trains": 0.0744,
+    "r_on": 0.0237,
+    "trains": 0.0981,
     "benefit": 0.1601,
     "french": {
      "pv_benefits": 2.82,
-     "pv_costs": 3.55,
-     "npv": -0.74,
-     "ratio": 0.79
+     "pv_costs": 3.91,
+     "npv": -1.09,
+     "ratio": 0.72
     },
     "french_trains_free": {
      "pv_benefits": 2.82,
@@ -705,19 +883,19 @@
     },
     "french_low": {
      "pv_benefits": 2.82,
-     "pv_costs": 4.37,
-     "npv": -1.56,
-     "ratio": 0.64
+     "pv_costs": 4.73,
+     "npv": -1.91,
+     "ratio": 0.6
     },
     "french_high": {
      "pv_benefits": 2.82,
-     "pv_costs": 3.12,
-     "npv": -0.3,
-     "ratio": 0.9
+     "pv_costs": 3.47,
+     "npv": -0.65,
+     "ratio": 0.81
     },
     "with_plan": {
-     "npv": 14.3,
-     "ratio": 1.342
+     "npv": 13.95,
+     "ratio": 1.331
     }
    }
   },
@@ -732,6 +910,14 @@
    14.0
   ],
   "r_hours_day": 1600,
+  "r_on": {
+   "cost": 0.0237,
+   "km_year": 490000.0,
+   "sets": 5.1,
+   "km": 20.5,
+   "min": 30.8,
+   "trains_working_day": 80
+  },
   "params": {
    "peak_hours": 4.0,
    "run_km": {

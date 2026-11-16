@@ -445,5 +445,6 @@
  "pt_d23": "RER D : 662 000 voyageurs en 2023, près de 60 % de plus en quinze ans ; prévision de charge à l’horizon 2035 (établie avant le Covid) : stable ou en baisse dans Paris, en hausse sur les branches extérieures",
  "pt_pest": "Ligne P : 3,8 % de voyageurs en plus par an de 2010 à 2015",
  "pt_cdgx": "CDG Express : objectif de 6 à 8 millions de voyageurs par an ; un train toutes les 15 minutes, 152 par jour, 32 km sans arrêt ; 13 rames de 240 à 420 places ; 25 euros",
- "pt_cdgx_site": "Mise en service du CDG Express le 28 mars 2027 : 20 minutes sans arrêt depuis la gare de l’Est ; plus de 72 millions de passagers à Paris-Charles de Gaulle en 2025"
+ "pt_cdgx_site": "Mise en service du CDG Express le 28 mars 2027 : 20 minutes sans arrêt depuis la gare de l’Est ; plus de 72 millions de passagers à Paris-Charles de Gaulle en 2025",
+ "idfm_r_days": "Trains de la ligne R terminus ou origine gare de Lyon : 80 le mardi 3 novembre 2026, 32 le samedi 7 novembre et 33 le dimanche 8 novembre ; 5 arrivent gare de Lyon dans leurs 60 minutes les plus chargées"
 }
