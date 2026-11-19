@@ -155,6 +155,9 @@ img { max-width: 100% }
 .src-row { scroll-margin-top: calc(var(--bar-h) + 14px) }
 .src-row.flash td, .src-row.flash th { background: var(--accent-soft) }
 
+/* the name says how it is said: Hexagone³ [cube] */
+.brand b .say { font-style: normal; font-weight: 500; font-size: .62em; color: var(--muted); margin-left: .15em; vertical-align: -.05em; white-space: nowrap }
+
 /* Components shared by all sections. See CONTRIBUTING.md for when to use each one. */
 
 /* ---- headline tiles */
@@ -663,7 +666,10 @@ body[data-page="presentation"] .menu-btn { display: none }
 @media (max-width: 520px) { .pz-auto .steps button { font-size: 13px; padding: 7px 11px } .pz-bar { grid-template-columns: 7.4em minmax(0, 1fr) 6.6em } }
 
 /* the name: Hexagone, cubed */
-.pz-title sup { font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+.pz-title sup { position: relative; font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+
+/* how to say it: [cube] tucked under the 3 */
+.pz-title sup .say { position: absolute; left: .05em; top: 2.75em; font-size: max(.36em, 11px); letter-spacing: .04em; font-weight: 500; white-space: nowrap; line-height: 1 }
 
 /* the France slide: trains a day beside each journey, and three figures above */
 .pz-bar { grid-template-columns: 9.5em minmax(0, 1fr) 7.6em 2.6em }
@@ -1738,7 +1744,7 @@ body[data-page="presentation"] .menu-btn { display: none }
 </head>
 <body>
 <div class="topbar">
-  <a class="brand" href="#presentation"><b>Hexagone³</b><span>Étude de préfaisabilité, octobre 2026</span></a>
+  <a class="brand" href="#presentation"><b>Hexagone³<i class="say">[cube]</i></b><span>Étude de préfaisabilité, octobre 2026</span></a>
   <nav class="views" aria-label="Vues"><a href="#presentation" data-view="presentation">Présentation</a><a href="#summary" data-view="report">Rapport complet</a></nav>
   <span class="here"></span>
   <button class="menu-btn" type="button">Sommaire</button>
@@ -1812,7 +1818,7 @@ body[data-page="presentation"] .menu-btn { display: none }
   <svg class="pz-hero-bg" id="pz-hero-svg" aria-hidden="true"></svg>
   <div class="pz-in">
     <p class="pz-kicker">Le connecteur ferroviaire de toute la France, sous Paris</p>
-    <h1 class="pz-title" aria-label="Hexagone cube">Hexagone<sup>3</sup></h1>
+    <h1 class="pz-title" aria-label="Hexagone cube">Hexagone<sup>3<span class="say">[cube]</span></sup></h1>
     <p class="pz-sub">Un connecteur pour toutes les régions de France. Trois gares traversantes sous Paris, jointes par trois tunnels, relient chaque ligne à toutes les autres, avec l’horaire cadencé et fiable qui a fait le succès du rail suisse. Et la capitale y gagne une occasion rare&nbsp;: quatre grands parcs, des terrains libérés et des trajets plus rapides.</p>
     <div class="pz-money">
       <div class="pz-big"><b data-count="40,0" data-post="&nbsp;Md€" data-d="1">40,0&nbsp;Md€</b><span>pour le construire, dont 15 % pour les risques</span></div>

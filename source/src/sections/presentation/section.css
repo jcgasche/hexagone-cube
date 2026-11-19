@@ -284,7 +284,10 @@ body[data-page="presentation"] .menu-btn { display: none }
 @media (max-width: 520px) { .pz-auto .steps button { font-size: 13px; padding: 7px 11px } .pz-bar { grid-template-columns: 7.4em minmax(0, 1fr) 6.6em } }
 
 /* the name: Hexagone, cubed */
-.pz-title sup { font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+.pz-title sup { position: relative; font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+
+/* how to say it: [cube] tucked under the 3 */
+.pz-title sup .say { position: absolute; left: .05em; top: 2.75em; font-size: max(.36em, 11px); letter-spacing: .04em; font-weight: 500; white-space: nowrap; line-height: 1 }
 
 /* the France slide: trains a day beside each journey, and three figures above */
 .pz-bar { grid-template-columns: 9.5em minmax(0, 1fr) 7.6em 2.6em }
