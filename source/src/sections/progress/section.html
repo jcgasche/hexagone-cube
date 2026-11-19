@@ -1,0 +1,81 @@
+<p class="lede">This study is improved by the remarks of the people who read it. This chapter keeps the record: for each contribution, the most recent first, what the report said and what the problem was, what was done about it with the calculations, and what changed in the report. It is also the way to give each contributor their due.</p>
+
+<div class="block" id="progress.how">
+  <h2>How to read this chapter</h2>
+  <ul>
+    <li><strong>Situation and problem.</strong> What the report said before, and the remarks received.</li>
+    <li><strong>Action.</strong> The work done in answer, with its calculations.</li>
+    <li><strong>Result.</strong> What the report says now, where, and what is still open.</li>
+  </ul>
+  <p>A contributor is named only with their agreement. A remark recorded here is the reader's question, not an approval of the study by that person or by their employer. To send a remark, see <a class="xref" href="#next.help">how to help</a>.</p>
+</div>
+
+<div class="block pg-entry" id="progress.spacing">
+  <h2>19 November 2026. Can trains follow each other two minutes apart in the tunnels?</h2>
+  <p class="pg-who"><strong>Contribution:</strong> remarks made by a railway timetable planner in a call on 18 November 2026. His name will be added here with his agreement.</p>
+  <h3>Situation and problem</h3>
+  <p>The report ran regional express trains between the TGVs in the same tunnels, and stated as its condition a signalling that lets trains follow each other 1.5 minutes apart. That figure came from a formula at steady speed, with no model of the stations.</p>
+  <ul>
+    <li><strong>A minute and a half is hard to reach,</strong> even between suburban trains, and much harder with 400 m TGVs. Two minutes can hold, under conditions, as on the Swiss line from Mattstetten to Rothrist.</li>
+    <li><strong>A figure needs a model of the blocks and of the braking:</strong> blocks of 200 to 400 m, the braking distance of a TGV, the length of the trains, the slow running at stations and junctions.</li>
+    <li><strong>Three other points were raised:</strong> a stop of 6 to 7 minutes for a TGV is at the low end; a large delay in Paris would spread to the whole country; the servicing done today while trains turn back in Paris, and the stages of works under stations in service, are not costed.</li>
+  </ul>
+  <h3>Action</h3>
+  <ul>
+    <li><strong>A model of the spacing was written</strong> (<code>model/headway.py</code>). Each train is run metre by metre, with its length, acceleration, braking, the slope down to the platforms and the points of the stations. The least time between two trains is worked out block by block with the method planners use, for three signalling cases and two sets of train performance.</li>
+    <li><strong>The three hours of the timetable were replayed</strong> on the {{ d.headway.cases.central_auto.hours.full.sum.tracks | 0 }} tunnel tracks: the three tunnels of the triangle and the four approaches, one track each way.</li>
+    <li><strong>The braking of a TGV was set against the published rules:</strong> the European rule for high-speed trains, the French rule for TGV lines and the times of the European signalling.</li>
+    <li><strong>A simulator was added,</strong> where the trains and the blocks are seen moving and every value can be changed.</li>
+  </ul>
+  <div class="tbl-wrap"><table class="tbl stack-sm">
+    <thead><tr><th>Calculation</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><th>Least time between two trains, signalling of the plan</th><td data-l="Result">{{ d.headway.cases.central_auto.need.min | 0 }} to {{ d.headway.cases.central_auto.need.max | 0 }} seconds according to the place and the trains; the longest is a TGV arriving at a station behind another train</td></tr>
+      <tr><th>Trains two minutes apart, hour with the southern lines full</th><td data-l="Result">{{ d.headway.cases.central_auto.hours.full.sum.short | 0 }} of {{ d.headway.cases.central_auto.hours.full.sum.pairs | 0 }} pairs too close; {{ d.headway.cases.central_long.hours.full.sum.spare_min | 0 }} to {{ d.headway.cases.central_auto.hours.full.sum.spare_min | 0 }} seconds in hand on the closest pair</td></tr>
+      <tr><th>Busiest track, the Atlantic approach into Montparnasse</th><td data-l="Result">{{ d.headway.load.full.approach.trains | 0 }} trains an hour; taken {{ d.headway.cases.central_auto.hours.full.sum.taken_max | pct }} to {{ d.headway.cases.central_long.hours.full.sum.taken_max | pct }} of the hour, for a limit of {{ d.headway.params.uic_peak | pct }}</td></tr>
+      <tr><th>Trains 1.5 minutes apart, fullest hour</th><td data-l="Result">{{ d.headway.cases.central_auto.hours.max.sum.close_short | 0 }} to {{ d.headway.cases.central_long.hours.max.sum.close_short | 0 }} of the {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} pairs too close: a TGV needs {{ d.headway.cases.central_auto.need.arrive.ter_tgv | 0 }} seconds at best behind a regional express train</td></tr>
+      <tr><th>Least braking the European rule allows a high-speed train</th><td data-l="Result">A TGV needs at most {{ d.headway.rule.case.need.tgv_second | 0 }} seconds; two minutes hold, with {{ d.headway.rule.case.hours.full.sum.spare_min | 0 }} seconds in hand</td></tr>
+      <tr><th>Braking of {{ d.headway.params.perf.cautious.tgv.brk | 1 }} m/s², half that least value</th><td data-l="Result">A TGV needs up to {{ d.headway.cases.cautious_auto.need.tgv_second | 0 }} seconds; two minutes no longer hold</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Result</h3>
+  <ul>
+    <li><strong>A new annex,</strong> <a class="xref" href="#headway">train spacing in the tunnels</a>, with the model, the simulator and the algorithm. The project and timetable chapters point to it.</li>
+    <li><strong>Two minutes hold; a minute and a half does not.</strong> The condition of the plan is to be read as two minutes. The hour with Nord-Est filled too, which places {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} pairs of trains 1.5 minutes apart, needs more than signalling.</li>
+    <li><strong>The tight place is identified:</strong> the arrival at a station down an approach tunnel, not the triangle.</li>
+    <li><strong>Still open:</strong> the braking values a signalling design would use for TGVs in service; the wording of 1.5 minutes elsewhere in the report; the length of the stop, the spread of delays, the servicing of the trains and the stages of works, which have not been treated yet (see <a class="xref" href="#next">what comes next</a>).</li>
+  </ul>
+</div>
+
+<div class="block pg-entry" id="progress.rerd">
+  <h2>15 November 2026. RER D beside RER G, and the suburban trains counted again</h2>
+  <p class="pg-who"><strong>Contribution:</strong> Alon Levy, transport researcher, by his written questions of 14 November 2026.</p>
+  <h3>Situation and problem</h3>
+  <p>The plan dug the RER G tunnel beside the tunnel that RER B and RER D share between Gare du Nord and Châtelet-Les Halles, without touching it. The suburban lines were paired by a rule of the study, with train counts taken as ranges.</p>
+  <ul>
+    <li><strong>Why these pairs of lines,</strong> P with N and H, K with L, rather than others?</li>
+    <li><strong>Why not first double the tunnel of RER B and RER D,</strong> the busiest pair of tracks of the region, and fold line R into RER D?</li>
+    <li><strong>Two other questions:</strong> the basis of the cost of the stations, and the length of the stop of a double-deck TGV, for which he raised ten minutes.</li>
+  </ul>
+  <h3>Action</h3>
+  <ul>
+    <li><strong>RER D on a pair of tracks of its own was studied,</strong> built in the works of RER G: four layouts priced with the unit prices of the plan, a simulation of the shared tunnel, and the reading of the two official studies of 2003 and 2012-13.</li>
+    <li><strong>The trains of the busiest hour were counted on the published timetable,</strong> line by line.[[idfm_counts]]</li>
+    <li><strong>Lines K and R running through</strong> were tested, as branches of RER B and of RER D.</li>
+  </ul>
+  <div class="tbl-wrap"><table class="tbl stack-sm">
+    <thead><tr><th>Calculation</th><th>Result</th></tr></thead>
+    <tbody>
+      <tr><th>A pair of tracks for RER D, built with RER G</th><td data-l="Result">About €{{ d.rerd.cost.own.with_g.central | 1 }}bn on top of the plan</td></tr>
+      <tr><th>Return by the rules of the economic return, with the trains it makes room for</th><td data-l="Result">{{ d.parts.rerd.cases.growth.french.ratio | 2 }} for each euro of cost</td></tr>
+      <tr><th>Trains in the busiest hour</th><td data-l="Result">Line L {{ m.reg_platforms.h.peak_l | 0 }}, lines H and K {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }}, line P {{ m.reg_platforms.n.peak.P | 0 }}, line N {{ m.reg_platforms.n.peak.N | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Result</h3>
+  <ul>
+    <li><strong>A new annex,</strong> <a class="xref" href="#rerd">RER D beside RER G</a>: an option outside the plan and outside its cost, because it does not repay its works by the rules of the economic return.</li>
+    <li><strong>The counts of the timetable replace the ranges</strong> everywhere in the report, and the two sides of each suburban tunnel balance: {{ m.reg_platforms.h.peak.H + m.reg_platforms.h.peak.K | 0 }} trains against {{ m.reg_platforms.h.peak_l | 0 }} for RER F, {{ m.reg_platforms.n.peak.P | 0 }} against {{ m.reg_platforms.n.peak.N | 0 }} for RER G.</li>
+    <li><strong>What else the tunnels could carry</strong> is set out in <a class="xref" href="#parts.more">the return of each part</a>.</li>
+    <li><strong>Still open:</strong> the length of the stop of a double-deck TGV, to be measured.</li>
+  </ul>
+</div>

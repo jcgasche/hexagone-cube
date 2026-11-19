@@ -28,6 +28,9 @@
   ],
   "timetable.london": [
    "timetable"
+  ],
+  "headway.sim": [
+   "headway"
   ]
  },
  "skip": [
@@ -776,12 +779,16 @@
    "explain_en": [
     "<code>model/headway.py</code> runs each train metre by metre (<code>profile()</code>): it speeds up, holds its speed and brakes within the speed limits of the tunnel and of the points, and the slope of an approach adds to or takes from its acceleration and its braking. <code>between()</code> finds the speed that gives the 6-minute run between two stations; <code>arriving()</code> and <code>leaving()</code> run a train down and up an approach (<code>ramp()</code>: the depth of the platforms over the length of the approach).",
     "<code>blocks()</code> cuts the track into blocks, shorter in the fan of points of a station. <code>least()</code> applies the rule to each block: the second train must be told the block is free before the point where it would have to brake to stop short of it (<code>needs()</code>, less the time to react), and the block is free once the tail of the first train has left it and the safety distance (<code>at()</code>), plus the time the signalling needs and the time to move the points. The largest value over the blocks is the least time between the two trains. <code>steady()</code> is the textbook formula at steady speed, for comparison.",
-    "<code>hours()</code> takes the three hours of the timetable (the TGVs of <code>model/table_timetable.py</code>, the regional express trains of <code>model/inputs/ter_timetable.json</code>), and <code>events()</code> places every train on its three tunnel tracks. <code>replay()</code> gives each pair of trains that follow each other its least time and the time the timetable gives it; the sum of the least times over the hour is the share of the hour the track is taken (UIC code 406). <code>case()</code> does this for one set of assumptions, and <code>main()</code> for the two sets of trains, the three signalling cases and one assumption changed at a time."
+    "<code>hours()</code> takes the three hours of the timetable (the TGVs of <code>model/table_timetable.py</code>, the regional express trains of <code>model/inputs/ter_timetable.json</code>), and <code>events()</code> places every train on its three tunnel tracks. <code>replay()</code> gives each pair of trains that follow each other its least time and the time the timetable gives it; the sum of the least times over the hour is the share of the hour the track is taken (UIC code 406). <code>case()</code> does this for one set of assumptions, and <code>main()</code> for the two sets of trains, the three signalling cases and one assumption changed at a time.",
+    "The simulator of the annex does the same calculation in the page (<code>src/sections/headway/section.js</code>: <code>profile</code>, <code>needs</code>, <code>at</code>, <code>compute</code>), so that each setting can be moved. For every block and every train it works out the time the block is kept: from the moment the train must know it free (its braking point, less the time to react) to the moment the signalling gives it back (tail and safety distance clear, plus the times of the signalling and of the points). The least time between two trains is the largest overlap of these times over the blocks. The film colours each block during the time a train keeps it, and red when two trains keep it at once. With the values of the study it gives the figures of <code>tube_table()</code>.",
+    "<code>RULE</code> holds what the published rules ask of the braking of a high-speed train (service and emergency braking on level track, the times the brakes take to act) and the times the European signalling leaves a driver. <code>rule_stop()</code> gives the distance to keep free ahead of a train going down a slope with those values: gravity is taken from the braking, and the longer of the two stops (service brake by the driver, emergency brake by the system) is kept. The whole check is then run again with that braking (<code>PERF['rule']</code>, <code>SIGNAL['rule']</code>)."
    ],
    "explain_fr": [
     "<code>model/headway.py</code> fait rouler chaque train mètre par mètre (<code>profile()</code>) : il accélère, tient sa vitesse et freine dans les limites de vitesse du tunnel et des aiguillages, et la pente d’un accès s’ajoute à son accélération et à son freinage ou s’en retranche. <code>between()</code> trouve la vitesse qui donne le trajet de 6 minutes entre deux gares ; <code>arriving()</code> et <code>leaving()</code> font descendre et monter un train dans un accès (<code>ramp()</code> : la profondeur des quais rapportée à la longueur de l’accès).",
     "<code>blocks()</code> découpe la voie en cantons, plus courts dans la zone d’aiguillages d’une gare. <code>least()</code> applique la règle à chaque canton : le second train doit savoir que le canton est libre avant le point où il devrait freiner pour s’arrêter devant (<code>needs()</code>, moins le temps de réaction), et le canton est libre quand la queue du premier train l’a quitté ainsi que la distance de sécurité (<code>at()</code>), plus le temps de la signalisation et celui de la manœuvre des aiguillages. La plus grande valeur sur l’ensemble des cantons est le temps minimal entre les deux trains. <code>steady()</code> est la formule classique à vitesse constante, pour comparaison.",
-    "<code>hours()</code> reprend les trois heures de l’horaire (les TGV de <code>model/table_timetable.py</code>, les TER de <code>model/inputs/ter_timetable.json</code>), et <code>events()</code> place chaque train sur ses trois voies de tunnel. <code>replay()</code> donne, chaque fois que deux trains se suivent, leur temps minimal et le temps que l’horaire leur laisse ; la somme des temps minimaux sur l’heure est la part de l’heure pendant laquelle la voie est occupée (fiche UIC 406). <code>case()</code> le fait pour un jeu d’hypothèses, et <code>main()</code> pour les deux jeux de trains, les trois cas de signalisation et une hypothèse modifiée à la fois."
+    "<code>hours()</code> reprend les trois heures de l’horaire (les TGV de <code>model/table_timetable.py</code>, les TER de <code>model/inputs/ter_timetable.json</code>), et <code>events()</code> place chaque train sur ses trois voies de tunnel. <code>replay()</code> donne, chaque fois que deux trains se suivent, leur temps minimal et le temps que l’horaire leur laisse ; la somme des temps minimaux sur l’heure est la part de l’heure pendant laquelle la voie est occupée (fiche UIC 406). <code>case()</code> le fait pour un jeu d’hypothèses, et <code>main()</code> pour les deux jeux de trains, les trois cas de signalisation et une hypothèse modifiée à la fois.",
+    "Le simulateur de l’annexe refait le même calcul dans la page (<code>src/sections/headway/section.js</code> : <code>profile</code>, <code>needs</code>, <code>at</code>, <code>compute</code>), pour que chaque réglage puisse être modifié. Pour chaque canton et chaque train, il calcule le temps pendant lequel le canton est retenu : du moment où le train doit le savoir libre (son point de freinage, moins le temps de réaction) au moment où la signalisation le libère (queue du train et distance de sécurité dégagées, plus les temps de la signalisation et des aiguillages). Le temps minimal entre deux trains est le plus grand recouvrement de ces temps sur l’ensemble des cantons. Le film colore chaque canton pendant le temps où un train le retient, et en rouge quand deux trains le retiennent à la fois. Avec les valeurs de l’étude, il redonne les chiffres de <code>tube_table()</code>.",
+    "<code>RULE</code> contient ce que les règles publiées demandent au freinage d’un train à grande vitesse (freinages de service et d’urgence en palier, temps d’établissement des freins) et les temps que la signalisation européenne laisse à un conducteur. <code>rule_stop()</code> donne la distance à garder libre devant un train qui descend une pente avec ces valeurs : la gravité est retirée du freinage, et le plus long des deux arrêts (frein de service par le conducteur, frein d’urgence par le système) est retenu. Toute la vérification est ensuite refaite avec ce freinage (<code>PERF['rule']</code>, <code>SIGNAL['rule']</code>)."
    ],
    "code": [
     [
@@ -789,6 +796,7 @@
      [
       "LEN",
       "PERF",
+      "RULE",
       "V_APPROACH",
       "DEPTH",
       "STOP_CLEAR",
@@ -807,6 +815,7 @@
       "blocks",
       "least",
       "steady",
+      "rule_stop",
       "tube_table",
       "hours",
       "events",

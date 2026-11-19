@@ -15,3 +15,45 @@
 #headway .hw-rows tr.hw-over .hw-bar i, #headway .hw-rows tr.hw-bad .hw-bar i { background: var(--warn); }
 #headway #hw-ctl { margin-block: 6px 12px; }
 @media (max-width: 640px) { #headway .hw-bar { width: 48px; } }
+/* the drawing of the seven tunnels */
+#headway .hw-fig { margin: 18px 0 0; max-width: 460px; display: flex; flex-direction: column; gap: 8px; }
+#headway .hw-tracks { width: 100%; height: auto; display: block; }
+#headway .hw-tracks line { stroke-width: 2.4; stroke-linecap: round; }
+#headway .hw-t-tri { stroke: var(--accent); }
+#headway .hw-t-app { stroke: var(--alt); }
+#headway .hw-t-st { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+#headway .hw-t-name { font: 600 13px var(--body); fill: var(--ink); }
+#headway .hw-t-lab { font: 12px var(--body); fill: var(--muted); }
+/* the simulator */
+#headway #hw-sim { margin-top: 14px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+#headway .hw-sim-view { min-width: 0; overflow: hidden; }
+#headway .hw-sim-svg { display: block; max-width: 100%; }
+#headway .hw-sim-zl, #headway .hw-sim-ax { font: 11px var(--body); fill: var(--muted); }
+#headway .hw-z-plat { fill: var(--surface-2); opacity: .9; }
+#headway .hw-z-pts { fill: var(--accent-soft); opacity: .7; }
+#headway .hw-sim-rail { stroke: var(--neutral-mark); stroke-width: 1; }
+#headway .hw-sim-slope { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+#headway .hw-sim-blk { fill: var(--surface-2); stroke: var(--rule); stroke-width: .5; }
+#headway .hw-sim-blk.hw-res { fill-opacity: .3; }
+#headway .hw-sim-blk.hw-occ { fill-opacity: .85; }
+#headway .hw-sim-blk.hw-clash { fill: var(--bad) !important; }
+#headway .hw-sim-train { stroke-width: 7; stroke-linecap: butt; }
+#headway .hw-sim-brk { stroke-width: 1.5; stroke-dasharray: 3 3; }
+#headway .hw-sim-box { fill-opacity: .28; }
+#headway .hw-sim-clash { fill: var(--bad); fill-opacity: .8; }
+#headway .hw-sim-path { fill: none; stroke-width: 1.6; }
+#headway .hw-sim-tail { stroke-dasharray: 4 3; stroke-width: 1; }
+#headway .hw-sim-grid-l { stroke: var(--rule); stroke-width: 1; }
+#headway .hw-sim-now { stroke: var(--ink); stroke-width: 1; opacity: .6; }
+#headway .hw-sim-play { align-items: center; }
+#headway .hw-sim-clock { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); min-width: 5ch; }
+#headway .hw-sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; }
+#headway .hw-sim-group { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+#headway #hw-sim h4 { font-size: 15px; margin: 0; }
+#headway .hw-sim-legend .hw-lg-res { background: var(--accent); opacity: .3; }
+#headway .hw-sim-legend .hw-lg-occ { background: var(--accent); opacity: .85; }
+#headway .hw-sim-legend .hw-lg-brk { background: none; border-top: 2px dashed var(--accent); height: 0; border-radius: 0; }
+#headway .hw-sim-tbl th { font-weight: 500; }
+#headway .hw-sim-tbl tr.hw-bad td { color: var(--bad); font-weight: 600; }
+#headway .hw-sim-tbl tr.hw-ok td.num { color: var(--good); font-weight: 600; }
+#headway .hw-sim-tbl .hw-sim-why { color: var(--muted); font-size: 13px; }

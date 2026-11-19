@@ -37,7 +37,14 @@ LEN = {'tgv': 400.0, 'ter': 330.0}      # m: two TGV sets coupled (the platforms
 # the TGV (0.4 and 0.5); 'cautious' takes 0.3 for both, a low value for a loaded double set. The braking value is used twice: for the stop
 # the train makes, and for the distance the signalling keeps free ahead of it.
 PERF = {'central': {'tgv': (T.ACC, T.BRK), 'ter': (0.6, 0.7)},
-        'cautious': {'tgv': (0.3, 0.3), 'ter': (0.5, 0.5)}}
+        'cautious': {'tgv': (0.3, 0.3), 'ter': (0.5, 0.5)},
+        'rule': {'tgv': (T.ACC, 0.6), 'ter': (0.6, 0.7)}}      # the TGV braking at the least value the European rule asks of a high-speed train (RULE below)
+# What the rules say of the braking of a high-speed train, on level track (high-speed rolling stock TSI, decision 2008/232/EC, clause 4.2.4):
+# service braking at least 0.6 m/s2 under 230 km/h, felt 2 s after it is asked; emergency braking at least 0.9 m/s2 under 170 km/h with wet
+# rails and part of the brakes out of use (case B), felt after 3 s. And the times the European signalling leaves a driver in the examples
+# of the EU Agency for Railways (Introduction to ETCS braking curves): 9 s from the indication to the permitted speed, 4 s more before the
+# system brakes by itself.
+RULE = {'service': 0.6, 'service_s': 2.0, 'emergency': 0.9, 'emergency_s': 3.0, 'driver_s': 9.0, 'system_s': 4.0}
 V_LINE = T.V                            # 100 km/h, the most a train runs in the tunnels (model/timetable.py)
 V_APPROACH = 80                         # km/h in the approach tunnels, between the ring road and the station (ASSUMPTION); 100 is tested
 DEPTH = 35.0                            # m the platforms lie under the rails at the tunnel mouths (the depth drawn in the stations chapter; ASSUMPTION)
@@ -58,6 +65,7 @@ SIGNAL = {                              # block: m in the tunnel; throat: m in t
     'long':  {'block': 400.0, 'throat': None,  'react': 8.0},     # ETCS level 2 on blocks as long as a train, a driver
     'short': {'block': 200.0, 'throat': 100.0, 'react': 8.0},     # short blocks, the throat released piece by piece, a driver
     'auto':  {'block': 200.0, 'throat': 100.0, 'react': 2.0},     # the same with automatic driving (ATO over ETCS)
+    'rule':  {'block': 200.0, 'throat': 100.0, 'react': RULE['driver_s'] + RULE['service_s']},   # short blocks, a driver given the times of RULE
 }
 UIC_PEAK = N.UIC_PEAK                   # 75% of the hour at most (UIC code 406)
 
@@ -183,6 +191,15 @@ def steady(kind_lead, kind_follow, perf, sig, v):
     return (v * v / (2 * brk) + S['block'] + OVERLAP + LEN[kind_lead]) / v + T_SYS + S['react']
 
 
+def rule_stop(v, g):
+    """Metres ahead of a train at v m/s, going down a slope g, that the signalling must hold free by the rules of RULE: the longer of the
+    stop with the service brake (driver's time, then the brake's) and of the stop the system makes by itself with the emergency brake."""
+    drop = G * g
+    service = v * (RULE['driver_s'] + RULE['service_s']) + v * v / (2 * (RULE['service'] - drop))
+    emergency = v * (RULE['driver_s'] + RULE['system_s'] + RULE['emergency_s']) + v * v / (2 * (RULE['emergency'] - drop))
+    return {'service': service, 'emergency': emergency, 'most': max(service, emergency), 'service_left': RULE['service'] - drop, 'emergency_left': RULE['emergency'] - drop}
+
+
 # --- the least times, tube by tube --------------------------------------------------------------------------------------------------
 def tube_table(perf, sig, vt):
     """For each tube and each way of using it, the least seconds between two trains, by kind of the first and of the second."""
@@ -297,15 +314,15 @@ def main():
                       'slope': {k: ramp(TUBES[k], V_THROAT)[1] for k in SIDE.values()},
                       'plan': {'tgv': T.HEADWAY * 60.0, 'path': N.PATH_MIN * 60.0, 'floor': N.SIGNAL_MIN[0] * 60.0, 'step': TT.G_STEP * 60.0}},
            'cases': {}, 'runs': {}, 'steady': {}, 'sens': {}}
-    for perf in PERF:
+    for perf in ('central', 'cautious'):
         out['runs'][perf] = runs(perf, V_THROAT)
-        for sig in SIGNAL:
+        for sig in ('long', 'short', 'auto'):
             out['steady'][f'{perf}_{sig}'] = {'v' + str(v): {a + '_' + b: steady(a, b, perf, sig, v / 3.6) for a in LEN for b in LEN} for v in (60, 80, 100)}
             out['cases'][f'{perf}_{sig}'] = case(H, perf, sig, V_THROAT)
     # what moves the result: one assumption changed at a time, on the central trains, for the plan's signalling and for long blocks
     for sig in ('auto', 'long'):
         S = {}
-        for perf in PERF: S['base_' + perf] = case(H, perf, sig, V_THROAT, rows=False)
+        for perf in ('central', 'cautious'): S['base_' + perf] = case(H, perf, sig, V_THROAT, rows=False)
         S['points80'] = case(H, 'central', sig, 80, rows=False)
         keep = (V_APPROACH, DEPTH, OVERLAP, T_SYS)
         V_APPROACH = 100; S['approach100'] = case(H, 'central', sig, V_THROAT, rows=False); V_APPROACH = keep[0]
@@ -314,6 +331,13 @@ def main():
         OVERLAP = 100.0; S['overlap100'] = case(H, 'central', sig, V_THROAT, rows=False); OVERLAP = keep[2]
         T_SYS = 20.0; S['sys20'] = case(H, 'central', sig, V_THROAT, rows=False); T_SYS = keep[3]
         out['sens'][sig] = {k: {'need': v['need'], 'hours': v['hours']} for k, v in S.items()}
+    # the braking the rules ask of a high-speed train, with the times the signalling gives a driver
+    steep = max(ramp(TUBES[k], V_THROAT)[1] for k in SIDE.values()); va = V_APPROACH / 3.6
+    mine = lambda perf, react: va * react + va * va / (2 * (PERF[perf]['tgv'][1] - G * steep))
+    out['rule'] = {'asked': RULE, 'slope': steep, 'drop': G * steep, 'stop': rule_stop(va, steep), 'stop_level': rule_stop(va, 0.0),
+                   'model': {'auto': mine('central', SIGNAL['auto']['react']), 'short': mine('central', SIGNAL['short']['react']), 'cautious': mine('cautious', SIGNAL['auto']['react']),
+                             'left_central': PERF['central']['tgv'][1] - G * steep, 'left_cautious': PERF['cautious']['tgv'][1] - G * steep},
+                   'case': case(H, 'rule', 'rule', V_THROAT, rows=False)}
     out['load'] = {}                                        # the busiest approach track and the busiest track of the triangle, each hour
     for sc in H:
         rows = out['cases']['central_auto']['hours'][sc]['rows']
@@ -329,6 +353,7 @@ def main():
     for name, c in out['cases'].items(): print(name.ljust(16), line(c))
     for sig, S in out['sens'].items():
         for name, c in S.items(): print('sens', sig, name.ljust(20), line(c))
+    print('rule'.ljust(16), line(out['rule']['case']), {k: round(v, 3) for k, v in out['rule']['stop'].items()}, {k: round(v, 3) for k, v in out['rule']['model'].items()})
     for name, r in out['runs'].items():
         print('run', name, {t: {k: (round(x['fastest']), round(x['with_margin']), round(x['cruise_kmh'])) for k, x in v.items()} for t, v in r.items()})
 

@@ -24,6 +24,16 @@
      "acc": 0.5,
      "brk": 0.5
     }
+   },
+   "rule": {
+    "tgv": {
+     "acc": 0.4,
+     "brk": 0.6
+    },
+    "ter": {
+     "acc": 0.6,
+     "brk": 0.7
+    }
    }
   },
   "v_line_kmh": 100.0,
@@ -55,6 +65,11 @@
     "block": 200.0,
     "throat": 100.0,
     "react": 2.0
+   },
+   "rule": {
+    "block": 200.0,
+    "throat": 100.0,
+    "react": 11.0
    }
   },
   "uic_peak": 0.75,
@@ -10708,6 +10723,368 @@
      }
     }
    }
+  }
+ },
+ "rule": {
+  "slope": 0.020958083832335328,
+  "drop": 0.20559880239520958,
+  "stop": {
+   "service": 870.4911748966507,
+   "emergency": 711.1332548720266,
+   "most": 870.4911748966507,
+   "service_left": 0.3944011976047904,
+   "emergency_left": 0.6944011976047905
+  },
+  "stop_level": {
+   "service": 655.9670781893004,
+   "emergency": 629.9039780521261,
+   "most": 655.9670781893004,
+   "service_left": 0.6,
+   "emergency_left": 0.9
+  },
+  "model": {
+   "auto": 883.1420525240653,
+   "short": 1016.4753858573986,
+   "cautious": 2660.0212221948136,
+   "left_central": 0.29440119760479044,
+   "left_cautious": 0.0944011976047904
+  },
+  "case": {
+   "table": {
+    "north_in": {
+     "tgv_tgv": {
+      "s": 97.61966319652292,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 89.56440311923068,
+      "place": "end"
+     },
+     "ter_tgv": {
+      "s": 90.71657810195255,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 82.6613180246603,
+      "place": "end"
+     }
+    },
+    "north_out": {
+     "tgv_tgv": {
+      "s": 70.14327901056072,
+      "place": "start"
+     },
+     "tgv_ter": {
+      "s": 75.76636080204815,
+      "place": "start"
+     },
+     "ter_tgv": {
+      "s": 58.94559900232803,
+      "place": "start"
+     },
+     "ter_ter": {
+      "s": 64.56868079381545,
+      "place": "start"
+     }
+    },
+    "east_in": {
+     "tgv_tgv": {
+      "s": 95.42016794148937,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 88.13074944899273,
+      "place": "end"
+     },
+     "ter_tgv": {
+      "s": 88.51708284691922,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 81.22766435442259,
+      "place": "end"
+     }
+    },
+    "east_out": {
+     "tgv_tgv": {
+      "s": 70.14211695136933,
+      "place": "start"
+     },
+     "tgv_ter": {
+      "s": 75.76519874285677,
+      "place": "start"
+     },
+     "ter_tgv": {
+      "s": 58.94559900232803,
+      "place": "start"
+     },
+     "ter_ter": {
+      "s": 64.56868079381545,
+      "place": "start"
+     }
+    },
+    "southeast_in": {
+     "tgv_tgv": {
+      "s": 94.37085444872939,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 87.46158295705183,
+      "place": "end"
+     },
+     "ter_tgv": {
+      "s": 87.46776935415924,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 80.55849786248169,
+      "place": "end"
+     }
+    },
+    "southeast_out": {
+     "tgv_tgv": {
+      "s": 70.14152257167143,
+      "place": "start"
+     },
+     "tgv_ter": {
+      "s": 75.76460436315884,
+      "place": "start"
+     },
+     "ter_tgv": {
+      "s": 58.94559900232803,
+      "place": "start"
+     },
+     "ter_ter": {
+      "s": 64.56868079381545,
+      "place": "start"
+     }
+    },
+    "atlantic_in": {
+     "tgv_tgv": {
+      "s": 94.8485295307655,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 87.79492492740944,
+      "place": "end"
+     },
+     "ter_tgv": {
+      "s": 87.94544443619536,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 80.8918398328393,
+      "place": "end"
+     }
+    },
+    "atlantic_out": {
+     "tgv_tgv": {
+      "s": 70.14180525086255,
+      "place": "start"
+     },
+     "tgv_ter": {
+      "s": 75.76488704234995,
+      "place": "start"
+     },
+     "ter_tgv": {
+      "s": 58.94559900232803,
+      "place": "start"
+     },
+     "ter_ter": {
+      "s": 64.56868079381545,
+      "place": "start"
+     }
+    },
+    "nemont_tun": {
+     "tgv_tgv": {
+      "s": 82.44147132036807,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 75.75881469845055,
+      "place": "start"
+     },
+     "ter_tgv": {
+      "s": 75.53838622585943,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 67.84536038949932,
+      "place": "end"
+     }
+    },
+    "nelyon_tun": {
+     "tgv_tgv": {
+      "s": 79.16042666584661,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 79.92783882301433,
+      "place": "tunnel"
+     },
+     "ter_tgv": {
+      "s": 73.10122925466749,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 70.57873855618399,
+      "place": "tunnel"
+     }
+    },
+    "link_tun": {
+     "tgv_tgv": {
+      "s": 79.16042666584661,
+      "place": "end"
+     },
+     "tgv_ter": {
+      "s": 79.92783882301433,
+      "place": "tunnel"
+     },
+     "ter_tgv": {
+      "s": 73.10122925466749,
+      "place": "end"
+     },
+     "ter_ter": {
+      "s": 70.57873855618399,
+      "place": "tunnel"
+     }
+    }
+   },
+   "hours": {
+    "today": {
+     "sum": {
+      "short": 0,
+      "pairs": 198,
+      "tracks": 14,
+      "close": 0,
+      "close_short": 0,
+      "tracks_short": 0,
+      "tracks_over": 0,
+      "spare_min": 29.28342189804745,
+      "spare_share": 0.7559714841829379,
+      "spare_at": {
+       "gap": 120,
+       "need": 90.71657810195255,
+       "spare": 29.28342189804745,
+       "first": "ter",
+       "second": "tgv",
+       "minute": 2.0,
+       "place": "end",
+       "tube": "north",
+       "use": "in",
+       "way": "N NE"
+      },
+      "taken_max": 0.5633312757028941,
+      "taken_at": {
+       "tube": "atlantic",
+       "use": "in",
+       "way": "A MP",
+       "trains": 23
+      }
+     }
+    },
+    "full": {
+     "sum": {
+      "short": 0,
+      "pairs": 216,
+      "tracks": 14,
+      "close": 0,
+      "close_short": 0,
+      "tracks_short": 0,
+      "tracks_over": 0,
+      "spare_min": 29.28342189804745,
+      "spare_share": 0.7559714841829379,
+      "spare_at": {
+       "gap": 120,
+       "need": 90.71657810195255,
+       "spare": 29.28342189804745,
+       "first": "ter",
+       "second": "tgv",
+       "minute": 2.0,
+       "place": "end",
+       "tube": "north",
+       "use": "in",
+       "way": "N NE"
+      },
+      "taken_max": 0.642371716978532,
+      "taken_at": {
+       "tube": "atlantic",
+       "use": "in",
+       "way": "A MP",
+       "trains": 26
+      }
+     }
+    },
+    "max": {
+     "sum": {
+      "short": 1,
+      "pairs": 225,
+      "tracks": 14,
+      "close": 7,
+      "close_short": 1,
+      "tracks_short": 1,
+      "tracks_over": 0,
+      "spare_min": -0.7165781019525497,
+      "spare_share": 1.0079619789105838,
+      "spare_at": {
+       "gap": 90,
+       "need": 90.71657810195255,
+       "spare": -0.7165781019525497,
+       "first": "ter",
+       "second": "tgv",
+       "minute": 22.5,
+       "place": "end",
+       "tube": "north",
+       "use": "in",
+       "way": "N NE"
+      },
+      "taken_max": 0.642371716978532,
+      "taken_at": {
+       "tube": "atlantic",
+       "use": "in",
+       "way": "A MP",
+       "trains": 26
+      }
+     }
+    }
+   },
+   "need": {
+    "arrive": {
+     "tgv_tgv": 97.61966319652292,
+     "tgv_ter": 89.56440311923068,
+     "ter_tgv": 90.71657810195255,
+     "ter_ter": 82.6613180246603
+    },
+    "leave": {
+     "tgv_tgv": 70.14327901056072,
+     "tgv_ter": 75.76636080204815,
+     "ter_tgv": 58.94559900232803,
+     "ter_ter": 64.56868079381545
+    },
+    "between": {
+     "tgv_tgv": 82.44147132036807,
+     "tgv_ter": 79.92783882301433,
+     "ter_tgv": 75.53838622585943,
+     "ter_ter": 70.57873855618399
+    },
+    "min": 58.94559900232803,
+    "max": 97.61966319652292,
+    "tgv_second": 97.61966319652292,
+    "ter_second": 89.56440311923068,
+    "at_peak": {
+     "tgv_second": 130.15955092869723,
+     "ter_second": 119.41920415897424
+    },
+    "cycle": 180.28098122118323
+   }
+  },
+  "asked": {
+   "service": 0.6,
+   "service_s": 2.0,
+   "emergency": 0.9,
+   "emergency_s": 3.0,
+   "driver_s": 9.0,
+   "system_s": 4.0
   }
  },
  "load": {

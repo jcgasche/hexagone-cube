@@ -13,5 +13,20 @@
   "publisher": "Rail Technical Strategy (Great Britain), case study: Thameslink core, September 2020",
   "about": "Thameslink: automatic driving over ETCS level 2 in use on the central route since March 2018, to go from 16 to 24 trains an hour",
   "url": "https://railtechnicalstrategy.co.uk/case-study/thameslink-core/"
+ },
+ "tsi_hs_brake": {
+  "publisher": "European Commission, Decision 2008/232/EC, technical specification for interoperability of high-speed rolling stock, clause 4.2.4 (braking), tables 6 and 8",
+  "about": "Least braking of a high-speed train on level track. Emergency braking, case B (reduced grip, part of the brakes out of use), felt after 3 s: 0.60 m/s² from 350 to 300 km/h, 0.7 from 300 to 230, 0.8 from 230 to 170, 0.9 from 170 to 0. Service braking, felt after 2 s: 0.30, 0.35, 0.6 and 0.6 m/s² over the same speeds",
+  "url": "https://www.legislation.gov.uk/eudn/2008/232/adopted"
+ },
+ "epsf_f018": {
+  "publisher": "Établissement public de sécurité ferroviaire (EPSF), SAM F 018, braking performance of rolling stock on lines fitted with TVM, version 1, 2 July 2009",
+  "about": "French rule for trains on high-speed lines: service and emergency braking as in the European specification, requirements set on level track, emergency brake fully applied within 3 seconds",
+  "url": "https://www.securite-ferroviaire.fr/sites/default/files/reglementations/pdf/2023-03/sam-f018-v1.pdf"
+ },
+ "era_curves": {
+  "publisher": "European Union Agency for Railways, Introduction to ETCS braking curves, ERA_ERTMS_040026, version 1.5",
+  "about": "How the European signalling works out the point where a train must start braking; worked examples with 9 s for the driver between the indication and the permitted speed, 4 s between the permitted speed and the automatic braking, 2.5 s for the emergency brake of a high-speed train to act; a factor of 0.893 for wet rails in the high-speed example",
+  "url": "https://www.era.europa.eu/system/files/2022-11/Introduction%20to%20ETCS%20braking%20curves.pdf"
  }
 }
