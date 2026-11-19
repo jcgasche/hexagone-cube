@@ -45,6 +45,7 @@ python3 model/french.py          # the French appraisal, every benefit     -> mo
 python3 model/export.py          # data the site reads                   -> src/data/model.json, finance.json, french.json, points.json
 python3 model/timetable.py       # the hour of trains (about 20 minutes)  -> src/sections/timetable/data.json
 python3 model/table_timetable.py # the TGV hour shown, and the TER hour checked against it -> src/sections/timetable/data.json
+python3 model/headway.py         # the least time between two trains in the tunnels (about a minute) -> src/sections/headway/data.json
 node tools/check_model.js        # the browser model must give the same numbers as the Python one
 node tools/check_algorithms.js   # every 'See the algorithm used' script runs on its own with python3
 python3 build.py
@@ -103,6 +104,7 @@ commands in that order, and every chapter follows. `docs/TRIANGLE_BRIEF.md` list
 | `model/timetable.py` | The hour of high-speed trains: searches the minutes of every train at full capacity, under stated rules, for an evenly spaced hour and for one timed for changes (the comparison) |
 | `model/table_timetable.py` | The hour shown: TGVs on the 12-minute beat, every place of every track filled by rule, checked; reads the TER hour of `model/inputs/ter_timetable.json`, checks every rule again against the TGVs and exports it with its measures |
 | `model/ter_timetable.py` | The minutes of the regional express trains in the TGV tunnels, fitted between the TGVs by a constraint solver (needs `ortools`; its result is kept in `model/inputs/ter_timetable.json`, so it only needs re-running if the TGV hour or the regional trains change) |
+| `model/headway.py` | The annex on train spacing: each train run metre by metre in the tunnels of the triangle and of the approaches (speed limits, slope, points), the least time between two trains block by block (blocking times, UIC code 406) for two sets of train performance and three signalling cases, and the three hours of the timetable replayed on it |
 | `model/inputs/` | Access times by point and by commune, three weightings; `job_access.json`, the results of the job-access demand model fitted on the census (code and data in the project files) |
 | `src/js/model.js` | The accounts and the cost build-up again, in the browser, for the calculators |
 

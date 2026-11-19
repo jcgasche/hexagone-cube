@@ -1,0 +1,146 @@
+<p class="lede">The timetable of the plan runs regional express trains (TER) between the TGVs, two minutes from the train ahead and from the train behind, and in its fullest hour a minute and a half at {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} places. This annex checks those minutes against the trains themselves: their length, their braking, the slope down to the platforms, the points at the stations and the signalling. With the train performance the study assumes, two minutes hold on every track of the triangle and of the four approach tunnels, with {{ d.headway.cases.central_long.hours.full.sum.spare_min | 0 }} to {{ d.headway.cases.central_auto.hours.full.sum.spare_min | 0 }} seconds in hand on the closest pair of trains. A minute and a half does not hold when the second train is a TGV. The tight place is the arrival at a station down an approach tunnel, not the triangle. And the result rests on one figure still to be confirmed: the braking a long TGV can be counted on for on the way down.</p>
+
+<div class="block" id="headway.asks">
+  <h2>What the timetable asks of the tunnels</h2>
+  <ul>
+    <li><strong>One track each way.</strong> The three tunnels of the triangle and the four approach tunnels have one track in each direction: {{ d.headway.cases.central_auto.hours.full.sum.tracks | 0 }} tracks in all. Every train uses three of them: an approach on the way in, one side of the triangle, an approach on the way out.</li>
+    <li><strong>TGVs four minutes apart.</strong> On each side of a station the TGVs follow each other every {{ d.headway.params.plan.step / 60 | 0 }} minutes, and never less than {{ d.headway.params.plan.tgv / 60 | 0 }} (see <a class="xref" href="#timetable">the timetable</a>).</li>
+    <li><strong>Regional express trains in between.</strong> A regional express train takes the middle of the gap between two TGVs, {{ d.headway.params.plan.path / 60 | 0 }} minutes from each. In the hour close to today's service and in the hour with the southern lines full, no two trains are closer than that. In the hour with Nord-Est filled too, {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} pairs of trains are {{ d.headway.params.plan.floor | 0 }} seconds apart.</li>
+    <li><strong>The busiest track is an approach, not a side of the triangle.</strong> With the southern lines full, {{ d.headway.load.full.approach.trains | 0 }} trains an hour arrive at Montparnasse by the Atlantic approach ({{ d.headway.load.full.approach.tgv | 0 }} TGVs and {{ d.headway.load.full.approach.ter | 0 }} regional express trains). The busiest track of the triangle, from Montparnasse to Nord-Est, carries {{ d.headway.load.full.triangle.trains | 0 }}.</li>
+  </ul>
+  <p>That hour holds {{ d.headway.load.full.trains | 0 }} trains ({{ d.headway.load.full.tgv | 0 }} TGVs, {{ d.headway.load.full.ter | 0 }} regional express trains), so {{ d.headway.cases.central_auto.hours.full.sum.pairs | 0 }} times a train follows another on one of the {{ d.headway.cases.central_auto.hours.full.sum.tracks | 0 }} tracks. The question is whether each of those times is long enough.</p>
+</div>
+
+<div class="block" id="headway.method">
+  <h2>How the least time between two trains is worked out</h2>
+  <p>A track is cut into stretches called blocks. A train may enter a block only when the train ahead has left it with its whole length, and a safety distance beyond. For the second train to run without slowing, it must be told that the block is free before the point where it would otherwise have to start braking.</p>
+  <p>So each block sets a least time between the two trains: from the moment the second train reaches its braking point to the moment the tail of the first has cleared the block, plus the seconds the signalling needs to see the block free, to move the points where there are any, and to tell the train. The largest of these times along the tunnel is the least time between the two trains. This is the method railway planners use.[[uic406]]</p>
+  <div class="formula"><span class="f-label">At steady speed, away from the stations</span><div class="f-math"><span class="cl"><var>least time</var><span class="op">=</span><span class="frac"><span><var>braking distance</var> + <var>block</var> + <var>safety distance</var> + <var>train length</var></span><span><var>speed</var></span></span></span><span class="cl"><span class="op">+</span><var>signalling time</var><span class="op">+</span><var>reaction time</var></span></div></div>
+  <p>At the stations nothing is steady, and the formula is not enough. The first train slows to cross the points, takes {{ d.headway.params.len.tgv / (d.headway.params.v_throat / 3.6) | 0 }} seconds to pull its {{ d.headway.params.len.tgv | 0 }} metres over each of them, then comes to a stand. The second is still at speed, and must be able to stop short of those points until they are free and set for its own platform track. The model therefore runs each train metre by metre, with its acceleration, its braking and the slope, and applies the rule block by block.</p>
+  <p>Two trains a few minutes apart never use the same platform track, since each stands there for several minutes. The model counts that they share the track as far as the last points of the fan, which is the least favourable case.</p>
+  <p>The hour is then replayed. Each pair of trains that follow each other on a track is given the least time it needs. The sum of these times over the hour is the share of the hour the track is taken. Planners keep that share under {{ d.headway.params.uic_peak | pct }} in the busiest hour on a line with mixed trains:[[uic406]] the rest is the reserve that absorbs small delays.</p>
+</div>
+
+<div class="block" id="headway.assume">
+  <h2>What is assumed</h2>
+  <p>None of these figures comes from a design of the tunnels or of their signalling. All are assumptions of this study <span class="tag assume">assumption</span>, and <a class="xref" href="#headway.levers">the table further down</a> shows what each one moves.</p>
+  <div class="tbl-wrap"><table class="tbl hw-tbl stack-sm">
+    <thead><tr><th>Subject</th><th>Central case</th><th>Also tested</th></tr></thead>
+    <tbody>
+      <tr><th>TGV</th><td data-l="Central case">{{ d.headway.params.len.tgv | 0 }} m (two sets coupled). Acceleration {{ d.headway.params.perf.central.tgv.acc | 1 }} m/s², braking {{ d.headway.params.perf.central.tgv.brk | 1 }} m/s², on the level, as in the timetable chapter</td><td data-l="Also tested">Cautious trains: {{ d.headway.params.perf.cautious.tgv.acc | 1 }} m/s² for both</td></tr>
+      <tr><th>Regional express train</th><td data-l="Central case">{{ d.headway.params.len.ter | 0 }} m (three sets coupled). Acceleration {{ d.headway.params.perf.central.ter.acc | 1 }} m/s², braking {{ d.headway.params.perf.central.ter.brk | 1 }} m/s²</td><td data-l="Also tested">Cautious trains: {{ d.headway.params.perf.cautious.ter.acc | 1 }} m/s² for both</td></tr>
+      <tr><th>Speeds</th><td data-l="Central case">Up to {{ d.headway.params.v_line_kmh | 0 }} km/h in the triangle, {{ d.headway.params.v_approach | 0 }} km/h in the approach tunnels, {{ d.headway.params.v_throat | 0 }} km/h over the points</td><td data-l="Also tested">Approach at 60 and at 100 km/h; points at 80 km/h</td></tr>
+      <tr><th>Run between two stations</th><td data-l="Central case">{{ d.headway.params.run_min | 0 }} minutes for every train, whatever the tunnel ({{ d.headway.params.tubes_km.nelyon | 0 }} to {{ d.headway.params.tubes_km.nemont | 0 }} km): each train holds the speed that gives exactly that</td><td data-l="Also tested"></td></tr>
+      <tr><th>Slope of the approaches</th><td data-l="Central case">The platforms lie {{ d.headway.params.depth | 0 }} m below the tunnel mouths. Over the {{ d.headway.params.tubes_km.north | 1 }} to {{ d.headway.params.tubes_km.southeast | 1 }} km of an approach that is a slope of {{ d.headway.params.slope.southeast * 100 | 1 }} to {{ d.headway.params.slope.north * 100 | 1 }} in a hundred. Gravity is added to the acceleration and to the braking</td><td data-l="Also tested">A level approach</td></tr>
+      <tr><th>Points at the stations</th><td data-l="Central case">A fan of {{ d.headway.params.throat.v60 | 0 }} m between the tunnel track and the platform tracks; the tail of a train at rest stands {{ d.headway.params.stop_clear | 0 }} m beyond the last points</td><td data-l="Also tested">{{ d.headway.params.throat.v80 | 0 }} m for points taken at 80 km/h</td></tr>
+      <tr><th>Signalling</th><td data-l="Central case">Signals shown in the cab and sent by radio (ETCS level 2), blocks of {{ d.headway.params.signal.auto.block | 0 }} m in the tunnels and of {{ d.headway.params.signal.auto.throat | 0 }} m in the fan of points, automatic driving ({{ d.headway.params.signal.auto.react | 0 }} s to react). This is the signalling the plan asks for</td><td data-l="Also tested">The same with a driver ({{ d.headway.params.signal.short.react | 0 }} s to react); blocks of {{ d.headway.params.signal.long.block | 0 }} m, the fan of points freed in one piece, a driver</td></tr>
+      <tr><th>Times and distances of the signalling</th><td data-l="Central case">{{ d.headway.params.overlap | 0 }} m of safety distance; {{ d.headway.params.t_sys | 0 }} s to see a block free and tell the next train; {{ d.headway.params.t_points | 0 }} s more where points move between the two trains</td><td data-l="Also tested">100 m; 20 s</td></tr>
+    </tbody>
+  </table></div>
+</div>
+
+<div class="block" id="headway.need">
+  <h2>The least time, place by place</h2>
+  <p>With the central trains and the signalling the plan asks for, in seconds:</p>
+  <div class="tbl-wrap"><table class="tbl hw-tbl">
+    <thead><tr><th>Where</th><th class="num">TGV behind a TGV</th><th class="num">TGV behind a regional express train</th><th class="num">Regional express train behind a TGV</th><th class="num">Regional express train behind another</th></tr></thead>
+    <tbody>
+      <tr><th>Leaving a station, up an approach</th><td class="num">{{ d.headway.cases.central_auto.need.leave.tgv_tgv | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.leave.ter_tgv | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.leave.tgv_ter | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.leave.ter_ter | 0 }}</td></tr>
+      <tr><th>From one station of the triangle to the next</th><td class="num">{{ d.headway.cases.central_auto.need.between.tgv_tgv | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.between.ter_tgv | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.between.tgv_ter | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.between.ter_ter | 0 }}</td></tr>
+      <tr><th>Arriving at a station, down an approach</th><td class="num">{{ d.headway.cases.central_auto.need.arrive.tgv_tgv | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.arrive.ter_tgv | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.arrive.tgv_ter | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.arrive.ter_ter | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>Arriving is the tight place.</strong> The first train is slow over the points and long to clear them, while the second comes down the slope and needs a long distance to stop. Leaving is easy: the second train starts from rest behind the first.</li>
+    <li><strong>The second train decides.</strong> A TGV brakes less hard than a regional express train, so it must be kept further back.</li>
+    <li><strong>The middle of a tunnel is never the limit.</strong> At steady speed the formula gives {{ d.headway.steady.central_auto.v100.tgv_tgv | 0 }} to {{ d.headway.steady.central_long.v60.tgv_tgv | 0 }} seconds between two TGVs, according to the speed and the signalling. No timetable is built on that figure: it has no reserve, and the stations ask for more.</li>
+  </ul>
+  <p>The signalling and the trains change these times as follows. The last column is the time a TGV, a regional express train and the next TGV need on the worst track, to be set against the {{ d.headway.params.plan.step | 0 }} seconds between two TGVs.</p>
+  <div class="tbl-wrap"><table class="tbl hw-tbl">
+    <thead><tr><th>Case</th><th class="num">Most a TGV needs behind another train</th><th class="num">Most a regional express train needs</th><th class="num">TGV, regional express train, TGV</th></tr></thead>
+    <tbody>
+      <tr><th colspan="4">Central trains</th></tr>
+      <tr><th>Short blocks, automatic driving (the plan)</th><td class="num">{{ d.headway.cases.central_auto.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.ter_second | 0 }}</td><td class="num">{{ d.headway.cases.central_auto.need.cycle | 0 }}</td></tr>
+      <tr><th>Short blocks, a driver</th><td class="num">{{ d.headway.cases.central_short.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.cases.central_short.need.ter_second | 0 }}</td><td class="num">{{ d.headway.cases.central_short.need.cycle | 0 }}</td></tr>
+      <tr><th>Blocks of {{ d.headway.params.signal.long.block | 0 }} m, a driver</th><td class="num">{{ d.headway.cases.central_long.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.cases.central_long.need.ter_second | 0 }}</td><td class="num">{{ d.headway.cases.central_long.need.cycle | 0 }}</td></tr>
+      <tr><th colspan="4">Cautious trains</th></tr>
+      <tr><th>Short blocks, automatic driving (the plan)</th><td class="num">{{ d.headway.cases.cautious_auto.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.cases.cautious_auto.need.ter_second | 0 }}</td><td class="num">{{ d.headway.cases.cautious_auto.need.cycle | 0 }}</td></tr>
+      <tr><th>Blocks of {{ d.headway.params.signal.long.block | 0 }} m, a driver</th><td class="num">{{ d.headway.cases.cautious_long.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.cases.cautious_long.need.ter_second | 0 }}</td><td class="num">{{ d.headway.cases.cautious_long.need.cycle | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <p>These are least times, with nothing in hand. If the reserve planners keep over an hour were asked of one pair alone, a TGV would need {{ d.headway.cases.central_auto.need.at_peak.tgv_second | 0 }} seconds behind the train ahead with the signalling of the plan, and {{ d.headway.cases.central_long.need.at_peak.tgv_second | 0 }} with blocks of {{ d.headway.params.signal.long.block | 0 }} m: more than two minutes. The timetable stays under the limit over the hour because many of its gaps are longer than two minutes.</p>
+</div>
+
+<div class="block" id="headway.replay">
+  <h2>The hour replayed, track by track</h2>
+  <p>Each line is one track of a tunnel. The closest pair is the one with the least in hand: the time the timetable gives it, less the least time it needs.</p>
+  <div class="controls" id="hw-ctl"></div>
+  <div id="hw-table"></div>
+  <p class="note" id="hw-sum"></p>
+</div>
+
+<div class="block" id="headway.findings">
+  <h2>What the check finds</h2>
+  <ul>
+    <li><strong>Two minutes hold with the central trains.</strong> In the hour close to today's service and in the hour with the southern lines full, none of the {{ d.headway.cases.central_auto.hours.today.sum.pairs | 0 }} and {{ d.headway.cases.central_auto.hours.full.sum.pairs | 0 }} pairs of trains is closer than it needs, whichever of the three signalling cases is taken.</li>
+    <li><strong>The reserve on the closest pairs is thin.</strong> A TGV arriving two minutes behind a regional express train has {{ d.headway.cases.central_auto.hours.full.sum.spare_min | 0 }} seconds in hand with the signalling of the plan, {{ d.headway.cases.central_short.hours.full.sum.spare_min | 0 }} with a driver and {{ d.headway.cases.central_long.hours.full.sum.spare_min | 0 }} with blocks of {{ d.headway.params.signal.long.block | 0 }} m. A regional express train later than that delays the TGV behind it.</li>
+    <li><strong>Over the hour, every track stays under the limit.</strong> The busiest, the Atlantic approach into Montparnasse, is taken {{ d.headway.cases.central_auto.hours.full.sum.taken_max | pct }} of the hour with the signalling of the plan and {{ d.headway.cases.central_long.hours.full.sum.taken_max | pct }} with blocks of {{ d.headway.params.signal.long.block | 0 }} m, against a limit of {{ d.headway.params.uic_peak | pct }}. Counting two minutes for every train, as <a class="xref" href="#project.networks">the project chapter</a> does to be safe, gives {{ d.headway.load.full.approach.flat_share | pct }}: the count block by block is lower because a regional express train needs less than two minutes behind a TGV, and a train leaving less than one arriving.</li>
+    <li><strong>A minute and a half does not hold behind a regional express train when the second train is a TGV.</strong> The TGV needs {{ d.headway.cases.central_auto.need.arrive.ter_tgv | 0 }} seconds at best. In the hour with Nord-Est filled too, {{ d.headway.cases.central_auto.hours.max.sum.close_short | 0 }} of the {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} pairs placed {{ d.headway.params.plan.floor | 0 }} seconds apart is too close with the signalling of the plan, and {{ d.headway.cases.central_long.hours.max.sum.close_short | 0 }} with blocks of {{ d.headway.params.signal.long.block | 0 }} m. The plan should be read as needing two minutes; that fullest hour needs more than signalling (points taken at 80 km/h, or a slower approach).</li>
+    <li><strong>The approaches are tighter than the triangle.</strong> They carry more trains, and the arrival down their slope is where the least time is longest. The closest pairs of every hour are on the north, south-east and Atlantic approaches.</li>
+    <li><strong>The six minutes between stations hold.</strong> Running as fast as it can, a TGV takes {{ d.headway.runs.central.nelyon.tgv.fastest | 0 }} to {{ d.headway.runs.central.nemont.tgv.fastest | 0 }} seconds from start to stop ({{ d.headway.runs.cautious.nelyon.tgv.fastest | 0 }} to {{ d.headway.runs.cautious.nemont.tgv.fastest | 0 }} with the cautious trains), and {{ d.headway.runs.cautious.nemont.tgv.with_margin | 0 }} at most with the {{ (d.headway.params.margin - 1) | pct }} margin of the timetable, inside the {{ d.headway.params.run_min * 60 | 0 }} seconds given.</li>
+    <li><strong>With cautious braking, two minutes no longer hold.</strong> If a TGV can only be counted on for {{ d.headway.params.perf.cautious.tgv.brk | 1 }} m/s² of braking, the slope takes more than half of it, and the train needs up to {{ d.headway.cases.cautious_auto.need.tgv_second | 0 }} seconds behind the train ahead. Then {{ d.headway.cases.cautious_auto.hours.today.sum.short | 0 }} to {{ d.headway.cases.cautious_auto.hours.full.sum.short | 0 }} pairs are too close, all on the three approaches where regional express trains arrive between TGVs, and a regional express train no longer fits between two TGVs four minutes apart ({{ d.headway.cases.cautious_auto.need.cycle | 0 }} seconds needed for {{ d.headway.params.plan.step | 0 }}). Better signalling does not repair this.</li>
+  </ul>
+  <p>The first figure to settle is therefore the braking that the signalling may count on for two coupled TGV sets on a descent of about two in a hundred. It is one of the study points of <a class="xref" href="#next">what comes next</a>.</p>
+</div>
+
+<div class="block" id="headway.levers">
+  <h2>What moves the result</h2>
+  <p>One assumption is changed at a time. The reserve is that of the closest pair in the hour with the southern lines full; a negative reserve means the pair is too close. That hour has {{ d.headway.cases.central_auto.hours.full.sum.pairs | 0 }} pairs.</p>
+  <div class="tbl-wrap"><table class="tbl hw-tbl hw-wide">
+    <thead>
+      <tr><th rowspan="2">Assumption changed</th><th class="num" colspan="3">Short blocks, automatic driving (the plan)</th><th class="num" colspan="3">Blocks of {{ d.headway.params.signal.long.block | 0 }} m, a driver</th></tr>
+      <tr><th class="num">Most a TGV needs (s)</th><th class="num">Reserve (s)</th><th class="num">Pairs too close</th><th class="num">Most a TGV needs (s)</th><th class="num">Reserve (s)</th><th class="num">Pairs too close</th></tr>
+    </thead>
+    <tbody>
+      <tr><th>None: the central case</th><td class="num">{{ d.headway.sens.auto.base_central.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.base_central.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.base_central.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.base_central.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.base_central.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.base_central.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>Points taken at 80 km/h</th><td class="num">{{ d.headway.sens.auto.points80.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.points80.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.points80.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.points80.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.points80.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.points80.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>Approach at 60 km/h</th><td class="num">{{ d.headway.sens.auto.approach60.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.approach60.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.approach60.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.approach60.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.approach60.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.approach60.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>Approach at 100 km/h</th><td class="num">{{ d.headway.sens.auto.approach100.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.approach100.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.approach100.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.approach100.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.approach100.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.approach100.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>A level approach</th><td class="num">{{ d.headway.sens.auto.flat.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.flat.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.flat.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.flat.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.flat.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.flat.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>Safety distance of 100 m</th><td class="num">{{ d.headway.sens.auto.overlap100.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.overlap100.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.overlap100.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.overlap100.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.overlap100.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.overlap100.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>20 s for the signalling to free a block</th><td class="num">{{ d.headway.sens.auto.sys20.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.sys20.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.sys20.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.sys20.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.sys20.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.sys20.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th colspan="7">Cautious trains</th></tr>
+      <tr><th>Cautious trains, nothing else changed</th><td class="num">{{ d.headway.sens.auto.base_cautious.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.base_cautious.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.base_cautious.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.base_cautious.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.base_cautious.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.base_cautious.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>Cautious trains, approach at 60 km/h</th><td class="num">{{ d.headway.sens.auto.approach60_cautious.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.approach60_cautious.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.approach60_cautious.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.approach60_cautious.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.approach60_cautious.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.approach60_cautious.hours.full.sum.short | 0 }}</td></tr>
+      <tr><th>Cautious trains, a level approach</th><td class="num">{{ d.headway.sens.auto.flat_cautious.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.auto.flat_cautious.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.auto.flat_cautious.hours.full.sum.short | 0 }}</td><td class="num">{{ d.headway.sens.long.flat_cautious.need.tgv_second | 0 }}</td><td class="num">{{ d.headway.sens.long.flat_cautious.hours.full.sum.spare_min | 0 }}</td><td class="num">{{ d.headway.sens.long.flat_cautious.hours.full.sum.short | 0 }}</td></tr>
+    </tbody>
+  </table></div>
+  <ul>
+    <li><strong>The slope and the braking count most, and together.</strong> On the level, even the cautious trains hold two minutes with the signalling of the plan. A gentler slope means a longer approach tunnel or platforms less deep.</li>
+    <li><strong>A slower approach helps the central trains,</strong> because a slower train stops sooner. It costs about {{ d.headway.params.tubes_km.atlantic * 1000 / (60 / 3.6) - d.headway.params.tubes_km.atlantic * 1000 / (d.headway.params.v_approach / 3.6) | 0 }} seconds of journey on each approach, outside the six minutes between stations.</li>
+    <li><strong>Faster points, short blocks and automatic driving each give less than ten seconds.</strong> They widen the reserve; they do not change the answer.</li>
+    <li><strong>The other way out is fewer trains on the tight tracks.</strong> A tunnel of their own for the regional express trains of the Atlantic approach, already priced as an option (see <a class="xref" href="#project.networks">the project</a>), takes them out of the busiest track.</li>
+  </ul>
+</div>
+
+<div class="block" id="headway.elsewhere">
+  <h2>What lines in service do</h2>
+  <ul>
+    <li><strong>Switzerland, the new line from Mattstetten to Rothrist.</strong> Long-distance trains at 200 km/h under ETCS level 2, with times between trains of less than two minutes asked of the system.[[mr_etcs]]</li>
+    <li><strong>London, the Thameslink tunnel.</strong> ETCS level 2 with automatic driving since 2018, to go from 16 to 24 trains an hour, one every two and a half minutes, with suburban trains.[[tl_ato]]</li>
+    <li><strong>London, the Elizabeth line.</strong> 24 trains an hour in the central tunnel, also one every two and a half minutes.[[el_may23]]</li>
+    <li><strong>The high-speed line from Paris to Lyon.</strong> The new signalling takes it from 13 to 16 trains an hour each way by 2030, one every 3 minutes 45 seconds.[[lgvse]]</li>
+  </ul>
+  <p>Two minutes between long-distance trains are therefore at the edge of what is done, not beyond it. None of these lines brings 400 m trains to a stand in a station 35 m down at that rate, which is why the arrival is the point to study.</p>
+</div>
+
+<div class="block" id="headway.limits">
+  <h2>What this check leaves out</h2>
+  <ul>
+    <li><strong>The stations are not drawn.</strong> The fan of points is a length and a speed, not a layout. Where the tracks of two tunnels meet on the same side of a station, a train of one may cross the path of a train of the other: that is not tested here (study point I2).</li>
+    <li><strong>No train is late.</strong> The check says whether the timetable can run on time. What a delay does to the trains behind, and how fast the hour recovers, needs a simulation of the whole hour with real delays.</li>
+    <li><strong>The stop at the platform is taken from the timetable.</strong> Whether a full TGV can be emptied and filled in the minutes given is a separate question (see <a class="xref" href="#limits">the limits</a>).</li>
+    <li><strong>The braking is one figure for each train.</strong> A signalling design uses the braking curves of each kind of train, with their own safety margins, and the real slope metre by metre.</li>
+    <li><strong>The lines beyond the tunnel mouths are not looked at.</strong> The study assumes they can carry the trains.</li>
+  </ul>
+</div>

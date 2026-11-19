@@ -1,0 +1,51 @@
+{
+ "exact": {
+  "Track": "Voie",
+  "Trains an hour (TGVs + TER)": "Trains par heure (TGV + TER)",
+  "Closest pair": "Trains les plus serrés",
+  "Time the timetable gives it (s)": "Temps donné par l’horaire (s)",
+  "Least time it needs (s)": "Temps minimal nécessaire (s)",
+  "In hand (s)": "Marge (s)",
+  "Pairs too close": "Intervalles trop courts",
+  "Share of the hour taken": "Part de l’heure occupée",
+  "Approach tunnels, towards the station": "Tunnels d’accès, vers la gare",
+  "The triangle": "Le triangle",
+  "Approach tunnels, away from the station": "Tunnels d’accès, en quittant la gare",
+  "TGV behind a TGV": "TGV derrière un TGV",
+  "TGV behind a TER": "TGV derrière un TER",
+  "TER behind a TGV": "TER derrière un TGV",
+  "TER behind a TER": "TER derrière un TER",
+  "Hour shown": "Heure affichée",
+  "About today": "Proche d’aujourd’hui",
+  "Southern lines full": "Lignes du sud pleines",
+  "Nord-Est filled too": "Nord-Est aussi au maximum",
+  "Signalling": "Signalisation",
+  "Short blocks, automatic driving": "Cantons courts, conduite automatique",
+  "Short blocks, a driver": "Cantons courts, un conducteur",
+  "Blocks of 400 m, a driver": "Cantons de 400 m, un conducteur",
+  "Trains": "Trains",
+  "Central trains": "Hypothèse centrale",
+  "Cautious trains": "Trains prudents",
+  "The mark on each bar is the limit planners keep in the busiest hour.": "Le repère sur chaque barre est la limite que les horairistes gardent à l’heure la plus chargée.",
+  "North approach, arriving": "Accès Nord, à l’arrivée",
+  "North approach, leaving": "Accès Nord, au départ",
+  "East approach, arriving": "Accès Est, à l’arrivée",
+  "East approach, leaving": "Accès Est, au départ",
+  "South-east approach, arriving": "Accès Sud-Est, à l’arrivée",
+  "South-east approach, leaving": "Accès Sud-Est, au départ",
+  "Atlantic approach, arriving": "Accès Atlantique, à l’arrivée",
+  "Atlantic approach, leaving": "Accès Atlantique, au départ",
+  "Nord-Est to Montparnasse": "De Nord-Est à Montparnasse",
+  "Nord-Est to Gare de Lyon": "De Nord-Est à la gare de Lyon",
+  "Montparnasse to Nord-Est": "De Montparnasse à Nord-Est",
+  "Montparnasse to Gare de Lyon": "De Montparnasse à la gare de Lyon",
+  "Gare de Lyon to Nord-Est": "De la gare de Lyon à Nord-Est",
+  "Gare de Lyon to Montparnasse": "De la gare de Lyon à Montparnasse"
+ },
+ "patterns": [
+  [
+   "{0} of {1} pairs of trains closer than they need.",
+   "{0} fois sur {1}, deux trains se suivent de plus près que nécessaire."
+  ]
+ ]
+}

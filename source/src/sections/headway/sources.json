@@ -1,0 +1,17 @@
+{
+ "uic406": {
+  "publisher": "International Union of Railways (UIC), Code 406, Capacity, 2nd edition, June 2013",
+  "about": "The method planners use to measure how full a line is: the time each train keeps each block (route formation, approach, run through the block, clearing, release), the trains of an hour pushed together, and the share of the hour they take; proposed limits of 75% in the busiest hour on lines with mixed trains and on high-speed lines, 85% on lines for suburban trains only",
+  "url": "https://tamannaei.iut.ac.ir/sites/tamannaei.iut.ac.ir/files/files_course/uic406_2013.pdf"
+ },
+ "mr_etcs": {
+  "publisher": "A. Trümpi (Swiss Federal Railways), ETCS Level 2: success for the Swiss Federal Railways, European Railway Review, 6 June 2007",
+  "about": "New line from Mattstetten to Rothrist: ETCS level 2 in full operation since 18 March 2007, 242 passenger trains a day, speeds raised from 160 to 200 km/h at the end of 2007; operational headways of less than two minutes at 200 km/h stated as necessary",
+  "url": "https://www.globalrailwayreview.com/?p=1459"
+ },
+ "tl_ato": {
+  "publisher": "Rail Technical Strategy (Great Britain), case study: Thameslink core, September 2020",
+  "about": "Thameslink: automatic driving over ETCS level 2 in use on the central route since March 2018, to go from 16 to 24 trains an hour",
+  "url": "https://railtechnicalstrategy.co.uk/case-study/thameslink-core/"
+ }
+}

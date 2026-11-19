@@ -446,5 +446,8 @@
  "pt_pest": "Ligne P : 3,8 % de voyageurs en plus par an de 2010 à 2015",
  "pt_cdgx": "CDG Express : objectif de 6 à 8 millions de voyageurs par an ; un train toutes les 15 minutes, 152 par jour, 32 km sans arrêt ; 13 rames de 240 à 420 places ; 25 euros",
  "pt_cdgx_site": "Mise en service du CDG Express le 28 mars 2027 : 20 minutes sans arrêt depuis la gare de l’Est ; plus de 72 millions de passagers à Paris-Charles de Gaulle en 2025",
- "idfm_r_days": "Trains de la ligne R terminus ou origine gare de Lyon : 80 le mardi 3 novembre 2026, 32 le samedi 7 novembre et 33 le dimanche 8 novembre ; 5 arrivent gare de Lyon dans leurs 60 minutes les plus chargées"
+ "idfm_r_days": "Trains de la ligne R terminus ou origine gare de Lyon : 80 le mardi 3 novembre 2026, 32 le samedi 7 novembre et 33 le dimanche 8 novembre ; 5 arrivent gare de Lyon dans leurs 60 minutes les plus chargées",
+ "uic406": "La méthode qu’emploient les horairistes pour mesurer à quel point une ligne est occupée : le temps pendant lequel chaque train retient chaque canton (formation de l’itinéraire, approche, parcours du canton, dégagement, libération), les trains d’une heure resserrés les uns contre les autres, et la part de l’heure qu’ils occupent ; limites proposées de 75 % à l’heure la plus chargée sur les lignes à trafic mixte et sur les lignes à grande vitesse, 85 % sur les lignes réservées aux trains de banlieue",
+ "mr_etcs": "Ligne nouvelle de Mattstetten à Rothrist : ETCS de niveau 2 en service complet depuis le 18 mars 2007, 242 trains de voyageurs par jour, vitesse relevée de 160 à 200 km/h fin 2007 ; des intervalles d’exploitation de moins de deux minutes à 200 km/h y sont donnés comme nécessaires",
+ "tl_ato": "Thameslink : conduite automatique sur ETCS de niveau 2 en service sur le tronçon central depuis mars 2018, pour passer de 16 à 24 trains par heure"
 }

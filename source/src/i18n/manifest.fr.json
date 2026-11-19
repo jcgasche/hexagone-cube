@@ -111,5 +111,9 @@
  "parts": {
   "nav_fr": "Ce que rapporte chaque partie",
   "heading_fr": "Ce que rapporte chaque partie du projet, et l’ordre des mises en service"
+ },
+ "headway": {
+  "nav_fr": "L’espacement des trains dans les tunnels",
+  "heading_fr": "Les trains peuvent-ils se suivre d’aussi près que l’horaire le demande ?"
  }
 }
