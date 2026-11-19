@@ -1,4 +1,4 @@
-<!-- en: 9da2d6dbf0 -->
+<!-- en: f37bc72e25 -->
 <p class="lede">Cette étude progresse grâce aux remarques de celles et ceux qui la lisent. Ce chapitre en garde la trace : pour chaque contribution, la plus récente en premier, ce que disait le rapport et quel était le problème, ce qui a été fait avec les calculs, et ce qui a changé dans le rapport. C’est aussi la manière de rendre à chacun ce qui lui revient.</p>
 
 <div class="block" id="progress.how">
@@ -44,6 +44,8 @@
     <li><strong>Une nouvelle annexe,</strong> <a class="xref" href="#headway">l’espacement des trains dans les tunnels</a>, avec le modèle, le simulateur et l’algorithme. Les chapitres sur le projet et sur l’horaire y renvoient.</li>
     <li><strong>Deux minutes tiennent ; une minute et demie ne tient pas.</strong> La condition du projet est à lire comme deux minutes. L’heure où Nord-Est est aussi au maximum, qui place {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} intervalles à 1,5 minute, demande plus que de la signalisation.</li>
     <li><strong>L’endroit serré est identifié :</strong> l’arrivée en gare par un tunnel d’accès, en descente, et non le triangle.</li>
+    <li><strong>Les gares ont été ajoutées à la vérification</strong> (<code>model/throat.py</code>) : chaque train sur sa voie à quai, à travers les aiguillages de chaque extrémité. Là où deux tunnels se rejoignent à une extrémité de gare, une arrivée et un départ ont besoin du même croisement {{ d.throat.cases.central_auto.full.sum.across.conflicts | 0 }} fois dans l’heure si tout est sur un seul niveau. Une voie doit passer sous une autre aux quatre bifurcations que le projet chiffre déjà.</li>
+    <li><strong>Les intervalles ont été confrontés aux règles horaires du gestionnaire du réseau :</strong> deux minutes autour d’un TER sont en dessous des règles actuelles, qui donnent deux minutes et demie à quatre minutes avec la signalisation d’aujourd’hui.</li>
     <li><strong>Reste ouvert :</strong> les valeurs de freinage qu’un projet de signalisation retiendrait pour les TGV en service ; la mention de 1,5 minute ailleurs dans le rapport ; la durée de l’arrêt, la propagation des retards, l’entretien des trains et les phases de travaux, qui ne sont pas encore traités (voir <a class="xref" href="#next">la suite</a>).</li>
   </ul>
 </div>

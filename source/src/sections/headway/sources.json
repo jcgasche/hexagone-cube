@@ -28,5 +28,30 @@
   "publisher": "European Union Agency for Railways, Introduction to ETCS braking curves, ERA_ERTMS_040026, version 1.5",
   "about": "How the European signalling works out the point where a train must start braking; worked examples with 9 s for the driver between the indication and the permitted speed, 4 s between the permitted speed and the automatic braking, 2.5 s for the emergency brake of a high-speed train to act; a factor of 0.893 for wet rails in the high-speed example",
   "url": "https://www.era.europa.eu/system/files/2022-11/Introduction%20to%20ETCS%20braking%20curves.pdf"
+ },
+ "sncf_norms19": {
+  "publisher": "SNCF Réseau, Direction de la capacité et des sillons, Norme de tracé horaire sur les lignes nationales pour le service annuel 2019, document AR30136, version 1, 4 December 2017 (copy published by a third party)",
+  "about": "Least intervals given to timetable planners, line from Paris-Est: 3 minutes between two trains at 120 km/h or more with automatic block signals; Haussmann-Saint-Lazare: 3 min 30 between two trains on one platform track, 2 min 30 for routes that part, 2 min for routes that join, 3 min 30 for routes that cross; Magenta: 3 min 30 between a departure and an arrival on the same track; Paris-Est: 3 minutes between departures, 4 between arrivals. No value for high-speed lines or for the European signalling",
+  "url": "https://lyonturin.eu/analyses/docs/comptamar/SA2019_-_AR30136_-_Normes_nationale%20sillon%20sncf%20reseau.pdf"
+ },
+ "points_course": {
+  "publisher": "Cheminot Transport, Les appareils de voie, première partie, November 2023 (a railwayman's course; unverified)",
+  "about": "Points of the French network by the tangent of their angle, with length and speed on the turning track: 0.11, 28 m, 40 km/h; 0.085, 40 m, 70 km/h; 0.05, 63 m, 100 km/h; 0.034, 88 m, 120 km/h. A forum of railway staff gives 60 km/h for 0.085 and 90 for 0.05",
+  "url": "https://cheminot-transport.over-blog.com/2023/11/les-appareils-de-voie-premiere-partie.html"
+ },
+ "tgv_duplex_wp": {
+  "publisher": "Wikipedia, TGV Duplex (unverified)",
+  "about": "One set: 200 m, 380 t, 8,800 kW under 25 kV, 320 km/h; two sets run coupled",
+  "url": "https://en.wikipedia.org/wiki/TGV_Duplex"
+ },
+ "allenbach_te": {
+  "publisher": "J.-M. Allenbach (EPFL), Techniques ferroviaires, exercices corrigés, 2015 edition, exercise 18",
+  "about": "A TGV set has 212 kN of tractive effort at starting; derived here: 212 kN for about 425 t loaded gives 0.5 m/s²",
+  "url": "https://www.traction-electrique.ch/documents/CorrigeTE.pdf"
+ },
+ "ter2nng_wp": {
+  "publisher": "Wikipedia, SNCF Class Z 26500 (TER 2N NG; unverified)",
+  "about": "Three-car double-deck regional set: 81 m, 193 t, 2,550 kW, 160 km/h",
+  "url": "https://en.wikipedia.org/wiki/SNCF_Class_Z_26500"
  }
 }

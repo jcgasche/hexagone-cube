@@ -34,9 +34,11 @@
 #headway .hw-sim-rail { stroke: var(--neutral-mark); stroke-width: 1; }
 #headway .hw-sim-slope { fill: none; stroke: var(--muted); stroke-width: 1.5; }
 #headway .hw-sim-blk { fill: var(--surface-2); stroke: var(--rule); stroke-width: .5; }
-#headway .hw-sim-blk.hw-res { fill-opacity: .3; }
-#headway .hw-sim-blk.hw-occ { fill-opacity: .85; }
-#headway .hw-sim-blk.hw-clash { fill: var(--bad) !important; }
+#headway { --hw-green: #2e9e5b; --hw-yellow: #f2b600; --hw-red: #d6302a; }
+#headway .hw-sim-blk.hw-green { fill: var(--hw-green); }
+#headway .hw-sim-blk.hw-yellow { fill: var(--hw-yellow); }
+#headway .hw-sim-blk.hw-red { fill: var(--hw-red); }
+#headway .hw-sim-bang { font: 700 15px var(--body); fill: var(--hw-red); }
 #headway .hw-sim-train { stroke-width: 7; stroke-linecap: butt; }
 #headway .hw-sim-brk { stroke-width: 1.5; stroke-dasharray: 3 3; }
 #headway .hw-sim-box { fill-opacity: .28; }
@@ -50,10 +52,25 @@
 #headway .hw-sim-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px 28px; }
 #headway .hw-sim-group { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 #headway #hw-sim h4 { font-size: 15px; margin: 0; }
-#headway .hw-sim-legend .hw-lg-res { background: var(--accent); opacity: .3; }
-#headway .hw-sim-legend .hw-lg-occ { background: var(--accent); opacity: .85; }
+#headway .hw-sim-legend .hw-lg-green { background: var(--hw-green); }
+#headway .hw-sim-legend .hw-lg-yellow { background: var(--hw-yellow); }
+#headway .hw-sim-legend .hw-lg-red { background: var(--hw-red); }
+#headway .hw-sim-legend .hw-lg-bang { color: var(--hw-red); font-weight: 700; width: 12px; text-align: center; }
 #headway .hw-sim-legend .hw-lg-brk { background: none; border-top: 2px dashed var(--accent); height: 0; border-radius: 0; }
 #headway .hw-sim-tbl th { font-weight: 500; }
 #headway .hw-sim-tbl tr.hw-bad td { color: var(--bad); font-weight: 600; }
 #headway .hw-sim-tbl tr.hw-ok td.num { color: var(--good); font-weight: 600; }
 #headway .hw-sim-tbl .hw-sim-why { color: var(--muted); font-size: 13px; }
+/* the drawing of a station and its two ends */
+#headway .hw-fig-wide { max-width: 760px; }
+#headway .hw-station { width: 100%; height: auto; display: block; }
+#headway .hw-station line { stroke-width: 2; stroke-linecap: round; fill: none; }
+#headway .hw-s-box { fill: var(--surface-2); stroke: var(--rule); }
+#headway .hw-s-tgv { stroke: var(--accent); stroke-width: 3 !important; }
+#headway .hw-s-ter { stroke: var(--alt); stroke-width: 3 !important; }
+#headway .hw-s-fan { stroke: var(--neutral-mark); stroke-width: 1.2 !important; }
+#headway .hw-s-main { stroke: var(--ink); }
+#headway .hw-s-under { stroke-dasharray: 6 5; }
+#headway .hw-s-x { fill: none; stroke: var(--hw-red); stroke-width: 2.5; }
+#headway .hw-s-lab { font: 12px var(--body); fill: var(--muted); }
+#headway .hw-s-red { fill: var(--hw-red); font-weight: 600; }

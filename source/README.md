@@ -47,6 +47,7 @@ python3 model/timetable.py       # the hour of trains (about 20 minutes)  -> src
 python3 model/table_timetable.py # the TGV hour shown, and the TER hour checked against it -> src/sections/timetable/data.json
 python3 model/headway.py         # the least time between two trains in the tunnels (about a minute) -> src/sections/headway/data.json
 node tools/check_headway_sim.js  # the simulator of that annex gives the same least times as the model
+python3 model/throat.py          # the junctions of the stations: crossings, lengths of blocks and of points (about two minutes) -> src/data/throat.json
 node tools/check_model.js        # the browser model must give the same numbers as the Python one
 node tools/check_algorithms.js   # every 'See the algorithm used' script runs on its own with python3
 python3 build.py

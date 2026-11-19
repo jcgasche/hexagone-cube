@@ -43,6 +43,8 @@
     <li><strong>A new annex,</strong> <a class="xref" href="#headway">train spacing in the tunnels</a>, with the model, the simulator and the algorithm. The project and timetable chapters point to it.</li>
     <li><strong>Two minutes hold; a minute and a half does not.</strong> The condition of the plan is to be read as two minutes. The hour with Nord-Est filled too, which places {{ d.headway.cases.central_auto.hours.max.sum.close | 0 }} pairs of trains 1.5 minutes apart, needs more than signalling.</li>
     <li><strong>The tight place is identified:</strong> the arrival at a station down an approach tunnel, not the triangle.</li>
+    <li><strong>The stations were added to the check</strong> (<code>model/throat.py</code>): every train on its platform track, through the points at each end. Where two tunnels meet at one end of a station, an arrival and a departure need the same crossing {{ d.throat.cases.central_auto.full.sum.across.conflicts | 0 }} times in the hour if everything is on one level. One track must pass under another at the four junctions the plan already prices.</li>
+    <li><strong>The intervals were set against the timetable rules of the track owner:</strong> two minutes around a regional express train are below today's rules, which give two and a half to four minutes with today's signalling.</li>
     <li><strong>Still open:</strong> the braking values a signalling design would use for TGVs in service; the wording of 1.5 minutes elsewhere in the report; the length of the stop, the spread of delays, the servicing of the trains and the stages of works, which have not been treated yet (see <a class="xref" href="#next">what comes next</a>).</li>
   </ul>
 </div>

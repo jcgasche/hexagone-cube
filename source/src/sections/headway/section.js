@@ -133,12 +133,14 @@ PTS.section('headway', function (root) {
         const p = prof[k]; off[k] = ref === 'stop' ? p.T : 0;
         hold[k] = bl.map(function (c) { return { from: needs(p, c[0]) - off[k] - P.react, to: at(p, c[1] + c[2] + L[k]) - off[k] + P.tsys + c[3] }; });
       });
+      const warn = {};                                     // metres along at which a train must know each block free: past it with the block still held, it brakes
+      ['tgv', 'ter'].forEach(function (k) { warn[k] = bl.map(function (c, i) { return where(prof[k], hold[k][i].from + off[k]); }); });
       const need = {};
       ['tgv', 'ter'].forEach(function (x) { ['tgv', 'ter'].forEach(function (y) {
         let best = -1e9, bi = 0; bl.forEach(function (c, i) { const d = hold[x][i].to - hold[y][i].from; if (d > best) { best = d; bi = i; } });
         need[x + '_' + y] = { s: best, i: bi, place: bl[bi][4] };
       }); });
-      return { P: P, L: L, perf: perf, D: Dm, th: th, plat: plat, r: r, g: g, start: start, end: end, xd: xd, prof: prof, blocks: bl, off: off, hold: hold, need: need };
+      return { P: P, L: L, perf: perf, D: Dm, th: th, plat: plat, r: r, g: g, start: start, end: end, xd: xd, prof: prof, blocks: bl, off: off, hold: hold, need: need, warn: warn };
     }
     PTS.headwaySim = { defaults: defaults, compute: compute };
 
@@ -155,8 +157,10 @@ PTS.section('headway', function (root) {
     const sliders = {}, top = h('div', { class: 'controls' }), view = h('div', { class: 'hw-sim-view' }), play = h('div', { class: 'controls hw-sim-play' }), grid = h('div', { class: 'hw-sim-grid' }), res = h('div', { class: 'hw-sim-res' });
     const legend = h('ul', { class: 'legend hw-sim-legend' },
       h('li', null, h('i', { style: { '--c': COL.tgv } }), 'TGV'), h('li', null, h('i', { style: { '--c': COL.ter } }), 'TER'),
-      h('li', null, h('i', { class: 'hw-lg-res' }), 'Block kept free ahead of a train'), h('li', null, h('i', { class: 'hw-lg-occ' }), 'Block taken by a train, or not yet given back'),
-      h('li', null, h('i', { style: { '--c': 'var(--bad)' } }), 'Two trains need the same block: the second must brake'),
+      h('li', null, h('i', { class: 'hw-lg-green' }), 'Green: the block is free, a train may come in at full speed'),
+      h('li', null, h('i', { class: 'hw-lg-yellow' }), 'Yellow: a train coming in here must brake, the block ahead is not free'),
+      h('li', null, h('i', { class: 'hw-lg-red' }), 'Red: block taken by a train, or not yet given back'),
+      h('li', null, h('b', { class: 'hw-lg-bang', text: '!' }), 'A train past its braking point before a red block: it must brake, the spacing does not hold'),
       h('li', null, h('i', { class: 'hw-lg-brk' }), 'Distance the train needs to stop'));
     host.appendChild(top); host.appendChild(view); host.appendChild(play); host.appendChild(legend); host.appendChild(grid); host.appendChild(h('h4', { text: 'What these settings give' })); host.appendChild(res);
 
@@ -270,7 +274,7 @@ PTS.section('headway', function (root) {
       const span = Math.ceil(900 / gap) + 2, j0 = Math.floor(T / gap);
       geo.rows.forEach(function (row, q) {
         PTS.clear(row.layer);
-        const count = c.blocks.map(function () { return { n: 0, kind: null, in: false }; });
+        const red = c.blocks.map(function () { return false; }), seenTrains = [];
         for (let j = j0 - span; j <= j0 + span; j++) {
           if ((((j % n) + n) % n) !== q) continue;
           const kind = kindOf(P, j), p = c.prof[kind], rel = T - j * gap, tau = rel + c.off[kind], L = c.L[kind];
@@ -278,20 +282,30 @@ PTS.section('headway', function (root) {
           if (P.scene === 'in' && tau > p.T) alpha = 1 - (tau - p.T) / 45;                       // at the platform: it fades, the next one takes another platform track
           if (P.scene !== 'in' && tau < 0) { x = 0; alpha = 1 + tau / 45; }                       // waiting at the platform before it leaves
           if (P.scene === 'tun' && tau > p.T) alpha = 1 - (tau - p.T) / 45;
-          c.hold[kind].forEach(function (hd, i) { if (rel >= hd.from && rel < hd.to) { count[i].n++; count[i].kind = kind; if (x >= c.blocks[i][0]) count[i].in = true; } });
+          c.hold[kind].forEach(function (hd, i) { if (x >= c.blocks[i][0] && rel < hd.to) red[i] = true; });       // entered, and not yet given back behind it
+          seenTrains.push({ kind: kind, x: x, moving: tau > 0 && tau < p.T, lane: 0 });
           if (alpha <= 0 || x - L > geo.x1 || x < geo.x0) continue;
           const lane = (Math.floor((j - q) / n) % 2 + 2) % 2 ? 1 : -1;
           const yof = function (xx) { let f = 0; if (c.end && xx > c.xd - c.th) f = Math.min(1, (xx - (c.xd - c.th)) / c.th); if (c.start && xx < c.th) f = Math.min(1, (c.th - xx) / c.th); return row.y + lane * 6 * f; };
           const xa = Math.max(geo.x0, x - L), xb = Math.min(geo.x1, x);
           row.layer.appendChild(s('line', { x1: X(xa), y1: yof(xa), x2: X(xb), y2: yof(xb), class: 'hw-sim-train', stroke: COL[kind], opacity: Math.min(1, alpha) }));
+          seenTrains[seenTrains.length - 1].y = yof(xb);
           const i = Math.max(0, Math.min(p.n, Math.round(x / DX))), v = (tau > 0 && tau < p.T) ? p.v[i] : (tau >= p.T ? p.v[p.n] : p.v[0]);
           if (v > 0.5 && x >= 0 && x <= c.D) { const sd = v * v / (2 * p.brk[i]); row.layer.appendChild(s('line', { x1: X(x), x2: X(Math.min(geo.x1, x + sd)), y1: row.y - 9, y2: row.y - 9, class: 'hw-sim-brk', stroke: COL[kind] })); }
         }
-        row.cells.forEach(function (e, i) {
-          const k = count[i];
-          e.setAttribute('class', 'hw-sim-blk' + (k.n > 1 ? ' hw-clash' : k.n === 1 ? (k.in ? ' hw-occ' : ' hw-res') : ''));
-          if (k.n === 1) e.style.fill = COL[k.kind]; else e.style.fill = '';
+        // the signal a train would meet at each block: red if taken, yellow if a train of the kind that follows could no longer stop before the next red block
+        seenTrains.sort(function (a, b) { return b.x - a.x; });
+        const yellow = c.blocks.map(function () { return false; });
+        red.forEach(function (r, i) {
+          if (!r) return;
+          let fk = P.k2, head = -1e9; seenTrains.forEach(function (t) { if (t.x < c.blocks[i][0] && t.x > head) { head = t.x; fk = t.kind; } });
+          for (let q = i - 1; q >= 0 && !red[q]; q--) { if (c.blocks[q][1] > c.warn[fk][i]) yellow[q] = true; else break; }
         });
+        seenTrains.forEach(function (t) {                   // a train past its braking point before a red block it has not yet reached
+          if (!t.moving) return;
+          for (let i = 0; i < red.length; i++) if (red[i] && c.blocks[i][0] > t.x && t.x > c.warn[t.kind][i] + 0.5) { row.layer.appendChild(s('text', { x: X(Math.max(geo.x0, t.x)), y: row.y - 13, class: 'hw-sim-bang', 'text-anchor': 'middle', text: '!' })); break; }
+        });
+        row.cells.forEach(function (e, i) { e.setAttribute('class', 'hw-sim-blk ' + (red[i] ? 'hw-red' : yellow[i] ? 'hw-yellow' : 'hw-green')); });
       });
       const rel = ((((T - geo.lead * gap - geo.t0) % period) + period) % period) + geo.t0, y = rel <= geo.t1 ? geo.Y(rel) : -10;
       geo.now.setAttribute('y1', y); geo.now.setAttribute('y2', y);

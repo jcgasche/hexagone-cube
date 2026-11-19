@@ -830,6 +830,51 @@
     "model/inputs/ter_timetable.json"
    ],
    "run": "import headway as HW\nH = HW.hours()\nfor perf, sig in (('central', 'auto'), ('central', 'long'), ('cautious', 'auto')):\n    c = HW.case(H, perf, sig, HW.V_THROAT, rows=False)\n    n = c['need']\n    print(f\"--- trains {perf!r}, signalling {sig!r}: least time {n['min']:.0f} to {n['max']:.0f} s; a TGV needs up to {n['tgv_second']:.0f} s behind another train, a regional express train {n['ter_second']:.0f} s\")\n    for sc, h in c['hours'].items():\n        s = h['sum']\n        print(f\"   hour {sc!r}: {s['short']} of {s['pairs']} pairs closer than they need, {s['spare_min']:.0f} s in hand on the closest pair, busiest track taken {100 * s['taken_max']:.0f}% of the hour\")"
+  },
+  {
+   "id": "throat",
+   "title_en": "The junctions of the stations: which trains cross, and for how long",
+   "title_fr": "Les bifurcations des gares : quels trains se croisent, et pendant combien de temps",
+   "keys": [
+    "d.throat"
+   ],
+   "goal_en": "Here, we calculate, for each end of each station where two tunnels meet, how many times in the hour two trains need the same crossing at once, depending on the platform track of each train, on its run and on the signalling.",
+   "goal_fr": "Ici, on calcule, pour chaque extrémité de gare où deux tunnels se rejoignent, combien de fois dans l’heure deux trains ont besoin du même croisement au même moment, en fonction de la voie à quai de chaque train, de sa marche et de la signalisation.",
+   "explain_en": [
+    "<code>movements()</code> lists every arrival and departure of the hour at each end of each station, with its tunnel and its platform track: the TGVs of <code>model/table_timetable.py</code> and the regional express trains of <code>model/inputs/ter_timetable.json</code>. Each station works in two halves, one for each direction.",
+    "<code>hold()</code> gives the time a train keeps a crossing, with the runs and the rule of <code>model/headway.py</code>: an arrival from the moment it must know it free (its braking point, less the time to react) until its tail has cleared it; a departure from the setting of its route until its tail has cleared it.",
+    "<code>end_study()</code> tests three kinds of crossing on one level: an arrival from one tunnel against a departure to the other; two arrivals from the two tunnels; two departures to the two tunnels. Two arrivals or two departures cross only when the order of their platform tracks is the reverse of the order of the tunnels: every order of the platform tracks is tried and the best is kept. <code>clash()</code> says whether two holding times overlap, and by how much.",
+    "<code>fan()</code> gives the length of points needed to spread one tunnel track over the platform tracks, from the angle and the length of the points. <code>main()</code> also runs <code>model/headway.py</code> again with other lengths of blocks and of points."
+   ],
+   "explain_fr": [
+    "<code>movements()</code> dresse la liste de toutes les arrivées et de tous les départs de l’heure à chaque extrémité de chaque gare, avec leur tunnel et leur voie à quai : les TGV de <code>model/table_timetable.py</code> et les TER de <code>model/inputs/ter_timetable.json</code>. Chaque gare fonctionne en deux moitiés, une par sens.",
+    "<code>hold()</code> donne le temps pendant lequel un train retient un croisement, avec les marches et la règle de <code>model/headway.py</code> : une arrivée, du moment où elle doit le savoir libre (son point de freinage, moins le temps de réaction) jusqu’à ce que sa queue l’ait dégagé ; un départ, de la formation de son itinéraire jusqu’à ce que sa queue l’ait dégagé.",
+    "<code>end_study()</code> teste trois sortes de croisement sur un seul niveau : une arrivée d’un tunnel contre un départ vers l’autre ; deux arrivées des deux tunnels ; deux départs vers les deux tunnels. Deux arrivées ou deux départs ne se croisent que si l’ordre de leurs voies à quai est l’inverse de l’ordre des tunnels : tous les ordres des voies à quai sont essayés et le meilleur est gardé. <code>clash()</code> dit si deux temps de retenue se recouvrent, et de combien.",
+    "<code>fan()</code> donne la longueur d’aiguillages nécessaire pour répartir une voie de tunnel sur les voies à quai, à partir de l’angle et de la longueur des aiguillages. <code>main()</code> relance aussi <code>model/headway.py</code> avec d’autres longueurs de cantons et d’aiguillages."
+   ],
+   "code": [
+    [
+     "model/throat.py",
+     [
+      "ZONE",
+      "ROUTE",
+      "NORMS",
+      "POINTS",
+      "fan",
+      "hold",
+      "movements",
+      "clash",
+      "tally",
+      "end_study",
+      "study"
+     ]
+    ]
+   ],
+   "data": [
+    "model/inputs/ter_timetable.json",
+    "model/outputs/nordest.json"
+   ],
+   "run": "import contextlib, io\nwith contextlib.redirect_stdout(io.StringIO()):\n    import headway as H\nimport throat as TH\nres = TH.study(H.hours(), 'central', 'auto', H.V_THROAT)\nfor sc, r in res.items():\n    print('--- hour', repr(sc))\n    for e in r['ends']:\n        if len(e['tunnels']) < 2: continue\n        print(f\"   {e['station']} {e['end']}: arrival against departure {e['across']['conflicts']} of {e['across']['pairs']} pairs in conflict, crossing held {round(100 * e['across']['load'])}% of the hour; inside a half {e['arrivals']['conflicts'] + e['departures']['conflicts']} of {e['arrivals']['pairs'] + e['departures']['pairs']}\")"
   }
  ]
 }

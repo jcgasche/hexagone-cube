@@ -1,0 +1,5753 @@
+{
+ "params": {
+  "zone": 100.0,
+  "route_s": 18.0,
+  "throat": 300.0,
+  "v_throat": 60
+ },
+ "holds": {
+  "tgv": {
+   "arr": 61.867150363910525,
+   "dep": 90.83334080239106,
+   "arr_before_stop": 82.19865214011753,
+   "dep_after_start": 72.83334080239106
+  },
+  "ter": {
+   "arr": 51.022277814980725,
+   "dep": 79.68890508351413,
+   "arr_before_stop": 70.92705806263433,
+   "dep_after_start": 61.68890508351413
+  }
+ },
+ "cases": {
+  "central_auto": {
+   "today": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 53,
+       "conflicts": 2,
+       "least": -20.30398911536645,
+       "worst": {
+        "x": 7.0,
+        "y": 8.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 40,
+       "conflicts": 1,
+       "least": -13.688905083513873,
+       "worst": {
+        "x": 28.0,
+        "y": 27.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 19,
+        "dep": 19
+       },
+       "E": {
+        "arr": 8,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 152,
+       "conflicts": 3,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 58.0,
+        "dep": 57.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -58.09521975234702,
+       "worst": {
+        "arr": 55.0,
+        "dep": 54.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 64,
+       "conflicts": 1,
+       "least": -2.9598069632716033,
+       "worst": {
+        "x": 53.0,
+        "y": 52.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 1,
+       "least": -24.83334080239092,
+       "worst": {
+        "x": 31.0,
+        "y": 32.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 10,
+        "dep": 10
+       }
+      },
+      "across": {
+       "pairs": 170,
+       "conflicts": 7,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 36.0,
+        "dep": 35.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 170,
+       "conflicts": 9,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 17.0,
+        "dep": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 23,
+      "departures": 23,
+      "by_tunnel": {
+       "A": {
+        "arr": 23,
+        "dep": 23
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 175.76562237024473,
+       "worst": {
+        "x": 45.0,
+        "y": 41.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 15.0,
+        "y": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 6,
+        "dep": 6
+       }
+      },
+      "across": {
+       "pairs": 102,
+       "conflicts": 2,
+       "least": -25.69265233692704,
+       "worst": {
+        "arr": 41.0,
+        "dep": 39.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 102,
+       "conflicts": 3,
+       "least": -21.926328764269783,
+       "worst": {
+        "arr": 41.0,
+        "dep": 39.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 16,
+      "departures": 16,
+      "by_tunnel": {
+       "S": {
+        "arr": 16,
+        "dep": 16
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 179.07469256102274,
+       "worst": {
+        "x": 1.0,
+        "y": 57.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 59.0,
+        "y": 55.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 10,
+        "dep": 10
+       },
+       "MP": {
+        "arr": 6,
+        "dep": 6
+       }
+      },
+      "across": {
+       "pairs": 60,
+       "conflicts": 0,
+       "least": 2.818900182222478,
+       "worst": {
+        "arr": 27.0,
+        "dep": 27.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 60,
+       "conflicts": 1,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 17.0,
+        "dep": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 484,
+      "conflicts": 12,
+      "least": -58.095219752346566
+     },
+     "arrivals": {
+      "pairs": 141,
+      "conflicts": 3,
+      "least": -20.30398911536645
+     },
+     "departures": {
+      "pairs": 116,
+      "conflicts": 2,
+      "least": -24.83334080239092
+     }
+    }
+   },
+   "full": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 47,
+       "conflicts": 1,
+       "least": -20.30398911536645,
+       "worst": {
+        "x": 11.0,
+        "y": 12.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 40,
+       "conflicts": 1,
+       "least": -13.688905083513873,
+       "worst": {
+        "x": 12.0,
+        "y": 11.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 19,
+        "dep": 19
+       },
+       "E": {
+        "arr": 8,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -58.09521975234679,
+       "worst": {
+        "arr": 22.0,
+        "dep": 21.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -58.09521975234702,
+       "worst": {
+        "arr": 35.0,
+        "dep": 34.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 64,
+       "conflicts": 1,
+       "least": -2.9598069632716033,
+       "worst": {
+        "x": 37.0,
+        "y": 36.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 0,
+       "least": 35.16665919760908,
+       "worst": {
+        "x": 23.0,
+        "y": 25.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 10,
+        "dep": 10
+       }
+      },
+      "across": {
+       "pairs": 170,
+       "conflicts": 7,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 40.0,
+        "dep": 39.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 170,
+       "conflicts": 8,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 21.0,
+        "dep": 20.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 26,
+      "departures": 26,
+      "by_tunnel": {
+       "A": {
+        "arr": 26,
+        "dep": 26
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 175.76562237024467,
+       "worst": {
+        "x": 1.0,
+        "y": 57.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 59.0,
+        "y": 55.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 153,
+       "conflicts": 6,
+       "least": -58.09521975234634,
+       "worst": {
+        "arr": 24.0,
+        "dep": 23.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 153,
+       "conflicts": 7,
+       "least": -33.070764483146604,
+       "worst": {
+        "arr": 13.0,
+        "dep": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 19,
+      "departures": 19,
+      "by_tunnel": {
+       "S": {
+        "arr": 19,
+        "dep": 19
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 179.07469256102263,
+       "worst": {
+        "x": 25.0,
+        "y": 29.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 15.0,
+        "y": 19.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 10,
+        "dep": 10
+       },
+       "MP": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 90,
+       "conflicts": 0,
+       "least": 2.818900182222478,
+       "worst": {
+        "arr": 31.0,
+        "dep": 31.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 90,
+       "conflicts": 1,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 1.0,
+        "dep": 0.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 565,
+      "conflicts": 18,
+      "least": -58.09521975234679
+     },
+     "arrivals": {
+      "pairs": 147,
+      "conflicts": 2,
+      "least": -20.30398911536645
+     },
+     "departures": {
+      "pairs": 128,
+      "conflicts": 1,
+      "least": -13.688905083513873
+     }
+    }
+   },
+   "max": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 116.84037712842155,
+       "worst": {
+        "x": 38.0,
+        "y": 35.0,
+        "kinds": "ter_ter"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 4,
+       "conflicts": 0,
+       "least": 46.31109491648613,
+       "worst": {
+        "x": 9.5,
+        "y": 11.5,
+        "kinds": "ter_ter"
+       },
+       "order": [
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 21,
+        "dep": 21
+       },
+       "E": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 189,
+       "conflicts": 5,
+       "least": -58.09521975234679,
+       "worst": {
+        "arr": 26.0,
+        "dep": 25.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 189,
+       "conflicts": 5,
+       "least": -70.39767444653376,
+       "worst": {
+        "arr": 20.0,
+        "dep": 18.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 48,
+       "conflicts": 0,
+       "least": 7.3151854014183755,
+       "worst": {
+        "x": 30.0,
+        "y": 29.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 3,
+       "least": -24.83334080239092,
+       "worst": {
+        "x": 55.0,
+        "y": 56.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 19,
+        "dep": 18
+       },
+       "LY": {
+        "arr": 11,
+        "dep": 12
+       }
+      },
+      "across": {
+       "pairs": 198,
+       "conflicts": 8,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 37.0,
+        "dep": 36.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 228,
+       "conflicts": 11,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 44.0,
+        "dep": 43.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 26,
+      "departures": 26,
+      "by_tunnel": {
+       "A": {
+        "arr": 26,
+        "dep": 26
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 175.7656223702445,
+       "worst": {
+        "x": 21.0,
+        "y": 17.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 19.0,
+        "y": 15.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 18,
+        "dep": 19
+       },
+       "LY": {
+        "arr": 8,
+        "dep": 7
+       }
+      },
+      "across": {
+       "pairs": 126,
+       "conflicts": 4,
+       "least": -25.69265233692704,
+       "worst": {
+        "arr": 49.0,
+        "dep": 47.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 25.0,
+        "dep": 24.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 19,
+      "departures": 19,
+      "by_tunnel": {
+       "S": {
+        "arr": 19,
+        "dep": 19
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 179.07469256102263,
+       "worst": {
+        "x": 25.0,
+        "y": 21.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 15.0,
+        "y": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 12,
+        "dep": 11
+       },
+       "MP": {
+        "arr": 7,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 77,
+       "conflicts": 2,
+       "least": -27.668498223792994,
+       "worst": {
+        "arr": 13.0,
+        "dep": 12.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      },
+      "across_other": {
+       "pairs": 96,
+       "conflicts": 2,
+       "least": -57.18109981777752,
+       "worst": {
+        "arr": 12.0,
+        "dep": 11.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 590,
+      "conflicts": 19,
+      "least": -58.09521975234679
+     },
+     "arrivals": {
+      "pairs": 88,
+      "conflicts": 0,
+      "least": 7.3151854014183755
+     },
+     "departures": {
+      "pairs": 84,
+      "conflicts": 3,
+      "least": -24.83334080239092
+     }
+    }
+   }
+  },
+  "central_long": {
+   "today": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 53,
+       "conflicts": 2,
+       "least": -26.30398911536645,
+       "worst": {
+        "x": 7.0,
+        "y": 8.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 40,
+       "conflicts": 1,
+       "least": -13.688905083513873,
+       "worst": {
+        "x": 28.0,
+        "y": 27.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 19,
+        "dep": 19
+       },
+       "E": {
+        "arr": 8,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 152,
+       "conflicts": 3,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 58.0,
+        "dep": 57.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -58.09521975234702,
+       "worst": {
+        "arr": 55.0,
+        "dep": 54.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 45,
+       "conflicts": 1,
+       "least": -8.95980696327183,
+       "worst": {
+        "x": 33.0,
+        "y": 32.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 1,
+       "least": -24.83334080239092,
+       "worst": {
+        "x": 31.0,
+        "y": 32.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 10,
+        "dep": 10
+       }
+      },
+      "across": {
+       "pairs": 170,
+       "conflicts": 7,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 36.0,
+        "dep": 35.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 170,
+       "conflicts": 9,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 17.0,
+        "dep": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 23,
+      "departures": 23,
+      "by_tunnel": {
+       "A": {
+        "arr": 23,
+        "dep": 23
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 169.76562237024473,
+       "worst": {
+        "x": 45.0,
+        "y": 41.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 15.0,
+        "y": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 6,
+        "dep": 6
+       }
+      },
+      "across": {
+       "pairs": 102,
+       "conflicts": 2,
+       "least": -31.69265233692704,
+       "worst": {
+        "arr": 41.0,
+        "dep": 39.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 102,
+       "conflicts": 3,
+       "least": -27.926328764269783,
+       "worst": {
+        "arr": 41.0,
+        "dep": 39.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 16,
+      "departures": 16,
+      "by_tunnel": {
+       "S": {
+        "arr": 16,
+        "dep": 16
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 173.07469256102274,
+       "worst": {
+        "x": 1.0,
+        "y": 57.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 59.0,
+        "y": 55.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 10,
+        "dep": 10
+       },
+       "MP": {
+        "arr": 6,
+        "dep": 6
+       }
+      },
+      "across": {
+       "pairs": 60,
+       "conflicts": 0,
+       "least": 2.818900182222478,
+       "worst": {
+        "arr": 27.0,
+        "dep": 27.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 60,
+       "conflicts": 1,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 17.0,
+        "dep": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 484,
+      "conflicts": 12,
+      "least": -58.095219752346566
+     },
+     "arrivals": {
+      "pairs": 122,
+      "conflicts": 3,
+      "least": -26.30398911536645
+     },
+     "departures": {
+      "pairs": 116,
+      "conflicts": 2,
+      "least": -24.83334080239092
+     }
+    }
+   },
+   "full": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 47,
+       "conflicts": 1,
+       "least": -26.30398911536645,
+       "worst": {
+        "x": 11.0,
+        "y": 12.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 40,
+       "conflicts": 1,
+       "least": -13.688905083513873,
+       "worst": {
+        "x": 12.0,
+        "y": 11.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 19,
+        "dep": 19
+       },
+       "E": {
+        "arr": 8,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -58.09521975234679,
+       "worst": {
+        "arr": 22.0,
+        "dep": 21.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -58.09521975234702,
+       "worst": {
+        "arr": 35.0,
+        "dep": 34.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 45,
+       "conflicts": 1,
+       "least": -8.95980696327183,
+       "worst": {
+        "x": 17.0,
+        "y": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 0,
+       "least": 35.16665919760908,
+       "worst": {
+        "x": 23.0,
+        "y": 25.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 10,
+        "dep": 10
+       }
+      },
+      "across": {
+       "pairs": 170,
+       "conflicts": 7,
+       "least": -58.095219752346566,
+       "worst": {
+        "arr": 40.0,
+        "dep": 39.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 170,
+       "conflicts": 8,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 21.0,
+        "dep": 20.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 26,
+      "departures": 26,
+      "by_tunnel": {
+       "A": {
+        "arr": 26,
+        "dep": 26
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 169.76562237024467,
+       "worst": {
+        "x": 1.0,
+        "y": 57.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 59.0,
+        "y": 55.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 153,
+       "conflicts": 6,
+       "least": -58.09521975234634,
+       "worst": {
+        "arr": 24.0,
+        "dep": 23.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 153,
+       "conflicts": 7,
+       "least": -39.070764483146604,
+       "worst": {
+        "arr": 13.0,
+        "dep": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 19,
+      "departures": 19,
+      "by_tunnel": {
+       "S": {
+        "arr": 19,
+        "dep": 19
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 173.07469256102263,
+       "worst": {
+        "x": 25.0,
+        "y": 29.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 15.0,
+        "y": 19.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 10,
+        "dep": 10
+       },
+       "MP": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 90,
+       "conflicts": 0,
+       "least": 2.818900182222478,
+       "worst": {
+        "arr": 31.0,
+        "dep": 31.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 90,
+       "conflicts": 1,
+       "least": -57.668498223792994,
+       "worst": {
+        "arr": 1.0,
+        "dep": 0.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 565,
+      "conflicts": 18,
+      "least": -58.09521975234679
+     },
+     "arrivals": {
+      "pairs": 128,
+      "conflicts": 2,
+      "least": -26.30398911536645
+     },
+     "departures": {
+      "pairs": 128,
+      "conflicts": 1,
+      "least": -13.688905083513873
+     }
+    }
+   },
+   "max": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 110.84037712842155,
+       "worst": {
+        "x": 38.0,
+        "y": 35.0,
+        "kinds": "ter_ter"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 4,
+       "conflicts": 0,
+       "least": 46.31109491648613,
+       "worst": {
+        "x": 9.5,
+        "y": 11.5,
+        "kinds": "ter_ter"
+       },
+       "order": [
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 21,
+        "dep": 21
+       },
+       "E": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 189,
+       "conflicts": 5,
+       "least": -58.09521975234679,
+       "worst": {
+        "arr": 26.0,
+        "dep": 25.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 189,
+       "conflicts": 5,
+       "least": -76.39767444653376,
+       "worst": {
+        "arr": 20.0,
+        "dep": 18.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 48,
+       "conflicts": 0,
+       "least": 1.3151854014183755,
+       "worst": {
+        "x": 30.0,
+        "y": 29.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 3,
+       "least": -24.83334080239092,
+       "worst": {
+        "x": 55.0,
+        "y": 56.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 19,
+        "dep": 18
+       },
+       "LY": {
+        "arr": 11,
+        "dep": 12
+       }
+      },
+      "across": {
+       "pairs": 198,
+       "conflicts": 8,
+       "least": -57.926328764269556,
+       "worst": {
+        "arr": 29.0,
+        "dep": 27.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 228,
+       "conflicts": 12,
+       "least": -61.69265233692704,
+       "worst": {
+        "arr": 52.5,
+        "dep": 51.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 26,
+      "departures": 26,
+      "by_tunnel": {
+       "A": {
+        "arr": 26,
+        "dep": 26
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 169.7656223702445,
+       "worst": {
+        "x": 21.0,
+        "y": 17.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 19.0,
+        "y": 15.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 18,
+        "dep": 19
+       },
+       "LY": {
+        "arr": 8,
+        "dep": 7
+       }
+      },
+      "across": {
+       "pairs": 126,
+       "conflicts": 5,
+       "least": -31.69265233692704,
+       "worst": {
+        "arr": 49.0,
+        "dep": 47.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 5,
+       "least": -57.92632876426967,
+       "worst": {
+        "arr": 9.0,
+        "dep": 7.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 19,
+      "departures": 19,
+      "by_tunnel": {
+       "S": {
+        "arr": 19,
+        "dep": 19
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 173.07469256102263,
+       "worst": {
+        "x": 25.0,
+        "y": 21.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 153.74301346550328,
+       "worst": {
+        "x": 15.0,
+        "y": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 12,
+        "dep": 11
+       },
+       "MP": {
+        "arr": 7,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 77,
+       "conflicts": 2,
+       "least": -27.668498223792994,
+       "worst": {
+        "arr": 13.0,
+        "dep": 12.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      },
+      "across_other": {
+       "pairs": 96,
+       "conflicts": 2,
+       "least": -57.18109981777752,
+       "worst": {
+        "arr": 12.0,
+        "dep": 11.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 590,
+      "conflicts": 20,
+      "least": -58.09521975234679
+     },
+     "arrivals": {
+      "pairs": 88,
+      "conflicts": 0,
+      "least": 1.3151854014183755
+     },
+     "departures": {
+      "pairs": 84,
+      "conflicts": 3,
+      "least": -24.83334080239092
+     }
+    }
+   }
+  },
+  "rule_rule": {
+   "today": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 53,
+       "conflicts": 2,
+       "least": -18.0153876938366,
+       "worst": {
+        "x": 39.0,
+        "y": 40.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 40,
+       "conflicts": 1,
+       "least": -13.688905083513873,
+       "worst": {
+        "x": 28.0,
+        "y": 27.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 19,
+        "dep": 19
+       },
+       "E": {
+        "arr": 8,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 152,
+       "conflicts": 7,
+       "least": -60.311253790272985,
+       "worst": {
+        "arr": 28.0,
+        "dep": 27.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 9,
+       "least": -58.09521975234702,
+       "worst": {
+        "arr": 55.0,
+        "dep": 54.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 45,
+       "conflicts": 2,
+       "least": -5.589076315387047,
+       "worst": {
+        "x": 33.0,
+        "y": 32.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 1,
+       "least": -24.83334080239092,
+       "worst": {
+        "x": 31.0,
+        "y": 32.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 10,
+        "dep": 10
+       }
+      },
+      "across": {
+       "pairs": 170,
+       "conflicts": 8,
+       "least": -60.311253790272815,
+       "worst": {
+        "arr": 1.0,
+        "dep": 0.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 170,
+       "conflicts": 9,
+       "least": -60.20677395242092,
+       "worst": {
+        "arr": 17.0,
+        "dep": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 23,
+      "departures": 23,
+      "by_tunnel": {
+       "A": {
+        "arr": 23,
+        "dep": 23
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 171.1495045108078,
+       "worst": {
+        "x": 17.0,
+        "y": 13.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 153.56853350868596,
+       "worst": {
+        "x": 15.0,
+        "y": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 6,
+        "dep": 6
+       }
+      },
+      "across": {
+       "pairs": 102,
+       "conflicts": 2,
+       "least": -34.92387964893078,
+       "worst": {
+        "arr": 13.0,
+        "dep": 11.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 102,
+       "conflicts": 6,
+       "least": -25.980041939327293,
+       "worst": {
+        "arr": 41.0,
+        "dep": 39.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 16,
+      "departures": 16,
+      "by_tunnel": {
+       "S": {
+        "arr": 16,
+        "dep": 16
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 173.09087823383197,
+       "worst": {
+        "x": 21.0,
+        "y": 25.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 153.56853350868596,
+       "worst": {
+        "x": 11.0,
+        "y": 7.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 10,
+        "dep": 10
+       },
+       "MP": {
+        "arr": 6,
+        "dep": 6
+       }
+      },
+      "across": {
+       "pairs": 60,
+       "conflicts": 0,
+       "least": 2.818900182222478,
+       "worst": {
+        "arr": 27.0,
+        "dep": 27.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 60,
+       "conflicts": 1,
+       "least": -60.20677395242092,
+       "worst": {
+        "arr": 17.0,
+        "dep": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 484,
+      "conflicts": 17,
+      "least": -60.311253790272985
+     },
+     "arrivals": {
+      "pairs": 122,
+      "conflicts": 4,
+      "least": -18.0153876938366
+     },
+     "departures": {
+      "pairs": 116,
+      "conflicts": 2,
+      "least": -24.83334080239092
+     }
+    }
+   },
+   "full": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 47,
+       "conflicts": 1,
+       "least": -18.0153876938366,
+       "worst": {
+        "x": 11.0,
+        "y": 12.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 40,
+       "conflicts": 1,
+       "least": -13.688905083513873,
+       "worst": {
+        "x": 12.0,
+        "y": 11.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 19,
+        "dep": 19
+       },
+       "E": {
+        "arr": 8,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 152,
+       "conflicts": 9,
+       "least": -58.09521975234679,
+       "worst": {
+        "arr": 22.0,
+        "dep": 21.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 9,
+       "least": -58.09521975234702,
+       "worst": {
+        "arr": 35.0,
+        "dep": 34.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 45,
+       "conflicts": 2,
+       "least": -5.589076315387047,
+       "worst": {
+        "x": 17.0,
+        "y": 16.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 0,
+       "least": 35.16665919760908,
+       "worst": {
+        "x": 23.0,
+        "y": 25.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 10,
+        "dep": 10
+       }
+      },
+      "across": {
+       "pairs": 170,
+       "conflicts": 8,
+       "least": -60.20677395242092,
+       "worst": {
+        "arr": 21.0,
+        "dep": 20.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 170,
+       "conflicts": 8,
+       "least": -60.311253790272815,
+       "worst": {
+        "arr": 5.0,
+        "dep": 4.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 26,
+      "departures": 26,
+      "by_tunnel": {
+       "A": {
+        "arr": 26,
+        "dep": 26
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 171.1495045108078,
+       "worst": {
+        "x": 21.0,
+        "y": 17.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 153.56853350868596,
+       "worst": {
+        "x": 11.0,
+        "y": 7.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 17,
+        "dep": 17
+       },
+       "LY": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 153,
+       "conflicts": 6,
+       "least": -58.09521975234634,
+       "worst": {
+        "arr": 24.0,
+        "dep": 23.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 153,
+       "conflicts": 10,
+       "least": -37.124477658204114,
+       "worst": {
+        "arr": 13.0,
+        "dep": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 19,
+      "departures": 19,
+      "by_tunnel": {
+       "S": {
+        "arr": 19,
+        "dep": 19
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 173.09087823383197,
+       "worst": {
+        "x": 25.0,
+        "y": 29.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 18,
+       "conflicts": 0,
+       "least": 153.56853350868596,
+       "worst": {
+        "x": 15.0,
+        "y": 19.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 10,
+        "dep": 10
+       },
+       "MP": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 90,
+       "conflicts": 0,
+       "least": 2.818900182222478,
+       "worst": {
+        "arr": 31.0,
+        "dep": 31.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 90,
+       "conflicts": 1,
+       "least": -60.20677395242092,
+       "worst": {
+        "arr": 1.0,
+        "dep": 0.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 565,
+      "conflicts": 23,
+      "least": -60.20677395242092
+     },
+     "arrivals": {
+      "pairs": 128,
+      "conflicts": 3,
+      "least": -18.0153876938366
+     },
+     "departures": {
+      "pairs": 128,
+      "conflicts": 1,
+      "least": -13.688905083513873
+     }
+    }
+   },
+   "max": {
+    "ends": [
+     {
+      "station": "NE",
+      "end": "outer",
+      "tunnels": [
+       "N",
+       "E"
+      ],
+      "arrivals": {
+       "pairs": 12,
+       "conflicts": 0,
+       "least": 107.84037712842155,
+       "worst": {
+        "x": 38.0,
+        "y": 35.0,
+        "kinds": "ter_ter"
+       },
+       "order": [
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 4,
+       "conflicts": 0,
+       "least": 46.31109491648613,
+       "worst": {
+        "x": 9.5,
+        "y": 11.5,
+        "kinds": "ter_ter"
+       },
+       "order": [
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "N": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2"
+        ],
+        "E": [
+         "ter 0",
+         "ter 1",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "N": {
+        "arr": 21,
+        "dep": 21
+       },
+       "E": {
+        "arr": 9,
+        "dep": 9
+       }
+      },
+      "across": {
+       "pairs": 189,
+       "conflicts": 10,
+       "least": -68.10907302500368,
+       "worst": {
+        "arr": 20.0,
+        "dep": 18.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "E",
+       "dep_to": "N"
+      },
+      "across_other": {
+       "pairs": 189,
+       "conflicts": 11,
+       "least": -58.09521975234679,
+       "worst": {
+        "arr": 26.0,
+        "dep": 25.0,
+        "kinds": "ter_ter"
+       },
+       "arr_from": "N",
+       "dep_to": "E"
+      }
+     },
+     {
+      "station": "NE",
+      "end": "tri",
+      "tunnels": [
+       "MP",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 48,
+       "conflicts": 1,
+       "least": -3.671663105903008,
+       "worst": {
+        "x": 30.0,
+        "y": 29.0,
+        "kinds": "ter_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 52,
+       "conflicts": 3,
+       "least": -24.83334080239092,
+       "worst": {
+        "x": 55.0,
+        "y": 56.0,
+        "kinds": "tgv_ter"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "MP": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "MP": {
+        "arr": 19,
+        "dep": 18
+       },
+       "LY": {
+        "arr": 11,
+        "dep": 12
+       }
+      },
+      "across": {
+       "pairs": 198,
+       "conflicts": 9,
+       "least": -60.20677395242092,
+       "worst": {
+        "arr": 37.0,
+        "dep": 36.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "MP"
+      },
+      "across_other": {
+       "pairs": 228,
+       "conflicts": 12,
+       "least": -64.92387964893078,
+       "worst": {
+        "arr": 52.5,
+        "dep": 51.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "MP",
+       "dep_to": "LY"
+      }
+     },
+     {
+      "station": "MP",
+      "end": "outer",
+      "tunnels": [
+       "A"
+      ],
+      "arrivals": 26,
+      "departures": 26,
+      "by_tunnel": {
+       "A": {
+        "arr": 26,
+        "dep": 26
+       }
+      }
+     },
+     {
+      "station": "MP",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "LY"
+      ],
+      "arrivals": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 171.14950451080767,
+       "worst": {
+        "x": 45.0,
+        "y": 41.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "ter",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 153.56853350868596,
+       "worst": {
+        "x": 19.0,
+        "y": 15.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "ter",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "ter 1",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "LY": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 18,
+        "dep": 19
+       },
+       "LY": {
+        "arr": 8,
+        "dep": 7
+       }
+      },
+      "across": {
+       "pairs": 126,
+       "conflicts": 5,
+       "least": -34.92387964893078,
+       "worst": {
+        "arr": 17.0,
+        "dep": 15.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "LY"
+      },
+      "across_other": {
+       "pairs": 152,
+       "conflicts": 7,
+       "least": -60.20677395242092,
+       "worst": {
+        "arr": 25.0,
+        "dep": 24.0,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "LY",
+       "dep_to": "NE"
+      }
+     },
+     {
+      "station": "LY",
+      "end": "outer",
+      "tunnels": [
+       "S"
+      ],
+      "arrivals": 19,
+      "departures": 19,
+      "by_tunnel": {
+       "S": {
+        "arr": 19,
+        "dep": 19
+       }
+      }
+     },
+     {
+      "station": "LY",
+      "end": "tri",
+      "tunnels": [
+       "NE",
+       "MP"
+      ],
+      "arrivals": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 173.09087823383197,
+       "worst": {
+        "x": 25.0,
+        "y": 21.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "out",
+         "ter",
+         0
+        ],
+        [
+         "out",
+         "tgv",
+         2
+        ],
+        [
+         "out",
+         "tgv",
+         3
+        ],
+        [
+         "out",
+         "tgv",
+         1
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "departures": {
+       "pairs": 14,
+       "conflicts": 0,
+       "least": 153.56853350868596,
+       "worst": {
+        "x": 15.0,
+        "y": 11.0,
+        "kinds": "tgv_tgv"
+       },
+       "order": [
+        [
+         "in",
+         "ter",
+         0
+        ],
+        [
+         "in",
+         "tgv",
+         1
+        ],
+        [
+         "in",
+         "tgv",
+         2
+        ],
+        [
+         "in",
+         "tgv",
+         3
+        ]
+       ],
+       "tracks_by_tunnel": {
+        "NE": [
+         "ter 0",
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ],
+        "MP": [
+         "tgv 1",
+         "tgv 2",
+         "tgv 3"
+        ]
+       }
+      },
+      "by_tunnel": {
+       "NE": {
+        "arr": 12,
+        "dep": 11
+       },
+       "MP": {
+        "arr": 7,
+        "dep": 8
+       }
+      },
+      "across": {
+       "pairs": 77,
+       "conflicts": 2,
+       "least": -30.206773952420917,
+       "worst": {
+        "arr": 13.0,
+        "dep": 12.5,
+        "kinds": "tgv_ter"
+       },
+       "arr_from": "MP",
+       "dep_to": "NE"
+      },
+      "across_other": {
+       "pairs": 96,
+       "conflicts": 2,
+       "least": -57.18109981777752,
+       "worst": {
+        "arr": 12.0,
+        "dep": 11.0,
+        "kinds": "ter_tgv"
+       },
+       "arr_from": "NE",
+       "dep_to": "MP"
+      }
+     }
+    ],
+    "sum": {
+     "across": {
+      "pairs": 590,
+      "conflicts": 26,
+      "least": -68.10907302500368
+     },
+     "arrivals": {
+      "pairs": 88,
+      "conflicts": 1,
+      "least": -3.671663105903008
+     },
+     "departures": {
+      "pairs": 84,
+      "conflicts": 3,
+      "least": -24.83334080239092
+     }
+    }
+   }
+  }
+ },
+ "halves": {
+  "today": {
+   "MP": {
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 24,
+     "ter": 22
+    },
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 24,
+     "ter": 22
+    }
+   },
+   "NE": {
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 24,
+     "ter": 30
+    },
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 24,
+     "ter": 30
+    }
+   },
+   "LY": {
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 1,
+     "tgv": 24,
+     "ter": 8
+    },
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 1,
+     "tgv": 24,
+     "ter": 8
+    }
+   }
+  },
+  "full": {
+   "MP": {
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 30,
+     "ter": 22
+    },
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 30,
+     "ter": 22
+    }
+   },
+   "LY": {
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 1,
+     "tgv": 30,
+     "ter": 8
+    },
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 1,
+     "tgv": 30,
+     "ter": 8
+    }
+   },
+   "NE": {
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 24,
+     "ter": 30
+    },
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 24,
+     "ter": 30
+    }
+   }
+  },
+  "max": {
+   "MP": {
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 30,
+     "ter": 22
+    },
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 30,
+     "ter": 22
+    }
+   },
+   "LY": {
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 1,
+     "tgv": 30,
+     "ter": 8
+    },
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 1,
+     "tgv": 30,
+     "ter": 8
+    }
+   },
+   "NE": {
+    "in": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 30,
+     "ter": 30
+    },
+    "out": {
+     "tgv_tracks": 3,
+     "ter_tracks": 2,
+     "tgv": 30,
+     "ter": 30
+    }
+   }
+  }
+ }
+}

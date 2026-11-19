@@ -41,9 +41,6 @@
   "Montparnasse to Gare de Lyon": "De Montparnasse à la gare de Lyon",
   "Gare de Lyon to Nord-Est": "De la gare de Lyon à Nord-Est",
   "Gare de Lyon to Montparnasse": "De la gare de Lyon à Montparnasse",
-  "Block kept free ahead of a train": "Canton gardé libre devant un train",
-  "Block taken by a train, or not yet given back": "Canton occupé par un train, ou pas encore libéré",
-  "Two trains need the same block: the second must brake": "Deux trains ont besoin du même canton : le second doit freiner",
   "Distance the train needs to stop": "Distance nécessaire au train pour s’arrêter",
   "What these settings give": "Ce que donnent ces réglages",
   "Tunnel and station": "Tunnel et gare",
@@ -99,7 +96,11 @@
   "Distance it needs to stop from the speed of the tunnel": "Distance nécessaire pour s’arrêter depuis la vitesse du tunnel",
   "Fastest run from start to stop": "Trajet le plus rapide, du départ à l’arrêt",
   "These are the values the study retains; the tables below give their results for every tunnel.": "Ce sont les valeurs que l’étude retient ; les tableaux ci-dessous donnent leurs résultats pour chaque tunnel.",
-  "Some values differ from those the study retains. The tables below keep the values of the study.": "Certaines valeurs diffèrent de celles que l’étude retient. Les tableaux ci-dessous gardent les valeurs de l’étude."
+  "Some values differ from those the study retains. The tables below keep the values of the study.": "Certaines valeurs diffèrent de celles que l’étude retient. Les tableaux ci-dessous gardent les valeurs de l’étude.",
+  "Green: the block is free, a train may come in at full speed": "Vert : le canton est libre, un train peut y entrer à pleine vitesse",
+  "Yellow: a train coming in here must brake, the block ahead is not free": "Jaune : un train qui entre ici doit freiner, le canton suivant n’est pas libre",
+  "Red: block taken by a train, or not yet given back": "Rouge : canton occupé par un train, ou pas encore libéré",
+  "A train past its braking point before a red block: it must brake, the spacing does not hold": "Un train a dépassé son point de freinage avant un canton rouge : il doit freiner, l’intervalle ne tient pas"
  },
  "patterns": [
   [
