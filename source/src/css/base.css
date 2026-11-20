@@ -148,4 +148,4 @@ img { max-width: 100% }
 .src-row.flash td, .src-row.flash th { background: var(--accent-soft) }
 
 /* the name says how it is said: Hexagone³ [cube] */
-.brand b .say { font-style: normal; font-weight: 500; font-size: .62em; color: var(--muted); margin-left: .15em; vertical-align: -.05em; white-space: nowrap }
+.brand b .say { font-style: normal; font-weight: 500; font-size: .8em; color: var(--muted); margin-left: .3em; white-space: nowrap }
