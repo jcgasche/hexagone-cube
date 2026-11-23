@@ -286,6 +286,10 @@ body[data-page="presentation"] .menu-btn { display: none }
 /* the name: Hexagone, cubed */
 .pz-title sup { font-size: .46em; vertical-align: .95em; margin-left: .05em; line-height: 0; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
 
+/* how to say it: [cube] beside the name */
+.pz-title .say { font-size: .34em; font-weight: 500; letter-spacing: 0; margin-left: .28em; color: #8fb8d8; white-space: nowrap }
+.pz-title .say i { font-style: normal; background: linear-gradient(90deg, #44d7ff, #3fe0a5); -webkit-background-clip: text; background-clip: text; color: transparent }
+
 /* the France slide: trains a day beside each journey, and three figures above */
 .pz-bar { grid-template-columns: 9.5em minmax(0, 1fr) 7.6em 2.6em }
 .pz-bar > em { font-style: normal; font-variant-numeric: tabular-nums; text-align: right; color: #ff9b80; font-weight: 600 }
